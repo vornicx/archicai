@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { NAV_LINKS } from '../constants'
+import Logo from './Logo'
 
 function Header() {
   const headerRef = useRef<HTMLElement>(null)
@@ -37,8 +38,8 @@ function Header() {
   return (
     <header ref={headerRef} className="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       <div className="mx-auto max-w-page flex items-center justify-between px-6 h-16">
-        <a href="#top" className="text-[15px] font-medium text-ink tracking-[-0.01em]">
-          Archic
+        <a href="#top" className="text-ink hover:opacity-80 transition-opacity">
+          <Logo />
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
