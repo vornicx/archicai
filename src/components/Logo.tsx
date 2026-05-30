@@ -5,11 +5,17 @@ type LogoProps = {
 }
 
 /**
- * Archic logo — three nested arcs representing the layered stack
- * (Atlas → Origin → Apollo), anchored by a focal node representing
- * the agent acting from first principles.
+ * Archic mark — "Keystone".
  *
- * Pure monochrome, uses currentColor so it inherits text color.
+ * A monolithic arch (flat base, semicircular crown) with a circular
+ * aperture punched through its center. The arch references the project's
+ * name and its architectural premise — load-bearing structure built from
+ * first principles. The aperture is the agent: a single point of focus
+ * inside the structure.
+ *
+ * Designed to read as one bold silhouette at favicon scale, in the
+ * lineage of Anthropic's asterisk, OpenAI's knot, or Mistral's mark —
+ * a single memorable shape, not a decorated illustration.
  */
 function Logo({ className, showWordmark = true, title = 'Archic' }: LogoProps) {
   return (
@@ -18,22 +24,14 @@ function Logo({ className, showWordmark = true, title = 'Archic' }: LogoProps) {
         viewBox="0 0 32 32"
         width="22"
         height="22"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
+        fill="currentColor"
         aria-hidden="true"
       >
-        {/* outermost arc — execution layer (Apollo) */}
-        <path d="M3 22 A 13 13 0 0 1 29 22" />
-        {/* middle arc — governance layer (Origin) */}
-        <path d="M7.5 22 A 8.5 8.5 0 0 1 24.5 22" />
-        {/* inner arc — memory layer (Atlas) */}
-        <path d="M12 22 A 4 4 0 0 1 20 22" />
-        {/* baseline */}
-        <line x1="2" y1="22" x2="30" y2="22" />
-        {/* focal node — the agent */}
-        <circle cx="16" cy="22" r="1.6" fill="currentColor" stroke="none" />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M4 28 L4 16 A12 12 0 0 1 28 16 L28 28 L20 28 L20 18 A4 4 0 0 0 12 18 L12 28 Z"
+        />
       </svg>
       {showWordmark && (
         <span className="font-display text-[17px] font-medium tracking-[-0.02em] leading-none">
