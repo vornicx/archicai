@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Archic Design — Palette Options</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #f5f5f7; color: #1d1d1f; padding: 2rem; max-width: 960px; margin: 0 auto; line-height: 1.5; }
+  h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  .subtitle { color: #86868b; margin-bottom: 1.5rem; }
+  .section { margin-bottom: 2rem; }
+  h2 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  
+  .palette { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .card { background: white; border-radius: 12px; overflow: hidden; flex: 1; min-width: 280px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .card-preview { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; }
+  .card-body { padding: 1rem; }
+  .card-body h3 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .card-body p { font-size: 0.85rem; color: #6e6e73; }
+  
+  .swatches { display: flex; gap: 8px; flex-wrap: wrap; margin: 0.75rem 0; }
+  .swatch { width: 40px; height: 40px; border-radius: 8px; border: 1px solid #e5e5e7; }
+
+  .layout-preview { border: 1px solid #d1d1d6; border-radius: 8px; overflow: hidden; background: white; margin: 1rem 0; }
+  .lp-header { padding: 8px 16px; font-size: 0.75rem; background: #f5f5f7; border-bottom: 1px solid #d1d1d6; display: flex; justify-content: space-between; }
+  .lp-body { padding: 16px; }
+  
+  .hero-block { border-radius: 8px; padding: 24px; margin-bottom: 12px; }
+  .hero-block h1 { font-family: Georgia, serif; font-size: 1.3rem; margin-bottom: 8px; }
+  .cta-row { display: flex; gap: 8px; }
+  .cta { padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; border: 1px solid; }
+  .cta-primary { background: #222; color: white; border-color: #222; }
+  .cta-secondary { background: transparent; color: #333; border-color: #ccc; }
+  .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .mini-card { height: 60px; border-radius: 6px; padding: 8px; font-size: 0.75rem; display: flex; flex-direction: column; justify-content: center; }
+  .mini-card .num { font-size: 1.2rem; font-weight: 700; }
+  
+  .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #86868b; margin-bottom: 0.5rem; }
+
+  .vibe-tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; background: #e8e8ed; margin-right: 4px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<h1>🎨 ¿Qué dirección visual prefieres?</h1>
+<p class="subtitle">Tres opciones basadas en "Anthropic pero más claro, con combinación".</p>
+
+<div class="section">
+  <div class="palette">
+
+    <!-- Option A: Warm Light (Anthropic-inspired) -->
+    <div class="card" style="border: 2px solid #0071e3;">
+      <div class="card-preview" style="background: #faf8f5;">
+        <span style="color: #cd5c3c;">A</span>
+      </div>
+      <div class="card-body">
+        <h3>A — Cálido Editorial</h3>
+        <p style="margin-bottom: 8px;">Blanco roto #FAF8F5, accent terracota #CD5C3C, serif display, tarjetas con sombra suave. Inspirado en Anthropic.</p>
+        <div class="swatches">
+          <div class="swatch" style="background:#FAF8F5;border-color:#d4c9b8;"></div>
+          <div class="swatch" style="background:#CD5C3C;"></div>
+          <div class="swatch" style="background:#FFFFFF;border-color:#d1d1d6;"></div>
+          <div class="swatch" style="background:#1D1D1F;"></div>
+          <div class="swatch" style="background:#F0EEEB;"></div>
+        </div>
+        <div class="vibe-tag" style="background:#e8f4fd;color:#0071e3;">Cálido</div>
+        <div class="vibe-tag" style="background:#e8f4fd;color:#0071e3;">Editorial</div>
+        <div class="vibe-tag" style="background:#e8f4fd;color:#0071e3;">Premium</div>
+      </div>
+    </div>
+
+    <!-- Option B: Clean Light -->
+    <div class="card">
+      <div class="card-preview" style="background: #ffffff;">
+        <span style="color: #0071e3;">B</span>
+      </div>
+      <div class="card-body">
+        <h3>B — Blanco Limpio</h3>
+        <p style="margin-bottom: 8px;">Blanco puro #FFFFFF, azul acero #0071E3 o índigo como accent, tarjetas con borde sutil. OpenAI/Stripe vibe.</p>
+        <div class="swatches">
+          <div class="swatch" style="background:#FFFFFF;border-color:#d1d1d6;"></div>
+          <div class="swatch" style="background:#0071E3;"></div>
+          <div class="swatch" style="background:#F5F5F7;"></div>
+          <div class="swatch" style="background:#1D1D1F;"></div>
+          <div class="swatch" style="background:#E8E8ED;"></div>
+        </div>
+        <div class="vibe-tag">Limpio</div>
+        <div class="vibe-tag">B2B</div>
+        <div class="vibe-tag">Moderno</div>
+      </div>
+    </div>
+
+    <!-- Option C: Mixed Light/Dark -->
+    <div class="card">
+      <div class="card-preview" style="background: linear-gradient(135deg, #f5f5f7 50%, #1a1a1a 50%);">
+        <span style="color: #cd5c3c;">C</span>
+      </div>
+      <div class="card-body">
+        <h3>C — Mixto (Light + Dark)</h3>
+        <p style="margin-bottom: 8px;">Secciones claras (blanco/gris suave) alternando con secciones oscuras (#1A1A1A). Serif display sobre claro, sans sobre oscuro. Lo mejor de ambos mundos.</p>
+        <div class="swatches">
+          <div class="swatch" style="background:#FFFFFF;border-color:#d1d1d6;"></div>
+          <div class="swatch" style="background:#1A1A1A;"></div>
+          <div class="swatch" style="background:#F5F5F7;"></div>
+          <div class="swatch" style="background:#CD5C3C;"></div>
+          <div class="swatch" style="background:#E8E8ED;"></div>
+        </div>
+        <div class="vibe-tag">Contraste</div>
+        <div class="vibe-tag">Dinámico</div>
+        <div class="vibe-tag">Anthropic-like</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h2>Vista previa de cada opción</h2>
+  <p class="subtitle" style="margin-bottom: 0.75rem;">Misma estructura, distinto tratamiento visual.</p>
+
+  <!-- Option A preview -->
+  <div class="layout-preview" style="border-color: #cd5c3c;">
+    <div class="lp-header">
+      <span>A — Cálido Editorial</span>
+      <span style="color:#999;">ARCHIC</span>
+    </div>
+    <div class="lp-body">
+      <div class="hero-block" style="background:#FAF8F5;">
+        <h1 style="font-family: Georgia, serif; color: #1D1D1F;">Infrastructure for<br>long-horizon intelligence</h1>
+        <p style="font-size:0.85rem;color:#6e6e73;margin-bottom:12px;">CL AUDE specification accuracy benchmarks</p>
+        <div class="cta-row">
+          <span class="cta cta-primary">Clone SDK</span>
+          <span class="cta cta-secondary">Read the whitepaper</span>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="mini-card" style="background:#F0EEEB;"><span class="num" style="color:#CD5C3C;">0.83</span>CL AUDE accuracy</div>
+        <div class="mini-card" style="background:#F0EEEB;"><span class="num" style="color:#CD5C3C;">±0.03</span>95% CI</div>
+        <div class="mini-card" style="background:#F0EEEB;"><span class="num" style="color:#CD5C3C;">5</span>Datasets evaluated</div>
+        <div class="mini-card" style="background:#F0EEEB;"><span class="num" style="color:#CD5C3C;">3.2×</span>vs Standard RAG</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option B preview -->
+  <div class="layout-preview" style="border-color: #0071e3;">
+    <div class="lp-header">
+      <span>B — Blanco Limpio</span>
+      <span style="color:#999;">ARCHIC</span>
+    </div>
+    <div class="lp-body">
+      <div class="hero-block" style="background:#FFFFFF;border:1px solid #e5e5e7;">
+        <h1 style="font-family: Georgia, serif; color: #1D1D1F;">Infrastructure for<br>long-horizon intelligence</h1>
+        <p style="font-size:0.85rem;color:#6e6e73;margin-bottom:12px;">CL AUDE specification accuracy benchmarks</p>
+        <div class="cta-row">
+          <span class="cta" style="background:#1D1D1F;color:white;border-color:#1D1D1F;">Clone SDK</span>
+          <span class="cta" style="background:transparent;color:#0071E3;border-color:#0071E3;">Read the whitepaper</span>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="mini-card" style="background:#F5F5F7;"><span class="num" style="color:#0071E3;">0.83</span>CL AUDE accuracy</div>
+        <div class="mini-card" style="background:#F5F5F7;"><span class="num" style="color:#0071E3;">±0.03</span>95% CI</div>
+        <div class="mini-card" style="background:#F5F5F7;"><span class="num" style="color:#0071E3;">5</span>Datasets evaluated</div>
+        <div class="mini-card" style="background:#F5F5F7;"><span class="num" style="color:#0071E3;">3.2×</span>vs Standard RAG</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option C preview -->
+  <div class="layout-preview" style="border-color: #8b5cf6;">
+    <div class="lp-header" style="background:#1a1a1a;color:white;border-bottom-color:#333;">
+      <span>C — Mixto</span>
+      <span style="color:#999;">ARCHIC</span>
+    </div>
+    <div class="lp-body" style="background:#1a1a1a;">
+      <div class="hero-block" style="background:#1a1a1a;color:white;">
+        <h1 style="font-family: Georgia, serif; color: #fff;">Infrastructure for<br>long-horizon intelligence</h1>
+        <p style="font-size:0.85rem;color:#999;margin-bottom:12px;">CL AUDE specification accuracy benchmarks</p>
+        <div class="cta-row">
+          <span class="cta" style="background:white;color:#1a1a1a;border-color:white;">Clone SDK</span>
+          <span class="cta" style="background:transparent;color:white;border-color:#555;">Read the whitepaper</span>
+        </div>
+      </div>
+      <div style="background:#f5f5f7;border-radius:8px;padding:12px;">
+        <div class="card-grid">
+          <div class="mini-card" style="background:white;"><span class="num" style="color:#1a1a1a;">0.83</span>CL AUDE accuracy</div>
+          <div class="mini-card" style="background:white;"><span class="num" style="color:#1a1a1a;">±0.03</span>95% CI</div>
+          <div class="mini-card" style="background:white;"><span class="num" style="color:#1a1a1a;">5</span>Datasets evaluated</div>
+          <div class="mini-card" style="background:white;"><span class="num" style="color:#1a1a1a;">3.2×</span>vs Standard RAG</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="color:#6e6e73;font-size:0.85rem;border-top:1px solid #d1d1d6;padding-top:1rem;">
+<strong>¿Cuál te gusta más?</strong> A, B o C. Podemos iterar desde ahí.
+</p>
+
+</body>
+</html>

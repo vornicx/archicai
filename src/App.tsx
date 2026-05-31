@@ -1,27 +1,23 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
-import Cycle from './components/Cycle'
-import Ecosystem from './components/Ecosystem'
-import Principles from './components/Principles'
-import Composition from './components/Composition'
-import Resources from './components/Resources'
-import Builders from './components/Builders'
-import ClosingCTA from './components/ClosingCTA'
+import Benchmarks from './components/Benchmarks'
+import ArchTable from './components/ArchTable'
+import Whitepaper from './components/Whitepaper'
+import SdkSection from './components/SdkSection'
+import ExtendedDocs from './components/ExtendedDocs'
 import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="relative min-h-screen text-ink lab-canvas">
+    <div className="min-h-screen" style={{ background: '#000000', color: '#FFFFFF' }}>
       <Header />
       <main>
         <Hero />
-        <Cycle />
-        <Ecosystem />
-        <Principles />
-          <Composition />
-          <Resources />
-          <Builders />
-        <ClosingCTA />
+        <Benchmarks />
+        <ArchTable />
+        <Whitepaper />
+        <SdkSection />
+        <ExtendedDocs />
       </main>
       <Footer />
     </div>

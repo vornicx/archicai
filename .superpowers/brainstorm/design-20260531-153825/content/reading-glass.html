@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Archic — Reading Glass</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: linear-gradient(165deg, #F5F0E8 0%, #EDE4D8 25%, #F0EBE3 50%, #E8DFD2 75%, #F5F0E8 100%);
+    color: #111;
+    min-height: 100vh; line-height: 1.6;
+  }
+  .container { max-width: 1120px; margin: 0 auto; padding: 3rem 2rem; }
+
+  .orb { position: fixed; border-radius: 50%; filter: blur(150px); pointer-events: none; z-index: 0; }
+  .orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, #C9A84C, #D4B87A); opacity: 0.15; top: -200px; right: -150px; }
+  .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, #D4B87A, #E8D5A8); opacity: 0.12; bottom: 50px; left: -180px; }
+  .orb-3 { width: 350px; height: 350px; background: radial-gradient(circle, #E8D5A8, #F0E3C8); opacity: 0.1; top: 40%; right: -80px; }
+
+  .noise {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat; background-size: 256px;
+  }
+
+  /* ===== HEADER ===== */
+  .glass-header {
+    position: relative; z-index: 2;
+    background: rgba(255, 252, 247, 0.4);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 100px;
+    padding: 0.9rem 2rem 0.9rem 2.8rem;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.7);
+    margin-bottom: 5rem;
+    transition: all 0.3s;
+  }
+  .glass-header:hover { border-color: rgba(184, 148, 60, 0.2); }
+  .logo { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #111; }
+  .nav { display: flex; gap: 2rem; }
+  .nav a { font-size: 0.8rem; color: #111; text-decoration: none; position: relative; transition: color 0.2s; }
+  .nav a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: #B8943C; transition: width 0.2s; border-radius: 2px; }
+  .nav a:hover { color: #B8943C; }
+  .nav a:hover::after { width: 100%; }
+
+  /* ===== HERO ===== */
+  .glass-hero {
+    position: relative; z-index: 1;
+    background: rgba(255, 252, 247, 0.35);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 32px;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.03), inset 0 1px 0 rgba(255,255,255,0.6);
+    margin-bottom: 5rem;
+    transition: all 0.3s;
+    /* Reading zone: inner content gets higher blur for text clarity */
+  }
+  .glass-hero:hover { border-color: rgba(184, 148, 60, 0.15); }
+  .hero-inner {
+    padding: 5rem 4rem;
+    text-align: center;
+    background: rgba(255, 252, 247, 0.25);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border-radius: 31px;
+  }
+  .hero-label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em;
+    color: #B8943C; margin-bottom: 1.25rem;
+    text-shadow: 0 0 20px rgba(184, 148, 60, 0.2);
+  }
+  .hero-inner h1 {
+    font-family: Georgia, serif; font-size: 3.2rem; font-weight: 400;
+    color: #1d1d1b; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.02em;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.4);
+  }
+  .hero-inner p { font-size: 1rem; color: #111; max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .cta-row { display: flex; gap: 1rem; justify-content: center; }
+  .cta { padding: 0.75rem 1.8rem; border-radius: 12px; font-size: 0.85rem; font-weight: 500; cursor: default; transition: all 0.25s; }
+  .cta-primary { background: rgba(184, 148, 60, 0.85); color: white; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 4px 16px rgba(184, 148, 60, 0.15), inset 0 1px 0 rgba(255,255,255,0.2); }
+  .cta-primary:hover { background: rgba(184, 148, 60, 0.95); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184, 148, 60, 0.2), inset 0 1px 0 rgba(255,255,255,0.25); }
+  .cta-secondary { background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); color: #111; border: 1px solid rgba(200,200,200,0.3); }
+  .cta-secondary:hover { background: rgba(255,255,255,0.35); border-color: #B8943C; color: #B8943C; }
+
+  /* ===== GLASS CARD with TEXT READING ZONE ===== */
+  .glass-card {
+    position: relative; z-index: 1;
+    background: rgba(255, 252, 247, 0.3);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.6);
+    transition: all 0.3s;
+  }
+  .glass-card:hover { border-color: rgba(184, 148, 60, 0.1); }
+  .glass-card > .inner {
+    padding: 3rem;
+    background: rgba(255, 252, 247, 0.25);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border-radius: 23px;
+  }
+
+  .glass-card-wide {
+    position: relative; z-index: 1;
+    background: rgba(255, 252, 247, 0.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 24px;
+    height: 100%;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.5);
+    transition: all 0.3s;
+  }
+  .glass-card-wide:hover { border-color: rgba(184, 148, 60, 0.1); }
+  .glass-card-wide > .inner {
+    padding: 3rem;
+    background: rgba(255, 252, 247, 0.2);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border-radius: 23px;
+    height: 100%;
+  }
+
+  .sec-label {
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: #B8943C; margin-bottom: 1.25rem; display: inline-block;
+    background: rgba(184, 148, 60, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 0.3rem 0.8rem; border-radius: 6px;
+  }
+
+  /* ===== METRICS ===== */
+  .metric-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .metric-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 16px; padding: 1.5rem 1rem; text-align: center;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+    transition: all 0.25s;
+  }
+  .metric-card:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.6);
+    border-color: rgba(184, 148, 60, 0.15);
+  }
+  .metric-value { font-family: Georgia, serif; font-size: 2rem; font-weight: 400; color: #B8943C; text-shadow: 0 0 24px rgba(184, 148, 60, 0.15); }
+  .metric-label { font-size: 0.7rem; color: #111; margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ===== QUOTE ===== */
+  .quote-block {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-left: 3px solid #B8943C;
+    border-radius: 0 16px 16px 0;
+    padding: 1.75rem 2rem;
+    margin-top: 1.5rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    transition: background 0.2s;
+  }
+  .quote-block:hover { background: rgba(255, 255, 255, 0.3); }
+  .quote-block p { font-family: Georgia, serif; font-size: 0.95rem; color: #111; font-style: italic; line-height: 1.7; }
+  .quote-block .attribution { font-family: system-ui; font-size: 0.75rem; color: #111; font-style: normal; margin-top: 0.6rem; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: stretch; }
+
+  /* ===== TABLE ===== */
+  .glass-table {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 14px; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .glass-table:hover { border-color: rgba(184, 148, 60, 0.12); }
+  .t-header {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    padding: 0.8rem 1.25rem; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.05em; color: #111;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .t-row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    padding: 0.85rem 1.25rem; font-size: 0.82rem; color: #111;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    transition: background 0.15s;
+  }
+  .t-row:last-child { border-bottom: none; }
+  .t-row:hover { background: rgba(255, 255, 255, 0.18); }
+  .check { color: #B8943C; font-weight: 600; }
+
+  /* ===== CODE ===== */
+  .code-block {
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px; padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; line-height: 1.8; overflow-x: auto;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: border-color 0.2s;
+  }
+  .code-block:hover { border-color: rgba(184, 148, 60, 0.12); }
+  .code-line { display: block; color: #e0ddd8; }
+  .code-line .kw { color: #C4A8E8; }
+  .code-line .str { color: #7CC9A0; }
+  .code-line .cm { color: #7a726a; }
+  .code-line .fn { color: #7CB8E8; }
+
+  /* ===== FOOTER ===== */
+  .glass-footer {
+    position: relative; z-index: 1;
+    background: rgba(26, 26, 26, 0.55);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 100px; padding: 1.5rem 2rem;
+    text-align: center; color: #aaa; font-size: 0.75rem;
+    margin-top: 5rem;
+    transition: border-color 0.3s;
+  }
+  .glass-footer:hover { border-color: rgba(184, 148, 60, 0.1); }
+  .glass-footer span { color: #B8943C; }
+
+  /* ===== DOWNLOAD ===== */
+  .download-row { display: flex; gap: 1.25rem; align-items: center; }
+  .download-row .doc-icon { font-size: 1.5rem; opacity: 0.6; }
+  .download-row .doc-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.15rem; }
+  .download-row .doc-info p { font-size: 0.78rem; color: #111; }
+  .download-btn {
+    margin-left: auto;
+    background: rgba(184, 148, 60, 0.85);
+    backdrop-filter: blur(12px);
+    color: white; border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 0.6rem 1.4rem; font-size: 0.8rem; font-weight: 500;
+    cursor: default; transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(184, 148, 60, 0.12), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .download-btn:hover { background: rgba(184, 148, 60, 0.95); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(184, 148, 60, 0.18), inset 0 1px 0 rgba(255,255,255,0.2); }
+
+  /* ===== DOC PARAMS ===== */
+  .doc-param {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(30px) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    padding: 1.25rem !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5) !important;
+    transition: all 0.2s !important;
+  }
+  .doc-param:hover { background: rgba(255, 255, 255, 0.3) !important; border-color: rgba(184, 148, 60, 0.15) !important; }
+
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .metric-row { grid-template-columns: repeat(2, 1fr); }
+    .hero-inner { padding: 3rem 1.5rem; }
+    .hero-inner h1 { font-size: 2rem; }
+    .glass-header { border-radius: 20px; flex-direction: column; gap: 0.75rem; padding: 0.9rem 1.5rem; }
+    .download-btn { margin-left: 0; }
+    .glass-card > .inner { padding: 1.5rem; }
+    .glass-card-wide > .inner { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="container">
+
+  <div class="glass-header">
+    <div class="logo">ARCHIC</div>
+    <div class="nav">
+      <a href="#">SDK</a>
+      <a href="#">Docs</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+
+  <div class="glass-hero">
+    <div class="hero-inner">
+      <div class="hero-label">Archic Research — Technical Report</div>
+      <h1>Infrastructure for<br>long-horizon intelligence</h1>
+      <p>CL AUDE specification accuracy benchmarks for deterministic reasoning evaluation in sub-agent routing architectures</p>
+      <div class="cta-row">
+        <span class="cta cta-primary">Clone SDK →</span>
+        <span class="cta cta-secondary">Read the whitepaper</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+
+    <!-- CARD: Benchmarks -->
+    <div class="glass-card">
+      <div class="inner">
+        <span class="sec-label">Benchmarks</span>
+        <div class="metric-row">
+          <div class="metric-card">
+            <div class="metric-value">0.83</div>
+            <div class="metric-label">CL AUDE Accuracy</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">±0.03</div>
+            <div class="metric-label">95% Confidence</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">5</div>
+            <div class="metric-label">Datasets</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">3.2×</div>
+            <div class="metric-label">vs Standard RAG</div>
+          </div>
+        </div>
+        <div class="quote-block">
+          <p>"We established CL AUDE as a public benchmark for long-horizon reasoning tasks. Our results demonstrate that deterministic routing to specialist sub-agents significantly outperforms monolithic RAG architectures."</p>
+          <div class="attribution">— Archic Research, Technical Report ARCHIC-TR-2026-01</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Whitepaper -->
+    <div class="glass-card">
+      <div class="inner">
+        <span class="sec-label">Technical Report</span>
+        <div class="download-row">
+          <span class="doc-icon">📄</span>
+          <div class="doc-info">
+            <h4>ARCHIC-TR-2026-01</h4>
+            <p>Long-Horizon Reasoning via Deterministic Sub-Agent Routing — 24 pages, PDF</p>
+          </div>
+          <span class="download-btn">Download PDF</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWO COLUMN -->
+    <div class="two-col">
+      <div class="glass-card-wide">
+        <div class="inner">
+          <span class="sec-label">Architecture</span>
+          <div class="glass-table">
+            <div class="t-header"><span>Capability</span><span>Standard RAG</span><span>Archic Midas</span></div>
+            <div class="t-row"><span>Context window utilization</span><span>Partial</span><span class="check">✓ Full</span></div>
+            <div class="t-row"><span>Deterministic dispatch</span><span>No</span><span class="check">✓ Verified</span></div>
+            <div class="t-row"><span>Sub-agent orchestration</span><span>None</span><span class="check">✓ Spec-driven</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card-wide">
+        <div class="inner">
+          <span class="sec-label">SDK Quickstart</span>
+          <div class="code-block">
+            <span class="code-line"><span class="cm"># pip install archic-sdk</span></span>
+            <span class="code-line"><span class="kw">from</span> archic <span class="kw">import</span> <span class="fn">MidasEngine</span></span>
+            <span class="code-line">&nbsp;</span>
+            <span class="code-line">engine = <span class="fn">MidasEngine</span>(model=<span class="str">"claude-sonnet-4"</span>, profile=<span class="str">"long-horizon"</span>)</span>
+            <span class="code-line">&nbsp;</span>
+            <span class="code-line">result = engine.<span class="fn">route</span>(spec=openapi_schema, constraint=<span class="str">"deterministic"</span>)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Dev Reference -->
+    <div class="glass-card">
+      <div class="inner">
+        <span class="sec-label">Developer Reference</span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="doc-param">
+            <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.05em;color:#B8943C;margin-bottom:0.6rem;text-shadow:0 0 12px rgba(184,148,60,0.15);">Commit</div>
+            <pre style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#111;line-height:1.7;">
+
+            <pre style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#111;line-height:1.7;">
+
+<span style="color:#B8943C;">recall</span>(&lt;agent_id&gt;) → result: dict</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="glass-footer">
+    ARCHIC <span>©</span> 2026 — Infrastructure for long-horizon intelligence
+  </div>
+
+</div>
+
+</body>
+</html>

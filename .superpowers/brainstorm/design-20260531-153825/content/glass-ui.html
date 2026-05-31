@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Archic — Glass UI</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #F7F3ED 0%, #EDE4D8 50%, #F0EBE3 100%);
+    color: #1d1d1b;
+    min-height: 100vh;
+    line-height: 1.5;
+    padding: 2rem;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; }
+
+  h1 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .subtitle { color: #7a7268; margin-bottom: 1.5rem; font-size: 0.9rem; }
+
+  /* Annotations */
+  .info-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .tag { font-size: 0.6rem; padding: 3px 10px; border-radius: 12px; font-weight: 500; }
+  .tag-method { background: rgba(184, 148, 60, 0.2); color: #7A5C1E; backdrop-filter: blur(4px); }
+  .tag-effect { background: rgba(255,255,255,0.6); color: #555; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.4); }
+
+  .page { position: relative; }
+
+  /* Background orbs */
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; pointer-events: none; z-index: 0; }
+  .orb-1 { width: 400px; height: 400px; background: #C9A84C; top: -100px; right: -100px; }
+  .orb-2 { width: 300px; height: 300px; background: #D4B87A; bottom: 200px; left: -80px; }
+  .orb-3 { width: 250px; height: 250px; background: #E8D5A8; top: 400px; right: 50px; }
+
+  /* === GLASS HEADER === */
+  .glass-header {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 252, 247, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    margin-bottom: 1.5rem;
+  }
+  .logo { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: #3d3d3b; }
+  .nav { display: flex; gap: 1.5rem; }
+  .nav a { font-size: 0.8rem; color: #7a7268; text-decoration: none; }
+
+  /* === GLASS HERO === */
+  .glass-hero {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 252, 247, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    padding: 4rem 3rem;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    margin-bottom: 1.5rem;
+  }
+  .hero-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: #B8943C; margin-bottom: 1rem; }
+  .glass-hero h1 { font-family: Georgia, serif; font-size: 2.8rem; font-weight: 400; color: #1d1d1b; line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .glass-hero p { font-size: 0.95rem; color: #7a7268; max-width: 480px; margin: 0 auto 2rem; }
+  .cta-row { display: flex; gap: 0.75rem; justify-content: center; }
+  .cta {
+    padding: 0.65rem 1.5rem; border-radius: 10px; font-size: 0.85rem; font-weight: 500;
+    backdrop-filter: blur(8px); transition: all 0.15s;
+  }
+  .cta-primary {
+    background: rgba(184, 148, 60, 0.9);
+    color: white; border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 2px 8px rgba(184, 148, 60, 0.2);
+  }
+  .cta-secondary {
+    background: rgba(255,255,255,0.3);
+    color: #B8943C; border: 1px solid rgba(184, 148, 60, 0.3);
+  }
+
+  /* === GLASS SECTION === */
+  .glass-section {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 252, 247, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    margin-bottom: 1.5rem;
+  }
+  .sec-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: #B8943C; margin-bottom: 1rem; }
+
+  /* Metrics */
+  .metric-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .metric-card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px; padding: 1.25rem 1rem; text-align: center;
+  }
+  .metric-value { font-family: Georgia, serif; font-size: 1.8rem; font-weight: 400; color: #B8943C; }
+  .metric-label { font-size: 0.7rem; color: #8a8078; margin-top: 0.35rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .quote-block {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    border-left: 3px solid #B8943C;
+    border-radius: 0 12px 12px 0;
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+  }
+  .quote-block p { font-family: Georgia, serif; font-size: 0.95rem; color: #3d3d3b; font-style: italic; line-height: 1.6; }
+  .quote-block .attribution { font-family: system-ui; font-size: 0.75rem; color: #8a8078; font-style: normal; margin-top: 0.5rem; }
+
+  /* Table */
+  .glass-table {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px; overflow: hidden;
+  }
+  .t-header { display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 0.75rem 1.25rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8078; border-bottom: 1px solid rgba(255,255,255,0.4); }
+  .t-row { display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 0.8rem 1.25rem; font-size: 0.82rem; color: #3d3d3b; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .t-row:last-child { border-bottom: none; }
+  .check { color: #B8943C; font-weight: 600; }
+
+  /* Code */
+  .code-block {
+    background: rgba(26, 26, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 1.25rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; line-height: 1.7; overflow-x: auto;
+  }
+  .code-line { display: block; color: #e0ddd8; }
+  .code-line .kw { color: #C4A8E8; }
+  .code-line .str { color: #7CC9A0; }
+  .code-line .cm { color: #7a726a; }
+  .code-line .fn { color: #7CB8E8; }
+
+  /* Footer */
+  .glass-footer {
+    position: relative; z-index: 1;
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 2rem; text-align: center; color: #8a8078; font-size: 0.75rem;
+  }
+  .glass-footer span { color: #B8943C; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .metric-row { grid-template-columns: repeat(2, 1fr); }
+    .glass-hero { padding: 2.5rem 1.5rem; }
+    .glass-hero h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Glass UI + Crema + Dorado</h1>
+  <p class="subtitle">Fondo degradado suave + elementos glass (backdrop-filter, bordes traslúcidos, sombras)</p>
+
+  <div class="info-row">
+    <span class="tag tag-method">backdrop-filter: blur(12-20px)</span>
+    <span class="tag tag-effect">bg: rgba(255,252,247, 0.5-0.7)</span>
+    <span class="tag tag-effect">border: 1px solid rgba(255,255,255, 0.3-0.5)</span>
+    <span class="tag tag-method">Fondo: degradé crema + orbes difuminados</span>
+  </div>
+
+  <div class="page">
+    <!-- Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Header -->
+    <div class="glass-header">
+      <div class="logo">ARCHIC</div>
+      <div class="nav">
+        <a>SDK</a>
+        <a>Docs</a>
+        <a>GitHub</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="glass-hero">
+      <div class="hero-label">Archic Research — Technical Report</div>
+      <h1>Infrastructure for<br>long-horizon intelligence</h1>
+      <p>CL AUDE specification accuracy benchmarks for deterministic reasoning evaluation in sub-agent routing architectures</p>
+      <div class="cta-row">
+        <span class="cta cta-primary">Clone SDK →</span>
+        <span class="cta cta-secondary">Read the whitepaper</span>
+      </div>
+    </div>
+
+    <!-- Metrics + Quote -->
+    <div class="glass-section">
+      <div class="sec-label">Benchmarks</div>
+      <div class="metric-row">
+        <div class="metric-card">
+          <div class="metric-value">0.83</div>
+          <div class="metric-label">CL AUDE Accuracy</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">±0.03</div>
+          <div class="metric-label">95% Confidence</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">5</div>
+          <div class="metric-label">Datasets</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">3.2×</div>
+          <div class="metric-label">vs Standard RAG</div>
+        </div>
+      </div>
+      <div class="quote-block">
+        <p>"We established CL AUDE as a public benchmark for long-horizon reasoning tasks. Our results demonstrate that deterministic routing to specialist sub-agents significantly outperforms monolithic RAG architectures."</p>
+        <div class="attribution">— Archic Research, Technical Report ARCHIC-TR-2026-01</div>
+      </div>
+    </div>
+
+    <!-- Architecture + Code -->
+    <div class="glass-section">
+      <div class="sec-label">Architecture</div>
+      <div class="glass-table" style="margin-bottom: 1.5rem;">
+        <div class="t-header">
+          <span>Capability</span><span>Standard RAG</span><span>Archic Midas Engine</span>
+        </div>
+        <div class="t-row">
+          <span>Context window utilization</span><span>Partial</span><span class="check">✓ Full</span>
+        </div>
+        <div class="t-row">
+          <span>Deterministic dispatch</span><span>No</span><span class="check">✓ Verified</span>
+        </div>
+        <div class="t-row">
+          <span>Sub-agent orchestration</span><span>None</span><span class="check">✓ Spec-driven</span>
+        </div>
+      </div>
+
+      <div class="sec-label">SDK Quickstart</div>
+      <div class="code-block">
+        <span class="code-line"><span class="cm"># pip install archic-sdk</span></span>
+        <span class="code-line"><span class="kw">from</span> archic <span class="kw">import</span> <span class="fn">MidasEngine</span></span>
+        <span class="code-line">&nbsp;</span>
+        <span class="code-line">engine = <span class="fn">MidasEngine</span>(</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;model=<span class="str">"claude-sonnet-4"</span>,</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;profile=<span class="str">"long-horizon"</span></span>
+        <span class="code-line">)</span>
+        <span class="code-line">&nbsp;</span>
+        <span class="code-line">result = engine.<span class="fn">route</span>(</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;spec=openapi_schema,</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;constraint=<span class="str">"deterministic"</span></span>
+        <span class="code-line">)</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="glass-footer">
+      ARCHIC <span>©</span> 2026 — Infrastructure for long-horizon intelligence
+    </div>
+  </div>
+
+  <p style="color:#7a7268;font-size:0.85rem;border-top:1px solid rgba(0,0,0,0.06);padding-top:1rem;margin-top:1.5rem;">
+    <strong>¿Te gusta esta dirección Glass?</strong> ¿Quieres que ajuste la intensidad del blur, los colores de fondo, o los orbes?
+  </p>
+
+</div>
+</body>
+</html>

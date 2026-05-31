@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Archic — Refined Gold</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #f2f2f5; color: #1d1d1f; line-height: 1.5; }
+  
+  .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+  h1 { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .subtitle { color: #86868b; margin-bottom: 1.5rem; font-size: 0.9rem; }
+  h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #86868b; margin-bottom: 1rem; }
+
+  /* Full page mockup */
+  .page-mockup { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); margin-bottom: 2rem; }
+
+  /* === Header === */
+  .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; border-bottom: 1px solid #eee; }
+  .logo { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #333; }
+  .nav { display: flex; gap: 1.5rem; }
+  .nav a { font-size: 0.8rem; color: #666; text-decoration: none; }
+
+  /* === Dark Hero with Gold === */
+  .hero { background: #0d0d0d; padding: 4rem 2rem; text-align: center; }
+  .hero-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: #C9A84C; margin-bottom: 1rem; }
+  .hero h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.4rem; font-weight: 400; color: white; line-height: 1.2; margin-bottom: 0.75rem; }
+  .hero p { font-size: 0.9rem; color: #888; max-width: 480px; margin: 0 auto 1.5rem; }
+  .cta-row { display: flex; gap: 0.75rem; justify-content: center; }
+  .cta { padding: 0.6rem 1.4rem; border-radius: 8px; font-size: 0.85rem; font-weight: 500; border: 1px solid; cursor: default; }
+  .cta-primary { background: #C9A84C; color: #0d0d0d; border-color: #C9A84C; }
+  .cta-secondary { background: transparent; color: #C9A84C; border-color: #555; }
+
+  /* === Section Light === */
+  .section-light { padding: 3rem 2rem; background: #fff; }
+
+  /* Metric cards */
+  .metric-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+  .metric-card { background: #fafafc; border: 1px solid #eee; border-radius: 10px; padding: 1rem; text-align: center; }
+  .metric-value { font-family: Georgia, serif; font-size: 1.6rem; font-weight: 400; color: #0d0d0d; }
+  .metric-value.gold { color: #C9A84C; }
+  .metric-label { font-size: 0.7rem; color: #888; margin-top: 0.25rem; }
+
+  .quote-block { background: #fafafc; border-left: 3px solid #C9A84C; border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; }
+  .quote-block p { font-family: Georgia, serif; font-size: 0.95rem; color: #333; font-style: italic; line-height: 1.5; }
+  .quote-block .attribution { font-family: system-ui; font-size: 0.75rem; color: #888; font-style: normal; margin-top: 0.5rem; }
+
+  /* Table */
+  .table-wrap { border: 1px solid #eee; border-radius: 10px; overflow: hidden; }
+  .table-header { display: grid; grid-template-columns: 2fr 1fr 1fr; background: #fafafc; border-bottom: 1px solid #eee; padding: 0.75rem 1rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888; }
+  .table-row { display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 0.75rem 1rem; border-bottom: 1px solid #f0f0f0; font-size: 0.82rem; }
+  .table-row:last-child { border-bottom: none; }
+  .check { color: #C9A84C; }
+
+  /* SDK Code block */
+  .code-block { background: #0d0d0d; border-radius: 10px; padding: 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; line-height: 1.7; overflow-x: auto; }
+  .code-line { display: block; color: #e0e0e0; }
+  .code-line .kw { color: #A78BFA; }
+  .code-line .str { color: #34D399; }
+  .code-line .cm { color: #666; }
+  .code-line .fn { color: #60A5FA; }
+
+  /* Docs preview */
+  .doc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .doc-card { border: 1px solid #eee; border-radius: 8px; padding: 0.75rem; font-size: 0.78rem; }
+  .doc-card .label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; color: #C9A84C; margin-bottom: 0.25rem; }
+  .doc-card .name { font-weight: 600; margin-bottom: 0.15rem; }
+  .doc-card .desc { color: #888; }
+
+  /* Footer */
+  .footer { background: #0d0d0d; color: #666; padding: 2rem; text-align: center; font-size: 0.75rem; }
+
+  hr { border: none; border-top: 1px solid #eee; margin: 2rem 0; }
+
+  /* Annotations */
+  .annotation { position: relative; }
+  .ann-label { display: inline-block; font-size: 0.6rem; padding: 2px 8px; border-radius: 4px; margin-bottom: 0.5rem; font-weight: 500; }
+  .ann-label.gold { background: #C9A84C; color: #0d0d0d; }
+  .ann-label.tech { background: #A78BFA; color: white; }
+  .ann-label.structure { background: #60A5FA; color: white; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Diseño refinado — Archic con oro</h1>
+  <p class="subtitle">Hero oscuro con acento dorado + secciones claras. Toque premium sin ser ostentoso.</p>
+
+  <div class="page-mockup">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">ARCHIC</div>
+      <div class="nav">
+        <a>SDK</a>
+        <a>Docs</a>
+        <a>GitHub</a>
+      </div>
+    </div>
+
+    <!-- Hero Dark -->
+    <div class="hero">
+      <div class="hero-label">Infrastructure Lab</div>
+      <h1>Infrastructure for<br>long-horizon intelligence</h1>
+      <p>CL AUDE specification accuracy benchmarks for deterministic reasoning evaluation</p>
+      <div class="cta-row">
+        <span class="cta cta-primary">Clone SDK →</span>
+        <span class="cta cta-secondary">Read the whitepaper</span>
+      </div>
+    </div>
+
+    <!-- Metrics -->
+    <div class="section-light">
+      <div class="metric-row">
+        <div class="metric-card">
+          <div class="metric-value gold">0.83</div>
+          <div class="metric-label">CL AUDE Accuracy</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value gold">±0.03</div>
+          <div class="metric-label">95% Confidence</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value gold">5</div>
+          <div class="metric-label">Datasets</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value gold">3.2×</div>
+          <div class="metric-label">vs Standard RAG</div>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="quote-block">
+        <p>"We established CL AUDE as a public benchmark for long-horizon reasoning tasks. Our results demonstrate that deterministic routing to specialist sub-agents significantly outperforms monolithic RAG architectures."</p>
+        <div class="attribution">— Archic Research, Technical Report ARCHIC-TR-2026-01</div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div style="height: 1px; background: linear-gradient(90deg, transparent, #C9A84C, transparent);"></div>
+
+    <!-- Architecture Table -->
+    <div class="section-light">
+      <h2>Architecture Comparison</h2>
+      <div class="table-wrap">
+        <div class="table-header">
+          <span>Capability</span><span>Standard RAG</span><span>Archic Midas Engine</span>
+        </div>
+        <div class="table-row">
+          <span>Context window utilization</span><span>Partial</span><span class="check">✓ Full</span>
+        </div>
+        <div class="table-row">
+          <span>Deterministic dispatch</span><span>No</span><span class="check">✓ Verified</span>
+        </div>
+        <div class="table-row">
+          <span>Sub-agent orchestration</span><span>None</span><span class="check">✓ Spec-driven</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SDK Code -->
+    <div class="section-light" style="background: #fafafc; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+      <h2>SDK Quickstart</h2>
+      <div class="code-block">
+        <span class="code-line"><span class="cm"># pip install archic-sdk</span></span>
+        <span class="code-line"><span class="kw">from</span> archic <span class="kw">import</span> <span class="fn">MidasEngine</span></span>
+        <span class="code-line">&nbsp;</span>
+        <span class="code-line">engine = <span class="fn">MidasEngine</span>(</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;model=<span class="str">"claude-sonnet-4"</span>,</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;profile=<span class="str">"long-horizon"</span></span>
+        <span class="code-line">)</span>
+        <span class="code-line">&nbsp;</span>
+        <span class="code-line">result = engine.<span class="fn">route</span>(</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;spec=openapi_schema,</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;constraint=<span class="str">"deterministic"</span></span>
+        <span class="code-line">)</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      ARCHIC © 2026 — Infrastructure for long-horizon intelligence
+    </div>
+  </div>
+
+  <p style="color:#6e6e73;font-size:0.85rem;border-top:1px solid #d1d1d6;padding-top:1rem;">
+    <strong>¿Qué te parece?</strong> ¿El oro se siente bien o quieres probar otro tono (bronce, cobre, platino)? ¿La estructura general funciona?
+  </p>
+
+</div>
+</body>
+</html>

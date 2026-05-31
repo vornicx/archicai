@@ -1,25 +1,21 @@
-import { GITHUB_URL } from '../constants'
-import { REPOS } from '../data/resources'
-
 function Footer() {
   return (
-    <footer className="py-10 px-6 border-t border-line">
-      <div className="mx-auto max-w-page">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 text-sm text-ink-faint">
-          <p>&copy; 2026 Archic</p>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <a href="#docs" className="hover:text-ink transition-colors">Docs</a>
-            <a href="#ecosystem" className="hover:text-ink transition-colors">Stack</a>
-            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">
-              archic
-            </a>
-            <a href={REPOS.origin} target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">
-              origin
-            </a>
-            <a href={REPOS.apollo} target="_blank" rel="noopener noreferrer" className="hover:text-ink transition-colors">
-              apollo-agent
-            </a>
-          </div>
+    <footer className="container-page section-padding" style={{ borderTop: '1px solid #161616' }}>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div style={{ fontSize: '13px', color: '#8A8A8A' }}>
+          &copy; 2026 Archic. All rights reserved.
+        </div>
+        <div className="flex gap-8">
+          <a href="https://github.com/vornicx/origin-lab" target="_blank" rel="noopener noreferrer"
+            style={{ fontSize: '13px', color: '#8A8A8A', textDecoration: 'none' }}
+            className="hover:text-white transition-colors">
+            GitHub
+          </a>
+          <a href="#docs"
+            style={{ fontSize: '13px', color: '#8A8A8A', textDecoration: 'none' }}
+            className="hover:text-white transition-colors">
+            Documentation
+          </a>
         </div>
       </div>
     </footer>

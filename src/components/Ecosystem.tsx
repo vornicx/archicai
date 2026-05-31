@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Reveal } from '../useReveal'
 import {
   LAYERS,
-  PLATFORMS,
   ZONE_LABELS,
   ZONE_ORDER,
   type ArchicLayer,
@@ -11,22 +10,21 @@ import { StatusBadge } from './StatusBadge'
 import { LayerLinks } from './LayerLinks'
 
 function Ecosystem() {
-  const [selected, setSelected] = useState<string>('origin')
+  const [selected, setSelected] = useState<string>('midas')
 
   const selectedLayer =
-    [...LAYERS, ...PLATFORMS].find((l) => l.id === selected) ??
-    LAYERS.find((l) => l.id === 'origin')!
+    LAYERS.find((l) => l.id === selected) ?? LAYERS[0]
 
   return (
     <section id="ecosystem" className="relative py-20 md:py-28 px-6">
       <div className="mx-auto max-w-page">
         <Reveal>
-          <p className="section-eyebrow mb-4">The stack</p>
-          <h2 className="section-title mb-4">Separate layers. Explicit contracts.</h2>
+          <p className="section-eyebrow mb-4">The wedge</p>
+          <h2 className="section-title mb-4">Midas is what we&apos;re building now.</h2>
           <p className="section-lead mb-14">
-            Origin, Atlas, and Apollo are in active development — split from{' '}
-            <span className="font-mono text-sm">@vornicx/origin</span> into the Archic monorepo.
-            Integrations and extensions follow in later phases.
+            Agentic memory for long-horizon agents, proven through honest benchmarks. The full
+            Archic ecosystem &mdash; Origin, Atlas, Apollo &mdash; is our north-star vision, parked
+            while Midas ships.
           </p>
         </Reveal>
 
@@ -34,13 +32,13 @@ function Ecosystem() {
           <div className="ecosystem-layout">
             <div className="ecosystem-map">
               {ZONE_ORDER.map((zone) => {
-                const items = zone === 'platform' ? PLATFORMS : LAYERS.filter((l) => l.zone === zone)
+                const items = LAYERS.filter((l) => l.zone === zone)
                 if (items.length === 0) return null
 
                 return (
                   <div key={zone}>
                     <span className="ecosystem-zone-label">{ZONE_LABELS[zone]}</span>
-                    <div className={zone === 'extension' || zone === 'platform' ? 'ecosystem-zone-row' : 'space-y-2'}>
+                    <div className="space-y-2">
                       {items.map((layer) => (
                         <LayerChip
                           key={layer.id}
@@ -62,12 +60,12 @@ function Ecosystem() {
         <Reveal delay={160}>
           <div className="contrast-strip mt-16">
             <div className="contrast-card">
-              <span className="contrast-label">Monolithic agent</span>
-              <p className="contrast-title">Memory in the prompt. Policy inconsistent. Done when the model says so.</p>
+              <span className="contrast-label">Old approach</span>
+              <p className="contrast-title">Keyword overlap retrieval. No benchmarks. Claims without measurement.</p>
             </div>
             <div className="contrast-card contrast-card-good">
-              <span className="contrast-label">Archic</span>
-              <p className="contrast-title">Atlas holds state. Origin gates every step. Done means verified.</p>
+              <span className="contrast-label">Midas</span>
+              <p className="contrast-title">Semantic retrieval. Eval-first design. 0.76 recall@k vs 0.06 baseline.</p>
             </div>
           </div>
         </Reveal>

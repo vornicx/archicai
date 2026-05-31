@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Archic — Gold Option</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #f5f5f7; color: #1d1d1f; padding: 2rem; max-width: 960px; margin: 0 auto; line-height: 1.5; }
+  h1 { font-weight: 600; margin-bottom: 0.25rem; }
+  .subtitle { color: #86868b; margin-bottom: 1.5rem; }
+  .section { margin-bottom: 2rem; }
+  h2 { font-weight: 600; margin-bottom: 0.5rem; }
+
+  .options { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .card { background: white; border-radius: 12px; overflow: hidden; flex: 1; min-width: 320px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .card h3 { font-size: 0.95rem; padding: 0.75rem 1rem 0; margin-bottom: 0.25rem; }
+  .card p { font-size: 0.8rem; color: #6e6e73; padding: 0 1rem; }
+
+  .preview { border: 1px solid #d1d1d6; border-radius: 8px; overflow: hidden; background: white; margin: 1.5rem; margin-bottom: 1.5rem; }
+  .p-header { padding: 6px 12px; font-size: 0.65rem; background: #f5f5f7; border-bottom: 1px solid #d1d1d6; display: flex; justify-content: space-between; color: #86868b; text-transform: uppercase; letter-spacing: 0.05em; }
+  .p-body { padding: 20px; }
+
+  /* Gold palette */
+  .gold-light { background: #FFFDF7; }
+  .gold-accent { color: #C9A84C; }
+  .gold-accent-bg { background: #C9A84C; }
+  .gold-btn { background: #C9A84C; color: white; border-color: #C9A84C; }
+  .gold-secondary { background: transparent; color: #C9A84C; border-color: #C9A84C; }
+  .gold-card-bg { background: #FFF8E7; }
+  .gold-dark { background: #1A1A1A; }
+
+  .hero-block { border-radius: 8px; padding: 28px; margin-bottom: 12px; }
+  .hero-block h1 { font-family: Georgia, serif; font-size: 1.3rem; margin-bottom: 8px; }
+  .cta-row { display: flex; gap: 8px; }
+  .cta { padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; border: 1px solid; font-weight: 500; }
+  .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .mini-card { height: 56px; border-radius: 6px; padding: 8px; font-size: 0.7rem; display: flex; flex-direction: column; justify-content: center; }
+  .mini-card .num { font-size: 1.1rem; font-weight: 700; }
+
+  .swatches { display: flex; gap: 8px; margin: 0.75rem 1rem 1rem; }
+  .swatch { width: 36px; height: 36px; border-radius: 8px; border: 1px solid #e5e5e7; }
+</style>
+</head>
+<body>
+
+<h1>🟡 Opción Dorado</h1>
+<p class="subtitle">Basado en tu gusto por B (limpio) y C (mixto). Dos variantes con oro como accent.</p>
+
+<div class="options">
+
+  <!-- Gold Option 1: Light dominant -->
+  <div class="card" style="border: 2px solid #C9A84C;">
+    <h3>D1 — Dorado sobre Claro</h3>
+    <p>Fondo blanco roto #FFFDF7, accent oro #C9A84C, serif display. La página principal es clara con toques dorados premium.</p>
+    <div class="swatches">
+      <div class="swatch" style="background:#FFFDF7;border-color:#e0d5b0;"></div>
+      <div class="swatch" style="background:#C9A84C;"></div>
+      <div class="swatch" style="background:#FFFFFF;border-color:#d1d1d6;"></div>
+      <div class="swatch" style="background:#1D1D1F;"></div>
+      <div class="swatch" style="background:#FFF8E7;"></div>
+    </div>
+    <div class="preview" style="margin: 1rem; border-color: #e0d5b0;">
+      <div class="p-header" style="background:#FFFDF7;border-bottom-color:#e0d5b0;"><span>Hero section</span><span>ARCHIC</span></div>
+      <div class="p-body" style="background:#FFFDF7;">
+        <div class="hero-block" style="background:#FFFDF7;border:1px solid #f0e8d0;">
+          <h1 style="color: #1D1D1F;">Infrastructure for<br>long-horizon intelligence</h1>
+          <p style="font-size:0.85rem;color:#6e6e73;margin-bottom:12px;">CL AUDE specification accuracy benchmarks</p>
+          <div class="cta-row">
+            <span class="cta gold-btn">Clone SDK</span>
+            <span class="cta gold-secondary">Read the whitepaper</span>
+          </div>
+        </div>
+        <div class="card-grid">
+          <div class="mini-card gold-card-bg"><span class="num gold-accent">0.83</span>CL AUDE accuracy</div>
+          <div class="mini-card gold-card-bg"><span class="num gold-accent">±0.03</span>95% CI</div>
+          <div class="mini-card gold-card-bg"><span class="num gold-accent">5</span>Datasets evaluated</div>
+          <div class="mini-card gold-card-bg"><span class="num gold-accent">3.2×</span>vs Standard RAG</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gold Option 2: Mixed dark/light with gold -->
+  <div class="card" style="border: 2px solid #C9A84C;">
+    <h3>D2 — Dorado Mixto</h3>
+    <p>Hero oscuro (#111) con oro, secciones claras abajo. Contraste dramático estilo C pero con calidez dorada.</p>
+    <div class="swatches">
+      <div class="swatch" style="background:#111111;"></div>
+      <div class="swatch" style="background:#C9A84C;"></div>
+      <div class="swatch" style="background:#FFFFFF;border-color:#d1d1d6;"></div>
+      <div class="swatch" style="background:#F5F5F7;"></div>
+      <div class="swatch" style="background:#FFFBEB;"></div>
+    </div>
+    <div class="preview" style="margin: 1rem; border-color: #C9A84C;">
+      <div class="p-header" style="background:#111;color:#999;border-bottom-color:#222;"><span>Hero section (dark)</span><span style="color:#C9A84C;">ARCHIC</span></div>
+      <div class="p-body" style="background:#111;">
+        <div class="hero-block" style="background:#111;color:white;">
+          <h1 style="color:#fff;">Infrastructure for<br>long-horizon intelligence</h1>
+          <p style="font-size:0.85rem;color:#888;margin-bottom:12px;">CL AUDE specification accuracy benchmarks</p>
+          <div class="cta-row">
+            <span class="cta gold-btn">Clone SDK</span>
+            <span class="cta" style="background:transparent;color:#C9A84C;border-color:#C9A84C;">Read the whitepaper</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 12px; background: #f5f5f7;">
+        <p style="font-size:0.7rem;color:#6e6e73;margin-bottom:6px;">Benchmarks (on light bg)</p>
+        <div class="card-grid">
+          <div class="mini-card" style="background:white;"><span class="num" style="color:#C9A84C;">0.83</span>CL AUDE accuracy</div>
+          <div class="mini-card" style="background:white;"><span class="num" style="color:#C9A84C;">±0.03</span>95% CI</div>
+          <div class="mini-card" style="background:white;"><span class="num" style="color:#C9A84C;">5</span>Datasets evaluated</div>
+          <div class="mini-card" style="background:white;"><span class="num" style="color:#C9A84C;">3.2×</span>vs Standard RAG</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="color:#6e6e73;font-size:0.85rem;border-top:1px solid #d1d1d6;padding-top:1rem;">
+<strong>¿Qué te parecen?</strong> ¿Te gusta D1 (todo claro con oro) o D2 (mixto oscuro/claro con oro)? ¿O prefieres explorar otro tono/estilo?
+</p>
+
+</body>
+</html>

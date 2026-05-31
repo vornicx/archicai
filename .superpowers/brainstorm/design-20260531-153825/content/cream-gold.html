@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Archic — Crema + Dorado</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #f5f1ec; color: #1d1d1b; line-height: 1.5; }
+  .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+  h1 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .subtitle { color: #8a8078; margin-bottom: 1.5rem; font-size: 0.9rem; }
+
+  .page-mockup { background: #FFFCF7; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); margin-bottom: 2rem; }
+
+  /* === Header on cream === */
+  .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; border-bottom: 1px solid #e8e0d6; background: #FFFAF4; }
+  .logo { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: #1d1d1b; }
+  .nav { display: flex; gap: 1.5rem; }
+  .nav a { font-size: 0.8rem; color: #7a726a; text-decoration: none; }
+
+  /* === Hero Cream + Gold === */
+  .hero { background: #FFFAF4; padding: 5rem 2.5rem 4rem; text-align: center; border-bottom: 1px solid #e8e0d6; }
+  .hero-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: #B8943C; margin-bottom: 1rem; }
+  .hero h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.8rem; font-weight: 400; color: #1d1d1b; line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .hero p { font-size: 0.95rem; color: #7a726a; max-width: 480px; margin: 0 auto 2rem; }
+  .cta-row { display: flex; gap: 0.75rem; justify-content: center; }
+  .cta { padding: 0.65rem 1.5rem; border-radius: 8px; font-size: 0.85rem; font-weight: 500; cursor: default; }
+  .cta-primary { background: #B8943C; color: white; border: 1px solid #B8943C; }
+  .cta-secondary { background: transparent; color: #B8943C; border: 1px solid #d4c5a8; }
+
+  /* === Section === */
+  .section { padding: 3rem 2.5rem; }
+  .section-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: #B8943C; margin-bottom: 0.75rem; }
+
+  .metric-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .metric-card { background: #FFFAF4; border: 1px solid #e8e0d6; border-radius: 10px; padding: 1.25rem 1rem; text-align: center; }
+  .metric-value { font-family: Georgia, serif; font-size: 1.8rem; font-weight: 400; color: #B8943C; }
+  .metric-label { font-size: 0.7rem; color: #8a8078; margin-top: 0.35rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .quote-block { background: #FFFAF4; border-left: 3px solid #B8943C; border-radius: 0 10px 10px 0; padding: 1.5rem 2rem; margin: 2.5rem 0; }
+  .quote-block p { font-family: Georgia, serif; font-size: 0.95rem; color: #3d3d3b; font-style: italic; line-height: 1.6; }
+  .quote-block .attribution { font-family: system-ui; font-size: 0.75rem; color: #8a8078; font-style: normal; margin-top: 0.5rem; }
+
+  /* Table */
+  .table-wrap { border: 1px solid #e8e0d6; border-radius: 10px; overflow: hidden; }
+  .table-header { display: grid; grid-template-columns: 2fr 1fr 1fr; background: #FFFAF4; border-bottom: 1px solid #e8e0d6; padding: 0.75rem 1.25rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8078; }
+  .table-row { display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 0.8rem 1.25rem; border-bottom: 1px solid #f0ebe5; font-size: 0.82rem; color: #3d3d3b; }
+  .table-row:last-child { border-bottom: none; }
+  .check { color: #B8943C; font-weight: 600; }
+
+  /* Code block */
+  .code-section { background: #F5F0E8; border-top: 1px solid #e8e0d6; border-bottom: 1px solid #e8e0d6; }
+  .code-block { background: #1a1a1a; border-radius: 10px; padding: 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; line-height: 1.7; overflow-x: auto; }
+  .code-line { display: block; color: #e0ddd8; }
+  .code-line .kw { color: #C4A8E8; }
+  .code-line .str { color: #7CC9A0; }
+  .code-line .cm { color: #7a726a; }
+  .code-line .fn { color: #7CB8E8; }
+  .code-line .gold { color: #D4B06A; }
+
+  /* Footer */
+  .footer { background: #1a1a1a; color: #7a726a; padding: 2rem; text-align: center; font-size: 0.75rem; }
+  .footer span { color: #B8943C; }
+
+  /* Annotations */
+  .ann-row { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .ann-tag { font-size: 0.6rem; padding: 3px 10px; border-radius: 12px; font-weight: 500; }
+  .ann-gold { background: #EDE0C4; color: #7A5C1E; }
+  .ann-structure { background: #E0E8F0; color: #2C5282; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Crema + Dorado</h1>
+  <p class="subtitle">Fondo crema #FFFCF7, dorado #B8943C. Editorial, cálido, premium. Sin negro absoluto.</p>
+
+  <div class="ann-row">
+    <span class="ann-tag ann-gold">Paleta: crema + dorado</span>
+    <span class="ann-tag ann-structure">Header FFFAF4</span>
+    <span class="ann-tag ann-structure">Hero FFFAF4</span>
+    <span class="ann-tag ann-structure">Cards FFFAF4</span>
+    <span class="ann-tag ann-structure">Code section F5F0E8</span>
+    <span class="ann-tag ann-gold">Footer 1a1a1a (único oscuro)</span>
+  </div>
+
+  <div class="page-mockup">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">ARCHIC</div>
+      <div class="nav">
+        <a>SDK</a>
+        <a>Docs</a>
+        <a>GitHub</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-label">Archic Research — Technical Report</div>
+      <h1>Infrastructure for<br>long-horizon intelligence</h1>
+      <p>CL AUDE specification accuracy benchmarks for deterministic reasoning evaluation in sub-agent routing architectures</p>
+      <div class="cta-row">
+        <span class="cta cta-primary">Clone SDK →</span>
+        <span class="cta cta-secondary">Read the whitepaper</span>
+      </div>
+    </div>
+
+    <!-- Metrics -->
+    <div class="section">
+      <div class="section-label">Benchmarks</div>
+      <div class="metric-row">
+        <div class="metric-card">
+          <div class="metric-value">0.83</div>
+          <div class="metric-label">CL AUDE Accuracy</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">±0.03</div>
+          <div class="metric-label">95% Confidence</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">5</div>
+          <div class="metric-label">Datasets</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">3.2×</div>
+          <div class="metric-label">vs Standard RAG</div>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="quote-block">
+        <p>"We established CL AUDE as a public benchmark for long-horizon reasoning tasks. Our results demonstrate that deterministic routing to specialist sub-agents significantly outperforms monolithic RAG architectures."</p>
+        <div class="attribution">— Archic Research, Technical Report ARCHIC-TR-2026-01</div>
+      </div>
+    </div>
+
+    <!-- Architecture Table -->
+    <div class="section" style="padding-top: 1rem;">
+      <div class="section-label">Architecture</div>
+      <div class="table-wrap">
+        <div class="table-header">
+          <span>Capability</span><span>Standard RAG</span><span>Archic Midas Engine</span>
+        </div>
+        <div class="table-row">
+          <span>Context window utilization</span><span>Partial</span><span class="check">✓ Full</span>
+        </div>
+        <div class="table-row">
+          <span>Deterministic dispatch</span><span>No</span><span class="check">✓ Verified</span>
+        </div>
+        <div class="table-row">
+          <span>Sub-agent orchestration</span><span>None</span><span class="check">✓ Spec-driven</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SDK Code -->
+    <div class="section code-section">
+      <div class="section-label">SDK Quickstart</div>
+      <div class="code-block">
+        <span class="code-line"><span class="cm"># pip install archic-sdk</span></span>
+        <span class="code-line"><span class="kw">from</span> archic <span class="kw">import</span> <span class="fn">MidasEngine</span></span>
+        <span class="code-line">&nbsp;</span>
+        <span class="code-line">engine = <span class="fn">MidasEngine</span>(</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;model=<span class="str">"claude-sonnet-4"</span>,</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;profile=<span class="str">"long-horizon"</span></span>
+        <span class="code-line">)</span>
+        <span class="code-line">&nbsp;</span>
+        <span class="code-line">result = engine.<span class="fn">route</span>(</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;spec=openapi_schema,</span>
+        <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;constraint=<span class="str">"deterministic"</span></span>
+        <span class="code-line">)</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      ARCHIC <span>©</span> 2026 — Infrastructure for long-horizon intelligence
+    </div>
+  </div>
+
+  <p style="color:#8a8078;font-size:0.85rem;border-top:1px solid #e8e0d6;padding-top:1rem;">
+    <strong>¿Qué te parece esta dirección?</strong> ¿El tono del dorado, la cantidad de crema, la estructura general? ¿Prefieres más contraste en alguna sección?
+  </p>
+
+</div>
+</body>
+</html>

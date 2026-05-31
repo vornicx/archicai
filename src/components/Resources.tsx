@@ -1,5 +1,5 @@
 import { Reveal } from '../useReveal'
-import { ARCHIC_DOCS, CODE_REPOS, DOCS_REPO, PACKAGES, SDK_DOCS, WEBSITE_REPO } from '../data/resources'
+import { ARCHIC_DOCS, CODE_REPOS, DOCS_REPO, PACKAGES, REPOS, SDK_DOCS } from '../data/resources'
 
 function Resources() {
   return (
@@ -7,9 +7,18 @@ function Resources() {
       <div className="mx-auto max-w-page">
         <Reveal>
           <p className="section-eyebrow mb-4">Documentation &amp; code</p>
-          <h2 className="section-title mb-4">Docs live in the archic repo.</h2>
+          <h2 className="section-title mb-4">Docs live in the repos.</h2>
           <p className="section-lead mb-14">
-            Protocol, ecosystem law, and build plan —{' '}
+            Midas strategy and results in{' '}
+            <a
+              href={REPOS.midas}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:opacity-70"
+            >
+              origin-lab
+            </a>
+            . The Archic north-star vision in{' '}
             <a
               href={DOCS_REPO}
               target="_blank"
@@ -18,15 +27,6 @@ function Resources() {
             >
               github.com/vornicx/archic
             </a>
-            . This site is built from{' '}
-            <a
-              href={WEBSITE_REPO}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2 hover:opacity-70"
-            >
-              github.com/vornicx/archicai
-            </a>
             .
           </p>
         </Reveal>
@@ -34,7 +34,7 @@ function Resources() {
         <div className="resources-grid">
           <Reveal delay={60}>
             <div className="resource-block">
-              <h3 className="resource-heading">Archic documentation</h3>
+              <h3 className="resource-heading">Midas &amp; Archic documentation</h3>
               <ul className="resource-list">
                 {ARCHIC_DOCS.map((doc) => (
                   <li key={doc.id}>
@@ -83,6 +83,12 @@ function Resources() {
               <h4 className="resource-subheading">Packages</h4>
               <ul className="resource-list mt-4">
                 <li>
+                  <a href={PACKAGES.midas.url} target="_blank" rel="noopener noreferrer" className="resource-link">
+                    origin-lab (Midas)
+                  </a>
+                  <code className="resource-code">{PACKAGES.midas.install}</code>
+                </li>
+                <li>
                   <a href={PACKAGES.origin.url} target="_blank" rel="noopener noreferrer" className="resource-link">
                     {PACKAGES.origin.name}
                   </a>
@@ -95,9 +101,6 @@ function Resources() {
                   <code className="resource-code">{PACKAGES.apollo.install}</code>
                 </li>
               </ul>
-              <p className="resource-note">
-                <span className="font-mono text-xs">@archic/spec</span> lives in the archic monorepo — not on npm yet.
-              </p>
             </div>
           </Reveal>
         </div>

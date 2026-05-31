@@ -1,6 +1,6 @@
 export type LayerAccent = 'cyan' | 'violet' | 'neutral' | 'dim'
-export type LayerStatus = 'building' | 'in-progress' | 'planned'
-export type LayerZone = 'foundation' | 'core' | 'extension' | 'platform'
+export type LayerStatus = 'active' | 'building' | 'in-progress' | 'planned' | 'parked'
+export type LayerZone = 'active' | 'north-star' | 'foundation' | 'core' | 'extension' | 'platform'
 
 export interface ArchicLayer {
   id: string
@@ -17,127 +17,71 @@ export interface ArchicLayer {
 }
 
 export const STATUS_LABELS: Record<LayerStatus, string> = {
+  active: 'Active',
   building: 'In development',
   'in-progress': 'Early access',
   planned: 'Coming soon',
+  parked: 'North-star',
 }
 
 export const CYCLE_STEPS = [
-  { id: 'understand', step: 'UNDERSTAND', layer: 'Origin', sub: 'context scan', accent: 'cyan' as const },
-  { id: 'remember', step: 'REMEMBER', layer: 'Atlas', sub: 'recall prior state', accent: 'cyan' as const },
-  { id: 'reason', step: 'REASON', layer: 'Apollo', sub: 'plan the mission', accent: 'violet' as const },
-  { id: 'act', step: 'ACT', layer: 'Apollo', sub: 'execute steps, gated by Origin', accent: 'violet' as const },
-  { id: 'learn', step: 'LEARN', layer: 'Atlas', sub: 'persist learnings', accent: 'cyan' as const },
+  { id: 'benchmark', step: 'BENCHMARK', layer: 'Eval', sub: 'define metrics, run harness', accent: 'violet' as const },
+  { id: 'analyze', step: 'ANALYZE', layer: 'Eval', sub: 'find where retrieval fails', accent: 'violet' as const },
+  { id: 'build', step: 'BUILD', layer: 'Midas', sub: 'improve the memory system', accent: 'cyan' as const },
+  { id: 'measure', step: 'MEASURE', layer: 'Eval', sub: 're-run, compare', accent: 'violet' as const },
+  { id: 'publish', step: 'PUBLISH', layer: 'Archic', sub: 'share results transparently', accent: 'neutral' as const },
 ]
 
 export const LAYERS: ArchicLayer[] = [
   {
-    id: 'archic',
-    name: 'ARCHIC',
-    role: 'Foundation',
-    zone: 'foundation',
-    status: 'in-progress',
-    desc: 'Protocol spec, composition SDK, and conformance.',
-    tags: ['spec', 'compose', 'conformance'],
-    detail: '@archic/spec v0.1 defines the contracts between layers. The monorepo at archic is where the stack is being split and formalized.',
-    accent: 'neutral',
-    package: '@archic/spec',
-  },
-  {
-    id: 'origin',
-    name: 'ORIGIN',
-    role: 'Control plane',
-    zone: 'core',
-    status: 'building',
-    verb: 'governs',
-    package: '@vornicx/origin',
-    desc: 'Context, policy, verification, and observability.',
-    tags: ['policy', 'traces', 'contracts'],
-    detail: 'ContextEngine, Policy gate, human approvals, traces, and contract verification → Certificate. Every mutation passes through Origin.',
+    id: 'midas',
+    name: 'MIDAS',
+    role: 'Agentic memory SDK',
+    zone: 'active',
+    status: 'active',
+    verb: 'remembers',
+    desc: 'Python SDK for long-horizon agent memory. Pluggable embedders, multiple stores, zero deps.',
+    tags: ['recall', 'embed', 'store'],
+    detail: 'MemoryRecord, Embedder protocol (Hashing, OpenAI, Local), InMemoryStore, and the Memory facade — relevance × importance × recency scoring. v0 uses real semantic retrieval behind a pluggable embedder.',
     accent: 'cyan',
   },
   {
-    id: 'apollo',
-    name: 'APOLLO',
-    role: 'Execution runtime',
-    zone: 'core',
-    status: 'building',
-    verb: 'executes',
-    package: '@vornicx/apollo-agent',
-    desc: 'Plan, execute, replan — under human control.',
-    tags: ['missions', 'tools', 'orchestration'],
-    detail: 'Mission runtime: goal → Plan → steps → replan. CLI and programmatic adapter today; decoupling from local memory is part of the Archic split.',
+    id: 'eval',
+    name: 'EVAL',
+    role: 'Benchmark suite',
+    zone: 'active',
+    status: 'active',
+    verb: 'measures',
+    desc: 'Honest evaluation for memory systems. recall@k, answer_recoverable, efficiency metrics.',
+    tags: ['dataset', 'metrics', 'leaderboard'],
+    detail: 'LoCoMo + LongMemEval datasets. Adapter protocol for any memory system (baseline raw, Midas, Mem0, Zep, Letta, Supermemory). Run `uv run python -m eval.runner` to reproduce. Current results on LoCoMo: Midas semantic 0.76 recall@k vs baseline 0.06.',
     accent: 'violet',
   },
   {
-    id: 'atlas',
-    name: 'ATLAS',
-    role: 'Memory',
-    zone: 'core',
-    status: 'building',
-    verb: 'remembers',
-    package: '@vornicx/origin',
-    desc: 'Persistent state across sessions, decisions, and workflows.',
-    tags: ['recall', 'scope', 'sync'],
-    detail: 'Structured recall, scoped memory, local↔cloud sync, controlled forget. Already exported as Atlas from the Origin SDK; becoming its own layer in the monorepo.',
-    accent: 'cyan',
-  },
-  {
-    id: 'nexus',
-    name: 'NEXUS',
-    role: 'Integrations',
-    zone: 'extension',
-    status: 'planned',
-    desc: 'External systems as typed, governed capabilities.',
-    tags: ['connectors', 'auth', 'invoke'],
-    detail: 'Connector registry, auth vault, and ToolAdapter — the bus to GitHub, browsers, MCP, and everything outside the stack.',
-    accent: 'dim',
-  },
-  {
-    id: 'forge',
-    name: 'FORGE',
-    role: 'Extensions',
-    zone: 'extension',
-    status: 'planned',
-    desc: 'Create, validate, and publish skills, workflows, and experts.',
-    tags: ['compose', 'validate', 'publish'],
-    detail: 'Capability factory: compose artifacts, validate in sandbox, publish to Registry. Phase 3 of the build plan.',
-    accent: 'dim',
+    id: 'archic',
+    name: 'ARCHIC',
+    role: 'Ecosystem vision',
+    zone: 'north-star',
+    status: 'parked',
+    desc: 'The full Archic ecosystem — Origin, Atlas, Apollo, Nexus, Forge — as a layered stack for personal agentic intelligence.',
+    tags: ['control', 'execution', 'extensions'],
+    detail: 'Our north-star. A complete layered stack where memory (Midas/Atlas), control (Origin), and execution (Apollo) are separate, auditable systems. Not actively building the full ecosystem right now — Midas comes first.',
+    accent: 'neutral',
+    package: '@archic/spec',
   },
 ]
 
-export const PLATFORMS: ArchicLayer[] = [
-  {
-    id: 'registry',
-    name: 'REGISTRY',
-    role: 'Capability catalog',
-    zone: 'platform',
-    status: 'planned',
-    desc: 'Discover, version, and pin capabilities.',
-    tags: ['discover', 'version', 'pin'],
-    detail: 'resolve(id@version) for skills, workflows, and subagents — planned with Forge in Phase 3.',
-    accent: 'neutral',
-  },
-  {
-    id: 'gateway',
-    name: 'GATEWAY',
-    role: 'API boundary',
-    zone: 'platform',
-    status: 'planned',
-    desc: 'Unified API boundary for the ecosystem.',
-    tags: ['route', 'auth', 'invoke'],
-    detail: 'Single governed frontier for routing and invocation — Phase 4 sketch.',
-    accent: 'neutral',
-  },
-]
+export const PLATFORMS: ArchicLayer[] = []
 
-export const CORE_LAYERS = LAYERS.filter((l) => l.zone === 'core')
+export const CORE_LAYERS = LAYERS.filter((l) => l.zone === 'active')
 
 export const ZONE_LABELS: Record<LayerZone, string> = {
+  active: 'Active',
+  'north-star': 'North-star',
   foundation: 'Foundation',
   core: 'In development',
   extension: 'Roadmap',
   platform: 'Roadmap',
 }
 
-export const ZONE_ORDER: LayerZone[] = ['core', 'foundation', 'extension', 'platform']
+export const ZONE_ORDER: LayerZone[] = ['active', 'north-star']

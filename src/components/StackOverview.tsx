@@ -3,9 +3,9 @@ import { LAYER_LINKS } from '../data/resources'
 import { StatusBadge } from './StatusBadge'
 
 const CARD_COPY: Record<string, { tagline: string }> = {
-  atlas: { tagline: 'Persistent memory across sessions and missions.' },
-  origin: { tagline: 'Context, policy, and verifiable outcomes.' },
-  apollo: { tagline: 'Plan, execute, and replan under human control.' },
+  midas: { tagline: 'Python SDK. Pluggable embedders. Zero deps for core.' },
+  eval: { tagline: 'recall@k, answer correctness, efficiency per token.' },
+  archic: { tagline: 'The full ecosystem vision — parked for now.' },
 }
 
 function StackOverview() {

@@ -2,22 +2,24 @@ import { Reveal } from '../useReveal'
 
 const principles = [
   {
-    title: 'First principles',
+    title: 'Measure first',
     statement:
-      'Context, memory, reasoning, tools and control are designed as one system — not bolted together.',
+      'Superiority is a goal we measure toward, not a claim. Every improvement starts with an honest benchmark.',
   },
   {
-    title: 'Human agency',
-    statement: 'Agents amplify judgment, never replace it by default.',
-  },
-  {
-    title: 'Context as interface',
-    statement: 'The best intelligence understands the work around you before it acts.',
-  },
-  {
-    title: 'Action matters',
+    title: 'Honest comparisons',
     statement:
-      'Intelligence is incomplete until it can help you do something meaningful — with you, not without you.',
+      'Same embedders, same conditions, same budget. Compare against real alternatives — not strawmen.',
+  },
+  {
+    title: 'Narrow wedge',
+    statement:
+      'One problem solved well before expanding. Memory for long-horizon agents — not another platform.',
+  },
+  {
+    title: 'Open core',
+    statement:
+      'The memory SDK is open source. The ecosystem is the moat. Zero deps for the core harness.',
   },
 ]
 
@@ -27,7 +29,7 @@ function Principles() {
       <div className="mx-auto max-w-page">
         <Reveal>
           <p className="section-eyebrow mb-4">Principles</p>
-          <h2 className="section-title mb-14">Built carefully, from the ground up.</h2>
+          <h2 className="section-title mb-14">Built narrow. Measured first.</h2>
         </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

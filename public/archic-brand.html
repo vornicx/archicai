@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archic — Brand Identity</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FAFAF8;
+    color: #0C0C0C;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  /* Header */
+  .brand-header {
+    text-align: center; padding: 4rem 0 2rem;
+    border-bottom: 1px solid #EBEBEA;
+    margin-bottom: 3rem;
+  }
+  .brand-header h1 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 3rem; font-weight: 500; letter-spacing: -0.03em;
+  }
+  .brand-header .sub {
+    color: #8A8A8A; font-size: 14px; margin-top: 0.5rem;
+    max-width: 500px; margin-left: auto; margin-right: auto;
+  }
+
+  /* Sections */
+  .brand-section { padding: 3rem 0; }
+  .brand-section + .brand-section { border-top: 1px solid #EBEBEA; }
+
+  .section-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: #8A8A8A; margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.8rem; font-weight: 500; letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .body-text { color: #5C5C5C; max-width: 600px; margin-bottom: 1.5rem; line-height: 1.7; }
+
+  /* Logo exploration */
+  .logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+  .logo-card {
+    padding: 2.5rem; text-align: center; border-radius: 16px;
+    border: 2px solid #DADAD8; background: #FAFAF8; cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .logo-card:hover { border-color: #0C0C0C; }
+  .logo-card.selected { border-color: #0C0C0C; background: #F5F5F3; }
+  .logo-card .label { font-size: 11px; color: #8A8A8A; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .logo-card .preview { font-family: 'Newsreader', Georgia, serif; font-size: 2.2rem; font-weight: 500; letter-spacing: -0.03em; }
+  .logo-card .preview.mono { font-family: 'Inter', sans-serif; font-weight: 400; letter-spacing: -0.01em; }
+  .logo-card .preview.smallcaps { font-size: 1.8rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 400; }
+  .logo-card .desc { font-size: 12px; color: #8A8A8A; margin-top: 0.75rem; }
+
+  .logo-card .mark {
+    font-size: 2.5rem; margin-bottom: 0.75rem;
+    display: flex; justify-content: center; gap: 0.5rem;
+  }
+  .mark-symbol {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; background: #0C0C0C; color: #FAFAF8;
+    border-radius: 12px; font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: 1.3rem;
+  }
+  .mark-symbol.outline {
+    background: transparent; color: #0C0C0C; border: 2px solid #0C0C0C;
+  }
+  .mark-symbol.accent {
+    background: transparent; color: #0C0C0C; border: none;
+    font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 700;
+  }
+
+  /* Color palettes */
+  .palette-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 2rem 0; }
+  .palette-card {
+    border-radius: 16px; overflow: hidden; border: 1px solid #EBEBEA;
+  }
+  .palette-swatch { height: 80px; }
+  .palette-info { padding: 1rem; }
+  .palette-info .name { font-size: 13px; font-weight: 500; color: #0C0C0C; }
+  .palette-info .hex { font-size: 11px; color: #8A8A8A; margin-top: 0.25rem; }
+  .palette-label { font-size: 12px; color: #8A8A8A; margin-top: 0.5rem; font-style: italic; }
+
+  /* Brand voice */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+  .voice-card {
+    padding: 1.5rem; border-radius: 12px; border: 1px solid #EBEBEA;
+  }
+  .voice-card .track { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #8A8A8A; margin-bottom: 0.5rem; }
+  .voice-card .title { font-weight: 500; color: #0C0C0C; margin-bottom: 0.5rem; }
+  .voice-card p { font-size: 13px; color: #5C5C5C; line-height: 1.6; }
+
+  /* Tagline */
+  .tagline-box {
+    padding: 2rem; border-radius: 16px; border: 1px solid #EBEBEA;
+    margin: 1.5rem 0;
+  }
+  .tagline-box .tag {
+    font-size: 11px; color: #8A8A8A; text-transform: uppercase;
+    letter-spacing: 0.06em; margin-bottom: 0.5rem;
+  }
+  .tagline-box .line {
+    font-family: 'Newsreader', serif; font-size: 1.5rem; line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+  .tagline-box .note { font-size: 12px; color: #8A8A8A; }
+
+  @media (max-width: 640px) {
+    .logo-grid, .voice-grid { grid-template-columns: 1fr; }
+    .palette-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .interactive-hint {
+    text-align: center; padding: 1rem; font-size: 12px; color: #8A8A8A;
+    border: 1px dashed #DADAD8; border-radius: 8px; margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="brand-header">
+      <h1>Archic — Brand Identity</h1>
+      <p class="sub">Propuesta de branding para posicionar Archic como un laboratorio de investigación de IA de primer nivel.</p>
+    </div>
+
+    <!-- Brand Story -->
+    <div class="brand-section">
+      <div class="section-label">Brand Foundation</div>
+      <h2>Narrative</h2>
+      <p class="body-text">
+        <strong>Archic</strong> no es una startup de IA más. No construimos chatbots ni copilotos genéricos.
+        Construimos la infraestructura de memoria que permite a los agentes de IA operar en horizontes
+        de días y semanas — no minutos.
+      </p>
+      <p class="body-text">
+        Nuestra ventaja no es una promesa: está <strong>demostrada y medida</strong> en benchmarks deterministas.
+        Archic es a la memoria de agentes lo que Anthropic es a la seguridad de IA: el laboratorio que
+        define el estándar.
+      </p>
+    </div>
+
+    <!-- Tagline -->
+    <div class="brand-section">
+      <div class="section-label">Tagline</div>
+      <h2>El claim</h2>
+      <p class="body-text">Necesitamos una línea que comunique en segundos qué hace Archic y por qué importa. Tres opciones:</p>
+
+      <div class="tagline-box">
+        <div class="tag">Opción A (recomendada)</div>
+        <div class="line">"Infrastructure for long-horizon intelligence."</div>
+        <div class="note">Claro, profesional, B2B. Comunica el "qué" (infraestructura) y el "por qué" (long-horizon).</div>
+      </div>
+
+      <div class="tagline-box">
+        <div class="tag">Opción B</div>
+        <div class="line">"Measure. Remember. Act."</div>
+        <div class="note">Las tres columnas de Archic. Más corto, más memorable, pero requiere más contexto.</div>
+      </div>
+
+      <div class="tagline-box">
+        <div class="tag">Opción C</div>
+        <div class="line">"Principled memory for autonomous agents."</div>
+        <div class="note">Énfasis en "principios" (nuestra filosofía eval-first) y "autonomía".</div>
+      </div>
+    </div>
+
+    <!-- Logo -->
+    <div class="brand-section">
+      <div class="section-label">Logo</div>
+      <h2>Direcciones de marca</h2>
+      <p class="body-text">
+        "Archic" puede evocar "Architecture" + "IC" (Inteligencia / Integrated Circuits).
+        Propongo tres direcciones para el logotipo:
+      </p>
+
+      <div class="logo-grid">
+        <div class="logo-card">
+          <div class="label">Opción 1 — Serif clásico</div>
+          <div class="mark" style="gap: 0.75rem;">
+            <span class="mark-symbol">A</span>
+          </div>
+          <div class="preview">Archic</div>
+          <div class="desc">Newsreader, peso 500. Elegancia de editorial académica. Señal de investigación, no de consumo.</div>
+        </div>
+
+        <div class="logo-card">
+          <div class="label">Opción 2 — Mono técnico</div>
+          <div class="mark" style="gap: 0.75rem;">
+            <span class="mark-symbol accent">{ a }</span>
+          </div>
+          <div class="preview preview mono">ARCHIC</div>
+          <div class="desc">Inter, peso 400, uppercase + espaciado. Minimalismo de herramienta de desarrollo.</div>
+        </div>
+
+        <div class="logo-card">
+          <div class="label">Opción 3 — Isologo dual</div>
+          <div class="mark">
+            <span class="mark-symbol outline">M</span>
+            <span class="mark-symbol outline" style="font-size: 0.8rem;">+</span>
+            <span class="mark-symbol">A</span>
+          </div>
+          <div class="preview preview smallcaps">Archic / Midas</div>
+          <div class="desc">"M + A" como marca dual. La M (Midas) como producto estrella, la A (Archic) como casa.</div>
+        </div>
+
+        <div class="logo-card">
+          <div class="label">Opción 4 — Minimal puro</div>
+          <div class="preview" style="font-size: 2.8rem;">_archic</div>
+          <div class="desc">Underscore como prefijo. Señal de naming técnico (como \_\_init\_\_, \_private).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color -->
+    <div class="brand-section">
+      <div class="section-label">Color</div>
+      <h2>Paleta cromática</h2>
+      <p class="body-text">La paleta "Papel y Tinta" funciona para fondo. Pero necesitamos un color acento distintivo.</p>
+
+      <div class="palette-grid">
+        <div class="palette-card">
+          <div class="palette-swatch" style="background: #0C0C0C;"></div>
+          <div class="palette-info">
+            <div class="name">Ink</div>
+            <div class="hex">#0C0C0C</div>
+            <div class="palette-label">Texto principal, botones primarios</div>
+          </div>
+        </div>
+        <div class="palette-card">
+          <div class="palette-swatch" style="background: #FAFAF8;"></div>
+          <div class="palette-info">
+            <div class="name">Paper</div>
+            <div class="hex">#FAFAF8</div>
+            <div class="palette-label">Fondo principal</div>
+          </div>
+        </div>
+        <div class="palette-card">
+          <div class="palette-swatch" style="background: #F5F5F3;"></div>
+          <div class="palette-info">
+            <div class="name">Surface</div>
+            <div class="hex">#F5F5F3</div>
+            <div class="palette-label">Fondo secundario, tarjetas</div>
+          </div>
+        </div>
+        <div class="palette-card">
+          <div class="palette-swatch" style="background: #5C5C5C;"></div>
+          <div class="palette-info">
+            <div class="name">Muted Ink</div>
+            <div class="hex">#5C5C5C</div>
+            <div class="palette-label">Texto secundario, descripciones</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="body-text" style="margin-top: 1.5rem;">
+        <strong>Propuesta de color acento:</strong> Un tono que conecte con "memoria" o "precisión".
+      </p>
+
+      <div class="palette-grid">
+        <div class="palette-card">
+          <div class="palette-swatch" style="background: #3B4F4A;"></div>
+          <div class="palette-info">
+            <div class="name">Sage / Peltre</div>
+            <div class="hex">#3B4F4A</div>
+            <div class="palette-label">Serio, técnico, natural. Sugiere "medición precisa"</div>
+          </div>
+        </div>
+        <div class="palette-card">
+          <div class="palette-swatch" style="background: #4A5B6B;"></div>
+          <div class="palette-info">
+            <div class="name">Slate</div>
+            <div class="hex">#4A5B6B</div>
+            <div class="palette-label">Profesional, corporativo. Sugiere "infraestructura"</div>
+          </div>
+        </div>
+        <div class="palette-card">
+          <div class="palette-swatch" style="background: #6B4F4A;"></div>
+          <div class="palette-info">
+            <div class="name">Umber</div>
+            <div class="hex">#6B4F4A</div>
+            <div class="palette-label">Cálido, terroso. Sugiere "memoria" (fotografía, archivo)</div>
+          </div>
+        </div>
+        <div class="palette-card">
+          <div class="palette-swatch" style="background: #0C0C0C;"></div>
+          <div class="palette-info">
+            <div class="name">No acento</div>
+            <div class="hex">Monocromo total</div>
+            <div class="palette-label">Máxima sobriedad. Como Anthropic o Arc Institute</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand Voice -->
+    <div class="brand-section">
+      <div class="section-label">Tono y voz</div>
+      <h2>Brand voice</h2>
+      <p class="body-text">Archic no suena a marketing. Suena a investigación. El tono debe reflejar tres cualidades:</p>
+
+      <div class="voice-grid">
+        <div class="voice-card">
+          <div class="track">1. Preciso</div>
+          <div class="title">"Show, don't tell"</div>
+          <p>Afirmaciones respaldadas por datos. "Nuestra memoria tiene 0.83 recall@k" en vez de "La mejor memoria del mercado".</p>
+        </div>
+        <div class="voice-card">
+          <div class="track">2. Conciso</div>
+          <div class="title">"No hay espacio para el relleno"</div>
+          <p>Frases cortas. Sin jerga de marketing. Cada palabra hace trabajo. Como el código bien escrito.</p>
+        </div>
+        <div class="voice-card">
+          <div class="track">3. Directo</div>
+          <div class="title">"Inteligente, no ingenioso"</div>
+          <p>No buscamos ser graciosos ni llamativos. Buscamos ser claros y autoritativos. El humor resta seriedad.</p>
+        </div>
+        <div class="voice-card">
+          <div class="track">4. Abierto</div>
+          <div class="title">"Transparente sobre las limitaciones"</div>
+          <p>Compartimos lo que aún no funciona. "El lead de +0.08 es consistente pero no significativo (n=40). Necesitamos n=150+." Esto genera confianza.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application mockup -->
+    <div class="brand-section" style="padding-bottom: 4rem;">
+      <div class="section-label">Aplicación</div>
+      <h2>Cómo se ve en la página</h2>
+      <p class="body-text">Un preview rápido de cómo el branding se aplica al hero de la landing page:</p>
+
+      <div style="border: 1px solid #EBEBEA; border-radius: 16px; overflow: hidden; margin-top: 1.5rem;">
+        <div style="padding: 1.5rem 2rem; border-bottom: 1px solid #EBEBEA; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
+          <span style="font-weight: 500; letter-spacing: 0.02em;">_archic</span>
+          <div style="display: flex; gap: 1.5rem; color: #8A8A8A;">
+            <span>Research</span>
+            <span>Memory</span>
+            <span>Benchmarks</span>
+            <span>Docs</span>
+          </div>
+        </div>
+        <div style="padding: 3rem 2rem;">
+          <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #8A8A8A; margin-bottom: 1rem;">Research &amp; infrastructure</p>
+          <h1 style="font-family: 'Newsreader', Georgia, serif; font-size: 2.8rem; font-weight: 500; line-height: 1.05; letter-spacing: -0.03em; max-width: 600px; margin-bottom: 1rem;">
+            Intelligent memory<br>for long-horizon agents.
+          </h1>
+          <p style="color: #5C5C5C; max-width: 500px; line-height: 1.6; font-size: 1rem; margin-bottom: 2rem;">
+            <strong>Midas</strong> is a principled memory SDK for AI agents that work across hours and days.
+            Built with a deterministically measured eval harness.
+          </p>
+          <div style="display: flex; gap: 0.75rem;">
+            <span style="padding: 0.6rem 1.3rem; background: #0C0C0C; color: #FAFAF8; border-radius: 100px; font-size: 13px; font-weight: 500;">Clone on GitHub</span>
+            <span style="padding: 0.6rem 1.3rem; border: 1px solid #DADAD8; border-radius: 100px; font-size: 13px;">Read the whitepaper →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -5,9 +5,8 @@ export const CONTACT_EMAIL = 'mailto:hello@archic.es'
 
 export const NAV_LINKS = [
   { label: 'Research', href: '#research' },
-  { label: 'Stack', href: '#ecosystem' },
+  { label: 'Benchmarks', href: '#benchmarks' },
   { label: 'Docs', href: '#docs' },
-  { label: 'GitHub', href: GITHUB_URL, external: true },
 ] as const
 
 export { REPOS, PACKAGES, DOCS, CODE_REPOS, LAYER_LINKS } from './data/resources'

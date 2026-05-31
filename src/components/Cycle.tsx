@@ -16,11 +16,11 @@ function Cycle() {
     <section id="research" className="relative py-20 md:py-28 px-6 section-band">
       <div className="mx-auto max-w-page">
         <Reveal>
-          <p className="section-eyebrow mb-4">How it works</p>
-          <h2 className="section-title mb-4">Every mission follows a loop.</h2>
+          <p className="section-eyebrow mb-4">How we build</p>
+          <h2 className="section-title mb-4">Benchmark, then build, then benchmark again.</h2>
           <p className="section-lead mb-14">
-            Understand, remember, reason, act, learn — each phase owned by a layer with a single
-            responsibility. Today that loop runs through Origin, Atlas, and Apollo.
+            Measure honestly before claiming improvement. Define metrics, run the harness, find
+            where retrieval fails, improve the system, and publish results transparently.
           </p>
         </Reveal>
 
@@ -47,10 +47,10 @@ function Cycle() {
 
         <Reveal delay={180}>
           <blockquote className="quote-block mt-16 md:mt-20">
-            &ldquo;Intelligence is incomplete until it can act.&rdquo;
+            &ldquo;Superiority is a goal we measure toward, not a claim.&rdquo;
           </blockquote>
           <p className="text-center text-sm text-ink-muted mt-4 max-w-md mx-auto">
-            Under human control, with proof — not assertion.
+            Same embedders. Same conditions. Transparent leaderboard.
           </p>
         </Reveal>
       </div>

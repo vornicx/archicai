@@ -4,41 +4,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        canvas: '#FAFAF8',
-        surface: {
+        bg: '#000000',
+        surface: '#0A0A0A',
+        border: '#161616',
+        text: {
           DEFAULT: '#FFFFFF',
-          alt: '#F5F5F3',
-          muted: '#EFEFED',
-        },
-        ink: {
-          DEFAULT: '#0C0C0C',
-          muted: '#5C5C5C',
-          faint: '#8A8A8A',
-        },
-        line: {
-          DEFAULT: '#EBEBEA',
-          strong: '#DADAD8',
-        },
-        accent: {
-          DEFAULT: '#0C0C0C',
-          soft: '#F0F0EE',
+          muted: '#8A8A8A',
         },
       },
       fontFamily: {
-        sans: ['Geist', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Newsreader', 'Georgia', 'Cambria', 'Times New Roman', 'serif'],
-        mono: ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Newsreader', 'Georgia', 'serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       maxWidth: {
-        page: '1080px',
-        prose: '640px',
-      },
-      boxShadow: {
-        soft: '0 1px 2px rgba(12, 12, 12, 0.04), 0 12px 40px rgba(12, 12, 12, 0.06)',
-        card: '0 1px 3px rgba(12, 12, 12, 0.06)',
+        page: '1100px',
       },
       borderRadius: {
-        pill: '9999px',
+        card: '6px',
       },
     },
   },

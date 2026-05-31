@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Archic — Cream Palette Explorer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #f2f0ed; color: #1d1d1b; line-height: 1.5; padding: 2rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  h1 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .subtitle { color: #8a8078; margin-bottom: 1.5rem; font-size: 0.9rem; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  .variant { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .variant-label { padding: 0.75rem 1rem; font-size: 0.8rem; font-weight: 600; border-bottom: 1px solid #eee; }
+  .variant-body { padding: 1rem; }
+
+  .palette-row { display: flex; gap: 8px; margin-bottom: 0.75rem; }
+  .swatch { width: 32px; height: 32px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.08); }
+  .swatch-lg { width: 48px; height: 48px; }
+
+  .hero-mini { border-radius: 8px; padding: 1.25rem; text-align: center; margin-bottom: 0.75rem; }
+  .hero-mini h2 { font-family: Georgia, serif; font-size: 1rem; font-weight: 400; margin-bottom: 0.4rem; }
+  .hero-mini p { font-size: 0.7rem; margin-bottom: 0.75rem; }
+  .hero-mini .cta { display: inline-block; padding: 4px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 500; }
+  .hero-mini .cta-p { color: white; }
+  .hero-mini .cta-s { background: transparent; border: 1px solid; }
+
+  .card-mini { border-radius: 6px; padding: 0.5rem; font-size: 0.65rem; }
+  .card-mini .val { font-family: Georgia, serif; font-size: 1.1rem; font-weight: 400; }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 0.75rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Exploración de cremas</h1>
+  <p class="subtitle">Misma estructura, 6 variantes de crema + dorado. ¿Cuál te gusta más?</p>
+
+  <div class="grid">
+
+    <!-- 1. Original (warm cream) -->
+    <div class="variant" style="border: 2px solid #B8943C;">
+      <div class="variant-label">1 — Original <span style="font-weight:400;color:#8a8078;">FFFCF7 / B8943C</span></div>
+      <div class="variant-body">
+        <div class="palette-row">
+          <div class="swatch swatch-lg" style="background:#FFFCF7;border-color:#e0d8ce;"></div>
+          <div class="swatch" style="background:#FFFAF4;border-color:#e0d8ce;"></div>
+          <div class="swatch" style="background:#B8943C;"></div>
+          <div class="swatch" style="background:#F5F0E8;"></div>
+          <div class="swatch" style="background:#1A1A1A;"></div>
+        </div>
+        <div class="hero-mini" style="background:#FFFAF4;border:1px solid #e8e0d6;">
+          <h2>Infrastructure for long-horizon intelligence</h2>
+          <p style="color:#8a8078;">CL AUDE specification accuracy benchmarks</p>
+          <div><span class="cta cta-p" style="background:#B8943C;">Clone SDK</span></div>
+        </div>
+        <div class="metrics">
+          <div class="card-mini" style="background:#FFFAF4;border:1px solid #e8e0d6;"><span class="val" style="color:#B8943C;">0.83</span>Accuracy</div>
+          <div class="card-mini" style="background:#FFFAF4;border:1px solid #e8e0d6;"><span class="val" style="color:#B8943C;">±0.03</span>95% CI</div>
+          <div class="card-mini" style="background:#FFFAF4;border:1px solid #e8e0d6;"><span class="val" style="color:#B8943C;">5</span>Datasets</div>
+          <div class="card-mini" style="background:#FFFAF4;border:1px solid #e8e0d6;"><span class="val" style="color:#B8943C;">3.2×</span>vs RAG</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Ivory + Gold -->
+    <div class="variant">
+      <div class="variant-label">2 — Ivory <span style="font-weight:400;color:#8a8078;">FFFFF0 / C9A03C</span></div>
+      <div class="variant-body">
+        <div class="palette-row">
+          <div class="swatch swatch-lg" style="background:#FFFFF0;border-color:#e0dcce;"></div>
+          <div class="swatch" style="background:#FFFAEE;border-color:#e0dcce;"></div>
+          <div class="swatch" style="background:#C9A03C;"></div>
+          <div class="swatch" style="background:#F5F0E0;"></div>
+          <div class="swatch" style="background:#1A1A1A;"></div>
+        </div>
+        <div class="hero-mini" style="background:#FFFAEE;border:1px solid #e8e0ce;">
+          <h2>Infrastructure for long-horizon intelligence</h2>
+          <p style="color:#8a8078;">CL AUDE specification accuracy benchmarks</p>
+          <div><span class="cta cta-p" style="background:#C9A03C;">Clone SDK</span></div>
+        </div>
+        <div class="metrics">
+          <div class="card-mini" style="background:#FFFAEE;border:1px solid #e8e0ce;"><span class="val" style="color:#C9A03C;">0.83</span>Accuracy</div>
+          <div class="card-mini" style="background:#FFFAEE;border:1px solid #e8e0ce;"><span class="val" style="color:#C9A03C;">±0.03</span>95% CI</div>
+          <div class="card-mini" style="background:#FFFAEE;border:1px solid #e8e0ce;"><span class="val" style="color:#C9A03C;">5</span>Datasets</div>
+          <div class="card-mini" style="background:#FFFAEE;border:1px solid #e8e0ce;"><span class="val" style="color:#C9A03C;">3.2×</span>vs RAG</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Warm Beige -->
+    <div class="variant">
+      <div class="variant-label">3 — Warm Beige <span style="font-weight:400;color:#8a8078;">F8F0E3 / C49A3C</span></div>
+      <div class="variant-body">
+        <div class="palette-row">
+          <div class="swatch swatch-lg" style="background:#F8F0E3;border-color:#ddd0c0;"></div>
+          <div class="swatch" style="background:#FCF6EC;border-color:#ddd0c0;"></div>
+          <div class="swatch" style="background:#C49A3C;"></div>
+          <div class="swatch" style="background:#EDE4D6;"></div>
+          <div class="swatch" style="background:#1A1A1A;"></div>
+        </div>
+        <div class="hero-mini" style="background:#FCF6EC;border:1px solid #e2d8c8;">
+          <h2>Infrastructure for long-horizon intelligence</h2>
+          <p style="color:#8a8078;">CL AUDE specification accuracy benchmarks</p>
+          <div><span class="cta cta-p" style="background:#C49A3C;">Clone SDK</span></div>
+        </div>
+        <div class="metrics">
+          <div class="card-mini" style="background:#FCF6EC;border:1px solid #e2d8c8;"><span class="val" style="color:#C49A3C;">0.83</span>Accuracy</div>
+          <div class="card-mini" style="background:#FCF6EC;border:1px solid #e2d8c8;"><span class="val" style="color:#C49A3C;">±0.03</span>95% CI</div>
+          <div class="card-mini" style="background:#FCF6EC;border:1px solid #e2d8c8;"><span class="val" style="color:#C49A3C;">5</span>Datasets</div>
+          <div class="card-mini" style="background:#FCF6EC;border:1px solid #e2d8c8;"><span class="val" style="color:#C49A3C;">3.2×</span>vs RAG</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Cool Oat -->
+    <div class="variant">
+      <div class="variant-label">4 — Cool Oat <span style="font-weight:400;color:#8a8078;">F5F3EF / B0883C</span></div>
+      <div class="variant-body">
+        <div class="palette-row">
+          <div class="swatch swatch-lg" style="background:#F5F3EF;border-color:#d6d2cc;"></div>
+          <div class="swatch" style="background:#FAF8F5;border-color:#d6d2cc;"></div>
+          <div class="swatch" style="background:#B0883C;"></div>
+          <div class="swatch" style="background:#EDEBE6;"></div>
+          <div class="swatch" style="background:#1A1A1A;"></div>
+        </div>
+        <div class="hero-mini" style="background:#FAF8F5;border:1px solid #ddd9d2;">
+          <h2>Infrastructure for long-horizon intelligence</h2>
+          <p style="color:#7a7a78;">CL AUDE specification accuracy benchmarks</p>
+          <div><span class="cta cta-p" style="background:#B0883C;">Clone SDK</span></div>
+        </div>
+        <div class="metrics">
+          <div class="card-mini" style="background:#FAF8F5;border:1px solid #ddd9d2;"><span class="val" style="color:#B0883C;">0.83</span>Accuracy</div>
+          <div class="card-mini" style="background:#FAF8F5;border:1px solid #ddd9d2;"><span class="val" style="color:#B0883C;">±0.03</span>95% CI</div>
+          <div class="card-mini" style="background:#FAF8F5;border:1px solid #ddd9d2;"><span class="val" style="color:#B0883C;">5</span>Datasets</div>
+          <div class="card-mini" style="background:#FAF8F5;border:1px solid #ddd9d2;"><span class="val" style="color:#B0883C;">3.2×</span>vs RAG</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Bone / Sand -->
+    <div class="variant">
+      <div class="variant-label">5 — Bone <span style="font-weight:400;color:#8a8078;">F3EDE4 / BF9040</span></div>
+      <div class="variant-body">
+        <div class="palette-row">
+          <div class="swatch swatch-lg" style="background:#F3EDE4;border-color:#d8cfc2;"></div>
+          <div class="swatch" style="background:#F9F4EC;border-color:#d8cfc2;"></div>
+          <div class="swatch" style="background:#BF9040;"></div>
+          <div class="swatch" style="background:#E8E0D4;"></div>
+          <div class="swatch" style="background:#1A1A1A;"></div>
+        </div>
+        <div class="hero-mini" style="background:#F9F4EC;border:1px solid #dcd3c6;">
+          <h2>Infrastructure for long-horizon intelligence</h2>
+          <p style="color:#7a7268;">CL AUDE specification accuracy benchmarks</p>
+          <div><span class="cta cta-p" style="background:#BF9040;">Clone SDK</span></div>
+        </div>
+        <div class="metrics">
+          <div class="card-mini" style="background:#F9F4EC;border:1px solid #dcd3c6;"><span class="val" style="color:#BF9040;">0.83</span>Accuracy</div>
+          <div class="card-mini" style="background:#F9F4EC;border:1px solid #dcd3c6;"><span class="val" style="color:#BF9040;">±0.03</span>95% CI</div>
+          <div class="card-mini" style="background:#F9F4EC;border:1px solid #dcd3c6;"><span class="val" style="color:#BF9040;">5</span>Datasets</div>
+          <div class="card-mini" style="background:#F9F4EC;border:1px solid #dcd3c6;"><span class="val" style="color:#BF9040;">3.2×</span>vs RAG</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Light Bisque -->
+    <div class="variant">
+      <div class="variant-label">6 — Bisque <span style="font-weight:400;color:#8a8078;">FDF5ED / C89C4C</span></div>
+      <div class="variant-body">
+        <div class="palette-row">
+          <div class="swatch swatch-lg" style="background:#FDF5ED;border-color:#e0d5c8;"></div>
+          <div class="swatch" style="background:#FFF9F3;border-color:#e0d5c8;"></div>
+          <div class="swatch" style="background:#C89C4C;"></div>
+          <div class="swatch" style="background:#F0E8DE;"></div>
+          <div class="swatch" style="background:#1A1A1A;"></div>
+        </div>
+        <div class="hero-mini" style="background:#FFF9F3;border:1px solid #e4d9cc;">
+          <h2>Infrastructure for long-horizon intelligence</h2>
+          <p style="color:#7a7268;">CL AUDE specification accuracy benchmarks</p>
+          <div><span class="cta cta-p" style="background:#C89C4C;">Clone SDK</span></div>
+        </div>
+        <div class="metrics">
+          <div class="card-mini" style="background:#FFF9F3;border:1px solid #e4d9cc;"><span class="val" style="color:#C89C4C;">0.83</span>Accuracy</div>
+          <div class="card-mini" style="background:#FFF9F3;border:1px solid #e4d9cc;"><span class="val" style="color:#C89C4C;">±0.03</span>95% CI</div>
+          <div class="card-mini" style="background:#FFF9F3;border:1px solid #e4d9cc;"><span class="val" style="color:#C89C4C;">5</span>Datasets</div>
+          <div class="card-mini" style="background:#FFF9F3;border:1px solid #e4d9cc;"><span class="val" style="color:#C89C4C;">3.2×</span>vs RAG</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="color:#8a8078;font-size:0.85rem;border-top:1px solid #ddd9d2;padding-top:1rem;margin-top:1.5rem;">
+    <strong>¿Cuál prefieres?</strong> O dime "más X" y te hago otra ronda.
+  </p>
+
+</div>
+</body>
+</html>

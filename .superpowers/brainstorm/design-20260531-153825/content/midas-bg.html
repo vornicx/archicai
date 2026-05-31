@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Archic — Midas Scroll</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;color:#111;min-height:100vh;line-height:1.6;overflow-x:hidden}
+
+/* ===== BACKGROUND WITH MIDAS CLOUDS ===== */
+.bg-midas{position:fixed;inset:0;z-index:-1;background:linear-gradient(165deg,#F5F0E8 0%,#EDE4D8 30%,#F0EBE3 60%,#E8DFD2 100%);overflow:hidden}
+
+.cloud{position:absolute;filter:blur(35px);mix-blend-mode:hard-light;pointer-events:none;will-change:transform}
+.cloud-1{width:800px;height:400px;top:-8%;left:-12%;background:radial-gradient(ellipse 50% 60% at 30% 50%,rgba(212,184,122,.35) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 60% 40%,rgba(184,148,60,.2) 0%,transparent 70%),radial-gradient(ellipse 30% 40% at 20% 60%,rgba(200,175,120,.25) 0%,transparent 70%);animation:drift1 28s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0)}25%{transform:translate(60px,30px)}50%{transform:translate(100px,-40px)}75%{transform:translate(30px,20px)}}
+.cloud-2{width:600px;height:350px;top:15%;left:50%;background:radial-gradient(ellipse 50% 60% at 40% 50%,rgba(184,148,60,.25) 0%,transparent 70%),radial-gradient(ellipse 35% 45% at 60% 60%,rgba(212,184,122,.15) 0%,transparent 70%),radial-gradient(ellipse 25% 35% at 30% 40%,rgba(200,175,120,.2) 0%,transparent 70%);animation:drift2 32s ease-in-out infinite}
+@keyframes drift2{0%,100%{transform:translate(0,0)}30%{transform:translate(-50px,40px)}60%{transform:translate(-90px,-20px)}85%{transform:translate(-20px,30px)}}
+.cloud-3{width:700px;height:350px;bottom:5%;left:10%;background:radial-gradient(ellipse 45% 55% at 50% 50%,rgba(200,175,120,.3) 0%,transparent 70%),radial-gradient(ellipse 35% 45% at 30% 40%,rgba(184,148,60,.2) 0%,transparent 70%),radial-gradient(ellipse 25% 35% at 70% 60%,rgba(212,184,122,.18) 0%,transparent 70%);animation:drift3 30s ease-in-out infinite}
+@keyframes drift3{0%,100%{transform:translate(0,0)}20%{transform:translate(70px,-30px)}50%{transform:translate(120px,20px)}75%{transform:translate(40px,-15px)}}
+.cloud-4{width:500px;height:250px;top:60%;right:-8%;background:radial-gradient(ellipse 50% 55% at 50% 50%,rgba(212,184,122,.3) 0%,transparent 70%),radial-gradient(ellipse 30% 40% at 40% 60%,rgba(184,148,60,.15) 0%,transparent 70%);animation:drift4 35s ease-in-out infinite}
+@keyframes drift4{0%,100%{transform:translate(0,0)}35%{transform:translate(-40px,30px)}65%{transform:translate(-70px,-25px)}}
+.cloud-5{width:550px;height:280px;top:3%;right:15%;background:radial-gradient(ellipse 50% 60% at 40% 45%,rgba(200,175,120,.3) 0%,transparent 70%),radial-gradient(ellipse 35% 40% at 65% 55%,rgba(184,148,60,.18) 0%,transparent 70%),radial-gradient(ellipse 20% 30% at 25% 50%,rgba(212,184,122,.22) 0%,transparent 70%);animation:drift5 26s ease-in-out infinite}
+@keyframes drift5{0%,100%{transform:translate(0,0)}40%{transform:translate(-50px,40px)}70%{transform:translate(-30px,-30px)}}
+.cloud-6{width:400px;height:200px;bottom:35%;left:45%;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(184,148,60,.2) 0%,transparent 70%),radial-gradient(ellipse 30% 40% at 30% 40%,rgba(200,175,120,.15) 0%,transparent 70%);animation:drift6 22s ease-in-out infinite;opacity:.7}
+@keyframes drift6{0%,100%{transform:translate(0,0)}25%{transform:translate(40px,50px)}60%{transform:translate(60px,-10px)}}
+
+/* ===== HEADER — SCROLL ANIMATION ===== */
+.header-wrap{position:fixed;top:0;left:0;right:0;z-index:100;padding:2rem 4rem;transition:all .6s}
+.header-wrap.scrolled{background:rgba(245,240,232,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:.85rem 4rem;box-shadow:0 2px 32px rgba(0,0,0,.04)}
+.header-inner{max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+
+.header-logo{font-size:.85rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;background:linear-gradient(90deg,#111,#B8943C,#111);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;transition:all .6s}
+.header-wrap.scrolled .header-logo{text-shadow:0 0 20px rgba(184,148,60,.08)}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+
+.nav{display:flex;gap:2rem}
+.nav a{font-size:.8rem;color:#111;text-decoration:none;position:relative;transition:color .3s}
+.nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:#B8943C;transition:width .3s;border-radius:2px}
+.nav a:hover{color:#B8943C}
+.nav a:hover::after{width:100%}
+
+/* ===== HERO ===== */
+.hero-wrap{min-height:100vh;display:flex;align-items:center;padding-top:100px}
+.container{width:100%;max-width:1440px;margin:0 auto;padding:0 4rem;position:relative;z-index:1}
+
+.glass-hero{position:relative;z-index:1;width:100%;background:rgba(255,252,247,.6);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.5);border-radius:32px;box-shadow:0 8px 48px rgba(0,0,0,.03),inset 0 1px 0 rgba(255,255,255,.6);overflow:hidden;transition:all .5s}
+.glass-hero::after{content:'';position:absolute;width:150px;height:150px;top:50%;left:50%;margin:-75px 0 0 -75px;background:radial-gradient(circle,rgba(184,148,60,.08) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none}
+.glass-hero:hover::after{animation:midasTouch 1s ease-out}
+.glass-hero:hover{border-color:rgba(184,148,60,.2);box-shadow:0 12px 56px rgba(184,148,60,.06),inset 0 1px 0 rgba(255,255,255,.6)}
+.hero-inner{padding:5rem 4rem;text-align:center;background:rgba(255,252,247,.35);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border-radius:31px;position:relative}
+.hero-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:#B8943C;margin-bottom:1.25rem}
+.hero-inner h1{font-family:Georgia,serif;font-size:3.2rem;font-weight:400;color:#111;line-height:1.1;margin-bottom:1.25rem;letter-spacing:-.02em;transition:text-shadow .5s}
+.glass-hero:hover .hero-inner h1{text-shadow:0 0 40px rgba(184,148,60,.04)}
+.hero-inner p{font-size:1rem;color:#111;max-width:520px;margin:0 auto 2.5rem;line-height:1.7}
+
+@keyframes midasTouch{0%{transform:scale(0);opacity:.4}50%{opacity:.15}100%{transform:scale(3);opacity:0}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 0 rgba(184,148,60,0)}50%{box-shadow:0 0 20px rgba(184,148,60,.06)}}
+
+.cta-row{display:flex;gap:1rem;justify-content:center}
+.cta{padding:.75rem 1.8rem;border-radius:12px;font-size:.85rem;font-weight:500;cursor:default;position:relative;overflow:hidden;transition:all .3s}
+.cta-primary{background:#B8943C;color:white;border:1px solid rgba(255,255,255,.15);box-shadow:0 4px 16px rgba(184,148,60,.1)}
+.cta-primary::after{content:'';position:absolute;width:100px;height:100px;top:50%;left:50%;margin:-50px 0 0 -50px;background:radial-gradient(circle,rgba(255,255,255,.2) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none}
+.cta-primary:hover::after{animation:midasTouch .6s ease-out}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(184,148,60,.25)}
+.cta-secondary{background:rgba(255,255,255,.2);backdrop-filter:blur(8px);color:#111;border:1px solid rgba(200,200,200,.3)}
+.cta-secondary::after{content:'';position:absolute;width:100px;height:100px;top:50%;left:50%;margin:-50px 0 0 -50px;background:radial-gradient(circle,rgba(184,148,60,.1) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none}
+.cta-secondary:hover::after{animation:midasTouch .6s ease-out}
+.cta-secondary:hover{border-color:#B8943C;color:#B8943C;background:rgba(255,255,255,.4)}
+
+/* ===== CONTENT SECTIONS ===== */
+.content-wrap{padding:3rem 4rem}
+.section-group{display:flex;flex-direction:column;gap:2.5rem}
+
+.glass-card{position:relative;z-index:1;background:rgba(255,252,247,.5);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.4);border-radius:24px;box-shadow:0 4px 24px rgba(0,0,0,.02),inset 0 1px 0 rgba(255,255,255,.6);overflow:hidden;cursor:default;transition:all .5s}
+.glass-card::before{content:'';position:absolute;inset:-1px;border-radius:25px;background:linear-gradient(135deg,transparent 40%,rgba(184,148,60,.1),rgba(212,184,122,.06),transparent 60%);opacity:0;transition:opacity .6s;z-index:0}
+.glass-card::after{content:'';position:absolute;width:150px;height:150px;top:50%;left:50%;margin:-75px 0 0 -75px;background:radial-gradient(circle,rgba(184,148,60,.08) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none;z-index:0}
+.glass-card:hover::before{opacity:1}
+.glass-card:hover::after{animation:midasTouch 1s ease-out}
+.glass-card:hover{border-color:rgba(184,148,60,.2);animation:glowPulse 3s ease-in-out infinite}
+.glass-card>.inner{padding:3rem;background:rgba(255,252,247,.35);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border-radius:23px;position:relative;z-index:1}
+
+.glass-card-wide{position:relative;z-index:1;background:rgba(255,252,247,.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.35);border-radius:24px;height:100%;box-shadow:0 4px 24px rgba(0,0,0,.02),inset 0 1px 0 rgba(255,255,255,.5);overflow:hidden;cursor:default;transition:all .5s}
+.glass-card-wide::before{content:'';position:absolute;inset:-1px;border-radius:25px;background:linear-gradient(135deg,transparent 40%,rgba(184,148,60,.1),rgba(212,184,122,.06),transparent 60%);opacity:0;transition:opacity .6s;z-index:0}
+.glass-card-wide::after{content:'';position:absolute;width:150px;height:150px;top:50%;left:50%;margin:-75px 0 0 -75px;background:radial-gradient(circle,rgba(184,148,60,.08) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none;z-index:0}
+.glass-card-wide:hover::before{opacity:1}
+.glass-card-wide:hover::after{animation:midasTouch 1s ease-out}
+.glass-card-wide:hover{border-color:rgba(184,148,60,.2);animation:glowPulse 3s ease-in-out infinite}
+.glass-card-wide>.inner{padding:3rem;background:rgba(255,252,247,.35);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border-radius:23px;height:100%;position:relative;z-index:1}
+
+.sec-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;color:#B8943C;margin-bottom:1.25rem;display:inline-block;background:rgba(184,148,60,.08);backdrop-filter:blur(8px);padding:.3rem .8rem;border-radius:6px;transition:all .3s}
+.glass-card:hover .sec-label,.glass-card-wide:hover .sec-label{background:rgba(184,148,60,.18);box-shadow:0 0 20px rgba(184,148,60,.08)}
+
+.metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.metric-card{background:rgba(255,255,255,.35);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.45);border-radius:16px;padding:1.5rem 1rem;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.5);transition:all .3s;position:relative;overflow:hidden;cursor:default}
+.metric-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(184,148,60,.08) 100%);opacity:0;transition:opacity .5s}
+.metric-card::after{content:'';position:absolute;width:100px;height:100px;top:50%;left:50%;margin:-50px 0 0 -50px;background:radial-gradient(circle,rgba(184,148,60,.08) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none}
+.metric-card:hover::before{opacity:1}
+.metric-card:hover::after{animation:midasTouch .6s ease-out}
+.metric-card:hover{transform:translateY(-3px);border-color:rgba(184,148,60,.2);box-shadow:0 12px 32px rgba(0,0,0,.03),inset 0 1px 0 rgba(255,255,255,.6)}
+.metric-value{font-family:Georgia,serif;font-size:2rem;font-weight:400;color:#B8943C;transition:text-shadow .3s}
+.metric-card:hover .metric-value{text-shadow:0 0 48px rgba(184,148,60,.15)}
+.metric-label{font-size:.7rem;color:#111;margin-top:.4rem;text-transform:uppercase;letter-spacing:.05em}
+
+.quote-block{background:rgba(255,255,255,.25);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-left:3px solid #B8943C;border-radius:0 16px 16px 0;padding:1.75rem 2rem;margin-top:1.5rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.4);transition:all .4s;position:relative;overflow:hidden}
+.quote-block::before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(184,148,60,.06) 0%,transparent 50%);opacity:0;transition:opacity .5s}
+.quote-block::after{content:'';position:absolute;width:120px;height:120px;top:50%;left:30%;margin:-60px 0 0 -60px;background:radial-gradient(circle,rgba(184,148,60,.08) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none}
+.quote-block:hover::before{opacity:1}
+.quote-block:hover::after{animation:midasTouch .8s ease-out}
+.quote-block:hover{background:rgba(255,255,255,.4);border-left-color:#D4B87A}
+.quote-block p{font-family:Georgia,serif;font-size:.95rem;color:#111;font-style:italic;line-height:1.7}
+.quote-block .attribution{font-family:system-ui;font-size:.75rem;color:#111;font-style:normal;margin-top:.6rem}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:stretch}
+.glass-table{background:rgba(255,255,255,.3);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.35);border-radius:14px;overflow:hidden;transition:border-color .3s}
+.glass-table:hover{border-color:rgba(184,148,60,.15);box-shadow:0 0 24px rgba(184,148,60,.03)}
+.t-header{display:grid;grid-template-columns:2fr 1fr 1fr;padding:.8rem 1.25rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:#111;border-bottom:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.2)}
+.t-row{display:grid;grid-template-columns:2fr 1fr 1fr;padding:.85rem 1.25rem;font-size:.82rem;color:#111;border-bottom:1px solid rgba(255,255,255,.15);transition:background .2s}
+.t-row:last-child{border-bottom:none}
+.t-row:hover{background:rgba(184,148,60,.06)}
+.check{color:#B8943C;font-weight:600}
+
+.code-block{background:rgba(26,26,26,.7);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.8;overflow-x:auto;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:border-color .3s;position:relative;overflow:hidden}
+.code-block::after{content:'';position:absolute;width:120px;height:120px;top:50%;left:50%;margin:-60px 0 0 -60px;background:radial-gradient(circle,rgba(184,148,60,.03) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none}
+.code-block:hover::after{animation:midasTouch 1s ease-out}
+.code-block:hover{border-color:rgba(184,148,60,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 0 24px rgba(184,148,60,.03)}
+.code-line{display:block;color:#e0ddd8}
+.code-line .kw{color:#C4A8E8}
+.code-line .str{color:#7CC9A0}
+.code-line .cm{color:#7a726a}
+.code-line .fn{color:#7CB8E8}
+
+.glass-footer{position:relative;z-index:1;width:100%;background:rgba(26,26,26,.55);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(255,255,255,.06);border-radius:100px;padding:1.5rem 2rem;text-align:center;color:#aaa;font-size:.75rem;margin-top:3rem;transition:all .4s;overflow:hidden;cursor:default}
+.glass-footer::before{content:'';position:absolute;inset:-1px;border-radius:101px;background:linear-gradient(135deg,transparent 30%,rgba(184,148,60,.12),transparent 70%);opacity:0;transition:opacity .6s}
+.glass-footer::after{content:'';position:absolute;width:100px;height:100px;top:50%;left:50%;margin:-50px 0 0 -50px;background:radial-gradient(circle,rgba(184,148,60,.06) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none}
+.glass-footer:hover::before{opacity:1}
+.glass-footer:hover::after{animation:midasTouch .8s ease-out}
+.glass-footer:hover{border-color:rgba(184,148,60,.12)}
+.glass-footer span{color:#B8943C}
+
+.download-row{display:flex;gap:1.25rem;align-items:center}
+.download-row .doc-icon{font-size:1.5rem;opacity:.6}
+.download-row .doc-info h4{font-size:.9rem;font-weight:600;margin-bottom:.15rem}
+.download-row .doc-info p{font-size:.78rem;color:#111}
+.download-btn{margin-left:auto;background:#B8943C;color:white;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.6rem 1.4rem;font-size:.8rem;font-weight:500;cursor:default;transition:all .3s;position:relative;overflow:hidden;box-shadow:0 4px 12px rgba(184,148,60,.1)}
+.download-btn::after{content:'';position:absolute;width:100px;height:100px;top:50%;left:50%;margin:-50px 0 0 -50px;background:radial-gradient(circle,rgba(255,255,255,.15) 0%,transparent 70%);border-radius:50%;transform:scale(0);pointer-events:none}
+.download-btn:hover::after{animation:midasTouch .6s ease-out}
+.download-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(184,148,60,.18)}
+
+.doc-param{background:rgba(255,255,255,.3)!important;backdrop-filter:blur(30px)!important;-webkit-backdrop-filter:blur(30px)!important;border:1px solid rgba(255,255,255,.35)!important;padding:1.25rem!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.5)!important;transition:all .3s!important;cursor:default!important;position:relative!important;overflow:hidden!important}
+.doc-param::after{content:''!important;position:absolute!important;width:80px!important;height:80px!important;top:50%!important;left:50%!important;margin:-40px 0 0 -40px!important;background:radial-gradient(circle,rgba(184,148,60,.08) 0%,transparent 70%)!important;border-radius:50%!important;transform:scale(0)!important;pointer-events:none!important}
+.doc-param:hover::after{animation:midasTouch .6s ease-out!important}
+.doc-param:hover{background:rgba(255,255,255,.45)!important;border-color:rgba(184,148,60,.15)!important}
+
+@media(max-width:1024px){
+.header-wrap{padding:1.5rem 2rem}
+.header-wrap.scrolled{padding:.75rem 2rem}
+.container{padding:0 2rem}
+.content-wrap{padding:2rem}}
+@media(max-width:768px){
+.header-wrap{padding:1rem 1rem}
+.header-wrap.scrolled{padding:.5rem 1rem}
+.container{padding:0 1rem}
+.content-wrap{padding:1.5rem 0}
+.two-col{grid-template-columns:1fr}
+.metric-row{grid-template-columns:repeat(2,1fr)}
+.hero-inner{padding:3rem 1.5rem}
+.hero-inner h1{font-size:2rem}
+.nav{gap:1rem}
+.hero-wrap{min-height:auto;padding-top:80px;margin-bottom:1.5rem}
+.download-btn{margin-left:0}
+.glass-card>.inner{padding:1.5rem}
+.glass-card-wide>.inner{padding:1.5rem}}
+</style></head><body>
+
+<div class="bg-midas">
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+  <div class="cloud cloud-3"></div>
+  <div class="cloud cloud-4"></div>
+  <div class="cloud cloud-5"></div>
+  <div class="cloud cloud-6"></div>
+</div>
+
+<div class="header-wrap" id="header">
+  <div class="header-inner">
+    <span class="header-logo">ARCHIC</span>
+    <div class="nav">
+      <a href="#">SDK</a>
+      <a href="#">Docs</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<div class="hero-wrap">
+  <div class="container">
+    <div class="glass-hero">
+      <div class="hero-inner">
+        <div class="hero-label">Archic Research — Technical Report</div>
+        <h1>Infrastructure for<br>long-horizon intelligence</h1>
+        <p>CL AUDE specification accuracy benchmarks for deterministic reasoning evaluation in sub-agent routing architectures</p>
+        <div class="cta-row">
+          <span class="cta cta-primary">Clone SDK →</span>
+          <span class="cta cta-secondary">Read the whitepaper</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+  <div class="container">
+    <div class="section-group">
+
+      <div class="glass-card">
+        <div class="inner">
+          <span class="sec-label">Benchmarks</span>
+          <div class="metric-row">
+            <div class="metric-card"><div class="metric-value">0.83</div><div class="metric-label">CL AUDE Accuracy</div></div>
+            <div class="metric-card"><div class="metric-value">±0.03</div><div class="metric-label">95% Confidence</div></div>
+            <div class="metric-card"><div class="metric-value">5</div><div class="metric-label">Datasets</div></div>
+            <div class="metric-card"><div class="metric-value">3.2×</div><div class="metric-label">vs Standard RAG</div></div>
+          </div>
+          <div class="quote-block">
+            <p>"We established CL AUDE as a public benchmark for long-horizon reasoning tasks. Our results demonstrate that deterministic routing to specialist sub-agents significantly outperforms monolithic RAG architectures."</p>
+            <div class="attribution">— Archic Research, Technical Report ARCHIC-TR-2026-01</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <div class="inner">
+          <span class="sec-label">Technical Report</span>
+          <div class="download-row">
+            <span class="doc-icon">📄</span>
+            <div class="doc-info">
+              <h4>ARCHIC-TR-2026-01</h4>
+              <p>Long-Horizon Reasoning via Deterministic Sub-Agent Routing — 24 pages, PDF</p>
+            </div>
+            <span class="download-btn">Download PDF</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="glass-card-wide">
+          <div class="inner">
+            <span class="sec-label">Architecture</span>
+            <div class="glass-table">
+              <div class="t-header"><span>Capability</span><span>Standard RAG</span><span>Archic Midas</span></div>
+              <div class="t-row"><span>Context window utilization</span><span>Partial</span><span class="check">✓ Full</span></div>
+              <div class="t-row"><span>Deterministic dispatch</span><span>No</span><span class="check">✓ Verified</span></div>
+              <div class="t-row"><span>Sub-agent orchestration</span><span>None</span><span class="check">✓ Spec-driven</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card-wide">
+          <div class="inner">
+            <span class="sec-label">SDK Quickstart</span>
+            <div class="code-block">
+              <span class="code-line"><span class="cm"># pip install archic-sdk</span></span>
+              <span class="code-line"><span class="kw">from</span> archic <span class="kw">import</span> <span class="fn">MidasEngine</span></span>
+              <span class="code-line">&nbsp;</span>
+              <span class="code-line">engine = <span class="fn">MidasEngine</span>(model=<span class="str">"claude-sonnet-4"</span>, profile=<span class="str">"long-horizon"</span>)</span>
+              <span class="code-line">&nbsp;</span>
+              <span class="code-line">result = engine.<span class="fn">route</span>(spec=openapi_schema, constraint=<span class="str">"deterministic"</span>)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <div class="inner">
+          <span class="sec-label">Developer Reference</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="doc-param">
+              <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.05em;color:#B8943C;margin-bottom:.6rem">Commit</div>
+              <pre style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#111;line-height:1.7"><span style="color:#B8943C">commit</span>(&lt;spec&gt;) → agent_id: str</pre>
+            </div>
+            <div class="doc-param">
+              <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.05em;color:#B8943C;margin-bottom:.6rem">Recall</div>
+              <pre style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#111;line-height:1.7"><span style="color:#B8943C">recall</span>(&lt;agent_id&gt;) → result: dict</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="glass-footer">
+      ARCHIC <span>©</span> 2026 — Infrastructure for long-horizon intelligence
+    </div>
+  </div>
+</div>
+
+<script>
+const header = document.getElementById('header');
+let ticking = false;
+window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{header.classList.toggle('scrolled',window.scrollY>80);ticking=false});ticking=true}});
+</script>
+</body></html>
