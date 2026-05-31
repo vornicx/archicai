@@ -5,42 +5,77 @@ type LogoProps = {
 }
 
 /**
- * Archic mark — "Horizon".
+ * Archic mark — "Midas Arch".
  *
- * Three nested arcs read as layered memory across a long horizon
- * (the wedge: agentic memory for long-horizon agents). A single
- * filled node sits off-center on the outer arc — a retrieved memory,
- * pulled from depth. The deliberate asymmetry is the signature:
- * it's not a generic concentric mark, it's recall happening.
+ * A single keystone arch rendered in molten gold gradient: the
+ * structural metaphor for long-horizon memory (the arch holds weight
+ * across time) fused with the Midas palette of the new brand system.
  *
- * Pure monochrome, uses currentColor.
+ * The gradient runs from warm champagne to deep antique gold with a
+ * specular highlight on the crown — the "touch" that turns the
+ * silhouette precious. A single inlaid node sits at the keystone:
+ * the retrieved memory, the moment of recall.
  */
 function Logo({ className, showWordmark = true, title = 'Archic' }: LogoProps) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className ?? ''}`} aria-label={title}>
       <svg
         viewBox="0 0 32 32"
-        width="22"
-        height="22"
+        width="24"
+        height="24"
         fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
         aria-hidden="true"
       >
-        {/* horizon line */}
-        <line x1="2" y1="22" x2="30" y2="22" />
-        {/* outer arc — long horizon */}
-        <path d="M3 22 A 13 13 0 0 1 29 22" />
-        {/* middle arc */}
-        <path d="M7.5 22 A 8.5 8.5 0 0 1 24.5 22" />
-        {/* inner arc — the agent's working context */}
-        <path d="M12 22 A 4 4 0 0 1 20 22" />
-        {/* retrieved memory — off-center on the outer arc (≈ 145°) */}
-        <circle cx="5.35" cy="14.55" r="1.7" fill="currentColor" stroke="none" />
+        <defs>
+          <linearGradient id="archic-gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#F0D78C" />
+            <stop offset="35%" stopColor="#D4B87A" />
+            <stop offset="65%" stopColor="#B8943C" />
+            <stop offset="100%" stopColor="#8A6A28" />
+          </linearGradient>
+          <linearGradient id="archic-gold-soft" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#F5E2A8" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#B8943C" stopOpacity="0.7" />
+          </linearGradient>
+          <radialGradient id="archic-gold-spec" cx="0.5" cy="0.2" r="0.6">
+            <stop offset="0%" stopColor="#FFF6DC" stopOpacity="0.9" />
+            <stop offset="60%" stopColor="#FFF6DC" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* keystone arch silhouette */}
+        <path
+          d="M4 28 L4 16 A12 12 0 0 1 28 16 L28 28 L21 28 L21 17 A5 5 0 0 0 11 17 L11 28 Z"
+          fill="url(#archic-gold)"
+        />
+        {/* crown specular highlight */}
+        <path
+          d="M4 28 L4 16 A12 12 0 0 1 28 16 L28 28 L21 28 L21 17 A5 5 0 0 0 11 17 L11 28 Z"
+          fill="url(#archic-gold-spec)"
+        />
+        {/* inner aperture edge — subtle inner glow line */}
+        <path
+          d="M11 28 L11 17 A5 5 0 0 1 21 17 L21 28"
+          fill="none"
+          stroke="url(#archic-gold-soft)"
+          strokeWidth="0.6"
+          opacity="0.7"
+        />
+        {/* keystone node — retrieved memory */}
+        <circle cx="16" cy="9" r="1.6" fill="#FFF1C2" />
+        <circle cx="16" cy="9" r="0.7" fill="#8A6A28" />
       </svg>
       {showWordmark && (
-        <span className="font-display text-[17px] font-medium tracking-[-0.02em] leading-none">
+        <span
+          className="font-display text-[17px] font-medium tracking-[-0.01em] leading-none"
+          style={{
+            backgroundImage: 'linear-gradient(90deg, #111 0%, #B8943C 50%, #111 100%)',
+            backgroundSize: '200% auto',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            color: 'transparent',
+          }}
+        >
           Archic
         </span>
       )}
