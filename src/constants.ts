@@ -1,7 +1,7 @@
 import { REPOS } from './data/resources'
 
 export const GITHUB_URL = REPOS.archic
-export const CONTACT_EMAIL = 'mailto:hello@archic.es'
+export const CONTACT_EMAIL = 'mailto:vornic@archic.es'
 
 export const NAV_LINKS = [
   { label: 'Research', href: '#research' },
