@@ -22,9 +22,8 @@ function Ecosystem() {
           <p className="section-eyebrow mb-4">The wedge</p>
           <h2 className="section-title mb-4">Midas is what we&apos;re building now.</h2>
           <p className="section-lead mb-14">
-            Agentic memory for long-horizon agents, proven through honest benchmarks. The full
-            Archic ecosystem &mdash; Origin, Atlas, Apollo &mdash; is our north-star vision, parked
-            while Midas ships.
+            Agentic memory for long-horizon agents, proven through honest benchmarks. The wider
+            Archic platform vision is parked while Midas ships as the first focused wedge.
           </p>
         </Reveal>
 

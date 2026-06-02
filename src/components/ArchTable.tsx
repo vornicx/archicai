@@ -1,23 +1,23 @@
 const ROWS = [
   {
-    dim: 'Temporal Horizon',
-    rag: 'Minutes / Hours. Attention degradation via noise.',
-    archic: 'Days / Weeks of continuous execution without state drift.',
+    dim: 'Product shape',
+    baseline: 'Raw transcript or vector retrieval glued around an agent loop.',
+    midas: 'Framework-agnostic Python SDK plus evaluation harness.',
   },
   {
-    dim: 'Retrieval Mechanism',
-    rag: 'Superficial K-NN semantic embedding distance.',
-    archic: 'Hierarchical execution state graph consolidation.',
+    dim: 'Proof loop',
+    baseline: 'Often judged by demos or anecdotal retrieval quality.',
+    midas: 'Recall, correctness and efficiency are measured on repeatable runs.',
   },
   {
-    dim: 'Context Window Load',
-    rag: 'Linearly redundant (Unbounded token growth).',
-    archic: 'Deterministic pruning optimized via algorithmic relevance.',
+    dim: 'Current goal',
+    baseline: 'Retrieve plausible nearby text.',
+    midas: 'Build compact context that helps the agent answer long-horizon questions.',
   },
   {
-    dim: 'Production Validation',
-    rag: 'Heuristic / Non-deterministic benchmarks.',
-    archic: 'Measured via an open-source Evaluation Harness.',
+    dim: 'Roadmap',
+    baseline: 'More documents, larger context windows, more prompt glue.',
+    midas: 'Scale evals, sqlite-vec store, hierarchical compression and one deep framework integration.',
   },
 ]
 
@@ -25,36 +25,38 @@ function ArchTable() {
   return (
     <section id="architecture" className="section-border section-padding">
       <div className="container-page">
-        <div className="section-label">Architectural Paradigm // Comparison</div>
-        <h2 className="heading-serif" style={{ fontSize: '2rem', marginBottom: '3rem' }}>
-          Moving Beyond Traditional Vector RAG
-        </h2>
+        <div className="section-label">Architecture</div>
+        <div className="mb-10 max-w-[760px]">
+          <h2 className="heading-serif text-[2.7rem] md:text-[3.8rem]">
+            A narrower foundation for reliable agent context.
+          </h2>
+          <p className="text-muted mt-5 text-[1.05rem] leading-relaxed">
+            The Archic ecosystem is parked while Midas proves the memory layer. The site
+            should sell that discipline: one wedge, one benchmark loop, one concrete SDK.
+          </p>
+        </div>
 
-        <div style={{ overflowX: 'auto' }}>
-          <table className="w-full text-left" style={{ borderCollapse: 'collapse', fontSize: '14px' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid #161616' }}>
-                <th className="font-mono text-[11px] uppercase tracking-wider font-normal pb-6" style={{ color: '#8A8A8A' }}>
-                  Technical Dimension
-                </th>
-                <th className="font-mono text-[11px] uppercase tracking-wider font-normal pb-6" style={{ color: '#8A8A8A' }}>
-                  Standard Vector RAG
-                </th>
-                <th className="font-mono text-[11px] uppercase tracking-wider font-normal pb-6" style={{ color: '#FFFFFF' }}>
-                  Archic Midas Engine
-                </th>
-              </tr>
-            </thead>
-            <tbody style={{ color: '#8A8A8A' }}>
-              {ROWS.map((r) => (
-                <tr key={r.dim} style={{ borderBottom: '1px solid #161616' }}>
-                  <td className="py-6 font-medium" style={{ color: '#FFFFFF' }}>{r.dim}</td>
-                  <td className="py-6">{r.rag}</td>
-                  <td className="py-6" style={{ color: '#FFFFFF' }}>{r.archic}</td>
+        <div className="glass-panel">
+          <div className="glass-inner overflow-x-auto p-5 md:p-8">
+            <table className="w-full min-w-[680px] text-left text-[14px]" style={{ borderCollapse: 'collapse' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                  <th className="pb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Dimension</th>
+                  <th className="pb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Common baseline</th>
+                  <th className="pb-5 font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: 'var(--gold-deep)' }}>Midas</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {ROWS.map((row) => (
+                  <tr key={row.dim} style={{ borderBottom: '1px solid var(--line)' }}>
+                    <td className="py-5 font-semibold">{row.dim}</td>
+                    <td className="py-5 text-muted">{row.baseline}</td>
+                    <td className="py-5">{row.midas}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>

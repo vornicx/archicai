@@ -1,20 +1,22 @@
+import { CONTACT_EMAIL, GITHUB_URL } from '../constants'
+
 function Footer() {
   return (
-    <footer className="container-page section-padding" style={{ borderTop: '1px solid #161616' }}>
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div style={{ fontSize: '13px', color: '#8A8A8A' }}>
-          &copy; 2026 Archic. All rights reserved.
+    <footer className="container-page section-padding" style={{ borderTop: '1px solid var(--line)' }}>
+      <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+        <div>
+          <div className="font-semibold tracking-[0.18em] uppercase text-[13px]">Archic</div>
+          <div className="text-muted mt-2 text-[13px]">Midas agentic memory. 2026.</div>
         </div>
-        <div className="flex gap-8">
-          <a href="https://github.com/vornicx/origin-lab" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: '13px', color: '#8A8A8A', textDecoration: 'none' }}
-            className="hover:text-white transition-colors">
+        <div className="flex flex-wrap gap-5">
+          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="text-[13px] no-underline" style={{ color: 'var(--muted)' }}>
             GitHub
           </a>
-          <a href="#docs"
-            style={{ fontSize: '13px', color: '#8A8A8A', textDecoration: 'none' }}
-            className="hover:text-white transition-colors">
-            Documentation
+          <a href="#docs" className="text-[13px] no-underline" style={{ color: 'var(--muted)' }}>
+            Docs
+          </a>
+          <a href={CONTACT_EMAIL} className="text-[13px] no-underline" style={{ color: 'var(--muted)' }}>
+            Contact
           </a>
         </div>
       </div>

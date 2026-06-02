@@ -2,89 +2,53 @@ function DocsSection() {
   return (
     <section id="docs" className="section-border section-padding">
       <div className="container-page">
-        <div className="section-label">Midas Core Reference // SDK Architecture</div>
+        <div className="section-label">Midas Core Reference</div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-16">
-          {/* Sidebar */}
-          <div className="flex flex-col gap-4" style={{ borderRight: '1px solid #161616', paddingRight: '2rem' }}>
-            <a href="#concepts" className="font-mono font-bold text-[#FFFFFF] no-underline uppercase" style={{ fontSize: '11px', letterSpacing: '0.1em' }}>
-              1. Core Concepts
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[250px_1fr]">
+          <div className="text-muted flex flex-col gap-4 text-[13px]">
+            <a href="#concepts" className="no-underline" style={{ color: 'var(--gold-deep)' }}>
+              Core concepts
             </a>
-            <a href="#lifecycle" className="no-underline" style={{ color: '#8A8A8A', fontSize: '13px' }}>
-              The memory lifecycle
+            <a href="#api" className="no-underline" style={{ color: 'var(--muted)' }}>
+              Python memory facade
             </a>
-            <a href="#persistence" className="no-underline" style={{ color: '#8A8A8A', fontSize: '13px' }}>
-              Persistence strategies
-            </a>
-            <div style={{ height: '1px', background: '#161616', margin: '0.5rem 0' }} />
-            <a href="#api" className="font-mono font-bold text-[#FFFFFF] no-underline uppercase" style={{ fontSize: '11px', letterSpacing: '0.1em' }}>
-              2. API Reference
-            </a>
-            <a href="#method-commit" className="no-underline" style={{ color: '#8A8A8A', fontSize: '13px' }}>
-              Midas.commit()
-            </a>
-            <a href="#method-recall" className="no-underline" style={{ color: '#8A8A8A', fontSize: '13px' }}>
-              Midas.recall()
+            <a href="#eval" className="no-underline" style={{ color: 'var(--muted)' }}>
+              Evaluation harness
             </a>
           </div>
 
-          {/* Content */}
-          <div className="flex flex-col gap-16">
-            <div id="concepts">
-              <h3 className="heading-serif text-[1.6rem] mb-4">
-                The memory lifecycle in long horizons
-              </h3>
-              <p className="text-[14px] leading-relaxed mb-6" style={{ color: '#8A8A8A' }}>
-                Unlike traditional vector databases that store interactions passively,
-                the Midas lifecycle consists of three automated phases that run in the background:
-              </p>
-              <ul className="flex flex-col gap-4 text-[14px] ml-6" style={{ color: '#8A8A8A' }}>
-                <li className="leading-relaxed">
-                  <strong style={{ color: '#FFFFFF', fontWeight: 500 }}>Immediate Consolidation:</strong>{' '}
-                  Captures agent state changes and stores them in a low-latency
-                  fast-access memory cache.
-                </li>
-                <li className="leading-relaxed">
-                  <strong style={{ color: '#FFFFFF', fontWeight: 500 }}>Abstract Compression:</strong>{' '}
-                  At the end of an execution block, Midas synthesizes key events
-                  and connects them to the agent's historical graph.
-                </li>
-                <li className="leading-relaxed">
-                  <strong style={{ color: '#FFFFFF', fontWeight: 500 }}>Context Pruning:</strong>{' '}
-                  Deterministically removes redundant telemetry to ensure optimal{' '}
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', color: '#A78BFA' }}>recall</span>{' '}
-                  without token waste.
-                </li>
-              </ul>
+          <div className="flex flex-col gap-8">
+            <div id="concepts" className="glass-panel">
+              <div className="glass-inner p-7">
+                <h3 className="heading-serif mb-4 text-[2rem]">The memory lifecycle in long horizons</h3>
+                <p className="text-muted leading-relaxed">
+                  Midas stores memories, retrieves relevant context and measures whether
+                  the returned context improves long-horizon answers.
+                </p>
+              </div>
             </div>
 
-            <div id="api" style={{ borderTop: '1px solid #161616', paddingTop: '4rem' }}>
-              <h3 className="heading-serif text-[1.6rem] mb-4">
-                Midas.commit(agentState)
-              </h3>
-              <p className="text-[14px] leading-relaxed mb-6" style={{ color: '#8A8A8A' }}>
-                Asynchronously persists the current agent state. This method analyzes
-                the agent's decision tree and generates a memory node indexed by
-                relevance and temporality.
-              </p>
-
-              <div className="code-container mb-6">
-                <div><span className="code-keyword">await</span> memory.commit({'{'}</div>
-                <div>&nbsp;&nbsp;id: <span className="code-string">"task_098"</span>,</div>
-                <div>&nbsp;&nbsp;logs: agent.getExecutionLogs(),</div>
-                <div>&nbsp;&nbsp;metrics: {'{'} tokensUsed: 1420 {'}'},</div>
-                <div>&nbsp;&nbsp;metadata: {'{'} priority: <span className="code-string">"high"</span> {'}'}</div>
-                <div>{'}'});</div>
+            <div id="api" className="glass-panel">
+              <div className="glass-inner p-7">
+                <h3 className="heading-serif mb-4 text-[2rem]">Memory.remember() and build_context()</h3>
+                <p className="text-muted mb-6 leading-relaxed">
+                  The current product shape is a framework-agnostic Python SDK, not a
+                  TypeScript package or broad multi-agent platform.
+                </p>
+                <div className="code-container">
+                  <div>memory.remember(<span className="code-string">"Important project fact"</span>, kind=<span className="code-string">"fact"</span>)</div>
+                  <div>context = memory.build_context(<span className="code-string">"What matters now?"</span>, token_budget=1024)</div>
+                </div>
               </div>
+            </div>
 
-              <div
-                className="text-[13px] p-4 rounded"
-                style={{ color: '#8A8A8A', background: '#0A0A0A', border: '1px solid #161616' }}
-              >
-                <span style={{ color: '#A78BFA', fontWeight: 500 }}>Technical note:</span>{' '}
-                The <code style={{ fontFamily: 'JetBrains Mono, monospace' }}>commit()</code> method is idempotent.
-                If the state has no significant structural mutations, Midas will update
-                the graph pointer without duplicating vectors.
+            <div id="eval" className="glass-panel">
+              <div className="glass-inner p-7">
+                <h3 className="heading-serif mb-4 text-[2rem]">Evaluation harness</h3>
+                <p className="text-muted leading-relaxed">
+                  The harness tracks recall, answer correctness and efficiency so memory
+                  changes can be compared under the same conditions.
+                </p>
               </div>
             </div>
           </div>
