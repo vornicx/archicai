@@ -8,12 +8,12 @@ const SIGNALS = [
 
 function Hero() {
   return (
-    <section id="top" className="section-padding pt-32 md:pt-40">
+    <section id="top" className="section-padding hero-section pt-28 md:pt-36">
       <div className="container-page">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="hero-grid grid items-center gap-8 lg:grid-cols-[0.98fr_0.82fr]">
           <div id="midas" className="min-w-0">
             <div className="section-label">Midas by Archic</div>
-            <h1 className="heading-serif max-w-[760px] text-[2.9rem] sm:text-[3.2rem] md:text-[5.4rem]">
+            <h1 className="heading-serif hero-title max-w-[680px] text-[2.9rem] sm:text-[3.2rem] md:text-[4.8rem]">
               Agentic memory for long-horizon AI agents.
             </h1>
             <p className="text-muted mt-7 max-w-[650px] text-[1.12rem] leading-relaxed md:text-[1.22rem]">
@@ -35,7 +35,7 @@ function Hero() {
             </div>
           </div>
 
-          <div className="glass-panel min-h-[430px] min-w-0">
+          <div className="glass-panel hero-signal min-h-[400px] min-w-0">
             <div className="glass-inner p-7 md:p-9">
               <div className="flex items-center justify-between gap-6">
                 <div>
@@ -52,7 +52,7 @@ function Hero() {
                 />
               </div>
 
-              <div className="relative mt-10 aspect-square max-h-[280px] w-full">
+              <div className="midas-orbit relative mt-8 aspect-square max-h-[250px] w-full">
                 <div className="absolute inset-6 rounded-full border" style={{ borderColor: 'rgba(126,93,30,0.16)' }} />
                 <div className="absolute inset-16 rounded-full border" style={{ borderColor: 'rgba(126,93,30,0.2)' }} />
                 <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full"

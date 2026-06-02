@@ -4,78 +4,59 @@ type LogoProps = {
   title?: string
 }
 
-/**
- * Archic mark — "Midas Arch".
- *
- * A single keystone arch rendered in molten gold gradient: the
- * structural metaphor for long-horizon memory (the arch holds weight
- * across time) fused with the Midas palette of the new brand system.
- *
- * The gradient runs from warm champagne to deep antique gold with a
- * specular highlight on the crown — the "touch" that turns the
- * silhouette precious. A single inlaid node sits at the keystone:
- * the retrieved memory, the moment of recall.
- */
 function Logo({ className, showWordmark = true, title = 'Archic' }: LogoProps) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className ?? ''}`} aria-label={title}>
+    <span className={`archic-logo inline-flex items-center gap-2.5 ${className ?? ''}`} aria-label={title}>
       <svg
-        viewBox="0 0 32 32"
-        width="24"
-        height="24"
+        className="archic-mark"
+        viewBox="0 0 40 40"
+        width="40"
+        height="40"
         fill="none"
         aria-hidden="true"
       >
         <defs>
-          <linearGradient id="archic-gold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#F0D78C" />
-            <stop offset="35%" stopColor="#D4B87A" />
-            <stop offset="65%" stopColor="#B8943C" />
-            <stop offset="100%" stopColor="#8A6A28" />
+          <linearGradient id="archic-logo-gold" x1="4" y1="4" x2="36" y2="36">
+            <stop offset="0%" stopColor="#fff7da" />
+            <stop offset="28%" stopColor="#e8cc78" />
+            <stop offset="62%" stopColor="#b8943c" />
+            <stop offset="100%" stopColor="#6f4d16" />
           </linearGradient>
-          <linearGradient id="archic-gold-soft" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#F5E2A8" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#B8943C" stopOpacity="0.7" />
+          <linearGradient id="archic-logo-ink" x1="6" y1="8" x2="30" y2="34">
+            <stop offset="0%" stopColor="#3c2b0f" />
+            <stop offset="100%" stopColor="#8b6421" />
           </linearGradient>
-          <radialGradient id="archic-gold-spec" cx="0.5" cy="0.2" r="0.6">
-            <stop offset="0%" stopColor="#FFF6DC" stopOpacity="0.9" />
-            <stop offset="60%" stopColor="#FFF6DC" stopOpacity="0" />
+          <radialGradient id="archic-logo-touch" cx="50%" cy="35%" r="60%">
+            <stop offset="0%" stopColor="#fff8de" stopOpacity="1" />
+            <stop offset="46%" stopColor="#e2be5d" stopOpacity="0.52" />
+            <stop offset="100%" stopColor="#b8943c" stopOpacity="0" />
           </radialGradient>
         </defs>
 
-        {/* keystone arch silhouette */}
+        <circle className="logo-halo" cx="20" cy="20" r="18" fill="url(#archic-logo-touch)" />
         <path
-          d="M4 28 L4 16 A12 12 0 0 1 28 16 L28 28 L21 28 L21 17 A5 5 0 0 0 11 17 L11 28 Z"
-          fill="url(#archic-gold)"
+          className="logo-orbit logo-orbit-outer"
+          d="M6.2 26.5C6.2 16.8 12.3 8.9 20 8.9s13.8 7.9 13.8 17.6"
+          stroke="url(#archic-logo-ink)"
+          strokeWidth="2.8"
+          strokeLinecap="round"
         />
-        {/* crown specular highlight */}
         <path
-          d="M4 28 L4 16 A12 12 0 0 1 28 16 L28 28 L21 28 L21 17 A5 5 0 0 0 11 17 L11 28 Z"
-          fill="url(#archic-gold-spec)"
+          className="logo-orbit logo-orbit-inner"
+          d="M11.4 26.1c0-6.2 3.9-11.2 8.6-11.2s8.6 5 8.6 11.2"
+          stroke="url(#archic-logo-gold)"
+          strokeWidth="2.45"
+          strokeLinecap="round"
         />
-        {/* inner aperture edge — subtle inner glow line */}
-        <path
-          d="M11 28 L11 17 A5 5 0 0 1 21 17 L21 28"
-          fill="none"
-          stroke="url(#archic-gold-soft)"
-          strokeWidth="0.6"
-          opacity="0.7"
-        />
-        {/* keystone node — retrieved memory */}
-        <circle cx="16" cy="9" r="1.6" fill="#FFF1C2" />
-        <circle cx="16" cy="9" r="0.7" fill="#8A6A28" />
+        <circle className="logo-node logo-node-top" cx="20" cy="8.9" r="3" fill="url(#archic-logo-gold)" />
+        <circle className="logo-node" cx="6.2" cy="26.5" r="2.6" fill="#fff8df" />
+        <circle className="logo-node" cx="33.8" cy="26.5" r="2.6" fill="#fff8df" />
+        <circle className="logo-core" cx="20" cy="24.1" r="4.9" fill="url(#archic-logo-gold)" />
+        <circle cx="20" cy="24.1" r="2" fill="#fff7d7" opacity="0.9" />
       </svg>
+
       {showWordmark && (
-        <span
-          className="font-display text-[17px] font-medium tracking-[-0.01em] leading-none"
-          style={{
-            backgroundImage: 'linear-gradient(90deg, #111 0%, #B8943C 50%, #111 100%)',
-            backgroundSize: '200% auto',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-            color: 'transparent',
-          }}
-        >
+        <span className="midas-wordmark font-semibold uppercase leading-none tracking-[0.22em] text-[13px]">
           Archic
         </span>
       )}

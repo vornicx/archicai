@@ -6,10 +6,12 @@ import Whitepaper from './components/Whitepaper'
 import SdkSection from './components/SdkSection'
 import ExtendedDocs from './components/ExtendedDocs'
 import Footer from './components/Footer'
+import MidasBackground from './components/MidasBackground'
 
 function App() {
   return (
     <div className="site-shell">
+      <MidasBackground />
       <Header />
       <main>
         <Hero />

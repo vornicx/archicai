@@ -8,7 +8,7 @@ function Benchmarks() {
   return (
     <section id="benchmarks" className="section-border section-padding">
       <div className="container-page">
-        <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="benchmarks-grid grid gap-8 lg:grid-cols-[0.78fr_1fr]">
           <div>
             <div className="section-label">Evaluation harness</div>
             <h2 className="heading-serif text-[2.7rem] md:text-[3.7rem]">
