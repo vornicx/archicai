@@ -1,18 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#F0D78C"/>
-      <stop offset="35%" stop-color="#D4B87A"/>
-      <stop offset="65%" stop-color="#B8943C"/>
-      <stop offset="100%" stop-color="#8A6A28"/>
-    </linearGradient>
-    <radialGradient id="s" cx="0.5" cy="0.2" r="0.6">
-      <stop offset="0%" stop-color="#FFF6DC" stop-opacity="0.9"/>
-      <stop offset="60%" stop-color="#FFF6DC" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <path d="M4 28 L4 16 A12 12 0 0 1 28 16 L28 28 L21 28 L21 17 A5 5 0 0 0 11 17 L11 28 Z" fill="url(#g)"/>
-  <path d="M4 28 L4 16 A12 12 0 0 1 28 16 L28 28 L21 28 L21 17 A5 5 0 0 0 11 17 L11 28 Z" fill="url(#s)"/>
-  <circle cx="16" cy="9" r="1.6" fill="#FFF1C2"/>
-  <circle cx="16" cy="9" r="0.7" fill="#8A6A28"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="#0c0c0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Outer arch (A leg + arc) -->
+  <path d="M5 27 L5 16 A11 11 0 0 1 27 16 L27 27" />
+  <!-- Inner arch / second memory layer -->
+  <path d="M10 27 L10 17 A6 6 0 0 1 22 17 L22 27" />
+  <!-- Crossbar of the A -->
+  <path d="M5 21 L27 21" />
+  <!-- Central memory node -->
+  <circle cx="16" cy="21" r="1.8" fill="#0c0c0c" stroke="none" />
 </svg>
