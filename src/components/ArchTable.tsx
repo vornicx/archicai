@@ -19,6 +19,11 @@ const ROWS = [
     baseline: 'Let stores grow or prune by simple recency.',
     midas: 'Belief revision, selective forgetting, temporal tiers and extractive consolidation.',
   },
+  {
+    dim: 'Agent integration',
+    baseline: 'Bespoke glue per framework, or no cross-session memory at all.',
+    midas: 'One MCP server for Claude Code, Cursor, Codex and Windsurf — it injects a memory policy so the agent recalls and captures on its own.',
+  },
 ]
 
 function ArchTable() {

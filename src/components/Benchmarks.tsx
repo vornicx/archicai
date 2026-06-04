@@ -59,7 +59,9 @@ function Benchmarks() {
               <p className="text-muted text-[14px] leading-relaxed">
                 LongMemEval-s uses n=40 buried-evidence questions; LoCoMo uses 5 conversations,
                 n=50. Midas also reports 0.82 answer correctness with gpt-4.1-mini and ties
-                0.84 at gpt-4o against LLM-ingest SOTA, while keeping ingest local.
+                0.84 at gpt-4o against LLM-ingest SOTA, while keeping ingest local. On a
+                500-session haystack (~4,944 turns) it assembles a bounded ~480-token context
+                where keep-everything-in-context designs overflow.
               </p>
             </div>
           </div>

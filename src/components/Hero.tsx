@@ -18,7 +18,8 @@ function Hero() {
             </h1>
             <p className="text-muted mt-7 max-w-[650px] text-[1.12rem] leading-relaxed md:text-[1.22rem]">
               Midas is an alpha Python SDK and MCP server for durable, source-traceable
-              agent memory across multi-day coding, research and operational work.
+              agent memory across multi-day coding, research and operational work — and once
+              installed, it recalls and captures the important things on its own.
             </p>
             <p className="text-muted mt-4 max-w-[610px] leading-relaxed">
               It stores and retrieves with local embeddings, local ranking and local

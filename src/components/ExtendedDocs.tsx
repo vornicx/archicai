@@ -29,8 +29,8 @@ function ExtendedDocs() {
                   <div>python -m eval.runner --dataset longmemeval --variant s --local --midas-no-rerank --max-questions 15 --limit 20 --seed 0</div>
                   <div className="mt-3"><span className="code-comment"># retention: bounded memory vs recency/random controls</span></div>
                   <div>python -m eval.retention --dataset locomo --max-convs 1 --local --derive-importance</div>
-                  <div className="mt-3"><span className="code-comment"># MCP server for agent clients</span></div>
-                  <div>python -m midas.mcp_server</div>
+                  <div className="mt-3"><span className="code-comment"># MCP server — connect Claude Code, Cursor, Codex, Windsurf</span></div>
+                  <div>claude mcp add midas -- midas-mcp</div>
                 </div>
               </div>
             </div>
