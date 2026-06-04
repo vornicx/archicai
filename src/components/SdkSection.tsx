@@ -7,25 +7,23 @@ function SdkSection() {
             <div className="section-label">Python SDK</div>
             <h2 className="heading-serif text-[2.7rem] md:text-[3.6rem]">Memory as an agent primitive.</h2>
             <p className="text-muted mt-5 max-w-[520px] leading-relaxed">
-              The near-term product is intentionally simple: store useful memories,
-              retrieve relevant context and evaluate whether the returned context
-              improves long-horizon answers.
+              Install the alpha as a library or run it as an MCP server. Agents can
+              remember decisions, recall source-traceable context and assemble compact
+              prompt blocks without an extraction LLM in the ingest path.
             </p>
           </div>
 
           <div className="code-container">
-            <div><span className="code-comment"># framework-agnostic Midas shape</span></div>
-            <div><span className="code-keyword">from</span> midas.memory <span className="code-keyword">import</span> Memory</div>
-            <div className="mt-4">memory = Memory()</div>
-            <div className="mt-4">memory.remember(</div>
-            <div>&nbsp;&nbsp;<span className="code-string">"The user wants Archic focused on Midas."</span>,</div>
-            <div>&nbsp;&nbsp;kind=<span className="code-string">"project_fact"</span>,</div>
-            <div>&nbsp;&nbsp;importance=5,</div>
+            <div><span className="code-comment"># pip install ".[all]" inside the Midas repo</span></div>
+            <div><span className="code-keyword">from</span> midas <span className="code-keyword">import</span> Memory, LocalEmbedder, ContentImportance</div>
+            <div className="mt-4">mem = Memory(</div>
+            <div>&nbsp;&nbsp;embedder=LocalEmbedder(),</div>
+            <div>&nbsp;&nbsp;importance_scorer=ContentImportance(),</div>
             <div>)</div>
-            <div className="mt-4">context = memory.build_context(</div>
-            <div>&nbsp;&nbsp;<span className="code-string">"What should the agent remember before editing the site?"</span>,</div>
-            <div>&nbsp;&nbsp;token_budget=1024,</div>
-            <div>)</div>
+            <div className="mt-4">mem.remember(<span className="code-string">"Decision: primary database is PostgreSQL."</span>, kind=<span className="code-string">"constraint"</span>)</div>
+            <div>mem.remember(<span className="code-string">"The launch date moved to September 14."</span>, kind=<span className="code-string">"fact"</span>)</div>
+            <div className="mt-4">print(mem.assemble(<span className="code-string">"When do we launch?"</span>, token_budget=128))</div>
+            <div className="mt-4"><span className="code-comment"># MCP: python -m midas.mcp_server</span></div>
           </div>
         </div>
       </div>

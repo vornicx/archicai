@@ -1,8 +1,8 @@
 const ROADMAP = [
-  'Scale LoCoMo runs to statistical significance.',
-  'Add category breakdowns across all ten conversations.',
-  'Move from in-memory/local stores toward sqlite-vec.',
-  'Prototype hierarchical compression only after the eval loop is stable.',
+  'Tighten larger-sample benchmark runs while keeping recall@k primary.',
+  'Improve novelty-vs-store salience for better no-LLM retention.',
+  'Deepen framework integrations around MCP and LangGraph.',
+  'Keep abstention and calibrated uncertainty as the open research frontier.',
 ]
 
 function ExtendedDocs() {
@@ -12,10 +12,11 @@ function ExtendedDocs() {
         <div className="grid gap-10 lg:grid-cols-[280px_1fr]">
           <aside className="lg:sticky lg:top-28">
             <div className="section-label">Operating model</div>
-            <h2 className="heading-serif text-[2.5rem]">Measured first.</h2>
+            <h2 className="heading-serif text-[2.5rem]">Alpha, not vapor.</h2>
             <p className="text-muted mt-5 leading-relaxed">
-              Midas should read as a serious research-backed product, not a broad
-              platform promise. Each section points back to what exists today.
+              The page now points to what exists today: install, run, remember, recall,
+              maintain and benchmark. The roadmap stays narrow because the product is
+              proving memory before expanding the platform.
             </p>
           </aside>
 
@@ -24,12 +25,12 @@ function ExtendedDocs() {
               <div className="glass-inner p-7 md:p-9">
                 <div className="section-label">Evaluation commands</div>
                 <div className="code-container">
-                  <div><span className="code-comment"># full evaluation runner</span></div>
-                  <div>uv run python -m eval.runner</div>
-                  <div className="mt-3"><span className="code-comment"># LoCoMo, one conversation</span></div>
-                  <div>uv run python -m eval.runner --dataset locomo --max-convs 1</div>
-                  <div className="mt-3"><span className="code-comment"># local semantic retrieval</span></div>
-                  <div>uv run --no-sync python -m eval.runner --dataset locomo --local</div>
+                  <div><span className="code-comment"># deterministic retrieval benchmark, no API key</span></div>
+                  <div>python -m eval.runner --dataset longmemeval --variant s --local --midas-no-rerank --max-questions 15 --limit 20 --seed 0</div>
+                  <div className="mt-3"><span className="code-comment"># retention: bounded memory vs recency/random controls</span></div>
+                  <div>python -m eval.retention --dataset locomo --max-convs 1 --local --derive-importance</div>
+                  <div className="mt-3"><span className="code-comment"># MCP server for agent clients</span></div>
+                  <div>python -m midas.mcp_server</div>
                 </div>
               </div>
             </div>
@@ -38,10 +39,11 @@ function ExtendedDocs() {
               <div className="glass-panel">
                 <div className="glass-inner p-7">
                   <div className="section-label">Why customers care</div>
-                  <h3 className="heading-serif text-[2rem]">Less context loss in longer work.</h3>
+                  <h3 className="heading-serif text-[2rem]">Memory without data egress.</h3>
                   <p className="text-muted mt-4 leading-relaxed">
-                    Coding and research agents fail when the right past detail drops out
-                    of the prompt. Midas targets that failure mode directly.
+                    Teams can give agents durable recall without sending every turn to
+                    an extraction model. That changes the cost and privacy shape of
+                    long-running assistants.
                   </p>
                 </div>
               </div>
@@ -49,10 +51,10 @@ function ExtendedDocs() {
               <div className="glass-panel">
                 <div className="glass-inner p-7">
                   <div className="section-label">Why builders care</div>
-                  <h3 className="heading-serif text-[2rem]">A memory layer that can be tested.</h3>
+                  <h3 className="heading-serif text-[2rem]">A memory layer they can inspect.</h3>
                   <p className="text-muted mt-4 leading-relaxed">
-                    The harness makes memory changes measurable, so teams can compare
-                    retrieval choices instead of guessing from demos.
+                    Recall returns source turns rather than rewritten facts, and the
+                    harness makes retrieval, retention and cost changes measurable.
                   </p>
                 </div>
               </div>

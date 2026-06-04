@@ -1,8 +1,10 @@
 # archicai
 
-Marketing site for [archic.es](https://archic.es) — the Archic ecosystem vision, stack overview, and links to code.
+Marketing site for [archic.es](https://archic.es), currently focused on Midas:
+local-first, eval-first memory for long-horizon AI agents.
 
-**Documentation** (protocol, ecosystem law, build plan) lives in [github.com/vornicx/archic](https://github.com/vornicx/archic).
+The active product repo is [github.com/vornicx/Midas](https://github.com/vornicx/Midas).
+Broader Archic documentation lives in [github.com/vornicx/archic](https://github.com/vornicx/archic).
 
 ## Develop
 

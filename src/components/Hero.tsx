@@ -1,9 +1,9 @@
 import { GITHUB_URL } from '../constants'
 
 const SIGNALS = [
-  { label: 'Recall@K', value: '0.83' },
-  { label: 'Correct', value: '0.38' },
-  { label: 'Efficiency', value: '0.77' },
+  { label: 'LongMemEval', value: '0.95' },
+  { label: 'LoCoMo', value: '0.85' },
+  { label: 'LLM ingest', value: '$0' },
 ]
 
 function Hero() {
@@ -14,23 +14,24 @@ function Hero() {
           <div id="midas" className="min-w-0">
             <div className="section-label">Midas by Archic</div>
             <h1 className="heading-serif hero-title max-w-[680px] text-[2.9rem] sm:text-[3.2rem] md:text-[4.8rem]">
-              Infrastructure for agents that <span className="accent-remember">remember</span>.
+              Local-first memory for agents that <span className="accent-remember">remember</span>.
             </h1>
             <p className="text-muted mt-7 max-w-[650px] text-[1.12rem] leading-relaxed md:text-[1.22rem]">
-              Midas is a framework-agnostic Python SDK and evaluation harness for agents
-              that need durable context across multi-day coding, research and operational work.
+              Midas is an alpha Python SDK and MCP server for durable, source-traceable
+              agent memory across multi-day coding, research and operational work.
             </p>
             <p className="text-muted mt-4 max-w-[610px] leading-relaxed">
-              Archic is focused on one measured wedge: memory that can be inspected,
-              benchmarked and improved before it becomes a broader agent infrastructure layer.
+              It stores and retrieves with local embeddings, local ranking and local
+              retention policies: no LLM at ingest, no API spend, and no conversation
+              turns leaving your infrastructure.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
               <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                View origin-lab
+                View Midas alpha
               </a>
               <a href="#benchmarks" className="btn-secondary">
-                See current benchmark
+                See benchmarks
               </a>
             </div>
           </div>
@@ -40,7 +41,7 @@ function Hero() {
               <div className="flex items-center justify-between gap-6">
                 <div>
                   <div className="section-label !mb-2">Current signal</div>
-                  <h2 className="heading-serif text-[2.25rem]">Measured context quality.</h2>
+                  <h2 className="heading-serif text-[2.25rem]">Usable alpha, measured first.</h2>
                 </div>
                 <div
                   className="hidden h-16 w-16 rounded-full md:block"
@@ -77,7 +78,7 @@ function Hero() {
                 ))}
               </div>
               <p className="text-muted mt-5 text-[13px]">
-                LoCoMo fair fight, n=40. Correctness lead over Mem0 is directional, not yet statistically final.
+                Reader-independent recall@k on reproducible local runs. Ingest stays LLM-free by design.
               </p>
             </div>
           </div>

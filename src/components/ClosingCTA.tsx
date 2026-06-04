@@ -19,7 +19,7 @@ function ClosingCTA() {
         <Reveal delay={80}>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a href={REPOS.midas} target="_blank" rel="noopener noreferrer" className="btn-primary">
-              github.com/vornicx/origin-lab
+              github.com/vornicx/Midas
             </a>
             <a href="#docs" className="btn-ghost">
               Documentation

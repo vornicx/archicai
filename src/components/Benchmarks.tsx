@@ -1,7 +1,6 @@
 const RESULTS = [
-  { name: 'Baseline raw', recall: '0.00', correct: '0.05', efficiency: '0.10' },
-  { name: 'Mem0', recall: '-', correct: '0.30', efficiency: '0.61' },
-  { name: 'Midas', recall: '0.83', correct: '0.38', efficiency: '0.77' },
+  { name: 'Recency window', longmem: '0.03', locomo: '0.02', ingest: 'N/A' },
+  { name: 'Midas', longmem: '0.95', locomo: '0.85', ingest: '$0 / no egress' },
 ]
 
 function Benchmarks() {
@@ -12,12 +11,12 @@ function Benchmarks() {
           <div>
             <div className="section-label">Evaluation harness</div>
             <h2 className="heading-serif text-[2.7rem] md:text-[3.7rem]">
-              Built as an open benchmark, not a slide claim.
+              Benchmarked where memory can be isolated.
             </h2>
             <p className="text-muted mt-6 max-w-[520px] text-[1.05rem] leading-relaxed">
-              Midas is being developed around LoCoMo-style long-context evaluation:
-              recall, answer correctness and token efficiency are measured before the
-              architecture is widened.
+              Midas leads with deterministic recall@k and structural ingest cost, not
+              demo anecdotes. The alpha ships with the eval harness, reproduce commands,
+              latency instrumentation and honest caveats in the repo.
             </p>
           </div>
 
@@ -25,11 +24,11 @@ function Benchmarks() {
             <div className="glass-inner p-6 md:p-8">
               <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
                 <div>
-                  <div className="section-label !mb-2">LoCoMo fair fight</div>
-                  <h3 className="heading-serif text-[2rem]">n=40 current run</h3>
+                  <div className="section-label !mb-2">Reader-independent recall</div>
+                  <h3 className="heading-serif text-[2rem]">Current alpha results</h3>
                 </div>
                 <span className="rounded-full px-3 py-1 text-[12px]" style={{ background: 'rgba(184,148,60,0.13)', color: 'var(--gold-deep)' }}>
-                  bge-base setup
+                  bge-base, no LLM ingest
                 </span>
               </div>
 
@@ -38,18 +37,18 @@ function Benchmarks() {
                   <thead>
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
                       <th className="pb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">System</th>
-                      <th className="pb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Recall@K</th>
-                      <th className="pb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Correct</th>
-                      <th className="pb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Efficiency</th>
+                      <th className="pb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">LongMemEval-s</th>
+                      <th className="pb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">LoCoMo</th>
+                      <th className="pb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Ingest</th>
                     </tr>
                   </thead>
                   <tbody>
                     {RESULTS.map((row) => (
                       <tr key={row.name} style={{ borderBottom: '1px solid var(--line)' }}>
                         <td className="py-4 font-medium">{row.name}</td>
-                        <td className="py-4">{row.recall}</td>
-                        <td className="py-4">{row.correct}</td>
-                        <td className="py-4">{row.efficiency}</td>
+                        <td className="py-4">{row.longmem}</td>
+                        <td className="py-4">{row.locomo}</td>
+                        <td className="py-4">{row.ingest}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -58,9 +57,9 @@ function Benchmarks() {
 
               <div className="gold-line my-6" />
               <p className="text-muted text-[14px] leading-relaxed">
-                The +0.08 correctness gap over Mem0 is about three questions in this run,
-                roughly one standard error. The next research milestone is n=150+ before
-                positioning it as a statistically defensible win.
+                LongMemEval-s uses n=40 buried-evidence questions; LoCoMo uses 5 conversations,
+                n=50. Midas also reports 0.82 answer correctness with gpt-4.1-mini and ties
+                0.84 at gpt-4o against LLM-ingest SOTA, while keeping ingest local.
               </p>
             </div>
           </div>

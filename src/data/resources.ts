@@ -10,7 +10,7 @@ export const REPOS = {
   archicai: WEBSITE_REPO,
   origin: 'https://github.com/vornicx/origin',
   apollo: 'https://github.com/vornicx/apollo-agent',
-  midas: 'https://github.com/vornicx/origin-lab',
+  midas: 'https://github.com/vornicx/Midas',
   org: 'https://github.com/vornicx',
 } as const
 
@@ -27,9 +27,9 @@ export const PACKAGES = {
     install: 'npm install -g @vornicx/apollo-agent',
   },
   midas: {
-    name: 'origin-lab',
+    name: 'midas-memory',
     url: REPOS.midas,
-    install: 'git clone https://github.com/vornicx/origin-lab',
+    install: 'pip install "midas-memory[all] @ git+https://github.com/vornicx/Midas"',
   },
 } as const
 
@@ -40,7 +40,7 @@ export const ARCHIC_DOCS = [
   {
     id: 'midas-readme',
     title: 'Midas README',
-    desc: 'Strategy, layout, results, and next steps for agentic memory.',
+    desc: 'Install, quickstart, MCP setup, benchmarks, and design notes for Midas.',
     href: `${REPOS.midas}/blob/main/README.md`,
   },
   {
@@ -83,9 +83,9 @@ export const DOCS = [...ARCHIC_DOCS, ...SDK_DOCS] as const
 
 export const CODE_REPOS = [
   {
-    id: 'origin-lab',
-    name: 'origin-lab',
-    desc: 'Midas — agentic memory SDK + eval harness. Python, zero deps, benchmarked.',
+    id: 'midas',
+    name: 'Midas',
+    desc: 'Local-first memory SDK + MCP server for long-horizon agents.',
     href: REPOS.midas,
     status: 'Active',
   },

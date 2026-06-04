@@ -16,7 +16,7 @@ function Resources() {
               rel="noopener noreferrer"
               className="underline underline-offset-2 hover:opacity-70"
             >
-              origin-lab
+              Midas
             </a>
             . The Archic north-star vision in{' '}
             <a
@@ -84,7 +84,7 @@ function Resources() {
               <ul className="resource-list mt-4">
                 <li>
                   <a href={PACKAGES.midas.url} target="_blank" rel="noopener noreferrer" className="resource-link">
-                    origin-lab (Midas)
+                    {PACKAGES.midas.name}
                   </a>
                   <code className="resource-code">{PACKAGES.midas.install}</code>
                 </li>

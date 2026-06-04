@@ -2,21 +2,21 @@ import { Reveal } from '../useReveal'
 import { REPOS } from '../data/resources'
 
 const codeLines = [
-  { num: 1, parts: [{ t: 'from ', c: 'kw' }, { t: 'midas', c: 'var' }, { t: ' import ', c: 'kw' }, { t: 'Memory', c: 'type' }] },
+  { num: 1, parts: [{ t: 'from ', c: 'kw' }, { t: 'midas', c: 'var' }, { t: ' import ', c: 'kw' }, { t: 'Memory, LocalEmbedder', c: 'type' }] },
   { num: 2, parts: [] },
-  { num: 3, parts: [{ t: 'memory = ', c: 'plain' }, { t: 'Memory', c: 'type' }, { t: '.open()', c: 'plain' }] },
+  { num: 3, parts: [{ t: 'memory = ', c: 'plain' }, { t: 'Memory', c: 'type' }, { t: '(embedder=', c: 'plain' }, { t: 'LocalEmbedder', c: 'type' }, { t: '())', c: 'plain' }] },
   { num: 4, parts: [] },
-  { num: 5, parts: [{ t: 'await ', c: 'kw' }, { t: 'memory', c: 'var' }, { t: '.remember(', c: 'plain' }] },
-  { num: 6, parts: [{ t: '    context=', c: 'plain' }, { t: '"API design"', c: 'str' }, { t: ',', c: 'plain' }] },
-  { num: 7, parts: [{ t: '    content=', c: 'plain' }, { t: '"Decided on REST."', c: 'str' }, { t: ',', c: 'plain' }] },
-  { num: 8, parts: [{ t: '    importance=', c: 'plain' }, { t: '0.8', c: 'str' }, { t: ',', c: 'plain' }] },
+  { num: 5, parts: [{ t: 'memory', c: 'var' }, { t: '.remember(', c: 'plain' }] },
+  { num: 6, parts: [{ t: '    ', c: 'plain' }, { t: '"Decision: ship the alpha with MCP."', c: 'str' }, { t: ',', c: 'plain' }] },
+  { num: 7, parts: [{ t: '    kind=', c: 'plain' }, { t: '"fact"', c: 'str' }, { t: ',', c: 'plain' }] },
+  { num: 8, parts: [{ t: '    importance=', c: 'plain' }, { t: '5', c: 'str' }, { t: ',', c: 'plain' }] },
   { num: 9, parts: [{ t: ')', c: 'plain' }] },
   { num: 10, parts: [] },
-  { num: 11, parts: [{ t: 'results = await ', c: 'plain' }, { t: 'memory', c: 'var' }, { t: '.recall(', c: 'plain' }] },
-  { num: 12, parts: [{ t: '    query=', c: 'plain' }, { t: '"What did we decide?"', c: 'str' }, { t: ',', c: 'plain' }] },
-  { num: 13, parts: [{ t: '    budget_tokens=', c: 'plain' }, { t: '1024', c: 'str' }, { t: ',', c: 'plain' }] },
+  { num: 11, parts: [{ t: 'context = ', c: 'plain' }, { t: 'memory', c: 'var' }, { t: '.assemble(', c: 'plain' }] },
+  { num: 12, parts: [{ t: '    ', c: 'plain' }, { t: '"What did we decide?"', c: 'str' }, { t: ',', c: 'plain' }] },
+  { num: 13, parts: [{ t: '    token_budget=', c: 'plain' }, { t: '256', c: 'str' }, { t: ',', c: 'plain' }] },
   { num: 14, parts: [{ t: ')', c: 'plain' }] },
-  { num: 15, parts: [{ t: '# recall@k:', c: 'comment' }, { t: ' 1.0 (semantic)', c: 'plain' }] },
+  { num: 15, parts: [{ t: '# source-traceable, prompt-ready context', c: 'comment' }] },
 ]
 
 const colorMap = {
@@ -38,11 +38,11 @@ function Composition() {
           <p className="section-lead mb-14">
             Clone{' '}
             <a href={REPOS.midas} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-70">
-              origin-lab
+              Midas
             </a>{' '}
             and run with{' '}
-            <code className="font-mono text-sm bg-surface-muted px-1.5 py-0.5 rounded">uv run python -m eval.runner</code>
-            . Core Midas has zero third-party dependencies.
+            <code className="font-mono text-sm bg-surface-muted px-1.5 py-0.5 rounded">pip install ".[all]"</code>
+            . Core Midas has zero third-party dependencies; extras add local embeddings, MCP and LangGraph.
           </p>
         </Reveal>
 
@@ -75,13 +75,13 @@ function Composition() {
 
           <Reveal delay={140}>
             <ul className="space-y-6 pt-2">
-              <LegendItem name="Midas SDK" desc="Remember and recall across sessions — with pluggable embedders." />
-              <LegendItem name="Eval harness" desc="recall@k, answer_recoverable, and efficiency metrics per token." />
-              <LegendItem name="Benchmark datasets" desc="LoCoMo for long-context evaluation. LongMemEval coming next." />
+              <LegendItem name="Midas SDK" desc="Remember, recall, assemble context, forget, tier and consolidate." />
+              <LegendItem name="MCP server" desc="Expose memory tools to agent clients with SQLite persistence." />
+              <LegendItem name="Eval harness" desc="LoCoMo and LongMemEval with recall@k, cost, latency and reader sweeps." />
             </ul>
             <div className="mt-8 pt-6 border-t border-line flex flex-wrap gap-4">
               <a href={REPOS.midas} target="_blank" rel="noopener noreferrer" className="text-sm text-ink hover:opacity-70 transition-opacity">
-                origin-lab repo →
+                Midas repo →
               </a>
               <a href={`${REPOS.midas}/blob/main/README.md`} target="_blank" rel="noopener noreferrer" className="text-sm text-ink hover:opacity-70 transition-opacity">
                 strategy & results →

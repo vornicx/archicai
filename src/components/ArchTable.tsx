@@ -1,23 +1,23 @@
 const ROWS = [
   {
     dim: 'Product shape',
-    baseline: 'Raw transcript or vector retrieval glued around an agent loop.',
-    midas: 'Framework-agnostic Python SDK plus evaluation harness.',
+    baseline: 'Raw transcripts, broad context windows, or LLM-extracted memory facts.',
+    midas: 'Framework-agnostic Python SDK, MCP server and reproducible eval harness.',
   },
   {
-    dim: 'Proof loop',
-    baseline: 'Often judged by demos or anecdotal retrieval quality.',
-    midas: 'Recall, correctness and efficiency are measured on repeatable runs.',
+    dim: 'Ingest path',
+    baseline: 'Send every session through an LLM to summarize or extract memories.',
+    midas: 'Local embeddings, local ranking and local importance scoring. $0 API spend at ingest.',
   },
   {
-    dim: 'Current goal',
-    baseline: 'Retrieve plausible nearby text.',
-    midas: 'Build compact context that helps the agent answer long-horizon questions.',
+    dim: 'Auditability',
+    baseline: 'Return rewritten facts that can hide extraction-time hallucinations.',
+    midas: 'Recall returns source turns, timestamps and provenance the agent can inspect.',
   },
   {
-    dim: 'Roadmap',
-    baseline: 'More documents, larger context windows, more prompt glue.',
-    midas: 'Scale evals, sqlite-vec store, hierarchical compression and one deep framework integration.',
+    dim: 'Memory lifecycle',
+    baseline: 'Let stores grow or prune by simple recency.',
+    midas: 'Belief revision, selective forgetting, temporal tiers and extractive consolidation.',
   },
 ]
 
@@ -28,11 +28,12 @@ function ArchTable() {
         <div className="section-label">Architecture</div>
         <div className="mb-10 max-w-[760px]">
           <h2 className="heading-serif text-[2.7rem] md:text-[3.8rem]">
-            A narrower foundation for reliable agent context.
+            The alpha is a memory layer, not a promise deck.
           </h2>
           <p className="text-muted mt-5 text-[1.05rem] leading-relaxed">
-            The Archic ecosystem is parked while Midas proves the memory layer. The site
-            should sell that discipline: one wedge, one benchmark loop, one concrete SDK.
+            Midas is the active Archic wedge: one concrete SDK that agents can run today,
+            with local-first defaults and measurable behavior before any broader platform
+            layer is widened.
           </p>
         </div>
 

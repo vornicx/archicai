@@ -2,7 +2,7 @@ const TRUTHS = [
   {
     num: '01',
     title: 'Memory is a systems problem, not an embeddings problem',
-    desc: 'Indexing vectors is not remembering. The Midas SDK implements dynamic execution graphs that allow agents to consolidate experiences and discard noise autonomously.',
+    desc: 'Indexing vectors is not remembering. Midas combines relevance, importance, recency, provenance, belief revision and retention into one inspectable memory layer.',
   },
   {
     num: '02',
@@ -12,7 +12,7 @@ const TRUTHS = [
   {
     num: '03',
     title: 'Open engineering over marketing promises',
-    desc: 'We share our limitations with the same transparency as our successes. We prefer a verified recall of 0.83 over a commercial promise of perfection.',
+    desc: 'We share limitations with the same transparency as successes. We prefer reproducible recall@k, benchmark commands and caveats over a promise of perfection.',
   },
 ]
 

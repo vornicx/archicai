@@ -12,4 +12,4 @@ En **Archic**, no construimos envoltorios de API ni copilotos conversacionales. 
 
 2. **Si no es determinista, no es infraestructura:** El software empresarial no puede depender de la suerte. Evaluamos cada iteración de nuestra arquitectura mediante un arnés de pruebas (*eval harness*) estricto que mide el *Recall@K* real ante pérdidas de información complejas.
 
-3. **Ingeniería abierta sobre promesas de marketing:** Compartimos nuestras limitaciones con la misma transparencia que nuestros éxitos. Preferimos un recall verificado de 0.83 antes que una promesa comercial de perfección que se rompe en producción.
+3. **Ingeniería abierta sobre promesas de marketing:** Compartimos nuestras limitaciones con la misma transparencia que nuestros éxitos. Preferimos recall@k reproducible, comandos de benchmark y caveats claros antes que una promesa comercial de perfección que se rompe en producción.
