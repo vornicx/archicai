@@ -14,7 +14,7 @@ function Hero() {
           <div id="midas" className="min-w-0">
             <div className="section-label">Midas by Archic</div>
             <h1 className="heading-serif hero-title max-w-[680px] text-[2.9rem] sm:text-[3.2rem] md:text-[4.8rem]">
-              Agentic memory for long-horizon AI agents.
+              Infrastructure for agents that <span className="accent-remember">remember</span>.
             </h1>
             <p className="text-muted mt-7 max-w-[650px] text-[1.12rem] leading-relaxed md:text-[1.22rem]">
               Midas is a framework-agnostic Python SDK and evaluation harness for agents
@@ -46,23 +46,23 @@ function Hero() {
                   className="hidden h-16 w-16 rounded-full md:block"
                   style={{
                     background:
-                      'radial-gradient(circle, #fffaf0 0 24%, #d7b866 25% 44%, transparent 45%)',
-                    boxShadow: '0 0 42px rgba(184,148,60,0.28)',
+                      'radial-gradient(circle, #E0BC68 0 24%, #C9A24A 25% 44%, transparent 45%)',
+                    boxShadow: '0 0 42px rgba(201,162,74,0.45)',
                   }}
                 />
               </div>
 
               <div className="midas-orbit relative mt-8 aspect-square max-h-[250px] w-full">
-                <div className="absolute inset-6 rounded-full border" style={{ borderColor: 'rgba(126,93,30,0.16)' }} />
-                <div className="absolute inset-16 rounded-full border" style={{ borderColor: 'rgba(126,93,30,0.2)' }} />
+                <div className="absolute inset-6 rounded-full border" style={{ borderColor: 'rgba(201,162,74,0.18)' }} />
+                <div className="absolute inset-16 rounded-full border" style={{ borderColor: 'rgba(201,162,74,0.24)' }} />
                 <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(255,250,240,0.92), rgba(215,184,102,0.42))',
-                    boxShadow: '0 24px 60px rgba(126,93,30,0.18), inset 0 1px 0 rgba(255,255,255,0.8)',
+                    background: 'radial-gradient(circle, rgba(224,188,104,0.55), rgba(201,162,74,0.15) 60%, transparent 75%)',
+                    boxShadow: '0 0 60px rgba(201,162,74,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
                   }}
                 />
                 <span className="absolute left-[18%] top-[28%] h-3 w-3 rounded-full" style={{ background: 'var(--gold)' }} />
-                <span className="absolute right-[20%] top-[16%] h-2.5 w-2.5 rounded-full" style={{ background: '#f8e0a2' }} />
+                <span className="absolute right-[20%] top-[16%] h-2.5 w-2.5 rounded-full" style={{ background: '#E0BC68' }} />
                 <span className="absolute bottom-[21%] left-[31%] h-2 w-2 rounded-full" style={{ background: 'var(--gold-deep)' }} />
               </div>
 
