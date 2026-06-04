@@ -26,9 +26,9 @@ function Manifesto() {
           Toward deterministic context persistence.
         </h2>
 
-        <p className="text-[1.1rem] leading-relaxed mb-16" style={{ color: '#8A8A8A', maxWidth: '700px' }}>
+        <p className="text-[1.1rem] leading-relaxed mb-16" style={{ color: 'var(--muted)', maxWidth: '700px' }}>
           The current state of AI agents suffers from{' '}
-          <strong style={{ color: '#FFFFFF', fontWeight: 500 }}>structural amnesia</strong>.
+          <strong style={{ color: 'var(--ink-strong)', fontWeight: 500 }}>structural amnesia</strong>.
           Contemporary architectures rely on massive context windows or generic RAG layers.
           Both are expensive patches that fail at scale.
         </p>
@@ -36,13 +36,13 @@ function Manifesto() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {TRUTHS.map((t) => (
             <div key={t.num} className="card-panel p-10">
-              <div className="heading-serif" style={{ fontSize: '4rem', color: '#161616', lineHeight: 1, marginBottom: '1.5rem' }}>
+              <div className="heading-serif" style={{ fontSize: '4rem', color: 'var(--gold)', lineHeight: 1, marginBottom: '1.5rem', opacity: 0.85 }}>
                 {t.num}
               </div>
-              <h3 className="font-mono text-[12px] font-bold uppercase tracking-wider mb-4" style={{ color: '#FFFFFF' }}>
+              <h3 className="font-mono text-[12px] font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--ink-strong)' }}>
                 {t.title}
               </h3>
-              <p className="text-[14px] leading-relaxed" style={{ color: '#8A8A8A' }}>
+              <p className="text-[14px] leading-relaxed" style={{ color: 'var(--muted)' }}>
                 {t.desc}
               </p>
             </div>
