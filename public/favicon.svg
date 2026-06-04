@@ -1,10 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="#0c0c0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Outer arch (A leg + arc) -->
-  <path d="M5 27 L5 16 A11 11 0 0 1 27 16 L27 27" />
-  <!-- Inner arch / second memory layer -->
-  <path d="M10 27 L10 17 A6 6 0 0 1 22 17 L22 27" />
-  <!-- Crossbar of the A -->
-  <path d="M5 21 L27 21" />
-  <!-- Central memory node -->
-  <circle cx="16" cy="21" r="1.8" fill="#0c0c0c" stroke="none" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <rect width="40" height="40" rx="8" fill="#0B0B0D"/>
+  <path d="M7 33 L7 23 Q7 10 20 6 Q33 10 33 23 L33 33" stroke="#C9A24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M14 33 L14 25 Q14 17 20 14 Q26 17 26 25 L26 33" stroke="#C9A24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="20" cy="20" r="2" fill="#C9A24A"/>
+  <circle cx="20" cy="31.5" r="2" fill="#C9A24A"/>
 </svg>
