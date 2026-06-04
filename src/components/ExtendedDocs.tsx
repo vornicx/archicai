@@ -1,6 +1,6 @@
 const ROADMAP = [
   'Tighten larger-sample benchmark runs while keeping recall@k primary.',
-  'Improve novelty-vs-store salience for better no-LLM retention.',
+  'Mature selective forgetting and extractive consolidation as bounded-memory defaults.',
   'Deepen framework integrations around MCP and LangGraph.',
   'Keep abstention and calibrated uncertainty as the open research frontier.',
 ]
