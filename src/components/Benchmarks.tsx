@@ -32,8 +32,8 @@ function Benchmarks() {
                 </span>
               </div>
 
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[520px] text-left text-[14px]">
+              <div>
+                <table className="w-full text-left text-[14px]">
                   <thead>
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
                       <th className="pb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">System</th>
