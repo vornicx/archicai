@@ -4,24 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#000000',
-        surface: '#0A0A0A',
-        border: '#161616',
-        text: {
-          DEFAULT: '#FFFFFF',
-          muted: '#8A8A8A',
+        bg: '#0d0d0d',
+        surface: '#1a1a1a',
+        gold: {
+          DEFAULT: '#c9a84c',
+          bright: '#f0d78c',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Newsreader', 'Georgia', 'serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       maxWidth: {
-        page: '1100px',
-      },
-      borderRadius: {
-        card: '6px',
+        page: '1280px',
       },
     },
   },
