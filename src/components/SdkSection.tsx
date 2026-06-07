@@ -23,20 +23,24 @@ function SdkSection() {
               <span /><span /><span />
             </div>
             <div className="code-window-body">
-              <pre>
-<span className="code-comment"># library: pip install ".[all]"</span>
-<span className="code-keyword">from</span> midas <span className="code-keyword">import</span> Memory, LocalEmbedder
-
-<span className="code-comment"># initialize with local persistence</span>
-mem = Memory(embedder=LocalEmbedder())
-
-<span className="code-comment"># auto-capture, kept only if it passes the relevance policy</span>
-mem.capture(<span className="code-string">"Decision: primary database is PostgreSQL"</span>)
-
-<span className="code-comment"># deterministic retrieval with provenance</span>
-print(mem.assemble(<span className="code-string">"Which database did we pick?"</span>, token_budget=<span className="code-keyword">128</span>))
-<span className="code-comment"># &gt;&gt; "PostgreSQL (confidence: 0.98)"</span>
-              </pre>
+              <pre
+                dangerouslySetInnerHTML={{
+                  __html: [
+                    '<span class="code-comment"># library: pip install ".[all]"</span>',
+                    '<span class="code-keyword">from</span> midas <span class="code-keyword">import</span> Memory, LocalEmbedder',
+                    '',
+                    '<span class="code-comment"># initialize with local persistence</span>',
+                    'mem = Memory(embedder=LocalEmbedder())',
+                    '',
+                    '<span class="code-comment"># auto-capture — kept only if it passes the policy</span>',
+                    'mem.capture(<span class="code-string">"Decision: primary db is PostgreSQL"</span>)',
+                    '',
+                    '<span class="code-comment"># deterministic retrieval with provenance</span>',
+                    'print(mem.assemble(<span class="code-string">"Which db did we pick?"</span>, token_budget=<span class="code-keyword">128</span>))',
+                    '<span class="code-comment"># &gt;&gt; "PostgreSQL (confidence: 0.98)"</span>',
+                  ].join('\n'),
+                }}
+              />
             </div>
           </div>
         </div>
