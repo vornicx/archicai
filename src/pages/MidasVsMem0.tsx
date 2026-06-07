@@ -185,6 +185,80 @@ function MidasVsMem0() {
             </div>
           </section>
 
+          {/* What is AI agent memory */}
+          <section className="space-y-4 max-w-3xl">
+            <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">What is AI agent memory?</h2>
+            <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
+              AI agent memory is the persistence layer that lets an LLM agent remember facts,
+              decisions and prior interactions across sessions — beyond the context window. A
+              memory framework decides what to store, how to recall it, and how to feed it back
+              into the prompt. Both Midas and mem0 sit in this category, alongside tools like
+              Letta (MemGPT), Zep and LangMem. They differ on where memory lives, who pays for
+              ingest, and how recall is graded.
+            </p>
+            <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
+              The practical question for engineers picking an AI agent memory framework in 2026 is
+              less "which one stores vectors" and more: does ingest stay deterministic at scale,
+              does recall stay traceable to a source, and can the agent run offline when needed.
+              Those three questions are where Midas and mem0 diverge most.
+            </p>
+          </section>
+
+          {/* Local-first */}
+          <section className="space-y-4 max-w-3xl">
+            <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">Local-first by default</h2>
+            <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
+              Local-first means the system of record lives on the user's machine, not in a vendor
+              cloud. With Midas, the agent's memory is a file on disk. No account, no API key, no
+              network round-trip on the hot path. You can disconnect the laptop and the agent
+              still remembers everything it learned yesterday.
+            </p>
+            <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
+              mem0 can be self-hosted, but its happy path is the managed cloud: writes and reads
+              hit a hosted control plane, and an LLM is invoked server-side per ingest. That is a
+              valid trade — you offload infra — but it is not local-first. For agents that handle
+              private code, customer data or regulated content, the difference shows up in the
+              threat model, not just the latency budget.
+            </p>
+          </section>
+
+          {/* SQLite */}
+          <section className="space-y-4 max-w-3xl">
+            <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">SQLite-based persistence</h2>
+            <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
+              Midas persists to embedded SQLite. One file, no daemon, no separate vector database
+              to provision. Embeddings sit next to metadata in the same store, which keeps recall
+              joins cheap and makes the entire memory portable — copy the <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">.db</code> file
+              and the agent's history moves with it. Backups are <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">cp</code>.
+            </p>
+            <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
+              mem0 expects a vector store such as Qdrant or PGVector, often paired with a graph
+              database for relationships. That architecture scales horizontally and supports
+              richer queries, at the cost of more infrastructure to run and reason about. For
+              single-user agents — coding copilots, research assistants, desktop tools — SQLite is
+              usually the right amount of database.
+            </p>
+          </section>
+
+          {/* MCP-first */}
+          <section className="space-y-4 max-w-3xl">
+            <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">MCP-first delivery</h2>
+            <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
+              Midas ships as a Model Context Protocol (MCP) server first, Python SDK second. Any
+              MCP-aware host — Claude Desktop, Claude Code, Cursor, Codex, Windsurf — picks up
+              memory tools automatically, with no per-host integration code. Add the server to the
+              host's config and the agent gains <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">remember</code>,
+              <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">recall</code> and
+              <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">forget</code> tools immediately.
+            </p>
+            <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
+              mem0 exposes Python and TypeScript SDKs plus a REST API. Wiring it into an MCP host
+              means writing the MCP adapter yourself. That is fine for a backend service, but it
+              is friction for desktop and IDE agents where MCP is now the default integration
+              surface.
+            </p>
+          </section>
+
           {/* Recall */}
           <section className="space-y-4 max-w-3xl">
             <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">Recall and eval</h2>
