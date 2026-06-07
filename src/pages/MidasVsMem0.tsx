@@ -6,6 +6,7 @@ type Row = {
   feature: string
   midas: string
   mem0: string
+  why: string
 }
 
 const COMPARISON: Row[] = [
