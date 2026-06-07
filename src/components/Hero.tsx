@@ -36,14 +36,11 @@ function Hero() {
 
           <div className="lg:col-span-5 w-full">
             <div className="editorial-panel editorial-panel--accent p-8">
-              <div className="mb-10 flex items-start justify-between gap-6">
-                <div>
-                  <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted-soft)]">
-                    Current Signal
-                  </p>
-                  <h3 className="heading-serif text-2xl">Usable alpha, measured first.</h3>
-                </div>
-                <span className="signal-dot" aria-hidden="true" />
+              <div className="mb-10">
+                <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted-soft)]">
+                  Current Signal
+                </p>
+                <h3 className="heading-serif text-2xl">Usable alpha, measured first.</h3>
               </div>
 
               <div className="grid grid-cols-3 gap-4">
