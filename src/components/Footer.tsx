@@ -1,24 +1,25 @@
 import { CONTACT_EMAIL, GITHUB_URL } from '../constants'
+import Logo from './Logo'
 
 function Footer() {
   return (
-    <footer className="container-page section-padding" style={{ borderTop: '1px solid var(--line)' }}>
-      <div className="mx-auto flex max-w-[760px] flex-col items-center justify-center gap-6 text-center sm:flex-row sm:gap-10">
-        <div className="sm:text-right">
-          <div className="font-semibold tracking-[0.18em] uppercase text-[13px]">Archic</div>
-          <div className="text-muted mt-2 text-[13px]">Midas agentic memory. 2026.</div>
-        </div>
-        <div className="flex flex-wrap justify-center gap-5 sm:text-left">
-          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="text-[13px] no-underline" style={{ color: 'var(--muted)' }}>
+    <footer className="border-t border-[color:var(--line)] py-20">
+      <div className="container-page flex flex-col items-center gap-10 text-center">
+        <Logo />
+        <div className="flex flex-wrap justify-center gap-12 text-[10px] font-bold uppercase tracking-[0.22em] text-[color:var(--muted-soft)]">
+          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[color:var(--gold-bright)]">
             GitHub
           </a>
-          <a href="#docs" className="text-[13px] no-underline" style={{ color: 'var(--muted)' }}>
-            Docs
+          <a href="#docs" className="transition-colors hover:text-[color:var(--gold-bright)]">
+            Documentation
           </a>
-          <a href={CONTACT_EMAIL} className="text-[13px] no-underline" style={{ color: 'var(--muted)' }}>
+          <a href={CONTACT_EMAIL} className="transition-colors hover:text-[color:var(--gold-bright)]">
             Contact
           </a>
         </div>
+        <p className="font-mono text-[10px] text-[color:var(--muted-soft)]">
+          © 2026 Archic Systems. Midas agentic memory alpha.
+        </p>
       </div>
     </footer>
   )
