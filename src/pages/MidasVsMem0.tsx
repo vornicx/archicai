@@ -328,8 +328,8 @@ remember({
               Midas ships as a Model Context Protocol (MCP) server first, Python SDK second. Any
               MCP-aware host — Claude Desktop, Claude Code, Cursor, Codex, Windsurf — picks up
               memory tools automatically, with no per-host integration code. Add the server to the
-              host's config and the agent gains <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">remember</code>,
-              <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">recall</code> and
+              host's config and the agent gains <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">remember</code>,&nbsp;
+              <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">recall</code> and&nbsp;
               <code className="font-mono text-[13px] text-[color:var(--gold-bright)]">forget</code> tools immediately.
             </p>
             <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
