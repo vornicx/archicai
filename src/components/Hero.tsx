@@ -17,7 +17,7 @@ function Hero() {
                 Midas by Archic
               </span>
             </div>
-            <h1 className="heading-serif text-[3rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[6.5rem] font-light">
+            <h1 className="heading-serif text-[2.5rem] sm:text-[3rem] md:text-[4rem] lg:text-[5rem] font-light">
               Local-first memory for agents that <span className="accent-remember">remember.</span>
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-[color:var(--muted)] md:text-xl">
@@ -35,7 +35,7 @@ function Hero() {
           </div>
 
           <div className="lg:col-span-5 w-full">
-            <div className="editorial-panel editorial-panel--accent p-8">
+            <div className="editorial-panel editorial-panel--accent p-10 lg:p-12">
               <div className="mb-10">
                 <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted-soft)]">
                   Current Signal
