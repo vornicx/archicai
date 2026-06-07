@@ -35,7 +35,7 @@ function Hero() {
           </div>
 
           <div className="lg:col-span-5 w-full">
-            <div className="editorial-panel editorial-panel--accent p-10 lg:p-12">
+            <div className="editorial-panel editorial-panel--accent p-12 lg:p-16">
               <div className="mb-10">
                 <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted-soft)]">
                   Current Signal
@@ -43,7 +43,7 @@ function Hero() {
                 <h3 className="heading-serif text-2xl">Usable alpha, measured first.</h3>
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-6">
                 {SIGNALS.map((s) => (
                   <div key={s.label}>
                     <div className="metric-number">{s.value}</div>
