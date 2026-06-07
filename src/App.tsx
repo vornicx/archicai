@@ -1,12 +1,10 @@
+import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import Benchmarks from './components/Benchmarks'
-import ArchTable from './components/ArchTable'
-import Whitepaper from './components/Whitepaper'
-import SdkSection from './components/SdkSection'
-import ExtendedDocs from './components/ExtendedDocs'
 import Footer from './components/Footer'
 import MidasBackground from './components/MidasBackground'
+import ArchicHome from './pages/ArchicHome'
+import MidasPage from './pages/MidasPage'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -14,12 +12,11 @@ function App() {
       <MidasBackground />
       <Header />
       <main>
-        <Hero />
-        <Benchmarks />
-        <ArchTable />
-        <Whitepaper />
-        <SdkSection />
-        <ExtendedDocs />
+        <Routes>
+          <Route path="/" element={<ArchicHome />} />
+          <Route path="/midas" element={<MidasPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </main>
       <Footer />
     </div>
