@@ -10,14 +10,16 @@ type Row = {
 }
 
 const COMPARISON: Row[] = [
-  { feature: 'Architecture', midas: 'Local-first SDK + MCP server', mem0: 'Hosted platform with optional self-host' },
-  { feature: 'Persistence', midas: 'Embedded SQLite, zero deps in core', mem0: 'Vector DB (Qdrant/PGVector) + graph store' },
-  { feature: 'Ingest cost', midas: '$0 — no LLM in the ingest path', mem0: 'LLM call per ingest for extraction' },
-  { feature: 'Importance scoring', midas: 'Local, deterministic policy', mem0: 'LLM-graded importance' },
-  { feature: 'Provenance', midas: 'Source-traceable recall by default', mem0: 'Available via metadata fields' },
-  { feature: 'Delivery', midas: 'Python SDK + MCP (Claude, Cursor, Codex, Windsurf)', mem0: 'Python/TS SDKs + REST API' },
-  { feature: 'Eval', midas: 'LongMemEval-S 0.95 · LoCoMo 0.85 (reproducible)', mem0: 'Published LoCoMo numbers, less direct repro' },
-  { feature: 'License', midas: 'Open source, run anywhere', mem0: 'Open-core + managed cloud' },
+  { feature: 'Architecture', midas: 'Local-first SDK + MCP server', mem0: 'Hosted platform with optional self-host', why: 'Where the system of record lives.' },
+  { feature: 'Persistence', midas: 'Embedded SQLite, zero deps in core', mem0: 'Vector DB (Qdrant/PGVector) + graph store', why: 'One file vs a stack to provision.' },
+  { feature: 'Ingest cost', midas: '$0 — no LLM in the ingest path', mem0: 'LLM call per ingest for extraction', why: 'Recurring cost at agent scale.' },
+  { feature: 'Ingest latency', midas: 'Single-digit ms (local embed + insert)', mem0: 'Hundreds of ms (LLM round-trip)', why: 'Blocks the agent on every write.' },
+  { feature: 'Determinism', midas: 'Same input → same memory', mem0: 'LLM-graded, may vary across runs', why: 'Matters for replay and eval.' },
+  { feature: 'Provenance', midas: 'Source-traceable recall by default', mem0: 'Available via metadata fields', why: 'Audit which item drove a recall.' },
+  { feature: 'Delivery', midas: 'MCP-first (Claude, Cursor, Codex, Windsurf) + Python SDK', mem0: 'Python/TS SDKs + REST API', why: 'How the agent host wires it in.' },
+  { feature: 'Offline', midas: 'Yes — runs without network', mem0: 'Cloud by default; self-host possible', why: 'Privacy and air-gapped workflows.' },
+  { feature: 'Eval', midas: 'LongMemEval-S 0.95 · LoCoMo 0.85 (reproducible)', mem0: 'Published LoCoMo numbers, less direct repro', why: 'Can you re-run the claim?' },
+  { feature: 'License', midas: 'Open source, run anywhere', mem0: 'Open-core + managed cloud', why: 'Lock-in and deployment freedom.' },
 ]
 
 const FAQ = [
