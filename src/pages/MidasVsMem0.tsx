@@ -130,25 +130,30 @@ function MidasVsMem0() {
             </ul>
           </section>
 
-          {/* Table */}
           <section className="space-y-6">
             <h2 className="heading-serif text-[1.8rem] md:text-[2.2rem]">Feature comparison</h2>
+            <p className="text-[14px] text-[color:var(--muted-soft)] max-w-2xl">
+              Side-by-side on the dimensions that matter for an agentic memory framework. The last
+              column says why the row matters in production, not just on a slide.
+            </p>
             <div className="card-panel overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-left text-[14px]">
                   <thead>
                     <tr className="border-b border-[color:var(--line-strong)]">
-                      <th className="px-5 py-4 font-medium text-[color:var(--muted-soft)] uppercase tracking-[0.18em] text-[11px]">Feature</th>
-                      <th className="px-5 py-4 font-medium text-[color:var(--gold-bright)] uppercase tracking-[0.18em] text-[11px]">Midas</th>
-                      <th className="px-5 py-4 font-medium text-[color:var(--muted)] uppercase tracking-[0.18em] text-[11px]">mem0</th>
+                      <th className="px-5 py-4 font-medium text-[color:var(--muted-soft)] uppercase tracking-[0.18em] text-[11px] w-[20%]">Dimension</th>
+                      <th className="px-5 py-4 font-medium text-[color:var(--gold-bright)] uppercase tracking-[0.18em] text-[11px] w-[30%]">Midas</th>
+                      <th className="px-5 py-4 font-medium text-[color:var(--muted)] uppercase tracking-[0.18em] text-[11px] w-[30%]">mem0</th>
+                      <th className="px-5 py-4 font-medium text-[color:var(--muted-soft)] uppercase tracking-[0.18em] text-[11px] w-[20%]">Why it matters</th>
                     </tr>
                   </thead>
                   <tbody>
                     {COMPARISON.map((row) => (
-                      <tr key={row.feature} className="border-b border-[color:var(--line)] last:border-0 align-top">
-                        <td className="px-5 py-4 font-medium text-[color:var(--ink)] w-[28%]">{row.feature}</td>
+                      <tr key={row.feature} className="border-b border-[color:var(--line)] last:border-0 align-top hover:bg-[color:var(--line)]/30 transition-colors">
+                        <td className="px-5 py-4 font-medium text-[color:var(--ink)]">{row.feature}</td>
                         <td className="px-5 py-4 text-[color:var(--ink)]">{row.midas}</td>
                         <td className="px-5 py-4 text-[color:var(--muted)]">{row.mem0}</td>
+                        <td className="px-5 py-4 text-[13px] text-[color:var(--muted-soft)] italic">{row.why}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -156,6 +161,79 @@ function MidasVsMem0() {
               </div>
             </div>
           </section>
+
+          {/* Flow example */}
+          <section className="space-y-6">
+            <h2 className="heading-serif text-[1.8rem] md:text-[2.2rem]">Example: ingest and recall in Midas</h2>
+            <p className="text-[15px] leading-relaxed text-[color:var(--muted)] max-w-3xl">
+              Concretely, here is what happens when an MCP-aware host (Claude Code, Cursor,
+              Codex) talks to Midas. Persistence is SQLite; delivery is MCP. No network, no LLM
+              on the write path.
+            </p>
+
+            <div className="grid gap-5 md:grid-cols-2">
+              <div className="card-panel p-6 space-y-3">
+                <div className="section-label !mb-0">1 · Ingest</div>
+                <p className="text-[13px] text-[color:var(--muted)]">
+                  Agent calls the <code className="font-mono text-[12px] text-[color:var(--gold-bright)]">remember</code> MCP tool.
+                  Midas embeds locally, scores importance with a deterministic policy, and writes
+                  one row to SQLite.
+                </p>
+                <pre className="text-[12px] leading-relaxed bg-[color:var(--ink)]/[0.04] border border-[color:var(--line)] rounded-md p-4 overflow-x-auto font-mono"><code>{`// MCP tool call from Claude / Cursor / Codex
+remember({
+  text: "User prefers pnpm over npm for this repo.",
+  source: "chat:2026-06-07#msg-481",
+  tags: ["preference", "tooling"]
+})
+
+// Midas, internally:
+//   embed(text)            -> local sentence-transformer
+//   score(text, ctx)       -> deterministic policy
+//   INSERT INTO memories   -> embedded SQLite (one file)
+//   $0 cost · ~3 ms · no network`}</code></pre>
+              </div>
+
+              <div className="card-panel p-6 space-y-3">
+                <div className="section-label !mb-0">2 · Recall</div>
+                <p className="text-[13px] text-[color:var(--muted)]">
+                  On the next turn, the host calls <code className="font-mono text-[12px] text-[color:var(--gold-bright)]">recall</code>.
+                  Midas does a single SQLite query (vector + metadata) and returns ranked items
+                  with their source pointer.
+                </p>
+                <pre className="text-[12px] leading-relaxed bg-[color:var(--ink)]/[0.04] border border-[color:var(--line)] rounded-md p-4 overflow-x-auto font-mono"><code>{`recall({ query: "which package manager?", k: 3 })
+
+// → [
+//   {
+//     text: "User prefers pnpm over npm for this repo.",
+//     score: 0.87,
+//     source: "chat:2026-06-07#msg-481",
+//     tags: ["preference", "tooling"]
+//   },
+//   ...
+// ]
+// One SELECT against SQLite. Provenance included.`}</code></pre>
+              </div>
+            </div>
+
+            <div className="card-panel p-6 space-y-3">
+              <div className="section-label !mb-0">3 · Wire it in (MCP-first)</div>
+              <p className="text-[13px] text-[color:var(--muted)]">
+                Two lines in the host's MCP config and the agent gains memory tools. No glue code,
+                no adapter per IDE.
+              </p>
+              <pre className="text-[12px] leading-relaxed bg-[color:var(--ink)]/[0.04] border border-[color:var(--line)] rounded-md p-4 overflow-x-auto font-mono"><code>{`// ~/.claude/mcp.json  (or cursor / codex equivalent)
+{
+  "mcpServers": {
+    "midas": {
+      "command": "uvx",
+      "args": ["midas-mcp", "--db", "~/.midas/agent.db"]
+    }
+  }
+}`}</code></pre>
+            </div>
+          </section>
+
+
 
           {/* Architecture */}
           <section className="grid gap-10 md:grid-cols-2">
