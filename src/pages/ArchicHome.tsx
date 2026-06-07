@@ -76,9 +76,9 @@ function ArchicHome() {
                 <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted-soft)]">
                   The thesis
                 </p>
-                <h3 className="heading-serif text-2xl mb-6">
+                <h2 className="heading-serif text-2xl mb-6">
                   Agents are stuck in the present.
-                </h3>
+                </h2>
                 <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
                   Today's agents can plan, call tools and write code — but they forget the moment a
                   context window ends. Archic treats memory, control and execution as first-class,

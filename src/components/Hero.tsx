@@ -40,7 +40,7 @@ function Hero() {
                 <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted-soft)]">
                   Current Signal
                 </p>
-                <h3 className="heading-serif text-2xl">Usable alpha, measured first.</h3>
+                <h2 className="heading-serif text-2xl">Usable alpha, measured first.</h2>
               </div>
 
               <div className="grid grid-cols-3 gap-6">
