@@ -1,67 +1,62 @@
 const ROWS = [
   {
     dim: 'Product shape',
-    baseline: 'Raw transcripts, broad context windows, or LLM-extracted memory facts.',
-    midas: 'Framework-agnostic Python SDK, MCP server and reproducible eval harness.',
+    midas: 'Framework-agnostic Python SDK, MCP server and reproducible eval harness. Runs locally, scales globally.',
   },
   {
     dim: 'Ingest path',
-    baseline: 'Send every session through an LLM to summarize or extract memories.',
-    midas: 'Local embeddings, local ranking and local importance scoring. $0 API spend at ingest.',
+    midas: 'Local embeddings and local importance scoring. $0 API spend at ingest. No data leaves your infrastructure.',
   },
   {
     dim: 'Auditability',
-    baseline: 'Return rewritten facts that can hide extraction-time hallucinations.',
-    midas: 'Recall returns source turns, timestamps and provenance the agent can inspect.',
+    midas: 'Recall returns source turns, timestamps and provenance the agent can inspect — no rewritten facts.',
   },
   {
-    dim: 'Memory lifecycle',
-    baseline: 'Let stores grow or prune by simple recency.',
-    midas: 'Belief revision, selective forgetting, temporal tiers and extractive consolidation.',
+    dim: 'Lifecycle',
+    midas: 'Belief revision, selective forgetting, temporal tiers and extractive consolidation. It evolves with the session.',
   },
   {
     dim: 'Agent integration',
-    baseline: 'Bespoke glue per framework, or no cross-session memory at all.',
-    midas: 'One MCP server for Claude Code, Cursor, Codex and Windsurf — it injects a memory policy so the agent recalls and captures on its own.',
+    midas: 'One MCP server for Claude Code, Cursor, Codex and Windsurf — injects a memory policy so the agent recalls and captures on its own.',
   },
 ]
 
 function ArchTable() {
   return (
-    <section id="architecture" className="section-border section-padding">
+    <section id="architecture" className="section-padding">
       <div className="container-page">
-        <div className="section-label">Architecture</div>
-        <div className="mb-10 max-w-[760px]">
-          <h2 className="heading-serif text-[2.7rem] md:text-[3.8rem]">
-            The alpha is a memory layer, not a promise deck.
-          </h2>
-          <p className="text-muted mt-5 text-[1.05rem] leading-relaxed">
-            Midas is the active Archic wedge: one concrete SDK that agents can run today,
-            with local-first defaults and measurable behavior before any broader platform
-            layer is widened.
-          </p>
-        </div>
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-32 space-y-6">
+              <div className="section-label !mb-0">Architecture</div>
+              <h2 className="heading-serif text-[2.2rem] md:text-[2.6rem]">
+                A memory layer, not a promise deck.
+              </h2>
+              <p className="text-sm leading-relaxed text-[color:var(--muted)]">
+                Midas is the active Archic wedge: one concrete SDK that agents can run today,
+                with local-first defaults and measurable behavior.
+              </p>
+            </div>
+          </div>
 
-        <div className="glass-panel">
-          <div className="glass-inner overflow-x-auto p-5 md:p-8">
-            <table className="w-full min-w-[680px] text-left text-[14px]" style={{ borderCollapse: 'collapse' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid var(--line)' }}>
-                  <th className="pb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Dimension</th>
-                  <th className="pb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Common baseline</th>
-                  <th className="pb-5 font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: 'var(--gold-deep)' }}>Midas</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ROWS.map((row) => (
-                  <tr key={row.dim} style={{ borderBottom: '1px solid var(--line)' }}>
-                    <td className="py-5 font-semibold">{row.dim}</td>
-                    <td className="py-5 text-muted">{row.baseline}</td>
-                    <td className="py-5">{row.midas}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="lg:col-span-8">
+            <div className="space-y-10">
+              <div className="grid grid-cols-12 gap-6 border-b border-[color:var(--line-strong)] pb-5">
+                <div className="col-span-4 text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted-soft)]">Dimension</div>
+                <div className="col-span-8 text-[10px] uppercase tracking-[0.22em] text-[color:var(--gold)]">Midas approach</div>
+              </div>
+
+              {ROWS.map((row) => (
+                <div key={row.dim} className="grid grid-cols-12 gap-6 group">
+                  <div className="col-span-12 sm:col-span-4 font-display text-lg font-medium text-[color:var(--ink-strong)] transition-colors group-hover:text-[color:var(--gold-bright)]">
+                    {row.dim}
+                  </div>
+                  <div className="col-span-12 sm:col-span-8 leading-relaxed text-[color:var(--muted)]">
+                    {row.midas}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
