@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
 import Benchmarks from '../components/Benchmarks'
 import ArchTable from '../components/ArchTable'
@@ -38,6 +39,24 @@ function MidasPage() {
       <Whitepaper />
       <SdkSection />
       <ExtendedDocs />
+
+      <section className="section-padding">
+        <div className="container-page">
+          <div className="editorial-panel editorial-panel--accent p-10 lg:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="section-label !mb-0">Comparison</div>
+              <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">Midas vs mem0</h2>
+              <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
+                Local-first, SQLite-backed, MCP-first memory compared to mem0's hosted,
+                LLM-graded approach — with a worked ingest and recall flow.
+              </p>
+            </div>
+            <Link to="/docs/comparisons/midas-vs-mem0" className="btn-primary whitespace-nowrap">
+              Read the comparison
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
