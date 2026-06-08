@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom'
 import Logo from './Logo'
 import { GITHUB_URL } from '../constants'
 
-const ARCHIC_NAV = [
-  { label: 'Why', href: '#why' },
-  { label: 'Products', href: '#products' },
+const NAV = [
+  { label: 'Manifesto', href: '#manifesto' },
+  { label: 'Stack', href: '#products' },
   { label: 'Vision', href: '#vision' },
 ]
 
@@ -18,56 +18,46 @@ function Header() {
   }, [pathname])
 
   return (
-    <header className="site-header fixed left-0 right-0 top-0 z-50 px-4 pt-4">
+    <header className="site-header">
       <div className="container-page">
-        <div className="glass-panel header-glass">
-          <div className="glass-inner flex items-center justify-between px-4 py-2.5 md:px-5">
-            <Link to="/" className="brand-link no-underline" style={{ color: 'var(--ink)' }}>
+        <div className="blueprint-frame border-l-0 border-r-0">
+          <div className="header-row px-4 md:px-6">
+            <Link to="/" className="no-underline">
               <Logo />
             </Link>
 
-            <nav className="hidden items-center gap-6 md:flex">
-              {ARCHIC_NAV.map((item) => (
+            <nav className="hidden md:flex items-center gap-9">
+              {NAV.map((item) => (
                 <a key={item.label} href={item.href} className="nav-link">
                   {item.label}
                 </a>
               ))}
               <span aria-hidden className="h-3 w-px bg-[color:var(--line-strong)]" />
-              <a
-                href="https://midas.archic.es"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-link"
-              >
+              <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="nav-link">
                 Midas ↗
               </a>
-              <a
-                href="https://apollo.archic.es"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-link"
-              >
+              <a href="https://apollo.archic.es" target="_blank" rel="noopener noreferrer" className="nav-link">
                 Apollo ↗
               </a>
-              <a
-                href={GITHUB_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary !py-1.5 !px-3 !text-[11px]"
-              >
-                GitHub
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="nav-link" style={{ color: 'var(--gold)' }}>
+                [ GitHub ]
               </a>
             </nav>
+
+            <div className="hidden md:flex items-center gap-4 nav-link" style={{ fontSize: '10px', color: 'var(--muted-deep)' }}>
+              <span>SYS: 200</span>
+              <span>·</span>
+              <span>V.0.2.0</span>
+            </div>
 
             <button
               type="button"
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md text-[color:var(--ink)] hover:bg-[color:var(--line)]/40"
+              className="md:hidden inline-flex h-9 w-9 items-center justify-center text-[color:var(--ink)] border border-[color:var(--line-strong)]"
             >
-              <span className="sr-only">Menu</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 {open ? (
                   <>
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -86,21 +76,21 @@ function Header() {
 
           {open && (
             <div className="md:hidden border-t border-[color:var(--line)]">
-              <nav className="glass-inner flex flex-col gap-1 px-4 py-3">
-                {ARCHIC_NAV.map((item) => (
-                  <a key={item.label} href={item.href} className="nav-link py-2" onClick={() => setOpen(false)}>
+              <nav className="flex flex-col px-4 py-3 gap-1">
+                {NAV.map((item) => (
+                  <a key={item.label} href={item.href} className="nav-link py-3" onClick={() => setOpen(false)}>
                     {item.label}
                   </a>
                 ))}
                 <div className="my-2 h-px bg-[color:var(--line)]" />
-                <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="nav-link py-2">
+                <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="nav-link py-3">
                   Midas ↗
                 </a>
-                <a href="https://apollo.archic.es" target="_blank" rel="noopener noreferrer" className="nav-link py-2">
+                <a href="https://apollo.archic.es" target="_blank" rel="noopener noreferrer" className="nav-link py-3">
                   Apollo ↗
                 </a>
-                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="nav-link py-2">
-                  GitHub ↗
+                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="nav-link py-3" style={{ color: 'var(--gold)' }}>
+                  [ GitHub ]
                 </a>
               </nav>
             </div>
