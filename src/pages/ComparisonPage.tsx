@@ -110,10 +110,10 @@ function ComparisonPage() {
 
           <BenchmarkBars
             rival={data.rival}
-            midas={data.benchmarks.midas}
-            rivalScores={data.benchmarks.rival}
-            note={data.benchmarks.note}
+            recall={data.benchmarks.recall}
+            answer={data.benchmarks.answer}
           />
+
 
           {/* Honest caveats — where the rival is stronger or Midas is weaker */}
           <section className="space-y-4 max-w-3xl">
