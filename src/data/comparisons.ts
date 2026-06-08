@@ -29,6 +29,8 @@ export type Comparison = {
     rival: BenchmarkScores
     note?: string
   }
+  /** Honest places where the rival is stronger or where Midas is weaker today. */
+  caveats: string[]
 }
 
 export const MIDAS_SCORES: BenchmarkScores = { longmem: 0.95, locomo: 0.85 }
@@ -77,8 +79,13 @@ export const COMPARISONS: Comparison[] = [
     benchmarks: {
       midas: MIDAS_SCORES,
       rival: { longmem: 0.62, locomo: 0.68 },
-      note: 'mem0 numbers from the published mem0 paper / LoCoMo reports; Midas numbers from the reproducible harness shipped with the repo.',
+      note: 'mem0 numbers from the published mem0 paper and LoCoMo reports. Midas numbers from the reproducible harness shipped in the repo (Alpha; both score and config can move).',
     },
+    caveats: [
+      'mem0 has a much larger ecosystem today — managed platform, dashboards, integrations, hosted infra. Midas is alpha-stage tooling.',
+      'mem0 ships a polished graph + entity layer out of the box; Midas does not extract entities at ingest by design.',
+      'Midas’s published numbers come from a single team’s harness. Treat the gap as directional until third parties reproduce it.',
+    ],
   },
   {
     slug: 'midas-vs-letta',
