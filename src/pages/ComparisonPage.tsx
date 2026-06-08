@@ -115,6 +115,28 @@ function ComparisonPage() {
             note={data.benchmarks.note}
           />
 
+          {/* Honest caveats — where the rival is stronger or Midas is weaker */}
+          <section className="space-y-4 max-w-3xl">
+            <div className="space-y-1">
+              <div className="section-label !mb-0">Honest caveats</div>
+              <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">
+                Where {data.rival} is stronger.
+              </h2>
+              <p className="text-[14px] text-[color:var(--muted-soft)]">
+                Trade-offs we will not hide. If any of these matter more than the Midas wins above,
+                pick {data.rival}.
+              </p>
+            </div>
+            <ul className="card-panel p-6 md:p-7 space-y-3">
+              {data.caveats.map((c) => (
+                <li key={c} className="flex gap-3 text-[14px] leading-relaxed text-[color:var(--muted)]">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--muted-soft)]" />
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
           {data.sections.map((s) => (
             <section key={s.heading} className="space-y-4 max-w-3xl">
               <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">{s.heading}</h2>

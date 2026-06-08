@@ -77,7 +77,10 @@ function ComparisonsIndex() {
               <h2 className="heading-serif text-[1.8rem] md:text-[2.4rem]">Recall@k across the field.</h2>
               <p className="text-[14px] text-[color:var(--muted-soft)]">
                 Reader-independent recall@k on two long-horizon memory datasets. Higher is better.
-                Empty bars mean no comparable number has been published.
+                Empty bars mean no comparable number has been published. Where a rival ties or
+                beats Midas, the bar shows it — we publish the field as it is, not as we wish it
+                were. Midas numbers come from a single team’s harness; treat margins under ~0.02
+                as ties.
               </p>
             </div>
 
