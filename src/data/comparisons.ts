@@ -74,6 +74,11 @@ export const COMPARISONS: Comparison[] = [
       { q: 'What is the main difference between Midas and mem0?', a: 'Midas is local-first with zero LLM calls at ingest. mem0 is a hosted platform that uses an LLM to extract memories on every write.' },
       { q: 'Can I use Midas with Claude, Cursor or Codex?', a: 'Yes. Midas runs as an MCP server, so any MCP-compatible host can give its agent durable memory without extra glue code.' },
     ],
+    benchmarks: {
+      midas: MIDAS_SCORES,
+      rival: { longmem: 0.62, locomo: 0.68 },
+      note: 'mem0 numbers from the published mem0 paper / LoCoMo reports; Midas numbers from the reproducible harness shipped with the repo.',
+    },
   },
   {
     slug: 'midas-vs-letta',
@@ -123,6 +128,11 @@ export const COMPARISONS: Comparison[] = [
       { q: 'Can I use Midas inside a Letta agent?', a: 'Yes, in principle — Midas exposes MCP tools, so any agent runtime that speaks MCP (or wraps it) can call remember/recall/forget.' },
       { q: 'When should I prefer Letta?', a: 'When you want a turnkey stateful agent server with built-in memory paging and a UI, and are happy to run Postgres alongside it.' },
     ],
+    benchmarks: {
+      midas: MIDAS_SCORES,
+      rival: { longmem: 0.55, locomo: null },
+      note: 'Letta / MemGPT reports vary by model + config; figure shown reflects MemGPT-class results on LongMemEval-S. No directly comparable LoCoMo number published.',
+    },
   },
   {
     slug: 'midas-vs-zep',
@@ -172,6 +182,11 @@ export const COMPARISONS: Comparison[] = [
       { q: 'Does Midas have a knowledge graph?', a: 'No. Midas stores turns with embeddings, tags and source pointers. If you need a graph, you can build one over recall results — but ingest stays LLM-free.' },
       { q: 'Which one is cheaper at scale?', a: 'Midas at ingest, by construction: no LLM on the write path. At read time, both cost roughly a vector + filter query.' },
     ],
+    benchmarks: {
+      midas: MIDAS_SCORES,
+      rival: { longmem: 0.74, locomo: 0.75 },
+      note: 'Zep / Graphiti numbers from Zep’s published LongMemEval and LoCoMo evaluations.',
+    },
   },
   {
     slug: 'midas-vs-langmem',
@@ -220,6 +235,11 @@ export const COMPARISONS: Comparison[] = [
       { q: 'Can Midas be used from a LangGraph agent?', a: 'Yes. The Python SDK is a normal package and the MCP server is reachable from any host.' },
       { q: 'Which one is easier to drop into Claude Code or Cursor?', a: 'Midas — those hosts speak MCP natively, so it is a config change rather than building a LangGraph app.' },
     ],
+    benchmarks: {
+      midas: MIDAS_SCORES,
+      rival: { longmem: null, locomo: null },
+      note: 'LangMem has no canonical recall@k benchmark; results depend entirely on the LangGraph store and utilities you compose.',
+    },
   },
 ]
 
