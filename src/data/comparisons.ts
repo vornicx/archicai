@@ -255,8 +255,13 @@ export const COMPARISONS: Comparison[] = [
     benchmarks: {
       midas: MIDAS_SCORES,
       rival: { longmem: null, locomo: null },
-      note: 'LangMem has no canonical recall@k benchmark; results depend entirely on the LangGraph store and utilities you compose.',
+      note: 'LangMem has no canonical recall@k benchmark we can quote like-for-like; results depend entirely on the LangGraph store and the utilities you compose.',
     },
+    caveats: [
+      'LangMem inherits the full LangChain / LangGraph ecosystem: observability (LangSmith), tool integrations, prebuilt agent patterns. Midas brings none of that.',
+      'If your stack is already LangGraph, LangMem is the path of least resistance — Midas would mean adding an MCP layer next to it.',
+      'No published head-to-head recall@k against Midas exists; the absence of bars in the leaderboard is honest, not flattering.',
+    ],
   },
 ]
 
