@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
-import { GITHUB_URL } from '../constants'
+import { GITHUB_URL, REPOS } from '../constants'
 import { LAYERS } from '../data/ecosystem'
 import { StatusBadge } from '../components/StatusBadge'
 
@@ -19,6 +18,80 @@ const PRINCIPLES = [
   },
 ]
 
+type Product = {
+  id: string
+  name: string
+  role: string
+  status: 'active' | 'building' | 'in-progress' | 'planned' | 'parked'
+  desc: string
+  href: string
+  external?: boolean
+  cta: string
+}
+
+const PRODUCTS: Product[] = [
+  {
+    id: 'midas',
+    name: 'Midas',
+    role: 'Agentic memory',
+    status: 'active',
+    desc: 'Local-first Python SDK and MCP server for long-horizon agent memory. Source-traceable, eval-first.',
+    href: 'https://midas.archic.es',
+    external: true,
+    cta: 'midas.archic.es →',
+  },
+  {
+    id: 'apollo',
+    name: 'Apollo',
+    role: 'Mission runtime',
+    status: 'in-progress',
+    desc: 'Mission runtime and CLI — plan, execute, replan under human control. The execution layer of the stack.',
+    href: 'https://apollo.archic.es',
+    external: true,
+    cta: 'apollo.archic.es →',
+  },
+  {
+    id: 'eval',
+    name: 'Eval',
+    role: 'Benchmark suite',
+    status: 'active',
+    desc: 'LoCoMo + LongMemEval harness. Recall@k, answer correctness, efficiency — reproduce commands in the repo.',
+    href: REPOS.midas + '/blob/main/BENCHMARKS.md',
+    external: true,
+    cta: 'View benchmarks →',
+  },
+  {
+    id: 'origin',
+    name: 'Origin / Atlas',
+    role: 'Control plane',
+    status: 'parked',
+    desc: 'TypeScript SDK for the Atlas memory + Origin control plane. Part of the north-star, currently parked.',
+    href: REPOS.origin,
+    external: true,
+    cta: 'View repository →',
+  },
+  {
+    id: 'nexus',
+    name: 'Nexus',
+    role: 'Inter-agent protocol',
+    status: 'planned',
+    desc: 'Planned protocol layer for agents that need to coordinate, hand off context, and share provenance.',
+    href: REPOS.archic,
+    external: true,
+    cta: 'Read the spec →',
+  },
+  {
+    id: 'forge',
+    name: 'Forge',
+    role: 'Extension surface',
+    status: 'planned',
+    desc: 'Planned surface for third-party adapters, tools and policies on top of the Archic stack.',
+    href: REPOS.archic,
+    external: true,
+    cta: 'Read the spec →',
+  },
+]
+
 function ArchicHome() {
   return (
     <>
@@ -26,7 +99,7 @@ function ArchicHome() {
         <title>Archic — Foundations for agents that remember</title>
         <meta
           name="description"
-          content="Archic is building the open, auditable foundations for personal agentic intelligence — starting with Midas, a local-first memory framework."
+          content="Archic is building the open, auditable foundations for personal agentic intelligence — memory, control and execution as separate, inspectable layers."
         />
         <link rel="canonical" href="https://archic.es/" />
         <meta property="og:title" content="Archic — Foundations for agents that remember" />
@@ -40,6 +113,11 @@ function ArchicHome() {
           url: 'https://archic.es/',
           description:
             'Open, auditable foundations for personal agentic intelligence. Memory, control and execution as separate, inspectable layers.',
+          sameAs: [
+            'https://midas.archic.es',
+            'https://apollo.archic.es',
+            'https://github.com/vornicx',
+          ],
         })}</script>
       </Helmet>
 
@@ -58,13 +136,13 @@ function ArchicHome() {
               </h1>
               <p className="max-w-xl text-lg leading-relaxed text-[color:var(--muted)] md:text-xl">
                 Archic builds the open, auditable layers personal agentic intelligence is missing —
-                memory, control and execution as separate, inspectable systems. Midas is the first
-                layer, shipping today.
+                memory, control and execution as separate, inspectable systems. Each layer lives at
+                its own subdomain. Midas is shipping today.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
-                <Link to="/midas" className="btn-primary">
-                  Explore Midas
-                </Link>
+                <a href="#products" className="btn-primary">
+                  Explore the stack
+                </a>
                 <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary">
                   GitHub
                 </a>
@@ -123,9 +201,9 @@ function ArchicHome() {
                 determinism, eval-first development, and zero hidden dependencies.
               </p>
               <p>
-                We start with the hardest piece — durable memory — and ship it as Midas: an alpha
-                Python SDK and MCP server you can install, run locally, and benchmark against the
-                same datasets the research community already uses.
+                Each layer of the stack ships as its own product, on its own subdomain, with its
+                own repo. Today that means Midas for memory and Apollo for mission execution —
+                with more layers landing as the foundation earns the right to grow.
               </p>
             </div>
           </div>
@@ -141,7 +219,47 @@ function ArchicHome() {
         </div>
       </section>
 
-      {/* Vision / Ecosystem */}
+      {/* Products hub */}
+      <section id="products" className="section-padding">
+        <div className="container-page space-y-12">
+          <div className="max-w-2xl">
+            <div className="section-label">The stack</div>
+            <h2 className="heading-serif text-[2.2rem] md:text-[2.8rem]">
+              One layer per subdomain.
+            </h2>
+            <p className="mt-5 leading-relaxed text-[color:var(--muted)]">
+              Each Archic product is shipped, versioned and documented independently. Pick the
+              layer you need — they compose, but none of them require the others.
+            </p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {PRODUCTS.map((p) => (
+              <a
+                key={p.id}
+                href={p.href}
+                target={p.external ? '_blank' : undefined}
+                rel={p.external ? 'noopener noreferrer' : undefined}
+                className="doc-card group no-underline block"
+              >
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <h4 className="!mb-0">{p.name}</h4>
+                  <StatusBadge status={p.status} />
+                </div>
+                <p className="text-[12px] uppercase tracking-[0.2em] text-[color:var(--muted-soft)] mb-3">
+                  {p.role}
+                </p>
+                <p className="text-sm leading-relaxed text-[color:var(--muted)] mb-5">{p.desc}</p>
+                <span className="text-[12px] font-bold uppercase tracking-[0.22em] text-[color:var(--gold-bright)] transition-opacity group-hover:opacity-80">
+                  {p.cta}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Vision / Layers */}
       <section id="vision" className="section-padding">
         <div className="container-page space-y-12">
           <div className="max-w-2xl">
@@ -151,8 +269,8 @@ function ArchicHome() {
             </h2>
             <p className="mt-5 leading-relaxed text-[color:var(--muted)]">
               Archic's north-star is a complete, layered ecosystem where memory, control and
-              execution are independent and inspectable. Midas is shipping. The rest is parked
-              until the foundation earns the right to grow.
+              execution are independent and inspectable. Some layers ship today. The rest is
+              parked until the foundation earns the right to grow.
             </p>
           </div>
 
@@ -186,9 +304,9 @@ function ArchicHome() {
               Install it, run the benchmark, and see what eval-first memory looks like.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/midas" className="btn-primary">
-                Go to Midas
-              </Link>
+              <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="btn-primary">
+                Go to Midas ↗
+              </a>
               <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary">
                 View on GitHub
               </a>
