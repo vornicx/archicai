@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { Link, useParams } from 'react-router-dom'
 import { COMPARISONS } from '../data/comparisons'
+import BenchmarkBars from '../components/BenchmarkBars'
 import NotFound from './NotFound'
 
 function ComparisonPage() {
@@ -106,6 +107,13 @@ function ComparisonPage() {
               </div>
             </div>
           </section>
+
+          <BenchmarkBars
+            rival={data.rival}
+            midas={data.benchmarks.midas}
+            rivalScores={data.benchmarks.rival}
+            note={data.benchmarks.note}
+          />
 
           {data.sections.map((s) => (
             <section key={s.heading} className="space-y-4 max-w-3xl">
