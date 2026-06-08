@@ -1,6 +1,37 @@
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { COMPARISON_INDEX } from '../data/comparisons'
+import { COMPARISON_INDEX, MIDAS_SCORES } from '../data/comparisons'
+
+type MetricKey = 'longmem' | 'locomo'
+const METRICS: { key: MetricKey; label: string }[] = [
+  { key: 'longmem', label: 'LongMemEval-S' },
+  { key: 'locomo', label: 'LoCoMo' },
+]
+
+function ScoreBar({ value, highlight, label }: { value: number | null | undefined; highlight?: boolean; label: string }) {
+  const has = typeof value === 'number'
+  const pct = has ? Math.max(0, Math.min(1, value!)) * 100 : 0
+  return (
+    <div className="space-y-1">
+      <div className="flex items-baseline justify-between gap-3">
+        <span className={`text-[11px] uppercase tracking-[0.18em] ${highlight ? 'text-[color:var(--gold-bright)]' : 'text-[color:var(--muted-soft)]'}`}>{label}</span>
+        <span className={`font-mono text-[12px] ${highlight ? 'text-[color:var(--gold-bright)] font-bold' : 'text-[color:var(--muted)]'}`}>{has ? value!.toFixed(2) : '—'}</span>
+      </div>
+      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-[color:var(--line)]/60">
+        {has && (
+          <div
+            className="absolute inset-y-0 left-0 rounded-full"
+            style={{
+              width: `${pct}%`,
+              background: highlight ? 'linear-gradient(90deg, var(--gold), var(--gold-bright))' : 'var(--muted-soft)',
+              opacity: highlight ? 1 : 0.55,
+            }}
+          />
+        )}
+      </div>
+    </div>
+  )
+}
 
 function ComparisonsIndex() {
   const url = 'https://archic.es/docs/comparisons'

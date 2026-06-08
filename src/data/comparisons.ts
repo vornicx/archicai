@@ -248,4 +248,5 @@ export const COMPARISON_INDEX = COMPARISONS.map((c) => ({
   rival: c.rival,
   hookline: c.hookline,
   description: c.description,
+  benchmarks: c.benchmarks,
 }))
