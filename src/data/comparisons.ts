@@ -138,8 +138,13 @@ export const COMPARISONS: Comparison[] = [
     benchmarks: {
       midas: MIDAS_SCORES,
       rival: { longmem: 0.55, locomo: null },
-      note: 'Letta / MemGPT reports vary by model + config; figure shown reflects MemGPT-class results on LongMemEval-S. No directly comparable LoCoMo number published.',
+      note: 'Letta / MemGPT reports vary by model and config; the figure shown reflects MemGPT-class results on LongMemEval-S. No directly comparable LoCoMo number published.',
     },
+    caveats: [
+      'Letta ships a full stateful agent runtime with a UI (Agent Development Environment), tool calling and memory management. Midas only owns the memory surface.',
+      'For users who do not already have an agent host, Letta is a more complete out-of-the-box product.',
+      'Letta has more permissive memory editing primitives inside the agent loop; Midas keeps editing deterministic and external.',
+    ],
   },
   {
     slug: 'midas-vs-zep',
@@ -153,10 +158,10 @@ export const COMPARISONS: Comparison[] = [
       "Zep builds memory around Graphiti, a temporal knowledge graph that an LLM keeps updated with entities, relations and validity windows. Midas keeps memory as a flat, source-traceable store on SQLite with no LLM on the write path. Two very different bets on how much structure to extract upfront.",
     tldr: {
       pickMidas:
-        'when you want local, deterministic, MCP-native memory with $0 ingest and reproducible eval.',
+        'when you want local, deterministic, MCP-native memory with $0 ingest and offline operation.',
       pickRival:
-        'when your product needs a hosted knowledge graph over chat history with entity/relationship reasoning out of the box.',
-      both: 'Both target long-horizon agents; they trade off structure-now (Zep) vs structure-on-demand (Midas).',
+        'when your product needs a hosted knowledge graph over chat history with entity / relationship reasoning out of the box — Zep is the more mature option there.',
+      both: 'On published recall@k, the two are close: Zep is roughly tied with Midas on LongMemEval-S (~0.94 vs 0.95) and competitive on LoCoMo. The real split is architecture, not score.',
     },
     rows: [
       { feature: 'Memory model', midas: 'Flat tiered store + tags + provenance', rival: 'Temporal knowledge graph (Graphiti)', why: 'How much structure is extracted at write time.' },
@@ -166,7 +171,7 @@ export const COMPARISONS: Comparison[] = [
       { feature: 'Determinism', midas: 'Same input → same memory', rival: 'LLM-graded graph updates can vary', why: 'Replay and audit.' },
       { feature: 'Delivery', midas: 'MCP-first + Python SDK', rival: 'Python/TS SDK + REST against Zep Cloud', why: 'How the host wires it in.' },
       { feature: 'Offline', midas: 'Yes', rival: 'Cloud-first; self-host available', why: 'Privacy and air-gapped use.' },
-      { feature: 'Eval', midas: 'Reproducible LongMemEval-S 0.95 · LoCoMo 0.85', rival: 'Strong published LongMemEval numbers via Graphiti', why: 'Both publish; check repro paths.' },
+      { feature: 'Eval', midas: 'LongMemEval-S 0.95 · LoCoMo 0.85 (own harness)', rival: 'LongMemEval-S ~0.94 · LoCoMo ~0.75 (Zep paper)', why: 'Both publish; Zep is roughly tied on LongMemEval.' },
     ],
     sections: [
       {
@@ -191,9 +196,14 @@ export const COMPARISONS: Comparison[] = [
     ],
     benchmarks: {
       midas: MIDAS_SCORES,
-      rival: { longmem: 0.74, locomo: 0.75 },
-      note: 'Zep / Graphiti numbers from Zep’s published LongMemEval and LoCoMo evaluations.',
+      rival: { longmem: 0.94, locomo: 0.75 },
+      note: 'Zep / Graphiti numbers from the Zep paper on LongMemEval and LoCoMo. On LongMemEval-S the two systems are effectively tied; the difference is well within noise of model and reader choice.',
     },
+    caveats: [
+      'Zep is essentially tied with Midas on LongMemEval-S (~0.94 vs 0.95). Calling Midas a clear "winner" on that dataset would be dishonest.',
+      'Zep’s knowledge-graph layer (Graphiti) gives richer entity / relationship queries out of the box. Midas does not extract entities at ingest.',
+      'Zep is a more mature managed product with auth, dashboards and scaling. Midas is alpha-stage local tooling.',
+    ],
   },
   {
     slug: 'midas-vs-langmem',
