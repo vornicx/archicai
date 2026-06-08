@@ -45,6 +45,14 @@ function Header() {
               <Link to="/midas" className="nav-link" data-active={onMidas}>
                 Midas
               </Link>
+              <a
+                href="https://apollo.archic.es"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link"
+              >
+                Apollo
+              </a>
 
               {/* Compare dropdown — always visible */}
               <div
@@ -138,6 +146,14 @@ function Header() {
                 <Link to="/midas" className="nav-link py-2" data-active={onMidas}>
                   Midas
                 </Link>
+                <a
+                  href="https://apollo.archic.es"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-link py-2"
+                >
+                  Apollo
+                </a>
                 <Link to="/docs/comparisons" className="nav-link py-2" data-active={onDocs}>
                   Compare
                 </Link>
