@@ -138,7 +138,7 @@ function ComparisonPage() {
             </div>
             <div className="flex gap-3">
               <Link to="/midas" className="btn-primary whitespace-nowrap">Go to Midas</Link>
-              <Link to="/docs/comparisons" className="btn-ghost whitespace-nowrap">All comparisons</Link>
+              <Link to="/docs/comparisons" className="nav-link whitespace-nowrap self-center">All comparisons →</Link>
             </div>
           </section>
         </div>
