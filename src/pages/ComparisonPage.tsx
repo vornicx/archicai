@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { Link, useParams } from 'react-router-dom'
 import { COMPARISONS } from '../data/comparisons'
+import BenchmarkBars from '../components/BenchmarkBars'
 import NotFound from './NotFound'
 
 function ComparisonPage() {
