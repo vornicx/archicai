@@ -44,15 +44,15 @@ function MidasPage() {
         <div className="container-page">
           <div className="editorial-panel editorial-panel--accent p-10 lg:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
-              <div className="section-label !mb-0">Comparison</div>
-              <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">Midas vs mem0</h2>
+              <div className="section-label !mb-0">Comparisons</div>
+              <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">Midas vs the field</h2>
               <p className="text-[15px] leading-relaxed text-[color:var(--muted)]">
-                Local-first, SQLite-backed, MCP-first memory compared to mem0's hosted,
-                LLM-graded approach — with a worked ingest and recall flow.
+                Head-to-head with mem0, Letta (MemGPT), Zep and LangMem — feature tables,
+                trade-offs and when to pick each one.
               </p>
             </div>
-            <Link to="/docs/comparisons/midas-vs-mem0" className="btn-primary whitespace-nowrap">
-              Read the comparison
+            <Link to="/docs/comparisons" className="btn-primary whitespace-nowrap">
+              See all comparisons
             </Link>
           </div>
         </div>
