@@ -4,7 +4,7 @@ import Footer from './components/Footer'
 import MidasBackground from './components/MidasBackground'
 import ArchicHome from './pages/ArchicHome'
 import MidasPage from './pages/MidasPage'
-import MidasVsMem0 from './pages/MidasVsMem0'
+
 import ComparisonsIndex from './pages/ComparisonsIndex'
 import ComparisonPage from './pages/ComparisonPage'
 import NotFound from './pages/NotFound'
