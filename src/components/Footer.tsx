@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, DOCS_REPO } from '../constants'
+import { CONTACT_EMAIL, GITHUB_URL, DOCS_REPO } from '../constants'
 import Logo from './Logo'
 
 function Footer() {
@@ -10,7 +10,7 @@ function Footer() {
           <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[color:var(--gold-bright)]">
             GitHub
           </a>
-          <a href="#docs" className="transition-colors hover:text-[color:var(--gold-bright)]">
+          <a href={`${DOCS_REPO}/blob/main/docs/README.md`} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[color:var(--gold-bright)]">
             Documentation
           </a>
           <a href={CONTACT_EMAIL} className="transition-colors hover:text-[color:var(--gold-bright)]">
