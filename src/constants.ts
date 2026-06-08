@@ -10,4 +10,4 @@ export const NAV_LINKS = [
   { label: 'SDK', href: '#docs' },
 ] as const
 
-export { REPOS, PACKAGES, DOCS, CODE_REPOS, LAYER_LINKS } from './data/resources'
+export { REPOS, PACKAGES, DOCS, CODE_REPOS, LAYER_LINKS, DOCS_REPO } from './data/resources'
