@@ -103,10 +103,17 @@ function useReveal() {
           }
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0, rootMargin: '0px 0px -10% 0px' }
     )
     els.forEach((el) => io.observe(el))
-    return () => io.disconnect()
+    // Safety: ensure everything becomes visible even if IO misbehaves
+    const fallback = window.setTimeout(() => {
+      els.forEach((el) => el.classList.add('visible'))
+    }, 2200)
+    return () => {
+      io.disconnect()
+      window.clearTimeout(fallback)
+    }
   }, [])
   return ref
 }
