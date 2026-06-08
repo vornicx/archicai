@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<ArchicHome />} />
           <Route path="/midas" element={<MidasPage />} />
           <Route path="/docs/comparisons" element={<ComparisonsIndex />} />
-          <Route path="/docs/comparisons/midas-vs-mem0" element={<MidasVsMem0 />} />
+          
           <Route path="/docs/comparisons/:slug" element={<ComparisonPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
