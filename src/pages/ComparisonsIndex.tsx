@@ -115,38 +115,46 @@ function ComparisonsIndex() {
                     <p className="text-[14px] leading-relaxed text-[color:var(--muted)]">{c.hookline}</p>
                   </div>
                   <div className="space-y-2 pt-3 border-t border-[color:var(--line)]">
-                    {METRICS.map((m) => (
-                      <div key={m.key} className="grid grid-cols-[90px_1fr_1fr] items-center gap-3 text-[12px]">
-                        <span className="uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">{m.label.split('-')[0]}</span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--gold-bright)] w-10">Midas</span>
-                          <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-[color:var(--line)]/60">
-                            <div
-                              className="absolute inset-y-0 left-0 rounded-full"
-                              style={{
-                                width: `${(MIDAS_SCORES[m.key] ?? 0) * 100}%`,
-                                background: 'linear-gradient(90deg, var(--gold), var(--gold-bright))',
-                              }}
-                            />
+                    {METRICS.map((m) => {
+                      const shortMetric = m.key === 'longmem' ? 'LongMem' : 'LoCoMo'
+                      const rivalShort = c.rival.split(' ')[0]
+                      return (
+                        <div key={m.key} className="space-y-1.5 text-[12px]">
+                          <div className="flex items-center justify-between">
+                            <span className="uppercase tracking-[0.18em] text-[color:var(--muted-soft)] text-[10px]">{shortMetric}</span>
                           </div>
-                          <span className="font-mono text-[11px] text-[color:var(--gold-bright)] w-8 text-right">{MIDAS_SCORES[m.key]?.toFixed(2)}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)] w-10 truncate">{c.rival.split(' ')[0]}</span>
-                          <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-[color:var(--line)]/60">
-                            {typeof c.benchmarks.rival[m.key] === 'number' && (
-                              <div
-                                className="absolute inset-y-0 left-0 rounded-full bg-[color:var(--muted-soft)]/60"
-                                style={{ width: `${(c.benchmarks.rival[m.key] as number) * 100}%` }}
-                              />
-                            )}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--gold-bright)] shrink-0">Midas</span>
+                              <div className="relative h-1.5 flex-1 min-w-0 overflow-hidden rounded-full bg-[color:var(--line)]/60">
+                                <div
+                                  className="absolute inset-y-0 left-0 rounded-full"
+                                  style={{
+                                    width: `${(MIDAS_SCORES[m.key] ?? 0) * 100}%`,
+                                    background: 'linear-gradient(90deg, var(--gold), var(--gold-bright))',
+                                  }}
+                                />
+                              </div>
+                              <span className="font-mono text-[11px] text-[color:var(--gold-bright)] shrink-0 w-9 text-right">{MIDAS_SCORES[m.key]?.toFixed(2)}</span>
+                            </div>
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)] shrink-0 max-w-[60px] truncate">{rivalShort}</span>
+                              <div className="relative h-1.5 flex-1 min-w-0 overflow-hidden rounded-full bg-[color:var(--line)]/60">
+                                {typeof c.benchmarks.rival[m.key] === 'number' && (
+                                  <div
+                                    className="absolute inset-y-0 left-0 rounded-full bg-[color:var(--muted-soft)]/60"
+                                    style={{ width: `${(c.benchmarks.rival[m.key] as number) * 100}%` }}
+                                  />
+                                )}
+                              </div>
+                              <span className="font-mono text-[11px] text-[color:var(--muted)] shrink-0 w-9 text-right">
+                                {typeof c.benchmarks.rival[m.key] === 'number' ? (c.benchmarks.rival[m.key] as number).toFixed(2) : '—'}
+                              </span>
+                            </div>
                           </div>
-                          <span className="font-mono text-[11px] text-[color:var(--muted)] w-8 text-right">
-                            {typeof c.benchmarks.rival[m.key] === 'number' ? (c.benchmarks.rival[m.key] as number).toFixed(2) : '—'}
-                          </span>
                         </div>
-                      </div>
-                    ))}
+                      )
+                    })}
                   </div>
                 </Link>
               ))}
