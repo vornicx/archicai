@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, GITHUB_URL } from '../constants'
+import { CONTACT_EMAIL, DOCS_REPO } from '../constants'
 import Logo from './Logo'
 
 function Footer() {
