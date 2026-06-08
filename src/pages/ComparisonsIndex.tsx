@@ -70,21 +70,85 @@ function ComparisonsIndex() {
             </p>
           </header>
 
-          <div className="grid gap-5 md:grid-cols-2">
-            {COMPARISON_INDEX.map((c) => (
-              <Link
-                key={c.slug}
-                to={`/docs/comparisons/${c.slug}`}
-                className="card-panel p-7 block group transition-colors hover:bg-[color:var(--line)]/30"
-              >
-                <div className="section-label !mb-2">vs {c.rival}</div>
-                <h2 className="heading-serif text-[1.4rem] md:text-[1.6rem] mb-3 group-hover:text-[color:var(--gold-bright)] transition-colors">
-                  Midas vs {c.rival}
-                </h2>
-                <p className="text-[14px] leading-relaxed text-[color:var(--muted)]">{c.hookline}</p>
-              </Link>
+          {/* Visual leaderboard */}
+          <section className="space-y-6">
+            <div className="space-y-2 max-w-3xl">
+              <div className="section-label !mb-0">Leaderboard</div>
+              <h2 className="heading-serif text-[1.8rem] md:text-[2.4rem]">Recall@k across the field.</h2>
+              <p className="text-[14px] text-[color:var(--muted-soft)]">
+                Reader-independent recall@k on two long-horizon memory datasets. Higher is better.
+                Empty bars mean no comparable number has been published.
+              </p>
+            </div>
+
+            {METRICS.map((m) => (
+              <div key={m.key} className="card-panel p-6 md:p-8 space-y-4">
+                <div className="flex items-baseline justify-between gap-3 border-b border-[color:var(--line)] pb-2">
+                  <div className="font-display text-[15px] font-medium text-[color:var(--ink)]">{m.label}</div>
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">recall@k · higher is better</div>
+                </div>
+                <ScoreBar label="Midas" value={MIDAS_SCORES[m.key]} highlight />
+                {COMPARISON_INDEX.map((c) => (
+                  <ScoreBar key={c.slug} label={c.rival} value={c.benchmarks.rival[m.key]} />
+                ))}
+              </div>
             ))}
-          </div>
+          </section>
+
+          <section className="space-y-5">
+            <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">Pick a comparison</h2>
+            <div className="grid gap-5 md:grid-cols-2">
+              {COMPARISON_INDEX.map((c) => (
+                <Link
+                  key={c.slug}
+                  to={`/docs/comparisons/${c.slug}`}
+                  className="card-panel p-7 block group transition-colors hover:bg-[color:var(--line)]/30 space-y-4"
+                >
+                  <div>
+                    <div className="section-label !mb-2">vs {c.rival}</div>
+                    <h3 className="heading-serif text-[1.4rem] md:text-[1.6rem] mb-3 group-hover:text-[color:var(--gold-bright)] transition-colors">
+                      Midas vs {c.rival}
+                    </h3>
+                    <p className="text-[14px] leading-relaxed text-[color:var(--muted)]">{c.hookline}</p>
+                  </div>
+                  <div className="space-y-2 pt-3 border-t border-[color:var(--line)]">
+                    {METRICS.map((m) => (
+                      <div key={m.key} className="grid grid-cols-[90px_1fr_1fr] items-center gap-3 text-[12px]">
+                        <span className="uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">{m.label.split('-')[0]}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--gold-bright)] w-10">Midas</span>
+                          <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-[color:var(--line)]/60">
+                            <div
+                              className="absolute inset-y-0 left-0 rounded-full"
+                              style={{
+                                width: `${(MIDAS_SCORES[m.key] ?? 0) * 100}%`,
+                                background: 'linear-gradient(90deg, var(--gold), var(--gold-bright))',
+                              }}
+                            />
+                          </div>
+                          <span className="font-mono text-[11px] text-[color:var(--gold-bright)] w-8 text-right">{MIDAS_SCORES[m.key]?.toFixed(2)}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)] w-10 truncate">{c.rival.split(' ')[0]}</span>
+                          <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-[color:var(--line)]/60">
+                            {typeof c.benchmarks.rival[m.key] === 'number' && (
+                              <div
+                                className="absolute inset-y-0 left-0 rounded-full bg-[color:var(--muted-soft)]/60"
+                                style={{ width: `${(c.benchmarks.rival[m.key] as number) * 100}%` }}
+                              />
+                            )}
+                          </div>
+                          <span className="font-mono text-[11px] text-[color:var(--muted)] w-8 text-right">
+                            {typeof c.benchmarks.rival[m.key] === 'number' ? (c.benchmarks.rival[m.key] as number).toFixed(2) : '—'}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
         </div>
       </article>
     </>
