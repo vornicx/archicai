@@ -108,6 +108,13 @@ function ComparisonPage() {
             </div>
           </section>
 
+          <BenchmarkBars
+            rival={data.rival}
+            midas={data.benchmarks.midas}
+            rivalScores={data.benchmarks.rival}
+            note={data.benchmarks.note}
+          />
+
           {data.sections.map((s) => (
             <section key={s.heading} className="space-y-4 max-w-3xl">
               <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">{s.heading}</h2>
