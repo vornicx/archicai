@@ -7,6 +7,11 @@ export type ComparisonRow = {
 
 export type ComparisonFaq = { q: string; a: string }
 
+export type BenchmarkScores = {
+  longmem?: number | null
+  locomo?: number | null
+}
+
 export type Comparison = {
   slug: string
   rival: string
@@ -19,7 +24,14 @@ export type Comparison = {
   rows: ComparisonRow[]
   sections: { heading: string; body: string[] }[]
   faq: ComparisonFaq[]
+  benchmarks: {
+    midas: BenchmarkScores
+    rival: BenchmarkScores
+    note?: string
+  }
 }
+
+export const MIDAS_SCORES: BenchmarkScores = { longmem: 0.95, locomo: 0.85 }
 
 export const COMPARISONS: Comparison[] = [
   {
