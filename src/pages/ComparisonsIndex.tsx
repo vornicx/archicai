@@ -1,21 +1,32 @@
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { COMPARISON_INDEX, MIDAS_SCORES } from '../data/comparisons'
+import { COMPARISON_INDEX, MIDAS_RECALL, MIDAS_ANSWER, BASELINE_RECALL } from '../data/comparisons'
 
-type MetricKey = 'longmem' | 'locomo'
-const METRICS: { key: MetricKey; label: string }[] = [
-  { key: 'longmem', label: 'LongMemEval-S' },
-  { key: 'locomo', label: 'LoCoMo' },
-]
-
-function ScoreBar({ value, highlight, label }: { value: number | null | undefined; highlight?: boolean; label: string }) {
+function ScoreBar({
+  value,
+  highlight,
+  muted,
+  label,
+}: {
+  value: number | null | undefined
+  highlight?: boolean
+  muted?: boolean
+  label: string
+}) {
   const has = typeof value === 'number'
   const pct = has ? Math.max(0, Math.min(1, value!)) * 100 : 0
+  const tone = highlight
+    ? 'text-[color:var(--gold-bright)]'
+    : muted
+      ? 'text-[color:var(--muted-soft)]'
+      : 'text-[color:var(--muted)]'
   return (
     <div className="space-y-1">
       <div className="flex items-baseline justify-between gap-3">
-        <span className={`text-[11px] uppercase tracking-[0.18em] ${highlight ? 'text-[color:var(--gold-bright)]' : 'text-[color:var(--muted-soft)]'}`}>{label}</span>
-        <span className={`font-mono text-[12px] ${highlight ? 'text-[color:var(--gold-bright)] font-bold' : 'text-[color:var(--muted)]'}`}>{has ? value!.toFixed(2) : '—'}</span>
+        <span className={`text-[11px] uppercase tracking-[0.18em] ${tone}`}>{label}</span>
+        <span className={`font-mono text-[12px] ${highlight ? 'font-bold' : ''} ${tone}`}>
+          {has ? value!.toFixed(2) : '—'}
+        </span>
       </div>
       <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-[color:var(--line)]/60">
         {has && (
@@ -23,8 +34,10 @@ function ScoreBar({ value, highlight, label }: { value: number | null | undefine
             className="absolute inset-y-0 left-0 rounded-full"
             style={{
               width: `${pct}%`,
-              background: highlight ? 'linear-gradient(90deg, var(--gold), var(--gold-bright))' : 'var(--muted-soft)',
-              opacity: highlight ? 1 : 0.55,
+              background: highlight
+                ? 'linear-gradient(90deg, var(--gold), var(--gold-bright))'
+                : 'var(--muted-soft)',
+              opacity: highlight ? 1 : muted ? 0.4 : 0.6,
             }}
           />
         )}
@@ -66,98 +79,108 @@ function ComparisonsIndex() {
             </h1>
             <p className="text-lg leading-relaxed text-[color:var(--muted)]">
               Honest, technical comparisons against the most-used AI agent memory frameworks today.
-              Same shape every time: feature table, architectural trade-offs, when to pick each one.
+              All Midas numbers come straight from{' '}
+              <a
+                href="https://github.com/vornicx/Midas/blob/main/BENCHMARKS.md"
+                target="_blank"
+                rel="noreferrer"
+                className="underline hover:text-[color:var(--gold-bright)]"
+              >
+                Midas/BENCHMARKS.md
+              </a>
+              ; rival numbers come from each project's own published source.
             </p>
           </header>
 
-          {/* Visual leaderboard */}
+          {/* Track 1 leaderboard — recall@k */}
           <section className="space-y-6">
             <div className="space-y-2 max-w-3xl">
-              <div className="section-label !mb-0">Leaderboard</div>
-              <h2 className="heading-serif text-[1.8rem] md:text-[2.4rem]">Recall@k across the field.</h2>
+              <div className="section-label !mb-0">Track 1 · Memory-layer recall@k</div>
+              <h2 className="heading-serif text-[1.8rem] md:text-[2.4rem]">Reader-independent retrieval.</h2>
               <p className="text-[14px] text-[color:var(--muted-soft)]">
-                Reader-independent recall@k on two long-horizon memory datasets. Higher is better.
-                Empty bars mean no comparable number has been published. Where a rival ties or
-                beats Midas, the bar shows it — we publish the field as it is, not as we wish it
-                were. Midas numbers come from a single team’s harness; treat margins under ~0.02
-                as ties.
+                Fraction of gold supporting turns retrieved. Deterministic, no LLM. Midas
+                vs a recency-window baseline on the same harness. <strong className="text-[color:var(--muted)]">N/A for
+                LLM-fact-synthesising systems</strong> (mem0, Zep, Letta) — they don't return source
+                turn IDs, so recall@k isn't computable for them.
               </p>
             </div>
 
-            {METRICS.map((m) => (
-              <div key={m.key} className="card-panel p-6 md:p-8 space-y-4">
-                <div className="flex items-baseline justify-between gap-3 border-b border-[color:var(--line)] pb-2">
-                  <div className="font-display text-[15px] font-medium text-[color:var(--ink)]">{m.label}</div>
-                  <div className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">recall@k · higher is better</div>
-                </div>
-                <ScoreBar label="Midas" value={MIDAS_SCORES[m.key]} highlight />
-                {COMPARISON_INDEX.map((c) => (
-                  <ScoreBar key={c.slug} label={c.rival} value={c.benchmarks.rival[m.key]} />
-                ))}
+            <div className="grid gap-5 md:grid-cols-2">
+              <div className="card-panel p-6 space-y-3">
+                <div className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">LongMemEval-s</div>
+                <ScoreBar label="Midas" value={MIDAS_RECALL.longmem} highlight />
+                <ScoreBar label="Recency baseline" value={BASELINE_RECALL.longmem} muted />
               </div>
-            ))}
+              <div className="card-panel p-6 space-y-3">
+                <div className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">LoCoMo</div>
+                <ScoreBar label="Midas" value={MIDAS_RECALL.locomo} highlight />
+                <ScoreBar label="Recency baseline" value={BASELINE_RECALL.locomo} muted />
+              </div>
+            </div>
+          </section>
+
+          {/* Track 2 leaderboard — answer correctness */}
+          <section className="space-y-6">
+            <div className="space-y-2 max-w-3xl">
+              <div className="section-label !mb-0">Track 2 · LongMemEval-s answer correctness</div>
+              <h2 className="heading-serif text-[1.8rem] md:text-[2.4rem]">Reader-dependent headline.</h2>
+              <p className="text-[14px] text-[color:var(--muted-soft)]">
+                Full-pipeline answer score on LongMemEval-s. Each rival runs its own reader; Midas
+                is measured at <span className="font-mono">{MIDAS_ANSWER.reader}</span> (n={MIDAS_ANSWER.n}).
+                <strong className="text-[color:var(--muted)]"> mem0 and Zep are ahead of Midas on this
+                metric today</strong> — and we publish them as such. They pay an LLM at every write to get
+                there; Midas pays $0.
+              </p>
+            </div>
+
+            <div className="card-panel p-6 md:p-8 space-y-4">
+              <ScoreBar label={`Midas · ${MIDAS_ANSWER.reader}`} value={MIDAS_ANSWER.value} highlight />
+              {COMPARISON_INDEX.map((c) =>
+                c.benchmarks.answer.rival ? (
+                  <ScoreBar
+                    key={c.slug}
+                    label={`${c.rival} · ${c.benchmarks.answer.rival.reader}`}
+                    value={c.benchmarks.answer.rival.value}
+                  />
+                ) : null,
+              )}
+            </div>
           </section>
 
           <section className="space-y-5">
             <h2 className="heading-serif text-[1.6rem] md:text-[2rem]">Pick a comparison</h2>
             <div className="grid gap-5 md:grid-cols-2">
-              {COMPARISON_INDEX.map((c) => (
-                <Link
-                  key={c.slug}
-                  to={`/docs/comparisons/${c.slug}`}
-                  className="card-panel p-7 block group transition-colors hover:bg-[color:var(--line)]/30 space-y-4"
-                >
-                  <div>
-                    <div className="section-label !mb-2">vs {c.rival}</div>
-                    <h3 className="heading-serif text-[1.4rem] md:text-[1.6rem] mb-3 group-hover:text-[color:var(--gold-bright)] transition-colors">
-                      Midas vs {c.rival}
-                    </h3>
-                    <p className="text-[14px] leading-relaxed text-[color:var(--muted)]">{c.hookline}</p>
-                  </div>
-                  <div className="space-y-2 pt-3 border-t border-[color:var(--line)]">
-                    {METRICS.map((m) => {
-                      const shortMetric = m.key === 'longmem' ? 'LongMem' : 'LoCoMo'
-                      const rivalShort = c.rival.split(' ')[0]
-                      return (
-                        <div key={m.key} className="space-y-1.5 text-[12px]">
-                          <div className="flex items-center justify-between">
-                            <span className="uppercase tracking-[0.18em] text-[color:var(--muted-soft)] text-[10px]">{shortMetric}</span>
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--gold-bright)] shrink-0">Midas</span>
-                              <div className="relative h-1.5 flex-1 min-w-0 overflow-hidden rounded-full bg-[color:var(--line)]/60">
-                                <div
-                                  className="absolute inset-y-0 left-0 rounded-full"
-                                  style={{
-                                    width: `${(MIDAS_SCORES[m.key] ?? 0) * 100}%`,
-                                    background: 'linear-gradient(90deg, var(--gold), var(--gold-bright))',
-                                  }}
-                                />
-                              </div>
-                              <span className="font-mono text-[11px] text-[color:var(--gold-bright)] shrink-0 w-9 text-right">{MIDAS_SCORES[m.key]?.toFixed(2)}</span>
-                            </div>
-                            <div className="flex items-center gap-2 min-w-0">
-                              <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)] shrink-0 max-w-[60px] truncate">{rivalShort}</span>
-                              <div className="relative h-1.5 flex-1 min-w-0 overflow-hidden rounded-full bg-[color:var(--line)]/60">
-                                {typeof c.benchmarks.rival[m.key] === 'number' && (
-                                  <div
-                                    className="absolute inset-y-0 left-0 rounded-full bg-[color:var(--muted-soft)]/60"
-                                    style={{ width: `${(c.benchmarks.rival[m.key] as number) * 100}%` }}
-                                  />
-                                )}
-                              </div>
-                              <span className="font-mono text-[11px] text-[color:var(--muted)] shrink-0 w-9 text-right">
-                                {typeof c.benchmarks.rival[m.key] === 'number' ? (c.benchmarks.rival[m.key] as number).toFixed(2) : '—'}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </Link>
-              ))}
+              {COMPARISON_INDEX.map((c) => {
+                const rivalAnswer = c.benchmarks.answer.rival
+                const midasAhead = !rivalAnswer || MIDAS_ANSWER.value >= rivalAnswer.value
+                return (
+                  <Link
+                    key={c.slug}
+                    to={`/docs/comparisons/${c.slug}`}
+                    className="card-panel p-7 block group transition-colors hover:bg-[color:var(--line)]/30 space-y-4"
+                  >
+                    <div>
+                      <div className="section-label !mb-2">vs {c.rival}</div>
+                      <h3 className="heading-serif text-[1.4rem] md:text-[1.6rem] mb-3 group-hover:text-[color:var(--gold-bright)] transition-colors">
+                        Midas vs {c.rival}
+                      </h3>
+                      <p className="text-[14px] leading-relaxed text-[color:var(--muted)]">{c.hookline}</p>
+                    </div>
+                    <div className="pt-3 border-t border-[color:var(--line)] space-y-2 text-[12px]">
+                      <div className="flex items-center justify-between">
+                        <span className="uppercase tracking-[0.18em] text-[10px] text-[color:var(--muted-soft)]">LongMemEval answer</span>
+                        <span className={`font-mono ${midasAhead ? 'text-[color:var(--gold-bright)]' : 'text-[color:var(--muted)]'}`}>
+                          Midas {MIDAS_ANSWER.value.toFixed(2)} · {c.rival.split(' ')[0]}{' '}
+                          {rivalAnswer ? rivalAnswer.value.toFixed(2) : '—'}
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-[color:var(--muted-soft)] italic">
+                        {midasAhead ? 'Midas ahead or N/A' : `${c.rival.split(' ')[0]} ahead on this headline`}
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           </section>
         </div>
