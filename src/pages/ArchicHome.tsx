@@ -39,53 +39,6 @@ const PRODUCTS: Product[] = [
     external: true,
     cta: 'APOLLO.ARCHIC.ES →',
   },
-  {
-    id: 'eval',
-    num: '03',
-    name: 'EVAL',
-    role: 'Benchmark Suite',
-    status: 'active',
-    desc: 'LoCoMo + LongMemEval harness. Recall@k, answer correctness, efficiency — reproduce commands in the repo.',
-    href: REPOS.midas + '/blob/main/BENCHMARKS.md',
-    external: true,
-    cta: 'VIEW_BENCHMARKS →',
-  },
-  {
-    id: 'origin',
-    num: '04',
-    name: 'ORIGIN',
-    role: 'Control Plane',
-    status: 'parked',
-    desc: 'TypeScript SDK for the Atlas memory + Origin control plane. Part of the north-star, currently parked.',
-    href: REPOS.origin,
-    external: true,
-    cta: 'VIEW_REPOSITORY →',
-    dim: true,
-  },
-  {
-    id: 'nexus',
-    num: '05',
-    name: 'NEXUS',
-    role: 'Inter-agent Protocol',
-    status: 'planned',
-    desc: 'Planned protocol layer for agents that need to coordinate, hand off context and share provenance.',
-    href: REPOS.archic,
-    external: true,
-    cta: 'READ_THE_SPEC →',
-    dim: true,
-  },
-  {
-    id: 'forge',
-    num: '06',
-    name: 'FORGE',
-    role: 'Extension Surface',
-    status: 'planned',
-    desc: 'Planned surface for third-party adapters, tools and policies on top of the Archic stack.',
-    href: REPOS.archic,
-    external: true,
-    cta: 'READ_THE_SPEC →',
-    dim: true,
-  },
 ]
 
 function useReveal() {
@@ -254,7 +207,7 @@ function ArchicHome() {
               <div className="flex items-center gap-3 mb-8">
                 <span className="section-num">§02 / THE STACK</span>
                 <span className="flex-1 h-px bg-[color:var(--line-strong)]" />
-                <span className="tag-mono">[ 6 LAYERS · 1 SUBDOMAIN EACH ]</span>
+                <span className="tag-mono">[ 2 LAYERS · 1 SUBDOMAIN EACH ]</span>
               </div>
               <h2 className="display text-[2rem] md:text-[2.8rem] max-w-2xl mb-4">
                 One layer per subdomain.
@@ -264,41 +217,31 @@ function ArchicHome() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-[color:var(--line)]">
-              {PRODUCTS.map((p, i) => {
-                const lg = i % 3
-                const md = i % 2
-                const borderClasses = [
-                  'border-b border-[color:var(--line)]',
-                  md === 0 ? 'md:border-r' : '',
-                  lg !== 2 ? 'lg:border-r' : '',
-                  // ensure md:border-r doesn't override lg incorrectly on last col
-                ].join(' ')
-                return (
-                  <a
-                    key={p.id}
-                    href={p.href}
-                    target={p.external ? '_blank' : undefined}
-                    rel={p.external ? 'noopener noreferrer' : undefined}
-                    className={`product-cell reveal ${p.dim ? 'is-dim' : ''} ${borderClasses}`}
-                  >
-                    <div className="flex justify-between items-start mb-12 gap-3">
-                      <div>
-                        <div className="tag-mono mb-2">[ {p.num} ]</div>
-                        <h3>{p.name}</h3>
-                        <div className="tag-mono mt-2 text-[color:var(--muted-soft)]">{p.role}</div>
-                      </div>
-                      <StatusBadge status={p.status} />
+            <div className="grid grid-cols-1 md:grid-cols-2 border-t border-[color:var(--line)]">
+              {PRODUCTS.map((p, i) => (
+                <a
+                  key={p.id}
+                  href={p.href}
+                  target={p.external ? '_blank' : undefined}
+                  rel={p.external ? 'noopener noreferrer' : undefined}
+                  className={`product-cell reveal ${i === 0 ? 'md:border-r' : ''} border-b border-[color:var(--line)]`}
+                >
+                  <div className="flex justify-between items-start mb-12 gap-3">
+                    <div>
+                      <div className="tag-mono mb-2">[ {p.num} ]</div>
+                      <h3>{p.name}</h3>
+                      <div className="tag-mono mt-2 text-[color:var(--muted-soft)]">{p.role}</div>
                     </div>
-                    <p className="text-[12.5px] leading-relaxed text-[color:var(--muted)] min-h-[72px] mb-8">
-                      {p.desc}
-                    </p>
-                    <span className="tag-gold inline-block">
-                      {p.cta}
-                    </span>
-                  </a>
-                )
-              })}
+                    <StatusBadge status={p.status} />
+                  </div>
+                  <p className="text-[12.5px] leading-relaxed text-[color:var(--muted)] min-h-[72px] mb-8">
+                    {p.desc}
+                  </p>
+                  <span className="tag-gold inline-block">
+                    {p.cta}
+                  </span>
+                </a>
+              ))}
             </div>
           </section>
 
@@ -324,12 +267,8 @@ function ArchicHome() {
               <div className="md:col-span-5 reveal">
                 <div className="border border-[color:var(--line)] divide-y divide-[color:var(--line)]">
                   {[
-                    { layer: 'MEMORY', name: 'Midas / Atlas', status: 'LIVE' },
+                    { layer: 'MEMORY', name: 'Midas', status: 'LIVE' },
                     { layer: 'EXECUTION', name: 'Apollo', status: 'EARLY' },
-                    { layer: 'EVALUATION', name: 'Eval', status: 'LIVE' },
-                    { layer: 'CONTROL', name: 'Origin', status: 'PARKED' },
-                    { layer: 'PROTOCOL', name: 'Nexus', status: 'PLANNED' },
-                    { layer: 'EXTENSIONS', name: 'Forge', status: 'PLANNED' },
                   ].map((row) => (
                     <div key={row.layer} className="flex items-center justify-between px-5 py-4">
                       <div>
