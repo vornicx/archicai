@@ -321,10 +321,10 @@
   .product-cell.is-dim:hover { opacity: 1; }
 
   .product-cell h3 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
     font-weight: 600;
-    font-size: 1.5rem;
-    letter-spacing: -0.04em;
+    font-size: 1.75rem;
+    letter-spacing: -0.035em;
     color: var(--ink-strong);
     transition: color 0.2s ease;
     margin: 0;
