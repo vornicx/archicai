@@ -26,14 +26,13 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 14px;
-    line-height: 1.55;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-feature-settings: 'ss01', 'ss02';
   }
 
   ::selection {
