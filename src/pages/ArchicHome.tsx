@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useEffect, useRef } from 'react'
-import { GITHUB_URL, REPOS } from '../constants'
+import { GITHUB_URL } from '../constants'
 import { StatusBadge } from '../components/StatusBadge'
 
 type Product = {
