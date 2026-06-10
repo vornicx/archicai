@@ -68,6 +68,24 @@
     border-left: 1px solid var(--line);
     border-right: 1px solid var(--line);
   }
+  /* CAD-style corner registration marks on outer frame */
+  .blueprint-frame::before,
+  .blueprint-frame::after {
+    content: '';
+    position: absolute;
+    width: 10px; height: 10px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .blueprint-frame::before {
+    top: -1px; left: -1px;
+    border-right: none; border-bottom: none;
+  }
+  .blueprint-frame::after {
+    bottom: -1px; right: -1px;
+    border-left: none; border-top: none;
+  }
 
   /* ---------- GRID BACKGROUND ---------- */
   .grid-bg {
