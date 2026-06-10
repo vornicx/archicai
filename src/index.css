@@ -372,15 +372,16 @@
       var(--bg);
   }
   .manifesto-mark {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 240px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 280px;
     line-height: 0.8;
     color: var(--gold);
-    opacity: 0.06;
+    opacity: 0.08;
     position: absolute;
-    top: 5%;
-    right: -2%;
-    font-weight: 500;
+    top: 4%;
+    right: -1%;
+    font-weight: 700;
+    letter-spacing: -0.05em;
     pointer-events: none;
     user-select: none;
   }
