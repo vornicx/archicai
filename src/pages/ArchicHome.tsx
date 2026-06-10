@@ -237,7 +237,7 @@ function ArchicHome() {
                   <p className="text-[12.5px] leading-relaxed text-[color:var(--muted)] min-h-[72px] mb-8">
                     {p.desc}
                   </p>
-                  <span className="tag-gold inline-block">
+                  <span className="tag-gold cell-cta">
                     {p.cta}
                   </span>
                 </a>
