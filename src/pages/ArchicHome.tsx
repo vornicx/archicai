@@ -168,7 +168,7 @@ function ArchicHome() {
             <div className="px-8 md:px-16 relative">
               <div className="flex items-center gap-3 mb-12 reveal">
                 <span className="section-num">§01 / MANIFESTO</span>
-                <span className="flex-1 h-px bg-[color:var(--line-strong)]" />
+                <span className="section-rule flex-1 h-px bg-[color:var(--line-strong)]" />
                 <span className="tag-mono">[ READ_TIME: 90S ]</span>
               </div>
 
@@ -179,19 +179,19 @@ function ArchicHome() {
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-[color:var(--line)]">
-                <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[color:var(--line)] reveal">
+                <div className="manifesto-pillar p-8 md:p-10 border-b md:border-b-0 md:border-r border-[color:var(--line)] reveal reveal-delay-1">
                   <div className="tag-gold mb-5">[ 01 / MEMORY ]</div>
                   <p className="text-[13px] leading-relaxed text-[color:var(--muted)]">
                     Memory is a <span className="text-[color:var(--ink-strong)]">systems problem</span>, not an embeddings one. Indexing vectors is not remembering. Archic implements traceable graphs that let agents consolidate experience and discard noise on their own.
                   </p>
                 </div>
-                <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[color:var(--line)] reveal">
+                <div className="manifesto-pillar p-8 md:p-10 border-b md:border-b-0 md:border-r border-[color:var(--line)] reveal reveal-delay-2">
                   <div className="tag-gold mb-5">[ 02 / DETERMINISM ]</div>
                   <p className="text-[13px] leading-relaxed text-[color:var(--muted)]">
                     If it isn't deterministic, it isn't <span className="text-[color:var(--ink-strong)]">infrastructure</span>. Every iteration ships behind an eval harness that measures real Recall@k under adversarial loss, not happy paths.
                   </p>
                 </div>
-                <div className="p-8 md:p-10 reveal">
+                <div className="manifesto-pillar p-8 md:p-10 reveal reveal-delay-3">
                   <div className="tag-gold mb-5">[ 03 / OPEN ]</div>
                   <p className="text-[13px] leading-relaxed text-[color:var(--muted)]">
                     Open engineering over <span className="text-[color:var(--ink-strong)]">marketing promises</span>. We publish caveats with the same weight as wins. Reproducible commands, honest leaderboards, zero hidden dependencies.
