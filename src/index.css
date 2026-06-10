@@ -388,13 +388,13 @@
   /* ---------- METRIC BLOCK ---------- */
   .metric {
     border-left: 1px solid var(--gold);
-    padding-left: 14px;
+    padding: 4px 0 4px 14px;
   }
   .metric-value {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 600;
-    color: var(--ink-strong);
+    color: var(--gold);
     letter-spacing: -0.03em;
     line-height: 1;
   }
@@ -405,7 +405,7 @@
     text-transform: uppercase;
     letter-spacing: 0.22em;
     color: var(--muted-soft);
-    margin-top: 6px;
+    margin-top: 10px;
   }
 
   /* ---------- SECTION HEADER ---------- */
