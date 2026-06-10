@@ -103,7 +103,7 @@ function ArchicHome() {
       </Helmet>
 
       <div className="container-page" ref={ref}>
-        <div className="blueprint-frame">
+        <div className="blueprint-frame frame-corners">
           {/* HERO / MANIFESTO ID */}
           <section id="top" className="grid grid-cols-1 md:grid-cols-12 border-b border-[color:var(--line)]">
             <div className="md:col-span-7 p-8 md:p-16 flex flex-col justify-center border-b md:border-b-0 md:border-r border-[color:var(--line)]">
@@ -237,7 +237,7 @@ function ArchicHome() {
                   <p className="text-[12.5px] leading-relaxed text-[color:var(--muted)] min-h-[72px] mb-8">
                     {p.desc}
                   </p>
-                  <span className="tag-gold inline-block">
+                  <span className="tag-gold cell-cta">
                     {p.cta}
                   </span>
                 </a>
