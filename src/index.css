@@ -319,16 +319,16 @@
   /* ---------- PRODUCT CARD ---------- */
   .product-cell {
     position: relative;
-    padding: 36px 28px;
+    padding: 44px 36px;
     background: transparent;
-    transition: background 0.2s ease;
+    transition: background 0.25s ease;
     text-decoration: none;
     color: inherit;
     display: block;
     overflow: hidden;
   }
   .product-cell:hover {
-    background: var(--surface);
+    background: linear-gradient(180deg, rgba(212,175,55,0.04), transparent 60%), var(--surface);
   }
   .product-cell::before {
     content: '';
@@ -336,7 +336,7 @@
     left: 0; top: 0;
     width: 3px; height: 0;
     background: var(--gold);
-    transition: height 0.3s ease;
+    transition: height 0.35s ease;
   }
   .product-cell:hover::before { height: 100%; }
   .product-cell.is-dim { opacity: 0.55; }
@@ -344,14 +344,22 @@
 
   .product-cell h3 {
     font-family: 'Inter', system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 1.75rem;
-    letter-spacing: -0.035em;
+    font-weight: 700;
+    font-size: 2.4rem;
+    letter-spacing: -0.04em;
     color: var(--ink-strong);
     transition: color 0.2s ease;
     margin: 0;
+    line-height: 1;
   }
   .product-cell:hover h3 { color: var(--gold); }
+  .product-cell .cell-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.25s ease, color 0.2s ease;
+  }
+  .product-cell:hover .cell-cta { gap: 14px; color: var(--gold-bright); }
 
   /* ---------- MANIFESTO ---------- */
   .manifesto-section {
