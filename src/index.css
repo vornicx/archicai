@@ -658,8 +658,8 @@
   100% { transform: translateY(50%); }
 }
 @keyframes manifestoDrift {
-  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.08; }
-  50%      { transform: translate3d(-10px, 6px, 0); opacity: 0.11; }
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.14; }
+  50%      { transform: translate3d(-10px, 6px, 0); opacity: 0.18; }
 }
 
 @media (max-width: 768px) {
