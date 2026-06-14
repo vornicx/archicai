@@ -255,8 +255,9 @@
     border: 1px solid var(--gold);
   }
   .btn-primary:hover {
-    background: #fff;
-    border-color: #fff;
+    background: var(--ink-strong);
+    border-color: var(--ink-strong);
+    color: var(--bg);
   }
   .btn-secondary {
     background: transparent;
