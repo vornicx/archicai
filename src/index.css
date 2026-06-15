@@ -26,7 +26,7 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-size: 15px;
     line-height: 1.6;
     min-height: 100vh;
@@ -115,7 +115,7 @@
 
   /* ---------- TYPOGRAPHY ---------- */
   .tag-mono {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 10px;
     font-weight: 500;
     text-transform: uppercase;
@@ -124,7 +124,7 @@
   }
 
   .tag-gold {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
@@ -133,7 +133,7 @@
   }
 
   .display {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
     letter-spacing: -0.028em;
     line-height: 1.04;
@@ -142,7 +142,7 @@
   }
 
   .display-xl {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-weight: 700;
     letter-spacing: -0.035em;
     line-height: 0.98;
@@ -186,7 +186,7 @@
   }
 
   .nav-link {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
@@ -222,7 +222,7 @@
   }
   .archic-wordmark {
     color: var(--ink-strong);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
     letter-spacing: 0.32em;
     text-transform: uppercase;
@@ -239,7 +239,7 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 14px 26px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.16em;
@@ -279,7 +279,7 @@
 
   /* ---------- STATUS BADGE ---------- */
   .badge {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 9px;
     font-weight: 600;
     letter-spacing: 0.22em;
@@ -344,7 +344,7 @@
   .product-cell.is-dim:hover { opacity: 1; }
 
   .product-cell h3 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-weight: 700;
     font-size: 2.4rem;
     letter-spacing: -0.04em;
@@ -374,7 +374,7 @@
     overflow: hidden;
   }
   .manifesto-mark {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-size: 280px;
     line-height: 0.8;
     color: var(--gold);
@@ -429,7 +429,7 @@
     padding: 4px 0 4px 14px;
   }
   .metric-value {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 32px;
     font-weight: 600;
     color: var(--gold);
@@ -437,7 +437,7 @@
     line-height: 1;
   }
   .metric-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 9px;
     font-weight: 500;
     text-transform: uppercase;
@@ -448,7 +448,7 @@
 
   /* ---------- SECTION HEADER ---------- */
   .section-num {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.22em;
@@ -494,7 +494,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.28em;
@@ -525,20 +525,20 @@
     padding-left: 12px;
   }
   .chapter-index-num {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.22em;
     color: var(--gold);
   }
   .chapter-index-title {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
     font-size: 1.05rem;
     letter-spacing: -0.01em;
     color: var(--ink-strong);
   }
   .chapter-index-meta {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -547,7 +547,7 @@
 
   .pull-quote {
     position: relative;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
     font-size: clamp(1.6rem, 3.4vw, 2.8rem);
     line-height: 1.15;
@@ -579,7 +579,7 @@
     .ba-cell + .ba-cell { border-top: none; border-left: 1px solid var(--line); }
   }
   .ba-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -588,7 +588,7 @@
   .ba-before .ba-label { color: var(--muted-soft); }
   .ba-after  .ba-label { color: var(--gold); }
   .ba-statement {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
     font-size: 1.35rem;
     line-height: 1.3;
@@ -627,7 +627,7 @@
   .story-step.future::before { opacity: 0.4; }
 
   .drop-cap::first-letter {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-weight: 700;
     font-size: 4.2em;
     float: left;
