@@ -4,21 +4,21 @@
 
 @layer base {
   :root {
-    --bg: #f3ede1;
-    --bg-soft: #eae5da;
-    --surface: #e4dac8;
-    --surface-2: #dbd0ba;
-    --ink: #2a2622;
-    --ink-strong: #14110d;
-    --muted: #635849;
-    --muted-soft: #857a68;
-    --muted-deep: #a89e86;
-    --line: #d0c4aa;
-    --line-strong: #b5a789;
-    --gold: #9e7d2b;
-    --gold-bright: #c9a84c;
-    --gold-deep: #70551a;
-    --grid-line: rgba(60, 45, 20, 0.07);
+    --bg: #0a0a0a;
+    --bg-soft: #0f0f10;
+    --surface: #141415;
+    --surface-2: #1b1b1d;
+    --ink: #e8e6e1;
+    --ink-strong: #f5f3ee;
+    --muted: #9a958a;
+    --muted-soft: #6f6a60;
+    --muted-deep: #4a463e;
+    --line: #1f1f21;
+    --line-strong: #2b2b2e;
+    --gold: #d4af37;
+    --gold-bright: #e8c659;
+    --gold-deep: #8a6f1f;
+    --grid-line: rgba(212, 175, 55, 0.045);
   }
 
   html { scroll-behavior: smooth; }
@@ -108,8 +108,8 @@
       0deg,
       transparent 0,
       transparent 3px,
-      rgba(60,45,20,0.035) 3px,
-      rgba(60,45,20,0.035) 4px
+      rgba(255,255,255,0.012) 3px,
+      rgba(255,255,255,0.012) 4px
     );
   }
 
@@ -172,7 +172,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(243, 237, 225, 0.82);
+    background: rgba(10, 10, 10, 0.78);
     backdrop-filter: blur(14px) saturate(1.1);
     -webkit-backdrop-filter: blur(14px) saturate(1.1);
     border-bottom: 1px solid var(--line);
