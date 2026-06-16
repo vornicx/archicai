@@ -84,23 +84,27 @@ function ArchicHome() {
   return (
     <>
       <Helmet>
-        <title>Archic — Foundations for agents that remember</title>
+        <title>Archic — Foundations for Agents That Remember</title>
         <meta
           name="description"
-          content="Archic builds the open, auditable foundations for personal agentic intelligence — memory, control and execution as separate, inspectable layers."
+          content="Archic builds open, auditable layers for personal agentic intelligence: memory, control and execution as separate, inspectable systems."
         />
         <link rel="canonical" href="https://archic.es/" />
-        <meta property="og:title" content="Archic — Foundations for agents that remember" />
-        <meta property="og:description" content="Open, auditable foundations for personal agentic intelligence. Memory, control and execution as separate, inspectable layers." />
+        <meta property="og:title" content="Archic — Foundations for Agents That Remember" />
+        <meta property="og:description" content="Open, auditable layers for personal agentic intelligence: memory, control and execution as separate, inspectable systems." />
         <meta property="og:url" content="https://archic.es/" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Archic" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Archic — Foundations for Agents That Remember" />
+        <meta name="twitter:description" content="Memory, control and execution as inspectable systems for personal agentic intelligence." />
         <script type="application/ld+json">{JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Organization',
           name: 'Archic',
           url: 'https://archic.es/',
           description:
-            'Open, auditable foundations for personal agentic intelligence. Memory, control and execution as separate, inspectable layers.',
+            'Open, auditable layers for personal agentic intelligence: memory, control and execution as separate, inspectable systems.',
           sameAs: ['https://midas.archic.es', 'https://apollo.archic.es', 'https://github.com/vornicx'],
         })}</script>
       </Helmet>
@@ -109,30 +113,33 @@ function ArchicHome() {
         <div className="blueprint-frame frame-corners">
 
           {/* CH.00 — PROLOGUE / HERO */}
-          <section id="top" className="grid grid-cols-1 md:grid-cols-12 border-b border-[color:var(--line)]">
+          <section id="top" aria-labelledby="hero-title" className="grid grid-cols-1 md:grid-cols-12 border-b border-[color:var(--line)]">
             <div className="md:col-span-7 p-8 md:p-16 flex flex-col justify-center border-b md:border-b-0 md:border-r border-[color:var(--line)]">
-              <div className="chapter-tag mb-6 reveal">CH.00 / PROLOGUE</div>
-              <div className="tag-gold mb-8 flex items-center gap-2 reveal">
+              <div className="chapter-tag mb-6 reveal" aria-hidden="true">CH.00 / PROLOGUE</div>
+              <div className="tag-gold mb-8 flex items-center gap-2 reveal" aria-hidden="true">
                 <span className="w-2 h-2 bg-[color:var(--gold)] rounded-full animate-pulse" />
                 SYSTEM_STATUS: ACTIVE
               </div>
-              <h1 className="display-xl text-[2.5rem] sm:text-[3.4rem] md:text-[4.4rem] mb-8 reveal">
+              <h1 id="hero-title" className="display-xl text-[2.5rem] sm:text-[3.4rem] md:text-[4.4rem] mb-8 reveal">
                 Foundations for<br />
                 agents that <span className="gold-mark accent-underline">remember.</span>
               </h1>
               <p className="text-[13px] md:text-[14px] text-[color:var(--muted)] max-w-xl leading-relaxed uppercase tracking-[0.04em] reveal">
-                This is not a product page. It's a six-chapter argument for why long-horizon intelligence needs an open, inspectable substrate — and the layers we're shipping to build it.
+                Open, auditable memory, control and execution layers for long-horizon agentic intelligence. A six-chapter argument for why agents need an inspectable substrate — and the layers we're shipping to build it.
               </p>
               <div className="mt-12 flex flex-wrap gap-3 reveal">
-                <a href="#problem" className="btn-primary">Begin reading ↓</a>
-                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                  GitHub_Repository
+                <a href="#products" className="btn-primary">Explore the stack ↓</a>
+                <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="btn-secondary" aria-label="Start with Midas — open Midas site">
+                  Start with Midas ↗
+                </a>
+                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost" aria-label="View Archic repositories on GitHub">
+                  View on GitHub ↗
                 </a>
               </div>
             </div>
 
             <div className="md:col-span-5 p-8 md:p-10 flex flex-col justify-between bg-[color:var(--bg-soft)] gap-10">
-              <div className="space-y-1 text-[10px] text-[color:var(--muted-deep)] uppercase tracking-[0.22em] reveal">
+              <div className="space-y-1 text-[10px] text-[color:var(--muted-deep)] uppercase tracking-[0.22em] reveal" aria-hidden="true">
                 <div>ID: ARCH_HUB_001</div>
                 <div>BUILD: 2026.06.08</div>
                 <div>COORDS: 40.4168° N · 3.7038° W</div>
@@ -162,16 +169,16 @@ function ArchicHome() {
           </section>
 
           {/* CH.01 — THE PROBLEM */}
-          <section id="problem" className="px-8 md:px-16 py-20 md:py-28 border-b border-[color:var(--line)]">
+          <section id="problem" aria-labelledby="problem-title" className="px-8 md:px-16 py-20 md:py-28 border-b border-[color:var(--line)]">
             <div className="flex items-center gap-3 mb-10 reveal">
-              <span className="chapter-tag">CH.01 / THE PROBLEM</span>
-              <span className="section-rule flex-1 h-px bg-[color:var(--line-strong)]" />
-              <span className="tag-mono">[ READ: 45S ]</span>
+              <span className="chapter-tag" aria-hidden="true">CH.01 / THE PROBLEM</span>
+              <span className="section-rule flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
+              <span className="tag-mono" aria-hidden="true">[ READ: 45S ]</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
               <div className="md:col-span-7 reveal">
-                <p className="display text-[1.8rem] md:text-[2.4rem] leading-[1.15] mb-8">
+                <p id="problem-title" className="display text-[1.8rem] md:text-[2.4rem] leading-[1.15] mb-8">
                   Today's agents can <span className="gold-mark">plan, call tools, write code</span> — and then forget everything the moment a context window ends.
                 </p>
                 <p className="text-[14px] leading-relaxed text-[color:var(--muted)] drop-cap">
@@ -201,19 +208,19 @@ function ArchicHome() {
           </section>
 
           {/* CH.02 — THE THESIS / MANIFESTO */}
-          <section id="manifesto" className="manifesto-section">
+          <section id="manifesto" aria-labelledby="manifesto-title" className="manifesto-section">
             <span className="manifesto-mark" aria-hidden="true">§02</span>
             <div className="px-8 md:px-16 relative">
               <div className="flex items-center gap-3 mb-12 reveal">
-                <span className="chapter-tag">CH.02 / THE THESIS</span>
-                <span className="section-rule flex-1 h-px bg-[color:var(--line-strong)]" />
-                <span className="tag-mono">[ READ: 90S ]</span>
+                <span className="chapter-tag" aria-hidden="true">CH.02 / THE THESIS</span>
+                <span className="section-rule flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
+                <span className="tag-mono" aria-hidden="true">[ READ: 90S ]</span>
               </div>
 
-              <p className="display text-[1.6rem] md:text-[2.4rem] lg:text-[3rem] max-w-5xl leading-[1.15] mb-16 reveal">
+              <h2 id="manifesto-title" className="display text-[1.6rem] md:text-[2.4rem] lg:text-[3rem] max-w-5xl leading-[1.15] mb-16 reveal">
                 If amnesia is the disease, <span className="gold-mark">infrastructure is the cure.</span>
                 <span className="text-[color:var(--muted-soft)]"> Three commitments we make before writing a single line of agent code.</span>
-              </p>
+              </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-[color:var(--line)]">
                 <div className="manifesto-pillar p-8 md:p-10 border-b md:border-b-0 md:border-r border-[color:var(--line)] reveal reveal-delay-1">
@@ -239,14 +246,14 @@ function ArchicHome() {
           </section>
 
           {/* CH.03 — THE STACK */}
-          <section id="products" className="border-b border-[color:var(--line)]">
+          <section id="products" aria-labelledby="stack-title" className="border-b border-[color:var(--line)]">
             <div className="px-8 md:px-16 pt-16 md:pt-20 pb-10 reveal">
               <div className="flex items-center gap-3 mb-10">
-                <span className="chapter-tag">CH.03 / THE STACK</span>
-                <span className="flex-1 h-px bg-[color:var(--line-strong)]" />
-                <span className="tag-mono">[ 2 LAYERS · SHIPPING ]</span>
+                <span className="chapter-tag" aria-hidden="true">CH.03 / THE STACK</span>
+                <span className="flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
+                <span className="tag-mono" aria-hidden="true">[ 2 LAYERS · SHIPPING ]</span>
               </div>
-              <h2 className="display text-[2rem] md:text-[2.8rem] max-w-3xl mb-6 leading-[1.05]">
+              <h2 id="stack-title" className="display text-[2rem] md:text-[2.8rem] max-w-3xl mb-6 leading-[1.05]">
                 First we built the memory.<br />
                 <span className="gold-mark">Now we're building the runtime that uses it.</span>
               </h2>
@@ -282,16 +289,16 @@ function ArchicHome() {
           </section>
 
           {/* CH.04 — THE HORIZON */}
-          <section id="vision" className="px-8 md:px-16 py-20 md:py-28 border-b border-[color:var(--line)]">
+          <section id="vision" aria-labelledby="vision-title" className="px-8 md:px-16 py-20 md:py-28 border-b border-[color:var(--line)]">
             <div className="flex items-center gap-3 mb-10 reveal">
-              <span className="chapter-tag">CH.04 / THE HORIZON</span>
-              <span className="flex-1 h-px bg-[color:var(--line-strong)]" />
-              <span className="tag-mono">[ NORTH_STAR ]</span>
+              <span className="chapter-tag" aria-hidden="true">CH.04 / THE HORIZON</span>
+              <span className="flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
+              <span className="tag-mono" aria-hidden="true">[ NORTH_STAR ]</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               <div className="md:col-span-6 reveal">
-                <h2 className="display text-[2rem] md:text-[2.8rem] mb-8 leading-[1.05]">
+                <h2 id="vision-title" className="display text-[2rem] md:text-[2.8rem] mb-8 leading-[1.05]">
                   A layered stack for<br />
                   <span className="gold-mark">personal agentic intelligence.</span>
                 </h2>
@@ -326,14 +333,14 @@ function ArchicHome() {
           </section>
 
           {/* CH.05 — THE INVITATION */}
-          <section id="cta" className="px-8 md:px-16 py-20 md:py-28">
+          <section id="cta" aria-labelledby="cta-title" className="px-8 md:px-16 py-20 md:py-28">
             <div className="flex items-center gap-3 mb-10 reveal">
-              <span className="chapter-tag">CH.05 / THE INVITATION</span>
-              <span className="flex-1 h-px bg-[color:var(--line-strong)]" />
-              <span className="tag-mono">[ SHIPPING_NOW ]</span>
+              <span className="chapter-tag" aria-hidden="true">CH.05 / THE INVITATION</span>
+              <span className="flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
+              <span className="tag-mono" aria-hidden="true">[ SHIPPING_NOW ]</span>
             </div>
             <div className="max-w-3xl reveal">
-              <h2 className="display text-[2.2rem] md:text-[3.2rem] mb-6 leading-[1.05]">
+              <h2 id="cta-title" className="display text-[2.2rem] md:text-[3.2rem] mb-6 leading-[1.05]">
                 The story doesn't end here.<br />
                 <span className="gold-mark">It starts with Midas.</span>
               </h2>
@@ -341,11 +348,11 @@ function ArchicHome() {
                 Install the SDK, run the benchmark, read the eval harness. See what eval-first memory actually looks like — then help us write the next chapter.
               </p>
               <div className="flex flex-wrap gap-3">
-                <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Go to Midas ↗
+                <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="btn-primary" aria-label="Install Midas — open Midas site">
+                  Install Midas ↗
                 </a>
-                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                  View on GitHub
+                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary" aria-label="View Archic repositories on GitHub">
+                  View on GitHub ↗
                 </a>
               </div>
             </div>
