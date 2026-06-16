@@ -42,6 +42,90 @@
 }
 
 @layer components {
+  /* ---------- A11Y: SKIP LINK ---------- */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 12px;
+    z-index: 100;
+    padding: 10px 14px;
+    background: var(--gold);
+    color: #000;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: 12px; }
+
+  /* ---------- ECOSYSTEM BAR ---------- */
+  .ecosystem-bar {
+    position: relative;
+    z-index: 51;
+    background: #060606;
+    border-bottom: 1px solid var(--line);
+    font-size: 11px;
+  }
+  .ecosystem-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 0;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .ecosystem-bar-label {
+    color: var(--muted-deep);
+    margin-right: 4px;
+  }
+  .ecosystem-link {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    font-weight: 500;
+  }
+  .ecosystem-link:hover { color: var(--gold); }
+  .ecosystem-link.is-current {
+    color: var(--ink-strong);
+    position: relative;
+  }
+  .ecosystem-link.is-current::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    bottom: -10px;
+    height: 2px;
+    background: var(--gold);
+  }
+  .ecosystem-sep {
+    color: var(--muted-deep);
+  }
+  .ecosystem-bar-status {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted-deep);
+    font-size: 10px;
+  }
+  .ecosystem-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 999px;
+    box-shadow: 0 0 6px var(--gold);
+    animation: pulseDot 2s ease-in-out infinite;
+  }
+  @media (max-width: 640px) {
+    .ecosystem-bar-label,
+    .ecosystem-bar-status { display: none; }
+    .ecosystem-bar-inner { gap: 10px; justify-content: center; }
+  }
+
+
   /* ---------- LAYOUT ---------- */
   .container-page {
     width: 100%;
