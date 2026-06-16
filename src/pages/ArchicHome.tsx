@@ -84,23 +84,27 @@ function ArchicHome() {
   return (
     <>
       <Helmet>
-        <title>Archic — Foundations for agents that remember</title>
+        <title>Archic — Foundations for Agents That Remember</title>
         <meta
           name="description"
-          content="Archic builds the open, auditable foundations for personal agentic intelligence — memory, control and execution as separate, inspectable layers."
+          content="Archic builds open, auditable layers for personal agentic intelligence: memory, control and execution as separate, inspectable systems."
         />
         <link rel="canonical" href="https://archic.es/" />
-        <meta property="og:title" content="Archic — Foundations for agents that remember" />
-        <meta property="og:description" content="Open, auditable foundations for personal agentic intelligence. Memory, control and execution as separate, inspectable layers." />
+        <meta property="og:title" content="Archic — Foundations for Agents That Remember" />
+        <meta property="og:description" content="Open, auditable layers for personal agentic intelligence: memory, control and execution as separate, inspectable systems." />
         <meta property="og:url" content="https://archic.es/" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Archic" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Archic — Foundations for Agents That Remember" />
+        <meta name="twitter:description" content="Memory, control and execution as inspectable systems for personal agentic intelligence." />
         <script type="application/ld+json">{JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Organization',
           name: 'Archic',
           url: 'https://archic.es/',
           description:
-            'Open, auditable foundations for personal agentic intelligence. Memory, control and execution as separate, inspectable layers.',
+            'Open, auditable layers for personal agentic intelligence: memory, control and execution as separate, inspectable systems.',
           sameAs: ['https://midas.archic.es', 'https://apollo.archic.es', 'https://github.com/vornicx'],
         })}</script>
       </Helmet>
@@ -109,30 +113,33 @@ function ArchicHome() {
         <div className="blueprint-frame frame-corners">
 
           {/* CH.00 — PROLOGUE / HERO */}
-          <section id="top" className="grid grid-cols-1 md:grid-cols-12 border-b border-[color:var(--line)]">
+          <section id="top" aria-labelledby="hero-title" className="grid grid-cols-1 md:grid-cols-12 border-b border-[color:var(--line)]">
             <div className="md:col-span-7 p-8 md:p-16 flex flex-col justify-center border-b md:border-b-0 md:border-r border-[color:var(--line)]">
-              <div className="chapter-tag mb-6 reveal">CH.00 / PROLOGUE</div>
-              <div className="tag-gold mb-8 flex items-center gap-2 reveal">
+              <div className="chapter-tag mb-6 reveal" aria-hidden="true">CH.00 / PROLOGUE</div>
+              <div className="tag-gold mb-8 flex items-center gap-2 reveal" aria-hidden="true">
                 <span className="w-2 h-2 bg-[color:var(--gold)] rounded-full animate-pulse" />
                 SYSTEM_STATUS: ACTIVE
               </div>
-              <h1 className="display-xl text-[2.5rem] sm:text-[3.4rem] md:text-[4.4rem] mb-8 reveal">
+              <h1 id="hero-title" className="display-xl text-[2.5rem] sm:text-[3.4rem] md:text-[4.4rem] mb-8 reveal">
                 Foundations for<br />
                 agents that <span className="gold-mark accent-underline">remember.</span>
               </h1>
               <p className="text-[13px] md:text-[14px] text-[color:var(--muted)] max-w-xl leading-relaxed uppercase tracking-[0.04em] reveal">
-                This is not a product page. It's a six-chapter argument for why long-horizon intelligence needs an open, inspectable substrate — and the layers we're shipping to build it.
+                Open, auditable memory, control and execution layers for long-horizon agentic intelligence. A six-chapter argument for why agents need an inspectable substrate — and the layers we're shipping to build it.
               </p>
               <div className="mt-12 flex flex-wrap gap-3 reveal">
-                <a href="#problem" className="btn-primary">Begin reading ↓</a>
-                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                  GitHub_Repository
+                <a href="#products" className="btn-primary">Explore the stack ↓</a>
+                <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="btn-secondary" aria-label="Start with Midas — open Midas site">
+                  Start with Midas ↗
+                </a>
+                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost" aria-label="View Archic repositories on GitHub">
+                  View on GitHub ↗
                 </a>
               </div>
             </div>
 
             <div className="md:col-span-5 p-8 md:p-10 flex flex-col justify-between bg-[color:var(--bg-soft)] gap-10">
-              <div className="space-y-1 text-[10px] text-[color:var(--muted-deep)] uppercase tracking-[0.22em] reveal">
+              <div className="space-y-1 text-[10px] text-[color:var(--muted-deep)] uppercase tracking-[0.22em] reveal" aria-hidden="true">
                 <div>ID: ARCH_HUB_001</div>
                 <div>BUILD: 2026.06.08</div>
                 <div>COORDS: 40.4168° N · 3.7038° W</div>
