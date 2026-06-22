@@ -578,6 +578,8 @@
   /* ---------- NARRATIVE / STORY ---------- */
   .chapter-tag {
     display: inline-flex;
+    align-self: flex-start;
+    width: fit-content;
     align-items: center;
     gap: 10px;
     font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
