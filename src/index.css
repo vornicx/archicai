@@ -217,24 +217,28 @@
   }
 
   .display {
-    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.028em;
-    line-height: 1.04;
+    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.022em;
+    line-height: 1.05;
     color: var(--ink-strong);
     text-wrap: balance;
   }
 
   .display-xl {
-    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.035em;
-    line-height: 0.98;
+    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
     color: var(--ink-strong);
   }
 
   .gold-mark {
     color: var(--gold);
+    font-style: italic;
+    font-weight: 400;
   }
 
   .accent-underline {
@@ -404,34 +408,30 @@
   /* ---------- PRODUCT CARD ---------- */
   .product-cell {
     position: relative;
-    padding: 44px 36px;
-    background: transparent;
-    transition: background 0.25s ease;
+    padding: 44px 40px;
+    background: var(--surface);
+    border-radius: 18px;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
     text-decoration: none;
     color: inherit;
     display: block;
     overflow: hidden;
+    margin: 8px;
   }
   .product-cell:hover {
     background: var(--surface);
+    border-color: rgba(217,119,87,0.4);
+    transform: translateY(-2px);
   }
-  .product-cell::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0;
-    width: 3px; height: 0;
-    background: var(--gold);
-    transition: height 0.35s ease;
-  }
-  .product-cell:hover::before { height: 100%; }
-  .product-cell.is-dim { opacity: 0.55; }
+  .product-cell.is-dim { opacity: 0.7; }
   .product-cell.is-dim:hover { opacity: 1; }
 
   .product-cell h3 {
-    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 700;
-    font-size: 2.4rem;
-    letter-spacing: -0.04em;
+    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+    font-size: 2.6rem;
+    letter-spacing: -0.025em;
     color: var(--ink-strong);
     transition: color 0.2s ease;
     margin: 0;
@@ -580,16 +580,14 @@
     gap: 10px;
     font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
     font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
+    font-weight: 500;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--gold);
-  }
-  .chapter-tag::before {
-    content: '';
-    width: 28px;
-    height: 1px;
-    background: var(--gold);
+    padding: 6px 12px;
+    border: 1px solid rgba(217,119,87,0.35);
+    border-radius: 999px;
+    background: rgba(217,119,87,0.04);
   }
 
   .chapter-index { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -615,9 +613,10 @@
     color: var(--gold);
   }
   .chapter-index-title {
-    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 500;
-    font-size: 1.05rem;
+    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+    font-size: 1.1rem;
     letter-spacing: -0.01em;
     color: var(--ink-strong);
   }
@@ -631,11 +630,13 @@
 
   .pull-quote {
     position: relative;
-    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.6rem, 3.4vw, 2.8rem);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+    font-style: italic;
+    font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
     color: var(--ink-strong);
     padding-left: clamp(1.5rem, 3vw, 2.5rem);
     border-left: 2px solid var(--gold);
@@ -646,6 +647,7 @@
     text-decoration: line-through;
     text-decoration-color: var(--muted-deep);
     text-decoration-thickness: 1px;
+    font-style: normal;
   }
 
   .ba-split {
@@ -672,15 +674,16 @@
   .ba-before .ba-label { color: var(--muted-soft); }
   .ba-after  .ba-label { color: var(--gold); }
   .ba-statement {
-    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 500;
-    font-size: 1.35rem;
-    line-height: 1.3;
-    letter-spacing: -0.015em;
+    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    letter-spacing: -0.012em;
     margin-bottom: 14px;
     text-wrap: balance;
   }
-  .ba-before .ba-statement { color: var(--muted); }
+  .ba-before .ba-statement { color: var(--muted); font-style: italic; }
   .ba-after  .ba-statement { color: var(--ink-strong); }
   .ba-detail { font-size: 12.5px; line-height: 1.55; color: var(--muted); }
 
@@ -711,8 +714,9 @@
   .story-step.future::before { opacity: 0.4; }
 
   .drop-cap::first-letter {
-    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 700;
+    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
     font-size: 4.2em;
     float: left;
     line-height: 0.85;
