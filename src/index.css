@@ -4,21 +4,21 @@
 
 @layer base {
   :root {
-    --bg: #0a0a0a;
-    --bg-soft: #0f0f10;
-    --surface: #141415;
-    --surface-2: #1b1b1d;
-    --ink: #e8e6e1;
-    --ink-strong: #f5f3ee;
-    --muted: #9a958a;
-    --muted-soft: #6f6a60;
-    --muted-deep: #4a463e;
-    --line: #1f1f21;
-    --line-strong: #2b2b2e;
-    --gold: #d4af37;
-    --gold-bright: #e8c659;
-    --gold-deep: #8a6f1f;
-    --grid-line: rgba(212, 175, 55, 0.045);
+    --bg: #F5F2ED;
+    --bg-soft: #EFEAE1;
+    --surface: #FFFFFF;
+    --surface-2: #FBF8F2;
+    --ink: #1A1A1A;
+    --ink-strong: #0B0B0B;
+    --muted: #6B7280;
+    --muted-soft: #8A8578;
+    --muted-deep: #B5B0A4;
+    --line: #E5E1DA;
+    --line-strong: #D4CFC4;
+    --gold: #D97757;
+    --gold-bright: #E8896D;
+    --gold-deep: #B65A3E;
+    --grid-line: rgba(217, 119, 87, 0.05);
   }
 
   html { scroll-behavior: smooth; }
@@ -36,8 +36,8 @@
   }
 
   ::selection {
-    background: var(--gold);
-    color: #000;
+    background: rgba(217, 119, 87, 0.22);
+    color: var(--ink-strong);
   }
 }
 
@@ -65,7 +65,7 @@
   .ecosystem-bar {
     position: relative;
     z-index: 51;
-    background: #060606;
+    background: var(--bg);
     border-bottom: 1px solid var(--line);
     font-size: 11px;
   }
@@ -182,7 +182,7 @@
       linear-gradient(var(--grid-line) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
     background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse at top, rgba(0,0,0,0.9), transparent 75%);
+    mask-image: radial-gradient(ellipse at top, rgba(0,0,0,0.55), transparent 70%);
   }
   .grid-bg::after {
     content: '';
@@ -192,8 +192,8 @@
       0deg,
       transparent 0,
       transparent 3px,
-      rgba(255,255,255,0.012) 3px,
-      rgba(255,255,255,0.012) 4px
+      rgba(0,0,0,0.012) 3px,
+      rgba(0,0,0,0.012) 4px
     );
   }
 
@@ -256,7 +256,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(10, 10, 10, 0.78);
+    background: rgba(245, 242, 237, 0.82);
     backdrop-filter: blur(14px) saturate(1.1);
     -webkit-backdrop-filter: blur(14px) saturate(1.1);
     border-bottom: 1px solid var(--line);
@@ -334,14 +334,14 @@
     transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
   .btn-primary {
-    background: var(--gold);
-    color: #000;
-    border: 1px solid var(--gold);
+    background: var(--ink-strong);
+    color: var(--bg);
+    border: 1px solid var(--ink-strong);
   }
   .btn-primary:hover {
-    background: var(--ink-strong);
-    border-color: var(--ink-strong);
-    color: var(--bg);
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
   }
   .btn-secondary {
     background: transparent;
@@ -385,7 +385,7 @@
     width: 6px; height: 6px;
     background: var(--gold);
     border-radius: 999px;
-    box-shadow: 0 0 8px var(--gold);
+    box-shadow: 0 0 6px rgba(217,119,87,0.5);
     animation: pulseDot 2s ease-in-out infinite;
   }
   .badge-early {
@@ -413,7 +413,7 @@
     overflow: hidden;
   }
   .product-cell:hover {
-    background: linear-gradient(180deg, rgba(158,125,43,0.05), transparent 60%), var(--surface);
+    background: var(--surface);
   }
   .product-cell::before {
     content: '';
@@ -453,8 +453,8 @@
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     background:
-      radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05), transparent 40rem),
-      var(--bg);
+      radial-gradient(circle at 80% 20%, rgba(217, 119, 87, 0.06), transparent 40rem),
+      var(--surface-2);
     overflow: hidden;
   }
   .manifesto-mark {
@@ -462,7 +462,7 @@
     font-size: 280px;
     line-height: 0.8;
     color: var(--gold);
-    opacity: 0.12;
+    opacity: 0.08;
     position: absolute;
     top: 4%;
     right: -1%;
@@ -488,7 +488,7 @@
     transform-origin: left center;
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .manifesto-pillar:hover { background-color: rgba(212, 175, 55, 0.035); }
+  .manifesto-pillar:hover { background-color: rgba(217, 119, 87, 0.04); }
   .manifesto-pillar:hover::after { transform: scaleX(1); }
   .manifesto-pillar .tag-gold { transition: letter-spacing 0.35s ease, color 0.3s ease; }
   .manifesto-pillar:hover .tag-gold { letter-spacing: 0.28em; }
@@ -500,7 +500,7 @@
 
   .gold-mark { transition: text-shadow 0.4s ease; }
   .manifesto-section .gold-mark:hover {
-    text-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+    text-shadow: 0 0 14px rgba(217, 119, 87, 0.25);
   }
 
   .reveal-delay-1 { transition-delay: 0.08s; }
@@ -567,7 +567,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(transparent 0%, rgba(158,125,43,0.05) 50%, transparent 100%);
+    background: linear-gradient(transparent 0%, rgba(217,119,87,0.05) 50%, transparent 100%);
     height: 200%;
     animation: scan 8s linear infinite;
     pointer-events: none;
@@ -605,7 +605,7 @@
   }
   .chapter-index-row:last-child { border-bottom: none; }
   .chapter-index-row:hover {
-    background: linear-gradient(90deg, rgba(158,125,43,0.06), transparent 70%);
+    background: linear-gradient(90deg, rgba(217,119,87,0.06), transparent 70%);
     padding-left: 12px;
   }
   .chapter-index-num {
