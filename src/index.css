@@ -660,28 +660,42 @@
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--gold);
-    padding: 6px 12px;
-    border: 1px solid rgba(217,119,87,0.35);
+    color: var(--gold-deep);
+    padding: 6px 14px;
+    border: 1px solid rgba(255,255,255,0.6);
     border-radius: 999px;
-    background: rgba(217,119,87,0.04);
+    background: linear-gradient(180deg, rgba(255,235,225,0.7), rgba(255,220,205,0.4));
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 2px 6px -3px rgba(217,119,87,0.18);
   }
 
-  .chapter-index { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .chapter-index {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    padding: 8px 24px;
+    box-shadow: var(--glass-shadow);
+  }
   .chapter-index-row {
     display: grid;
     grid-template-columns: 80px 1fr auto;
     align-items: baseline;
     gap: 24px;
-    padding: 18px 0;
-    border-bottom: 1px dashed var(--line);
+    padding: 18px 16px;
+    border-bottom: 1px solid var(--line);
+    border-radius: var(--radius-sm);
     transition: background 0.25s ease, padding-left 0.25s ease;
     text-decoration: none;
   }
   .chapter-index-row:last-child { border-bottom: none; }
   .chapter-index-row:hover {
-    background: linear-gradient(90deg, rgba(217,119,87,0.06), transparent 70%);
-    padding-left: 12px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,235,225,0.3) 70%);
+    padding-left: 24px;
   }
   .chapter-index-num {
     font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
@@ -690,10 +704,9 @@
     color: var(--gold);
   }
   .chapter-index-title {
-    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
     font-weight: 400;
-    font-variation-settings: "opsz" 144;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     letter-spacing: -0.01em;
     color: var(--ink-strong);
   }
