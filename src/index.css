@@ -747,7 +747,13 @@
   .ba-split {
     display: grid;
     grid-template-columns: 1fr;
-    border: 1px solid var(--line);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--surface);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    box-shadow: var(--glass-shadow);
   }
   .ba-cell {
     padding: clamp(1.5rem, 3vw, 2.5rem);
@@ -768,12 +774,11 @@
   .ba-before .ba-label { color: var(--muted-soft); }
   .ba-after  .ba-label { color: var(--gold); }
   .ba-statement {
-    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
     font-weight: 400;
-    font-variation-settings: "opsz" 144;
-    font-size: 1.5rem;
-    line-height: 1.25;
-    letter-spacing: -0.012em;
+    font-size: 1.6rem;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
     margin-bottom: 14px;
     text-wrap: balance;
   }
