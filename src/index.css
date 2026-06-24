@@ -813,15 +813,15 @@
   .story-step.future::before { opacity: 0.4; }
 
   .drop-cap::first-letter {
-    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
     font-weight: 400;
-    font-variation-settings: "opsz" 144;
-    font-size: 4.2em;
+    font-style: italic;
+    font-size: 4.4em;
     float: left;
     line-height: 0.85;
     padding: 6px 14px 0 0;
     color: var(--gold);
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
   }
 }
 
