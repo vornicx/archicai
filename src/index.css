@@ -243,21 +243,19 @@
   }
 
   .display {
-    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
     font-weight: 400;
-    font-variation-settings: "opsz" 144;
-    letter-spacing: -0.022em;
-    line-height: 1.05;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
     color: var(--ink-strong);
     text-wrap: balance;
   }
 
   .display-xl {
-    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
     font-weight: 400;
-    font-variation-settings: "opsz" 144;
-    letter-spacing: -0.03em;
-    line-height: 1.0;
+    letter-spacing: -0.028em;
+    line-height: 0.98;
     color: var(--ink-strong);
   }
 
