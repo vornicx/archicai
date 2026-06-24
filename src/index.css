@@ -51,7 +51,7 @@
       var(--bg);
     background-attachment: fixed;
     color: var(--ink);
-    font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, -apple-system, sans-serif;
     font-size: 15px;
     line-height: 1.55;
     letter-spacing: -0.005em;
@@ -243,7 +243,8 @@
   }
 
   .display {
-    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-variation-settings: "opsz" 144;
     font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 1.02;
@@ -252,7 +253,8 @@
   }
 
   .display-xl {
-    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-variation-settings: "opsz" 144;
     font-weight: 400;
     letter-spacing: -0.028em;
     line-height: 0.98;
@@ -335,7 +337,7 @@
   }
   .archic-wordmark {
     color: var(--ink-strong);
-    font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -352,7 +354,7 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 13px 24px;
-    font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-size: 13.5px;
     font-weight: 500;
     letter-spacing: -0.005em;
@@ -497,7 +499,8 @@
   .product-cell.is-dim:hover { opacity: 1; }
 
   .product-cell h3 {
-    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-variation-settings: "opsz" 144;
     font-weight: 400;
     font-size: 2.7rem;
     letter-spacing: -0.02em;
@@ -532,7 +535,8 @@
     overflow: hidden;
   }
   .manifesto-mark {
-    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-variation-settings: "opsz" 144;
     font-style: italic;
     font-size: 320px;
     line-height: 0.8;
@@ -704,7 +708,8 @@
     color: var(--gold);
   }
   .chapter-index-title {
-    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-variation-settings: "opsz" 144;
     font-weight: 400;
     font-size: 1.25rem;
     letter-spacing: -0.01em;
@@ -720,7 +725,8 @@
 
   .pull-quote {
     position: relative;
-    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-variation-settings: "opsz" 144;
     font-weight: 400;
     font-style: italic;
     font-size: clamp(1.7rem, 3.6vw, 2.8rem);
@@ -774,7 +780,8 @@
   .ba-before .ba-label { color: var(--muted-soft); }
   .ba-after  .ba-label { color: var(--gold); }
   .ba-statement {
-    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-variation-settings: "opsz" 144;
     font-weight: 400;
     font-size: 1.6rem;
     line-height: 1.22;
@@ -813,7 +820,8 @@
   .story-step.future::before { opacity: 0.4; }
 
   .drop-cap::first-letter {
-    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-variation-settings: "opsz" 144;
     font-weight: 400;
     font-style: italic;
     font-size: 4.4em;
