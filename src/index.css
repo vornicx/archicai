@@ -447,37 +447,65 @@
   .badge-parked,
   .badge-soon { color: var(--muted-soft); }
 
-  /* ---------- PRODUCT CARD ---------- */
+  /* ---------- PRODUCT CARD (Liquid Glass) ---------- */
   .product-cell {
     position: relative;
     padding: 44px 40px;
     background: var(--surface);
-    border-radius: 18px;
-    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    box-shadow: var(--glass-shadow);
+    transition: background 0.3s ease, border-color 0.3s ease,
+                transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease;
     text-decoration: none;
     color: inherit;
     display: block;
     overflow: hidden;
     margin: 8px;
   }
+  .product-cell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(255,255,255,0.95), rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.4));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .product-cell::after {
+    content: '';
+    position: absolute;
+    top: -40%; left: -20%;
+    width: 70%; height: 80%;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.5), transparent 60%);
+    filter: blur(24px);
+    pointer-events: none;
+    opacity: 0.7;
+  }
   .product-cell:hover {
-    background: var(--surface);
-    border-color: rgba(217,119,87,0.4);
-    transform: translateY(-2px);
+    background: var(--surface-strong);
+    border-color: rgba(255,255,255,0.85);
+    transform: translateY(-3px);
+    box-shadow: var(--glass-shadow-hover);
   }
   .product-cell.is-dim { opacity: 0.7; }
   .product-cell.is-dim:hover { opacity: 1; }
 
   .product-cell h3 {
-    font-family: 'Fraunces', 'Sora', ui-serif, Georgia, serif;
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
     font-weight: 400;
-    font-variation-settings: "opsz" 144;
-    font-size: 2.6rem;
-    letter-spacing: -0.025em;
+    font-size: 2.7rem;
+    letter-spacing: -0.02em;
     color: var(--ink-strong);
     transition: color 0.2s ease;
     margin: 0;
     line-height: 1;
+    position: relative;
   }
   .product-cell:hover h3 { color: var(--gold); }
   .product-cell .cell-cta {
@@ -485,6 +513,7 @@
     align-items: center;
     gap: 8px;
     transition: gap 0.25s ease, color 0.2s ease;
+    position: relative;
   }
   .product-cell:hover .cell-cta { gap: 14px; color: var(--gold-bright); }
 
