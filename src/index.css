@@ -335,9 +335,9 @@
   }
   .archic-wordmark {
     color: var(--ink-strong);
-    font-family: 'Sora', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     font-size: 13px;
     line-height: 1;
