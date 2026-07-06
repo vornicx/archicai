@@ -4,68 +4,36 @@
 
 @layer base {
   :root {
-    --bg: #EFEBE3;
-    --bg-soft: #E8E3D9;
-    --surface: rgba(255, 255, 255, 0.55);
-    --surface-2: rgba(255, 255, 255, 0.38);
-    --surface-strong: rgba(255, 255, 255, 0.75);
-    --ink: #1A1A1A;
-    --ink-strong: #0B0B0B;
-    --muted: #6B7280;
-    --muted-soft: #8A8578;
-    --muted-deep: #B5B0A4;
-    --line: rgba(26, 26, 26, 0.08);
-    --line-strong: rgba(26, 26, 26, 0.16);
-    --gold: #D97757;
-    --gold-bright: #E8896D;
-    --gold-deep: #B65A3E;
-    --grid-line: rgba(217, 119, 87, 0.04);
-
-    /* Liquid Glass tokens */
-    --glass-blur: 22px;
-    --glass-saturate: 1.6;
-    --glass-border: rgba(255, 255, 255, 0.55);
-    --glass-border-soft: rgba(255, 255, 255, 0.35);
-    --glass-highlight: rgba(255, 255, 255, 0.7);
-    --glass-shadow: 0 1px 0 rgba(255,255,255,0.65) inset,
-                    0 -1px 0 rgba(0,0,0,0.04) inset,
-                    0 12px 32px -16px rgba(20, 16, 10, 0.18),
-                    0 2px 8px -4px rgba(20, 16, 10, 0.08);
-    --glass-shadow-hover: 0 1px 0 rgba(255,255,255,0.8) inset,
-                          0 -1px 0 rgba(0,0,0,0.04) inset,
-                          0 24px 48px -20px rgba(20, 16, 10, 0.22),
-                          0 4px 14px -6px rgba(20, 16, 10, 0.12);
-    --radius-sm: 14px;
-    --radius-md: 22px;
-    --radius-lg: 28px;
-    --radius-xl: 36px;
+    --bg: #f3ecdc;
+    --bg-cream: #fdf9f0;
+    --ink-blue: #14267c;
+    --ink-blue-deep: #0c1a60;
+    --cream: #f2e8d0;
+    --gold: #c9a24a;
+    --gold-bright: #e6c877;
+    --gold-deep: #b0863a;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background:
-      radial-gradient(1100px 700px at 12% -10%, rgba(217,119,87,0.14), transparent 60%),
-      radial-gradient(900px 600px at 100% 10%, rgba(180, 200, 220, 0.18), transparent 60%),
-      radial-gradient(800px 500px at 50% 110%, rgba(217,119,87,0.08), transparent 60%),
-      var(--bg);
-    background-attachment: fixed;
-    color: var(--ink);
-    font-family: 'Sora', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    font-size: 15px;
-    line-height: 1.55;
-    letter-spacing: -0.005em;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink-blue);
+    font-family: 'Archivo', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
     min-height: 100vh;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: rgba(217, 119, 87, 0.25);
-    color: var(--ink-strong);
+    background: rgba(201, 162, 74, 0.35);
+    color: var(--ink-blue-deep);
   }
 }
+
 
 @layer components {
   /* ---------- A11Y: SKIP LINK ---------- */
