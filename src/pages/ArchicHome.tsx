@@ -1,377 +1,622 @@
 import { Helmet } from 'react-helmet-async'
-import { useEffect, useRef } from 'react'
 import { GITHUB_URL } from '../constants'
-import { StatusBadge } from '../components/StatusBadge'
+import acropolisAsset from '../assets/acropolis-header.png.asset.json'
+import logoAsset from '../assets/archic-logo.png.asset.json'
 
-type Product = {
-  id: string
-  num: string
-  name: string
-  role: string
-  status: 'active' | 'building' | 'in-progress' | 'planned' | 'parked'
-  desc: string
-  href: string
-  external?: boolean
-  cta: string
-}
+const BLUE = '#0c1a60'
+const BLUE_INK = '#14267c'
+const CREAM = '#f2e8d0'
+const PAPER = '#f3ecdc'
+const PAPER_SOFT = '#fdf9f0'
+const GOLD = '#c9a24a'
+const GOLD_BRIGHT = '#e6c877'
+const GOLD_DEEP = '#b0863a'
 
-const PRODUCTS: Product[] = [
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', ui-monospace, monospace" }
+const serif: React.CSSProperties = { fontFamily: 'Marcellus, serif' }
+const sans: React.CSSProperties = { fontFamily: 'Archivo, sans-serif' }
+
+const STATS = [
+  { val: '3', label: 'LAYERS · MEMORY / HARNESS / INTERFACE' },
+  { val: '1', label: 'FOUNDER · SHIPPING IN PUBLIC' },
+  { val: 'SS26', label: 'MIDAS + APOLLO · SUMMER 2026' },
+  { val: '0', label: 'LLM CALLS AT INGEST · MIDAS' },
+]
+
+const LAYERS = [
   {
-    id: 'midas',
-    num: '01',
-    name: 'MIDAS',
-    role: 'Long-horizon agent memory',
-    status: 'building',
-    desc: 'Source-grounded recall with full provenance. No LLM calls at ingest — durable context across sessions, not over-summarized facts.',
+    layer: 'L1 · MEMORY',
+    name: 'Midas',
+    desc: 'Long-horizon agent memory. Source-grounded recall with full provenance. No LLM calls at ingest — durable context across sessions.',
+    url: 'MIDAS.ARCHIC.ES',
     href: 'https://midas.archic.es',
-    external: true,
-    cta: 'MIDAS.ARCHIC.ES →',
+    status: 'BUILDING · SS26',
   },
   {
-    id: 'apollo',
-    num: '02',
-    name: 'APOLLO',
-    role: 'Local-first AI harness',
-    status: 'building',
-    desc: 'CLI and desktop app with a native autorouter. Combine providers, subscriptions and APIs — the strongest reasoning model plans, the strongest coding model acts.',
+    layer: 'L2 · HARNESS',
+    name: 'Apollo',
+    desc: 'Local-first CLI and desktop harness. Native autorouter across providers — reasoning model plans, coding model acts.',
+    url: 'APOLLO.ARCHIC.ES',
     href: 'https://apollo.archic.es',
-    external: true,
-    cta: 'APOLLO.ARCHIC.ES →',
+    status: 'BUILDING · SS26',
+  },
+  {
+    layer: 'L3 · INTERFACE',
+    name: 'Origin',
+    desc: 'A personal interface for the stack. Design phase — unlocked once memory and execution earn it.',
+    url: '— PARKED —',
+    href: null,
+    status: 'DESIGN PHASE',
+  },
+] as const
+
+const PRINCIPLES = [
+  {
+    num: '§ 01',
+    title: 'Local-first',
+    desc: 'Your data, your models, your machine. Cloud is an option, not the default. Nothing phones home.',
+  },
+  {
+    num: '§ 02',
+    title: 'Grounded',
+    desc: 'Memory returns sources, not summaries. Provenance on every fact. No LLM at ingest — context stays cheap and auditable.',
+  },
+  {
+    num: '§ 03',
+    title: 'Honest',
+    desc: 'Real benchmarks, real caveats. Working demos before slogans. We say what does not work yet.',
   },
 ]
 
-const CHAPTERS = [
-  { num: '00', title: 'Prologue — What Archic is', meta: 'Hero', href: '#top' },
-  { num: '01', title: 'The problem — Context dies at the window', meta: 'Setup', href: '#problem' },
-  { num: '02', title: 'The thesis — Local-first infrastructure', meta: 'Turn', href: '#manifesto' },
-  { num: '03', title: 'The stack — Midas and Apollo', meta: 'Build', href: '#products' },
-  { num: '04', title: 'The horizon — Layers we will earn', meta: 'Future', href: '#vision' },
-  { num: '05', title: 'The invitation — Follow the build', meta: 'Action', href: '#cta' },
-]
-
-
-function useReveal() {
-  const ref = useRef<HTMLDivElement | null>(null)
-  useEffect(() => {
-    const root = ref.current
-    if (!root) return
-    const els = root.querySelectorAll<HTMLElement>('.reveal')
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible')
-            io.unobserve(e.target)
-          }
-        }
-      },
-      { threshold: 0, rootMargin: '0px 0px -10% 0px' }
-    )
-    els.forEach((el) => io.observe(el))
-    const fallback = window.setTimeout(() => {
-      els.forEach((el) => el.classList.add('visible'))
-    }, 2200)
-    return () => {
-      io.disconnect()
-      window.clearTimeout(fallback)
-    }
-  }, [])
-  return ref
+function TopBar() {
+  return (
+    <div
+      style={{
+        background: BLUE,
+        color: 'rgba(242,232,208,0.55)',
+        borderBottom: `1px solid rgba(201,162,74,0.28)`,
+        ...mono,
+        fontSize: 10,
+        letterSpacing: '0.18em',
+        fontWeight: 500,
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1280,
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '10px 40px',
+        }}
+      >
+        <div style={{ display: 'flex', gap: 22, flexWrap: 'wrap' }}>
+          <span style={{ color: GOLD }}>[ ECOSYSTEM ]</span>
+          <span style={{ color: CREAM, borderBottom: `2px solid ${GOLD}`, paddingBottom: 2 }}>ARCHIC.ES</span>
+          <a href="https://midas.archic.es" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>/ MIDAS</a>
+          <a href="https://apollo.archic.es" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>/ APOLLO</a>
+          <span>/ ORIGIN</span>
+        </div>
+        <span>
+          <span style={{ color: GOLD }}>◆</span> SYS · OK
+        </span>
+      </div>
+    </div>
+  )
 }
 
-function ArchicHome() {
-  const ref = useReveal()
+function Nav() {
+  return (
+    <div
+      style={{
+        background: BLUE,
+        borderBottom: `1px solid rgba(201,162,74,0.24)`,
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1280,
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '18px 40px',
+        }}
+      >
+        <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }}>
+          <img
+            src={logoAsset.url}
+            alt="Archic"
+            style={{ width: 40, height: 40, borderRadius: 6, boxShadow: `0 0 0 1px rgba(201,162,74,0.4)` }}
+          />
+          <span style={{ ...serif, fontSize: 19, letterSpacing: '0.4em', color: GOLD_BRIGHT }}>ARCHIC</span>
+        </a>
+        <div
+          style={{
+            ...mono,
+            fontSize: 10.5,
+            fontWeight: 500,
+            letterSpacing: '0.16em',
+            color: 'rgba(242,232,208,0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 28,
+          }}
+        >
+          <a href="#thesis" style={{ color: 'inherit', textDecoration: 'none' }}>MANIFESTO</a>
+          <a href="#stack" style={{ color: 'inherit', textDecoration: 'none' }}>STACK</a>
+          <a href="#horizon" style={{ color: 'inherit', textDecoration: 'none' }}>VISION</a>
+          <span style={{ color: 'rgba(201,162,74,0.5)' }}>|</span>
+          <a href="https://midas.archic.es" target="_blank" rel="noreferrer" style={{ color: GOLD_BRIGHT, textDecoration: 'none' }}>MIDAS ↗</a>
+          <a href="https://apollo.archic.es" target="_blank" rel="noreferrer" style={{ color: GOLD_BRIGHT, textDecoration: 'none' }}>APOLLO ↗</a>
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              border: `1px solid rgba(201,162,74,0.55)`,
+              padding: '6px 12px',
+              color: CREAM,
+              textDecoration: 'none',
+            }}
+          >
+            [ GITHUB ]
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
 
+function Hero() {
+  return (
+    <div style={{ background: BLUE, color: CREAM }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ position: 'relative' }}>
+          <img
+            src={acropolisAsset.url}
+            alt="Acropolis rendered in digital pointillism"
+            style={{ display: 'block', width: '100%', height: 520, objectFit: 'cover', objectPosition: 'center 30%' }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background:
+                'linear-gradient(180deg,rgba(12,26,96,0.35) 0%,rgba(12,26,96,0) 30%,rgba(12,26,96,0.2) 62%,rgba(12,26,96,0.92) 88%,#0c1a60 100%)',
+            }}
+          />
+          <div style={{ position: 'absolute', left: 0, right: 0, bottom: 30, textAlign: 'center' }}>
+            <div
+              style={{
+                display: 'inline-block',
+                ...mono,
+                fontWeight: 500,
+                fontSize: 10,
+                letterSpacing: '0.22em',
+                color: GOLD_BRIGHT,
+                background: 'rgba(12,26,96,0.75)',
+                border: `1px solid rgba(201,162,74,0.55)`,
+                borderRadius: 999,
+                padding: '7px 16px',
+              }}
+            >
+              EST. MMXXVI · LOCAL-FIRST INFRASTRUCTURE
+            </div>
+          </div>
+        </div>
+
+        <div style={{ padding: '34px 40px 74px', textAlign: 'center' }}>
+          <h1
+            style={{
+              margin: '0 auto',
+              maxWidth: 980,
+              ...serif,
+              fontWeight: 400,
+              fontSize: 'clamp(44px, 6.4vw, 74px)',
+              lineHeight: 1.12,
+              color: CREAM,
+            }}
+          >
+            Foundations for agents<br />
+            that <span style={{ color: GOLD_BRIGHT, borderBottom: `3px solid ${GOLD}` }}>remember</span>.
+          </h1>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, marginTop: 28 }}>
+            <div style={{ width: 120, height: 1, background: 'rgba(201,162,74,0.5)' }} />
+            <span style={{ color: GOLD, fontSize: 11 }}>◆</span>
+            <div style={{ width: 120, height: 1, background: 'rgba(201,162,74,0.5)' }} />
+          </div>
+          <p
+            style={{
+              margin: '24px auto 0',
+              maxWidth: 620,
+              ...mono,
+              fontSize: 12.5,
+              lineHeight: 2,
+              letterSpacing: '0.06em',
+              color: 'rgba(242,232,208,0.75)',
+              textTransform: 'uppercase',
+            }}
+          >
+            The local-first infrastructure for a personal agentic system — memory, harness and interface as separate, inspectable layers.
+          </p>
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', marginTop: 38, flexWrap: 'wrap' }}>
+            <a
+              href="#stack"
+              style={{
+                background: GOLD,
+                color: BLUE,
+                ...sans,
+                fontWeight: 600,
+                fontSize: 13,
+                padding: '14px 28px',
+                borderRadius: 999,
+                textDecoration: 'none',
+              }}
+            >
+              Explore the stack ↓
+            </a>
+            <a
+              href="https://midas.archic.es"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                border: `1px solid rgba(242,232,208,0.4)`,
+                color: CREAM,
+                ...sans,
+                fontWeight: 500,
+                fontSize: 13,
+                padding: '13px 26px',
+                borderRadius: 999,
+                textDecoration: 'none',
+              }}
+            >
+              Start with Midas ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Stats() {
+  return (
+    <div
+      style={{
+        maxWidth: 1280,
+        margin: '0 auto',
+        background: PAPER,
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        borderBottom: `1px solid rgba(20,38,124,0.18)`,
+      }}
+    >
+      {STATS.map((s, i) => (
+        <div
+          key={i}
+          style={{
+            padding: '24px 32px',
+            borderRight: i < STATS.length - 1 ? `1px solid rgba(20,38,124,0.14)` : 'none',
+          }}
+        >
+          <div style={{ ...serif, fontSize: 30, color: GOLD_DEEP }}>{s.val}</div>
+          <div style={{ marginTop: 7, ...mono, fontWeight: 500, fontSize: 8.5, letterSpacing: '0.12em', color: 'rgba(20,38,124,0.6)' }}>
+            {s.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function SectionTag({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ ...mono, fontWeight: 500, fontSize: 10, letterSpacing: '0.22em', color: GOLD_DEEP }}>
+      {children}
+    </div>
+  )
+}
+
+function Thesis() {
+  return (
+    <section id="thesis" style={{ maxWidth: 1280, margin: '0 auto', background: PAPER, padding: '70px 40px 30px' }}>
+      <SectionTag>§02 / THE THESIS</SectionTag>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 60,
+          marginTop: 18,
+          alignItems: 'start',
+        }}
+      >
+        <h2 style={{ margin: 0, ...serif, fontSize: 'clamp(30px, 3.6vw, 44px)', lineHeight: 1.22, color: BLUE_INK }}>
+          Infrastructure before intelligence.
+        </h2>
+        <p style={{ margin: '6px 0 0', ...sans, fontSize: 14.5, lineHeight: 1.85, color: 'rgba(20,38,124,0.72)' }}>
+          A personal agent you can trust doesn't start with a bigger model — it starts with a substrate you can inspect. Archic builds that substrate as separate, local-first layers: memory with provenance, a harness with limits, an interface that answers to you. One layer at a time, in the open.
+        </p>
+      </div>
+    </section>
+  )
+}
+
+function Stack() {
+  return (
+    <section id="stack" style={{ maxWidth: 1280, margin: '0 auto', background: PAPER, padding: '40px 40px 70px' }}>
+      <SectionTag>§03 / THE STACK</SectionTag>
+      <h2 style={{ margin: '16px 0 0', ...serif, fontSize: 'clamp(30px, 3.6vw, 44px)', lineHeight: 1.15, color: BLUE_INK }}>
+        One layer at a time.
+      </h2>
+
+      <div style={{ marginTop: 24 }}>
+        {LAYERS.map((l, i) => {
+          const Row = (
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '130px 220px 1fr 190px 130px',
+                gap: 24,
+                alignItems: 'baseline',
+                padding: '28px 0',
+                borderBottom: i < LAYERS.length - 1 ? `1px solid rgba(20,38,124,0.16)` : `1px solid rgba(20,38,124,0.16)`,
+                color: BLUE_INK,
+                textDecoration: 'none',
+              }}
+              className="stack-row"
+            >
+              <span style={{ ...mono, fontSize: 10, letterSpacing: '0.14em', color: GOLD_DEEP }}>{l.layer}</span>
+              <span style={{ ...serif, fontSize: 34, color: BLUE_INK }}>{l.name}</span>
+              <span style={{ ...sans, fontSize: 13, lineHeight: 1.7, color: 'rgba(20,38,124,0.7)' }}>{l.desc}</span>
+              <span style={{ ...mono, fontWeight: 500, fontSize: 10, letterSpacing: '0.12em', color: 'rgba(20,38,124,0.6)' }}>{l.url}</span>
+              <span style={{ ...mono, fontWeight: 500, fontSize: 8.5, letterSpacing: '0.12em', textAlign: 'right', color: GOLD_DEEP }}>
+                {l.status}
+              </span>
+            </div>
+          )
+          return l.href ? (
+            <a key={l.name} href={l.href} target="_blank" rel="noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
+              {Row}
+            </a>
+          ) : (
+            <div key={l.name}>{Row}</div>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
+function Horizon() {
+  return (
+    <section id="horizon" style={{ maxWidth: 1280, margin: '0 auto', background: PAPER, padding: '10px 40px 70px' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 60,
+          alignItems: 'center',
+        }}
+      >
+        <div>
+          <SectionTag>§04 / THE HORIZON</SectionTag>
+          <h2 style={{ margin: '16px 0 0', ...serif, fontSize: 'clamp(30px, 3.4vw, 42px)', lineHeight: 1.2, color: BLUE_INK }}>
+            One system,<br />built in layers.
+          </h2>
+          <p style={{ margin: '22px 0 0', ...sans, fontSize: 14, lineHeight: 1.85, color: 'rgba(20,38,124,0.7)', maxWidth: 460 }}>
+            The destination is a personal system that runs where you live: memory with provenance, a harness that acts within limits you set, an interface you can see and speak to. No dates promised — each layer ships when it can be inspected.
+          </p>
+        </div>
+
+        <div
+          style={{
+            border: `1px solid rgba(201,162,74,0.5)`,
+            background: BLUE,
+            ...mono,
+            fontSize: 12,
+            lineHeight: 1.9,
+            boxShadow: `0 10px 34px rgba(20,38,124,0.16)`,
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              padding: '12px 20px',
+              borderBottom: `1px solid rgba(201,162,74,0.3)`,
+              fontSize: 9.5,
+              letterSpacing: '0.14em',
+              color: 'rgba(242,232,208,0.5)',
+            }}
+          >
+            <span>archic-status</span>
+            <span>LOCAL ONLY</span>
+          </div>
+          <div style={{ padding: '22px 24px', color: 'rgba(242,232,208,0.82)' }}>
+            <span style={{ color: GOLD_BRIGHT }}>$ archic status</span>
+            <br />→ local-first · open · auditable
+            <br />
+            <br />
+            L1&nbsp;&nbsp;memory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;midas&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style={{ color: GOLD_BRIGHT }}>building · ss26</span>
+            <br />
+            L2&nbsp;&nbsp;harness&nbsp;&nbsp;&nbsp;&nbsp;apollo&nbsp;&nbsp;&nbsp;
+            <span style={{ color: GOLD_BRIGHT }}>building · ss26</span>
+            <br />
+            L3&nbsp;&nbsp;interface&nbsp;&nbsp;origin&nbsp;&nbsp;&nbsp;
+            <span style={{ color: 'rgba(242,232,208,0.5)' }}>design phase</span>
+            <br />
+            <br />
+            <span style={{ color: 'rgba(242,232,208,0.5)' }}># nothing ships before it can be inspected</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Principles() {
+  return (
+    <section style={{ maxWidth: 1280, margin: '0 auto', background: PAPER, padding: '0 40px 70px' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: 20,
+        }}
+      >
+        {PRINCIPLES.map((p) => (
+          <div
+            key={p.num}
+            style={{
+              border: `1px solid rgba(20,38,124,0.2)`,
+              padding: 30,
+              background: PAPER_SOFT,
+            }}
+          >
+            <div style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', color: GOLD_DEEP }}>{p.num}</div>
+            <div style={{ marginTop: 14, ...serif, fontSize: 25, color: BLUE_INK }}>{p.title}</div>
+            <p style={{ margin: '12px 0 0', ...sans, fontSize: 13, lineHeight: 1.75, color: 'rgba(20,38,124,0.7)' }}>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function CTA() {
+  return (
+    <section style={{ maxWidth: 1280, margin: '0 auto', background: PAPER, padding: '0 40px 70px' }}>
+      <div
+        style={{
+          padding: '52px 48px',
+          border: `1px solid rgba(176,134,58,0.6)`,
+          background: PAPER_SOFT,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: 40,
+          flexWrap: 'wrap',
+        }}
+      >
+        <div>
+          <h2 style={{ margin: 0, ...serif, fontSize: 'clamp(28px, 3.2vw, 40px)', lineHeight: 1.2, color: BLUE_INK }}>
+            Start with <span style={{ color: GOLD_DEEP }}>Midas</span>.
+          </h2>
+          <p style={{ margin: '14px 0 0', ...sans, fontSize: 13, lineHeight: 1.7, color: 'rgba(20,38,124,0.72)', maxWidth: 520 }}>
+            The memory layer is the first to ship. Apollo follows the same pattern: open, inspectable, announced when it runs. Origin waits its turn.
+          </p>
+        </div>
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+          <a
+            href="https://midas.archic.es"
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              background: BLUE_INK,
+              color: PAPER,
+              ...sans,
+              fontWeight: 600,
+              fontSize: 13,
+              padding: '14px 28px',
+              borderRadius: 999,
+              textDecoration: 'none',
+            }}
+          >
+            Get Midas ↗
+          </a>
+          <a
+            href="mailto:hello@archic.es"
+            style={{
+              border: `1px solid rgba(20,38,124,0.45)`,
+              color: BLUE_INK,
+              ...sans,
+              fontWeight: 500,
+              fontSize: 13,
+              padding: '13px 26px',
+              borderRadius: 999,
+              textDecoration: 'none',
+            }}
+          >
+            hello@archic.es
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function FooterBar() {
+  return (
+    <footer
+      style={{
+        maxWidth: 1280,
+        margin: '0 auto',
+        background: PAPER,
+        padding: '30px 40px',
+        borderTop: `1px solid rgba(20,38,124,0.16)`,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 20,
+        flexWrap: 'wrap',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <img src={logoAsset.url} alt="" style={{ width: 28, height: 28, borderRadius: 5 }} />
+        <span style={{ ...serif, fontSize: 13, letterSpacing: '0.34em', color: BLUE_INK }}>ARCHIC</span>
+      </div>
+      <div style={{ display: 'flex', gap: 26, ...mono, fontSize: 10, letterSpacing: '0.14em', color: 'rgba(20,38,124,0.62)' }}>
+        <a href={GITHUB_URL} target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>GITHUB</a>
+        <a href="https://midas.archic.es" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>MIDAS</a>
+        <a href="https://apollo.archic.es" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>APOLLO</a>
+        <a href="mailto:hello@archic.es" style={{ color: 'inherit', textDecoration: 'none' }}>HELLO@ARCHIC.ES</a>
+      </div>
+      <span style={{ ...mono, fontSize: 10, color: 'rgba(20,38,124,0.45)' }}>© 2026 ARCHIC</span>
+    </footer>
+  )
+}
+
+export default function ArchicHome() {
   return (
     <>
       <Helmet>
-        <title>Archic — Local-first AI infrastructure</title>
+        <title>Archic — Foundations for agents that remember</title>
         <meta
           name="description"
-          content="Archic builds local-first AI infrastructure that amplifies human capability: Midas for long-horizon agent memory, Apollo for routed local execution."
+          content="Local-first infrastructure for a personal agentic system. Memory, harness and interface as separate, inspectable layers. Midas + Apollo shipping summer 2026."
         />
         <link rel="canonical" href="https://archic.es/" />
-        <meta property="og:title" content="Archic — Local-first AI infrastructure" />
-        <meta property="og:description" content="Local-first AI infrastructure. Midas for long-horizon agent memory. Apollo for routed local execution." />
+        <meta property="og:title" content="Archic — Foundations for agents that remember" />
+        <meta
+          property="og:description"
+          content="Local-first infrastructure for a personal agentic system. Midas for memory, Apollo for execution, Origin for interface — one layer at a time."
+        />
         <meta property="og:url" content="https://archic.es/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Archic — Local-first AI infrastructure" />
-        <meta name="twitter:description" content="Midas for long-horizon agent memory. Apollo for routed local execution." />
-        <script type="application/ld+json">{JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'Archic',
-          url: 'https://archic.es/',
-          description:
-            'Local-first AI infrastructure. Midas: long-horizon agent memory. Apollo: routed local execution.',
-          sameAs: ['https://midas.archic.es', 'https://apollo.archic.es', 'https://github.com/vornicx'],
-        })}</script>
+        <meta name="twitter:title" content="Archic — Foundations for agents that remember" />
+        <meta
+          name="twitter:description"
+          content="Local-first infrastructure for a personal agentic system. Midas, Apollo, Origin — separate, inspectable layers."
+        />
       </Helmet>
 
-
-      <div className="container-page" ref={ref}>
-        <div className="blueprint-frame frame-corners">
-
-          {/* CH.00 — PROLOGUE / HERO */}
-          <section id="top" aria-labelledby="hero-title" className="grid grid-cols-1 md:grid-cols-12 border-b border-[color:var(--line)]">
-            <div className="md:col-span-7 p-8 md:p-16 flex flex-col justify-center border-b md:border-b-0 md:border-r border-[color:var(--line)]">
-              <div className="chapter-tag mb-6 reveal" aria-hidden="true">CH.00 / PROLOGUE</div>
-              <div className="tag-gold mb-8 flex items-center gap-2 reveal" aria-hidden="true">
-                <span className="w-2 h-2 bg-[color:var(--gold)] rounded-full animate-pulse" />
-                STATUS: BUILDING IN PUBLIC
-              </div>
-              <h1 id="hero-title" className="display-xl text-[2.5rem] sm:text-[3.4rem] md:text-[4.4rem] mb-8 reveal">
-                Local-first AI<br />
-                infrastructure to <span className="gold-mark accent-underline">amplify you.</span>
-              </h1>
-              <p className="text-[13px] md:text-[14px] text-[color:var(--muted)] max-w-xl leading-relaxed uppercase tracking-[0.04em] reveal">
-                Archic builds the substrate for agents that remember and execute on your own machine. Two components shipping this summer: Midas for long-horizon memory, Apollo for routed local execution.
-              </p>
-              <div className="mt-12 flex flex-wrap gap-3 reveal">
-                <a href="#products" className="btn-primary">See the stack ↓</a>
-                <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="btn-secondary" aria-label="Open Midas site">
-                  Midas ↗
-                </a>
-                <a href="https://apollo.archic.es" target="_blank" rel="noopener noreferrer" className="btn-ghost" aria-label="Open Apollo site">
-                  Apollo ↗
-                </a>
-              </div>
-            </div>
-
-            <div className="md:col-span-5 p-8 md:p-10 flex flex-col justify-between bg-[color:var(--bg-soft)] gap-10">
-              <div className="space-y-1 text-[10px] text-[color:var(--muted-deep)] uppercase tracking-[0.22em] reveal" aria-hidden="true">
-                <div>ID: ARCHIC / HQ</div>
-                <div>SHIPPING WINDOW: SUMMER 2026</div>
-                <div>BASED IN: SPAIN</div>
-                <div>MODE: SOLO · LOCAL-FIRST</div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6 reveal">
-                <div className="metric"><div className="metric-value">2</div><div className="metric-label">Components in build</div></div>
-                <div className="metric"><div className="metric-value">0</div><div className="metric-label">LLM calls at ingest · Midas</div></div>
-                <div className="metric"><div className="metric-value">100%</div><div className="metric-label">Local-first by default</div></div>
-                <div className="metric"><div className="metric-value">1</div><div className="metric-label">Founder · shipping in public</div></div>
-              </div>
-
-              <div className="border-t border-[color:var(--line)] pt-8 reveal">
-                <div className="tag-mono mb-4">[ TABLE_OF_CONTENTS ]</div>
-                <div className="chapter-index">
-                  {CHAPTERS.map((c) => (
-                    <a key={c.num} href={c.href} className="chapter-index-row">
-                      <span className="chapter-index-num">§{c.num}</span>
-                      <span className="chapter-index-title">{c.title}</span>
-                      <span className="chapter-index-meta">{c.meta}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-          </section>
-
-          {/* CH.01 — THE PROBLEM */}
-          <section id="problem" aria-labelledby="problem-title" className="px-8 md:px-16 py-20 md:py-28 border-b border-[color:var(--line)]">
-            <div className="flex items-center gap-3 mb-10 reveal">
-              <span className="chapter-tag" aria-hidden="true">CH.01 / THE PROBLEM</span>
-              <span className="section-rule flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
-              <span className="tag-mono" aria-hidden="true">[ READ: 45S ]</span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
-              <div className="md:col-span-7 reveal">
-                <p id="problem-title" className="display text-[1.8rem] md:text-[2.4rem] leading-[1.15] mb-8">
-                  Today's AI tools <span className="gold-mark">forget what you told them yesterday</span> and run every task through whichever model you happened to open.
-                </p>
-                <p className="text-[14px] leading-relaxed text-[color:var(--muted)] drop-cap">
-                  Context dies at the window. Routing is manual. Your work and your data live on someone else's servers, summarized into something you can't audit. The interesting capability is in the models — the leverage is in the infrastructure around them, and right now that infrastructure barely exists outside cloud silos.
-                </p>
-              </div>
-              <div className="md:col-span-5 reveal">
-                <div className="pull-quote">
-                  <span className="strike">"Just use a bigger context window."</span><br />
-                  That's not memory. That's <span className="gold-mark">paying rent on amnesia.</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="ba-split reveal">
-              <div className="ba-cell ba-before">
-                <div className="ba-label">[ TODAY ]</div>
-                <div className="ba-statement">Cloud-bound, single-model, forgetful.</div>
-                <p className="ba-detail">One assistant per tab. Memory bolted on as a vector store with no provenance. Every prompt routed to the same model regardless of task. Your context lives somewhere you can't inspect or move.</p>
-              </div>
-              <div className="ba-cell ba-after">
-                <div className="ba-label">[ ARCHIC ]</div>
-                <div className="ba-statement">Local-first, multi-model, persistent.</div>
-                <p className="ba-detail">Source-grounded memory you can audit. A native autorouter that sends planning to a reasoning model and execution to a coding model. Your providers, your subscriptions, your machine — composed.</p>
-              </div>
-            </div>
-
-          </section>
-
-          {/* CH.02 — THE THESIS / MANIFESTO */}
-          <section id="manifesto" aria-labelledby="manifesto-title" className="manifesto-section">
-            <span className="manifesto-mark" aria-hidden="true">§02</span>
-            <div className="px-8 md:px-16 relative">
-              <div className="flex items-center gap-3 mb-12 reveal">
-                <span className="chapter-tag" aria-hidden="true">CH.02 / THE THESIS</span>
-                <span className="section-rule flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
-                <span className="tag-mono" aria-hidden="true">[ READ: 90S ]</span>
-              </div>
-
-              <h2 id="manifesto-title" className="display text-[1.6rem] md:text-[2.4rem] lg:text-[3rem] max-w-5xl leading-[1.15] mb-16 reveal">
-                The model isn't the product. <span className="gold-mark">The infrastructure around it is.</span>
-                <span className="text-[color:var(--muted-soft)]"> Three commitments Archic makes before shipping anything.</span>
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-[color:var(--line)]">
-                <div className="manifesto-pillar p-8 md:p-10 border-b md:border-b-0 md:border-r border-[color:var(--line)] reveal reveal-delay-1">
-                  <div className="tag-gold mb-5">[ 01 / LOCAL-FIRST ]</div>
-                  <p className="text-[13px] leading-relaxed text-[color:var(--muted)]">
-                    Your data, your models, your machine. Cloud is an <span className="text-[color:var(--ink-strong)]">option</span>, not the default. Everything Archic ships runs on your hardware without phoning home.
-                  </p>
-                </div>
-                <div className="manifesto-pillar p-8 md:p-10 border-b md:border-b-0 md:border-r border-[color:var(--line)] reveal reveal-delay-2">
-                  <div className="tag-gold mb-5">[ 02 / GROUNDED ]</div>
-                  <p className="text-[13px] leading-relaxed text-[color:var(--muted)]">
-                    Memory that returns <span className="text-[color:var(--ink-strong)]">sources</span>, not summaries. Provenance on every fact. No LLM at ingest, so context stays cheap and durable across sessions.
-                  </p>
-                </div>
-                <div className="manifesto-pillar p-8 md:p-10 reveal reveal-delay-3">
-                  <div className="tag-gold mb-5">[ 03 / HONEST ]</div>
-                  <p className="text-[13px] leading-relaxed text-[color:var(--muted)]">
-                    Real benchmarks, real comparisons, real caveats. We ship <span className="text-[color:var(--ink-strong)]">working demos</span> before slogans, and we say what doesn't work yet.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </section>
-
-          {/* CH.03 — THE STACK */}
-          <section id="products" aria-labelledby="stack-title" className="border-b border-[color:var(--line)]">
-            <div className="px-8 md:px-16 pt-16 md:pt-20 pb-10 reveal">
-              <div className="flex items-center gap-3 mb-10">
-                <span className="chapter-tag" aria-hidden="true">CH.03 / THE STACK</span>
-                <span className="flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
-                <span className="tag-mono" aria-hidden="true">[ 2 COMPONENTS · SHIPPING SUMMER 2026 ]</span>
-              </div>
-              <h2 id="stack-title" className="display text-[2rem] md:text-[2.8rem] max-w-3xl mb-6 leading-[1.05]">
-                Memory and execution,<br />
-                <span className="gold-mark">as independent local components.</span>
-              </h2>
-              <p className="text-[14px] text-[color:var(--muted)] max-w-2xl leading-relaxed">
-                Two components, one subdomain each. Each ships on its own and each works without the other — because infrastructure you can't take apart isn't infrastructure.
-              </p>
-
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 border-t border-[color:var(--line)]">
-              {PRODUCTS.map((p, i) => (
-                <a
-                  key={p.id}
-                  href={p.href}
-                  target={p.external ? '_blank' : undefined}
-                  rel={p.external ? 'noopener noreferrer' : undefined}
-                  className={`product-cell reveal ${i === 0 ? 'md:border-r' : ''} border-b border-[color:var(--line)]`}
-                >
-                  <div className="flex justify-between items-start mb-12 gap-3">
-                    <div>
-                      <div className="tag-mono mb-2">[ {p.num} ]</div>
-                      <h3>{p.name}</h3>
-                      <div className="tag-mono mt-2 text-[color:var(--muted-soft)]">{p.role}</div>
-                    </div>
-                    <StatusBadge status={p.status} />
-                  </div>
-                  <p className="text-[12.5px] leading-relaxed text-[color:var(--muted)] min-h-[72px] mb-8">
-                    {p.desc}
-                  </p>
-                  <span className="tag-gold cell-cta">{p.cta}</span>
-                </a>
-              ))}
-            </div>
-          </section>
-
-          {/* CH.04 — THE HORIZON */}
-          <section id="vision" aria-labelledby="vision-title" className="px-8 md:px-16 py-20 md:py-28 border-b border-[color:var(--line)]">
-            <div className="flex items-center gap-3 mb-10 reveal">
-              <span className="chapter-tag" aria-hidden="true">CH.04 / THE HORIZON</span>
-              <span className="flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
-              <span className="tag-mono" aria-hidden="true">[ NORTH_STAR ]</span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-              <div className="md:col-span-6 reveal">
-                <h2 id="vision-title" className="display text-[2rem] md:text-[2.8rem] mb-8 leading-[1.05]">
-                  Local-first infrastructure for<br />
-                  <span className="gold-mark">a personal intelligence stack.</span>
-                </h2>
-                <p className="text-[14px] leading-relaxed text-[color:var(--muted)] max-w-xl mb-6">
-                  The direction is a full local-first stack: memory, routing, execution, control. Midas and Apollo come first. Everything else stays parked until those two earn the right to grow.
-                </p>
-                <p className="text-[13px] leading-relaxed text-[color:var(--muted-soft)] max-w-xl italic">
-                  Ship two components that hold under load before drawing a five-layer diagram.
-                </p>
-              </div>
-
-              <div className="md:col-span-6 reveal">
-                <div className="story-timeline">
-                  <div className="story-step live">
-                    <div className="tag-gold mb-2">[ NOW · MEMORY ]</div>
-                    <div className="text-[15px] text-[color:var(--ink-strong)] mb-1">Midas — building</div>
-                    <p className="text-[12.5px] text-[color:var(--muted)] leading-relaxed">Long-horizon memory for AI agents. Source-grounded recall, provenance, no LLM at ingest.</p>
-                  </div>
-                  <div className="story-step">
-                    <div className="tag-gold mb-2">[ NEXT · EXECUTION ]</div>
-                    <div className="text-[15px] text-[color:var(--ink-strong)] mb-1">Apollo — building</div>
-                    <p className="text-[12.5px] text-[color:var(--muted)] leading-relaxed">Local-first CLI and desktop harness. Native autorouter across providers, subscriptions and APIs.</p>
-                  </div>
-                  <div className="story-step future">
-                    <div className="tag-mono mb-2 text-[color:var(--muted-soft)]">[ LATER · CONTROL ]</div>
-                    <div className="text-[15px] text-[color:var(--muted)] mb-1">Parked — by design</div>
-                    <p className="text-[12.5px] text-[color:var(--muted-soft)] leading-relaxed">Policy, observability, orchestration. Unlocked when memory and execution earn it.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </section>
-
-          {/* CH.05 — THE INVITATION */}
-          <section id="cta" aria-labelledby="cta-title" className="px-8 md:px-16 py-20 md:py-28">
-            <div className="flex items-center gap-3 mb-10 reveal">
-              <span className="chapter-tag" aria-hidden="true">CH.05 / THE INVITATION</span>
-              <span className="flex-1 h-px bg-[color:var(--line-strong)]" aria-hidden="true" />
-              <span className="tag-mono" aria-hidden="true">[ SHIPPING_NOW ]</span>
-            </div>
-            <div className="max-w-3xl reveal">
-              <h2 id="cta-title" className="display text-[2.2rem] md:text-[3.2rem] mb-6 leading-[1.05]">
-                Building in public.<br />
-                <span className="gold-mark">Follow the work.</span>
-              </h2>
-              <p className="text-[14px] leading-relaxed text-[color:var(--muted)] mb-10 max-w-xl">
-                Midas and Apollo ship this summer. Open the component sites for demos, benchmarks and progress notes — or read the source on GitHub.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a href="https://midas.archic.es" target="_blank" rel="noopener noreferrer" className="btn-primary" aria-label="Open Midas site">
-                  Midas ↗
-                </a>
-                <a href="https://apollo.archic.es" target="_blank" rel="noopener noreferrer" className="btn-secondary" aria-label="Open Apollo site">
-                  Apollo ↗
-                </a>
-                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost" aria-label="View on GitHub">
-                  GitHub ↗
-                </a>
-              </div>
-            </div>
-
-          </section>
-        </div>
+      <div id="top" style={{ background: BLUE, minHeight: '100vh' }}>
+        <TopBar />
+        <Nav />
+        <Hero />
+        <Stats />
+        <Thesis />
+        <Stack />
+        <Horizon />
+        <Principles />
+        <CTA />
+        <FooterBar />
       </div>
     </>
   )
 }
-
-export default ArchicHome
