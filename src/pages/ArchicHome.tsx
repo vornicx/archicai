@@ -1,7 +1,9 @@
 import { Helmet } from 'react-helmet-async'
 import { GITHUB_URL } from '../constants'
-import acropolisAsset from '../assets/acropolis-header.png.asset.json'
-import logoAsset from '../assets/archic-logo.png.asset.json'
+import acropolisUrl from '../assets/acropolis-header.png'
+import logoUrl from '../assets/archic-logo.png'
+const acropolisAsset = { url: acropolisUrl }
+const logoAsset = { url: logoUrl }
 
 const BLUE = '#0c1a60'
 const BLUE_INK = '#14267c'
