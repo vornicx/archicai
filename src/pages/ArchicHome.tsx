@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { GITHUB_URL } from '../constants'
 import acropolisUrl from '../assets/acropolis-header.png'
+import markAsset from '../assets/archic-mark.png.asset.json'
 
 const acropolisAsset = { url: acropolisUrl }
 
@@ -61,6 +62,7 @@ function Nav() {
     <nav className="ah-nav">
       <div className="ah-container ah-nav-inner">
         <a href="#top" className="ah-brand">
+          <img src={markAsset.url} alt="" className="ah-brand-mark" />
           <span>ARCHIC</span>
         </a>
         <div className="ah-nav-links">
