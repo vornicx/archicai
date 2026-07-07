@@ -69,7 +69,6 @@ function Nav() {
           <a href="#horizon">VISION</a>
           <span className="ah-nav-sep" aria-hidden>|</span>
           <a href="https://midas.archic.es" target="_blank" rel="noreferrer" className="ah-nav-gold">MIDAS ↗</a>
-          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="ah-nav-btn">{"\n"}</a>
         </div>
       </div>
     </nav>
