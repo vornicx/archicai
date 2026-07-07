@@ -7,9 +7,9 @@ const acropolisAsset = { url: acropolisUrl }
 const logoAsset = { url: logoUrl }
 
 const STATS = [
-  { val: '3', label: 'LAYERS · MEMORY / HARNESS / INTERFACE' },
+  { val: '1', label: 'LAYER · MEMORY' },
   { val: '1', label: 'FOUNDER · SHIPPING IN PUBLIC' },
-  { val: 'SS26', label: 'MIDAS + APOLLO · SUMMER 2026' },
+  { val: 'SS26', label: 'MIDAS · SUMMER 2026' },
   { val: '0', label: 'LLM CALLS AT INGEST · MIDAS' },
 ]
 
@@ -23,17 +23,9 @@ const LAYERS = [
     status: 'BUILDING · SS26',
   },
   {
-    layer: 'L2 · HARNESS',
-    name: 'Apollo',
-    desc: 'Local-first CLI and desktop harness. Native autorouter across providers — reasoning model plans, coding model acts.',
-    url: 'apollo.archic.es',
-    href: 'https://apollo.archic.es',
-    status: 'BUILDING · SS26',
-  },
-  {
-    layer: 'L3 · INTERFACE',
+    layer: 'L2 · INTERFACE',
     name: 'Origin',
-    desc: 'A personal interface for the stack. Design phase — unlocked once memory and execution earn it.',
+    desc: 'A personal interface for the stack. Design phase — unlocked once memory earns it.',
     url: '— parked —',
     href: null,
     status: 'DESIGN PHASE',
@@ -72,7 +64,6 @@ function Nav() {
           <a href="#horizon">VISION</a>
           <span className="ah-nav-sep" aria-hidden>|</span>
           <a href="https://midas.archic.es" target="_blank" rel="noreferrer" className="ah-nav-gold">MIDAS ↗</a>
-          <a href="https://apollo.archic.es" target="_blank" rel="noreferrer" className="ah-nav-gold">APOLLO ↗</a>
           <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="ah-nav-btn">{"\n"}</a>
         </div>
       </div>
@@ -199,8 +190,7 @@ function Horizon() {
             <span className="ah-term-gold">$ archic status</span><br />
             → local-first · open · auditable<br /><br />
             L1&nbsp;&nbsp;memory&nbsp;&nbsp;&nbsp;&nbsp;midas&nbsp;&nbsp;&nbsp;&nbsp;<span className="ah-term-gold">building · ss26</span><br />
-            L2&nbsp;&nbsp;harness&nbsp;&nbsp;&nbsp;apollo&nbsp;&nbsp;&nbsp;<span className="ah-term-gold">building · ss26</span><br />
-            L3&nbsp;&nbsp;interface&nbsp;origin&nbsp;&nbsp;&nbsp;<span className="ah-term-mute">design phase</span><br /><br />
+            L2&nbsp;&nbsp;interface&nbsp;origin&nbsp;&nbsp;&nbsp;<span className="ah-term-mute">design phase</span><br /><br />
             <span className="ah-term-mute"># nothing ships before it can be inspected</span>
           </div>
         </div>
@@ -232,7 +222,7 @@ function CTA() {
         <div>
           <h2 className="ah-h2 ah-h2-tight">Start with <span className="ah-cta-gold">Midas</span>.</h2>
           <p className="ah-body ah-body-narrow">
-            The memory layer is the first to ship. Apollo follows the same pattern: open, inspectable, announced when it runs. Origin waits its turn.
+            The memory layer is the first to ship. Origin waits its turn.
           </p>
         </div>
         <div className="ah-cta-actions">
@@ -254,7 +244,6 @@ function FooterBar() {
       <div className="ah-footer-links">
         <a href={GITHUB_URL} target="_blank" rel="noreferrer">GITHUB</a>
         <a href="https://midas.archic.es" target="_blank" rel="noreferrer">MIDAS</a>
-        <a href="https://apollo.archic.es" target="_blank" rel="noreferrer">APOLLO</a>
         <a href="mailto:vornic@archic.es">VORNIC@ARCHIC.ES</a>
       </div>
       <span className="ah-footer-copy">© 2026 ARCHIC</span>
@@ -269,13 +258,13 @@ export default function ArchicHome() {
         <title>Archic — Foundations for agents that remember</title>
         <meta
           name="description"
-          content="Local-first infrastructure for a personal agentic system. Memory, harness and interface as separate, inspectable layers. Midas + Apollo shipping summer 2026."
+          content="Local-first infrastructure for a personal agentic system. Memory and interface as separate, inspectable layers. Midas shipping summer 2026."
         />
         <link rel="canonical" href="https://archic.es/" />
         <meta property="og:title" content="Archic — Foundations for agents that remember" />
         <meta
           property="og:description"
-          content="Local-first infrastructure for a personal agentic system. Midas for memory, Apollo for execution, Origin for interface — one layer at a time."
+          content="Local-first infrastructure for a personal agentic system. Midas for memory, Origin for interface — one layer at a time."
         />
         <meta property="og:url" content="https://archic.es/" />
         <meta property="og:type" content="website" />
@@ -284,7 +273,7 @@ export default function ArchicHome() {
         <meta name="twitter:title" content="Archic — Foundations for agents that remember" />
         <meta
           name="twitter:description"
-          content="Local-first infrastructure for a personal agentic system. Midas, Apollo, Origin — separate, inspectable layers."
+          content="Local-first infrastructure for a personal agentic system. Midas, Origin — separate, inspectable layers."
         />
       </Helmet>
 
