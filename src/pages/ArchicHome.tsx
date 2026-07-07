@@ -194,7 +194,8 @@ function Horizon() {
             <span className="ah-term-gold">$ archic status</span><br />
             → local-first · open · auditable<br /><br />
             L1&nbsp;&nbsp;memory&nbsp;&nbsp;&nbsp;&nbsp;midas&nbsp;&nbsp;&nbsp;&nbsp;<span className="ah-term-gold">building · ss26</span><br />
-            L2&nbsp;&nbsp;interface&nbsp;origin&nbsp;&nbsp;&nbsp;<span className="ah-term-mute">design phase</span><br /><br />
+            L2&nbsp;&nbsp;interface&nbsp;origin&nbsp;&nbsp;&nbsp;<span className="ah-term-mute">design phase</span><br />
+            L3&nbsp;&nbsp;harness&nbsp;&nbsp;&nbsp;apollo&nbsp;&nbsp;&nbsp;<span className="ah-term-mute">parked</span><br /><br />
             <span className="ah-term-mute"># nothing ships before it can be inspected</span>
           </div>
         </div>
