@@ -227,7 +227,7 @@ function CTA() {
         <div>
           <h2 className="ah-h2 ah-h2-tight">Start with <span className="ah-cta-gold">Midas</span>.</h2>
           <p className="ah-body ah-body-narrow">
-            The memory layer is the first to ship. Origin waits its turn.
+            The memory layer is the first to ship. Origin and Apollo are parked until Midas earns them.
           </p>
         </div>
         <div className="ah-cta-actions">
