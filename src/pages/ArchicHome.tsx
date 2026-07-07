@@ -6,7 +6,7 @@ import markAsset from '../assets/archic-mark.png.asset.json'
 const acropolisAsset = { url: acropolisUrl }
 
 const STATS = [
-  { val: '2', label: 'LAYERS · MEMORY / HARNESS' },
+  { val: '3', label: 'LAYERS · MEMORY / HARNESS / INTERFACE' },
   { val: '1', label: 'FOUNDER · SHIPPING IN PUBLIC' },
   { val: 'SS26', label: 'MIDAS + APOLLO · SUMMER 2026' },
   { val: '0', label: 'LLM CALLS AT INGEST · MIDAS' },
