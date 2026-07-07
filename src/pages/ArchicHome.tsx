@@ -222,7 +222,7 @@ function CTA() {
         <div>
           <h2 className="ah-h2 ah-h2-tight">Start with <span className="ah-cta-gold">Midas</span>.</h2>
           <p className="ah-body ah-body-narrow">
-            The memory layer is the first to ship. Apollo follows the same pattern: open, inspectable, announced when it runs. Origin waits its turn.
+            The memory layer is the first to ship. Origin waits its turn.
           </p>
         </div>
         <div className="ah-cta-actions">
