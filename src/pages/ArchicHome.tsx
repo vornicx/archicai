@@ -28,6 +28,14 @@ const LAYERS = [
     href: null,
     status: 'DESIGN PHASE',
   },
+  {
+    layer: 'L3 · HARNESS',
+    name: 'Apollo',
+    desc: 'Local-first CLI and desktop harness with native autorouter. Parked until Midas is solid — will rebuild on stronger foundations.',
+    url: '— parked —',
+    href: null,
+    status: 'PARKED',
+  },
 ] as const
 
 const PRINCIPLES = [
