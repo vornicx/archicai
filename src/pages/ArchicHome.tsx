@@ -7,9 +7,9 @@ const acropolisAsset = { url: acropolisUrl }
 const logoAsset = { url: logoUrl }
 
 const STATS = [
-  { val: '3', label: 'LAYERS · MEMORY / HARNESS / INTERFACE' },
+  { val: '1', label: 'LAYER · MEMORY' },
   { val: '1', label: 'FOUNDER · SHIPPING IN PUBLIC' },
-  { val: 'SS26', label: 'MIDAS + APOLLO · SUMMER 2026' },
+  { val: 'SS26', label: 'MIDAS · SUMMER 2026' },
   { val: '0', label: 'LLM CALLS AT INGEST · MIDAS' },
 ]
 
