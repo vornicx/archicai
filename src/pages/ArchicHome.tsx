@@ -1,10 +1,8 @@
 import { Helmet } from 'react-helmet-async'
 import { GITHUB_URL } from '../constants'
 import acropolisUrl from '../assets/acropolis-header.png'
-import logoUrl from '../assets/archic-logo.png'
 
 const acropolisAsset = { url: acropolisUrl }
-const logoAsset = { url: logoUrl }
 
 const STATS = [
   { val: '1', label: 'LAYER · MEMORY' },
@@ -55,7 +53,6 @@ function Nav() {
     <nav className="ah-nav">
       <div className="ah-container ah-nav-inner">
         <a href="#top" className="ah-brand">
-          <img src={logoAsset.url} alt="Archic" />
           <span>ARCHIC</span>
         </a>
         <div className="ah-nav-links">
@@ -238,7 +235,6 @@ function FooterBar() {
   return (
     <footer className="ah-container ah-footer">
       <div className="ah-footer-brand">
-        <img src={logoAsset.url} alt="" />
         <span>ARCHIC</span>
       </div>
       <div className="ah-footer-links">
