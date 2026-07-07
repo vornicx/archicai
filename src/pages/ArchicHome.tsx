@@ -237,7 +237,7 @@ function CTA() {
         </div>
         <div className="ah-cta-actions">
           <a href="https://midas.archic.es" target="_blank" rel="noreferrer" className="ah-btn ah-btn-ink">Get Midas ↗</a>
-          <a href="mailto:hello@archic.es" className="ah-btn ah-btn-outline">hello@archic.es</a>
+          <a href="mailto:vornic@archic.es" className="ah-btn ah-btn-outline">vornic@archic.es</a>
         </div>
       </div>
     </section>
@@ -255,7 +255,7 @@ function FooterBar() {
         <a href={GITHUB_URL} target="_blank" rel="noreferrer">GITHUB</a>
         <a href="https://midas.archic.es" target="_blank" rel="noreferrer">MIDAS</a>
         <a href="https://apollo.archic.es" target="_blank" rel="noreferrer">APOLLO</a>
-        <a href="mailto:hello@archic.es">HELLO@ARCHIC.ES</a>
+        <a href="mailto:vornic@archic.es">VORNIC@ARCHIC.ES</a>
       </div>
       <span className="ah-footer-copy">© 2026 ARCHIC</span>
     </footer>
