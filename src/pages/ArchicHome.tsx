@@ -258,13 +258,13 @@ export default function ArchicHome() {
         <title>Archic — Foundations for agents that remember</title>
         <meta
           name="description"
-          content="Local-first infrastructure for a personal agentic system. Memory, harness and interface as separate, inspectable layers. Midas + Apollo shipping summer 2026."
+          content="Local-first infrastructure for a personal agentic system. Memory and interface as separate, inspectable layers. Midas shipping summer 2026."
         />
         <link rel="canonical" href="https://archic.es/" />
         <meta property="og:title" content="Archic — Foundations for agents that remember" />
         <meta
           property="og:description"
-          content="Local-first infrastructure for a personal agentic system. Midas for memory, Apollo for execution, Origin for interface — one layer at a time."
+          content="Local-first infrastructure for a personal agentic system. Midas for memory, Origin for interface — one layer at a time."
         />
         <meta property="og:url" content="https://archic.es/" />
         <meta property="og:type" content="website" />
@@ -273,7 +273,7 @@ export default function ArchicHome() {
         <meta name="twitter:title" content="Archic — Foundations for agents that remember" />
         <meta
           name="twitter:description"
-          content="Local-first infrastructure for a personal agentic system. Midas, Apollo, Origin — separate, inspectable layers."
+          content="Local-first infrastructure for a personal agentic system. Midas, Origin — separate, inspectable layers."
         />
       </Helmet>
 
