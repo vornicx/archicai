@@ -73,7 +73,7 @@ function Nav() {
           <span className="ah-nav-sep" aria-hidden>|</span>
           <a href="https://midas.archic.es" target="_blank" rel="noreferrer" className="ah-nav-gold">MIDAS ↗</a>
           <a href="https://apollo.archic.es" target="_blank" rel="noreferrer" className="ah-nav-gold">APOLLO ↗</a>
-          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="ah-nav-btn">[ GITHUB ]</a>
+          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="ah-nav-btn">{"\n"}</a>
         </div>
       </div>
     </nav>
