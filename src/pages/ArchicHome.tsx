@@ -244,7 +244,6 @@ function FooterBar() {
       <div className="ah-footer-links">
         <a href={GITHUB_URL} target="_blank" rel="noreferrer">GITHUB</a>
         <a href="https://midas.archic.es" target="_blank" rel="noreferrer">MIDAS</a>
-        <a href="https://apollo.archic.es" target="_blank" rel="noreferrer">APOLLO</a>
         <a href="mailto:vornic@archic.es">VORNIC@ARCHIC.ES</a>
       </div>
       <span className="ah-footer-copy">© 2026 ARCHIC</span>
