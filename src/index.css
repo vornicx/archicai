@@ -720,3 +720,7 @@ h3 {
     scroll-behavior: auto !important;
   }
 }
+
+section[id], article[id] {
+  scroll-margin-top: 88px;
+}
