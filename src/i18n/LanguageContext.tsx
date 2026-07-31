@@ -10,7 +10,7 @@ function initialLang(): Lang {
   if (typeof window === 'undefined') return 'es'
   const stored = window.localStorage.getItem(STORAGE_KEY)
   if (stored === 'es' || stored === 'en') return stored
-  return navigator.language?.toLowerCase().startsWith('en') ? 'en' : 'es'
+  return 'es'
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
