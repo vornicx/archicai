@@ -41,7 +41,7 @@ export default function SiteHeader() {
                 EN
               </button>
             </div>
-            <a href="#contacto" className="ar-btn ar-btn-primary ar-btn-sm hidden md:inline-flex">
+            <a href="#contacto" className="ar-btn ar-btn-primary ar-btn-sm ar-header-cta">
               {t.nav.cta}
             </a>
             <button
