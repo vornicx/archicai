@@ -1,298 +1,244 @@
 import { Helmet } from 'react-helmet-async'
-import { GITHUB_URL } from '../constants'
-import acropolisUrl from '../assets/acropolis-header.png'
-import markAsset from '../assets/archic-mark.png.asset.json'
-
-const acropolisAsset = { url: acropolisUrl }
-
-const STATS = [
-  { val: '3', label: 'LAYERS · MEMORY / HARNESS / INTERFACE' },
-  { val: '1', label: 'FOUNDER · SHIPPING IN PUBLIC' },
-  { val: 'SS26', label: 'MIDAS + APOLLO · SUMMER 2026' },
-  { val: '0', label: 'LLM CALLS AT INGEST · MIDAS' },
-]
-
-const LAYERS = [
-  {
-    layer: 'L1 · MEMORY',
-    name: 'Midas',
-    desc: 'Long-horizon agent memory. Source-grounded recall with full provenance. No LLM calls at ingest — durable context across sessions.',
-    url: 'midas.archic.es',
-    href: 'https://midas.archic.es',
-    status: 'BUILDING · SS26',
-  },
-  {
-    layer: 'L2 · HARNESS',
-    name: 'Apollo',
-    desc: 'Local-first CLI and desktop harness with native autorouter. The continuation of Midas — currently in development.',
-    url: '— in development —',
-    href: null,
-    status: 'BUILDING · SS26',
-  },
-  {
-    layer: 'L3 · INTERFACE',
-    name: 'Origin',
-    desc: 'A personal interface for the stack. Design phase — unlocked once memory and harness earn it.',
-    url: '— parked —',
-    href: null,
-    status: 'DESIGN PHASE',
-  },
-] as const
-
-const PRINCIPLES = [
-  {
-    num: '§ 01',
-    title: 'Local-first',
-    desc: 'Your data, your models, your machine. Cloud is an option, not the default. Nothing phones home.',
-  },
-  {
-    num: '§ 02',
-    title: 'Grounded',
-    desc: 'Memory returns sources, not summaries. Provenance on every fact. No LLM at ingest — context stays cheap and auditable.',
-  },
-  {
-    num: '§ 03',
-    title: 'Honest',
-    desc: 'Real benchmarks, real caveats. Working demos before slogans. We say what does not work yet.',
-  },
-]
-
-function Nav() {
-  return (
-    <nav className="ah-nav">
-      <div className="ah-container ah-nav-inner">
-        <a href="#top" className="ah-brand">
-          <img src={markAsset.url} alt="" className="ah-brand-mark" />
-          <span>ARCHIC</span>
-        </a>
-        <div className="ah-nav-links">
-          <a href="#thesis">MANIFESTO</a>
-          <a href="#stack">STACK</a>
-          <a href="#horizon">VISION</a>
-          <span className="ah-nav-sep" aria-hidden>|</span>
-          <a href="https://midas.archic.es" target="_blank" rel="noreferrer" className="ah-nav-gold">MIDAS ↗</a>
-        </div>
-      </div>
-    </nav>
-  )
-}
-
-function Hero() {
-  return (
-    <header className="ah-hero">
-      <div className="ah-container">
-        <div className="ah-hero-image-wrap">
-          <img src={acropolisAsset.url} alt="Acropolis rendered in digital pointillism" />
-          <div className="ah-hero-fade" />
-          <div className="ah-hero-chip-wrap">
-            <span className="ah-hero-chip">EST. MMXXVI · LOCAL-FIRST INFRASTRUCTURE</span>
-          </div>
-        </div>
-
-        <div className="ah-hero-body">
-          <h1 className="ah-hero-title">
-            Foundations for agents<br />
-            that <span className="ah-hero-accent">remember</span>.
-          </h1>
-          <div className="ah-hero-rule" aria-hidden>
-            <span /><em>◆</em><span />
-          </div>
-          <p className="ah-hero-lede">
-            The local-first infrastructure for a personal agentic system — memory, harness and interface as separate, inspectable layers.
-          </p>
-          <div className="ah-hero-ctas">
-            <a href="#stack" className="ah-btn ah-btn-gold">Explore the stack ↓</a>
-            <a href="https://midas.archic.es" target="_blank" rel="noreferrer" className="ah-btn ah-btn-ghost">Start with Midas ↗</a>
-          </div>
-        </div>
-      </div>
-    </header>
-  )
-}
-
-function Stats() {
-  return (
-    <div className="ah-container">
-      <div className="ah-stats">
-        {STATS.map((s, i) => (
-          <div key={i} className="ah-stat">
-            <div className="ah-stat-val">{s.val}</div>
-            <div className="ah-stat-label">{s.label}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function SectionTag({ children }: { children: React.ReactNode }) {
-  return <div className="ah-section-tag">{children}</div>
-}
-
-function Thesis() {
-  return (
-    <section id="thesis" className="ah-container ah-section">
-      <SectionTag>§02 / THE THESIS</SectionTag>
-      <div className="ah-two-col">
-        <h2 className="ah-h2">Infrastructure before intelligence.</h2>
-        <p className="ah-body">
-          A personal agent you can trust doesn't start with a bigger model — it starts with a substrate you can inspect. Archic builds that substrate as separate, local-first layers: memory with provenance, a harness with limits, an interface that answers to you. One layer at a time, in the open.
-        </p>
-      </div>
-    </section>
-  )
-}
-
-function Stack() {
-  return (
-    <section id="stack" className="ah-container ah-section">
-      <SectionTag>§03 / THE STACK</SectionTag>
-      <h2 className="ah-h2 ah-h2-tight">One layer at a time.</h2>
-
-      <div className="ah-stack">
-        {LAYERS.map((l) => {
-          const inner = (
-            <>
-              <div className="ah-stack-head">
-                <span className="ah-stack-layer">{l.layer}</span>
-                <span className="ah-stack-status">{l.status}</span>
-              </div>
-              <div className="ah-stack-name">{l.name}</div>
-              <p className="ah-stack-desc">{l.desc}</p>
-              <div className="ah-stack-url">{l.url}</div>
-            </>
-          )
-          return l.href ? (
-            <a key={l.name} href={l.href} target="_blank" rel="noreferrer" className="ah-stack-row ah-stack-row-link">
-              {inner}
-            </a>
-          ) : (
-            <div key={l.name} className="ah-stack-row">{inner}</div>
-          )
-        })}
-      </div>
-    </section>
-  )
-}
-
-function Horizon() {
-  return (
-    <section id="horizon" className="ah-container ah-section">
-      <div className="ah-two-col ah-two-col-center">
-        <div>
-          <SectionTag>§04 / THE HORIZON</SectionTag>
-          <h2 className="ah-h2 ah-h2-tight">One system,<br />built in layers.</h2>
-          <p className="ah-body ah-body-narrow">
-            The destination is a personal system that runs where you live: memory with provenance, a harness that acts within limits you set, an interface you can see and speak to. No dates promised — each layer ships when it can be inspected.
-          </p>
-        </div>
-
-        <div className="ah-terminal">
-          <div className="ah-terminal-bar">
-            <span>archic-status</span>
-            <span>LOCAL ONLY</span>
-          </div>
-          <div className="ah-terminal-body">
-            <span className="ah-term-gold">$ archic status</span><br />
-            → local-first · open · auditable<br /><br />
-            L1&nbsp;&nbsp;memory&nbsp;&nbsp;&nbsp;&nbsp;midas&nbsp;&nbsp;&nbsp;&nbsp;<span className="ah-term-gold">building · ss26</span><br />
-            L2&nbsp;&nbsp;harness&nbsp;&nbsp;&nbsp;apollo&nbsp;&nbsp;&nbsp;<span className="ah-term-gold">building · ss26</span><br />
-            L3&nbsp;&nbsp;interface&nbsp;origin&nbsp;&nbsp;&nbsp;<span className="ah-term-mute">design phase</span><br /><br />
-            <span className="ah-term-mute"># nothing ships before it can be inspected</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Principles() {
-  return (
-    <section className="ah-container ah-section-tight">
-      <div className="ah-principles">
-        {PRINCIPLES.map((p) => (
-          <div key={p.num} className="ah-principle">
-            <div className="ah-principle-num">{p.num}</div>
-            <div className="ah-principle-title">{p.title}</div>
-            <p className="ah-principle-desc">{p.desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function CTA() {
-  return (
-    <section className="ah-container ah-section-tight">
-      <div className="ah-cta">
-        <div>
-          <h2 className="ah-h2 ah-h2-tight">Start with <span className="ah-cta-gold">Midas</span>.</h2>
-          <p className="ah-body ah-body-narrow">
-            Midas ships first. Apollo is already in development as the harness layer. Origin stays parked until the stack earns it.
-          </p>
-        </div>
-        <div className="ah-cta-actions">
-          <a href="https://midas.archic.es" target="_blank" rel="noreferrer" className="ah-btn ah-btn-ink">Get Midas ↗</a>
-          <a href="mailto:vornic@archic.es" className="ah-btn ah-btn-outline">vornic@archic.es</a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function FooterBar() {
-  return (
-    <footer className="ah-container ah-footer">
-      <div className="ah-footer-brand">
-        <span>ARCHIC</span>
-      </div>
-      <div className="ah-footer-links">
-        <a href={GITHUB_URL} target="_blank" rel="noreferrer">GITHUB</a>
-        <a href="https://midas.archic.es" target="_blank" rel="noreferrer">MIDAS</a>
-        <a href="mailto:vornic@archic.es">VORNIC@ARCHIC.ES</a>
-      </div>
-      <span className="ah-footer-copy">© 2026 ARCHIC</span>
-    </footer>
-  )
-}
+import { useLang } from '../i18n/LanguageContext'
+import { CONTACT_MAIL } from '../i18n/content'
+import SiteHeader from '../components/SiteHeader'
+import ContactForm from '../components/ContactForm'
+import heroImage from '../assets/hero-archic.jpg'
 
 export default function ArchicHome() {
+  const { t, lang } = useLang()
+
   return (
     <>
-      <Helmet>
-        <title>Archic — Foundations for agents that remember</title>
-        <meta
-          name="description"
-          content="Local-first infrastructure for a personal agentic system. Midas shipping summer 2026, Apollo in development, Origin parked until the stack earns it."
-        />
+      <Helmet htmlAttributes={{ lang }}>
+        <title>{t.meta.title}</title>
+        <meta name="description" content={t.meta.description} />
         <link rel="canonical" href="https://archic.es/" />
-        <meta property="og:title" content="Archic — Foundations for agents that remember" />
-        <meta
-          property="og:description"
-          content="Local-first infrastructure for a personal agentic system. Midas for memory, Apollo for harness in development, Origin for interface parked — one layer at a time."
-        />
+        <meta property="og:title" content={t.meta.ogTitle} />
+        <meta property="og:description" content={t.meta.ogDescription} />
         <meta property="og:url" content="https://archic.es/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Archic — Foundations for agents that remember" />
-        <meta
-          name="twitter:description"
-          content="Local-first infrastructure for a personal agentic system. Midas and Apollo in development, Origin parked — separate, inspectable layers."
-        />
+        <meta name="twitter:title" content={t.meta.ogTitle} />
+        <meta name="twitter:description" content={t.meta.ogDescription} />
       </Helmet>
 
-      <div id="top" className="ah-root">
-        <Nav />
-        <Hero />
-        <Stats />
-        <Thesis />
-        <Stack />
-        <Horizon />
-        <Principles />
-        <CTA />
-        <FooterBar />
+      <div id="top">
+        <SiteHeader />
+
+        {/* HERO */}
+        <section className="ar-hero">
+          <div className="ar-container ar-hero-grid">
+            <div>
+              <h1 className="ar-hero-title">{t.hero.title}</h1>
+              <p className="ar-hero-sub">{t.hero.subtitle}</p>
+              <div className="ar-hero-ctas">
+                <a href="#contacto" className="ar-btn ar-btn-primary">
+                  {t.hero.ctaPrimary}
+                </a>
+                <a href="#servicios" className="ar-btn ar-btn-ghost">
+                  {t.hero.ctaSecondary}
+                </a>
+              </div>
+              <p className="ar-hero-note">{t.hero.note}</p>
+            </div>
+            <div className="ar-hero-media">
+              <img src={heroImage} alt={t.hero.imageAlt} width={1600} height={1104} />
+            </div>
+          </div>
+        </section>
+
+        {/* SERVICIOS */}
+        <section id="servicios" className="ar-section">
+          <div className="ar-container">
+            <p className="ar-eyebrow">{t.servicesIntro.eyebrow}</p>
+            <h2 className="ar-h2">{t.servicesIntro.title}</h2>
+            <p className="ar-lead">{t.servicesIntro.lead}</p>
+
+            <div className="ar-services">
+              {t.services.map((service) => (
+                <article
+                  key={service.id}
+                  id={service.id}
+                  className="ar-service"
+                  style={{ scrollMarginTop: '90px' }}
+                >
+                  <span className="ar-service-num">{service.eyebrow}</span>
+                  <h3 className="ar-service-title">{service.title}</h3>
+                  <p className="ar-service-intro">{service.intro}</p>
+                  <ul className="ar-list">
+                    {service.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CÓMO TRABAJAMOS */}
+        <section className="ar-section ar-section-alt">
+          <div className="ar-container">
+            <p className="ar-eyebrow">{t.value.eyebrow}</p>
+            <h2 className="ar-h2">{t.value.title}</h2>
+            <p className="ar-lead">{t.value.lead}</p>
+            <div className="ar-grid-2">
+              {t.value.principles.map((p) => (
+                <div key={p.title} className="ar-tile">
+                  <h3>{p.title}</h3>
+                  <p>{p.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PROCESO */}
+        <section className="ar-section">
+          <div className="ar-container">
+            <p className="ar-eyebrow">{t.process.eyebrow}</p>
+            <h2 className="ar-h2">{t.process.title}</h2>
+            <p className="ar-lead">{t.process.lead}</p>
+            <ol className="ar-steps">
+              {t.process.steps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* CLIENTES */}
+        <section className="ar-section ar-section-alt">
+          <div className="ar-container">
+            <p className="ar-eyebrow">{t.clients.eyebrow}</p>
+            <h2 className="ar-h2">{t.clients.title}</h2>
+            <p className="ar-lead">{t.clients.lead}</p>
+            <div className="ar-chips">
+              {t.clients.items.map((item) => (
+                <span key={item} className="ar-chip">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PROYECTOS */}
+        <section id="proyectos" className="ar-section" style={{ scrollMarginTop: '70px' }}>
+          <div className="ar-container">
+            <p className="ar-eyebrow">{t.projects.eyebrow}</p>
+            <h2 className="ar-h2">{t.projects.title}</h2>
+            <p className="ar-lead">{t.projects.lead}</p>
+            <div className="ar-projects">
+              {t.projects.items.map((p) => (
+                <article key={p.title} className="ar-project">
+                  <div className="ar-project-top">
+                    <span className="ar-note">{t.projects.conceptLabel}</span>
+                    <span className="ar-tag">{p.tag}</span>
+                  </div>
+                  <h3>{p.title}</h3>
+                  <p>{p.desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SOBRE ARCHIC */}
+        <section id="sobre" className="ar-section ar-section-alt" style={{ scrollMarginTop: '70px' }}>
+          <div className="ar-container">
+            <p className="ar-eyebrow">{t.about.eyebrow}</p>
+            <h2 className="ar-h2">{t.about.title}</h2>
+            {t.about.body.map((paragraph) => (
+              <p key={paragraph} className="ar-lead" style={{ marginTop: 14 }}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* ARCHIC LABS */}
+        <section id="labs" className="ar-section ar-labs" style={{ scrollMarginTop: '70px' }}>
+          <div className="ar-container">
+            <p className="ar-eyebrow">{t.labs.eyebrow}</p>
+            <h2 className="ar-h2">{t.labs.title}</h2>
+            <p className="ar-lead">{t.labs.lead}</p>
+            <div className="ar-lab-grid">
+              {t.labs.items.map((item) => {
+                const inner = (
+                  <>
+                    <h3>{item.name}</h3>
+                    <p>{item.desc}</p>
+                    <span className="ar-lab-status">{item.status}</span>
+                  </>
+                )
+                return item.href ? (
+                  <a key={item.name} href={item.href} target="_blank" rel="noreferrer" className="ar-lab">
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={item.name} className="ar-lab">
+                    {inner}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACTO */}
+        <section id="contacto" className="ar-section" style={{ scrollMarginTop: '70px' }}>
+          <div className="ar-container">
+            <div className="ar-contact-grid">
+              <div>
+                <p className="ar-eyebrow">{t.contact.eyebrow}</p>
+                <h2 className="ar-h2">{t.contact.title}</h2>
+                <p className="ar-lead">{t.contact.lead}</p>
+                <p className="ar-lead" style={{ marginTop: 20 }}>
+                  {t.contact.directLabel}{' '}
+                  <a href={`mailto:${CONTACT_MAIL}`} style={{ color: 'var(--blue)' }}>
+                    {CONTACT_MAIL}
+                  </a>
+                </p>
+              </div>
+              <ContactForm />
+            </div>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className="ar-footer">
+          <div className="ar-container">
+            <div className="ar-footer-grid">
+              <div>
+                <p style={{ fontFamily: 'Marcellus, serif', fontSize: 20, letterSpacing: '0.14em', margin: '0 0 8px' }}>
+                  ARCHIC
+                </p>
+                <p className="ar-lead" style={{ fontSize: 14 }}>
+                  {t.footer.tagline}
+                </p>
+              </div>
+              <div className="ar-footer-links">
+                <a href="#servicios">{t.nav.web}</a>
+                <a href="#software">{t.nav.software}</a>
+                <a href="#mantenimiento">{t.nav.maintenance}</a>
+                <a href="#proyectos">{t.nav.projects}</a>
+                <a href="#sobre">{t.nav.about}</a>
+                <a href="#contacto">{t.nav.contact}</a>
+                <a href="https://midas.archic.es" target="_blank" rel="noreferrer">
+                  Archic Labs
+                </a>
+                <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
+              </div>
+            </div>
+            <div className="ar-footer-bottom">
+              <span>© {new Date().getFullYear()} ARCHIC · {t.footer.rights}</span>
+              <span>ESPAÑA</span>
+            </div>
+          </div>
+        </footer>
       </div>
     </>
   )
