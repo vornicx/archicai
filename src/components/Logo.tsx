@@ -1,40 +1,49 @@
 type LogoProps = {
   className?: string
+  size?: number
+  showWordmark?: boolean
   title?: string
 }
 
-function Logo({ className, title = 'Archic' }: LogoProps) {
+export default function Logo({
+  className,
+  size = 28,
+  showWordmark = true,
+  title = 'Archic',
+}: LogoProps) {
   return (
-    <span className={`archic-logo ${className ?? ''}`} aria-label={title}>
+    <span className={`ar-logo ${className ?? ''}`} aria-label={title} role="img">
       <svg
-        className="archic-mark"
-        viewBox="0 0 40 40"
-        width="30"
-        height="30"
+        className="ar-logo-mark"
+        width={size}
+        height={size}
+        viewBox="0 0 32 32"
         fill="none"
         aria-hidden="true"
       >
+        {/* geometric A monogram: two diagonals, gold crossbar, base rule */}
         <path
-          d="M5 34 L5 23 Q5 9 20 5 Q35 9 35 23 L35 34"
-          stroke="var(--ink-strong)"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d="M16 4.5 L27 27"
+          stroke="var(--blue-deep)"
+          strokeWidth="2.4"
+          strokeLinecap="square"
         />
         <path
-          d="M13 34 L13 25 Q13 17 20 14 Q27 17 27 25 L27 34"
-          stroke="var(--ink-strong)"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d="M16 4.5 L5 27"
+          stroke="var(--blue-deep)"
+          strokeWidth="2.4"
+          strokeLinecap="square"
         />
-        <circle cx="20" cy="20" r="1.9" fill="var(--gold)" />
-        <circle cx="20" cy="32.4" r="1.9" fill="var(--gold)" />
+        <path d="M10 19.5 H22" stroke="var(--gold)" strokeWidth="2.4" strokeLinecap="square" />
+        <path
+          d="M2.5 30 H29.5"
+          stroke="var(--blue-deep)"
+          strokeWidth="1.2"
+          strokeLinecap="square"
+          opacity="0.35"
+        />
       </svg>
-      <span className="archic-divider" aria-hidden="true" />
-      <span className="archic-wordmark">Archic</span>
+      {showWordmark && <span className="ar-logo-word">ARCHIC</span>}
     </span>
   )
 }
-
-export default Logo
