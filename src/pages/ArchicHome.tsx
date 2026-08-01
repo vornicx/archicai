@@ -54,9 +54,11 @@ export default function ArchicHome() {
         {/* SERVICIOS */}
         <section id="servicios" className="ar-section">
           <div className="ar-container">
-            <p className="ar-eyebrow">{t.servicesIntro.eyebrow}</p>
-            <h2 className="ar-h2">{t.servicesIntro.title}</h2>
-            <p className="ar-lead">{t.servicesIntro.lead}</p>
+            <div className="ar-sec-head">
+              <p className="ar-eyebrow">{t.servicesIntro.eyebrow}</p>
+              <h2 className="ar-h2">{t.servicesIntro.title}</h2>
+              <p className="ar-lead">{t.servicesIntro.lead}</p>
+            </div>
 
             <div className="ar-services">
               {t.services.map((service) => (
@@ -83,9 +85,11 @@ export default function ArchicHome() {
         {/* CÓMO TRABAJAMOS */}
         <section className="ar-section ar-section-alt">
           <div className="ar-container">
-            <p className="ar-eyebrow">{t.value.eyebrow}</p>
-            <h2 className="ar-h2">{t.value.title}</h2>
-            <p className="ar-lead">{t.value.lead}</p>
+            <div className="ar-sec-head">
+              <p className="ar-eyebrow">{t.value.eyebrow}</p>
+              <h2 className="ar-h2">{t.value.title}</h2>
+              <p className="ar-lead">{t.value.lead}</p>
+            </div>
             <div className="ar-grid-2">
               {t.value.principles.map((p) => (
                 <div key={p.title} className="ar-tile">
@@ -100,9 +104,11 @@ export default function ArchicHome() {
         {/* PROCESO */}
         <section className="ar-section">
           <div className="ar-container">
-            <p className="ar-eyebrow">{t.process.eyebrow}</p>
-            <h2 className="ar-h2">{t.process.title}</h2>
-            <p className="ar-lead">{t.process.lead}</p>
+            <div className="ar-sec-head">
+              <p className="ar-eyebrow">{t.process.eyebrow}</p>
+              <h2 className="ar-h2">{t.process.title}</h2>
+              <p className="ar-lead">{t.process.lead}</p>
+            </div>
             <ol className="ar-steps">
               {t.process.steps.map((step) => (
                 <li key={step}>{step}</li>
@@ -114,9 +120,11 @@ export default function ArchicHome() {
         {/* CLIENTES */}
         <section className="ar-section ar-section-alt">
           <div className="ar-container">
-            <p className="ar-eyebrow">{t.clients.eyebrow}</p>
-            <h2 className="ar-h2">{t.clients.title}</h2>
-            <p className="ar-lead">{t.clients.lead}</p>
+            <div className="ar-sec-head">
+              <p className="ar-eyebrow">{t.clients.eyebrow}</p>
+              <h2 className="ar-h2">{t.clients.title}</h2>
+              <p className="ar-lead">{t.clients.lead}</p>
+            </div>
             <div className="ar-chips">
               {t.clients.items.map((item) => (
                 <span key={item} className="ar-chip">
@@ -130,9 +138,11 @@ export default function ArchicHome() {
         {/* PROYECTOS */}
         <section id="proyectos" className="ar-section" style={{ scrollMarginTop: '70px' }}>
           <div className="ar-container">
-            <p className="ar-eyebrow">{t.projects.eyebrow}</p>
-            <h2 className="ar-h2">{t.projects.title}</h2>
-            <p className="ar-lead">{t.projects.lead}</p>
+            <div className="ar-sec-head">
+              <p className="ar-eyebrow">{t.projects.eyebrow}</p>
+              <h2 className="ar-h2">{t.projects.title}</h2>
+              <p className="ar-lead">{t.projects.lead}</p>
+            </div>
             <div className="ar-projects">
               {t.projects.items.map((p) => (
                 <article key={p.title} className="ar-project">
@@ -164,9 +174,11 @@ export default function ArchicHome() {
         {/* ARCHIC LABS */}
         <section id="labs" className="ar-section ar-labs" style={{ scrollMarginTop: '70px' }}>
           <div className="ar-container">
-            <p className="ar-eyebrow">{t.labs.eyebrow}</p>
-            <h2 className="ar-h2">{t.labs.title}</h2>
-            <p className="ar-lead">{t.labs.lead}</p>
+            <div className="ar-sec-head">
+              <p className="ar-eyebrow">{t.labs.eyebrow}</p>
+              <h2 className="ar-h2">{t.labs.title}</h2>
+              <p className="ar-lead">{t.labs.lead}</p>
+            </div>
             <div className="ar-lab-grid">
               {t.labs.items.map((item) => {
                 const inner = (
