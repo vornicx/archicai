@@ -32,7 +32,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -100,7 +100,7 @@ img {
 h1,
 h2,
 h3 {
-  font-family: 'Marcellus', Georgia, serif;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
   font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -144,7 +144,7 @@ h3 {
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  font-family: 'Marcellus', serif;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
   font-size: 20px;
   letter-spacing: 0.14em;
 }
@@ -455,7 +455,7 @@ h3 {
   padding: 18px 0;
   border-bottom: 1px solid var(--line-soft);
   font-size: clamp(16px, 2vw, 19px);
-  font-family: 'Marcellus', serif;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
 }
 
 .ar-steps li::before {
