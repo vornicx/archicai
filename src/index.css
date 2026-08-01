@@ -796,3 +796,7 @@ section[id], article[id] {
     margin-bottom: 0;
   }
 }
+
+.ar-labs .ar-sec-head {
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
