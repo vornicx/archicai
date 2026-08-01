@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
-import markAsset from '../assets/archic-mark.png.asset.json'
+import Logo from './Logo'
+
 
 const SECTIONS = [
   { key: 'web', href: '#servicios' },
