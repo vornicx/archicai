@@ -213,13 +213,12 @@ export default function ArchicHome() {
           <div className="ar-container">
             <div className="ar-footer-grid">
               <div>
-                <p style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", fontWeight: 600, fontSize: 19, letterSpacing: '0.16em', margin: '0 0 8px', color: 'var(--blue-deep)' }}>
-                  ARCHIC
-                </p>
-                <p className="ar-lead" style={{ fontSize: 14 }}>
+                <Logo size={30} className="ar-logo-footer" />
+                <p className="ar-lead" style={{ fontSize: 14, marginTop: 12 }}>
                   {t.footer.tagline}
                 </p>
               </div>
+
               <div className="ar-footer-links">
                 <a href="#servicios">{t.nav.web}</a>
                 <a href="#software">{t.nav.software}</a>
