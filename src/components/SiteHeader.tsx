@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
-import markAsset from '../assets/archic-mark.png.asset.json'
+import Logo from './Logo'
+
 
 const SECTIONS = [
   { key: 'web', href: '#servicios' },
@@ -20,9 +21,9 @@ export default function SiteHeader() {
       <div className="ar-container">
         <div className="ar-header-row">
           <a className="ar-brand" href="#top">
-            <img src={markAsset.url} alt="" width={26} height={26} />
-            <span>ARCHIC</span>
+            <Logo size={28} />
           </a>
+
 
           <nav className="ar-nav" aria-label={t.nav.home}>
             {SECTIONS.map((s) => (
