@@ -21,9 +21,9 @@ export default function SiteHeader() {
       <div className="ar-container">
         <div className="ar-header-row">
           <a className="ar-brand" href="#top">
-            <img src={markAsset.url} alt="" width={26} height={26} />
-            <span>ARCHIC</span>
+            <Logo size={28} />
           </a>
+
 
           <nav className="ar-nav" aria-label={t.nav.home}>
             {SECTIONS.map((s) => (
