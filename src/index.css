@@ -739,3 +739,60 @@ section[id], article[id] {
     display: inline-flex;
   }
 }
+
+/* ---------- brand mark ---------- */
+.ar-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ar-logo-mark {
+  display: block;
+  flex: none;
+}
+
+.ar-logo-word {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  color: var(--blue-deep);
+  line-height: 1;
+}
+
+.ar-brand:hover .ar-logo-word {
+  color: var(--blue);
+}
+
+.ar-logo-footer .ar-logo-word {
+  font-size: 17px;
+}
+
+/* ---------- section heads ---------- */
+.ar-sec-head {
+  display: grid;
+  gap: 16px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+}
+
+.ar-sec-head .ar-h2 {
+  margin-bottom: 0;
+}
+
+.ar-sec-head .ar-lead {
+  align-self: end;
+}
+
+@media (min-width: 960px) {
+  .ar-sec-head {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .ar-sec-head .ar-eyebrow {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+}
