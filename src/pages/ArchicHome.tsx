@@ -3,6 +3,8 @@ import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_MAIL } from '../i18n/content'
 import SiteHeader from '../components/SiteHeader'
 import ContactForm from '../components/ContactForm'
+import Logo from '../components/Logo'
+
 import heroImage from '../assets/hero-archic.jpg'
 
 export default function ArchicHome() {
