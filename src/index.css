@@ -744,21 +744,31 @@ section[id], article[id] {
 .ar-logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(7px, 1.4vw, 10px);
+  --logo-min: 22px;
+  --logo-max: 28px;
 }
 
 .ar-logo-mark {
   display: block;
   flex: none;
+  width: clamp(var(--logo-min), 4.4vw, var(--logo-max));
+  height: clamp(var(--logo-min), 4.4vw, var(--logo-max));
 }
 
 .ar-logo-word {
   font-family: 'Space Grotesk', system-ui, sans-serif;
   font-weight: 600;
-  font-size: 18px;
+  font-size: clamp(15px, 2.4vw, 18px);
   letter-spacing: 0.2em;
   color: var(--blue-deep);
   line-height: 1;
+}
+
+@media (max-width: 479px) {
+  .ar-logo-compact .ar-logo-word {
+    display: none;
+  }
 }
 
 .ar-brand:hover .ar-logo-word {
@@ -768,6 +778,30 @@ section[id], article[id] {
 .ar-logo-footer .ar-logo-word {
   font-size: 17px;
 }
+
+/* ---------- empty states ---------- */
+.ar-empty {
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
+  padding: clamp(32px, 8vw, 72px) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ar-empty .ar-lead {
+  margin-top: 12px;
+}
+
+.ar-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
 
 /* ---------- section heads ---------- */
 .ar-sec-head {
