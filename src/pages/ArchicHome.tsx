@@ -20,12 +20,12 @@ export default function ArchicHome() {
         url: 'https://archic.es/',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://archic.es/archic-mark-512.png',
-          contentUrl: 'https://archic.es/archic-mark-512.png',
-          width: 512,
-          height: 512,
+          url: 'https://archic.es/archic-mark.png',
+          contentUrl: 'https://archic.es/archic-mark.png',
+          width: 381,
+          height: 376,
         },
-        image: 'https://archic.es/og-image.png',
+        image: 'https://archic.es/og-image.jpg',
         email: CONTACT_MAIL,
         description: t.meta.description,
         areaServed: { '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' },
@@ -92,9 +92,9 @@ export default function ArchicHome() {
         <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
         <meta property="og:image" content={`https://archic.es/${t.meta.ogImage}`} />
         <meta property="og:image:secure_url" content={`https://archic.es/${t.meta.ogImage}`} />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1500" />
+        <meta property="og:image:height" content="500" />
         <meta property="og:image:alt" content={t.meta.ogImageAlt} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@ArchicHQ" />
@@ -126,7 +126,14 @@ export default function ArchicHome() {
               <p className="ar-hero-note">{t.hero.note}</p>
             </div>
             <div className="ar-hero-media">
-              <img src={heroImage} alt={t.hero.imageAlt} width={1600} height={1104} />
+              <img
+                src={heroImage}
+                alt={t.hero.imageAlt}
+                width={1509}
+                height={1042}
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
           </div>
         </section>

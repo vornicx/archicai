@@ -32,36 +32,26 @@ export default function Logo({
         } as React.CSSProperties
       }
     >
-      <svg
-        className="ar-logo-mark"
-        viewBox="0 0 32 32"
-        fill="none"
-        aria-hidden="true"
-        focusable="false"
-      >
-        {/* geometric A monogram: two diagonals, gold crossbar, base rule */}
-        <path
-          d="M16 4.5 L27 27"
-          stroke="var(--blue-deep)"
-          strokeWidth="2.4"
-          strokeLinecap="square"
+      {showWordmark && (
+        <img
+          className="ar-logo-full"
+          src="/archic-logo.png"
+          alt=""
+          width={1567}
+          height={376}
+          aria-hidden="true"
         />
-        <path
-          d="M16 4.5 L5 27"
-          stroke="var(--blue-deep)"
-          strokeWidth="2.4"
-          strokeLinecap="square"
+      )}
+      {(!showWordmark || compactWordmark) && (
+        <img
+          className="ar-logo-mark"
+          src="/archic-mark.png"
+          alt=""
+          width={381}
+          height={376}
+          aria-hidden="true"
         />
-        <path d="M10 19.5 H22" stroke="var(--gold)" strokeWidth="2.4" strokeLinecap="square" />
-        <path
-          d="M2.5 30 H29.5"
-          stroke="var(--blue-deep)"
-          strokeWidth="1.2"
-          strokeLinecap="square"
-          opacity="0.35"
-        />
-      </svg>
-      {showWordmark && <span className="ar-logo-word">ARCHIC</span>}
+      )}
     </span>
   )
 }

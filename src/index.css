@@ -801,39 +801,35 @@ section[id], article[id] {
 .ar-logo {
   display: inline-flex;
   align-items: center;
-  gap: clamp(7px, 1.4vw, 10px);
   --logo-min: 22px;
   --logo-max: 28px;
 }
 
+.ar-logo-full,
 .ar-logo-mark {
   display: block;
   flex: none;
-  width: clamp(var(--logo-min), 4.4vw, var(--logo-max));
   height: clamp(var(--logo-min), 4.4vw, var(--logo-max));
+  width: auto;
 }
 
-.ar-logo-word {
-  font-family: 'Space Grotesk', 'Space Grotesk Fallback', system-ui, sans-serif;
-  font-weight: 600;
-  font-size: clamp(15px, 2.4vw, 18px);
-  letter-spacing: 0.2em;
-  color: var(--blue-deep);
-  line-height: 1;
+.ar-logo-compact .ar-logo-mark {
+  display: none;
 }
 
 @media (max-width: 479px) {
-  .ar-logo-compact .ar-logo-word {
+  .ar-logo-compact .ar-logo-full {
     display: none;
+  }
+
+  .ar-logo-compact .ar-logo-mark {
+    display: block;
   }
 }
 
-.ar-brand:hover .ar-logo-word {
-  color: var(--blue);
-}
-
-.ar-logo-footer .ar-logo-word {
-  font-size: 17px;
+.ar-brand:hover .ar-logo-full,
+.ar-brand:hover .ar-logo-mark {
+  opacity: 0.86;
 }
 
 /* ---------- empty states ---------- */

@@ -80,7 +80,7 @@ export const CONTENT: Record<Lang, Content> = {
       ogTitle: 'Páginas web y software a medida para empresas | Archic',
       ogDescription:
         'Diseño y desarrollo web, mantenimiento continuo, software a medida y automatización de procesos para empresas.',
-      ogImage: 'og-image.png',
+      ogImage: 'og-image.jpg',
       ogImageAlt: 'Archic — páginas web y software a medida para empresas',
     },
     a11y: {
@@ -113,7 +113,7 @@ export const CONTENT: Record<Lang, Content> = {
       ctaPrimary: 'Cuéntanos tu proyecto',
       ctaSecondary: 'Ver servicios',
       note: 'Desde España, trabajando con empresas que necesitan tecnología útil, clara y bien construida.',
-      imageAlt: 'Fachada de arquitectura mediterránea contemporánea en piedra clara',
+      imageAlt: 'Entrada de arquitectura mediterránea con un gran arco de piedra y una puerta azul',
     },
     servicesIntro: {
       eyebrow: 'Servicios',
@@ -294,7 +294,7 @@ export const CONTENT: Record<Lang, Content> = {
       ogTitle: 'Websites and custom software for businesses | Archic',
       ogDescription:
         'Web design and development, ongoing maintenance, custom software and process automation for businesses.',
-      ogImage: 'og-image-en.png',
+      ogImage: 'og-image.jpg',
       ogImageAlt: 'Archic — websites and custom software for businesses',
     },
     a11y: {
@@ -327,7 +327,7 @@ export const CONTENT: Record<Lang, Content> = {
       ctaPrimary: 'Tell us about your project',
       ctaSecondary: 'See services',
       note: 'Based in Spain, working with companies that need technology that is useful, clear and well built.',
-      imageAlt: 'Contemporary Mediterranean stone architecture facade',
+      imageAlt: 'Mediterranean stone entrance with a large arch and a deep blue doorway',
     },
     servicesIntro: {
       eyebrow: 'Services',
