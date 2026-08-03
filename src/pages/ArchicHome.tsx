@@ -21,10 +21,19 @@ export default function ArchicHome() {
         <meta property="og:url" content="https://archic.es/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic" />
+        <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+        <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
+        <meta property="og:image" content={`https://archic.es/${t.meta.ogImage}`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={t.meta.ogImageAlt} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={t.meta.ogTitle} />
         <meta name="twitter:description" content={t.meta.ogDescription} />
+        <meta name="twitter:image" content={`https://archic.es/${t.meta.ogImage}`} />
+        <meta name="twitter:image:alt" content={t.meta.ogImageAlt} />
       </Helmet>
+
 
       <div id="top">
         <SiteHeader />
@@ -212,7 +221,7 @@ export default function ArchicHome() {
                 <p className="ar-lead">{t.contact.lead}</p>
                 <p className="ar-lead" style={{ marginTop: 20 }}>
                   {t.contact.directLabel}{' '}
-                  <a href={`mailto:${CONTACT_MAIL}`} style={{ color: 'var(--blue)' }}>
+                  <a href={`mailto:${CONTACT_MAIL}`} className="ar-inline-link">
                     {CONTACT_MAIL}
                   </a>
                 </p>

@@ -15,7 +15,16 @@ export type Project = {
 }
 
 export type Content = {
-  meta: { title: string; description: string; ogTitle: string; ogDescription: string }
+  meta: {
+    title: string
+    description: string
+    ogTitle: string
+    ogDescription: string
+    ogImage: string
+    ogImageAlt: string
+  }
+  a11y: { mainNav: string; openMenu: string; closeMenu: string; skip: string }
+  notFound: { eyebrow: string; title: string; body: string; home: string; contact: string }
   nav: { home: string; web: string; software: string; maintenance: string; projects: string; about: string; contact: string; cta: string }
   hero: {
     title: string
@@ -71,6 +80,21 @@ export const CONTENT: Record<Lang, Content> = {
       ogTitle: 'Archic — Páginas web y software a medida para empresas',
       ogDescription:
         'Empresa tecnológica española. Diseño y desarrollo web, mantenimiento continuo, software a medida y automatización de procesos.',
+      ogImage: 'og-image.png',
+      ogImageAlt: 'Archic — páginas web y software a medida para empresas',
+    },
+    a11y: {
+      mainNav: 'Navegación principal',
+      openMenu: 'Abrir menú de navegación',
+      closeMenu: 'Cerrar menú de navegación',
+      skip: 'Saltar al contenido',
+    },
+    notFound: {
+      eyebrow: 'Error 404',
+      title: 'Esta página no existe',
+      body: 'El enlace es incorrecto o el contenido se ha movido. Vuelve al inicio o escríbenos y lo resolvemos.',
+      home: 'Volver al inicio',
+      contact: 'Contactar',
     },
     nav: {
       home: 'Inicio',
@@ -270,6 +294,21 @@ export const CONTENT: Record<Lang, Content> = {
       ogTitle: 'Archic — Websites and custom software for businesses',
       ogDescription:
         'Spanish technology company. Web design and development, ongoing maintenance, custom software and process automation.',
+      ogImage: 'og-image-en.png',
+      ogImageAlt: 'Archic — websites and custom software for businesses',
+    },
+    a11y: {
+      mainNav: 'Main navigation',
+      openMenu: 'Open navigation menu',
+      closeMenu: 'Close navigation menu',
+      skip: 'Skip to content',
+    },
+    notFound: {
+      eyebrow: 'Error 404',
+      title: 'This page does not exist',
+      body: 'The link is wrong or the content has moved. Go back home or send us a message and we will sort it out.',
+      home: 'Back to home',
+      contact: 'Contact us',
     },
     nav: {
       home: 'Home',
