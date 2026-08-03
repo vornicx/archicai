@@ -24,6 +24,7 @@ export type Content = {
     ogImageAlt: string
   }
   a11y: { mainNav: string; openMenu: string; closeMenu: string; skip: string }
+  notFound: { eyebrow: string; title: string; body: string; home: string; contact: string }
   nav: { home: string; web: string; software: string; maintenance: string; projects: string; about: string; contact: string; cta: string }
   hero: {
     title: string
@@ -87,6 +88,13 @@ export const CONTENT: Record<Lang, Content> = {
       openMenu: 'Abrir menú de navegación',
       closeMenu: 'Cerrar menú de navegación',
       skip: 'Saltar al contenido',
+    },
+    notFound: {
+      eyebrow: 'Error 404',
+      title: 'Esta página no existe',
+      body: 'El enlace es incorrecto o el contenido se ha movido. Vuelve al inicio o escríbenos y lo resolvemos.',
+      home: 'Volver al inicio',
+      contact: 'Contactar',
     },
     nav: {
       home: 'Inicio',
@@ -294,6 +302,13 @@ export const CONTENT: Record<Lang, Content> = {
       openMenu: 'Open navigation menu',
       closeMenu: 'Close navigation menu',
       skip: 'Skip to content',
+    },
+    notFound: {
+      eyebrow: 'Error 404',
+      title: 'This page does not exist',
+      body: 'The link is wrong or the content has moved. Go back home or send us a message and we will sort it out.',
+      home: 'Back to home',
+      contact: 'Contact us',
     },
     nav: {
       home: 'Home',
