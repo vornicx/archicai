@@ -25,8 +25,7 @@ export default function SiteHeader() {
           </a>
 
 
-
-          <nav className="ar-nav" aria-label={t.nav.home}>
+          <nav className="ar-nav" aria-label={t.a11y.mainNav}>
             {SECTIONS.map((s) => (
               <a key={s.key} href={s.href}>
                 {t.nav[s.key]}
@@ -36,11 +35,23 @@ export default function SiteHeader() {
 
           <div className="ar-header-actions">
             <div className="ar-lang" role="group" aria-label={t.footer.langLabel}>
-              <button type="button" aria-pressed={lang === 'es'} onClick={() => setLang('es')}>
-                ES
+              <button
+                type="button"
+                aria-pressed={lang === 'es'}
+                lang="es"
+                onClick={() => setLang('es')}
+              >
+                <span aria-hidden="true">ES</span>
+                <span className="ar-sr-only">Español</span>
               </button>
-              <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>
-                EN
+              <button
+                type="button"
+                aria-pressed={lang === 'en'}
+                lang="en"
+                onClick={() => setLang('en')}
+              >
+                <span aria-hidden="true">EN</span>
+                <span className="ar-sr-only">English</span>
               </button>
             </div>
             <a href="#contacto" className="ar-btn ar-btn-primary ar-btn-sm ar-header-cta">
@@ -50,10 +61,11 @@ export default function SiteHeader() {
               type="button"
               className="ar-burger"
               aria-expanded={open}
-              aria-label={t.nav.home}
+              aria-controls="ar-mobile-nav"
+              aria-label={open ? t.a11y.closeMenu : t.a11y.openMenu}
               onClick={() => setOpen((v) => !v)}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" focusable="false">
                 {open ? (
                   <>
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -72,7 +84,7 @@ export default function SiteHeader() {
         </div>
 
         {open && (
-          <nav className="ar-mobile-nav" aria-label={t.nav.home}>
+          <nav id="ar-mobile-nav" className="ar-mobile-nav" aria-label={t.a11y.mainNav}>
             {SECTIONS.map((s) => (
               <a key={s.key} href={s.href} onClick={() => setOpen(false)}>
                 {t.nav[s.key]}
