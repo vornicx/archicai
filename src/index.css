@@ -881,3 +881,14 @@ section[id], article[id] {
 .ar-labs .ar-sec-head {
   border-top-color: rgba(255, 255, 255, 0.18);
 }
+
+.ar-inline-link {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.ar-inline-link:hover {
+  color: var(--blue-deep);
+}

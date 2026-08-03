@@ -221,7 +221,7 @@ export default function ArchicHome() {
                 <p className="ar-lead">{t.contact.lead}</p>
                 <p className="ar-lead" style={{ marginTop: 20 }}>
                   {t.contact.directLabel}{' '}
-                  <a href={`mailto:${CONTACT_MAIL}`} style={{ color: 'var(--blue)' }}>
+                  <a href={`mailto:${CONTACT_MAIL}`} className="ar-inline-link">
                     {CONTACT_MAIL}
                   </a>
                 </p>
