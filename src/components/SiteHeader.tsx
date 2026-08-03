@@ -21,8 +21,9 @@ export default function SiteHeader() {
       <div className="ar-container">
         <div className="ar-header-row">
           <a className="ar-brand" href="#top">
-            <Logo size={28} />
+            <Logo size={28} minSize={24} compactWordmark />
           </a>
+
 
 
           <nav className="ar-nav" aria-label={t.nav.home}>
