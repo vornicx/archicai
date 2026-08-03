@@ -269,6 +269,16 @@ h3 {
   flex-direction: column;
 }
 
+.ar-mobile-nav a.ar-btn-primary {
+  color: #fff;
+  border-bottom: 0;
+}
+
+.ar-mobile-nav a.ar-btn-ghost {
+  color: var(--ink);
+  border-bottom-color: var(--line);
+}
+
 .ar-mobile-nav a {
   text-decoration: none;
   padding: 13px 0;
