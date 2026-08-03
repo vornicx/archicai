@@ -1,19 +1,29 @@
 import { Link } from 'react-router-dom'
+import Logo from '../components/Logo'
 
 function NotFound() {
   return (
-    <section className="section-padding">
-      <div className="container-page text-center">
-        <div className="section-label justify-center">404</div>
-        <h1 className="heading-serif text-[2.4rem] md:text-[3rem] mb-5">Page not found.</h1>
-        <p className="mx-auto max-w-md text-[color:var(--muted)] mb-8 leading-relaxed">
-          The page you were looking for doesn't exist. Head back to Archic.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link to="/" className="btn-primary">Archic home</Link>
+    <main className="ar-section" style={{ borderTop: 0 }}>
+      <div className="ar-container">
+        <div className="ar-empty">
+          <Logo size={34} />
+          <p className="ar-eyebrow" style={{ marginTop: 28 }}>Error 404</p>
+          <h1 className="ar-h2" style={{ maxWidth: '18ch' }}>Esta página no existe</h1>
+          <p className="ar-lead">
+            El enlace es incorrecto o el contenido se ha movido. Vuelve al inicio o escríbenos y lo
+            resolvemos.
+          </p>
+          <div className="ar-empty-actions">
+            <Link to="/" className="ar-btn ar-btn-primary">
+              Volver al inicio
+            </Link>
+            <a href="mailto:vornic@archic.es" className="ar-btn ar-btn-ghost">
+              Contactar
+            </a>
+          </div>
         </div>
       </div>
-    </section>
+    </main>
   )
 }
 
