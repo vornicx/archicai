@@ -3,7 +3,7 @@ import Logo from '../components/Logo'
 
 function NotFound() {
   return (
-    <main className="ar-section" style={{ borderTop: 0 }}>
+    <section className="ar-section" style={{ borderTop: 0 }}>
       <div className="ar-container">
         <div className="ar-empty">
           <Logo size={34} />
@@ -23,7 +23,7 @@ function NotFound() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   )
 }
 
