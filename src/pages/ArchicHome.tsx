@@ -9,29 +9,100 @@ import heroImage from '../assets/hero-archic.jpg'
 
 export default function ArchicHome() {
   const { t, lang } = useLang()
+  const canonicalUrl = lang === 'es' ? 'https://archic.es/' : 'https://archic.es/en/'
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://archic.es/#organization',
+        name: 'Archic',
+        url: 'https://archic.es/',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://archic.es/archic-mark-512.png',
+          contentUrl: 'https://archic.es/archic-mark-512.png',
+          width: 512,
+          height: 512,
+        },
+        image: 'https://archic.es/og-image.png',
+        email: CONTACT_MAIL,
+        description: t.meta.description,
+        areaServed: { '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' },
+        knowsLanguage: ['es', 'en'],
+        contactPoint: {
+          '@type': 'ContactPoint',
+          email: CONTACT_MAIL,
+          contactType: 'sales',
+          availableLanguage: ['Spanish', 'English'],
+        },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: lang === 'es' ? 'Servicios digitales para empresas' : 'Digital services for businesses',
+          itemListElement: t.services.map((service) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: service.title,
+              description: service.intro,
+              provider: { '@id': 'https://archic.es/#organization' },
+              areaServed: { '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' },
+            },
+          })),
+        },
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://archic.es/#website',
+        url: 'https://archic.es/',
+        name: 'Archic',
+        inLanguage: ['es', 'en'],
+        publisher: { '@id': 'https://archic.es/#organization' },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: t.meta.title,
+        description: t.meta.description,
+        inLanguage: lang,
+        isPartOf: { '@id': 'https://archic.es/#website' },
+        about: { '@id': 'https://archic.es/#organization' },
+      },
+    ],
+  }
 
   return (
     <>
       <Helmet htmlAttributes={{ lang }}>
         <title>{t.meta.title}</title>
         <meta name="description" content={t.meta.description} />
-        <link rel="canonical" href="https://archic.es/" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="es" href="https://archic.es/" />
+        <link rel="alternate" hrefLang="en" href="https://archic.es/en/" />
+        <link rel="alternate" hrefLang="x-default" href="https://archic.es/" />
         <meta property="og:title" content={t.meta.ogTitle} />
         <meta property="og:description" content={t.meta.ogDescription} />
-        <meta property="og:url" content="https://archic.es/" />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic" />
         <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
         <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
         <meta property="og:image" content={`https://archic.es/${t.meta.ogImage}`} />
+        <meta property="og:image:secure_url" content={`https://archic.es/${t.meta.ogImage}`} />
+        <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={t.meta.ogImageAlt} />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@ArchicHQ" />
         <meta name="twitter:title" content={t.meta.ogTitle} />
         <meta name="twitter:description" content={t.meta.ogDescription} />
         <meta name="twitter:image" content={`https://archic.es/${t.meta.ogImage}`} />
         <meta name="twitter:image:alt" content={t.meta.ogImageAlt} />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
 

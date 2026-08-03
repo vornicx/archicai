@@ -1,10 +1,11 @@
-# archicai
+# Archic website
 
-Marketing site for [archic.es](https://archic.es), currently focused on Midas:
-local-first, eval-first memory for long-horizon AI agents.
+Marketing site for [archic.es](https://archic.es). Archic designs, develops and
+maintains professional websites, internal tools and custom software for
+businesses in Spain.
 
-The active product repo is [github.com/vornicx/Midas](https://github.com/vornicx/Midas).
-Broader Archic documentation lives in [github.com/vornicx/archic](https://github.com/vornicx/archic).
+The site is available in Spanish at `/` and in English at `/en/`, with separate
+canonical URLs, `hreflang` annotations and localized metadata.
 
 ## Develop
 

@@ -20,6 +20,7 @@ function App() {
         <main id="main-content">
           <Routes>
             <Route path="/" element={<ArchicHome />} />
+            <Route path="/en/" element={<ArchicHome />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

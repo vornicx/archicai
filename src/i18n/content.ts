@@ -74,12 +74,12 @@ export type Content = {
 export const CONTENT: Record<Lang, Content> = {
   es: {
     meta: {
-      title: 'Archic — Páginas web y software a medida para empresas',
+      title: 'Páginas web y software a medida para empresas | Archic',
       description:
-        'Diseñamos, desarrollamos y mantenemos páginas web, herramientas internas y software a medida para empresas en España.',
-      ogTitle: 'Archic — Páginas web y software a medida para empresas',
+        'Diseñamos páginas web profesionales, ofrecemos mantenimiento y desarrollamos software a medida para pymes y empresas en España.',
+      ogTitle: 'Páginas web y software a medida para empresas | Archic',
       ogDescription:
-        'Empresa tecnológica española. Diseño y desarrollo web, mantenimiento continuo, software a medida y automatización de procesos.',
+        'Diseño y desarrollo web, mantenimiento continuo, software a medida y automatización de procesos para empresas.',
       ogImage: 'og-image.png',
       ogImageAlt: 'Archic — páginas web y software a medida para empresas',
     },
@@ -288,12 +288,12 @@ export const CONTENT: Record<Lang, Content> = {
 
   en: {
     meta: {
-      title: 'Archic — Websites and custom software for businesses',
+      title: 'Websites and custom software for businesses | Archic',
       description:
-        'We design, build and maintain websites, internal tools and custom software for companies in Spain.',
-      ogTitle: 'Archic — Websites and custom software for businesses',
+        'We design professional websites, provide ongoing maintenance and build custom software for companies in Spain.',
+      ogTitle: 'Websites and custom software for businesses | Archic',
       ogDescription:
-        'Spanish technology company. Web design and development, ongoing maintenance, custom software and process automation.',
+        'Web design and development, ongoing maintenance, custom software and process automation for businesses.',
       ogImage: 'og-image-en.png',
       ogImageAlt: 'Archic — websites and custom software for businesses',
     },

@@ -1,32 +1,20 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useMemo } from 'react'
 import { CONTENT, type Content, type Lang } from './content'
 
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: Content }
 
 const LanguageContext = createContext<Ctx | null>(null)
-const STORAGE_KEY = 'archic-lang'
-
 function initialLang(): Lang {
   if (typeof window === 'undefined') return 'es'
-  const stored = window.localStorage.getItem(STORAGE_KEY)
-  if (stored === 'es' || stored === 'en') return stored
-  return 'es'
+  return window.location.pathname.startsWith('/en') ? 'en' : 'es'
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(initialLang)
-
-  useEffect(() => {
-    document.documentElement.lang = lang
-  }, [lang])
+  const lang = initialLang()
 
   const setLang = useCallback((l: Lang) => {
-    setLangState(l)
-    try {
-      window.localStorage.setItem(STORAGE_KEY, l)
-    } catch {
-      /* ignore */
-    }
+    const target = l === 'en' ? '/en/' : '/'
+    window.location.assign(`${target}${window.location.hash}`)
   }, [])
 
   const value = useMemo(() => ({ lang, setLang, t: CONTENT[lang] }), [lang, setLang])
