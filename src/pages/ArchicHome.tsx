@@ -132,7 +132,7 @@ export default function ArchicHome() {
                 alt={t.hero.imageAlt}
                 width={1200}
                 height={829}
-                fetchPriority="high"
+                {...{ fetchpriority: "high" }}
                 decoding="async"
               />
             </div>
