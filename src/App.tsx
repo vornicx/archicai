@@ -1,7 +1,10 @@
+import { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import ArchicHome from './pages/ArchicHome'
-import LegalPage from './pages/LegalPage'
-import NotFound from './pages/NotFound'
+/* Secondary routes are split out of the main bundle: they are rarely the
+   landing page, so keeping them out of the critical path helps LCP. */
+const LegalPage = lazy(() => import('./pages/LegalPage'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 import { LEGAL_PATHS, type LegalDocKey } from './legal/documents'
 import { LanguageProvider, useLang } from './i18n/LanguageContext'
 
@@ -33,12 +36,14 @@ function App() {
       <div className="site-shell">
         <SkipLink />
         <main id="main-content">
-          <Routes>
-            <Route path="/" element={<ArchicHome />} />
-            <Route path="/en/" element={<ArchicHome />} />
-            {LEGAL_ROUTES}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<ArchicHome />} />
+              <Route path="/en/" element={<ArchicHome />} />
+              {LEGAL_ROUTES}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </main>
       </div>
     </LanguageProvider>

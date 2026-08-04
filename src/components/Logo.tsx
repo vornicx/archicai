@@ -37,8 +37,8 @@ export default function Logo({
           className="ar-logo-full"
           src="/archic-logo.png"
           alt=""
-          width={1567}
-          height={376}
+          width={640}
+          height={154}
           aria-hidden="true"
         />
       )}
@@ -47,8 +47,8 @@ export default function Logo({
           className="ar-logo-mark"
           src="/archic-mark.png"
           alt=""
-          width={381}
-          height={376}
+          width={192}
+          height={189}
           aria-hidden="true"
         />
       )}
