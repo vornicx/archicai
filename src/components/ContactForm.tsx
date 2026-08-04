@@ -1,11 +1,16 @@
 import { useState } from 'react'
 import { CONTACT_MAIL } from '../i18n/content'
 import { useLang } from '../i18n/LanguageContext'
+import { LEGAL_PATHS } from '../legal/documents'
 
 export default function ContactForm() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const c = t.contact
+  const n = t.privacyNotice
   const [status, setStatus] = useState<{ tone: 'ok' | 'error'; text: string } | null>(null)
+  const [consent, setConsent] = useState(false)
+
+  const [consentBefore, consentAfter] = n.consent.split('{link}')
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -23,6 +28,11 @@ export default function ContactForm() {
     }
     if (!contact) {
       setStatus({ tone: 'error', text: c.errorContact })
+      return
+    }
+    // Consent is collected before any data leaves the browser (art. 7 GDPR).
+    if (!consent) {
+      setStatus({ tone: 'error', text: n.consentError })
       return
     }
 
@@ -82,6 +92,42 @@ export default function ContactForm() {
       <div className="ar-field">
         <label htmlFor="cf-message">{c.fields.message}</label>
         <textarea id="cf-message" name="message" required placeholder={c.placeholders.message} />
+      </div>
+
+      {/* First information layer required by art. 11 LOPDGDD and the AEPD's
+          model, with the full detail one click away in the privacy policy. */}
+      <div className="ar-privacy-notice">
+        <p>{n.heading}</p>
+        <dl>
+          {n.rows.map((row) => (
+            <div key={row.term} style={{ display: 'contents' }}>
+              <dt>{row.term}</dt>
+              <dd>{row.desc}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div className="ar-consent">
+        <input
+          id="cf-consent"
+          name="consent"
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+        />
+        <label htmlFor="cf-consent">
+          {consentBefore}
+          <a
+            href={LEGAL_PATHS.privacy[lang]}
+            className="ar-inline-link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {n.consentLinkLabel}
+          </a>
+          {consentAfter}
+        </label>
       </div>
 
       <div>
