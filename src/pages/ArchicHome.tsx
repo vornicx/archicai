@@ -6,7 +6,7 @@ import SiteHeader from '../components/SiteHeader'
 import ContactForm from '../components/ContactForm'
 import Logo from '../components/Logo'
 
-import heroImage from '../assets/hero-archic.jpg'
+import heroImage from '../assets/hero-archic.webp'
 
 export default function ArchicHome() {
   const { t, lang } = useLang()
@@ -130,8 +130,8 @@ export default function ArchicHome() {
               <img
                 src={heroImage}
                 alt={t.hero.imageAlt}
-                width={1509}
-                height={1042}
+                width={1200}
+                height={829}
                 fetchPriority="high"
                 decoding="async"
               />
