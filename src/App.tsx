@@ -36,12 +36,14 @@ function App() {
       <div className="site-shell">
         <SkipLink />
         <main id="main-content">
-          <Routes>
-            <Route path="/" element={<ArchicHome />} />
-            <Route path="/en/" element={<ArchicHome />} />
-            {LEGAL_ROUTES}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<ArchicHome />} />
+              <Route path="/en/" element={<ArchicHome />} />
+              {LEGAL_ROUTES}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </main>
       </div>
     </LanguageProvider>
