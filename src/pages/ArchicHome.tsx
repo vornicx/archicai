@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_MAIL } from '../i18n/content'
+import { LEGAL_PATHS } from '../legal/documents'
 import SiteHeader from '../components/SiteHeader'
 import ContactForm from '../components/ContactForm'
 import Logo from '../components/Logo'
@@ -333,6 +334,14 @@ export default function ArchicHome() {
                 <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
               </div>
             </div>
+            {/* Art. 10 LSSI-CE requires permanent, easy and direct access to
+                the legal notice from every page. */}
+            <nav className="ar-footer-legal" aria-label={t.footer.legalLabel}>
+              <a href={LEGAL_PATHS.legal[lang]}>{t.legal.legalNotice}</a>
+              <a href={LEGAL_PATHS.privacy[lang]}>{t.legal.privacy}</a>
+              <a href={LEGAL_PATHS.cookies[lang]}>{t.legal.cookies}</a>
+            </nav>
+
             <div className="ar-footer-bottom">
               <span>© {new Date().getFullYear()} ARCHIC · {t.footer.rights}</span>
               <span>ESPAÑA</span>

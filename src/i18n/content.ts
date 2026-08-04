@@ -68,7 +68,37 @@ export type Content = {
     errorContact: string
     directLabel: string
   }
-  footer: { rights: string; tagline: string; langLabel: string }
+  footer: { rights: string; tagline: string; langLabel: string; legalLabel: string }
+  legal: {
+    /** Labels for the legal documents, used in navigation and page headers. */
+    legalNotice: string
+    privacy: string
+    cookies: string
+    lastUpdated: string
+    backHome: string
+    onThisPage: string
+    /** Shown in place of a mandatory identification field that is still empty. */
+    pending: string
+    pendingHint: string
+    identity: {
+      legalName: string
+      taxId: string
+      address: string
+      email: string
+      phone: string
+      registry: string
+      site: string
+    }
+    processors: { purpose: string; location: string; transfer: string }
+  }
+  /** First-layer data protection information shown next to the contact form. */
+  privacyNotice: {
+    heading: string
+    rows: { term: string; desc: string }[]
+    consent: string
+    consentLinkLabel: string
+    consentError: string
+  }
 }
 
 export const CONTENT: Record<Lang, Content> = {
@@ -283,6 +313,45 @@ export const CONTENT: Record<Lang, Content> = {
       rights: 'Todos los derechos reservados.',
       tagline: 'Páginas web, software a medida y mantenimiento para empresas. Desde España.',
       langLabel: 'Idioma',
+      legalLabel: 'Información legal',
+    },
+    legal: {
+      legalNotice: 'Aviso legal',
+      privacy: 'Política de privacidad',
+      cookies: 'Política de cookies',
+      lastUpdated: 'Última actualización',
+      backHome: 'Volver al inicio',
+      onThisPage: 'Contenido de esta página',
+      pending: 'Pendiente de completar',
+      pendingHint:
+        'Este dato es obligatorio y todavía no se ha publicado. Complétalo en src/legal/company.ts antes de poner el sitio en producción.',
+      identity: {
+        legalName: 'Titular',
+        taxId: 'NIF / CIF',
+        address: 'Domicilio',
+        email: 'Correo electrónico',
+        phone: 'Teléfono',
+        registry: 'Datos registrales',
+        site: 'Sitio web',
+      },
+      processors: {
+        purpose: 'Finalidad',
+        location: 'Ubicación',
+        transfer: 'Garantías de la transferencia',
+      },
+    },
+    privacyNotice: {
+      heading: 'Información básica sobre protección de datos',
+      rows: [
+        { term: 'Responsable', desc: 'Archic. Los datos identificativos completos figuran en el aviso legal.' },
+        { term: 'Finalidad', desc: 'Atender tu consulta y, en su caso, preparar una propuesta de servicios.' },
+        { term: 'Legitimación', desc: 'Tu consentimiento y la aplicación de medidas precontractuales a petición tuya.' },
+        { term: 'Destinatarios', desc: 'No se ceden datos a terceros, salvo obligación legal.' },
+        { term: 'Derechos', desc: 'Acceso, rectificación, supresión, limitación, oposición y portabilidad, así como reclamar ante la AEPD.' },
+      ],
+      consent: 'He leído y acepto la {link}.',
+      consentLinkLabel: 'política de privacidad',
+      consentError: 'Debes aceptar la política de privacidad para enviar la consulta.',
     },
   },
 
@@ -497,6 +566,45 @@ export const CONTENT: Record<Lang, Content> = {
       rights: 'All rights reserved.',
       tagline: 'Websites, custom software and maintenance for businesses. From Spain.',
       langLabel: 'Language',
+      legalLabel: 'Legal information',
+    },
+    legal: {
+      legalNotice: 'Legal notice',
+      privacy: 'Privacy policy',
+      cookies: 'Cookie policy',
+      lastUpdated: 'Last updated',
+      backHome: 'Back to home',
+      onThisPage: 'On this page',
+      pending: 'To be completed',
+      pendingHint:
+        'This detail is legally required and has not been published yet. Fill it in at src/legal/company.ts before the site goes live.',
+      identity: {
+        legalName: 'Owner',
+        taxId: 'Tax ID (NIF / CIF)',
+        address: 'Registered address',
+        email: 'Email',
+        phone: 'Phone',
+        registry: 'Registry details',
+        site: 'Website',
+      },
+      processors: {
+        purpose: 'Purpose',
+        location: 'Location',
+        transfer: 'Transfer safeguards',
+      },
+    },
+    privacyNotice: {
+      heading: 'Basic data protection information',
+      rows: [
+        { term: 'Controller', desc: 'Archic. Full identification details are set out in the legal notice.' },
+        { term: 'Purpose', desc: 'To answer your enquiry and, where appropriate, prepare a service proposal.' },
+        { term: 'Legal basis', desc: 'Your consent and pre-contractual steps taken at your request.' },
+        { term: 'Recipients', desc: 'No data is disclosed to third parties, except where legally required.' },
+        { term: 'Rights', desc: 'Access, rectification, erasure, restriction, objection and portability, and to lodge a complaint with the AEPD.' },
+      ],
+      consent: 'I have read and accept the {link}.',
+      consentLinkLabel: 'privacy policy',
+      consentError: 'You must accept the privacy policy to send your enquiry.',
     },
   },
 }
