@@ -1,7 +1,10 @@
+import { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import ArchicHome from './pages/ArchicHome'
-import LegalPage from './pages/LegalPage'
-import NotFound from './pages/NotFound'
+/* Secondary routes are split out of the main bundle: they are rarely the
+   landing page, so keeping them out of the critical path helps LCP. */
+const LegalPage = lazy(() => import('./pages/LegalPage'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 import { LEGAL_PATHS, type LegalDocKey } from './legal/documents'
 import { LanguageProvider, useLang } from './i18n/LanguageContext'
 
