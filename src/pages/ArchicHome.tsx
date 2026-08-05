@@ -164,7 +164,22 @@ export default function ArchicHome() {
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
+                  {/* Enlace interno a la landing con la intención de búsqueda
+                      correspondiente: reparte autoridad desde la home. */}
+                  {SERVICE_LANDINGS[service.id] && (
+                    <a className="ar-service-link" href={SERVICE_LANDINGS[service.id]}>
+                      {lang === 'es' ? 'Ver servicio →' : 'View service →'}
+                    </a>
+                  )}
                 </article>
+              ))}
+            </div>
+
+            <div className="ar-chips" style={{ marginTop: 28 }}>
+              {SERVICE_PAGES.map((page) => (
+                <a key={page.path} href={page.path} className="ar-chip ar-chip-link">
+                  {page.breadcrumb}
+                </a>
               ))}
             </div>
           </div>
