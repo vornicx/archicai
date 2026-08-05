@@ -12,22 +12,35 @@ const SECTIONS = [
   { key: 'contact', href: '#contacto' },
 ] as const
 
+/**
+ * Desde una landing de servicio los anclajes deben volver a la home; en la
+ * propia home el navegador los resuelve como salto de fragmento.
+ */
+function useSectionBase() {
+  if (typeof window === 'undefined') return '/'
+  const path = window.location.pathname
+  if (path === '/' || path === '/en/' || path === '/en') return ''
+  return path.startsWith('/en') ? '/en/' : '/'
+}
+
+
 export default function SiteHeader() {
   const { t, lang, setLang } = useLang()
   const [open, setOpen] = useState(false)
+  const base = useSectionBase()
 
   return (
     <header className="ar-header">
       <div className="ar-container">
         <div className="ar-header-row">
-          <a className="ar-brand" href="#top">
+          <a className="ar-brand" href={base || "#top"}>
             <Logo size={28} minSize={24} compactWordmark />
           </a>
 
 
           <nav className="ar-nav" aria-label={t.a11y.mainNav}>
             {SECTIONS.map((s) => (
-              <a key={s.key} href={s.href}>
+              <a key={s.key} href={`${base}${s.href}`}>
                 {t.nav[s.key]}
               </a>
             ))}
@@ -54,7 +67,7 @@ export default function SiteHeader() {
                 <span className="ar-sr-only">English</span>
               </button>
             </div>
-            <a href="#contacto" className="ar-btn ar-btn-primary ar-btn-sm ar-header-cta">
+            <a href={`${base}#contacto`} className="ar-btn ar-btn-primary ar-btn-sm ar-header-cta">
               {t.nav.cta}
             </a>
             <button
@@ -86,11 +99,11 @@ export default function SiteHeader() {
         {open && (
           <nav id="ar-mobile-nav" className="ar-mobile-nav" aria-label={t.a11y.mainNav}>
             {SECTIONS.map((s) => (
-              <a key={s.key} href={s.href} onClick={() => setOpen(false)}>
+              <a key={s.key} href={`${base}${s.href}`} onClick={() => setOpen(false)}>
                 {t.nav[s.key]}
               </a>
             ))}
-            <a href="#contacto" className="ar-btn ar-btn-primary" style={{ marginTop: 16 }} onClick={() => setOpen(false)}>
+            <a href={`${base}#contacto`} className="ar-btn ar-btn-primary" style={{ marginTop: 16 }} onClick={() => setOpen(false)}>
               {t.nav.cta}
             </a>
           </nav>

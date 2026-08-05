@@ -5,8 +5,10 @@ import ArchicHome from './pages/ArchicHome'
    landing page, so keeping them out of the critical path helps LCP. */
 const LegalPage = lazy(() => import('./pages/LegalPage'))
 const NotFound = lazy(() => import('./pages/NotFound'))
+const ServicePage = lazy(() => import('./pages/ServicePage'))
 import { LEGAL_PATHS, type LegalDocKey } from './legal/documents'
 import { LanguageProvider, useLang } from './i18n/LanguageContext'
+import { SERVICE_PAGES } from './seo/servicePages'
 
 function SkipLink() {
   const { t } = useLang()
@@ -30,6 +32,14 @@ const LEGAL_ROUTES = LEGAL_KEYS.flatMap((key) =>
   )),
 )
 
+/* Una URL por intención de búsqueda: cada landing de servicio responde a una
+   keyword distinta y tiene su propio HTML estático. */
+const SERVICE_ROUTES = SERVICE_PAGES.flatMap((page) =>
+  [page.path, page.path.replace(/\/$/, '')].map((path) => (
+    <Route key={path} path={path} element={<ServicePage page={page} />} />
+  )),
+)
+
 function App() {
   return (
     <LanguageProvider>
@@ -40,6 +50,7 @@ function App() {
             <Routes>
               <Route path="/" element={<ArchicHome />} />
               <Route path="/en/" element={<ArchicHome />} />
+              {SERVICE_ROUTES}
               {LEGAL_ROUTES}
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -7,6 +7,15 @@ import ContactForm from '../components/ContactForm'
 import Logo from '../components/Logo'
 
 import heroImage from '../assets/hero-archic.webp'
+import { SERVICE_PAGES } from '../seo/servicePages'
+
+/** Cada bloque de servicio de la home apunta a su landing especializada. */
+const SERVICE_LANDINGS: Record<string, string> = {
+  web: '/diseno-web-para-empresas/',
+  mantenimiento: '/mantenimiento-web/',
+  software: '/desarrollo-web-a-medida/',
+}
+
 
 export default function ArchicHome() {
   const { t, lang } = useLang()
@@ -164,7 +173,22 @@ export default function ArchicHome() {
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
+                  {/* Enlace interno a la landing con la intención de búsqueda
+                      correspondiente: reparte autoridad desde la home. */}
+                  {SERVICE_LANDINGS[service.id] && (
+                    <a className="ar-service-link" href={SERVICE_LANDINGS[service.id]}>
+                      {lang === 'es' ? 'Ver servicio →' : 'View service →'}
+                    </a>
+                  )}
                 </article>
+              ))}
+            </div>
+
+            <div className="ar-chips" style={{ marginTop: 28 }}>
+              {SERVICE_PAGES.map((page) => (
+                <a key={page.path} href={page.path} className="ar-chip ar-chip-link">
+                  {page.breadcrumb}
+                </a>
               ))}
             </div>
           </div>

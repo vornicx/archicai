@@ -1227,3 +1227,121 @@ section[id], article[id] {
   color: var(--blue);
   border-color: var(--blue);
 }
+
+/* ── Landings de servicio ─────────────────────────────────────────────── */
+
+.ar-breadcrumb {
+  border-bottom: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ar-breadcrumb .ar-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.ar-breadcrumb a {
+  color: var(--gold-text);
+  text-decoration: none;
+}
+
+.ar-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.ar-breadcrumb span[aria-current] {
+  color: var(--ink-faint);
+}
+
+.ar-hero-compact {
+  padding-bottom: clamp(32px, 5vw, 56px);
+}
+
+.ar-hero-compact .ar-hero-title {
+  max-width: 22ch;
+}
+
+.ar-hero-compact .ar-hero-sub {
+  max-width: 62ch;
+}
+
+.ar-faq {
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.ar-faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 4px 0;
+}
+
+.ar-faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 18px 32px 18px 0;
+  position: relative;
+}
+
+.ar-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.ar-faq-item summary h3 {
+  display: inline;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ar-faq-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-text);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.ar-faq-item[open] summary::after {
+  content: '−';
+}
+
+.ar-faq-item summary:focus-visible {
+  outline: 2px solid var(--gold-text);
+  outline-offset: 3px;
+}
+
+.ar-faq-item p {
+  margin: 0 0 20px;
+  max-width: 72ch;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+a.ar-chip-link {
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+a.ar-chip-link:hover {
+  color: var(--gold-text);
+  border-color: currentColor;
+}
+
+.ar-service-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+}
