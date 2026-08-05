@@ -1231,8 +1231,8 @@ section[id], article[id] {
 /* ── Landings de servicio ─────────────────────────────────────────────── */
 
 .ar-breadcrumb {
-  border-bottom: 1px solid var(--rule, rgba(18, 41, 76, 0.12));
-  font-family: var(--font-mono, ui-monospace, monospace);
+  border-bottom: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1248,7 +1248,7 @@ section[id], article[id] {
 }
 
 .ar-breadcrumb a {
-  color: var(--gold-text, #7d5c1c);
+  color: var(--gold-text);
   text-decoration: none;
 }
 
@@ -1257,7 +1257,7 @@ section[id], article[id] {
 }
 
 .ar-breadcrumb span[aria-current] {
-  color: var(--ink-faint, #5d6473);
+  color: var(--ink-faint);
 }
 
 .ar-hero-compact {
@@ -1274,11 +1274,11 @@ section[id], article[id] {
 
 .ar-faq {
   margin-top: 24px;
-  border-top: 1px solid var(--rule, rgba(18, 41, 76, 0.12));
+  border-top: 1px solid var(--line);
 }
 
 .ar-faq-item {
-  border-bottom: 1px solid var(--rule, rgba(18, 41, 76, 0.12));
+  border-bottom: 1px solid var(--line);
   padding: 4px 0;
 }
 
@@ -1306,8 +1306,8 @@ section[id], article[id] {
   right: 4px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--gold-text, #7d5c1c);
-  font-family: var(--font-mono, ui-monospace, monospace);
+  color: var(--gold-text);
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 .ar-faq-item[open] summary::after {
@@ -1315,14 +1315,14 @@ section[id], article[id] {
 }
 
 .ar-faq-item summary:focus-visible {
-  outline: 2px solid var(--gold-text, #7d5c1c);
+  outline: 2px solid var(--gold-text);
   outline-offset: 3px;
 }
 
 .ar-faq-item p {
   margin: 0 0 20px;
   max-width: 72ch;
-  color: var(--ink-soft, #3c4557);
+  color: var(--ink-soft);
   line-height: 1.65;
 }
 
@@ -1332,16 +1332,16 @@ a.ar-chip-link {
 }
 
 a.ar-chip-link:hover {
-  color: var(--gold-text, #7d5c1c);
+  color: var(--gold-text);
   border-color: currentColor;
 }
 
 .ar-service-link {
   display: inline-block;
   margin-top: 14px;
-  font-family: var(--font-mono, ui-monospace, monospace);
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold-text, #7d5c1c);
+  color: var(--gold-text);
 }
