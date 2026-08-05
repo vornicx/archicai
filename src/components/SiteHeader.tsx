@@ -12,6 +12,18 @@ const SECTIONS = [
   { key: 'contact', href: '#contacto' },
 ] as const
 
+/**
+ * Desde una landing de servicio los anclajes deben volver a la home; en la
+ * propia home el navegador los resuelve como salto de fragmento.
+ */
+function useSectionBase() {
+  if (typeof window === 'undefined') return '/'
+  const path = window.location.pathname
+  if (path === '/' || path === '/en/' || path === '/en') return ''
+  return path.startsWith('/en') ? '/en/' : '/'
+}
+
+
 export default function SiteHeader() {
   const { t, lang, setLang } = useLang()
   const [open, setOpen] = useState(false)
