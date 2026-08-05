@@ -7,6 +7,15 @@ import ContactForm from '../components/ContactForm'
 import Logo from '../components/Logo'
 
 import heroImage from '../assets/hero-archic.webp'
+import { SERVICE_PAGES } from '../seo/servicePages'
+
+/** Cada bloque de servicio de la home apunta a su landing especializada. */
+const SERVICE_LANDINGS: Record<string, string> = {
+  web: '/diseno-web-para-empresas/',
+  mantenimiento: '/mantenimiento-web/',
+  software: '/desarrollo-web-a-medida/',
+}
+
 
 export default function ArchicHome() {
   const { t, lang } = useLang()
