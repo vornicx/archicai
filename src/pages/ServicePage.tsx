@@ -152,6 +152,28 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
           </div>
         </section>
 
+        {local && (
+          <section className="ar-section">
+            <div className="ar-container">
+              <div className="ar-sec-head">
+                <p className="ar-eyebrow">Zona de actuación</p>
+                <h2 className="ar-h2">Dónde trabajamos desde Écija</h2>
+                <p className="ar-lead">
+                  Base en Écija (Sevilla). Atendemos {local.city} y su provincia de forma presencial
+                  cuando el proyecto lo pide, y el resto de España en remoto.
+                </p>
+              </div>
+              <div className="ar-chips">
+                {[local.city, ...local.alsoServes].map((place) => (
+                  <span key={place} className="ar-chip">
+                    {place}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {page.related.length > 0 && (
           <section className="ar-section ar-section-alt">
             <div className="ar-container">
@@ -161,7 +183,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
               </div>
               <div className="ar-chips">
                 {page.related.map((href) => {
-                  const related = SERVICE_PAGE_BY_PATH[href]
+                  const related = LANDING_BY_PATH[href]
                   if (!related) return null
                   return (
                     <a key={href} href={href} className="ar-chip ar-chip-link">
