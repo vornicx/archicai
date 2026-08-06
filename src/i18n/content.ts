@@ -28,11 +28,24 @@ export type Content = {
   nav: { home: string; web: string; software: string; maintenance: string; projects: string; about: string; contact: string; cta: string }
   hero: {
     title: string
+    /** El titular partido en líneas para la entrada enmascarada del hero.
+        Unidas reproducen `title`, que es lo que ven buscadores y metadatos. */
+    titleLines: { text: string; accent?: boolean }[]
     subtitle: string
     ctaPrimary: string
     ctaSecondary: string
     note: string
     imageAlt: string
+    /** Ficha de datos al pie del hero. */
+    spec: { label: string; value: string }[]
+  }
+  /** Prueba de capacidad basada en datos verificables de esta misma web. */
+  proof: {
+    eyebrow: string
+    title: string
+    titleAccent: string
+    lead: string
+    items: { value: string; label: string; desc: string }[]
   }
   servicesIntro: { eyebrow: string; title: string; lead: string }
   services: Service[]
@@ -138,12 +151,51 @@ export const CONTENT: Record<Lang, Content> = {
     },
     hero: {
       title: 'Páginas web y software a medida para empresas.',
+      titleLines: [
+        { text: 'Páginas web y software' },
+        { text: 'a medida', accent: true },
+        { text: 'para empresas.' },
+      ],
       subtitle:
         'Diseñamos, desarrollamos y mantenemos soluciones digitales pensadas para las necesidades reales de cada negocio.',
       ctaPrimary: 'Cuéntanos tu proyecto',
       ctaSecondary: 'Ver servicios',
       note: 'Desde España, trabajando con empresas que necesitan tecnología útil, clara y bien construida.',
       imageAlt: 'Entrada de arquitectura mediterránea con un gran arco de piedra y una puerta azul',
+      spec: [
+        { label: 'Base', value: 'Écija, Sevilla' },
+        { label: 'Ámbito', value: 'España' },
+        { label: 'Servicios', value: 'Web · Software · Mantenimiento' },
+        { label: 'Idiomas', value: 'Español · English' },
+      ],
+    },
+    proof: {
+      eyebrow: 'Esta misma web',
+      title: 'La mejor muestra de lo que hacemos es',
+      titleAccent: 'la página que estás leyendo.',
+      lead: 'Todavía no publicamos casos de clientes, así que enseñamos el trabajo que sí puedes auditar ahora mismo. Abre las herramientas de desarrollo y compruébalo tú.',
+      items: [
+        {
+          value: '0',
+          label: 'Cookies',
+          desc: 'Ni propias ni de terceros. No hay banner de consentimiento porque no hay nada que consentir.',
+        },
+        {
+          value: '0',
+          label: 'Peticiones a terceros',
+          desc: 'Sin analítica, sin píxeles, sin fuentes externas. Tu dirección IP no sale de este dominio.',
+        },
+        {
+          value: '100%',
+          label: 'Contenido autoalojado',
+          desc: 'Tipografías, imágenes y estilos servidos desde nuestro propio dominio.',
+        },
+        {
+          value: 'AA',
+          label: 'Contraste WCAG',
+          desc: 'Navegable con teclado, compatible con lectores de pantalla y respeta el movimiento reducido.',
+        },
+      ],
     },
     servicesIntro: {
       eyebrow: 'Servicios',
@@ -391,12 +443,51 @@ export const CONTENT: Record<Lang, Content> = {
     },
     hero: {
       title: 'Websites and custom software for businesses.',
+      titleLines: [
+        { text: 'Websites and' },
+        { text: 'custom software', accent: true },
+        { text: 'for businesses.' },
+      ],
       subtitle:
         'We design, build and maintain digital solutions shaped around what each business actually needs.',
       ctaPrimary: 'Tell us about your project',
       ctaSecondary: 'See services',
       note: 'Based in Spain, working with companies that need technology that is useful, clear and well built.',
       imageAlt: 'Mediterranean stone entrance with a large arch and a deep blue doorway',
+      spec: [
+        { label: 'Based in', value: 'Écija, Seville' },
+        { label: 'Serving', value: 'Spain' },
+        { label: 'Services', value: 'Web · Software · Maintenance' },
+        { label: 'Languages', value: 'Español · English' },
+      ],
+    },
+    proof: {
+      eyebrow: 'This very website',
+      title: 'The best sample of our work is',
+      titleAccent: 'the page you are reading.',
+      lead: 'We do not publish client cases yet, so we show the work you can audit right now. Open your developer tools and check it yourself.',
+      items: [
+        {
+          value: '0',
+          label: 'Cookies',
+          desc: 'None of our own, none from third parties. No consent banner, because there is nothing to consent to.',
+        },
+        {
+          value: '0',
+          label: 'Third-party requests',
+          desc: 'No analytics, no pixels, no external fonts. Your IP address never leaves this domain.',
+        },
+        {
+          value: '100%',
+          label: 'Self-hosted assets',
+          desc: 'Fonts, images and stylesheets all served from our own domain.',
+        },
+        {
+          value: 'AA',
+          label: 'WCAG contrast',
+          desc: 'Keyboard navigable, screen-reader friendly, and it honours reduced-motion preferences.',
+        },
+      ],
     },
     servicesIntro: {
       eyebrow: 'Services',

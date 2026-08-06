@@ -4,6 +4,7 @@ import { useLang } from '../i18n/LanguageContext'
 import { COMPANY, PROCESSORS } from '../legal/company'
 import { LEGAL_DOCS, LEGAL_PATHS, type Block, type LegalDocKey } from '../legal/documents'
 import Logo from '../components/Logo'
+import { useScrollReveal } from '../useScrollReveal'
 
 /** Splits `text [label](href) more` into text nodes and anchors. */
 function withLinks(text: string, key: string): ReactNode[] {
@@ -153,6 +154,7 @@ function renderBlock(block: Block, key: string) {
 
 export default function LegalPage({ doc: docKey }: { doc: LegalDocKey }) {
   const { t, lang } = useLang()
+  useScrollReveal([docKey, lang])
   const doc = LEGAL_DOCS[lang][docKey]
   const home = lang === 'es' ? '/' : '/en/'
   const canonical = `${COMPANY.site}${LEGAL_PATHS[docKey][lang]}`

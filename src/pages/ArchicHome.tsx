@@ -5,6 +5,8 @@ import { LEGAL_PATHS } from '../legal/documents'
 import SiteHeader from '../components/SiteHeader'
 import ContactForm from '../components/ContactForm'
 import Logo from '../components/Logo'
+import BlueprintMark from '../components/BlueprintMark'
+import { useScrollReveal } from '../useScrollReveal'
 
 import heroImage from '../assets/hero-archic.webp'
 import { SERVICE_PAGES } from '../seo/servicePages'
@@ -28,6 +30,7 @@ const SERVICE_LANDINGS: Record<string, string> = {
 
 export default function ArchicHome() {
   const { t, lang } = useLang()
+  useScrollReveal([lang])
   const canonicalUrl = lang === 'es' ? 'https://archic.es/' : 'https://archic.es/en/'
   const structuredData = {
     '@context': 'https://schema.org',
@@ -131,30 +134,55 @@ export default function ArchicHome() {
 
         {/* HERO */}
         <section className="ar-hero">
-          <div className="ar-container ar-hero-grid">
-            <div>
-              <h1 className="ar-hero-title">{t.hero.title}</h1>
-              <p className="ar-hero-sub">{t.hero.subtitle}</p>
-              <div className="ar-hero-ctas">
-                <a href="#contacto" className="ar-btn ar-btn-primary">
-                  {t.hero.ctaPrimary}
-                </a>
-                <a href="#servicios" className="ar-btn ar-btn-ghost">
-                  {t.hero.ctaSecondary}
-                </a>
+          <div className="ar-blueprint" aria-hidden="true" />
+          <div className="ar-container">
+            <div className="ar-hero-grid">
+              <div>
+                {/* El titular se compone por líneas para que entren
+                    enmascaradas una tras otra. Unidas dicen exactamente lo
+                    mismo que t.hero.title, que es lo que indexa el buscador. */}
+                <h1 className="ar-hero-title">
+                  {t.hero.titleLines.map((line, i) => (
+                    <span
+                      key={line.text}
+                      className="ar-line"
+                      style={{ '--line-delay': `${120 + i * 110}ms` } as React.CSSProperties}
+                    >
+                      <span className={line.accent ? 'ar-accent' : undefined}>{line.text}</span>
+                      {/* Espacio entre líneas: no se ve, porque cada línea es un
+                          bloque, pero un lector de pantalla leería si no
+                          "softwarea medidapara empresas". */}
+                      {i < t.hero.titleLines.length - 1 ? ' ' : null}
+                    </span>
+                  ))}
+                </h1>
+                <p className="ar-hero-sub">{t.hero.subtitle}</p>
+                <div className="ar-hero-ctas">
+                  <a href="#contacto" className="ar-btn ar-btn-primary">
+                    {t.hero.ctaPrimary}
+                  </a>
+                  <a href="#servicios" className="ar-btn ar-btn-ghost">
+                    {t.hero.ctaSecondary}
+                  </a>
+                </div>
+                <p className="ar-hero-note">{t.hero.note}</p>
               </div>
-              <p className="ar-hero-note">{t.hero.note}</p>
+
+              {/* La lámina se dibuja sola al cargar: es la demostración, no un
+                  adorno. Sustituye a la foto, que baja a "Sobre Archic". */}
+              <div className="ar-hero-plate">
+                <BlueprintMark delay={260} />
+              </div>
             </div>
-            <div className="ar-hero-media">
-              <img
-                src={heroImage}
-                alt={t.hero.imageAlt}
-                width={1200}
-                height={829}
-                {...{ fetchpriority: "high" }}
-                decoding="async"
-              />
-            </div>
+
+            <dl className="ar-spec">
+              {t.hero.spec.map((item) => (
+                <div key={item.label}>
+                  <dt>{item.label}</dt>
+                  <dd>{item.value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
 
@@ -176,20 +204,24 @@ export default function ArchicHome() {
                   style={{ scrollMarginTop: '90px' }}
                 >
                   <span className="ar-service-num">{service.eyebrow}</span>
-                  <h3 className="ar-service-title">{service.title}</h3>
-                  <p className="ar-service-intro">{service.intro}</p>
+                  {/* Título, texto y enlace van juntos en la columna central;
+                      la lista ocupa la tercera. */}
+                  <div className="ar-service-body">
+                    <h3 className="ar-service-title">{service.title}</h3>
+                    <p className="ar-service-intro">{service.intro}</p>
+                    {/* Enlace interno a la landing con la intención de búsqueda
+                        correspondiente: reparte autoridad desde la home. */}
+                    {SERVICE_LANDINGS[service.id] && (
+                      <a className="ar-service-link" href={SERVICE_LANDINGS[service.id]}>
+                        {lang === 'es' ? 'Ver servicio →' : 'View service →'}
+                      </a>
+                    )}
+                  </div>
                   <ul className="ar-list">
                     {service.items.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
-                  {/* Enlace interno a la landing con la intención de búsqueda
-                      correspondiente: reparte autoridad desde la home. */}
-                  {SERVICE_LANDINGS[service.id] && (
-                    <a className="ar-service-link" href={SERVICE_LANDINGS[service.id]}>
-                      {lang === 'es' ? 'Ver servicio →' : 'View service →'}
-                    </a>
-                  )}
                 </article>
               ))}
             </div>
@@ -280,16 +312,56 @@ export default function ArchicHome() {
           </div>
         </section>
 
+        {/* PRUEBA — datos verificables de esta misma web */}
+        <section className="ar-section ar-proof">
+          <div className="ar-blueprint" aria-hidden="true" />
+          <BlueprintMark delay={0} />
+          <div className="ar-container" style={{ position: 'relative', zIndex: 2 }}>
+            <div className="ar-sec-head">
+              <p className="ar-eyebrow">{t.proof.eyebrow}</p>
+              <h2 className="ar-h2">
+                {t.proof.title} <span className="ar-accent">{t.proof.titleAccent}</span>
+              </h2>
+              <p className="ar-lead">{t.proof.lead}</p>
+            </div>
+            <div className="ar-proof-grid">
+              {t.proof.items.map((item) => (
+                <div key={item.label} className="ar-proof-item">
+                  <span className="ar-proof-value">{item.value}</span>
+                  <p className="ar-proof-label">{item.label}</p>
+                  <p>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* SOBRE ARCHIC */}
         <section id="sobre" className="ar-section ar-section-alt" style={{ scrollMarginTop: '70px' }}>
           <div className="ar-container">
-            <p className="ar-eyebrow">{t.about.eyebrow}</p>
-            <h2 className="ar-h2">{t.about.title}</h2>
-            {t.about.body.map((paragraph) => (
-              <p key={paragraph} className="ar-lead" style={{ marginTop: 14 }}>
-                {paragraph}
-              </p>
-            ))}
+            <div className="ar-about-grid">
+              <div>
+                <p className="ar-eyebrow">{t.about.eyebrow}</p>
+                <h2 className="ar-h2">{t.about.title}</h2>
+                {t.about.body.map((paragraph) => (
+                  <p key={paragraph} className="ar-lead" style={{ marginTop: 16 }}>
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+              {/* La foto vive aquí y no en el hero: aporta lugar y calidez, y
+                  al bajar deja el LCP en el titular, que pinta antes. */}
+              <div className="ar-hero-media">
+                <img
+                  src={heroImage}
+                  alt={t.hero.imageAlt}
+                  width={1200}
+                  height={829}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
           </div>
         </section>
 

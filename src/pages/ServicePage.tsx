@@ -8,6 +8,7 @@ import Logo from '../components/Logo'
 import { SERVICE_PAGE_BY_PATH, type ServicePage as ServicePageData } from '../seo/servicePages'
 import { LOCAL_PAGE_BY_PATH } from '../seo/localPages'
 import { buildLandingGraph, isLocalLanding } from '../seo/landingSchema'
+import { useScrollReveal } from '../useScrollReveal'
 
 const ORIGIN = 'https://archic.es'
 
@@ -19,6 +20,7 @@ const LANDING_BY_PATH: Record<string, ServicePageData> = {
 
 export default function ServicePage({ page }: { page: ServicePageData }) {
   const { t, lang } = useLang()
+  useScrollReveal([page.path])
   const canonical = `${ORIGIN}${page.path}`
   const local = isLocalLanding(page) ? page.local : null
 

@@ -4,12 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 /* Self-hosted webfonts. Serving them from our own origin instead of the Google
    Fonts CDN avoids sending visitor IP addresses to a third party without
-   consent (art. 6 GDPR), which also keeps the site free of consent banners. */
-import '@fontsource/dm-sans/latin-400.css'
-import '@fontsource/dm-sans/latin-500.css'
-import '@fontsource/space-grotesk/latin-400.css'
-import '@fontsource/space-grotesk/latin-500.css'
-import '@fontsource/space-grotesk/latin-600.css'
+   consent (art. 6 GDPR), which also keeps the site free of consent banners.
+
+   Instrument Serif carries the display voice; its italic is the accent used on
+   the key phrase of each headline. Inter Tight is the reading face and IBM Plex
+   Mono the technical one (eyebrows, labels, data). */
+import '@fontsource/instrument-serif/latin-400.css'
+import '@fontsource/instrument-serif/latin-400-italic.css'
+import '@fontsource/inter-tight/latin-400.css'
+import '@fontsource/inter-tight/latin-500.css'
+import '@fontsource/inter-tight/latin-600.css'
 import '@fontsource/ibm-plex-mono/latin-400.css'
 import '@fontsource/ibm-plex-mono/latin-500.css'
 import './index.css'
