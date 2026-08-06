@@ -63,11 +63,7 @@ export default function SiteHeader() {
 
           <nav className="ar-nav" aria-label={t.a11y.mainNav}>
             {lang === 'es' && (
-              <div
-                className="ar-nav-group"
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
-              >
+              <div className="ar-nav-group">
                 <button
                   type="button"
                   className="ar-nav-trigger"

@@ -270,6 +270,13 @@ h3 {
   display: none;
 }
 
+/* El desplegable también se abre al pasar el ratón; el estado en React cubre
+   teclado y toque, donde el hover no existe. */
+.ar-nav-group:hover .ar-nav-menu[hidden],
+.ar-nav-group:focus-within .ar-nav-menu[hidden] {
+  display: grid;
+}
+
 .ar-nav-menu a {
   font-size: 14px;
   line-height: 1.3;
