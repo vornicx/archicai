@@ -11,59 +11,23 @@
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { SERVICE_PAGES } from '../src/seo/servicePages'
+import { SERVICE_PAGES, type ServicePage } from '../src/seo/servicePages'
+import { LOCAL_PAGES } from '../src/seo/localPages'
+import { buildLandingGraph } from '../src/seo/landingSchema'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = 'https://archic.es'
 
+/* Landings nacionales por servicio + landings locales (Écija / Sevilla). */
+const ALL_PAGES: ServicePage[] = [...SERVICE_PAGES, ...LOCAL_PAGES]
+
 const esc = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-function head(page: (typeof SERVICE_PAGES)[number]) {
+function head(page: ServicePage) {
   const canonical = `${ORIGIN}${page.path}`
-  const ld = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Service',
-        '@id': `${canonical}#service`,
-        name: page.serviceName,
-        description: page.meta.description,
-        serviceType: page.keyword,
-        provider: { '@id': `${ORIGIN}/#organization` },
-        areaServed: { '@type': 'Country', name: 'España' },
-        availableLanguage: ['es', 'en'],
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${ORIGIN}/` },
-          { '@type': 'ListItem', position: 2, name: page.breadcrumb, item: canonical },
-        ],
-      },
-      {
-        '@type': 'FAQPage',
-        '@id': `${canonical}#faq`,
-        mainEntity: page.faq.items.map((item) => ({
-          '@type': 'Question',
-          name: item.q,
-          acceptedAnswer: { '@type': 'Answer', text: item.a },
-        })),
-      },
-      {
-        '@type': 'WebPage',
-        '@id': `${canonical}#webpage`,
-        url: canonical,
-        name: page.meta.title,
-        description: page.meta.description,
-        inLanguage: 'es',
-        isPartOf: { '@id': `${ORIGIN}/#website` },
-        about: { '@id': `${ORIGIN}/#organization` },
-        breadcrumb: { '@id': `${canonical}#breadcrumb` },
-      },
-    ],
-  }
+  const ld = buildLandingGraph(page, 'es')
+
 
   return `<!doctype html>
 <html lang="es">
@@ -110,7 +74,7 @@ ${JSON.stringify(ld, null, 2)
 `
 }
 
-for (const page of SERVICE_PAGES) {
+for (const page of ALL_PAGES) {
   const dir = resolve(ROOT, page.path.replace(/^\/|\/$/g, ''))
   mkdirSync(dir, { recursive: true })
   writeFileSync(resolve(dir, 'index.html'), head(page))
@@ -125,7 +89,7 @@ const withoutServices = current.replace(
   /\n  <!-- servicios -->[\s\S]*?<!-- \/servicios -->/,
   '',
 )
-const serviceEntries = SERVICE_PAGES.map(
+const serviceEntries = ALL_PAGES.map(
   (page) => `  <url>
     <loc>${ORIGIN}${page.path}</loc>
     <changefreq>monthly</changefreq>

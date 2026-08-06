@@ -9,6 +9,7 @@ const ServicePage = lazy(() => import('./pages/ServicePage'))
 import { LEGAL_PATHS, type LegalDocKey } from './legal/documents'
 import { LanguageProvider, useLang } from './i18n/LanguageContext'
 import { SERVICE_PAGES } from './seo/servicePages'
+import { LOCAL_PAGES } from './seo/localPages'
 
 function SkipLink() {
   const { t } = useLang()
@@ -32,9 +33,9 @@ const LEGAL_ROUTES = LEGAL_KEYS.flatMap((key) =>
   )),
 )
 
-/* Una URL por intención de búsqueda: cada landing de servicio responde a una
-   keyword distinta y tiene su propio HTML estático. */
-const SERVICE_ROUTES = SERVICE_PAGES.flatMap((page) =>
+/* Una URL por intención de búsqueda: cada landing de servicio o local responde
+   a una keyword distinta y tiene su propio HTML estático. */
+const SERVICE_ROUTES = [...SERVICE_PAGES, ...LOCAL_PAGES].flatMap((page) =>
   [page.path, page.path.replace(/\/$/, '')].map((path) => (
     <Route key={path} path={path} element={<ServicePage page={page} />} />
   )),

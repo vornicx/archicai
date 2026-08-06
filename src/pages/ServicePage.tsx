@@ -6,56 +6,23 @@ import SiteHeader from '../components/SiteHeader'
 import ContactForm from '../components/ContactForm'
 import Logo from '../components/Logo'
 import { SERVICE_PAGE_BY_PATH, type ServicePage as ServicePageData } from '../seo/servicePages'
+import { LOCAL_PAGE_BY_PATH } from '../seo/localPages'
+import { buildLandingGraph, isLocalLanding } from '../seo/landingSchema'
 
 const ORIGIN = 'https://archic.es'
+
+/** Las landings locales y de servicio comparten plantilla y catálogo de enlaces. */
+const LANDING_BY_PATH: Record<string, ServicePageData> = {
+  ...SERVICE_PAGE_BY_PATH,
+  ...LOCAL_PAGE_BY_PATH,
+}
 
 export default function ServicePage({ page }: { page: ServicePageData }) {
   const { t, lang } = useLang()
   const canonical = `${ORIGIN}${page.path}`
+  const local = isLocalLanding(page) ? page.local : null
 
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Service',
-        '@id': `${canonical}#service`,
-        name: page.serviceName,
-        description: page.meta.description,
-        serviceType: page.keyword,
-        provider: { '@id': `${ORIGIN}/#organization` },
-        areaServed: { '@type': 'Country', name: 'España' },
-        availableLanguage: ['es', 'en'],
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${ORIGIN}/` },
-          { '@type': 'ListItem', position: 2, name: page.breadcrumb, item: canonical },
-        ],
-      },
-      {
-        '@type': 'FAQPage',
-        '@id': `${canonical}#faq`,
-        mainEntity: page.faq.items.map((item) => ({
-          '@type': 'Question',
-          name: item.q,
-          acceptedAnswer: { '@type': 'Answer', text: item.a },
-        })),
-      },
-      {
-        '@type': 'WebPage',
-        '@id': `${canonical}#webpage`,
-        url: canonical,
-        name: page.meta.title,
-        description: page.meta.description,
-        inLanguage: 'es',
-        isPartOf: { '@id': `${ORIGIN}/#website` },
-        about: { '@id': `${ORIGIN}/#organization` },
-        breadcrumb: { '@id': `${canonical}#breadcrumb` },
-      },
-    ],
-  }
+  const structuredData = buildLandingGraph(page, 'es')
 
   return (
     <>
@@ -185,6 +152,28 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
           </div>
         </section>
 
+        {local && (
+          <section className="ar-section">
+            <div className="ar-container">
+              <div className="ar-sec-head">
+                <p className="ar-eyebrow">Zona de actuación</p>
+                <h2 className="ar-h2">Dónde trabajamos desde Écija</h2>
+                <p className="ar-lead">
+                  Base en Écija (Sevilla). Atendemos {local.city} y su provincia de forma presencial
+                  cuando el proyecto lo pide, y el resto de España en remoto.
+                </p>
+              </div>
+              <div className="ar-chips">
+                {[local.city, ...local.alsoServes].map((place) => (
+                  <span key={place} className="ar-chip">
+                    {place}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {page.related.length > 0 && (
           <section className="ar-section ar-section-alt">
             <div className="ar-container">
@@ -194,7 +183,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
               </div>
               <div className="ar-chips">
                 {page.related.map((href) => {
-                  const related = SERVICE_PAGE_BY_PATH[href]
+                  const related = LANDING_BY_PATH[href]
                   if (!related) return null
                   return (
                     <a key={href} href={href} className="ar-chip ar-chip-link">
@@ -241,6 +230,10 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
                 <a href="/diseno-web-para-autonomos/">Diseño web para autónomos</a>
                 <a href="/mantenimiento-web/">Mantenimiento web</a>
                 <a href="/desarrollo-web-a-medida/">Desarrollo a medida</a>
+                <a href="/diseno-web-sevilla/">Diseño web en Sevilla</a>
+                <a href="/diseno-web-ecija/">Diseño web en Écija</a>
+                <a href="/mantenimiento-web-sevilla/">Mantenimiento web en Sevilla</a>
+                <a href="/desarrollo-web-sevilla/">Desarrollo web en Sevilla</a>
                 <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
               </div>
             </div>

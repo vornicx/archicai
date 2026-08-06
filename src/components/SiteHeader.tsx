@@ -12,6 +12,28 @@ const SECTIONS = [
   { key: 'contact', href: '#contacto' },
 ] as const
 
+const SERVICE_ANCHORS = new Set(['web', 'software', 'maintenance'])
+
+/**
+ * Enlaces internos permanentes hacia las landings que deben recibir autoridad.
+ * Estar en el header de todas las páginas es la señal de enlazado interno más
+ * fuerte que puede dar un sitio pequeño. Solo se muestran en castellano: las
+ * landings de servicio y locales no tienen versión en inglés.
+ */
+const SERVICE_LINKS = [
+  { href: '/diseno-web-para-empresas/', label: 'Diseño web para empresas' },
+  { href: '/diseno-web-para-autonomos/', label: 'Diseño web para autónomos' },
+  { href: '/desarrollo-web-a-medida/', label: 'Desarrollo a medida' },
+  { href: '/mantenimiento-web/', label: 'Mantenimiento web' },
+] as const
+
+const LOCAL_LINKS = [
+  { href: '/diseno-web-sevilla/', label: 'Diseño web en Sevilla' },
+  { href: '/diseno-web-ecija/', label: 'Diseño web en Écija' },
+  { href: '/desarrollo-web-sevilla/', label: 'Desarrollo web en Sevilla' },
+  { href: '/mantenimiento-web-sevilla/', label: 'Mantenimiento web en Sevilla' },
+] as const
+
 /**
  * Desde una landing de servicio los anclajes deben volver a la home; en la
  * propia home el navegador los resuelve como salto de fragmento.
@@ -27,6 +49,7 @@ function useSectionBase() {
 export default function SiteHeader() {
   const { t, lang, setLang } = useLang()
   const [open, setOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
   const base = useSectionBase()
 
   return (
@@ -39,7 +62,42 @@ export default function SiteHeader() {
 
 
           <nav className="ar-nav" aria-label={t.a11y.mainNav}>
-            {SECTIONS.map((s) => (
+            {lang === 'es' && (
+              <div className="ar-nav-group">
+                <button
+                  type="button"
+                  className="ar-nav-trigger"
+                  aria-expanded={servicesOpen}
+                  aria-controls="ar-services-menu"
+                  onClick={() => setServicesOpen((v) => !v)}
+                >
+                  Servicios
+                  <span aria-hidden="true" className="ar-nav-caret" />
+                </button>
+                <div
+                  id="ar-services-menu"
+                  className="ar-nav-menu"
+                  hidden={!servicesOpen}
+                  onFocus={() => setServicesOpen(true)}
+                >
+                  <p className="ar-nav-menu-title">Servicios</p>
+                  {SERVICE_LINKS.map((link) => (
+                    <a key={link.href} href={link.href} onClick={() => setServicesOpen(false)}>
+                      {link.label}
+                    </a>
+                  ))}
+                  <p className="ar-nav-menu-title">Écija y Sevilla</p>
+                  {LOCAL_LINKS.map((link) => (
+                    <a key={link.href} href={link.href} onClick={() => setServicesOpen(false)}>
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+            {/* En castellano los tres servicios viven en el menú desplegable,
+                que enlaza a las landings en lugar de a anclas de la home. */}
+            {SECTIONS.filter((s) => lang !== 'es' || !SERVICE_ANCHORS.has(s.key)).map((s) => (
               <a key={s.key} href={`${base}${s.href}`}>
                 {t.nav[s.key]}
               </a>
@@ -98,6 +156,23 @@ export default function SiteHeader() {
 
         {open && (
           <nav id="ar-mobile-nav" className="ar-mobile-nav" aria-label={t.a11y.mainNav}>
+            {lang === 'es' && (
+              <>
+                <p className="ar-nav-menu-title">Servicios</p>
+                {SERVICE_LINKS.map((link) => (
+                  <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
+                    {link.label}
+                  </a>
+                ))}
+                <p className="ar-nav-menu-title">Écija y Sevilla</p>
+                {LOCAL_LINKS.map((link) => (
+                  <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
+                    {link.label}
+                  </a>
+                ))}
+                <p className="ar-nav-menu-title">Navegación</p>
+              </>
+            )}
             {SECTIONS.map((s) => (
               <a key={s.key} href={`${base}${s.href}`} onClick={() => setOpen(false)}>
                 {t.nav[s.key]}

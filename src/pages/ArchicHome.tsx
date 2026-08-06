@@ -8,6 +8,15 @@ import Logo from '../components/Logo'
 
 import heroImage from '../assets/hero-archic.webp'
 import { SERVICE_PAGES } from '../seo/servicePages'
+import { LOCAL_PAGES } from '../seo/localPages'
+import { localBusinessNode, LOCAL_BUSINESS } from '../seo/localBusiness'
+
+/* Ámbito local de la home: la base física en Écija y la provincia de Sevilla. */
+const HOME_LOCAL_SCOPE = {
+  city: 'Écija',
+  province: 'Sevilla',
+  alsoServes: ['Sevilla', 'Carmona', 'Osuna', 'Marchena', 'Utrera', 'Dos Hermanas', 'Palma del Río'],
+}
 
 /** Cada bloque de servicio de la home apunta a su landing especializada. */
 const SERVICE_LANDINGS: Record<string, string> = {
@@ -61,6 +70,7 @@ export default function ArchicHome() {
           })),
         },
       },
+      localBusinessNode(HOME_LOCAL_SCOPE, lang),
       {
         '@type': 'WebSite',
         '@id': 'https://archic.es/#website',
@@ -314,6 +324,36 @@ export default function ArchicHome() {
           </div>
         </section>
 
+        {/* ZONA DE ACTUACIÓN — enlaza a las landings locales desde la home */}
+        <section id="zonas" className="ar-section ar-section-alt" style={{ scrollMarginTop: '70px' }}>
+          <div className="ar-container">
+            <div className="ar-sec-head">
+              <p className="ar-eyebrow">{lang === 'es' ? 'Zona de actuación' : 'Where we work'}</p>
+              <h2 className="ar-h2">
+                {lang === 'es'
+                  ? `Estudio en ${LOCAL_BUSINESS.city}, provincia de ${LOCAL_BUSINESS.province}`
+                  : `Studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province} (Spain)`}
+              </h2>
+              <p className="ar-lead">
+                {lang === 'es'
+                  ? 'Trabajamos de forma presencial con empresas y autónomos de Écija, la Campiña y Sevilla capital, y en remoto con el resto de España.'
+                  : 'We work on-site with companies across Écija, the Campiña area and Seville, and remotely with the rest of Spain.'}
+              </p>
+            </div>
+            <div className="ar-chips">
+              {LOCAL_PAGES.map((page) => (
+                <a key={page.path} href={page.path} className="ar-chip ar-chip-link">
+                  {page.breadcrumb}
+                </a>
+              ))}
+            </div>
+            <p className="ar-hero-note" style={{ marginTop: 18 }}>
+              {LOCAL_BUSINESS.city} · {LOCAL_BUSINESS.postalCode} · {LOCAL_BUSINESS.province} ·{' '}
+              {LOCAL_BUSINESS.region}
+            </p>
+          </div>
+        </section>
+
         {/* CONTACTO */}
         <section id="contacto" className="ar-section" style={{ scrollMarginTop: '70px' }}>
           <div className="ar-container">
@@ -352,6 +392,8 @@ export default function ArchicHome() {
                 <a href="#proyectos">{t.nav.projects}</a>
                 <a href="#sobre">{t.nav.about}</a>
                 <a href="#contacto">{t.nav.contact}</a>
+                <a href="/diseno-web-sevilla/">Diseño web en Sevilla</a>
+                <a href="/diseno-web-ecija/">Diseño web en Écija</a>
                 <a href="https://midas.archic.es" target="_blank" rel="noreferrer">
                   Archic Labs
                 </a>
@@ -368,7 +410,7 @@ export default function ArchicHome() {
 
             <div className="ar-footer-bottom">
               <span>© {new Date().getFullYear()} ARCHIC · {t.footer.rights}</span>
-              <span>ESPAÑA</span>
+              <span>ÉCIJA · SEVILLA · ESPAÑA</span>
             </div>
           </div>
         </footer>
