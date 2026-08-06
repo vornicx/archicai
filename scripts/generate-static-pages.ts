@@ -74,7 +74,7 @@ ${JSON.stringify(ld, null, 2)
 `
 }
 
-for (const page of SERVICE_PAGES) {
+for (const page of ALL_PAGES) {
   const dir = resolve(ROOT, page.path.replace(/^\/|\/$/g, ''))
   mkdirSync(dir, { recursive: true })
   writeFileSync(resolve(dir, 'index.html'), head(page))
@@ -89,7 +89,7 @@ const withoutServices = current.replace(
   /\n  <!-- servicios -->[\s\S]*?<!-- \/servicios -->/,
   '',
 )
-const serviceEntries = SERVICE_PAGES.map(
+const serviceEntries = ALL_PAGES.map(
   (page) => `  <url>
     <loc>${ORIGIN}${page.path}</loc>
     <changefreq>monthly</changefreq>
