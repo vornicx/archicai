@@ -6,56 +6,23 @@ import SiteHeader from '../components/SiteHeader'
 import ContactForm from '../components/ContactForm'
 import Logo from '../components/Logo'
 import { SERVICE_PAGE_BY_PATH, type ServicePage as ServicePageData } from '../seo/servicePages'
+import { LOCAL_PAGE_BY_PATH } from '../seo/localPages'
+import { buildLandingGraph, isLocalLanding } from '../seo/landingSchema'
 
 const ORIGIN = 'https://archic.es'
+
+/** Las landings locales y de servicio comparten plantilla y catálogo de enlaces. */
+const LANDING_BY_PATH: Record<string, ServicePageData> = {
+  ...SERVICE_PAGE_BY_PATH,
+  ...LOCAL_PAGE_BY_PATH,
+}
 
 export default function ServicePage({ page }: { page: ServicePageData }) {
   const { t, lang } = useLang()
   const canonical = `${ORIGIN}${page.path}`
+  const local = isLocalLanding(page) ? page.local : null
 
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Service',
-        '@id': `${canonical}#service`,
-        name: page.serviceName,
-        description: page.meta.description,
-        serviceType: page.keyword,
-        provider: { '@id': `${ORIGIN}/#organization` },
-        areaServed: { '@type': 'Country', name: 'España' },
-        availableLanguage: ['es', 'en'],
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${ORIGIN}/` },
-          { '@type': 'ListItem', position: 2, name: page.breadcrumb, item: canonical },
-        ],
-      },
-      {
-        '@type': 'FAQPage',
-        '@id': `${canonical}#faq`,
-        mainEntity: page.faq.items.map((item) => ({
-          '@type': 'Question',
-          name: item.q,
-          acceptedAnswer: { '@type': 'Answer', text: item.a },
-        })),
-      },
-      {
-        '@type': 'WebPage',
-        '@id': `${canonical}#webpage`,
-        url: canonical,
-        name: page.meta.title,
-        description: page.meta.description,
-        inLanguage: 'es',
-        isPartOf: { '@id': `${ORIGIN}/#website` },
-        about: { '@id': `${ORIGIN}/#organization` },
-        breadcrumb: { '@id': `${canonical}#breadcrumb` },
-      },
-    ],
-  }
+  const structuredData = buildLandingGraph(page, 'es')
 
   return (
     <>
