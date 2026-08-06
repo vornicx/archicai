@@ -7,13 +7,13 @@ import { HelmetProvider } from 'react-helmet-async'
    consent (art. 6 GDPR), which also keeps the site free of consent banners.
 
    Instrument Serif carries the display voice; its italic is the accent used on
-   the key phrase of each headline. Inter Tight is the reading face and IBM Plex
-   Mono the technical one (eyebrows, labels, data). */
+   the key phrase of each headline. DM Sans is the reading face and IBM Plex
+   Mono the technical one (eyebrows, labels, data). Only the weights the design
+   system actually uses are loaded. */
 import '@fontsource/instrument-serif/latin-400.css'
 import '@fontsource/instrument-serif/latin-400-italic.css'
-import '@fontsource/inter-tight/latin-400.css'
-import '@fontsource/inter-tight/latin-500.css'
-import '@fontsource/inter-tight/latin-600.css'
+import '@fontsource/dm-sans/latin-400.css'
+import '@fontsource/dm-sans/latin-500.css'
 import '@fontsource/ibm-plex-mono/latin-400.css'
 import '@fontsource/ibm-plex-mono/latin-500.css'
 import './index.css'

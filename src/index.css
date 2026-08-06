@@ -54,10 +54,10 @@
 /* Métricas de reserva: mantienen el layout estable mientras cargan las fuentes
    y evitan el salto de composición (CLS). */
 @font-face {
-  font-family: 'Inter Tight Fallback';
+  font-family: 'DM Sans Fallback';
   src: local('Helvetica Neue'), local('Arial'), local('Liberation Sans');
-  size-adjust: 97%;
-  ascent-override: 97%;
+  size-adjust: 100%;
+  ascent-override: 96%;
   descent-override: 24%;
   line-gap-override: 0%;
 }
@@ -84,9 +84,9 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Inter Tight', 'Inter Tight Fallback', system-ui, -apple-system, sans-serif;
+  font-family: 'DM Sans', 'DM Sans Fallback', system-ui, -apple-system, sans-serif;
   font-size: 16px;
-  line-height: 1.62;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
