@@ -12,6 +12,8 @@ const SECTIONS = [
   { key: 'contact', href: '#contacto' },
 ] as const
 
+const SERVICE_ANCHORS = new Set(['web', 'software', 'maintenance'])
+
 /**
  * Enlaces internos permanentes hacia las landings que deben recibir autoridad.
  * Estar en el header de todas las páginas es la señal de enlazado interno más
@@ -97,7 +99,9 @@ export default function SiteHeader() {
                 </div>
               </div>
             )}
-            {SECTIONS.map((s) => (
+            {/* En castellano los tres servicios viven en el menú desplegable,
+                que enlaza a las landings en lugar de a anclas de la home. */}
+            {SECTIONS.filter((s) => lang !== 'es' || !SERVICE_ANCHORS.has(s.key)).map((s) => (
               <a key={s.key} href={`${base}${s.href}`}>
                 {t.nav[s.key]}
               </a>
