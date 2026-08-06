@@ -410,7 +410,7 @@ export default function ArchicHome() {
 
             <div className="ar-footer-bottom">
               <span>© {new Date().getFullYear()} ARCHIC · {t.footer.rights}</span>
-              <span>ESPAÑA</span>
+              <span>ÉCIJA · SEVILLA · ESPAÑA</span>
             </div>
           </div>
         </footer>
