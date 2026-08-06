@@ -230,6 +230,10 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
                 <a href="/diseno-web-para-autonomos/">Diseño web para autónomos</a>
                 <a href="/mantenimiento-web/">Mantenimiento web</a>
                 <a href="/desarrollo-web-a-medida/">Desarrollo a medida</a>
+                <a href="/diseno-web-sevilla/">Diseño web en Sevilla</a>
+                <a href="/diseno-web-ecija/">Diseño web en Écija</a>
+                <a href="/mantenimiento-web-sevilla/">Mantenimiento web en Sevilla</a>
+                <a href="/desarrollo-web-sevilla/">Desarrollo web en Sevilla</a>
                 <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
               </div>
             </div>
