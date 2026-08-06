@@ -9,6 +9,7 @@ const ServicePage = lazy(() => import('./pages/ServicePage'))
 import { LEGAL_PATHS, type LegalDocKey } from './legal/documents'
 import { LanguageProvider, useLang } from './i18n/LanguageContext'
 import { SERVICE_PAGES } from './seo/servicePages'
+import { LOCAL_PAGES } from './seo/localPages'
 
 function SkipLink() {
   const { t } = useLang()
