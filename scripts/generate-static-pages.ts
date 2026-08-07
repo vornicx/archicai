@@ -132,7 +132,7 @@ function document_({
     <link data-rh="true" rel="canonical" href="${canonical}">
 ${alternateTags}
     <meta name="theme-color" content="#12294c" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="icon" type="image/png" sizes="512x512" href="/archic-mark-512.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
