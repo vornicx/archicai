@@ -1,18 +1,29 @@
 import { resolve } from 'node:path'
-import { readdirSync } from 'node:fs'
+import { readdirSync, existsSync } from 'node:fs'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-/* Las landings de servicio viven en carpetas propias en la raíz y se generan
-   con `npm run gen:pages`. Se recogen automáticamente para no tener que
-   registrar cada nueva página a mano. */
-const SERVICE_DIRS = readdirSync(__dirname, { withFileTypes: true })
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => entry.name)
-  .filter((name) => /^(diseno-web-|mantenimiento-web|desarrollo-web-)/.test(name))
+/* Las landings y las guías viven en carpetas propias, generadas por
+   `npm run gen:pages`. Se recogen del sistema de ficheros en lugar de
+   registrarse a mano para que añadir una página nueva no exija tocar también
+   esta configuración — y que olvidarlo deje la página fuera del build. */
+const dirsIn = (base: string) =>
+  existsSync(base)
+    ? readdirSync(base, { withFileTypes: true })
+        .filter((entry) => entry.isDirectory())
+        .map((entry) => entry.name)
+    : []
 
-const serviceInputs = Object.fromEntries(
-  SERVICE_DIRS.map((name) => [name, resolve(__dirname, `${name}/index.html`)]),
+const LANDING_DIRS = dirsIn(__dirname).filter((name) =>
+  /^(diseno-web-|mantenimiento-web|desarrollo-web-)/.test(name),
+)
+
+const GUIDE_DIRS = dirsIn(resolve(__dirname, 'guias')).map((name) => `guias/${name}`)
+
+const pageInputs = Object.fromEntries(
+  [...LANDING_DIRS, ...GUIDE_DIRS, 'guias']
+    .map((name) => [name, resolve(__dirname, `${name}/index.html`)] as const)
+    .filter(([, file]) => existsSync(file)),
 )
 
 export default defineConfig({
@@ -30,7 +41,7 @@ export default defineConfig({
         enLegalNotice: resolve(__dirname, 'en/legal-notice/index.html'),
         enPrivacy: resolve(__dirname, 'en/privacy/index.html'),
         enCookies: resolve(__dirname, 'en/cookies/index.html'),
-        ...serviceInputs,
+        ...pageInputs,
       },
     },
   },

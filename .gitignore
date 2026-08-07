@@ -4,3 +4,6 @@ dist/
 .DS_Store
 Thumbs.db
 *.log
+
+# Caché incremental de `tsc -b`: se regenera en cada build
+*.tsbuildinfo

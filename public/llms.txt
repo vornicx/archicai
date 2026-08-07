@@ -1,0 +1,54 @@
+# Archic
+
+> Archic es un estudio de diseño y desarrollo web con base en Écija (Sevilla, España). Hace tres cosas: diseña y programa páginas web a medida, desarrolla software interno para empresas —inventarios, paneles de producción, automatización de informes— y mantiene esos sistemas una vez publicados. Trabaja de forma presencial en la provincia de Sevilla y en remoto con el resto de España, en castellano e inglés.
+
+Archic es una marca comercial española. Contacto: vornic@archic.es. Base en Écija (41400), provincia de Sevilla, Andalucía, España. Idiomas de trabajo: castellano e inglés.
+
+Esta web no instala cookies, no usa analítica de terceros y no carga recursos externos.
+
+## Servicios
+
+- **Páginas web**: Creamos páginas web rápidas, profesionales y adaptadas a la identidad de cada negocio. Desde webs corporativas y catálogos hasta plataformas con funcionalidades específicas.
+- **Mantenimiento web**: Nos ocupamos de que tu web continúe funcionando, actualizada y segura después de publicarla. No entregamos un proyecto y desaparecemos.
+- **Software a medida**: Desarrollamos herramientas adaptadas a la forma de trabajar de cada empresa, evitando que el negocio tenga que adaptarse a un software genérico.
+
+## Páginas de servicio
+
+- [Diseño web para empresas](https://archic.es/diseno-web-para-empresas/): Diseño web profesional para empresas: webs rápidas, medibles y preparadas para captar clientes. Proyecto cerrado, sin plantillas genéricas ni cuotas ocultas.
+- [Diseño web para autónomos](https://archic.es/diseno-web-para-autonomos/): Páginas web para autónomos y profesionales independientes: rápidas, claras y pensadas para que te encuentren y te contacten. Precio cerrado y sin permanencia.
+- [Mantenimiento web](https://archic.es/mantenimiento-web/): Mantenimiento web continuo: actualizaciones, copias de seguridad, seguridad, rendimiento y cambios de contenido. Sin permanencia y con informe de lo realizado.
+- [Desarrollo web a medida](https://archic.es/desarrollo-web-a-medida/): Desarrollo web a medida, aplicaciones internas, integraciones y automatización de procesos. Software adaptado a cómo trabaja tu empresa, no al revés.
+
+## Páginas locales
+
+- [Diseño web en Sevilla](https://archic.es/diseno-web-sevilla/): Estudio de diseño y desarrollo web en la provincia de Sevilla. Webs rápidas, medibles y hechas a medida para empresas y autónomos. Presupuesto cerrado, trato directo.
+- [Diseño web en Écija](https://archic.es/diseno-web-ecija/): Diseño y desarrollo web en Écija. Estudio local para empresas, comercios y autónomos de la Campiña sevillana: webs rápidas, mantenimiento y software a medida.
+- [Mantenimiento web en Sevilla](https://archic.es/mantenimiento-web-sevilla/): Mantenimiento web para empresas de Sevilla y provincia: actualizaciones, copias de seguridad, seguridad, rendimiento y cambios de contenido. Sin permanencia.
+- [Desarrollo web en Sevilla](https://archic.es/desarrollo-web-sevilla/): Desarrollo web y aplicaciones a medida para empresas de Sevilla y provincia: paneles internos, integraciones y automatización de procesos. Código propio y documentado.
+
+## Guías
+
+- [Web a medida, WordPress o un constructor: cómo elegir sin arrepentirse](https://archic.es/guias/web-a-medida-o-wordpress/): Comparativa honesta entre web a medida, WordPress y constructores como Wix o Squarespace: coste real, rendimiento, mantenimiento y qué pasa cuando quieres cambiar de proveedor.
+- [Qué determina el precio de una página web para empresa](https://archic.es/guias/precio-pagina-web-empresa/): Por qué dos presupuestos de página web pueden diferir en un orden de magnitud, qué partidas debe incluir uno serio y las señales de alarma al comparar ofertas.
+- [Cómo pasar de Excel a una herramienta interna sin parar la empresa](https://archic.es/guias/digitalizar-procesos-excel/): Cuándo una hoja de cálculo deja de ser suficiente, cómo elegir el primer proceso a digitalizar y cómo hacer la transición sin detener la operativa diaria.
+
+## Preguntas frecuentes
+
+- [¿Qué diferencia hay entre una web a medida y una hecha con WordPress, Wix o Shopify?](https://archic.es/#faq)
+- [¿Cuánto cuesta una página web para una empresa?](https://archic.es/#faq)
+- [¿Cuánto se tarda en tener la web publicada?](https://archic.es/#faq)
+- [¿La web es mía? ¿Puedo cambiar de proveedor después?](https://archic.es/#faq)
+- [¿Qué es el software a medida y cuándo compensa frente a un programa comercial?](https://archic.es/#faq)
+- [¿Trabajáis solo en Écija y Sevilla?](https://archic.es/#faq)
+- [¿Qué pasa después de publicar? ¿Hay mantenimiento?](https://archic.es/#faq)
+
+## Legal
+
+- [Aviso legal](https://archic.es/aviso-legal/)
+- [Política de privacidad](https://archic.es/privacidad/)
+- [Política de cookies](https://archic.es/cookies/)
+
+## Opcional
+
+- [English version](https://archic.es/en/)
+- [Texto completo del sitio](https://archic.es/llms-full.txt)

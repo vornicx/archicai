@@ -34,6 +34,21 @@ export type Content = {
     note: string
     imageAlt: string
   }
+  /**
+   * Respuesta directa a «¿qué es Archic?», en una sola frase autocontenida.
+   *
+   * Es el párrafo que un asistente de IA puede citar sin tener que reconstruir
+   * el contexto a partir de media página, y el que Google usa como fragmento
+   * destacado. Debe funcionar aislado del resto del documento.
+   */
+  answer: { question: string; body: string }
+  /** Datos comprobables por quien visita la web. Nada de cifras inventadas. */
+  facts: {
+    eyebrow: string
+    title: string
+    lead: string
+    items: { value: string; label: string; desc: string }[]
+  }
   servicesIntro: { eyebrow: string; title: string; lead: string }
   services: Service[]
   value: {
@@ -52,6 +67,8 @@ export type Content = {
     items: Project[]
   }
   about: { eyebrow: string; title: string; body: string[] }
+  /** Preguntas frecuentes de la home; alimentan también el nodo FAQPage. */
+  homeFaq: { eyebrow: string; title: string; lead: string; items: { q: string; a: string }[] }
   labs: { eyebrow: string; title: string; lead: string; items: { name: string; desc: string; status: string; href?: string }[] }
   contact: {
     eyebrow: string
@@ -110,7 +127,10 @@ export const CONTENT: Record<Lang, Content> = {
       ogTitle: 'Páginas web y software a medida para empresas | Archic',
       ogDescription:
         'Diseño y desarrollo web, mantenimiento continuo, software a medida y automatización de procesos para empresas.',
-      ogImage: 'og-image.jpg',
+      /* 1200×630: la proporción que Facebook, LinkedIn, WhatsApp y X recortan
+         sin comerse el titular. El banner 1500×500 que había antes se cortaba
+         por los lados en casi todas las plataformas. */
+      ogImage: 'og-image.png',
       ogImageAlt: 'Archic — páginas web y software a medida para empresas',
     },
     a11y: {
@@ -144,6 +164,37 @@ export const CONTENT: Record<Lang, Content> = {
       ctaSecondary: 'Ver servicios',
       note: 'Desde España, trabajando con empresas que necesitan tecnología útil, clara y bien construida.',
       imageAlt: 'Entrada de arquitectura mediterránea con un gran arco de piedra y una puerta azul',
+    },
+    answer: {
+      question: '¿Qué es Archic?',
+      body: 'Archic es un estudio de diseño y desarrollo web con base en Écija (Sevilla, España). Hace tres cosas: diseña y programa páginas web a medida, desarrolla software interno para empresas —inventarios, paneles de producción, automatización de informes— y mantiene esos sistemas una vez publicados. Trabaja de forma presencial en la provincia de Sevilla y en remoto con el resto de España, en castellano e inglés.',
+    },
+    facts: {
+      eyebrow: 'Comprobable',
+      title: 'Cuatro cosas que puedes verificar ahora mismo.',
+      lead: 'Preferimos datos que puedas comprobar tú antes de escribirnos a promesas que no se pueden medir.',
+      items: [
+        {
+          value: '0',
+          label: 'cookies y peticiones a terceros',
+          desc: 'Esta web no instala cookies ni carga nada de servidores ajenos: ni analítica, ni tipografías externas, ni píxeles de redes sociales. Por eso no hay banner de consentimiento que aceptar. Ábrela con las herramientas de desarrollo y compruébalo.',
+        },
+        {
+          value: '100 %',
+          label: 'código propio y portable',
+          desc: 'Sin constructores cerrados ni plantillas con licencia mensual. Lo que construimos se entrega completo y puede llevarse a otro proveedor sin permiso de nadie.',
+        },
+        {
+          value: 'ES · EN',
+          label: 'bilingüe de serie',
+          desc: 'Cada idioma con su propia URL, su canónica y sus metadatos, no un traductor automático encima. Preparado para clientes fuera de España.',
+        },
+        {
+          value: 'Écija',
+          label: 'base en la provincia de Sevilla',
+          desc: 'Reuniones presenciales en Écija, Sevilla capital y la Campiña. Con el resto de España trabajamos en remoto, con la misma forma de trabajar.',
+        },
+      ],
     },
     servicesIntro: {
       eyebrow: 'Servicios',
@@ -264,6 +315,41 @@ export const CONTENT: Record<Lang, Content> = {
         'Diseñamos páginas web, desarrollamos software a medida y acompañamos a nuestros clientes durante la evolución de sus sistemas.',
       ],
     },
+    homeFaq: {
+      eyebrow: 'Preguntas frecuentes',
+      title: 'Lo que nos preguntan antes de empezar.',
+      lead: 'Respuestas directas a las dudas que aparecen en la primera conversación.',
+      items: [
+        {
+          q: '¿Qué diferencia hay entre una web a medida y una hecha con WordPress, Wix o Shopify?',
+          a: 'Un constructor te da una plantilla y una cuota mensual: es rápido de arrancar y suficiente para una web sencilla, pero el rendimiento depende de plugins que no controlas y salir de la plataforma es costoso. Una web a medida se programa para lo que necesita tu negocio: carga más rápido porque no arrastra código que no usas, no depende de licencias de terceros y el resultado se puede alojar donde quieras. Como referencia, esta misma web es a medida, no instala cookies y no hace ni una sola petición a servidores externos.',
+        },
+        {
+          q: '¿Cuánto cuesta una página web para una empresa?',
+          a: 'Depende del alcance real: número de páginas, si hay catálogo o zona privada, si hace falta versión en otro idioma y si hay que integrar sistemas que ya usáis. No trabajamos con tarifa por horas abierta: analizamos el caso, damos un presupuesto cerrado antes de empezar y ahí queda claro qué incluye y qué mantenimiento necesitará después. Escríbenos con dos líneas sobre el proyecto y te decimos un rango en la primera respuesta.',
+        },
+        {
+          q: '¿Cuánto se tarda en tener la web publicada?',
+          a: 'Una web corporativa de presentación suele estar lista en unas semanas desde que tenemos los textos y las imágenes definitivos; lo que más alarga los plazos casi nunca es el desarrollo, sino esperar a los contenidos. Un proyecto de software interno se planifica por fases, y desde la primera enseñamos avances funcionando para que no haya sorpresas al final.',
+        },
+        {
+          q: '¿La web es mía? ¿Puedo cambiar de proveedor después?',
+          a: 'Sí. Entregamos el código y la configuración, y el dominio se registra siempre a nombre del cliente. Si algún día decides trabajar con otro estudio, te llevas el proyecto sin pedirnos permiso ni pagar por liberarlo. Nos parece la única forma sana de plantear la relación.',
+        },
+        {
+          q: '¿Qué es el software a medida y cuándo compensa frente a un programa comercial?',
+          a: 'Es una herramienta programada para la forma concreta en la que trabaja una empresa: control de inventario, seguimiento de producción, generación automática de informes, paneles internos. Compensa cuando el programa comercial obliga a cambiar el proceso para encajar en él, cuando se paga por decenas de funciones que nadie usa, o cuando el trabajo real vive en hojas de Excel que solo entiende una persona. Si un software estándar cubre lo que necesitáis, lo decimos: sale más barato para todos.',
+        },
+        {
+          q: '¿Trabajáis solo en Écija y Sevilla?',
+          a: 'La base está en Écija, así que en la provincia de Sevilla —Écija, Sevilla capital, Carmona, Osuna, Marchena, Utrera, Dos Hermanas, Palma del Río— podemos vernos en persona. Con el resto de España trabajamos en remoto: videollamada, avances visibles y la misma forma de trabajar. Atendemos en castellano e inglés.',
+        },
+        {
+          q: '¿Qué pasa después de publicar? ¿Hay mantenimiento?',
+          a: 'Es opcional, pero lo recomendamos: una web sin actualizar acumula fallos de seguridad y se queda atrás en rendimiento. El mantenimiento cubre copias de seguridad, actualizaciones, corrección de errores, monitorización y pequeños cambios de contenido. Si prefieres gestionarlo por tu cuenta, te dejamos la documentación para hacerlo.',
+        },
+      ],
+    },
     labs: {
       eyebrow: 'Archic Labs',
       title: 'Productos propios.',
@@ -363,7 +449,7 @@ export const CONTENT: Record<Lang, Content> = {
       ogTitle: 'Websites and custom software for businesses | Archic',
       ogDescription:
         'Web design and development, ongoing maintenance, custom software and process automation for businesses.',
-      ogImage: 'og-image.jpg',
+      ogImage: 'og-image-en.png',
       ogImageAlt: 'Archic — websites and custom software for businesses',
     },
     a11y: {
@@ -397,6 +483,37 @@ export const CONTENT: Record<Lang, Content> = {
       ctaSecondary: 'See services',
       note: 'Based in Spain, working with companies that need technology that is useful, clear and well built.',
       imageAlt: 'Mediterranean stone entrance with a large arch and a deep blue doorway',
+    },
+    answer: {
+      question: 'What is Archic?',
+      body: 'Archic is a web design and development studio based in Écija (Seville, Spain). It does three things: it designs and codes custom websites, it builds internal business software — inventory systems, production dashboards, report automation — and it maintains those systems once they are live. It works on site across the province of Seville and remotely with the rest of Spain, in Spanish and English.',
+    },
+    facts: {
+      eyebrow: 'Verifiable',
+      title: 'Four things you can check right now.',
+      lead: 'We would rather give you facts you can verify yourself than promises nobody can measure.',
+      items: [
+        {
+          value: '0',
+          label: 'cookies and third-party requests',
+          desc: 'This site sets no cookies and loads nothing from external servers: no analytics, no hosted fonts, no social pixels. That is why there is no consent banner to dismiss. Open your developer tools and check.',
+        },
+        {
+          value: '100%',
+          label: 'code you own and can move',
+          desc: 'No closed site builders, no templates on a monthly licence. What we build is handed over in full and can be taken to another supplier without anyone’s permission.',
+        },
+        {
+          value: 'ES · EN',
+          label: 'bilingual by default',
+          desc: 'Each language has its own URL, canonical tag and metadata — not a translation widget bolted on top. Ready for clients outside Spain.',
+        },
+        {
+          value: 'Écija',
+          label: 'based in the province of Seville',
+          desc: 'In-person meetings across Écija, Seville and the Campiña area. Everywhere else in Spain we work remotely, with the same way of working.',
+        },
+      ],
     },
     servicesIntro: {
       eyebrow: 'Services',
@@ -515,6 +632,41 @@ export const CONTENT: Record<Lang, Content> = {
       body: [
         'Archic exists to bring quality software development to companies that need real solutions, but do not want to depend on generic tools or on suppliers who disappear once the project is delivered.',
         'We design websites, build custom software and stay with our clients as their systems evolve.',
+      ],
+    },
+    homeFaq: {
+      eyebrow: 'Frequently asked',
+      title: 'What people ask us before we start.',
+      lead: 'Straight answers to the questions that come up in the first conversation.',
+      items: [
+        {
+          q: 'What is the difference between a custom website and one built with WordPress, Wix or Shopify?',
+          a: 'A site builder gives you a template and a monthly fee: quick to launch and fine for a simple site, but performance depends on plugins you do not control and leaving the platform is expensive. A custom site is coded for what your business actually needs: it loads faster because it carries no unused code, it depends on no third-party licence, and you can host it wherever you like. As a reference point, this very site is custom-built, sets no cookies and makes no external requests at all.',
+        },
+        {
+          q: 'How much does a business website cost?',
+          a: 'It depends on the real scope: how many pages, whether there is a catalogue or a private area, whether a second language is needed, and whether we have to integrate systems you already use. We do not work on an open hourly rate: we look at the case, give a fixed quote before starting, and set out what it includes and what maintenance it will need afterwards. Send us two lines about the project and you will get a range in the first reply.',
+        },
+        {
+          q: 'How long does it take to go live?',
+          a: 'A corporate presentation site is usually ready within a few weeks of having the final copy and images; what stretches a timeline is almost never the development, it is waiting on content. Internal software is planned in phases, and from the first one we show working progress so there are no surprises at the end.',
+        },
+        {
+          q: 'Do I own the website? Can I switch supplier later?',
+          a: 'Yes. We hand over the code and the configuration, and the domain is always registered in the client’s name. If one day you decide to work with another studio, you take the project with you — no permission needed and no release fee. We think it is the only healthy way to set up the relationship.',
+        },
+        {
+          q: 'What is custom software and when is it worth it over an off-the-shelf product?',
+          a: 'It is a tool coded for the specific way a company works: stock control, production tracking, automated reporting, internal dashboards. It pays off when the commercial product forces you to change your process to fit it, when you are paying for dozens of features nobody uses, or when the real work lives in spreadsheets only one person understands. If a standard product covers what you need, we will say so — it is cheaper for everyone.',
+        },
+        {
+          q: 'Do you only work in Écija and Seville?',
+          a: 'The studio is based in Écija, so across the province of Seville — Écija, Seville, Carmona, Osuna, Marchena, Utrera, Dos Hermanas, Palma del Río — we can meet in person. Everywhere else in Spain we work remotely: video calls, visible progress, same way of working. We work in Spanish and English.',
+        },
+        {
+          q: 'What happens after launch? Is there maintenance?',
+          a: 'It is optional, but we recommend it: a site that is never updated accumulates security holes and falls behind on performance. Maintenance covers backups, updates, bug fixes, monitoring and small content changes. If you would rather handle it yourself, we leave you the documentation to do it.',
+        },
       ],
     },
     labs: {

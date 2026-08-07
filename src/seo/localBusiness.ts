@@ -75,8 +75,8 @@ export function localBusinessNode(scope: LocalScope, lang: 'es' | 'en' = 'es') {
     name: LOCAL_BUSINESS.name,
     ...(LOCAL_BUSINESS.legalName ? { legalName: LOCAL_BUSINESS.legalName } : {}),
     url: `${ORIGIN}/`,
-    image: `${ORIGIN}/og-image.jpg`,
-    logo: `${ORIGIN}/archic-mark.png`,
+    image: `${ORIGIN}/og-image.png`,
+    logo: `${ORIGIN}/archic-mark-512.png`,
     email: LOCAL_BUSINESS.email,
     ...(LOCAL_BUSINESS.telephone ? { telephone: LOCAL_BUSINESS.telephone } : {}),
     ...(LOCAL_BUSINESS.googleBusinessProfile
