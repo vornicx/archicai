@@ -455,18 +455,65 @@ h3 {
   border-left: 2px solid var(--sand);
 }
 
+/* La fotografía va montada sobre un arco dibujado que la desborda por arriba
+   y por la derecha: repite el motivo que ya está en la propia foto y en el
+   nombre de la marca, y saca la imagen del rectángulo plano de antes. */
 .ar-hero-media {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Anclado por la base y dimensionado por altura: así el arco siempre asoma por
+   encima de la fotografía y apoya un poco por debajo, en lugar de descolgarse
+   cuando cambia la proporción de la imagen. */
+.ar-hero-arch {
+  position: absolute;
+  right: -4%;
+  bottom: -5%;
+  height: 116%;
+  width: auto;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* En una sola columna el arco compite con el texto: se deja solo insinuado. */
+@media (max-width: 959px) {
+  .ar-hero-arch {
+    height: 106%;
+    right: -2%;
+    opacity: 0.6;
+  }
+}
+
+.ar-hero-photo {
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--line-soft);
   box-shadow: 0 30px 60px -40px rgba(18, 41, 76, 0.5);
 }
 
-.ar-hero-media img {
+.ar-hero-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   aspect-ratio: 4 / 3;
+}
+
+/* Cabecera de las landings: el mismo encuadre que la foto de portada, pero
+   con la ilustración vectorial que corresponde al servicio. */
+.ar-landing-art {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  background: var(--paper-2);
+  box-shadow: 0 30px 60px -40px rgba(18, 41, 76, 0.5);
+  aspect-ratio: 3 / 2;
+}
+
+.ar-landing-art .ar-art {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* ---------- services ---------- */
@@ -617,11 +664,38 @@ h3 {
 .ar-project {
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
-  padding: 24px;
   background: var(--card);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ar-project:hover {
+  border-color: rgba(27, 58, 107, 0.32);
+  transform: translateY(-2px);
+  box-shadow: 0 24px 44px -34px rgba(18, 41, 76, 0.45);
+}
+
+/* El dibujo va a sangre dentro de la tarjeta; el 3:2 lo fija el propio SVG. */
+.ar-project-art {
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--line-soft);
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.ar-project-art .ar-art {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ar-project-body {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+  padding: 22px 24px 26px;
 }
 
 .ar-project-top {
@@ -827,8 +901,11 @@ h3 {
   .ar-lab-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+  /* La marca ocupa una columna estrecha y fija; el resto del ancho es para el
+     mapa de enlaces, que es lo que aporta valor en el pie. */
   .ar-footer-grid {
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: minmax(180px, 0.8fr) minmax(0, 2.6fr);
+    gap: 40px;
   }
 }
 
@@ -1421,4 +1498,566 @@ a.ar-chip-link:hover {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold-text);
+}
+
+/* ── Grano de papel ───────────────────────────────────────────────────────
+   Textura muy tenue sobre todo el documento para que los fondos crema no se
+   lean como plano digital. Va en un pseudoelemento fijo con un SVG en línea:
+   el navegador lo rasteriza una vez y no cuesta ninguna petición. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* El contenido queda por encima del grano sin necesidad de tocar cada capa. */
+.site-shell {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Aparición al hacer scroll ───────────────────────────────────────────
+   El estado inicial oculto solo se aplica cuando el script ha marcado el
+   documento: sin JavaScript, o si `IntersectionObserver` no existe, el
+   contenido se ve desde el primer momento en lugar de quedar invisible. */
+.js-reveal [data-reveal='out'] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+[data-reveal] {
+  transition: opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Escalonado suave dentro de una misma retícula. */
+[data-reveal]:nth-child(2) { transition-delay: 0.06s; }
+[data-reveal]:nth-child(3) { transition-delay: 0.12s; }
+[data-reveal]:nth-child(4) { transition-delay: 0.18s; }
+[data-reveal]:nth-child(5) { transition-delay: 0.24s; }
+
+/* ── Filete de arcos ─────────────────────────────────────────────────────── */
+.ar-arch-rule {
+  display: block;
+  width: 120px;
+  height: auto;
+  color: currentColor;
+}
+
+/* ── Datos comprobables ──────────────────────────────────────────────────── */
+.ar-facts {
+  margin: 40px 0 0;
+  display: grid;
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ar-fact {
+  background: var(--card);
+  padding: 26px 24px 28px;
+}
+
+.ar-fact dt {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.ar-fact-value {
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', system-ui, sans-serif;
+  font-size: clamp(30px, 3.4vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--blue);
+}
+
+.ar-fact-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  line-height: 1.5;
+}
+
+.ar-fact dd {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+
+/* ── Glifos de servicio ──────────────────────────────────────────────────── */
+.ar-service-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.ar-service-glyph {
+  width: 54px;
+  height: 54px;
+  flex: none;
+  color: var(--blue);
+  opacity: 0.85;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.ar-service:hover .ar-service-glyph {
+  color: var(--gold);
+  opacity: 1;
+}
+
+/* ── Diagrama del proceso ────────────────────────────────────────────────── */
+.ar-process-figure {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  margin: 40px auto 8px;
+  color: var(--ink);
+  opacity: 0.55;
+}
+
+/* Por debajo de tablet el arco se comprime tanto que deja de leerse; la lista
+   numerada, que es el contenido real, se basta sola. */
+@media (max-width: 699px) {
+  .ar-process-figure {
+    display: none;
+  }
+}
+
+/* ── Sobre Archic + respuesta directa ────────────────────────────────────── */
+.ar-about-grid {
+  display: grid;
+  gap: clamp(28px, 4vw, 48px);
+  align-items: start;
+}
+
+.ar-answer {
+  background: var(--blue-deep);
+  color: #f1ece2;
+  border-radius: var(--radius);
+  padding: clamp(24px, 3vw, 34px);
+  box-shadow: 0 30px 60px -45px rgba(18, 41, 76, 0.7);
+}
+
+.ar-answer-rule {
+  color: #d9b878;
+  margin-bottom: 20px;
+}
+
+.ar-answer-q {
+  font-size: clamp(19px, 2.2vw, 23px);
+  color: #fdfaf4;
+  margin-bottom: 12px;
+}
+
+.ar-answer-body {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: rgba(241, 236, 226, 0.82);
+}
+
+/* ── Retícula de arcos de fondo ──────────────────────────────────────────── */
+.ar-lattice {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 160px;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+/* ── Pie con columnas ────────────────────────────────────────────────────── */
+.ar-footer-cols {
+  display: grid;
+  gap: 26px 24px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.ar-footer-cols > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ar-footer-cols a {
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.ar-footer-cols a:hover {
+  color: var(--blue);
+}
+
+.ar-footer-col-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  margin: 0 0 4px;
+}
+
+/* ── Guías ───────────────────────────────────────────────────────────────── */
+.ar-guide-head {
+  padding: clamp(36px, 6vw, 64px) clamp(20px, 5vw, 40px) 0;
+  max-width: 860px;
+}
+
+.ar-guide-title {
+  font-size: clamp(30px, 4.6vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+  max-width: 20ch;
+}
+
+/* La respuesta completa, destacada tipográficamente: es lo primero que se lee
+   y lo que se cita fuera de la página. */
+.ar-guide-answer {
+  font-size: clamp(17px, 2.1vw, 20px);
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+  padding-left: clamp(16px, 2vw, 22px);
+  border-left: 3px solid var(--gold);
+  max-width: 68ch;
+}
+
+.ar-guide-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  margin: 22px 0 0;
+}
+
+.ar-guide-body {
+  display: grid;
+  gap: clamp(28px, 4vw, 56px);
+  padding-top: clamp(36px, 5vw, 56px);
+  padding-bottom: clamp(48px, 8vw, 88px);
+}
+
+.ar-guide-toc {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.ar-guide-toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+  display: grid;
+  gap: 9px;
+}
+
+.ar-guide-toc li {
+  counter-increment: toc;
+  display: flex;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.ar-guide-toc li::before {
+  content: counter(toc, decimal-leading-zero);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: var(--gold-text);
+  padding-top: 2px;
+}
+
+.ar-guide-toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.ar-guide-toc a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ar-guide-content {
+  max-width: 72ch;
+}
+
+.ar-guide-section {
+  margin-bottom: clamp(36px, 5vw, 52px);
+  scroll-margin-top: 92px;
+}
+
+.ar-guide-section h2 {
+  font-size: clamp(22px, 2.8vw, 29px);
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.ar-guide-section p {
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: var(--ink-soft);
+  margin: 0 0 16px;
+}
+
+.ar-guide-list,
+.ar-guide-steps {
+  margin: 0 0 20px;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.ar-guide-list li,
+.ar-guide-steps li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.ar-guide-list li::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 11px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--sand);
+}
+
+.ar-guide-steps {
+  counter-reset: guide-step;
+}
+
+.ar-guide-steps li {
+  counter-increment: guide-step;
+}
+
+.ar-guide-steps li::before {
+  content: counter(guide-step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--gold-text);
+}
+
+/* La tabla no se comprime: desborda dentro de su propio contenedor con scroll,
+   de modo que el cuerpo de la página nunca se desplaza en horizontal. */
+.ar-table-scroll {
+  overflow-x: auto;
+  margin: 0 0 24px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.ar-table-scroll:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.ar-guide-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+  font-size: 14.5px;
+}
+
+.ar-guide-table th,
+.ar-guide-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.ar-guide-table thead th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  background: var(--paper-2);
+  white-space: nowrap;
+}
+
+.ar-guide-table tbody th {
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.ar-guide-table tbody td {
+  color: var(--ink-soft);
+}
+
+.ar-guide-table tbody tr:last-child th,
+.ar-guide-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.ar-callout {
+  border-left: 3px solid var(--blue);
+  background: var(--paper-2);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 22px;
+  margin: 0 0 24px;
+}
+
+.ar-callout-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0 0 8px !important;
+}
+
+.ar-callout p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.ar-guide-cta {
+  background: var(--blue-deep);
+  color: #f1ece2;
+  border-radius: var(--radius);
+  padding: clamp(26px, 3.5vw, 38px);
+  margin: 0 0 clamp(36px, 5vw, 52px);
+}
+
+.ar-guide-cta h2 {
+  color: #fdfaf4;
+  font-size: clamp(20px, 2.4vw, 25px);
+  margin: 0 0 12px;
+}
+
+.ar-guide-cta p {
+  color: rgba(241, 236, 226, 0.78);
+  font-size: 15.5px;
+  margin: 0 0 22px;
+}
+
+.ar-guide-cta .ar-btn-ghost {
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #f1ece2;
+}
+
+.ar-guide-cta .ar-btn-ghost:hover {
+  border-color: #d9b878;
+  color: #d9b878;
+}
+
+/* Índice de guías */
+.ar-guide-cards {
+  display: grid;
+  gap: 18px;
+  margin-top: 38px;
+}
+
+.ar-guide-card {
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: clamp(24px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ar-guide-card:hover {
+  border-color: rgba(27, 58, 107, 0.32);
+  transform: translateY(-2px);
+}
+
+.ar-guide-card h2 {
+  font-size: clamp(19px, 2.2vw, 23px);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.ar-guide-card h2 a {
+  text-decoration: none;
+}
+
+/* El enlace del titular cubre toda la tarjeta, sin anidar enlaces dentro. */
+.ar-guide-card h2 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.ar-guide-card {
+  position: relative;
+}
+
+.ar-guide-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.ar-guide-card .ar-service-link {
+  margin-top: auto;
+}
+
+@media (min-width: 700px) {
+  .ar-facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ar-project-wide {
+    grid-column: span 2;
+  }
+  .ar-footer-cols {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  /* Índice lateral fijo mientras se lee: en un texto largo evita tener que
+     volver arriba para saber dónde estás. */
+  .ar-guide-body {
+    grid-template-columns: 240px minmax(0, 1fr);
+    align-items: start;
+  }
+  .ar-guide-toc {
+    position: sticky;
+    top: 88px;
+  }
+}
+
+@media (min-width: 960px) {
+  .ar-facts {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .ar-about-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  /* La pieza destacada ocupa dos de las tres columnas y abre la sección. */
+  .ar-project-wide {
+    grid-column: span 2;
+  }
 }

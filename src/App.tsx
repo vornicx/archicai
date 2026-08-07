@@ -6,10 +6,13 @@ import ArchicHome from './pages/ArchicHome'
 const LegalPage = lazy(() => import('./pages/LegalPage'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const ServicePage = lazy(() => import('./pages/ServicePage'))
+const GuidePage = lazy(() => import('./pages/GuidePage'))
+const GuidesIndex = lazy(() => import('./pages/GuidesIndex'))
 import { LEGAL_PATHS, type LegalDocKey } from './legal/documents'
 import { LanguageProvider, useLang } from './i18n/LanguageContext'
 import { SERVICE_PAGES } from './seo/servicePages'
 import { LOCAL_PAGES } from './seo/localPages'
+import { GUIDES, GUIDES_INDEX_PATH } from './content/guides'
 
 function SkipLink() {
   const { t } = useLang()
@@ -41,6 +44,18 @@ const SERVICE_ROUTES = [...SERVICE_PAGES, ...LOCAL_PAGES].flatMap((page) =>
   )),
 )
 
+/* Contenido informativo: una guía por duda que aparece antes de contratar. */
+const GUIDE_ROUTES = [
+  ...[GUIDES_INDEX_PATH, GUIDES_INDEX_PATH.replace(/\/$/, '')].map((path) => (
+    <Route key={path} path={path} element={<GuidesIndex />} />
+  )),
+  ...GUIDES.flatMap((guide) =>
+    [guide.path, guide.path.replace(/\/$/, '')].map((path) => (
+      <Route key={path} path={path} element={<GuidePage guide={guide} />} />
+    )),
+  ),
+]
+
 function App() {
   return (
     <LanguageProvider>
@@ -52,6 +67,7 @@ function App() {
               <Route path="/" element={<ArchicHome />} />
               <Route path="/en/" element={<ArchicHome />} />
               {SERVICE_ROUTES}
+              {GUIDE_ROUTES}
               {LEGAL_ROUTES}
               <Route path="*" element={<NotFound />} />
             </Routes>

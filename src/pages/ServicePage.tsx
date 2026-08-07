@@ -1,13 +1,16 @@
 import { Helmet } from 'react-helmet-async'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_MAIL } from '../i18n/content'
-import { LEGAL_PATHS } from '../legal/documents'
 import SiteHeader from '../components/SiteHeader'
+import SiteFooter from '../components/SiteFooter'
 import ContactForm from '../components/ContactForm'
-import Logo from '../components/Logo'
 import { SERVICE_PAGE_BY_PATH, type ServicePage as ServicePageData } from '../seo/servicePages'
 import { LOCAL_PAGE_BY_PATH } from '../seo/localPages'
 import { buildLandingGraph, isLocalLanding } from '../seo/landingSchema'
+import { useRevealOnScroll } from '../useReveal'
+import { LANDING_ART } from '../art/ProjectArt'
+import { archPath, STROKE } from '../art/primitives'
+import ProcessArc from '../art/ProcessArc'
 
 const ORIGIN = 'https://archic.es'
 
@@ -18,9 +21,11 @@ const LANDING_BY_PATH: Record<string, ServicePageData> = {
 }
 
 export default function ServicePage({ page }: { page: ServicePageData }) {
-  const { t, lang } = useLang()
+  const { t } = useLang()
+  useRevealOnScroll()
   const canonical = `${ORIGIN}${page.path}`
   const local = isLocalLanding(page) ? page.local : null
+  const Art = LANDING_ART[page.path]
 
   const structuredData = buildLandingGraph(page, 'es')
 
@@ -37,11 +42,11 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic" />
         <meta property="og:locale" content="es_ES" />
-        <meta property="og:image" content={`${ORIGIN}/og-image.jpg`} />
+        <meta property="og:image" content={`${ORIGIN}/og-image.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={page.meta.title} />
         <meta name="twitter:description" content={page.meta.description} />
-        <meta name="twitter:image" content={`${ORIGIN}/og-image.jpg`} />
+        <meta name="twitter:image" content={`${ORIGIN}/og-image.png`} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
@@ -57,19 +62,35 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
         </nav>
 
         <section className="ar-hero ar-hero-compact">
-          <div className="ar-container">
-            <p className="ar-eyebrow">{page.hero.eyebrow}</p>
-            <h1 className="ar-hero-title">{page.hero.h1}</h1>
-            <p className="ar-hero-sub">{page.hero.lead}</p>
-            <div className="ar-hero-ctas">
-              <a href="#contacto" className="ar-btn ar-btn-primary">
-                {t.hero.ctaPrimary}
-              </a>
-              <a href="#alcance" className="ar-btn ar-btn-ghost">
-                Ver alcance
-              </a>
+          <div className="ar-container ar-hero-grid">
+            <div>
+              <p className="ar-eyebrow">{page.hero.eyebrow}</p>
+              <h1 className="ar-hero-title">{page.hero.h1}</h1>
+              <p className="ar-hero-sub">{page.hero.lead}</p>
+              <div className="ar-hero-ctas">
+                <a href="#contacto" className="ar-btn ar-btn-primary">
+                  {t.hero.ctaPrimary}
+                </a>
+                <a href="#alcance" className="ar-btn ar-btn-ghost">
+                  Ver alcance
+                </a>
+              </div>
+              <p className="ar-hero-note">{page.hero.note}</p>
             </div>
-            <p className="ar-hero-note">{page.hero.note}</p>
+
+            {/* Cada landing lleva la ilustración que corresponde a su intención
+                de búsqueda, con el mismo arco de marca detrás que la portada. */}
+            {Art && (
+              <div className="ar-hero-media">
+                <svg className="ar-hero-arch" viewBox="0 0 320 400" aria-hidden="true" focusable="false" fill="none">
+                  <path d={archPath(10, 10, 300, 380)} stroke="var(--gold)" strokeWidth={STROKE * 1.5} opacity="0.5" />
+                  <path d={archPath(38, 38, 244, 352)} stroke="var(--gold)" strokeWidth={STROKE} opacity="0.26" />
+                </svg>
+                <div className="ar-landing-art">
+                  <Art />
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
@@ -96,7 +117,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
             </div>
             <div className="ar-grid-2">
               {page.blocks.items.map((item) => (
-                <div key={item.title} className="ar-tile">
+                <div key={item.title} className="ar-tile" data-reveal="out">
                   <h3>{item.title}</h3>
                   <p>{item.desc}</p>
                 </div>
@@ -125,6 +146,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
               <p className="ar-eyebrow">Proceso</p>
               <h2 className="ar-h2">{page.process.title}</h2>
             </div>
+            <ProcessArc steps={page.process.steps.length} className="ar-process-figure" />
             <ol className="ar-steps">
               {page.process.steps.map((step) => (
                 <li key={step}>{step}</li>
@@ -215,39 +237,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
           </div>
         </section>
 
-        <footer className="ar-footer">
-          <div className="ar-container">
-            <div className="ar-footer-grid">
-              <div>
-                <Logo size={30} className="ar-logo-footer" />
-                <p className="ar-lead" style={{ fontSize: 14, marginTop: 12 }}>
-                  {t.footer.tagline}
-                </p>
-              </div>
-              <div className="ar-footer-links">
-                <a href="/">Inicio</a>
-                <a href="/diseno-web-para-empresas/">Diseño web para empresas</a>
-                <a href="/diseno-web-para-autonomos/">Diseño web para autónomos</a>
-                <a href="/mantenimiento-web/">Mantenimiento web</a>
-                <a href="/desarrollo-web-a-medida/">Desarrollo a medida</a>
-                <a href="/diseno-web-sevilla/">Diseño web en Sevilla</a>
-                <a href="/diseno-web-ecija/">Diseño web en Écija</a>
-                <a href="/mantenimiento-web-sevilla/">Mantenimiento web en Sevilla</a>
-                <a href="/desarrollo-web-sevilla/">Desarrollo web en Sevilla</a>
-                <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
-              </div>
-            </div>
-            <nav className="ar-footer-legal" aria-label={t.footer.legalLabel}>
-              <a href={LEGAL_PATHS.legal[lang]}>{t.legal.legalNotice}</a>
-              <a href={LEGAL_PATHS.privacy[lang]}>{t.legal.privacy}</a>
-              <a href={LEGAL_PATHS.cookies[lang]}>{t.legal.cookies}</a>
-            </nav>
-            <div className="ar-footer-bottom">
-              <span>© {new Date().getFullYear()} ARCHIC · {t.footer.rights}</span>
-              <span>ESPAÑA</span>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter />
       </div>
     </>
   )

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
+import { GUIDES, GUIDES_INDEX_PATH } from '../content/guides'
 import Logo from './Logo'
 
 
@@ -92,6 +93,12 @@ export default function SiteHeader() {
                       {link.label}
                     </a>
                   ))}
+                  <p className="ar-nav-menu-title">Guías</p>
+                  {GUIDES.map((guide) => (
+                    <a key={guide.path} href={guide.path} onClick={() => setServicesOpen(false)}>
+                      {guide.title.split(':')[0]}
+                    </a>
+                  ))}
                 </div>
               </div>
             )}
@@ -102,6 +109,7 @@ export default function SiteHeader() {
                 {t.nav[s.key]}
               </a>
             ))}
+            {lang === 'es' && <a href={GUIDES_INDEX_PATH}>Guías</a>}
           </nav>
 
           <div className="ar-header-actions">
@@ -170,6 +178,15 @@ export default function SiteHeader() {
                     {link.label}
                   </a>
                 ))}
+                <p className="ar-nav-menu-title">Guías</p>
+                {GUIDES.map((guide) => (
+                  <a key={guide.path} href={guide.path} onClick={() => setOpen(false)}>
+                    {guide.title.split(':')[0]}
+                  </a>
+                ))}
+                <a href={GUIDES_INDEX_PATH} onClick={() => setOpen(false)}>
+                  Todas las guías
+                </a>
                 <p className="ar-nav-menu-title">Navegación</p>
               </>
             )}

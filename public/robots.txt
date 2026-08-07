@@ -1,4 +1,61 @@
+# archic.es
+#
+# Política: acceso abierto a todo el sitio, tanto a buscadores clásicos como a
+# los rastreadores de asistentes de IA. Aparecer citados en ChatGPT, Perplexity,
+# Claude o los resúmenes de IA de Google requiere que estos agentes puedan leer
+# las páginas; bloquearlos elimina esa vía de captación.
+#
+# Los agentes se listan de forma explícita, aunque «User-agent: *» ya los
+# cubriría, por dos motivos: dejar la decisión documentada, y porque algunos
+# rastreadores solo respetan reglas dirigidas a su nombre.
+#
+# Para revertirlo, cambiar «Allow: /» por «Disallow: /» en el bloque de agentes
+# de IA correspondiente y actualizar la política de privacidad.
+
 User-agent: *
 Allow: /
+
+# Buscadores de asistentes de IA (respuestas con cita y enlace)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Rastreadores de entrenamiento
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Resumen del sitio en texto plano para asistentes: https://llmstxt.org
+# (no es un estándar reconocido por los buscadores, pero varios agentes ya lo leen)
+# https://archic.es/llms.txt
+# https://archic.es/llms-full.txt
 
 Sitemap: https://archic.es/sitemap.xml

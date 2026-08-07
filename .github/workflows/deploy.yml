@@ -19,11 +19,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # El generador saca el <lastmod> del sitemap de la fecha del último
+          # commit que tocó cada fichero de contenido. Con el clon superficial
+          # que hace la acción por defecto solo existe un commit, así que todas
+          # las páginas saldrían modificadas hoy y el lastmod dejaría de ser
+          # una señal útil para Google.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - run: npm ci
+      # Regenera el HTML estático, el sitemap y los ficheros llms antes de
+      # compilar: así el <head> que ve el rastreador no puede quedarse atrás
+      # respecto a los textos de src/, aunque alguien olvide ejecutarlo en local.
+      - run: npm run gen:pages
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
