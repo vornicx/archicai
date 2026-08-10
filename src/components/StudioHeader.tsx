@@ -76,7 +76,7 @@ export default function StudioHeader() {
             <span>{c.call}</span>
             <strong>{CONTACT_PHONE_DISPLAY}</strong>
           </a>
-          <a className="as-project-link" href={path(lang, 'contact')}>{c.project}<span>↗</span></a>
+          <a className="as-project-link" href={path(lang, 'contact')}>{c.project}<i className="as-arrow" aria-hidden="true" /></a>
           <button
             type="button"
             className="as-menu-button"
@@ -116,7 +116,7 @@ export default function StudioHeader() {
                   <span>0{index + 1}</span>
                   <strong>{name}</strong>
                   <small>{desc}</small>
-                  <i>{isCurrent ? '—' : '↗'}</i>
+                  {isCurrent ? <i className="as-current-mark" aria-hidden="true" /> : <i className="as-arrow" aria-hidden="true" />}
                 </a>
               )
             })}
