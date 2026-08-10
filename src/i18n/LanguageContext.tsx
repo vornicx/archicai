@@ -4,18 +4,34 @@ import { CONTENT, type Content, type Lang } from './content'
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: Content }
 
 const LanguageContext = createContext<Ctx | null>(null)
+
 function initialLang(): Lang {
   if (typeof window === 'undefined') return 'es'
   return window.location.pathname.startsWith('/en') ? 'en' : 'es'
+}
+
+function translatedPath(target: Lang) {
+  const current = window.location.pathname
+  const hash = window.location.hash
+  const search = window.location.search
+
+  if (target === 'en') {
+    const clean = current.startsWith('/en/') ? current.slice(3) : current
+    const path = clean === '/' ? '/en/' : `/en${clean.startsWith('/') ? clean : `/${clean}`}`
+    return `${path}${search}${hash}`
+  }
+
+  const path = current.startsWith('/en/') ? current.slice(3) || '/' : current
+  return `${path}${search}${hash}`
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const lang = initialLang()
 
   const setLang = useCallback((l: Lang) => {
-    const target = l === 'en' ? '/en/' : '/'
-    window.location.assign(`${target}${window.location.hash}`)
-  }, [])
+    if (l === lang) return
+    window.location.assign(translatedPath(l))
+  }, [lang])
 
   const value = useMemo(() => ({ lang, setLang, t: CONTENT[lang] }), [lang, setLang])
 
