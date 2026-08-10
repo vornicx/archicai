@@ -14,6 +14,7 @@ import { LEGAL_PATHS, type LegalDocKey } from './legal/documents'
 import { LanguageProvider, useLang } from './i18n/LanguageContext'
 import { SERVICE_PAGES } from './seo/servicePages'
 import { LOCAL_PAGES } from './seo/localPages'
+import { INTENT_PAGES } from './seo/intentPages'
 import { GUIDES, GUIDES_INDEX_PATH } from './content/guides'
 
 function SkipLink() {
@@ -33,7 +34,7 @@ const LEGAL_ROUTES = LEGAL_KEYS.flatMap((key) =>
   )),
 )
 
-const SERVICE_ROUTES = [...SERVICE_PAGES, ...LOCAL_PAGES].flatMap((page) =>
+const SERVICE_ROUTES = [...SERVICE_PAGES, ...LOCAL_PAGES, ...INTENT_PAGES].flatMap((page) =>
   [page.path, page.path.replace(/\/$/, '')].map((path) => (
     <Route key={path} path={path} element={<ServicePage page={page} />} />
   )),
