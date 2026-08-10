@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_MAIL } from '../i18n/content'
@@ -9,129 +9,149 @@ import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 const COPY = {
   es: {
     meta: {
-      title: 'Archic — La capa digital de negocios excepcionales',
-      description: 'Diseñamos webs premium, sistemas operativos y software a medida como una sola capa digital alrededor del negocio.',
+      title: 'Archic — Sistemas digitales para negocios excepcionales',
+      description: 'Webs premium, operaciones y software a medida con una dirección digital de alto nivel.',
     },
     hero: {
-      kicker: 'ARCHIC / DIGITAL LAYER STUDIO',
-      title: 'Tu negocio ya tiene una identidad.',
-      accent: 'Hacemos que su parte digital esté a la misma altura.',
-      body: 'Web, reservas, gestión y software a medida — concebidos como un solo sistema cuando el negocio realmente lo necesita.',
-      cta: 'Empezar proyecto',
-      secondary: 'Explorar el sistema',
-      public: 'Lo que ve el cliente',
-      publicItems: ['Marca digital', 'Web', 'Reservas', 'Conversión'],
-      ops: 'Lo que usa el negocio',
-      opsItems: ['Clientes', 'Operaciones', 'Automatización', 'Software'],
+      eyebrow: 'ARCHIC — DIGITAL SYSTEMS',
+      title: 'Sistemas digitales para',
+      accent: 'negocios excepcionales.',
+      body: 'Diseñamos la presencia, las operaciones y el software de negocios que no pueden permitirse una experiencia digital mediocre.',
+      primary: 'Empezar proyecto',
+      secondary: 'Descubrir Archic',
     },
-    thesis: {
-      label: '01 / PRINCIPIO',
-      title: 'No diseñamos una web y luego añadimos herramientas.',
-      accent: 'Diseñamos la capa digital completa.',
-      body: 'Cada negocio necesita una combinación distinta. A veces basta una presencia excelente. Otras veces el valor aparece al conectar esa presencia con reservas, clientes, operaciones o software propio.',
+    intro: {
+      eyebrow: 'UNA SOLA EXIGENCIA',
+      title: 'Todo lo digital.',
+      accent: 'Al mismo nivel que tu negocio.',
+      body: 'No empezamos por una lista de servicios. Empezamos por el estándar que debe cumplir la experiencia completa: lo que ve el cliente, lo que usa el equipo y lo que hace posible crecer sin fricción.',
     },
-    capabilities: {
-      label: '02 / CAPACIDADES',
-      title: 'Construimos solo lo que',
-      accent: 'tiene una razón clara para existir.',
+    presence: {
+      label: 'ARCHIC PRESENCE',
+      title: 'La primera impresión',
+      accent: 'tiene que estar a la altura.',
+      body: 'Web, dirección visual, contenido, rendimiento y conversión tratados como una sola experiencia. Cada decisión tiene una intención clara.',
+      chips: ['Web premium', 'Dirección digital', 'Contenido', 'SEO técnico'],
+    },
+    control: {
+      label: 'ARCHIC CONTROL',
+      title: 'La elegancia también está',
+      accent: 'en cómo funciona.',
+      body: 'Reservas, clientes, recursos y operaciones reunidos en un entorno construido alrededor de la realidad del negocio, no alrededor de una plantilla genérica.',
       items: [
-        { no: '01', name: 'Brand & Web', short: 'La parte pública.', body: 'Dirección digital, diseño, contenido, experiencia, rendimiento y conversión para que la presencia esté a la altura del negocio.', details: ['Web premium', 'Dirección visual', 'Contenido', 'SEO técnico'] },
-        { no: '02', name: 'Booking & Conversion', short: 'De interés a acción.', body: 'Reservas, solicitudes, disponibilidad y procesos de conversión diseñados para eliminar fricción y trabajo manual.', details: ['Reservas', 'Solicitudes', 'Disponibilidad', 'Confirmaciones'] },
-        { no: '03', name: 'Control & CRM', short: 'La parte operativa.', body: 'Clientes, recursos, reservas, estados y flujos de trabajo reunidos en un entorno diseñado alrededor de cómo funciona el negocio.', details: ['Clientes', 'Operaciones', 'Recursos', 'Reporting'] },
-        { no: '04', name: 'Software & Automation', short: 'Cuando lo genérico deja de servir.', body: 'Software a medida, integraciones y automatización cuando existe una ventaja real en construir una herramienta propia.', details: ['Software a medida', 'Integraciones', 'Automatización', 'Datos'] },
+        ['01', 'Clientes', 'Historial, contexto y seguimiento'],
+        ['02', 'Operaciones', 'Estados, reservas y flujos de trabajo'],
+        ['03', 'Visibilidad', 'Lo importante, claro y en tiempo real'],
       ],
     },
-    lab: {
-      label: '03 / CONCEPT LAB',
-      title: 'Sin portfolio inventado.',
-      accent: 'Demostramos capacidad con sistemas conceptuales.',
-      body: 'Hasta que existan casos reales suficientes, preferimos enseñar cómo pensamos un negocio antes que fingir experiencia que todavía no tenemos.',
-      concepts: [
-        { sector: 'HOSPITALITY', flow: ['Descubrir', 'Reservar', 'Llegar', 'Servir', 'Volver'], line: 'Web → Reservas → Cliente → Operación' },
-        { sector: 'PREMIUM MOBILITY', flow: ['Explorar', 'Consultar', 'Validar', 'Entregar', 'Retener'], line: 'Catálogo → Disponibilidad → Lead → Cliente' },
-        { sector: 'PROPERTY', flow: ['Descubrir', 'Filtrar', 'Consultar', 'Visitar', 'Seguir'], line: 'Inventario → Lead → CRM → Seguimiento' },
-      ],
-      disclaimer: 'Concepto Archic · No trabajo de cliente',
+    business: {
+      label: 'ARCHIC BUSINESS',
+      title: 'Cuando una herramienta genérica',
+      accent: 'ya no es suficiente.',
+      body: 'Software a medida, automatización e integraciones cuando existe una ventaja real en construir una solución propia.',
+      layers: ['Integraciones', 'Automatización', 'Datos', 'Software a medida'],
     },
     standard: {
-      label: '04 / ESTÁNDAR',
-      title: 'La calidad no se añade al final.',
-      accent: 'Se decide desde el principio.',
-      points: ['Claridad antes que ruido', 'Sistema antes que parche', 'Detalle sin decoración vacía', 'Tecnología solo cuando aporta valor'],
+      eyebrow: 'THE ARCHIC STANDARD',
+      title: 'Claridad. Precisión.',
+      accent: 'Intención.',
+      body: 'El lujo digital no está en añadir más. Está en eliminar lo débil hasta que solo quede lo que merece estar ahí.',
     },
-    contact: {
-      label: '05 / START A PROJECT',
-      title: '¿Qué debería hacer mejor',
-      accent: 'la parte digital de tu negocio?',
-      body: 'Cuéntanos qué tienes hoy, qué no funciona y qué quieres conseguir. Empezamos por el problema, no por una lista de servicios.',
-      cta: 'Escribir a Archic',
+    capabilities: {
+      eyebrow: 'CAPACIDADES',
+      title: 'Empieza por lo que necesitas hoy.',
+      body: 'El resto puede evolucionar sobre la misma base cuando aporte valor real.',
+      items: [
+        ['01', 'Web & Brand', 'Presencia, experiencia, rendimiento y conversión.'],
+        ['02', 'Bookings', 'Reservas, solicitudes, disponibilidad y confirmaciones.'],
+        ['03', 'Control & CRM', 'Clientes, recursos, operaciones y reporting.'],
+        ['04', 'Software', 'Integraciones, automatización y herramientas a medida.'],
+      ],
+    },
+    sectors: ['Hospitality', 'Automotive', 'Yachting', 'Real Estate', 'Premium Services'],
+    closing: {
+      eyebrow: 'START A PROJECT',
+      title: 'Haz que la parte digital',
+      accent: 'esté a la altura del negocio.',
+      body: 'Cuéntanos qué tienes hoy, qué no funciona y qué debería ser mejor. Nosotros empezamos por entender el problema.',
+      cta: 'Hablar con Archic',
     },
   },
   en: {
     meta: {
-      title: 'Archic — The digital layer of exceptional businesses',
-      description: 'We design premium websites, operational systems and custom software as one digital layer around the business.',
+      title: 'Archic — Digital systems for exceptional businesses',
+      description: 'Premium websites, operations and custom software with a high-end digital direction.',
     },
     hero: {
-      kicker: 'ARCHIC / DIGITAL LAYER STUDIO',
-      title: 'Your business already has an identity.',
-      accent: 'We make its digital side live up to it.',
-      body: 'Web, bookings, operations and custom software — conceived as one system when the business actually needs it.',
-      cta: 'Start a project',
-      secondary: 'Explore the system',
-      public: 'What customers see',
-      publicItems: ['Digital brand', 'Website', 'Bookings', 'Conversion'],
-      ops: 'What the business uses',
-      opsItems: ['Customers', 'Operations', 'Automation', 'Software'],
+      eyebrow: 'ARCHIC — DIGITAL SYSTEMS',
+      title: 'Digital systems for',
+      accent: 'exceptional businesses.',
+      body: 'We design the presence, operations and software of businesses that cannot afford a mediocre digital experience.',
+      primary: 'Start a project',
+      secondary: 'Discover Archic',
     },
-    thesis: {
-      label: '01 / PRINCIPLE',
-      title: 'We do not design a website and bolt tools onto it later.',
-      accent: 'We design the whole digital layer.',
-      body: 'Every business needs a different combination. Sometimes an excellent public presence is enough. Other times the value comes from connecting that presence to bookings, customers, operations or proprietary software.',
+    intro: {
+      eyebrow: 'ONE STANDARD',
+      title: 'Everything digital.',
+      accent: 'At the level of your business.',
+      body: 'We do not begin with a service list. We begin with the standard the whole experience must meet: what customers see, what the team uses and what allows the business to grow without friction.',
     },
-    capabilities: {
-      label: '02 / CAPABILITIES',
-      title: 'We only build what has',
-      accent: 'a clear reason to exist.',
+    presence: {
+      label: 'ARCHIC PRESENCE',
+      title: 'The first impression',
+      accent: 'has to match the business.',
+      body: 'Web, visual direction, content, performance and conversion treated as one experience. Every decision has a clear purpose.',
+      chips: ['Premium web', 'Digital direction', 'Content', 'Technical SEO'],
+    },
+    control: {
+      label: 'ARCHIC CONTROL',
+      title: 'Elegance also lives',
+      accent: 'in how it works.',
+      body: 'Bookings, customers, resources and operations brought together in an environment built around the reality of the business, not a generic template.',
       items: [
-        { no: '01', name: 'Brand & Web', short: 'The public layer.', body: 'Digital direction, design, content, experience, performance and conversion so the public presence matches the business.', details: ['Premium web', 'Visual direction', 'Content', 'Technical SEO'] },
-        { no: '02', name: 'Booking & Conversion', short: 'From interest to action.', body: 'Bookings, enquiries, availability and conversion flows designed to remove friction and manual work.', details: ['Bookings', 'Enquiries', 'Availability', 'Confirmations'] },
-        { no: '03', name: 'Control & CRM', short: 'The operating layer.', body: 'Customers, resources, bookings, states and workflows in one environment designed around how the business actually runs.', details: ['Customers', 'Operations', 'Resources', 'Reporting'] },
-        { no: '04', name: 'Software & Automation', short: 'When generic stops being enough.', body: 'Custom software, integrations and automation when there is a real advantage in owning the tool.', details: ['Custom software', 'Integrations', 'Automation', 'Data'] },
+        ['01', 'Customers', 'History, context and follow-up'],
+        ['02', 'Operations', 'States, bookings and workflows'],
+        ['03', 'Visibility', 'What matters, clear and real-time'],
       ],
     },
-    lab: {
-      label: '03 / CONCEPT LAB',
-      title: 'No invented portfolio.',
-      accent: 'We demonstrate capability through concept systems.',
-      body: 'Until enough real case studies exist, we would rather show how we think about a business than pretend we have experience we do not yet have.',
-      concepts: [
-        { sector: 'HOSPITALITY', flow: ['Discover', 'Book', 'Arrive', 'Serve', 'Return'], line: 'Web → Bookings → Customer → Operations' },
-        { sector: 'PREMIUM MOBILITY', flow: ['Browse', 'Enquire', 'Validate', 'Handover', 'Retain'], line: 'Catalogue → Availability → Lead → Customer' },
-        { sector: 'PROPERTY', flow: ['Discover', 'Filter', 'Enquire', 'Visit', 'Follow up'], line: 'Inventory → Lead → CRM → Follow-up' },
-      ],
-      disclaimer: 'Archic concept · Not client work',
+    business: {
+      label: 'ARCHIC BUSINESS',
+      title: 'When a generic tool',
+      accent: 'is no longer enough.',
+      body: 'Custom software, automation and integrations when there is a real advantage in owning the solution.',
+      layers: ['Integrations', 'Automation', 'Data', 'Custom software'],
     },
     standard: {
-      label: '04 / STANDARD',
-      title: 'Quality is not added at the end.',
-      accent: 'It is decided from the beginning.',
-      points: ['Clarity before noise', 'System before patchwork', 'Detail without empty decoration', 'Technology only when it creates value'],
+      eyebrow: 'THE ARCHIC STANDARD',
+      title: 'Clarity. Precision.',
+      accent: 'Intent.',
+      body: 'Digital luxury is not about adding more. It is about removing weak decisions until only what deserves to be there remains.',
     },
-    contact: {
-      label: '05 / START A PROJECT',
-      title: 'What should the digital side',
-      accent: 'of your business do better?',
-      body: 'Tell us what you have today, what is not working and what you want to achieve. We start with the problem, not a service list.',
-      cta: 'Write to Archic',
+    capabilities: {
+      eyebrow: 'CAPABILITIES',
+      title: 'Start with what you need today.',
+      body: 'The rest can evolve on the same foundation when it creates real value.',
+      items: [
+        ['01', 'Web & Brand', 'Presence, experience, performance and conversion.'],
+        ['02', 'Bookings', 'Reservations, enquiries, availability and confirmations.'],
+        ['03', 'Control & CRM', 'Customers, resources, operations and reporting.'],
+        ['04', 'Software', 'Integrations, automation and custom tools.'],
+      ],
+    },
+    sectors: ['Hospitality', 'Automotive', 'Yachting', 'Real Estate', 'Premium Services'],
+    closing: {
+      eyebrow: 'START A PROJECT',
+      title: 'Make the digital side',
+      accent: 'match the business.',
+      body: 'Tell us what you have today, what is not working and what should be better. We begin by understanding the problem.',
+      cta: 'Talk to Archic',
     },
   },
 }
 
 function useReveal() {
   useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll('[data-v4-reveal]'))
+    const nodes = Array.from(document.querySelectorAll('[data-v5-reveal]'))
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced || !('IntersectionObserver' in window)) {
       nodes.forEach((node) => node.classList.add('is-visible'))
@@ -143,7 +163,7 @@ function useReveal() {
         entry.target.classList.add('is-visible')
         observer.unobserve(entry.target)
       })
-    }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' })
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' })
     nodes.forEach((node) => observer.observe(node))
     return () => observer.disconnect()
   }, [])
@@ -152,7 +172,6 @@ function useReveal() {
 export default function ArchicHome() {
   const { lang } = useLang()
   const c = COPY[lang]
-  const [active, setActive] = useState(0)
   const canonicalUrl = homeCanonical(lang)
   const structuredData = buildHomeGraph(lang)
   useReveal()
@@ -175,85 +194,117 @@ export default function ArchicHome() {
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
-      <div className="v4" id="top">
+      <div className="v5" id="top">
         <StudioHeader />
 
-        <section className="v4-hero">
-          <div className="v4-hero-copy">
-            <p className="v4-kicker">{c.hero.kicker}</p>
+        <section className="v5-hero">
+          <div className="v5-hero-copy">
+            <p className="v5-eyebrow">{c.hero.eyebrow}</p>
             <h1>{c.hero.title}<br /><span>{c.hero.accent}</span></h1>
-            <p className="v4-hero-body">{c.hero.body}</p>
-            <div className="v4-actions">
-              <a className="v4-btn" href="#contact">{c.hero.cta}<span>↗</span></a>
-              <a className="v4-link" href="#capabilities">{c.hero.secondary}<span>↓</span></a>
+            <p className="v5-hero-body">{c.hero.body}</p>
+            <div className="v5-actions">
+              <a className="v5-btn v5-btn-gold" href="#contact">{c.hero.primary}</a>
+              <a className="v5-link" href="#studio">{c.hero.secondary}<span>↓</span></a>
             </div>
           </div>
 
-          <div className="v4-layer" aria-label="Archic digital layer model">
-            <div className="v4-layer-head"><span>ARCHIC / DIGITAL LAYER</span><span>01 — 08.26</span></div>
-            <div className="v4-layer-half v4-layer-public"><div><p>{c.hero.public}</p>{c.hero.publicItems.map((item, index) => <span key={item}><b>0{index + 1}</b>{item}</span>)}</div></div>
-            <div className="v4-layer-axis"><span className="v4-layer-line" /><span className="v4-layer-mark"><img src="/brand/archic-mark-dark.svg" alt="" /></span><span className="v4-layer-line" /></div>
-            <div className="v4-layer-half v4-layer-ops"><div><p>{c.hero.ops}</p>{c.hero.opsItems.map((item, index) => <span key={item}><b>0{index + 5}</b>{item}</span>)}</div></div>
-            <div className="v4-layer-foot"><span>VISIBLE</span><span>CONNECTED</span><span>OPERATING</span></div>
+          <div className="v5-hero-product" aria-hidden="true">
+            <div className="v5-aura" />
+            <div className="v5-orbit" />
+            <img src="/brand/archic-mark-light.svg" alt="" width={459} height={412} />
+            <div className="v5-product-shadow" />
           </div>
+
+          <div className="v5-hero-foot"><span>ARCHIC © 2026</span><span>SPAIN · REMOTE & ON-SITE</span></div>
         </section>
 
-        <section className="v4-thesis" id="studio">
-          <p className="v4-label">{c.thesis.label}</p>
-          <div data-v4-reveal><h2>{c.thesis.title}<br /><span>{c.thesis.accent}</span></h2></div>
-          <p className="v4-thesis-body" data-v4-reveal>{c.thesis.body}</p>
+        <section className="v5-intro" id="studio">
+          <p className="v5-eyebrow v5-eyebrow-dark">{c.intro.eyebrow}</p>
+          <h2 data-v5-reveal>{c.intro.title}<br /><span>{c.intro.accent}</span></h2>
+          <p className="v5-intro-body" data-v5-reveal>{c.intro.body}</p>
         </section>
 
-        <section className="v4-capabilities" id="capabilities">
-          <header className="v4-section-head">
-            <p className="v4-label">{c.capabilities.label}</p>
-            <h2>{c.capabilities.title}<br /><span>{c.capabilities.accent}</span></h2>
-          </header>
-          <div className="v4-cap-grid">
-            <div className="v4-cap-list">
-              {c.capabilities.items.map((item, index) => (
-                <button key={item.no} type="button" className={`v4-cap-row ${active === index ? 'is-active' : ''}`} onClick={() => setActive(index)} aria-pressed={active === index}>
-                  <span>{item.no}</span><strong>{item.name}</strong><small>{item.short}</small><i>↗</i>
-                </button>
-              ))}
+        <section className="v5-product-section v5-presence" id="capabilities">
+          <div className="v5-product-copy" data-v5-reveal>
+            <p className="v5-product-label">{c.presence.label}</p>
+            <h2>{c.presence.title}<br /><span>{c.presence.accent}</span></h2>
+            <p>{c.presence.body}</p>
+            <div className="v5-chips">{c.presence.chips.map((chip) => <span key={chip}>{chip}</span>)}</div>
+          </div>
+          <div className="v5-presence-visual" data-v5-reveal aria-hidden="true">
+            <div className="v5-browser-bar"><span /><span /><span /><b>archic / presence</b></div>
+            <div className="v5-browser-canvas">
+              <div className="v5-browser-brand">ARCHIC</div>
+              <div className="v5-browser-kicker">EXCEPTIONAL DIGITAL PRESENCE</div>
+              <div className="v5-browser-title">First impressions<br /><em>designed to last.</em></div>
+              <div className="v5-browser-line" />
             </div>
-            <article className="v4-cap-detail" data-v4-reveal>
-              <div className="v4-cap-detail-top"><span>{c.capabilities.items[active].no}</span><span>CAPABILITY</span></div>
-              <h3>{c.capabilities.items[active].name}</h3>
-              <p>{c.capabilities.items[active].body}</p>
-              <div className="v4-cap-tags">{c.capabilities.items[active].details.map((detail) => <span key={detail}>{detail}</span>)}</div>
-            </article>
           </div>
         </section>
 
-        <section className="v4-lab" id="concepts">
-          <header className="v4-section-head v4-section-head-dark">
-            <p className="v4-label">{c.lab.label}</p>
-            <div><h2>{c.lab.title}<br /><span>{c.lab.accent}</span></h2><p>{c.lab.body}</p></div>
-          </header>
-          <div className="v4-concepts">
-            {c.lab.concepts.map((concept, conceptIndex) => (
-              <article className="v4-concept" key={concept.sector} data-v4-reveal>
-                <div className="v4-concept-top"><span>0{conceptIndex + 1}</span><span>{concept.sector}</span><span>{c.lab.disclaimer}</span></div>
-                <div className="v4-flow">
-                  {concept.flow.map((step, index) => <div className="v4-flow-step" key={step}><span>0{index + 1}</span><strong>{step}</strong>{index < concept.flow.length - 1 && <i>→</i>}</div>)}
-                </div>
-                <p>{concept.line}</p>
+        <section className="v5-product-section v5-control">
+          <div className="v5-product-copy" data-v5-reveal>
+            <p className="v5-product-label">{c.control.label}</p>
+            <h2>{c.control.title}<br /><span>{c.control.accent}</span></h2>
+            <p>{c.control.body}</p>
+          </div>
+          <div className="v5-control-visual" data-v5-reveal>
+            <div className="v5-control-top"><span>ARCHIC CONTROL</span><span>LIVE</span></div>
+            {c.control.items.map(([no, name, desc]) => (
+              <div className="v5-control-row" key={no}>
+                <span>{no}</span><strong>{name}</strong><p>{desc}</p><i>↗</i>
+              </div>
+            ))}
+            <div className="v5-control-bottom"><span>OPERATIONS / CUSTOMERS / RESOURCES</span><span>01</span></div>
+          </div>
+        </section>
+
+        <section className="v5-product-section v5-business">
+          <div className="v5-product-copy" data-v5-reveal>
+            <p className="v5-product-label">{c.business.label}</p>
+            <h2>{c.business.title}<br /><span>{c.business.accent}</span></h2>
+            <p>{c.business.body}</p>
+          </div>
+          <div className="v5-business-visual" data-v5-reveal aria-hidden="true">
+            <div className="v5-business-core"><img src="/brand/archic-mark-dark.svg" alt="" /></div>
+            {c.business.layers.map((layer, index) => <div className={`v5-business-layer v5-business-layer-${index + 1}`} key={layer}><span>{`0${index + 1}`}</span>{layer}</div>)}
+          </div>
+        </section>
+
+        <section className="v5-standard">
+          <p className="v5-eyebrow">{c.standard.eyebrow}</p>
+          <h2 data-v5-reveal>{c.standard.title}<br /><span>{c.standard.accent}</span></h2>
+          <p data-v5-reveal>{c.standard.body}</p>
+        </section>
+
+        <section className="v5-capabilities">
+          <div className="v5-cap-head">
+            <div>
+              <p className="v5-eyebrow v5-eyebrow-dark">{c.capabilities.eyebrow}</p>
+              <h2>{c.capabilities.title}</h2>
+            </div>
+            <p>{c.capabilities.body}</p>
+          </div>
+          <div className="v5-cap-grid">
+            {c.capabilities.items.map(([no, name, desc]) => (
+              <article key={no} data-v5-reveal>
+                <span>{no}</span>
+                <h3>{name}</h3>
+                <p>{desc}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="v4-standard">
-          <div className="v4-standard-mark"><img src="/brand/archic-mark-dark.svg" alt="" /></div>
-          <div><p className="v4-label">{c.standard.label}</p><h2>{c.standard.title}<br /><span>{c.standard.accent}</span></h2></div>
-          <ol>{c.standard.points.map((point, index) => <li key={point}><span>0{index + 1}</span>{point}</li>)}</ol>
+        <section className="v5-sectors" aria-label="Sectors">
+          {c.sectors.map((sector) => <span key={sector}>{sector}</span>)}
         </section>
 
-        <section className="v4-contact" id="contact">
-          <p className="v4-label">{c.contact.label}</p>
-          <h2>{c.contact.title}<br /><span>{c.contact.accent}</span></h2>
-          <div className="v4-contact-bottom"><p>{c.contact.body}</p><a href={`mailto:${CONTACT_MAIL}`}>{c.contact.cta}<span>↗</span></a></div>
+        <section className="v5-closing" id="contact">
+          <p className="v5-eyebrow v5-eyebrow-dark">{c.closing.eyebrow}</p>
+          <h2 data-v5-reveal>{c.closing.title}<br /><span>{c.closing.accent}</span></h2>
+          <p data-v5-reveal>{c.closing.body}</p>
+          <a className="v5-btn v5-btn-dark" href={`mailto:${CONTACT_MAIL}`}>{c.closing.cta}<span>↗</span></a>
         </section>
 
         <StudioFooter />
