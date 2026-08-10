@@ -14,10 +14,7 @@ import '@fontsource/ibm-plex-mono/latin-500.css'
 import '@fontsource/instrument-serif/latin-400.css'
 import './index.css'
 import './styles/studio.css'
-import './styles/archic-v5.css'
-import './styles/archic-v5-type.css'
-import './styles/archic-v6.css'
-import './styles/archic-v7-intent.css'
+import './styles/archic-site.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
