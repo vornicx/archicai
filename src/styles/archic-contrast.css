@@ -1,11 +1,15 @@
 .as-site{
-  --as-cream:#f7f2ea;
-  --as-cream-2:#e9e0d4;
-  --as-gold:#d8b16d;
-  --as-gold-hi:#e8c98f;
+  --as-cream:#fbf7f0;
+  --as-cream-2:#eee5d9;
+  --as-gold:#d6ad67;
+  --as-gold-hi:#e9ca91;
+  --as-copy-dark:#29251f;
+  --as-copy-dark-soft:#4c453c;
+  --as-copy-light:#f7f1e7;
+  --as-copy-light-soft:rgba(247,241,231,.82);
 }
 
-/* Dark surfaces: never let supporting copy disappear into the background. */
+/* Core rule: important copy must always read immediately. */
 .as-home-hero,
 .as-home-standard,
 .as-home-close,
@@ -15,9 +19,19 @@
 .as-menu-panel,
 .as-footer,
 .as-contact-form{
-  color:var(--as-cream);
+  color:var(--as-copy-light);
 }
 
+.as-products,
+.as-home-fit,
+.as-statement,
+.as-principle,
+.as-contact-page,
+.as-product-business{
+  color:#11100e;
+}
+
+/* Body copy: no luxury-by-low-opacity. */
 .as-home-hero-copy>p:not(.as-kicker),
 .as-home-standard>p:last-child,
 .as-home-close>p:not(.as-kicker),
@@ -31,36 +45,7 @@
 .as-contact-form .sx-consent,
 .as-contact-form .sx-field label,
 .as-form-head{
-  color:rgba(247,242,234,.74);
-}
-
-.as-home-hero-index,
-.as-menu-meta,
-.as-footer-bottom{
-  color:rgba(247,242,234,.58);
-}
-
-.as-text-link,
-.as-project-link{
-  color:rgba(247,242,234,.86);
-}
-
-.as-product:not(.as-product-business) .as-product-copy p{
-  color:rgba(247,242,234,.78);
-}
-.as-product:not(.as-product-business) .as-product-copy h3,
-.as-product:not(.as-product-business) .as-product-copy strong{
-  color:var(--as-cream);
-}
-
-/* Light surfaces: force dark, readable typography. */
-.as-products,
-.as-home-fit,
-.as-statement,
-.as-principle,
-.as-contact-page,
-.as-product-business{
-  color:#11100e;
+  color:var(--as-copy-light-soft);
 }
 
 .as-products-head>p,
@@ -70,19 +55,166 @@
 .as-contact-hero>div:first-child>p:not(.as-kicker),
 .as-contact-notes span,
 .as-product-business .as-product-copy p{
-  color:#4b443b;
+  color:var(--as-copy-dark-soft);
 }
 
+/* Scale: only true metadata is allowed to stay tiny. */
+.as-kicker{
+  font-size:11px;
+  line-height:1.4;
+  letter-spacing:.17em;
+}
+
+.as-home-hero-copy>p:not(.as-kicker),
+.as-lead{
+  font-size:clamp(18px,1.4vw,22px);
+  line-height:1.7;
+}
+
+.as-products-head>p,
+.as-home-fit>div:last-child>p,
+.as-home-standard>p:last-child,
+.as-home-close>p:not(.as-kicker),
+.as-statement>div:last-child>p,
+.as-principle>p:last-child,
+.as-next>div>p:not(.as-kicker),
+.as-contact-hero>div:first-child>p:not(.as-kicker){
+  font-size:clamp(17px,1.25vw,20px);
+  line-height:1.72;
+}
+
+.as-product-copy>span{
+  font-size:10px;
+  letter-spacing:.15em;
+}
+.as-product-no{font-size:10px}
+.as-product-copy p{
+  font-size:clamp(15px,1.05vw,17px);
+  line-height:1.68;
+}
+.as-product-copy strong{
+  font-size:12px;
+  letter-spacing:.01em;
+}
+
+.as-feature-list article{
+  padding-top:44px;
+  padding-bottom:44px;
+}
+.as-feature-list article>span{
+  font-size:10px;
+}
+.as-feature-list h3{
+  font-size:clamp(28px,2.55vw,40px);
+}
+.as-feature-list p{
+  font-size:clamp(15px,1.05vw,17px);
+  line-height:1.7;
+}
+.as-feature-list i{font-size:16px}
+
+.as-next>a{
+  font-size:14px;
+  min-width:240px;
+  padding:24px 0;
+}
+
+.as-menu-inner nav a{
+  min-height:126px;
+}
+.as-menu-inner nav a>span{
+  font-size:10px;
+}
+.as-menu-inner nav small{
+  font-size:14px;
+  line-height:1.5;
+}
+.as-menu-meta{
+  font-size:10px;
+  color:rgba(247,241,231,.72);
+}
+
+.as-lang{
+  font-size:11px;
+  color:rgba(247,241,231,.82);
+}
+.as-project-link,
+.as-menu-button>span{
+  font-size:12px;
+  color:#fbf7f0;
+}
+
+.as-contact-notes span{
+  font-size:13px;
+  padding:18px 0;
+}
+.as-form-head{
+  font-size:10px;
+}
+.as-contact-form .sx-field label{
+  font-size:11px;
+  color:rgba(247,241,231,.82);
+}
+.as-contact-form .sx-field input,
+.as-contact-form .sx-field select,
+.as-contact-form .sx-field textarea{
+  font-size:16px;
+  color:#fffaf2;
+  border-bottom-color:rgba(247,241,231,.34);
+}
+.as-contact-form .sx-field input::placeholder,
+.as-contact-form .sx-field textarea::placeholder{
+  color:rgba(247,241,231,.58);
+}
+.as-contact-form .sx-consent{
+  font-size:12px;
+  line-height:1.6;
+  color:rgba(247,241,231,.74);
+}
+.as-contact-form .sx-consent a{color:#fff2df}
+.as-contact-form .sx-btn{
+  min-height:56px;
+  font-size:12px;
+}
+
+.as-footer-brand p{
+  max-width:330px;
+  font-size:15px;
+  line-height:1.7;
+}
+.as-footer-nav>span,
+.as-footer-legal>span,
+.as-footer-contact>span{
+  font-size:10px;
+  color:var(--as-gold-hi);
+}
+.as-footer-nav a,
+.as-footer-legal a{
+  font-size:14px;
+  color:rgba(247,241,231,.8);
+}
+.as-footer-bottom{
+  font-size:10px;
+  color:rgba(247,241,231,.66);
+}
+
+/* Dark cards. */
+.as-product:not(.as-product-business) .as-product-copy p{
+  color:rgba(251,247,240,.84);
+}
+.as-product:not(.as-product-business) .as-product-copy h3,
+.as-product:not(.as-product-business) .as-product-copy strong{
+  color:#fffaf2;
+}
+
+/* Light card. */
 .as-product-business .as-product-copy h3,
 .as-product-business .as-product-copy strong{
   color:#11100e;
 }
+.as-product-business .as-product-copy p{color:#443d34}
 
-.as-text-link-dark{
-  color:#1d1a16;
-}
-
-/* Gold is an accent, not low-contrast body copy. */
+/* Gold is jewellery: accents only, never essential paragraph copy. */
 .as-kicker,
 .as-product-no,
 .as-product-copy>span,
@@ -107,25 +239,24 @@
 .as-product-business .as-product-copy>span,
 .as-product-business .as-product-no,
 .as-product-business .as-product-copy strong i{
-  color:#765527;
+  color:#735226;
 }
 
-/* Forms: placeholders stay secondary but clearly visible. */
-.as-contact-form .sx-field input::placeholder,
-.as-contact-form .sx-field textarea::placeholder{
-  color:rgba(247,242,234,.5);
-}
-.as-contact-form .sx-field input,
-.as-contact-form .sx-field select,
-.as-contact-form .sx-field textarea{
-  color:#fffaf2;
-  border-bottom-color:rgba(247,242,234,.28);
-}
-.as-contact-form .sx-consent a{
-  color:#f4eadb;
-}
+.as-text-link{font-size:13px;color:rgba(251,247,240,.9)}
+.as-text-link-dark{color:#1d1a16}
+.as-home-hero-index{font-size:10px;color:rgba(247,241,231,.68)}
+.as-statement-index{font-size:10px}
 
-/* Preserve hierarchy while preventing tiny UI text from becoming invisible. */
-.as-lang{color:rgba(247,242,234,.68)}
-.as-menu-inner nav a>span{color:var(--as-gold-hi)}
-.as-footer-contact a{color:var(--as-cream)}
+@media(max-width:720px){
+  .as-kicker{font-size:10px}
+  .as-home-hero-copy>p:not(.as-kicker),.as-lead{font-size:18px}
+  .as-products-head>p,.as-home-fit>div:last-child>p,.as-home-standard>p:last-child,.as-home-close>p:not(.as-kicker),.as-statement>div:last-child>p,.as-principle>p:last-child,.as-next>div>p:not(.as-kicker),.as-contact-hero>div:first-child>p:not(.as-kicker){font-size:17px}
+  .as-product-copy p{font-size:15px}
+  .as-product-copy strong{font-size:12px}
+  .as-feature-list p{font-size:15px}
+  .as-feature-list h3{font-size:30px}
+  .as-contact-form .sx-field label{font-size:10px}
+  .as-contact-form .sx-consent{font-size:11px}
+  .as-footer-nav a,.as-footer-legal a{font-size:13px}
+  .as-footer-bottom{font-size:9px}
+}
