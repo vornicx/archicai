@@ -104,206 +104,88 @@ const COPY: Record<'es' | 'en', Record<Exclude<ArchicPageKey, 'contact'>, PageCo
   },
   en: {
     presence: {
-      eyebrow: 'ARCHIC PRESENCE',
-      title: 'The part of your business',
-      accent: 'everyone gets to see.',
+      eyebrow: 'ARCHIC PRESENCE', title: 'The part of your business', accent: 'everyone gets to see.',
       intro: 'Digital direction, web, content and conversion built as one experience. We do not design a beautiful template; we build perception.',
-      statement: 'A good website informs.',
-      statementAccent: 'A great presence changes how the business is perceived.',
+      statement: 'A good website informs.', statementAccent: 'A great presence changes how the business is perceived.',
       statementBody: 'Every decision — rhythm, imagery, copy, hierarchy, interaction and performance — should reinforce the same feeling. When everything fits, the result feels inevitable.',
-      features: [
-        ['01', 'Digital direction', 'We define the visual language and experience before thinking in components.'],
-        ['02', 'Premium web', 'Bespoke design and development, responsive, fast and built to convert without feeling aggressive.'],
-        ['03', 'Content & structure', 'Architecture, narrative, imagery and copy working toward a clear commercial intention.'],
-        ['04', 'Performance & SEO', 'A solid, accessible technical base ready to grow without sacrificing the experience.'],
-      ],
-      principleTitle: 'Fewer pages. More intent.',
-      principleBody: 'Every screen needs a reason to exist. We remove noise, elevate what matters and leave room for the brand to breathe.',
-      ctaTitle: 'Is your digital presence below the real standard of your business?',
-      ctaBody: 'Tell us what you want to change when someone discovers your brand for the first time.',
+      features: [['01','Digital direction','We define the visual language and experience before thinking in components.'],['02','Premium web','Bespoke design and development, responsive, fast and built to convert without feeling aggressive.'],['03','Content & structure','Architecture, narrative, imagery and copy working toward a clear commercial intention.'],['04','Performance & SEO','A solid, accessible technical base ready to grow without sacrificing the experience.']],
+      principleTitle: 'Fewer pages. More intent.', principleBody: 'Every screen needs a reason to exist. We remove noise, elevate what matters and leave room for the brand to breathe.',
+      ctaTitle: 'Is your digital presence below the real standard of your business?', ctaBody: 'Tell us what you want to change when someone discovers your brand for the first time.',
     },
     control: {
-      eyebrow: 'ARCHIC CONTROL',
-      title: 'The part of the business',
-      accent: 'the customer should never notice.',
+      eyebrow: 'ARCHIC CONTROL', title: 'The part of the business', accent: 'the customer should never notice.',
       intro: 'Bookings, customers, resources, operations and follow-up in a private environment built around how your business actually works.',
-      statement: 'The experience feels simple',
-      statementAccent: 'when the system handles the difficult work well.',
+      statement: 'The experience feels simple', statementAccent: 'when the system handles the difficult work well.',
       statementBody: 'Control is not another dashboard full of cards. It is an operating layer designed to reduce friction, remove scattered information and make daily work clearer.',
-      features: [
-        ['01', 'Customers', 'Profiles, history, notes, preferences and context available when needed.'],
-        ['02', 'Bookings & enquiries', 'Intake, confirmation, states, availability and follow-up in one place.'],
-        ['03', 'Resources & operations', 'People, tables, vehicles, properties, services or whatever resource drives the business.'],
-        ['04', 'Visibility', 'Relevant information and reporting without turning the product into an empty metrics dashboard.'],
-      ],
-      principleTitle: 'Built around the operation.',
-      principleBody: 'We do not force the business into a software template. We observe the real flow and build the interface around it.',
-      ctaTitle: 'Does your team work across too many tools, messages and loose spreadsheets?',
-      ctaBody: 'We can turn that invisible chaos into a private system that makes sense for your operation.',
+      features: [['01','Customers','Profiles, history, notes, preferences and context available when needed.'],['02','Bookings & enquiries','Intake, confirmation, states, availability and follow-up in one place.'],['03','Resources & operations','People, tables, vehicles, properties, services or whatever resource drives the business.'],['04','Visibility','Relevant information and reporting without turning the product into an empty metrics dashboard.']],
+      principleTitle: 'Built around the operation.', principleBody: 'We do not force the business into a software template. We observe the real flow and build the interface around it.',
+      ctaTitle: 'Does your team work across too many tools, messages and loose spreadsheets?', ctaBody: 'We can turn that invisible chaos into a private system that makes sense for your operation.',
     },
     business: {
-      eyebrow: 'ARCHIC BUSINESS',
-      title: 'When buying software',
-      accent: 'is no longer enough.',
+      eyebrow: 'ARCHIC BUSINESS', title: 'When buying software', accent: 'is no longer enough.',
       intro: 'Custom software, automation, integrations and data for businesses that need their own operating advantage, not another generic subscription.',
-      statement: 'Technology creates value',
-      statementAccent: 'when it changes what the business can do.',
+      statement: 'Technology creates value', statementAccent: 'when it changes what the business can do.',
       statementBody: 'We start from a bottleneck, an opportunity or a process worth improving. If an existing tool solves it well, we use it. If not, we build.',
-      features: [
-        ['01', 'Custom software', 'Internal tools, portals, workflows and digital products designed for a specific need.'],
-        ['02', 'Integrations', 'We connect existing systems so data stops living on islands.'],
-        ['03', 'Automation', 'We remove repetitive steps and manual tasks where technology can do better.'],
-        ['04', 'Data & decisions', 'We turn activity into information that helps operate, prioritise and grow.'],
-      ],
-      principleTitle: 'Build only when it deserves to exist.',
-      principleBody: 'Custom software is not the goal. Solving the business better is. That difference prevents expensive projects that create no value.',
-      ctaTitle: 'Is there something your business should be able to do but cannot today?',
-      ctaBody: 'Explain the problem before the solution. That is where useful work starts.',
+      features: [['01','Custom software','Internal tools, portals, workflows and digital products designed for a specific need.'],['02','Integrations','We connect existing systems so data stops living on islands.'],['03','Automation','We remove repetitive steps and manual tasks where technology can do better.'],['04','Data & decisions','We turn activity into information that helps operate, prioritise and grow.']],
+      principleTitle: 'Build only when it deserves to exist.', principleBody: 'Custom software is not the goal. Solving the business better is. That difference prevents expensive projects that create no value.',
+      ctaTitle: 'Is there something your business should be able to do but cannot today?', ctaBody: 'Explain the problem before the solution. That is where useful work starts.',
     },
     studio: {
-      eyebrow: 'ARCHIC / STUDIO',
-      title: 'Design, technology',
-      accent: 'and business judgement.',
+      eyebrow: 'ARCHIC / STUDIO', title: 'Design, technology', accent: 'and business judgement.',
       intro: 'Archic builds the digital layer of high-standard businesses: what the customer sees and what makes the operation work behind it.',
-      statement: 'We do not want to be',
-      statementAccent: 'a website factory or a generic software consultancy.',
+      statement: 'We do not want to be', statementAccent: 'a website factory or a generic software consultancy.',
       statementBody: 'We work best when the project matters: when perception, experience, operations or technology can materially change the value a business communicates.',
-      features: [
-        ['01', 'Understand first', 'Before designing, we identify what needs to change and why it matters to the business.'],
-        ['02', 'A clear direction', 'We reduce options early. Quality improves when decisions have judgement behind them.'],
-        ['03', 'Design + development', 'Experience and implementation are thought through together so the final result keeps its intent.'],
-        ['04', 'Evolution', 'We build foundations that can grow once the business proves it needs more.'],
-      ],
-      principleTitle: 'Supervised AI. Human judgement.',
-      principleBody: 'We use artificial intelligence where it multiplies speed and capability, while direction, decisions and the final standard remain a human responsibility.',
-      ctaTitle: 'If the project deserves real attention, we want to hear it.',
-      ctaBody: 'You do not need a perfect brief. We need to understand the business, the problem and the level you want to reach.',
+      features: [['01','Understand first','Before designing, we identify what needs to change and why it matters to the business.'],['02','A clear direction','We reduce options early. Quality improves when decisions have judgement behind them.'],['03','Design + development','Experience and implementation are thought through together so the final result keeps its intent.'],['04','Evolution','We build foundations that can grow once the business proves it needs more.']],
+      principleTitle: 'Supervised AI. Human judgement.', principleBody: 'We use artificial intelligence where it multiplies speed and capability, while direction, decisions and the final standard remain a human responsibility.',
+      ctaTitle: 'If the project deserves real attention, we want to hear it.', ctaBody: 'You do not need a perfect brief. We need to understand the business, the problem and the level you want to reach.',
     },
   },
 }
 
-const PAGE_INDEX: Record<Exclude<ArchicPageKey, 'contact'>, string> = {
-  presence: '01',
-  control: '02',
-  business: '03',
-  studio: '04',
+const PAGE_INDEX: Record<Exclude<ArchicPageKey, 'contact'>, string> = { presence:'01', control:'02', business:'03', studio:'04' }
+
+const SEARCH_INTENTS: Partial<Record<Exclude<ArchicPageKey, 'contact'>, [string,string,string][]>> = {
+  presence: [
+    ['Restaurantes', 'Web, reserva y experiencia móvil', '/diseno-web-restaurantes/'],
+    ['Inmobiliarias', 'Catálogo, leads y marca', '/diseno-web-inmobiliarias/'],
+    ['Alquiler de coches', 'Flota, disponibilidad y reserva', '/diseno-web-alquiler-coches/'],
+    ['Marbella', 'Diseño web para negocios premium', '/diseno-web-marbella/'],
+  ],
+  control: [
+    ['Software de reservas', 'Disponibilidad, clientes y recursos', '/software-reservas-a-medida/'],
+    ['CRM a medida', 'Leads, historial y proceso comercial', '/crm-a-medida/'],
+  ],
+  business: [
+    ['Precio de software a medida', 'Qué determina el coste real', '/precio-software-a-medida/'],
+    ['Desarrollo a medida', 'Software, integraciones y automatización', '/desarrollo-web-a-medida/'],
+  ],
 }
 
-function path(lang: 'es' | 'en', slug: string) {
-  return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
-}
+function path(lang: 'es' | 'en', slug: string) { return lang === 'en' ? `/en/${slug}/` : `/${slug}/` }
 
 export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
   const { lang } = useLang()
 
   if (page === 'contact') {
     const title = lang === 'es' ? 'Cuéntanos el proyecto.' : 'Tell us about the project.'
-    const body = lang === 'es'
-      ? 'Qué negocio es, qué quieres mejorar y qué resultado esperas. No hace falta un briefing perfecto.'
-      : 'What the business is, what you want to improve and what outcome you expect. A perfect brief is not required.'
+    const body = lang === 'es' ? 'Qué negocio es, qué quieres mejorar y qué resultado esperas. No hace falta un briefing perfecto.' : 'What the business is, what you want to improve and what outcome you expect. A perfect brief is not required.'
     const callLabel = lang === 'es' ? 'Si prefieres hablar, llámanos directamente' : 'If you would rather talk, call us directly'
-
-    return (
-      <div className="as-site as-contact-page">
-        <Helmet>
-          <title>{lang === 'es' ? 'Contacto — Archic' : 'Contact — Archic'}</title>
-        </Helmet>
-        <StudioExperience />
-        <StudioHeader />
-        <section className="as-contact-hero">
-          <div data-reveal>
-            <p className="as-kicker">PRIVATE PROJECT ENQUIRY</p>
-            <h1>{title}</h1>
-            <p>{body}</p>
-            <a className="as-contact-direct-call" href={`tel:${CONTACT_PHONE}`}>
-              <span>{callLabel}</span>
-              <strong>{CONTACT_PHONE_DISPLAY}</strong>
-              <i>↗</i>
-            </a>
-            <div className="as-contact-notes">
-              <span>01 · {lang === 'es' ? 'El negocio' : 'The business'}</span>
-              <span>02 · {lang === 'es' ? 'El problema' : 'The problem'}</span>
-              <span>03 · {lang === 'es' ? 'El resultado' : 'The outcome'}</span>
-            </div>
-          </div>
-          <div className="as-contact-form" data-reveal>
-            <div className="as-form-head"><span>ARCHIC / PROJECT</span><span>PRIVATE ENQUIRY</span></div>
-            <StudioContact />
-          </div>
-        </section>
-        <StudioFooter />
-      </div>
-    )
+    return <div className="as-site as-contact-page"><Helmet><title>{lang === 'es' ? 'Contacto — Archic' : 'Contact — Archic'}</title></Helmet><StudioExperience /><StudioHeader /><section className="as-contact-hero"><div data-reveal><p className="as-kicker">PRIVATE PROJECT ENQUIRY</p><h1>{title}</h1><p>{body}</p><a className="as-contact-direct-call" href={`tel:${CONTACT_PHONE}`}><span>{callLabel}</span><strong>{CONTACT_PHONE_DISPLAY}</strong><i>↗</i></a><div className="as-contact-notes"><span>01 · {lang === 'es' ? 'El negocio' : 'The business'}</span><span>02 · {lang === 'es' ? 'El problema' : 'The problem'}</span><span>03 · {lang === 'es' ? 'El resultado' : 'The outcome'}</span></div></div><div className="as-contact-form" data-reveal><div className="as-form-head"><span>ARCHIC / PROJECT</span><span>PRIVATE ENQUIRY</span></div><StudioContact /></div></section><StudioFooter /></div>
   }
 
   const c = COPY[lang][page]
   const pageIndex = PAGE_INDEX[page]
+  const intents = lang === 'es' ? SEARCH_INTENTS[page] ?? [] : []
   return (
     <div className={`as-site as-detail as-${page}`}>
-      <Helmet>
-        <title>{`${c.eyebrow.replace('ARCHIC ', '')} — Archic`}</title>
-        <meta name="description" content={c.intro} />
-      </Helmet>
-      <StudioExperience />
-      <StudioHeader />
-
-      <section className="as-detail-hero">
-        <div className="as-detail-hero-copy" data-reveal="hero">
-          <p className="as-kicker">{c.eyebrow}</p>
-          <h1>{c.title}<br /><em>{c.accent}</em></h1>
-          <p className="as-lead">{c.intro}</p>
-        </div>
-        <div className="as-scroll-mark" aria-hidden="true"><span>{pageIndex}</span><i /><strong>{page.toUpperCase()}</strong></div>
-      </section>
-
-      <section className="as-statement">
-        <div className="as-statement-index" data-reveal>ARCHIC / {page.toUpperCase()}</div>
-        <div data-reveal>
-          <h2>{c.statement}<br /><em>{c.statementAccent}</em></h2>
-          <p>{c.statementBody}</p>
-        </div>
-      </section>
-
-      <section className="as-feature-section">
-        <div className="as-feature-head" data-reveal>
-          <p className="as-kicker">{lang === 'es' ? 'QUÉ CONSTRUIMOS' : 'WHAT WE BUILD'}</p>
-          <h2>{lang === 'es' ? 'Una capa digital completa.' : 'A complete digital layer.'}</h2>
-        </div>
-        <div className="as-feature-list">
-          {c.features.map(([no, name, desc]) => (
-            <article key={no} data-reveal>
-              <span>{no}</span>
-              <h3>{name}</h3>
-              <p>{desc}</p>
-              <i>↗</i>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="as-principle">
-        <div className="as-principle-inner" data-reveal>
-          <p className="as-kicker">ARCHIC PRINCIPLE</p>
-          <h2>{c.principleTitle}</h2>
-          <p>{c.principleBody}</p>
-        </div>
-      </section>
-
-      <section className="as-next">
-        <div data-reveal>
-          <p className="as-kicker">{lang === 'es' ? 'SIGUIENTE PASO' : 'NEXT STEP'}</p>
-          <h2>{c.ctaTitle}</h2>
-          <p>{c.ctaBody}</p>
-        </div>
-        <div className="as-next-actions" data-reveal>
-          <a className="as-next-project" href={path(lang, 'contact')}>{lang === 'es' ? 'Hablar de tu proyecto' : 'Talk about your project'}<span>↗</span></a>
-          <a className="as-next-call" href={`tel:${CONTACT_PHONE}`}>
-            <small>{lang === 'es' ? 'Llamar directamente' : 'Call directly'}</small>
-            <strong>{CONTACT_PHONE_DISPLAY}</strong>
-          </a>
-        </div>
-      </section>
-
+      <Helmet><title>{`${c.eyebrow.replace('ARCHIC ', '')} — Archic`}</title><meta name="description" content={c.intro} /></Helmet>
+      <StudioExperience /><StudioHeader />
+      <section className="as-detail-hero"><div className="as-detail-hero-copy" data-reveal="hero"><p className="as-kicker">{c.eyebrow}</p><h1>{c.title}<br /><em>{c.accent}</em></h1><p className="as-lead">{c.intro}</p></div><div className="as-scroll-mark" aria-hidden="true"><span>{pageIndex}</span><i /><strong>{page.toUpperCase()}</strong></div></section>
+      <section className="as-statement"><div className="as-statement-index" data-reveal>ARCHIC / {page.toUpperCase()}</div><div data-reveal><h2>{c.statement}<br /><em>{c.statementAccent}</em></h2><p>{c.statementBody}</p></div></section>
+      <section className="as-feature-section"><div className="as-feature-head" data-reveal><p className="as-kicker">{lang === 'es' ? 'QUÉ CONSTRUIMOS' : 'WHAT WE BUILD'}</p><h2>{lang === 'es' ? 'Una capa digital completa.' : 'A complete digital layer.'}</h2></div><div className="as-feature-list">{c.features.map(([no,name,desc])=><article key={no} data-reveal><span>{no}</span><h3>{name}</h3><p>{desc}</p><i>↗</i></article>)}</div></section>
+      <section className="as-principle"><div className="as-principle-inner" data-reveal><p className="as-kicker">ARCHIC PRINCIPLE</p><h2>{c.principleTitle}</h2><p>{c.principleBody}</p></div></section>
+      {intents.length > 0 && <section className="as-search-intents"><div className="as-search-intents-head" data-reveal><p className="as-kicker">CASOS DE USO</p><h2>Empieza por lo que estás intentando resolver.</h2></div><div className="as-search-intents-list">{intents.map(([label,desc,href],index)=><a href={href} key={href} data-reveal><span>0{index+1}</span><div><strong>{label}</strong><small>{desc}</small></div><i>↗</i></a>)}</div></section>}
+      <section className="as-next"><div data-reveal><p className="as-kicker">{lang === 'es' ? 'SIGUIENTE PASO' : 'NEXT STEP'}</p><h2>{c.ctaTitle}</h2><p>{c.ctaBody}</p></div><div className="as-next-actions" data-reveal><a className="as-next-project" href={path(lang,'contact')}>{lang === 'es' ? 'Hablar de tu proyecto' : 'Talk about your project'}<span>↗</span></a><a className="as-next-call" href={`tel:${CONTACT_PHONE}`}><small>{lang === 'es' ? 'Llamar directamente' : 'Call directly'}</small><strong>{CONTACT_PHONE_DISPLAY}</strong></a></div></section>
       <StudioFooter />
     </div>
   )
