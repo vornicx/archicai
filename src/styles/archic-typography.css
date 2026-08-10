@@ -1,0 +1,169 @@
+.as-site{
+  --as-display:'DM Sans',Inter,Arial,sans-serif;
+  --as-body:'DM Sans',Inter,Arial,sans-serif;
+  --as-serif:'DM Sans',Inter,Arial,sans-serif;
+  --as-meta:'Space Grotesk',Inter,Arial,sans-serif;
+  font-family:var(--as-body);
+}
+
+/* One strong voice. Luxury comes from proportion and restraint, not font theatrics. */
+.as-site h1,
+.as-site h2,
+.as-site h3,
+.as-menu-inner nav strong,
+.as-footer-contact a,
+.as-call-cta>strong,
+.as-contact-direct-call>strong,
+.as-next-call strong{
+  font-family:var(--as-display);
+  font-variation-settings:normal;
+  text-rendering:optimizeLegibility;
+}
+
+.as-home-hero h1,
+.as-detail-hero h1{
+  font-weight:500;
+  letter-spacing:-.067em;
+}
+
+.as-home-hero h1 em,
+.as-detail-hero h1 em,
+.as-home-standard h2 em,
+.as-home-fit h2 em,
+.as-home-close h2 em,
+.as-statement h2 em{
+  font-family:var(--as-display);
+  font-style:normal;
+  font-weight:400;
+  letter-spacing:-.055em;
+}
+
+.as-home-hero h1 em,
+.as-detail-hero h1 em{
+  font-size:.92em;
+}
+
+.as-products-head h2,
+.as-home-standard h2,
+.as-home-fit h2,
+.as-home-close h2,
+.as-statement h2,
+.as-principle h2,
+.as-feature-head h2{
+  font-weight:500;
+  letter-spacing:-.058em;
+}
+
+.as-product-copy h3{
+  font-weight:500;
+  letter-spacing:-.05em;
+}
+
+.as-feature-list h3{
+  font-weight:500;
+  letter-spacing:-.038em;
+}
+
+/* Technical microtype echoes the geometry of the canonical wordmark. */
+.as-kicker,
+.as-lang,
+.as-project-link,
+.as-menu-button>span,
+.as-menu-meta,
+.as-menu-inner nav a>span,
+.as-product-no,
+.as-product-copy>span,
+.as-product-detail,
+.as-statement-index,
+.as-scroll-mark,
+.as-form-head,
+.as-contact-form .sx-field label,
+.as-footer-nav>span,
+.as-footer-legal>span,
+.as-footer-contact>span,
+.as-footer-bottom,
+.as-phone-link>span,
+.as-menu-phone small,
+.as-call-cta>span,
+.as-next-call small{
+  font-family:var(--as-meta);
+}
+
+.as-kicker{
+  font-weight:500;
+  letter-spacing:.145em;
+}
+
+.as-menu-inner nav strong{
+  letter-spacing:-.045em;
+}
+
+.as-product-copy>span,
+.as-product-detail,
+.as-product-no,
+.as-statement-index,
+.as-scroll-mark,
+.as-footer-nav>span,
+.as-footer-legal>span,
+.as-footer-contact>span{
+  letter-spacing:.13em;
+}
+
+/* Body copy should feel calm, not like SaaS helper text. */
+.as-home-hero-copy>p:not(.as-kicker),
+.as-products-head>p,
+.as-product-copy p,
+.as-home-standard>p:last-child,
+.as-home-fit>div:last-child>p,
+.as-home-close>p:not(.as-kicker),
+.as-lead,
+.as-statement>div:last-child>p,
+.as-feature-list p,
+.as-principle>p:last-child,
+.as-next>div>p:not(.as-kicker),
+.as-contact-hero>div:first-child>p:not(.as-kicker),
+.as-footer-brand p{
+  font-family:var(--as-body);
+  font-weight:400;
+  letter-spacing:-.012em;
+}
+
+.as-btn,
+.as-text-link,
+.as-next-project,
+.as-contact-notes span,
+.as-contact-form .sx-btn,
+.as-footer-nav a,
+.as-footer-legal a{
+  font-family:var(--as-body);
+  font-weight:500;
+}
+
+/* The gold phrase is an accent in tone, not a second brand voice. */
+.as-home-hero h1 em,
+.as-detail-hero h1 em,
+.as-home-standard h2 em,
+.as-home-close h2 em{
+  color:var(--as-gold-hi);
+}
+
+.as-home-fit h2 em,
+.as-statement h2 em{
+  color:#795628;
+}
+
+@media(max-width:720px){
+  .as-home-hero h1,
+  .as-detail-hero h1{
+    letter-spacing:-.058em;
+  }
+
+  .as-products-head h2,
+  .as-home-standard h2,
+  .as-home-fit h2,
+  .as-home-close h2,
+  .as-statement h2,
+  .as-principle h2{
+    letter-spacing:-.052em;
+  }
+}
