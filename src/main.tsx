@@ -15,8 +15,8 @@ import '@fontsource/instrument-serif/latin-400.css'
 import './index.css'
 import './styles/studio.css'
 import './styles/archic-site.css'
-import './styles/archic-contrast.css'
 import './styles/archic-phone.css'
+import './styles/archic-system.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
