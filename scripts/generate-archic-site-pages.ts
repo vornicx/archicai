@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -77,4 +77,21 @@ for (const [slug, page] of Object.entries(pages) as [keyof typeof pages, (typeof
     writeFileSync(resolve(dir, 'index.html'), html(lang, slug, title, description))
     console.log(`written ${lang === 'en' ? 'en/' : ''}${slug}/index.html`)
   }
+}
+
+const sitemapPath = resolve(ROOT, 'public', 'sitemap.xml')
+if (existsSync(sitemapPath)) {
+  let sitemap = readFileSync(sitemapPath, 'utf8')
+  const entries = (Object.keys(pages) as (keyof typeof pages)[]).flatMap((slug) => {
+    const esUrl = `${ORIGIN}/${slug}/`
+    const enUrl = `${ORIGIN}/en/${slug}/`
+    return [
+      `  <url>\n    <loc>${esUrl}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n    <xhtml:link rel="alternate" hreflang="es" href="${esUrl}" />\n    <xhtml:link rel="alternate" hreflang="en" href="${enUrl}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${esUrl}" />\n  </url>`,
+      `  <url>\n    <loc>${enUrl}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n    <xhtml:link rel="alternate" hreflang="es" href="${esUrl}" />\n    <xhtml:link rel="alternate" hreflang="en" href="${enUrl}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${esUrl}" />\n  </url>`,
+    ]
+  }).join('\n')
+
+  sitemap = sitemap.replace(/\s*<\/urlset>\s*$/, `\n${entries}\n</urlset>\n`)
+  writeFileSync(sitemapPath, sitemap)
+  console.log('updated public/sitemap.xml with Archic site routes')
 }
