@@ -13,11 +13,13 @@
     <link data-rh="true" rel="alternate" hreflang="es" href="https://archic.es/">
     <link data-rh="true" rel="alternate" hreflang="en" href="https://archic.es/en/">
     <link data-rh="true" rel="alternate" hreflang="x-default" href="https://archic.es/">
-    <meta name="theme-color" content="#12294c" />
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/archic-mark-512.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0a0a0b" />
+    <link rel="icon" href="/favicon.ico?v=3" sizes="any">
+    <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
+    <link rel="manifest" href="/manifest.json">
     <meta name="google-site-verification" content="y-ywY3wwLbE0VyTO3ex8Nf7c4FWClx9R_y4mz_V75ks" />
     <!-- Webfonts are self-hosted (see src/main.tsx): no third-party requests. -->
     <meta data-rh="true" property="og:url" content="https://archic.es/en/" />
@@ -27,8 +29,8 @@
     <meta data-rh="true" property="og:locale:alternate" content="es_ES" />
     <meta data-rh="true" property="og:title" content="Websites and custom software for businesses | Archic">
     <meta data-rh="true" property="og:description" content="We design professional websites, provide ongoing maintenance and build custom software for companies in Spain.">
-    <meta data-rh="true" property="og:image" content="https://archic.es/og-image-en.png">
-    <meta data-rh="true" property="og:image:secure_url" content="https://archic.es/og-image-en.png">
+    <meta data-rh="true" property="og:image" content="https://archic.es/og-image-en.png?v=3?v=3">
+    <meta data-rh="true" property="og:image:secure_url" content="https://archic.es/og-image-en.png?v=3?v=3">
     <meta data-rh="true" property="og:image:type" content="image/png">
     <meta data-rh="true" property="og:image:width" content="1200">
     <meta data-rh="true" property="og:image:height" content="630">
@@ -37,7 +39,7 @@
     <meta data-rh="true" name="twitter:site" content="@ArchicHQ" />
     <meta data-rh="true" name="twitter:title" content="Websites and custom software for businesses | Archic">
     <meta data-rh="true" name="twitter:description" content="We design professional websites, provide ongoing maintenance and build custom software for companies in Spain.">
-    <meta data-rh="true" name="twitter:image" content="https://archic.es/og-image-en.png">
+    <meta data-rh="true" name="twitter:image" content="https://archic.es/og-image-en.png?v=3?v=3">
     <meta data-rh="true" name="twitter:image:alt" content="Archic — websites and custom software for businesses">
     <script data-rh="true" type="application/ld+json">
       {
@@ -161,27 +163,15 @@
               },
               {
                 "@type": "City",
-                "name": "Carmona"
+                "name": "Marbella"
               },
               {
                 "@type": "City",
-                "name": "Osuna"
+                "name": "Puerto Banús"
               },
               {
                 "@type": "City",
-                "name": "Marchena"
-              },
-              {
-                "@type": "City",
-                "name": "Utrera"
-              },
-              {
-                "@type": "City",
-                "name": "Dos Hermanas"
-              },
-              {
-                "@type": "City",
-                "name": "Palma del Río"
+                "name": "Costa del Sol"
               },
               {
                 "@type": "AdministrativeArea",
@@ -237,87 +227,17 @@
             }
           },
           {
-            "@type": "FAQPage",
-            "@id": "https://archic.es/en/#faq",
-            "inLanguage": "en",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What is the difference between a custom website and one built with WordPress, Wix or Shopify?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "A site builder gives you a template and a monthly fee: quick to launch and fine for a simple site, but performance depends on plugins you do not control and leaving the platform is expensive. A custom site is coded for what your business actually needs: it loads faster because it carries no unused code, it depends on no third-party licence, and you can host it wherever you like. As a reference point, this very site is custom-built, sets no cookies and makes no external requests at all."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How much does a business website cost?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It depends on the real scope: how many pages, whether there is a catalogue or a private area, whether a second language is needed, and whether we have to integrate systems you already use. We do not work on an open hourly rate: we look at the case, give a fixed quote before starting, and set out what it includes and what maintenance it will need afterwards. Send us two lines about the project and you will get a range in the first reply."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How long does it take to go live?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "A corporate presentation site is usually ready within a few weeks of having the final copy and images; what stretches a timeline is almost never the development, it is waiting on content. Internal software is planned in phases, and from the first one we show working progress so there are no surprises at the end."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do I own the website? Can I switch supplier later?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. We hand over the code and the configuration, and the domain is always registered in the client’s name. If one day you decide to work with another studio, you take the project with you — no permission needed and no release fee. We think it is the only healthy way to set up the relationship."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What is custom software and when is it worth it over an off-the-shelf product?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is a tool coded for the specific way a company works: stock control, production tracking, automated reporting, internal dashboards. It pays off when the commercial product forces you to change your process to fit it, when you are paying for dozens of features nobody uses, or when the real work lives in spreadsheets only one person understands. If a standard product covers what you need, we will say so — it is cheaper for everyone."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do you only work in Écija and Seville?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The studio is based in Écija, so across the province of Seville — Écija, Seville, Carmona, Osuna, Marchena, Utrera, Dos Hermanas, Palma del Río — we can meet in person. Everywhere else in Spain we work remotely: video calls, visible progress, same way of working. We work in Spanish and English."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What happens after launch? Is there maintenance?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is optional, but we recommend it: a site that is never updated accumulates security holes and falls behind on performance. Maintenance covers backups, updates, bug fixes, monitoring and small content changes. If you would rather handle it yourself, we leave you the documentation to do it."
-                }
-              }
-            ]
-          },
-          {
             "@type": "WebPage",
             "@id": "https://archic.es/en/#webpage",
             "url": "https://archic.es/en/",
-            "name": "Websites and custom software for businesses | Archic",
-            "description": "We design professional websites, provide ongoing maintenance and build custom software for companies in Spain.",
+            "name": "Archic — The digital side of exceptional businesses",
+            "description": "Strategy, design, premium websites and custom software for ambitious businesses.",
             "inLanguage": "en",
             "isPartOf": {
               "@id": "https://archic.es/#website"
             },
             "about": {
               "@id": "https://archic.es/#organization"
-            },
-            "speakable": {
-              "@type": "SpeakableSpecification",
-              "cssSelector": [
-                ".ar-answer-body",
-                ".ar-hero-title"
-              ]
             }
           }
         ]

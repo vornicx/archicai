@@ -4,7 +4,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://archic.es/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/" />
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://archic.es/en/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/" />
@@ -145,5 +145,85 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/cookies/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/cookies/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/cookies/" />
+  </url>
+  <url>
+    <loc>https://archic.es/presence/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/presence/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/presence/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/presence/" />
+  </url>
+  <url>
+    <loc>https://archic.es/en/presence/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/presence/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/presence/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/presence/" />
+  </url>
+  <url>
+    <loc>https://archic.es/control/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/control/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/control/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/control/" />
+  </url>
+  <url>
+    <loc>https://archic.es/en/control/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/control/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/control/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/control/" />
+  </url>
+  <url>
+    <loc>https://archic.es/business/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/business/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/business/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/business/" />
+  </url>
+  <url>
+    <loc>https://archic.es/en/business/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/business/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/business/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/business/" />
+  </url>
+  <url>
+    <loc>https://archic.es/studio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/studio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/studio/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/studio/" />
+  </url>
+  <url>
+    <loc>https://archic.es/en/studio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/studio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/studio/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/studio/" />
+  </url>
+  <url>
+    <loc>https://archic.es/contact/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/contact/" />
+  </url>
+  <url>
+    <loc>https://archic.es/en/contact/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/contact/" />
   </url>
 </urlset>

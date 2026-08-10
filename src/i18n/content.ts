@@ -130,7 +130,7 @@ export const CONTENT: Record<Lang, Content> = {
       /* 1200×630: la proporción que Facebook, LinkedIn, WhatsApp y X recortan
          sin comerse el titular. El banner 1500×500 que había antes se cortaba
          por los lados en casi todas las plataformas. */
-      ogImage: 'og-image.png',
+      ogImage: 'og-image.png?v=3',
       ogImageAlt: 'Archic — páginas web y software a medida para empresas',
     },
     a11y: {
@@ -449,7 +449,7 @@ export const CONTENT: Record<Lang, Content> = {
       ogTitle: 'Websites and custom software for businesses | Archic',
       ogDescription:
         'Web design and development, ongoing maintenance, custom software and process automation for businesses.',
-      ogImage: 'og-image-en.png',
+      ogImage: 'og-image-en.png?v=3',
       ogImageAlt: 'Archic — websites and custom software for businesses',
     },
     a11y: {
