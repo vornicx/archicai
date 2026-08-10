@@ -837,7 +837,7 @@
 }
 
 .sx-form .sx-btn:hover,
-.sx a.sx-btn:hover {
+.sx-form button.sx-btn:hover {
   background: transparent;
   color: var(--ink);
 }
