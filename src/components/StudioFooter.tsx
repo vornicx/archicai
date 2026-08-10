@@ -3,8 +3,8 @@ import { LEGAL_PATHS } from '../legal/documents'
 import { CONTACT_MAIL } from '../i18n/content'
 
 const COPY = {
-  es: { tagline: 'La capa digital de negocios excepcionales.', location: 'España · Remote & on-site', legal: 'Legal', rights: 'Todos los derechos reservados.' },
-  en: { tagline: 'The digital layer of exceptional businesses.', location: 'Spain · Remote & on-site', legal: 'Legal', rights: 'All rights reserved.' },
+  es: { tagline: 'Sistemas digitales para negocios excepcionales.', location: 'España · Remote & on-site', legal: 'Legal', rights: 'Todos los derechos reservados.' },
+  en: { tagline: 'Digital systems for exceptional businesses.', location: 'Spain · Remote & on-site', legal: 'Legal', rights: 'All rights reserved.' },
 }
 
 export default function StudioFooter() {
@@ -13,24 +13,24 @@ export default function StudioFooter() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="v4-footer">
-      <div className="v4-footer-main">
-        <div className="v4-footer-brand">
+    <footer className="v5-footer">
+      <div className="v5-footer-main">
+        <div className="v5-footer-brand">
           <img src="/brand/archic-lockup-light.svg" alt="Archic" width={981} height={174} />
           <p>{c.tagline}</p>
         </div>
-        <div className="v4-footer-contact">
+        <div className="v5-footer-contact">
           <span>CONTACT</span>
           <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
         </div>
-        <nav aria-label={c.legal}>
+        <nav className="v5-footer-legal" aria-label={c.legal}>
           <span>{c.legal}</span>
           <a href={LEGAL_PATHS.legal[lang]}>{t.legal.legalNotice}</a>
           <a href={LEGAL_PATHS.privacy[lang]}>{t.legal.privacy}</a>
           <a href={LEGAL_PATHS.cookies[lang]}>{t.legal.cookies}</a>
         </nav>
       </div>
-      <div className="v4-footer-bottom">
+      <div className="v5-footer-bottom">
         <span>© {year} ARCHIC — {c.rights}</span>
         <span>{c.location}</span>
       </div>
