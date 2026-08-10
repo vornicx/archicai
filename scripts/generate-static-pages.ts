@@ -131,7 +131,7 @@ function document_({
     <meta name="application-name" content="Archic">
     <link data-rh="true" rel="canonical" href="${canonical}">
 ${alternateTags}
-    <meta name="theme-color" content="#12294c" />
+    <meta name="theme-color" content="#0a0a0b" />
     <link rel="icon" href="/favicon.ico?v=3" sizes="any">
     <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
