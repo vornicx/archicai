@@ -1,0 +1,2 @@
+export const CONTACT_PHONE = '+34644768515'
+export const CONTACT_PHONE_DISPLAY = '+34 644 76 85 15'
