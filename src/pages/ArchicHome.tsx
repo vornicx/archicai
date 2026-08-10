@@ -3,6 +3,7 @@ import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
+import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 
 const PRESENCE_IMAGE = 'https://images.pexels.com/photos/31080809/pexels-photo-31080809/free-photo-of-elegant-luxury-hotel-lobby-with-warm-ambiance.jpeg?auto=compress&dpr=1&h=900&w=1440'
 
@@ -18,7 +19,7 @@ const COPY = {
       accent: 'negocios excepcionales.',
       body: 'Diseñamos lo que ve el cliente y construimos lo que hace funcionar el negocio por detrás. Presencia, operaciones y software con una misma dirección.',
       primary: 'Hablar de un proyecto',
-      secondary: 'Descubrir Archic',
+      call: 'Llamar directamente',
     },
     chapters: {
       eyebrow: 'THREE LAYERS / ONE STANDARD',
@@ -48,6 +49,7 @@ const COPY = {
       accent: 'elevar.',
       body: 'No necesitas llegar con una solución. El negocio, el problema y el resultado esperado son un buen punto de partida.',
       cta: 'Abrir una conversación',
+      call: 'O llámanos directamente',
     },
   },
   en: {
@@ -61,7 +63,7 @@ const COPY = {
       accent: 'exceptional businesses.',
       body: 'We design what the customer sees and build what makes the business work behind it. Presence, operations and software under one direction.',
       primary: 'Talk about a project',
-      secondary: 'Discover Archic',
+      call: 'Call directly',
     },
     chapters: {
       eyebrow: 'THREE LAYERS / ONE STANDARD',
@@ -91,6 +93,7 @@ const COPY = {
       accent: 'to elevate.',
       body: 'You do not need to arrive with a solution. The business, the problem and the expected outcome are enough to start.',
       cta: 'Open a conversation',
+      call: 'Or call us directly',
     },
   },
 }
@@ -130,9 +133,12 @@ export default function ArchicHome() {
           <p className="as-kicker">{c.hero.eyebrow}</p>
           <h1>{c.hero.title}<br /><em>{c.hero.accent}</em></h1>
           <p>{c.hero.body}</p>
-          <div className="as-actions">
+          <div className="as-actions as-hero-actions">
             <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.hero.primary}<span>↗</span></a>
-            <a className="as-text-link" href={path(lang, 'studio')}>{c.hero.secondary}<span>→</span></a>
+            <a className="as-call-cta" href={`tel:${CONTACT_PHONE}`}>
+              <span>{c.hero.call}</span>
+              <strong>{CONTACT_PHONE_DISPLAY}</strong>
+            </a>
           </div>
         </div>
         <div className="as-home-hero-index" aria-hidden="true">
@@ -187,7 +193,13 @@ export default function ArchicHome() {
         <p className="as-kicker">{c.close.eyebrow}</p>
         <h2>{c.close.title}<br /><em>{c.close.accent}</em></h2>
         <p>{c.close.body}</p>
-        <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.close.cta}<span>↗</span></a>
+        <div className="as-close-actions">
+          <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.close.cta}<span>↗</span></a>
+          <a className="as-call-cta as-call-cta-centered" href={`tel:${CONTACT_PHONE}`}>
+            <span>{c.close.call}</span>
+            <strong>{CONTACT_PHONE_DISPLAY}</strong>
+          </a>
+        </div>
       </section>
 
       <StudioFooter />
