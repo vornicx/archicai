@@ -2,8 +2,31 @@ import { useEffect, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
 
 const COPY = {
-  es: { studio: 'Archic', capabilities: 'Sistemas', fit: 'Encaje', cta: 'Empezar proyecto' },
-  en: { studio: 'Archic', capabilities: 'Systems', fit: 'Fit', cta: 'Start a project' },
+  es: {
+    menu: 'Menú', close: 'Cerrar', project: 'Proyecto',
+    pages: [
+      ['Presence', 'Presencia digital', 'presence'],
+      ['Control', 'Operación privada', 'control'],
+      ['Business', 'Software a medida', 'business'],
+      ['Studio', 'Cómo trabajamos', 'studio'],
+      ['Contacto', 'Hablar de un proyecto', 'contact'],
+    ],
+  },
+  en: {
+    menu: 'Menu', close: 'Close', project: 'Project',
+    pages: [
+      ['Presence', 'Digital presence', 'presence'],
+      ['Control', 'Private operations', 'control'],
+      ['Business', 'Custom software', 'business'],
+      ['Studio', 'How we work', 'studio'],
+      ['Contact', 'Talk about a project', 'contact'],
+    ],
+  },
+}
+
+function path(lang: 'es' | 'en', slug = '') {
+  if (!slug) return lang === 'en' ? '/en/' : '/'
+  return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
 }
 
 export default function StudioHeader() {
@@ -13,46 +36,67 @@ export default function StudioHeader() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 20)
+    const onScroll = () => setSolid(window.scrollY > 18)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const links = [
-    { href: '#studio', label: c.studio },
-    { href: '#capabilities', label: c.capabilities },
-    { href: '#fit', label: c.fit },
-  ]
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    const onKey = (event: KeyboardEvent) => event.key === 'Escape' && setOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
 
   return (
-    <header className="v5-header" data-solid={solid || open}>
-      <a href={lang === 'en' ? '/en/' : '/'} className="v5-brand" aria-label="Archic">
-        <img src="/brand/archic-lockup-light.svg" alt="" width={981} height={174} />
-      </a>
+    <>
+      <header className="as-header" data-solid={solid || open}>
+        <a href={path(lang)} className="as-brand" aria-label="Archic home">
+          <img src="/brand/archic-lockup-light.svg" alt="Archic" width={981} height={174} />
+        </a>
 
-      <nav className="v5-nav" aria-label={t.a11y.mainNav}>
-        {links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
-      </nav>
-
-      <div className="v5-header-actions">
-        <div className="v5-lang" role="group" aria-label={t.footer.langLabel}>
-          <button type="button" aria-pressed={lang === 'es'} onClick={() => setLang('es')}>ES</button>
-          <span>/</span>
-          <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
+        <div className="as-header-actions">
+          <div className="as-lang" role="group" aria-label={t.footer.langLabel}>
+            <button type="button" aria-pressed={lang === 'es'} onClick={() => setLang('es')}>ES</button>
+            <span>/</span>
+            <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
+          </div>
+          <a className="as-project-link" href={path(lang, 'contact')}>{c.project}<span>↗</span></a>
+          <button
+            type="button"
+            className="as-menu-button"
+            aria-label={open ? c.close : c.menu}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span>{open ? c.close : c.menu}</span>
+            <i><b /><b /></i>
+          </button>
         </div>
-        <a className="v5-header-cta" href="#contact">{c.cta}</a>
-        <button type="button" className="v5-menu" aria-label={open ? t.a11y.closeMenu : t.a11y.openMenu} aria-expanded={open} onClick={() => setOpen((value) => !value)}>
-          <span /><span />
-        </button>
-      </div>
+      </header>
 
-      {open && (
-        <nav className="v5-mobile-nav" aria-label={t.a11y.mainNav}>
-          {links.map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
-          <a href="#contact" onClick={() => setOpen(false)}>{c.cta}</a>
-        </nav>
-      )}
-    </header>
+      <div className="as-menu-panel" data-open={open} aria-hidden={!open}>
+        <div className="as-menu-inner">
+          <div className="as-menu-meta">
+            <span>ARCHIC / DIGITAL SYSTEMS</span>
+            <span>ES · EN</span>
+          </div>
+          <nav aria-label={t.a11y.mainNav}>
+            {c.pages.map(([name, desc, slug], index) => (
+              <a href={path(lang, slug)} key={slug} onClick={() => setOpen(false)}>
+                <span>0{index + 1}</span>
+                <strong>{name}</strong>
+                <small>{desc}</small>
+                <i>↗</i>
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </>
   )
 }
