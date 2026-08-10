@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
+import StudioExperience from '../components/StudioExperience'
 import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
@@ -25,9 +26,9 @@ const COPY = {
       eyebrow: 'THREE LAYERS / ONE STANDARD',
       title: 'Una empresa. Tres capas digitales.',
       body: 'Empieza por la necesidad que más valor pueda crear hoy. La arquitectura está pensada para que el resto pueda crecer después sin perder coherencia.',
-      presence: ['ARCHIC PRESENCE', 'Lo que el mundo ve.', 'Dirección digital, web, contenido y conversión.'],
-      control: ['ARCHIC CONTROL', 'Lo que hace funcionar el día a día.', 'Clientes, reservas, recursos y operaciones en un entorno privado.'],
-      business: ['ARCHIC BUSINESS', 'Lo que te permite hacer más.', 'Software a medida, automatización, integraciones y datos.'],
+      presence: ['ARCHIC PRESENCE', 'Lo que el mundo ve.', 'Dirección digital, web, contenido y conversión.', 'DIRECTION / EXPERIENCE / CONVERSION'],
+      control: ['ARCHIC CONTROL', 'Lo que hace funcionar el día a día.', 'Clientes, reservas, recursos y operaciones en un entorno privado.', 'CLIENTS / BOOKINGS / OPERATIONS'],
+      business: ['ARCHIC BUSINESS', 'Lo que te permite hacer más.', 'Software a medida, automatización, integraciones y datos.', 'SOFTWARE / AUTOMATION / DATA'],
       explore: 'Explorar',
     },
     standard: {
@@ -69,9 +70,9 @@ const COPY = {
       eyebrow: 'THREE LAYERS / ONE STANDARD',
       title: 'One company. Three digital layers.',
       body: 'Start with the need that can create the most value today. The architecture is designed so the rest can grow later without losing coherence.',
-      presence: ['ARCHIC PRESENCE', 'What the world sees.', 'Digital direction, web, content and conversion.'],
-      control: ['ARCHIC CONTROL', 'What makes daily work run.', 'Customers, bookings, resources and operations in a private environment.'],
-      business: ['ARCHIC BUSINESS', 'What lets you do more.', 'Custom software, automation, integrations and data.'],
+      presence: ['ARCHIC PRESENCE', 'What the world sees.', 'Digital direction, web, content and conversion.', 'DIRECTION / EXPERIENCE / CONVERSION'],
+      control: ['ARCHIC CONTROL', 'What makes daily work run.', 'Customers, bookings, resources and operations in a private environment.', 'CLIENTS / BOOKINGS / OPERATIONS'],
+      business: ['ARCHIC BUSINESS', 'What lets you do more.', 'Custom software, automation, integrations and data.', 'SOFTWARE / AUTOMATION / DATA'],
       explore: 'Explore',
     },
     standard: {
@@ -126,10 +127,11 @@ export default function ArchicHome() {
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
+      <StudioExperience />
       <StudioHeader />
 
       <section className="as-home-hero" id="home">
-        <div className="as-home-hero-copy">
+        <div className="as-home-hero-copy" data-reveal="hero">
           <p className="as-kicker">{c.hero.eyebrow}</p>
           <h1>{c.hero.title}<br /><em>{c.hero.accent}</em></h1>
           <p>{c.hero.body}</p>
@@ -142,12 +144,12 @@ export default function ArchicHome() {
           </div>
         </div>
         <div className="as-home-hero-index" aria-hidden="true">
-          <span>01</span><i /><strong>ARCHIC / 2026</strong>
+          <span>01 — 03</span><i /><strong>PRESENCE<br />CONTROL<br />BUSINESS</strong>
         </div>
       </section>
 
       <section className="as-products">
-        <div className="as-products-head">
+        <div className="as-products-head" data-reveal>
           <div>
             <p className="as-kicker">{c.chapters.eyebrow}</p>
             <h2>{c.chapters.title}</h2>
@@ -157,10 +159,11 @@ export default function ArchicHome() {
 
         <div className="as-products-grid">
           {products.map((product, index) => (
-            <a className={`as-product ${product.className}`} href={path(lang, product.key)} key={product.key}>
+            <a className={`as-product ${product.className}`} href={path(lang, product.key)} key={product.key} data-reveal>
               {product.key === 'presence' && <img src={PRESENCE_IMAGE} alt="" loading="lazy" decoding="async" />}
               <div className="as-product-shade" />
               <div className="as-product-no">0{index + 1}</div>
+              <div className="as-product-detail" aria-hidden="true">{product.copy[3]}</div>
               <div className="as-product-copy">
                 <span>{product.copy[0]}</span>
                 <h3>{product.copy[1]}</h3>
@@ -173,32 +176,36 @@ export default function ArchicHome() {
       </section>
 
       <section className="as-home-standard">
-        <p className="as-kicker">{c.standard.eyebrow}</p>
-        <h2>{c.standard.title}<br /><em>{c.standard.accent}</em></h2>
-        <p>{c.standard.body}</p>
+        <div className="as-standard-inner" data-reveal>
+          <p className="as-kicker">{c.standard.eyebrow}</p>
+          <h2>{c.standard.title}<br /><em>{c.standard.accent}</em></h2>
+          <p>{c.standard.body}</p>
+        </div>
       </section>
 
       <section className="as-home-fit">
-        <div>
+        <div data-reveal>
           <p className="as-kicker">{c.fit.eyebrow}</p>
           <h2>{c.fit.title}<br /><em>{c.fit.accent}</em></h2>
         </div>
-        <div>
+        <div data-reveal>
           <p>{c.fit.body}</p>
           <a className="as-text-link as-text-link-dark" href={path(lang, 'studio')}>{c.fit.studio}<span>↗</span></a>
         </div>
       </section>
 
       <section className="as-home-close">
-        <p className="as-kicker">{c.close.eyebrow}</p>
-        <h2>{c.close.title}<br /><em>{c.close.accent}</em></h2>
-        <p>{c.close.body}</p>
-        <div className="as-close-actions">
-          <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.close.cta}<span>↗</span></a>
-          <a className="as-call-cta as-call-cta-centered" href={`tel:${CONTACT_PHONE}`}>
-            <span>{c.close.call}</span>
-            <strong>{CONTACT_PHONE_DISPLAY}</strong>
-          </a>
+        <div className="as-close-inner" data-reveal>
+          <p className="as-kicker">{c.close.eyebrow}</p>
+          <h2>{c.close.title}<br /><em>{c.close.accent}</em></h2>
+          <p>{c.close.body}</p>
+          <div className="as-close-actions">
+            <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.close.cta}<span>↗</span></a>
+            <a className="as-call-cta as-call-cta-centered" href={`tel:${CONTACT_PHONE}`}>
+              <span>{c.close.call}</span>
+              <strong>{CONTACT_PHONE_DISPLAY}</strong>
+            </a>
+          </div>
         </div>
       </section>
 
