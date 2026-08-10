@@ -11,7 +11,7 @@ const dirsIn = (base: string) =>
     : []
 
 const LANDING_DIRS = dirsIn(__dirname).filter((name) =>
-  /^(diseno-web-|mantenimiento-web|desarrollo-web-)/.test(name),
+  /^(diseno-web-|mantenimiento-web|desarrollo-web-|software-|crm-|precio-software-)/.test(name),
 )
 
 const GUIDE_DIRS = dirsIn(resolve(__dirname, 'guias')).map((name) => `guias/${name}`)
