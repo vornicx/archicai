@@ -907,3 +907,12 @@
     transform: none;
   }
 }
+
+/* En móvil el pie del hero solo necesita el indicador de sección. */
+@media (max-width: 640px) {
+  .sx-hero-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
