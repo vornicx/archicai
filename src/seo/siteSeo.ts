@@ -1,7 +1,7 @@
 import { CONTACT_PHONE } from '../config/contact'
 import { CONTACT_MAIL, type Lang } from '../i18n/content'
 
-const ORIGIN = 'https://archic.es'
+export const SITE_ORIGIN = 'https://archic.es'
 const OG_VERSION = 'v=3'
 
 export type SitePageKey = 'presence' | 'control' | 'business' | 'studio' | 'contact'
@@ -12,6 +12,21 @@ type SeoEntry = {
   ogAlt: string
   schemaName: string
   serviceType?: string
+}
+
+export const HOME_SEO: Record<Lang, SeoEntry> = {
+  es: {
+    title: 'Diseño web premium y software a medida para empresas | Archic',
+    description: 'Diseñamos webs premium, sistemas de gestión y software a medida para empresas que compiten por experiencia, eficiencia y percepción de marca.',
+    ogAlt: 'Archic — diseño web premium, sistemas y software a medida',
+    schemaName: 'Archic',
+  },
+  en: {
+    title: 'Premium web design and custom software for businesses | Archic',
+    description: 'Premium websites, business management systems and custom software for companies competing on experience, efficiency and brand perception.',
+    ogAlt: 'Archic — premium web design, systems and custom software',
+    schemaName: 'Archic',
+  },
 }
 
 export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
@@ -88,62 +103,61 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
 }
 
 export function sitePageCanonical(lang: Lang, page: SitePageKey) {
-  return `${ORIGIN}${lang === 'en' ? '/en' : ''}/${page}/`
+  return `${SITE_ORIGIN}${lang === 'en' ? '/en' : ''}/${page}/`
 }
 
 export function sitePageAlternates(page: SitePageKey) {
   return {
-    es: `${ORIGIN}/${page}/`,
-    en: `${ORIGIN}/en/${page}/`,
-    xDefault: `${ORIGIN}/${page}/`,
+    es: `${SITE_ORIGIN}/${page}/`,
+    en: `${SITE_ORIGIN}/en/${page}/`,
+    xDefault: `${SITE_ORIGIN}/${page}/`,
   }
 }
 
 export function siteOgImage(lang: Lang) {
-  return `${ORIGIN}/${lang === 'en' ? 'og-image-en.png' : 'og-image.png'}?${OG_VERSION}`
+  return `${SITE_ORIGIN}/${lang === 'en' ? 'og-image-en.png' : 'og-image.png'}?${OG_VERSION}`
 }
 
-function organizationNode() {
+export function organizationNode() {
   return {
     '@type': 'Organization',
-    '@id': `${ORIGIN}/#organization`,
+    '@id': `${SITE_ORIGIN}/#organization`,
     name: 'Archic',
-    url: `${ORIGIN}/`,
+    url: `${SITE_ORIGIN}/`,
     logo: {
       '@type': 'ImageObject',
-      url: `${ORIGIN}/archic-mark-512.png`,
+      url: `${SITE_ORIGIN}/archic-mark-512.png`,
+      contentUrl: `${SITE_ORIGIN}/archic-mark-512.png`,
       width: 512,
       height: 512,
     },
+    image: `${SITE_ORIGIN}/og-image.png?${OG_VERSION}`,
     email: CONTACT_MAIL,
     telephone: CONTACT_PHONE,
     areaServed: { '@type': 'Country', name: 'Spain' },
     knowsLanguage: ['es', 'en'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: CONTACT_PHONE,
+      email: CONTACT_MAIL,
+      contactType: 'sales',
+      availableLanguage: ['Spanish', 'English'],
+    },
   }
 }
 
 export function buildSitePageGraph(page: SitePageKey, lang: Lang) {
   const seo = SITE_PAGE_SEO[lang][page]
   const canonical = sitePageCanonical(lang, page)
-  const home = lang === 'en' ? `${ORIGIN}/en/` : `${ORIGIN}/`
+  const home = lang === 'en' ? `${SITE_ORIGIN}/en/` : `${SITE_ORIGIN}/`
   const organization = organizationNode()
 
   const breadcrumb = {
     '@type': 'BreadcrumbList',
     '@id': `${canonical}#breadcrumb`,
     itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: lang === 'es' ? 'Inicio' : 'Home',
-        item: home,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: seo.schemaName,
-        item: canonical,
-      },
+      { '@type': 'ListItem', position: 1, name: lang === 'es' ? 'Inicio' : 'Home', item: home },
+      { '@type': 'ListItem', position: 2, name: seo.schemaName, item: canonical },
     ],
   }
 
@@ -154,8 +168,8 @@ export function buildSitePageGraph(page: SitePageKey, lang: Lang) {
     name: seo.title,
     description: seo.description,
     inLanguage: lang,
-    isPartOf: { '@id': `${ORIGIN}/#website` },
-    about: { '@id': `${ORIGIN}/#organization` },
+    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+    about: { '@id': `${SITE_ORIGIN}/#organization` },
     breadcrumb: { '@id': `${canonical}#breadcrumb` },
     primaryImageOfPage: {
       '@type': 'ImageObject',
@@ -173,7 +187,7 @@ export function buildSitePageGraph(page: SitePageKey, lang: Lang) {
         serviceType: seo.serviceType,
         description: seo.description,
         url: canonical,
-        provider: { '@id': `${ORIGIN}/#organization` },
+        provider: { '@id': `${SITE_ORIGIN}/#organization` },
         areaServed: { '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' },
         availableLanguage: ['es', 'en'],
       }
