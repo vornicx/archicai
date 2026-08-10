@@ -1,348 +1,218 @@
+import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_MAIL } from '../i18n/content'
-import SiteHeader from '../components/SiteHeader'
-import SiteFooter from '../components/SiteFooter'
-import ContactForm from '../components/ContactForm'
-
-import heroImage from '../assets/hero-archic.webp'
-import { SERVICE_PAGES } from '../seo/servicePages'
-import { LOCAL_PAGES } from '../seo/localPages'
-import { LOCAL_BUSINESS } from '../seo/localBusiness'
+import StudioHeader from '../components/StudioHeader'
+import StudioFooter from '../components/StudioFooter'
+import StudioContact from '../components/StudioContact'
+import { STUDIO } from '../content/studio'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
-import { useRevealOnScroll } from '../useReveal'
-import { ArchRule, archPath, STROKE } from '../art/primitives'
-import { SERVICE_GLYPHS } from '../art/ServiceGlyph'
-import { PROJECT_ART } from '../art/ProjectArt'
-import ProcessArc from '../art/ProcessArc'
 
-/** Cada bloque de servicio de la home apunta a su landing especializada. */
-const SERVICE_LANDINGS: Record<string, string> = {
-  web: '/diseno-web-para-empresas/',
-  mantenimiento: '/mantenimiento-web/',
-  software: '/desarrollo-web-a-medida/',
+import heroImage from '../assets/hero-marbella.jpg'
+import workBocana from '../assets/work-bocana.jpg'
+import workAutomotive from '../assets/work-automotive.jpg'
+import workRealestate from '../assets/work-realestate.jpg'
+
+const PROJECT_IMAGES = {
+  bocana: workBocana,
+  automotive: workAutomotive,
+  realestate: workRealestate,
+} as const
+
+/** Revelado al hacer scroll: una sola observación por elemento, sin librerías. */
+function useReveal() {
+  useEffect(() => {
+    const nodes = Array.from(document.querySelectorAll('[data-sx-reveal]'))
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach((n) => n.classList.add('is-in'))
+      return
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('is-in')
+          io.unobserve(entry.target)
+        })
+      },
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.12 },
+    )
+    nodes.forEach((n) => io.observe(n))
+    return () => io.disconnect()
+  }, [])
 }
 
-
 export default function ArchicHome() {
-  const { t, lang } = useLang()
-  useRevealOnScroll()
+  const { lang } = useLang()
+  const s = STUDIO[lang]
   const canonicalUrl = homeCanonical(lang)
   const structuredData = buildHomeGraph(lang)
+  const [openLayer, setOpenLayer] = useState(0)
+  const mainRef = useRef<HTMLDivElement>(null)
+  useReveal()
 
   return (
     <>
       <Helmet htmlAttributes={{ lang }}>
-        <title>{t.meta.title}</title>
-        <meta name="description" content={t.meta.description} />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <title>{s.meta.title}</title>
+        <meta name="description" content={s.meta.description} />
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
         <link rel="canonical" href={canonicalUrl} />
         <link rel="alternate" hrefLang="es" href="https://archic.es/" />
         <link rel="alternate" hrefLang="en" href="https://archic.es/en/" />
         <link rel="alternate" hrefLang="x-default" href="https://archic.es/" />
-        <meta property="og:title" content={t.meta.ogTitle} />
-        <meta property="og:description" content={t.meta.ogDescription} />
+        <meta property="og:title" content={s.meta.ogTitle} />
+        <meta property="og:description" content={s.meta.ogDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic" />
         <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
         <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
-        <meta property="og:image" content={`https://archic.es/${t.meta.ogImage}`} />
-        <meta property="og:image:secure_url" content={`https://archic.es/${t.meta.ogImage}`} />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={t.meta.ogImageAlt} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@ArchicHQ" />
-        <meta name="twitter:title" content={t.meta.ogTitle} />
-        <meta name="twitter:description" content={t.meta.ogDescription} />
-        <meta name="twitter:image" content={`https://archic.es/${t.meta.ogImage}`} />
-        <meta name="twitter:image:alt" content={t.meta.ogImageAlt} />
+        <meta name="twitter:title" content={s.meta.ogTitle} />
+        <meta name="twitter:description" content={s.meta.ogDescription} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
+      <div className="sx" ref={mainRef} id="top">
+        <StudioHeader />
 
-      <div id="top">
-        <SiteHeader />
-
-        {/* HERO */}
-        <section className="ar-hero">
-          <div className="ar-container ar-hero-grid">
-            <div>
-              <h1 className="ar-hero-title">{t.hero.title}</h1>
-              <p className="ar-hero-sub">{t.hero.subtitle}</p>
-              <div className="ar-hero-ctas">
-                <a href="#contacto" className="ar-btn ar-btn-primary">
-                  {t.hero.ctaPrimary}
-                </a>
-                <a href="#servicios" className="ar-btn ar-btn-ghost">
-                  {t.hero.ctaSecondary}
-                </a>
-              </div>
-              <p className="ar-hero-note">{t.hero.note}</p>
-            </div>
-
-            {/* La fotografía se apoya sobre un arco dibujado que la desborda:
-                es el motivo que da nombre a la marca, y evita que la imagen
-                quede como un rectángulo pegado al lado del texto. */}
-            <div className="ar-hero-media">
-              <svg className="ar-hero-arch" viewBox="0 0 320 400" aria-hidden="true" focusable="false" fill="none">
-                <path d={archPath(10, 10, 300, 380)} stroke="var(--gold)" strokeWidth={STROKE * 1.5} opacity="0.55" />
-                <path d={archPath(38, 38, 244, 352)} stroke="var(--gold)" strokeWidth={STROKE} opacity="0.28" />
-              </svg>
-              <div className="ar-hero-photo">
-                <img
-                  src={heroImage}
-                  alt={t.hero.imageAlt}
-                  width={1200}
-                  height={829}
-                  {...{ fetchpriority: 'high' }}
-                  decoding="async"
-                />
-              </div>
-            </div>
+        {/* 01 — HERO */}
+        <section className="sx-hero">
+          <div className="sx-hero-media">
+            <img
+              src={heroImage}
+              alt={s.hero.imageAlt}
+              width={1920}
+              height={1200}
+              {...{ fetchpriority: 'high' }}
+              decoding="async"
+            />
           </div>
-        </section>
-
-        {/* DATOS COMPROBABLES — credibilidad antes que catálogo */}
-        <section className="ar-section ar-facts-section">
-          <div className="ar-container">
-            <div className="ar-sec-head">
-              <p className="ar-eyebrow">{t.facts.eyebrow}</p>
-              <h2 className="ar-h2">{t.facts.title}</h2>
-              <p className="ar-lead">{t.facts.lead}</p>
-            </div>
-            <dl className="ar-facts">
-              {t.facts.items.map((fact) => (
-                <div key={fact.label} className="ar-fact" data-reveal="out">
-                  <dt>
-                    <span className="ar-fact-value">{fact.value}</span>
-                    <span className="ar-fact-label">{fact.label}</span>
-                  </dt>
-                  <dd>{fact.desc}</dd>
-                </div>
+          <div className="sx-hero-veil" aria-hidden="true" />
+          <div className="sx-wrap sx-hero-inner">
+            <p className="sx-label" style={{ color: 'rgba(244,241,236,0.62)' }}>
+              {s.hero.label}
+            </p>
+            <h1 className="sx-display sx-h1 sx-hero-title">
+              {s.hero.title.map((line) => (
+                <span key={line}>{line}</span>
               ))}
-            </dl>
+            </h1>
+            <div className="sx-hero-grid">
+              <p className="sx-hero-lead">{s.hero.lead}</p>
+              <div className="sx-hero-ctas">
+                <a className="sx-btn sx-btn-solid" href="#contact">
+                  {s.hero.ctaPrimary}
+                  <span className="sx-btn-arrow" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+                <a className="sx-btn sx-btn-line" href="#work">
+                  {s.hero.ctaSecondary}
+                </a>
+              </div>
+            </div>
+            <div className="sx-hero-foot">
+              <p className="sx-label">{s.hero.scrollHint}</p>
+              <p className="sx-label">{s.footer.base}</p>
+            </div>
           </div>
         </section>
 
-        {/* SERVICIOS */}
-        <section id="servicios" className="ar-section ar-section-alt">
-          <div className="ar-container">
-            <div className="ar-sec-head">
-              <p className="ar-eyebrow">{t.servicesIntro.eyebrow}</p>
-              <h2 className="ar-h2">{t.servicesIntro.title}</h2>
-              <p className="ar-lead">{t.servicesIntro.lead}</p>
+        {/* 02 — SELECTED WORK */}
+        <section id="work" className="sx-section" style={{ scrollMarginTop: 72 }}>
+          <div className="sx-wrap">
+            <div className="sx-head">
+              <div className="sx-head-rule">
+                <p className="sx-label sx-label-accent">{s.work.label}</p>
+                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
+                  {s.work.title}
+                </h2>
+              </div>
+              <p className="sx-lead">{s.work.lead}</p>
             </div>
 
-            <div className="ar-services">
-              {t.services.map((service) => {
-                const Glyph = SERVICE_GLYPHS[service.id]
-                return (
-                  <article
-                    key={service.id}
-                    id={service.id}
-                    className="ar-service"
-                    style={{ scrollMarginTop: '90px' }}
-                    data-reveal="out"
-                  >
-                    <div className="ar-service-head">
-                      {Glyph && <Glyph className="ar-service-glyph" />}
-                      <span className="ar-service-num">{service.eyebrow}</span>
-                    </div>
-                    <h3 className="ar-service-title">{service.title}</h3>
-                    <p className="ar-service-intro">{service.intro}</p>
-                    <ul className="ar-list">
-                      {service.items.map((item) => (
-                        <li key={item}>{item}</li>
+            <div className="sx-projects">
+              {s.projects.map((project) => (
+                <article key={project.name} className="sx-project" data-sx-reveal>
+                  <div className="sx-project-media">
+                    <img
+                      src={PROJECT_IMAGES[project.image]}
+                      alt={project.imageAlt}
+                      width={1600}
+                      height={1200}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div>
+                    <span className="sx-project-index">{project.index}</span>
+                    <h3 className="sx-display sx-h3 sx-project-name">{project.name}</h3>
+                    <p className="sx-project-sector">{project.sector}</p>
+                    <p className="sx-project-headline">{project.headline}</p>
+                    <div className="sx-scope">
+                      <span aria-hidden="true">{s.work.scopeLabel}</span>
+                      {project.scope.map((item) => (
+                        <span key={item}>{item}</span>
                       ))}
-                    </ul>
-                    {/* Enlace interno a la landing con la intención de búsqueda
-                        correspondiente: reparte autoridad desde la home. */}
-                    {SERVICE_LANDINGS[service.id] && (
-                      <a className="ar-service-link" href={SERVICE_LANDINGS[service.id]}>
-                        {lang === 'es' ? 'Ver servicio →' : 'View service →'}
-                      </a>
-                    )}
-                  </article>
-                )
-              })}
-            </div>
-
-            <div className="ar-chips" style={{ marginTop: 28 }}>
-              {SERVICE_PAGES.map((page) => (
-                <a key={page.path} href={page.path} className="ar-chip ar-chip-link">
-                  {page.breadcrumb}
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CÓMO TRABAJAMOS */}
-        <section className="ar-section">
-          <div className="ar-container">
-            <div className="ar-sec-head">
-              <p className="ar-eyebrow">{t.value.eyebrow}</p>
-              <h2 className="ar-h2">{t.value.title}</h2>
-              <p className="ar-lead">{t.value.lead}</p>
-            </div>
-            <div className="ar-grid-2">
-              {t.value.principles.map((p) => (
-                <div key={p.title} className="ar-tile" data-reveal="out">
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PROCESO */}
-        <section className="ar-section ar-section-alt">
-          <div className="ar-container">
-            <div className="ar-sec-head">
-              <p className="ar-eyebrow">{t.process.eyebrow}</p>
-              <h2 className="ar-h2">{t.process.title}</h2>
-              <p className="ar-lead">{t.process.lead}</p>
-            </div>
-            <ProcessArc steps={t.process.steps.length} className="ar-process-figure" />
-            <ol className="ar-steps">
-              {t.process.steps.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* CLIENTES */}
-        <section className="ar-section">
-          <div className="ar-container">
-            <div className="ar-sec-head">
-              <p className="ar-eyebrow">{t.clients.eyebrow}</p>
-              <h2 className="ar-h2">{t.clients.title}</h2>
-              <p className="ar-lead">{t.clients.lead}</p>
-            </div>
-            <div className="ar-chips">
-              {t.clients.items.map((item) => (
-                <span key={item} className="ar-chip">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PROYECTOS */}
-        <section id="proyectos" className="ar-section ar-section-alt" style={{ scrollMarginTop: '70px' }}>
-          <div className="ar-container">
-            <div className="ar-sec-head">
-              <p className="ar-eyebrow">{t.projects.eyebrow}</p>
-              <h2 className="ar-h2">{t.projects.title}</h2>
-              <p className="ar-lead">{t.projects.lead}</p>
-            </div>
-            <div className="ar-projects">
-              {t.projects.items.map((p, i) => {
-                const Art = PROJECT_ART[i]
-                /* La primera pieza ocupa el doble de ancho: rompe la retícula y
-                   da una entrada clara a la sección. */
-                return (
-                  <article
-                    key={p.title}
-                    className={`ar-project ${i === 0 ? 'ar-project-wide' : ''}`}
-                    data-reveal="out"
-                  >
-                    <div className="ar-project-art">{Art && <Art />}</div>
-                    <div className="ar-project-body">
-                      <div className="ar-project-top">
-                        <span className="ar-note">{t.projects.conceptLabel}</span>
-                        <span className="ar-tag">{p.tag}</span>
-                      </div>
-                      <h3>{p.title}</h3>
-                      <p>{p.desc}</p>
                     </div>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* SOBRE ARCHIC */}
-        <section id="sobre" className="ar-section" style={{ scrollMarginTop: '70px' }}>
-          <div className="ar-container">
-            <div className="ar-about-grid">
-              <div>
-                <p className="ar-eyebrow">{t.about.eyebrow}</p>
-                <h2 className="ar-h2">{t.about.title}</h2>
-                {t.about.body.map((paragraph) => (
-                  <p key={paragraph} className="ar-lead" style={{ marginTop: 14 }}>
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-
-              {/* Definición autocontenida. Está aquí por dos motivos: para quien
-                  llega sin contexto, y porque es el párrafo que un asistente de
-                  IA puede citar entero sin tener que resumir la página. */}
-              <aside className="ar-answer" aria-labelledby="ar-answer-q">
-                <ArchRule className="ar-answer-rule" />
-                <h3 id="ar-answer-q" className="ar-answer-q">
-                  {t.answer.question}
-                </h3>
-                <p className="ar-answer-body">{t.answer.body}</p>
-              </aside>
-            </div>
-          </div>
-        </section>
-
-        {/* PREGUNTAS FRECUENTES */}
-        <section id="faq" className="ar-section ar-section-alt" style={{ scrollMarginTop: '70px' }}>
-          <div className="ar-container">
-            <div className="ar-sec-head">
-              <p className="ar-eyebrow">{t.homeFaq.eyebrow}</p>
-              <h2 className="ar-h2">{t.homeFaq.title}</h2>
-              <p className="ar-lead">{t.homeFaq.lead}</p>
-            </div>
-            <div className="ar-faq">
-              {t.homeFaq.items.map((item) => (
-                <details key={item.q} className="ar-faq-item">
-                  <summary>
-                    <h3>{item.q}</h3>
-                  </summary>
-                  <p>{item.a}</p>
-                </details>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ARCHIC LABS */}
-        <section id="labs" className="ar-section ar-labs" style={{ scrollMarginTop: '70px' }}>
-          <div className="ar-container">
-            <div className="ar-sec-head">
-              <p className="ar-eyebrow">{t.labs.eyebrow}</p>
-              <h2 className="ar-h2">{t.labs.title}</h2>
-              <p className="ar-lead">{t.labs.lead}</p>
+        {/* 03 — WHAT WE BUILD */}
+        <section id="build" className="sx-section sx-dark" style={{ scrollMarginTop: 72 }}>
+          <div className="sx-wrap">
+            <div className="sx-head">
+              <div className="sx-head-rule">
+                <p className="sx-label sx-label-accent">{s.build.label}</p>
+                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
+                  {s.build.title}
+                </h2>
+              </div>
+              <p className="sx-lead">{s.build.lead}</p>
             </div>
-            <div className="ar-lab-grid">
-              {t.labs.items.map((item) => {
-                const inner = (
-                  <>
-                    <h3>{item.name}</h3>
-                    <p>{item.desc}</p>
-                    <span className="ar-lab-status">{item.status}</span>
-                  </>
-                )
-                return item.href ? (
-                  <a key={item.name} href={item.href} target="_blank" rel="noreferrer" className="ar-lab">
-                    {inner}
-                  </a>
-                ) : (
-                  <div key={item.name} className="ar-lab">
-                    {inner}
+
+            <div className="sx-layers">
+              {s.build.layers.map((layer, i) => {
+                const open = openLayer === i
+                return (
+                  <div key={layer.name} className="sx-layer" data-open={open}>
+                    <h3 style={{ margin: 0 }}>
+                      <button
+                        type="button"
+                        className="sx-layer-btn"
+                        aria-expanded={open}
+                        aria-controls={`sx-layer-${i}`}
+                        onClick={() => setOpenLayer(open ? -1 : i)}
+                      >
+                        <span className="sx-layer-code">{layer.code}</span>
+                        <span>
+                          <span className="sx-layer-name">Archic {layer.name}</span>
+                          <span className="sx-layer-claim">{layer.claim}</span>
+                        </span>
+                        <span className="sx-layer-plus" aria-hidden="true" />
+                      </button>
+                    </h3>
+                    <div className="sx-layer-panel" id={`sx-layer-${i}`} role="region">
+                      <div>
+                        <div className="sx-layer-body">
+                          <p>{layer.desc}</p>
+                          <ul className="sx-layer-items">
+                            {layer.items.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )
               })}
@@ -350,57 +220,110 @@ export default function ArchicHome() {
           </div>
         </section>
 
-        {/* ZONA DE ACTUACIÓN — enlaza a las landings locales desde la home */}
-        <section id="zonas" className="ar-section" style={{ scrollMarginTop: '70px' }}>
-          <div className="ar-container">
-            <div className="ar-sec-head">
-              <p className="ar-eyebrow">{lang === 'es' ? 'Zona de actuación' : 'Where we work'}</p>
-              <h2 className="ar-h2">
-                {lang === 'es'
-                  ? `Estudio en ${LOCAL_BUSINESS.city}, provincia de ${LOCAL_BUSINESS.province}`
-                  : `Studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province} (Spain)`}
-              </h2>
-              <p className="ar-lead">
-                {lang === 'es'
-                  ? 'Trabajamos de forma presencial con empresas y autónomos de Écija, la Campiña y Sevilla capital, y en remoto con el resto de España.'
-                  : 'We work on-site with companies across Écija, the Campiña area and Seville, and remotely with the rest of Spain.'}
-              </p>
+        {/* 04 — CASE STUDY */}
+        <section className="sx-section sx-case">
+          <div className="sx-wrap">
+            <div className="sx-head">
+              <div className="sx-head-rule">
+                <p className="sx-label sx-label-accent">{s.caseStudy.label}</p>
+                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
+                  {s.caseStudy.title}
+                </h2>
+              </div>
+              <p className="sx-lead">{s.caseStudy.lead}</p>
             </div>
-            <div className="ar-chips">
-              {LOCAL_PAGES.map((page) => (
-                <a key={page.path} href={page.path} className="ar-chip ar-chip-link">
-                  {page.breadcrumb}
-                </a>
+
+            <div className="sx-stages" data-sx-reveal>
+              {s.caseStudy.stages.map((stage) => (
+                <div key={stage.step} className="sx-stage">
+                  <span className="sx-stage-step">{stage.step}</span>
+                  <h3>{stage.title}</h3>
+                  <p>{stage.desc}</p>
+                </div>
               ))}
             </div>
-            <p className="ar-hero-note" style={{ marginTop: 18 }}>
-              {LOCAL_BUSINESS.city} · {LOCAL_BUSINESS.postalCode} · {LOCAL_BUSINESS.province} ·{' '}
-              {LOCAL_BUSINESS.region}
-            </p>
+            <p className="sx-case-note">{s.caseStudy.note}</p>
           </div>
         </section>
 
-        {/* CONTACTO */}
-        <section id="contacto" className="ar-section ar-section-alt" style={{ scrollMarginTop: '70px' }}>
-          <div className="ar-container">
-            <div className="ar-contact-grid">
-              <div>
-                <p className="ar-eyebrow">{t.contact.eyebrow}</p>
-                <h2 className="ar-h2">{t.contact.title}</h2>
-                <p className="ar-lead">{t.contact.lead}</p>
-                <p className="ar-lead" style={{ marginTop: 20 }}>
-                  {t.contact.directLabel}{' '}
-                  <a href={`mailto:${CONTACT_MAIL}`} className="ar-inline-link">
-                    {CONTACT_MAIL}
-                  </a>
-                </p>
+        {/* 05 — SECTORS */}
+        <section id="sectors" className="sx-section" style={{ scrollMarginTop: 72 }}>
+          <div className="sx-wrap">
+            <div className="sx-head">
+              <div className="sx-head-rule">
+                <p className="sx-label sx-label-accent">{s.sectors.label}</p>
+                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
+                  {s.sectors.title}
+                </h2>
               </div>
-              <ContactForm />
+              <p className="sx-lead">{s.sectors.lead}</p>
+            </div>
+
+            <div className="sx-sectors">
+              {s.sectors.items.map((item) => (
+                <div key={item.name} className="sx-sector" data-sx-reveal>
+                  <h3>{item.name}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <SiteFooter />
+        {/* 06 — METHOD */}
+        <section id="method" className="sx-section sx-dark" style={{ scrollMarginTop: 72 }}>
+          <div className="sx-wrap">
+            <div className="sx-head">
+              <div className="sx-head-rule">
+                <p className="sx-label sx-label-accent">{s.method.label}</p>
+                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
+                  {s.method.title}
+                </h2>
+              </div>
+              <p className="sx-lead">{s.method.lead}</p>
+            </div>
+
+            <div className="sx-method">
+              {s.method.steps.map((step) => (
+                <div key={step.step} className="sx-step" data-sx-reveal>
+                  <span className="sx-step-num">{step.step}</span>
+                  <h3>{step.name}</h3>
+                  <p>{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 07 — CONTACT */}
+        <section
+          id="contact"
+          className="sx-section sx-dark"
+          style={{ scrollMarginTop: 72, paddingTop: 0 }}
+        >
+          <div className="sx-wrap">
+            <div className="sx-contact-grid">
+              <div>
+                <p className="sx-label sx-label-accent">{s.cta.label}</p>
+                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
+                  {s.cta.title}
+                </h2>
+                <p className="sx-lead" style={{ marginTop: 18 }}>
+                  {s.cta.lead}
+                </p>
+                <p className="sx-label" style={{ marginTop: 34 }}>
+                  {s.cta.mailLabel}
+                </p>
+                <a className="sx-mail" href={`mailto:${CONTACT_MAIL}`}>
+                  {CONTACT_MAIL}
+                </a>
+              </div>
+              <StudioContact />
+            </div>
+          </div>
+        </section>
+
+        <StudioFooter />
       </div>
     </>
   )
