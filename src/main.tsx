@@ -17,6 +17,7 @@ import './styles/studio.css'
 import './styles/archic-v5.css'
 import './styles/archic-v5-type.css'
 import './styles/archic-v6.css'
+import './styles/archic-v7-intent.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
