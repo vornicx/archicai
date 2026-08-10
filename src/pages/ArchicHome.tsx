@@ -1,174 +1,187 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_MAIL } from '../i18n/content'
 import StudioHeader from '../components/StudioHeader'
+import StudioFooter from '../components/StudioFooter'
+import StudioContact from '../components/StudioContact'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
-
-const IMAGES = {
-  digital: '/img/archic-digital-system.webp',
-  hospitality: '/img/archic-hospitality-system.webp',
-  automotive: '/img/archic-automotive-system.webp',
-  yachting: '/img/archic-yachting-system.webp',
-}
 
 const COPY = {
   es: {
     meta: {
       title: 'Archic — La parte digital de negocios excepcionales',
-      description: 'Estrategia, diseño, webs premium y software a medida para construir la parte digital de negocios ambiciosos.',
+      description: 'Diseño, desarrollo y software a medida para negocios que necesitan una presencia y unos sistemas digitales a la altura.',
     },
     hero: {
-      eyebrow: 'DIGITAL SYSTEMS FOR EXCEPTIONAL BUSINESSES',
-      title: 'Construimos la parte digital de negocios',
-      accent: 'excepcionales.',
-      lead: 'Estrategia, diseño y tecnología unidos para crear experiencias de alto nivel y sistemas que hacen el negocio más simple, más claro y más capaz.',
-      cta: 'Empezar proyecto',
-      secondary: 'Ver qué construimos',
-      location: 'Écija · Marbella · España',
-      stack: 'Presence / Bookings / Control / Business',
+      eyebrow: 'ARCHIC / DIGITAL SYSTEMS STUDIO',
+      titleA: 'La parte digital de',
+      titleB: 'negocios excepcionales.',
+      lead: 'Diseñamos y desarrollamos webs, sistemas y software a medida para negocios donde la experiencia, la imagen y la operación importan de verdad.',
+      primary: 'Hablar con Archic',
+      secondary: 'Ver qué hacemos',
+      meta: ['Strategy', 'Design', 'Development', 'Software'],
+      location: 'España · Trabajamos en remoto y presencial',
     },
-    intro: {
-      index: '01 / STUDIO',
-      title: 'No vendemos páginas.',
-      accent: 'Construimos la parte digital que el negocio necesita.',
-      body: 'Una presencia excelente es el inicio. Cuando aporta valor, la conectamos con reservas, clientes, operaciones, automatización y software a medida.',
-      note: 'Sin plantillas. Sin funciones de relleno. Sin capas que el negocio no necesita.',
+    premise: {
+      index: '01 / IDEA',
+      title: 'Lo que ve el cliente.',
+      title2: 'Lo que hace funcionar el negocio.',
+      body: 'No tratamos la web, las reservas, la gestión o el software como piezas aisladas. Diseñamos la capa digital que necesita el negocio y hacemos que cada pieza tenga un propósito claro.',
+      note: 'Una buena solución digital no añade complejidad. La elimina.',
     },
-    capabilities: {
-      index: '02 / CAPABILITIES',
-      title: 'De la primera impresión',
-      accent: 'al sistema que hay detrás.',
-      note: 'Cuatro capacidades. Se contratan por necesidad, no por paquete.',
+    pillars: [
+      { no: '01', name: 'Experience', title: 'Presencia que está a la altura del negocio.', text: 'Web, dirección digital, interacción, contenido y conversión. Nada de plantillas maquilladas.' },
+      { no: '02', name: 'Operations', title: 'Herramientas que simplifican el día a día.', text: 'Reservas, clientes, recursos, flujos de trabajo y paneles diseñados alrededor de cómo opera el negocio.' },
+      { no: '03', name: 'Software', title: 'Tecnología cuando una herramienta genérica ya no basta.', text: 'Software a medida, integraciones, automatizaciones y sistemas propios cuando existe una razón real para construirlos.' },
+    ],
+    work: {
+      index: '02 / QUÉ CONSTRUIMOS',
+      title: 'No vendemos un paquete.',
+      title2: 'Construimos lo que aporta valor.',
       items: [
-        { no: '01', name: 'Presence', desc: 'Webs premium, marca digital, contenido, conversión y experiencia.', image: IMAGES.hospitality },
-        { no: '02', name: 'Bookings', desc: 'Reservas, solicitudes, disponibilidad, confirmaciones y captación.', image: IMAGES.yachting },
-        { no: '03', name: 'Control', desc: 'Clientes, recursos, operaciones, flujos de trabajo y visibilidad.', image: IMAGES.automotive },
-        { no: '04', name: 'Business', desc: 'Software a medida, integraciones, automatización, datos y analítica.', image: IMAGES.digital },
+        ['01', 'Premium websites', 'Marca digital, experiencia, rendimiento y conversión.'],
+        ['02', 'Bookings & enquiries', 'Reservas, solicitudes, disponibilidad y captación sin fricción.'],
+        ['03', 'Control systems', 'Clientes, recursos, operaciones y visibilidad en un mismo entorno.'],
+        ['04', 'Custom software', 'Herramientas internas y productos digitales construidos a medida.'],
+        ['05', 'Integrations & automation', 'Conectamos sistemas y eliminamos trabajo repetitivo cuando tiene sentido.'],
       ],
     },
-    concepts: {
-      index: '03 / CONCEPT LAB',
-      title: 'Capacidad demostrada.',
-      accent: 'No portfolio inventado.',
-      body: 'Mientras construimos nuestros primeros casos reales, enseñamos lo que sabemos hacer mediante sistemas conceptuales creados por Archic.',
-      items: [
-        { no: '01', sector: 'HOSPITALITY SYSTEM', title: 'Una experiencia impecable fuera. Una operación clara dentro.', stack: 'Web · Reservas · Clientes · Operaciones', image: IMAGES.hospitality, alt: 'Concepto digital de Archic para hostelería' },
-        { no: '02', sector: 'AUTOMOTIVE SYSTEM', title: 'Presentación, flota y demanda en una sola capa digital.', stack: 'Presence · Fleet · Enquiries', image: IMAGES.automotive, alt: 'Concepto digital de Archic para automoción premium' },
-        { no: '03', sector: 'YACHTING SYSTEM', title: 'Un servicio premium necesita una experiencia digital a la altura.', stack: 'Charter · Leads · Operations', image: IMAGES.yachting, alt: 'Concepto digital de Archic para yachting' },
+    statement: {
+      small: 'OUR STANDARD',
+      title: 'La calidad no es un efecto visual.',
+      title2: 'Es no aceptar decisiones mediocres.',
+      side: 'Claridad · Precisión · Intención · Durabilidad',
+    },
+    approach: {
+      index: '03 / ENFOQUE',
+      title: 'Entender antes de diseñar.',
+      title2: 'Diseñar antes de construir.',
+      lead: 'La tecnología viene después del problema. Empezamos por entender qué necesita mejorar el negocio y elegimos la solución más simple que pueda hacerlo bien.',
+      steps: [
+        ['01', 'Discover', 'Negocio, cliente, operación y objetivos. Definimos el problema real.'],
+        ['02', 'Design & Build', 'Dirección, experiencia y desarrollo tratados como una sola disciplina.'],
+        ['03', 'Evolve', 'Medimos, corregimos y ampliamos solo cuando la siguiente capa aporta valor.'],
       ],
     },
-    system: {
-      index: '04 / ONE SYSTEM',
-      title: 'Empezar pequeño.',
-      accent: 'Crecer sin rehacerlo todo.',
-      body: 'Archic puede entrar por una web, una reserva o una necesidad operativa concreta. Si el negocio necesita más, la misma base puede evolucionar.',
-      steps: [['01', 'Presence', 'Atraer'], ['02', 'Bookings', 'Convertir'], ['03', 'Control', 'Operar'], ['04', 'Business', 'Escalar']],
-      care: 'CARE / mantenimiento, seguridad y evolución continua.',
-    },
-    industries: {
-      index: '05 / INDUSTRIES',
-      title: 'Diseñado para negocios donde',
-      accent: 'la experiencia importa.',
+    sectors: {
+      index: '04 / SECTORES',
+      title: 'Negocios donde la experiencia',
+      title2: 'forma parte del producto.',
       items: [
-        ['01', 'Hospitality', 'Reservations · Guest experience · Operations'],
-        ['02', 'Automotive', 'Fleet · Enquiries · Customer journey'],
-        ['03', 'Yachting', 'Charter · Leads · Operations'],
-        ['04', 'Real Estate', 'Inventory · Leads · Private areas'],
-        ['05', 'Premium Services', 'Experience · Conversion · Systems'],
+        ['Hospitality', 'Reservas · Experiencia · Operación'],
+        ['Automotive', 'Presentación · Demanda · Gestión'],
+        ['Real Estate', 'Inventario · Leads · Áreas privadas'],
+        ['Yachting', 'Charter · Leads · Operación'],
+        ['Premium Services', 'Marca · Conversión · Sistemas'],
       ],
-    },
-    standard: {
-      label: 'OUR STANDARD',
-      title: 'Quality is not an effect. It is the absence of weak decisions.',
-      side: 'Clarity / Detail / Purpose / Endurance',
+      note: 'No estamos limitados a un sector. Nos interesan los negocios donde una mejor capa digital puede cambiar de forma visible la experiencia o la operación.',
     },
     contact: {
-      index: '06 / START A PROJECT',
-      title: '¿Qué debería hacer mejor',
-      accent: 'la parte digital de tu negocio?',
-      body: 'Cuéntanos qué tienes, qué no funciona y qué quieres conseguir. Empezamos por entender el problema, no por venderte una lista de funciones.',
+      index: '05 / START',
+      title: 'Construyamos algo',
+      title2: 'que merezca existir.',
+      body: 'Cuéntanos qué negocio tienes, qué está fallando o qué quieres construir. La primera conversación sirve para decidir si Archic puede aportar valor y por dónde empezar.',
+      mail: 'O escríbenos directamente',
     },
-    footer: 'Digital systems for exceptional businesses.',
   },
   en: {
     meta: {
       title: 'Archic — The digital side of exceptional businesses',
-      description: 'Strategy, design, premium websites and custom software for ambitious businesses.',
+      description: 'Design, development and custom software for businesses that need a digital presence and systems to match their standard.',
     },
     hero: {
-      eyebrow: 'DIGITAL SYSTEMS FOR EXCEPTIONAL BUSINESSES',
-      title: 'We build the digital side of',
-      accent: 'exceptional businesses.',
-      lead: 'Strategy, design and technology working as one to create premium experiences and systems that make the business simpler, clearer and more capable.',
-      cta: 'Start a project',
-      secondary: 'See what we build',
-      location: 'Écija · Marbella · Spain',
-      stack: 'Presence / Bookings / Control / Business',
+      eyebrow: 'ARCHIC / DIGITAL SYSTEMS STUDIO',
+      titleA: 'The digital side of',
+      titleB: 'exceptional businesses.',
+      lead: 'We design and build websites, systems and custom software for businesses where experience, image and operations genuinely matter.',
+      primary: 'Talk to Archic',
+      secondary: 'See what we do',
+      meta: ['Strategy', 'Design', 'Development', 'Software'],
+      location: 'Spain · Remote and on-site',
     },
-    intro: {
-      index: '01 / STUDIO',
-      title: 'We do not sell pages.',
-      accent: 'We build the digital side the business actually needs.',
-      body: 'An excellent public presence is the beginning. When it creates value, we connect it to bookings, customers, operations, automation and custom software.',
-      note: 'No templates. No filler features. No layers the business does not need.',
+    premise: {
+      index: '01 / IDEA',
+      title: 'What the customer sees.',
+      title2: 'What makes the business run.',
+      body: 'We do not treat the website, bookings, management or software as isolated pieces. We design the digital layer the business actually needs and give every part a clear purpose.',
+      note: 'A good digital solution does not add complexity. It removes it.',
     },
-    capabilities: {
-      index: '02 / CAPABILITIES',
-      title: 'From the first impression',
-      accent: 'to the system behind it.',
-      note: 'Four capabilities. Bought by need, not by package.',
+    pillars: [
+      { no: '01', name: 'Experience', title: 'A presence that matches the business.', text: 'Web, digital direction, interaction, content and conversion. No dressed-up templates.' },
+      { no: '02', name: 'Operations', title: 'Tools that simplify daily work.', text: 'Bookings, customers, resources, workflows and control designed around how the business operates.' },
+      { no: '03', name: 'Software', title: 'Technology when generic tools are no longer enough.', text: 'Custom software, integrations, automation and proprietary systems when there is a real reason to build them.' },
+    ],
+    work: {
+      index: '02 / WHAT WE BUILD',
+      title: 'We do not sell a package.',
+      title2: 'We build what creates value.',
       items: [
-        { no: '01', name: 'Presence', desc: 'Premium websites, digital brand, content, conversion and experience.', image: IMAGES.hospitality },
-        { no: '02', name: 'Bookings', desc: 'Reservations, enquiries, availability, confirmations and capture.', image: IMAGES.yachting },
-        { no: '03', name: 'Control', desc: 'Customers, resources, operations, workflows and visibility.', image: IMAGES.automotive },
-        { no: '04', name: 'Business', desc: 'Custom software, integrations, automation, data and analytics.', image: IMAGES.digital },
+        ['01', 'Premium websites', 'Digital brand, experience, performance and conversion.'],
+        ['02', 'Bookings & enquiries', 'Reservations, requests, availability and frictionless capture.'],
+        ['03', 'Control systems', 'Customers, resources, operations and visibility in one environment.'],
+        ['04', 'Custom software', 'Internal tools and digital products built around the business.'],
+        ['05', 'Integrations & automation', 'We connect systems and remove repetitive work where it makes sense.'],
       ],
     },
-    concepts: {
-      index: '03 / CONCEPT LAB',
-      title: 'Capability, demonstrated.',
-      accent: 'No invented portfolio.',
-      body: 'Until our first real case studies exist, we show what we can build through concept systems created by Archic.',
-      items: [
-        { no: '01', sector: 'HOSPITALITY SYSTEM', title: 'An impeccable guest experience outside. A clear operation inside.', stack: 'Web · Bookings · Guests · Operations', image: IMAGES.hospitality, alt: 'Archic concept for hospitality' },
-        { no: '02', sector: 'AUTOMOTIVE SYSTEM', title: 'Presentation, fleet and demand in one digital layer.', stack: 'Presence · Fleet · Enquiries', image: IMAGES.automotive, alt: 'Archic concept for premium automotive' },
-        { no: '03', sector: 'YACHTING SYSTEM', title: 'A premium service needs a digital experience to match.', stack: 'Charter · Leads · Operations', image: IMAGES.yachting, alt: 'Archic concept for yachting' },
+    statement: {
+      small: 'OUR STANDARD',
+      title: 'Quality is not a visual effect.',
+      title2: 'It is refusing weak decisions.',
+      side: 'Clarity · Precision · Intent · Endurance',
+    },
+    approach: {
+      index: '03 / APPROACH',
+      title: 'Understand before designing.',
+      title2: 'Design before building.',
+      lead: 'Technology comes after the problem. We begin by understanding what the business needs to improve and choose the simplest solution capable of doing it well.',
+      steps: [
+        ['01', 'Discover', 'Business, customer, operation and goals. We define the real problem.'],
+        ['02', 'Design & Build', 'Direction, experience and development treated as one discipline.'],
+        ['03', 'Evolve', 'We measure, correct and expand only when the next layer creates value.'],
       ],
     },
-    system: {
-      index: '04 / ONE SYSTEM',
-      title: 'Start small.',
-      accent: 'Grow without rebuilding everything.',
-      body: 'Archic can enter through a website, a booking flow or one operational need. If the business needs more, the same foundation can evolve.',
-      steps: [['01', 'Presence', 'Attract'], ['02', 'Bookings', 'Convert'], ['03', 'Control', 'Operate'], ['04', 'Business', 'Scale']],
-      care: 'CARE / maintenance, security and continuous evolution.',
-    },
-    industries: {
-      index: '05 / INDUSTRIES',
-      title: 'Built for businesses where',
-      accent: 'the experience matters.',
+    sectors: {
+      index: '04 / SECTORS',
+      title: 'Businesses where experience',
+      title2: 'is part of the product.',
       items: [
-        ['01', 'Hospitality', 'Reservations · Guest experience · Operations'],
-        ['02', 'Automotive', 'Fleet · Enquiries · Customer journey'],
-        ['03', 'Yachting', 'Charter · Leads · Operations'],
-        ['04', 'Real Estate', 'Inventory · Leads · Private areas'],
-        ['05', 'Premium Services', 'Experience · Conversion · Systems'],
+        ['Hospitality', 'Bookings · Experience · Operations'],
+        ['Automotive', 'Presentation · Demand · Management'],
+        ['Real Estate', 'Inventory · Leads · Private areas'],
+        ['Yachting', 'Charter · Leads · Operations'],
+        ['Premium Services', 'Brand · Conversion · Systems'],
       ],
-    },
-    standard: {
-      label: 'OUR STANDARD',
-      title: 'Quality is not an effect. It is the absence of weak decisions.',
-      side: 'Clarity / Detail / Purpose / Endurance',
+      note: 'We are not limited to one industry. We care about businesses where a better digital layer can visibly improve the experience or the operation.',
     },
     contact: {
-      index: '06 / START A PROJECT',
-      title: 'What should the digital side',
-      accent: 'of your business do better?',
-      body: 'Tell us what you have, what is not working and what you want to achieve. We start by understanding the problem, not by selling a feature list.',
+      index: '05 / START',
+      title: 'Let’s build something',
+      title2: 'worth existing.',
+      body: 'Tell us what business you run, what is not working or what you want to build. The first conversation is simply to decide whether Archic can create value and where to begin.',
+      mail: 'Or write to us directly',
     },
-    footer: 'Digital systems for exceptional businesses.',
   },
+}
+
+function useReveal() {
+  useEffect(() => {
+    const elements = Array.from(document.querySelectorAll('[data-ax-reveal]'))
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduced || !('IntersectionObserver' in window)) {
+      elements.forEach((el) => el.classList.add('is-visible'))
+      return
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-visible')
+        observer.unobserve(entry.target)
+      })
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' })
+    elements.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
 }
 
 export default function ArchicHome() {
@@ -176,26 +189,7 @@ export default function ArchicHome() {
   const c = COPY[lang]
   const canonicalUrl = homeCanonical(lang)
   const structuredData = buildHomeGraph(lang)
-  const [activeCapability, setActiveCapability] = useState(0)
-
-  useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll('[data-sx-reveal]'))
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced || !('IntersectionObserver' in window)) {
-      nodes.forEach((node) => node.classList.add('is-in'))
-      return
-    }
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => {
-        if (!entry.isIntersecting) return
-        entry.target.classList.add('is-in')
-        observer.unobserve(entry.target)
-      }),
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
-    )
-    nodes.forEach((node) => observer.observe(node))
-    return () => observer.disconnect()
-  }, [])
+  useReveal()
 
   return (
     <>
@@ -215,142 +209,130 @@ export default function ArchicHome() {
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
-      <div className="sx" id="top">
+      <div className="ax" id="top">
         <StudioHeader />
 
-        <section className="sx-hero sx-dark">
-          <div className="sx-gridlines" aria-hidden="true" />
-          <div className="sx-hero-copy">
-            <p className="sx-eyebrow">{c.hero.eyebrow}</p>
-            <h1>{c.hero.title} <em>{c.hero.accent}</em></h1>
-            <p className="sx-hero-lead">{c.hero.lead}</p>
-            <div className="sx-hero-actions">
-              <a href="#contact" className="sx-button">{c.hero.cta}</a>
-              <a href="#capabilities" className="sx-text-link">{c.hero.secondary}<span>↓</span></a>
+        <section className="ax-hero">
+          <div className="ax-hero-lines" aria-hidden="true" />
+          <div className="ax-hero-copy">
+            <p className="ax-eyebrow">{c.hero.eyebrow}</p>
+            <h1>{c.hero.titleA}<br /><span>{c.hero.titleB}</span></h1>
+            <p className="ax-lead">{c.hero.lead}</p>
+            <div className="ax-actions">
+              <a className="ax-primary" href="#contact">{c.hero.primary}</a>
+              <a className="ax-secondary" href="#work">{c.hero.secondary}<span>↓</span></a>
             </div>
           </div>
 
-          <div className="sx-hero-stage" data-sx-reveal>
-            <div className="sx-hero-frame">
-              <img src={IMAGES.digital} alt="Archic digital system" width={1664} height={936} decoding="async" fetchPriority="high" />
-              <div className="sx-hero-shade" />
-              <div className="sx-frame-top"><span>ARCHIC / SYSTEM 01</span><span>CONNECTED</span></div>
-              <div className="sx-frame-bottom"><span>Strategy</span><span>Design</span><span>Technology</span></div>
-            </div>
-            <div className="sx-orbit sx-orbit-a" />
-            <div className="sx-orbit sx-orbit-b" />
+          <div className="ax-hero-mark" aria-hidden="true">
+            <div className="ax-ring ax-ring-a" />
+            <div className="ax-ring ax-ring-b" />
+            <div className="ax-mark-glow" />
+            <img src="/brand/archic-mark-light.svg" alt="" width={459} height={412} />
+            <div className="ax-mark-caption"><span>ARCHIC</span><span>EST. 2026</span></div>
           </div>
 
-          <div className="sx-hero-footer"><span>{c.hero.location}</span><span>{c.hero.stack}</span><span>01 — 2026</span></div>
-          <div className="sx-hero-wordmark" aria-hidden="true">ARCHIC</div>
-        </section>
-
-        <section className="sx-intro sx-light" id="studio">
-          <div className="sx-index">{c.intro.index}</div>
-          <h2>{c.intro.title}<br /><span>{c.intro.accent}</span></h2>
-          <div className="sx-intro-side"><p>{c.intro.body}</p><p className="sx-note">{c.intro.note}</p></div>
-        </section>
-
-        <section className="sx-capabilities sx-light" id="capabilities">
-          <div className="sx-section-head">
-            <div className="sx-index">{c.capabilities.index}</div>
-            <h2>{c.capabilities.title}<br /><span>{c.capabilities.accent}</span></h2>
-            <p>{c.capabilities.note}</p>
-          </div>
-
-          <div className="sx-cap-list">
-            {c.capabilities.items.map((item, index) => (
-              <article
-                key={item.name}
-                className={`sx-cap-row ${activeCapability === index ? 'is-active' : ''}`}
-                onMouseEnter={() => setActiveCapability(index)}
-                onFocus={() => setActiveCapability(index)}
-                tabIndex={0}
-              >
-                <div className="sx-cap-no">{item.no}</div>
-                <div className="sx-cap-name">{item.name}</div>
-                <div className="sx-cap-desc">{item.desc}</div>
-                <div className="sx-cap-arrow">↗</div>
-              </article>
-            ))}
-          </div>
-
-          <div className="sx-cap-preview" data-sx-reveal>
-            <img src={c.capabilities.items[activeCapability].image} alt="" width={1664} height={936} />
-            <div><span>ARCHIC</span><span>{c.capabilities.items[activeCapability].name.toUpperCase()}</span></div>
+          <div className="ax-hero-meta">
+            <span>{c.hero.location}</span>
+            <span>{c.hero.meta.join(' · ')}</span>
           </div>
         </section>
 
-        <section className="sx-concepts sx-dark" id="concepts">
-          <div className="sx-concepts-intro">
-            <div className="sx-index">{c.concepts.index}</div>
-            <h2>{c.concepts.title}<br /><span>{c.concepts.accent}</span></h2>
-            <p>{c.concepts.body}</p>
+        <section className="ax-premise ax-light" id="studio">
+          <div className="ax-section-index">{c.premise.index}</div>
+          <div className="ax-premise-title" data-ax-reveal>
+            <h2>{c.premise.title}<br /><span>{c.premise.title2}</span></h2>
           </div>
+          <div className="ax-premise-copy" data-ax-reveal>
+            <p>{c.premise.body}</p>
+            <p className="ax-rule-note">{c.premise.note}</p>
+          </div>
+        </section>
 
-          <div className="sx-concept-grid">
-            {c.concepts.items.map((item, index) => (
-              <article key={item.sector} className={`sx-concept ${index === 0 ? 'sx-concept-large' : ''}`} data-sx-reveal>
-                <img src={item.image} alt={item.alt} width={1664} height={936} loading="lazy" decoding="async" />
-                <div className="sx-concept-overlay" />
-                <div className="sx-concept-top"><span>CONCEPT / NOT CLIENT WORK</span><span>{item.no}</span></div>
-                <div className="sx-concept-copy"><p>{item.sector}</p><h3>{item.title}</h3><span>{item.stack}</span></div>
+        <section className="ax-pillars ax-light">
+          {c.pillars.map((pillar) => (
+            <article key={pillar.no} className="ax-pillar" data-ax-reveal>
+              <div className="ax-pillar-top"><span>{pillar.no}</span><span>{pillar.name}</span></div>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.text}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="ax-work" id="work">
+          <div className="ax-work-head">
+            <span className="ax-section-index">{c.work.index}</span>
+            <h2>{c.work.title}<br /><span>{c.work.title2}</span></h2>
+          </div>
+          <div className="ax-service-list">
+            {c.work.items.map(([no, name, desc]) => (
+              <article className="ax-service" key={no} data-ax-reveal>
+                <span className="ax-service-no">{no}</span>
+                <h3>{name}</h3>
+                <p>{desc}</p>
+                <span className="ax-service-arrow">↗</span>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="sx-system sx-light" id="system">
-          <div>
-            <div className="sx-index">{c.system.index}</div>
-            <h2>{c.system.title}<br /><span>{c.system.accent}</span></h2>
+        <section className="ax-statement">
+          <div className="ax-statement-mark"><img src="/brand/archic-mark-dark.svg" alt="" /></div>
+          <div className="ax-statement-copy" data-ax-reveal>
+            <p>{c.statement.small}</p>
+            <h2>{c.statement.title}<br /><span>{c.statement.title2}</span></h2>
           </div>
-          <div className="sx-system-right">
-            <p className="sx-system-lead">{c.system.body}</p>
-            <div className="sx-system-line">
-              {c.system.steps.map((step, index) => (
-                <div className="sx-system-pair" key={step[1]}>
-                  <div className="sx-system-step"><span>{step[0]}</span><strong>{step[1]}</strong><small>{step[2]}</small></div>
-                  {index < c.system.steps.length - 1 && <div className="sx-system-connector" />}
-                </div>
-              ))}
+          <p className="ax-statement-side">{c.statement.side}</p>
+        </section>
+
+        <section className="ax-approach ax-light" id="approach">
+          <div className="ax-approach-head">
+            <span className="ax-section-index">{c.approach.index}</span>
+            <h2>{c.approach.title}<br /><span>{c.approach.title2}</span></h2>
+            <p>{c.approach.lead}</p>
+          </div>
+          <div className="ax-steps">
+            {c.approach.steps.map(([no, name, desc]) => (
+              <article key={no} className="ax-step" data-ax-reveal>
+                <span>{no}</span>
+                <h3>{name}</h3>
+                <p>{desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="ax-sectors" id="sectors">
+          <div className="ax-sectors-head">
+            <span className="ax-section-index">{c.sectors.index}</span>
+            <h2>{c.sectors.title}<br /><span>{c.sectors.title2}</span></h2>
+          </div>
+          <div className="ax-sector-list">
+            {c.sectors.items.map(([name, line], index) => (
+              <div className="ax-sector" key={name} data-ax-reveal>
+                <span>0{index + 1}</span><strong>{name}</strong><small>{line}</small>
+              </div>
+            ))}
+          </div>
+          <p className="ax-sector-note">{c.sectors.note}</p>
+        </section>
+
+        <section className="ax-contact ax-light" id="contact">
+          <div className="ax-contact-head">
+            <span className="ax-section-index">{c.contact.index}</span>
+            <h2>{c.contact.title}<br /><span>{c.contact.title2}</span></h2>
+          </div>
+          <div className="ax-contact-grid">
+            <div className="ax-contact-intro">
+              <p>{c.contact.body}</p>
+              <span>{c.contact.mail}</span>
+              <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}<b>↗</b></a>
             </div>
-            <div className="sx-care"><span>+</span>{c.system.care}</div>
+            <StudioContact />
           </div>
         </section>
 
-        <section className="sx-industries sx-dark">
-          <div className="sx-industries-head">
-            <div className="sx-index">{c.industries.index}</div>
-            <h2>{c.industries.title}<br /><span>{c.industries.accent}</span></h2>
-          </div>
-          <div className="sx-industry-list">
-            {c.industries.items.map((item) => <div key={item[1]}><span>{item[0]}</span><strong>{item[1]}</strong><small>{item[2]}</small></div>)}
-          </div>
-        </section>
-
-        <section className="sx-standard">
-          <img src="/brand/archic-mark-dark.svg" alt="" width={459} height={412} />
-          <div><p>{c.standard.label}</p><h2>{c.standard.title}</h2></div>
-          <span>{c.standard.side}</span>
-        </section>
-
-        <section className="sx-contact sx-light" id="contact">
-          <div className="sx-contact-top">
-            <div className="sx-index">{c.contact.index}</div>
-            <h2>{c.contact.title}<br /><span>{c.contact.accent}</span></h2>
-          </div>
-          <div className="sx-contact-bottom">
-            <p>{c.contact.body}</p>
-            <a href={`mailto:${CONTACT_MAIL}`} className="sx-contact-mail">{CONTACT_MAIL}<span>↗</span></a>
-          </div>
-        </section>
-
-        <footer className="sx-footer">
-          <img src="/brand/archic-lockup-light.svg" alt="Archic" width={981} height={174} />
-          <span>{c.footer}</span>
-          <span>© {new Date().getFullYear()} ARCHIC</span>
-        </footer>
+        <StudioFooter />
       </div>
     </>
   )
