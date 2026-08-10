@@ -13,25 +13,27 @@ const COPY = {
       description: 'Dirección digital, webs premium, operaciones y software a medida para negocios con un estándar alto.',
     },
     hero: {
-      eyebrow: 'ARCHIC — PRIVATE DIGITAL SYSTEMS',
+      eyebrow: 'ARCHIC — DIGITAL SYSTEMS',
       title: 'Sistemas digitales para',
       accent: 'negocios excepcionales.',
-      body: 'Diseñamos la presencia, los sistemas y el software de negocios cuyo estándar no termina cuando empieza la pantalla.',
+      body: 'Diseñamos experiencias, sistemas y software para negocios que entienden que la calidad también se percibe en una pantalla.',
       primary: 'Empezar proyecto',
       secondary: 'Descubrir Archic',
+      chapters: ['Presence', 'Control', 'Business'],
     },
     intro: {
       eyebrow: 'THE ARCHIC STANDARD',
       title: 'Una marca de nivel',
       accent: 'no puede sentirse genérica online.',
-      body: 'La parte digital también construye percepción. Por eso tratamos estrategia, diseño y tecnología con el mismo nivel de exigencia: menos ruido, mejores decisiones y una ejecución que se siente deliberada.',
+      body: 'La parte digital también construye percepción. Estrategia, diseño y tecnología deben compartir el mismo estándar: claridad, intención y una ejecución que se sienta inevitable, no improvisada.',
     },
     presence: {
       label: 'ARCHIC PRESENCE',
       title: 'La primera impresión',
       accent: 'debe sentirse a medida.',
-      body: 'Dirección visual, web, contenido, rendimiento y conversión tratados como una única experiencia. Nada se añade solo para llenar espacio.',
+      body: 'Dirección visual, web, contenido, rendimiento y conversión tratados como una sola experiencia. Menos plantilla. Más carácter.',
       chips: ['Web premium', 'Dirección digital', 'Contenido', 'SEO técnico'],
+      concept: 'CONCEPTO ARCHIC · NO ES TRABAJO DE CLIENTE',
     },
     control: {
       label: 'ARCHIC CONTROL',
@@ -49,18 +51,23 @@ const COPY = {
       title: 'Tecnología propia cuando',
       accent: 'la diferencia lo justifica.',
       body: 'Software a medida, automatización e integraciones para negocios que han superado los límites de las herramientas genéricas.',
-      layers: ['Integraciones', 'Automatización', 'Datos', 'Software a medida'],
+      layers: [
+        ['01', 'Integraciones', 'Conectamos lo que ya funciona.'],
+        ['02', 'Automatización', 'Eliminamos trabajo repetitivo.'],
+        ['03', 'Datos', 'Convertimos actividad en visibilidad.'],
+        ['04', 'Software a medida', 'Construimos cuando comprar ya no basta.'],
+      ],
     },
     standard: {
       eyebrow: 'QUIET LUXURY / DIGITAL CRAFT',
       title: 'Nada genérico.',
       accent: 'Nada por accidente.',
-      body: 'La sensación de alta calidad nace de cientos de decisiones pequeñas: jerarquía, ritmo, interacción, rendimiento, copy y detalle. El lujo digital no se decora. Se construye.',
+      body: 'La alta calidad no nace de añadir efectos. Nace de elegir mejor: jerarquía, ritmo, interacción, rendimiento, copy y detalle. El lujo digital no se decora. Se construye.',
     },
     capabilities: {
       eyebrow: 'CAPACIDADES',
       title: 'Una disciplina. Distintas capas.',
-      body: 'Entramos por la necesidad que más valor pueda crear hoy y hacemos que el sistema pueda evolucionar mañana sin perder coherencia.',
+      body: 'Entramos por la necesidad que más valor pueda crear hoy y dejamos una base capaz de evolucionar mañana sin perder coherencia.',
       items: [
         ['01', 'Web & Brand', 'Presencia, experiencia, rendimiento y conversión.'],
         ['02', 'Bookings', 'Reservas, solicitudes, disponibilidad y confirmaciones.'],
@@ -73,7 +80,7 @@ const COPY = {
       eyebrow: 'START A PROJECT',
       title: 'Si tu negocio tiene nivel,',
       accent: 'su parte digital debe demostrarlo.',
-      body: 'Cuéntanos qué tienes hoy, qué no funciona y dónde quieres llegar. Empezamos por entender el negocio y elevamos solo lo que merece ser mejor.',
+      body: 'Cuéntanos qué tienes hoy, qué no funciona y dónde quieres llegar. Empezamos por entender el negocio y construimos solo lo que merece existir.',
       cta: 'Hablar con Archic',
     },
   },
@@ -83,25 +90,27 @@ const COPY = {
       description: 'Digital direction, premium websites, operations and custom software for businesses with a high standard.',
     },
     hero: {
-      eyebrow: 'ARCHIC — PRIVATE DIGITAL SYSTEMS',
+      eyebrow: 'ARCHIC — DIGITAL SYSTEMS',
       title: 'Digital systems for',
       accent: 'exceptional businesses.',
-      body: 'We design the presence, systems and software of businesses whose standard does not stop when the screen begins.',
+      body: 'We design experiences, systems and software for businesses that understand quality is felt on a screen too.',
       primary: 'Start a project',
       secondary: 'Discover Archic',
+      chapters: ['Presence', 'Control', 'Business'],
     },
     intro: {
       eyebrow: 'THE ARCHIC STANDARD',
       title: 'A high-level brand',
       accent: 'cannot feel generic online.',
-      body: 'The digital side shapes perception too. That is why we treat strategy, design and technology with the same standard: less noise, better decisions and execution that feels deliberate.',
+      body: 'The digital side shapes perception too. Strategy, design and technology should share the same standard: clarity, intent and execution that feels inevitable rather than improvised.',
     },
     presence: {
       label: 'ARCHIC PRESENCE',
       title: 'The first impression',
       accent: 'should feel made to measure.',
-      body: 'Visual direction, web, content, performance and conversion treated as one experience. Nothing is added simply to fill space.',
+      body: 'Visual direction, web, content, performance and conversion treated as one experience. Less template. More character.',
       chips: ['Premium web', 'Digital direction', 'Content', 'Technical SEO'],
+      concept: 'ARCHIC CONCEPT · NOT CLIENT WORK',
     },
     control: {
       label: 'ARCHIC CONTROL',
@@ -119,18 +128,23 @@ const COPY = {
       title: 'Proprietary technology when',
       accent: 'the difference justifies it.',
       body: 'Custom software, automation and integrations for businesses that have outgrown the limits of generic tools.',
-      layers: ['Integrations', 'Automation', 'Data', 'Custom software'],
+      layers: [
+        ['01', 'Integrations', 'Connect what already works.'],
+        ['02', 'Automation', 'Remove repetitive work.'],
+        ['03', 'Data', 'Turn activity into visibility.'],
+        ['04', 'Custom software', 'Build when buying is no longer enough.'],
+      ],
     },
     standard: {
       eyebrow: 'QUIET LUXURY / DIGITAL CRAFT',
       title: 'Nothing generic.',
       accent: 'Nothing by accident.',
-      body: 'High quality is the result of hundreds of small decisions: hierarchy, rhythm, interaction, performance, copy and detail. Digital luxury is not decorated. It is built.',
+      body: 'High quality does not come from adding effects. It comes from choosing better: hierarchy, rhythm, interaction, performance, copy and detail. Digital luxury is not decorated. It is built.',
     },
     capabilities: {
       eyebrow: 'CAPABILITIES',
       title: 'One discipline. Different layers.',
-      body: 'We begin with the need that can create the most value today and make sure the system can evolve tomorrow without losing coherence.',
+      body: 'We begin with the need that can create the most value today and leave a foundation that can evolve tomorrow without losing coherence.',
       items: [
         ['01', 'Web & Brand', 'Presence, experience, performance and conversion.'],
         ['02', 'Bookings', 'Reservations, enquiries, availability and confirmations.'],
@@ -143,7 +157,7 @@ const COPY = {
       eyebrow: 'START A PROJECT',
       title: 'If your business has a standard,',
       accent: 'its digital side should prove it.',
-      body: 'Tell us what you have today, what is not working and where you want to go. We start by understanding the business and elevate only what deserves to be better.',
+      body: 'Tell us what you have today, what is not working and where you want to go. We begin by understanding the business and build only what deserves to exist.',
       cta: 'Talk to Archic',
     },
   },
@@ -198,7 +212,6 @@ export default function ArchicHome() {
         <StudioHeader />
 
         <section className="v5-hero">
-          <div className="v5-hero-ghost" aria-hidden="true">ARCHIC</div>
           <div className="v5-hero-copy">
             <p className="v5-eyebrow">{c.hero.eyebrow}</p>
             <h1>{c.hero.title}<br /><span>{c.hero.accent}</span></h1>
@@ -209,17 +222,14 @@ export default function ArchicHome() {
             </div>
           </div>
 
-          <div className="v5-hero-product" aria-hidden="true">
-            <div className="v5-aura" />
-            <div className="v5-halo" />
-            <div className="v5-orbit"><span className="v5-orbit-dot" /></div>
-            <div className="v5-orbit v5-orbit-inner" />
-            <img src="/brand/archic-mark-light.svg" alt="" width={459} height={412} />
-            <div className="v5-product-shadow" />
-            <div className="v5-product-caption"><span>ARCHIC / 01</span><span>PRIVATE DIGITAL SYSTEMS</span></div>
+          <div className="v5-hero-chapters" aria-label="Archic system">
+            {c.hero.chapters.map((chapter, index) => (
+              <div key={chapter}>
+                <span>0{index + 1}</span>
+                <strong>ARCHIC {chapter.toUpperCase()}</strong>
+              </div>
+            ))}
           </div>
-
-          <div className="v5-hero-foot"><span>ARCHIC © 2026</span><span>SPAIN · REMOTE & ON-SITE</span></div>
         </section>
 
         <section className="v5-intro" id="studio">
@@ -235,16 +245,34 @@ export default function ArchicHome() {
             <p>{c.presence.body}</p>
             <div className="v5-chips">{c.presence.chips.map((chip) => <span key={chip}>{chip}</span>)}</div>
           </div>
-          <div className="v5-presence-visual" data-v5-reveal aria-hidden="true">
-            <div className="v5-browser-bar"><span /><span /><span /><b>archic / presence</b></div>
-            <div className="v5-browser-canvas">
-              <img className="v5-browser-mark" src="/brand/archic-mark-light.svg" alt="" />
-              <div className="v5-browser-brand">ARCHIC</div>
-              <div className="v5-browser-kicker">EXCEPTIONAL DIGITAL PRESENCE</div>
-              <div className="v5-browser-title">First impressions<br /><em>designed to last.</em></div>
-              <div className="v5-browser-line" />
-              <div className="v5-browser-meta"><span>DESIGNED WITH INTENT</span><span>01 / PRESENCE</span></div>
+
+          <div className="v5-presence-visual" data-v5-reveal>
+            <div className="v5-concept-head">
+              <span>ARCHIC CONCEPT 01</span>
+              <span>HOSPITALITY / PRESENCE</span>
             </div>
+            <div className="v5-concept-site">
+              <div className="v5-concept-main">
+                <p>MARBELLA · PRIVATE HOSPITALITY</p>
+                <h3>A quieter<br /><em>kind of stay.</em></h3>
+                <span>Considered spaces. Personal service. A slower rhythm by the Mediterranean.</span>
+                <button type="button">Reserve a stay <b>↗</b></button>
+              </div>
+              <aside className="v5-concept-aside">
+                <span className="v5-concept-no">01 / 04</span>
+                <div className="v5-concept-details">
+                  <p>PRIVATE SUITES</p>
+                  <strong>Designed around privacy, light and quiet.</strong>
+                </div>
+                <div className="v5-booking-strip">
+                  <span><small>ARRIVE</small>18 AUG</span>
+                  <span><small>DEPART</small>21 AUG</span>
+                  <span><small>GUESTS</small>02</span>
+                  <i>→</i>
+                </div>
+              </aside>
+            </div>
+            <div className="v5-concept-foot"><span>{c.presence.concept}</span><span>DESIGN / EXPERIENCE / CONVERSION</span></div>
           </div>
         </section>
 
@@ -255,13 +283,13 @@ export default function ArchicHome() {
             <p>{c.control.body}</p>
           </div>
           <div className="v5-control-visual" data-v5-reveal>
-            <div className="v5-control-top"><span>ARCHIC CONTROL / PRIVATE SYSTEM</span><span>LIVE</span></div>
+            <div className="v5-control-top"><span>ARCHIC CONTROL</span><span>PRIVATE OPERATING SYSTEM</span></div>
             {c.control.items.map(([no, name, desc]) => (
               <div className="v5-control-row" key={no}>
                 <span>{no}</span><strong>{name}</strong><p>{desc}</p><i>↗</i>
               </div>
             ))}
-            <div className="v5-control-bottom"><span>OPERATIONS / CUSTOMERS / RESOURCES</span><span>ARCHIC / 02</span></div>
+            <div className="v5-control-bottom"><span>OPERATIONS / CUSTOMERS / RESOURCES</span><span>02 / CONTROL</span></div>
           </div>
         </section>
 
@@ -271,19 +299,24 @@ export default function ArchicHome() {
             <h2>{c.business.title}<br /><span>{c.business.accent}</span></h2>
             <p>{c.business.body}</p>
           </div>
-          <div className="v5-business-visual" data-v5-reveal aria-hidden="true">
-            <div className="v5-business-signature">ARCHIC / BUSINESS SYSTEM</div>
-            <div className="v5-business-core"><img src="/brand/archic-mark-dark.svg" alt="" /></div>
-            {c.business.layers.map((layer, index) => <div className={`v5-business-layer v5-business-layer-${index + 1}`} key={layer}><span>{`0${index + 1}`}</span>{layer}</div>)}
+          <div className="v5-business-visual" data-v5-reveal>
+            <div className="v5-business-head"><span>ARCHIC BUSINESS</span><span>03 / SYSTEM</span></div>
+            <div className="v5-business-stack">
+              {c.business.layers.map(([no, name, desc]) => (
+                <div className="v5-business-layer" key={no}>
+                  <span>{no}</span>
+                  <strong>{name}</strong>
+                  <p>{desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         <section className="v5-standard">
-          <div className="v5-standard-rule" aria-hidden="true" />
           <p className="v5-eyebrow">{c.standard.eyebrow}</p>
           <h2 data-v5-reveal>{c.standard.title}<br /><span>{c.standard.accent}</span></h2>
           <p data-v5-reveal>{c.standard.body}</p>
-          <div className="v5-standard-seal" aria-hidden="true"><img src="/brand/archic-mark-light.svg" alt="" /><span>ARCHIC STANDARD</span></div>
         </section>
 
         <section className="v5-capabilities">
@@ -294,7 +327,7 @@ export default function ArchicHome() {
             </div>
             <p>{c.capabilities.body}</p>
           </div>
-          <div className="v5-cap-grid">
+          <div className="v5-cap-list">
             {c.capabilities.items.map(([no, name, desc]) => (
               <article key={no} data-v5-reveal>
                 <span>{no}</span>
@@ -311,7 +344,6 @@ export default function ArchicHome() {
         </section>
 
         <section className="v5-closing" id="contact">
-          <div className="v5-closing-mark" aria-hidden="true"><img src="/brand/archic-mark-light.svg" alt="" /></div>
           <p className="v5-eyebrow">{c.closing.eyebrow}</p>
           <h2 data-v5-reveal>{c.closing.title}<br /><span>{c.closing.accent}</span></h2>
           <p data-v5-reveal>{c.closing.body}</p>
