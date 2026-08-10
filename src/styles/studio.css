@@ -36,6 +36,12 @@
   color: #fff;
 }
 
+/* El reset global de `index.css` fija el color de los encabezados para las
+   landings `ar-`. Aquí el color lo decide la sección (papel o tinta). */
+.sx :is(h1, h2, h3, h4, h5, h6) {
+  color: inherit;
+}
+
 .sx-wrap {
   width: 100%;
   max-width: var(--maxw);
