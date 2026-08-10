@@ -30,11 +30,17 @@ function path(lang: 'es' | 'en', slug = '') {
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
 }
 
+function normalisePath(value: string) {
+  if (value === '/') return '/'
+  return value.replace(/\/$/, '')
+}
+
 export default function StudioHeader() {
   const { lang, setLang, t } = useLang()
   const c = COPY[lang]
   const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
+  const currentPath = typeof window === 'undefined' ? '' : normalisePath(window.location.pathname)
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 18)
@@ -87,21 +93,33 @@ export default function StudioHeader() {
       <div className="as-menu-panel" data-open={open} aria-hidden={!open}>
         <div className="as-menu-inner">
           <div className="as-menu-meta">
-            <span>ARCHIC / DIGITAL SYSTEMS</span>
+            <div className="as-menu-identity">
+              <span>ARCHIC / DIGITAL SYSTEMS</span>
+              <small>{lang === 'es' ? 'Presencia · Operación · Software' : 'Presence · Operations · Software'}</small>
+            </div>
             <a className="as-menu-phone" href={`tel:${CONTACT_PHONE}`}>
               <small>{c.call}</small>
               <strong>{CONTACT_PHONE_DISPLAY}</strong>
             </a>
           </div>
           <nav aria-label={t.a11y.mainNav}>
-            {c.pages.map(([name, desc, slug], index) => (
-              <a href={path(lang, slug)} key={slug} onClick={() => setOpen(false)}>
-                <span>0{index + 1}</span>
-                <strong>{name}</strong>
-                <small>{desc}</small>
-                <i>↗</i>
-              </a>
-            ))}
+            {c.pages.map(([name, desc, slug], index) => {
+              const href = path(lang, slug)
+              const isCurrent = currentPath === normalisePath(href)
+              return (
+                <a
+                  href={href}
+                  key={slug}
+                  onClick={() => setOpen(false)}
+                  aria-current={isCurrent ? 'page' : undefined}
+                >
+                  <span>0{index + 1}</span>
+                  <strong>{name}</strong>
+                  <small>{desc}</small>
+                  <i>{isCurrent ? '—' : '↗'}</i>
+                </a>
+              )
+            })}
           </nav>
         </div>
       </div>
