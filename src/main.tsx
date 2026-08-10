@@ -18,6 +18,7 @@ import './styles/archic-phone.css'
 import './styles/archic-system.css'
 import './styles/archic-level5.css'
 import './styles/archic-typography.css'
+import './styles/archic-refinement.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
