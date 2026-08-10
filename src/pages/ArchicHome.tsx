@@ -4,16 +4,13 @@ import StudioFooter from '../components/StudioFooter'
 import StudioExperience from '../components/StudioExperience'
 import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
+import { HOME_SEO, siteOgImage } from '../seo/siteSeo'
 import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 
 const PRESENCE_IMAGE = 'https://images.pexels.com/photos/31080809/pexels-photo-31080809/free-photo-of-elegant-luxury-hotel-lobby-with-warm-ambiance.jpeg?auto=compress&dpr=1&h=900&w=1440'
 
 const COPY = {
   es: {
-    meta: {
-      title: 'Archic — Sistemas digitales para negocios excepcionales',
-      description: 'Diseñamos la presencia, los sistemas y el software de negocios con un estándar alto.',
-    },
     hero: {
       eyebrow: 'ARCHIC — DIGITAL SYSTEMS',
       title: 'La parte digital de',
@@ -54,10 +51,6 @@ const COPY = {
     },
   },
   en: {
-    meta: {
-      title: 'Archic — Digital systems for exceptional businesses',
-      description: 'We design the presence, systems and software of businesses with a high standard.',
-    },
     hero: {
       eyebrow: 'ARCHIC — DIGITAL SYSTEMS',
       title: 'The digital side of',
@@ -106,8 +99,10 @@ function path(lang: 'es' | 'en', slug: string) {
 export default function ArchicHome() {
   const { lang } = useLang()
   const c = COPY[lang]
+  const seo = HOME_SEO[lang]
   const canonicalUrl = homeCanonical(lang)
   const structuredData = buildHomeGraph(lang)
+  const ogImage = siteOgImage(lang)
 
   const products = [
     { key: 'presence', copy: c.chapters.presence, className: 'as-product-presence' },
@@ -118,96 +113,113 @@ export default function ArchicHome() {
   return (
     <div className="as-site as-home">
       <Helmet htmlAttributes={{ lang }}>
-        <title>{c.meta.title}</title>
-        <meta name="description" content={c.meta.description} />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="canonical" href={canonicalUrl} />
         <link rel="alternate" hrefLang="es" href="https://archic.es/" />
         <link rel="alternate" hrefLang="en" href="https://archic.es/en/" />
         <link rel="alternate" hrefLang="x-default" href="https://archic.es/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Archic" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={seo.ogAlt} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image:alt" content={seo.ogAlt} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
       <StudioExperience />
       <StudioHeader />
 
-      <section className="as-home-hero" id="home">
-        <div className="as-home-hero-copy" data-reveal="hero">
-          <p className="as-kicker">{c.hero.eyebrow}</p>
-          <h1>{c.hero.title}<br /><em>{c.hero.accent}</em></h1>
-          <p>{c.hero.body}</p>
-          <div className="as-actions as-hero-actions">
-            <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.hero.primary}<span>↗</span></a>
-            <a className="as-call-cta" href={`tel:${CONTACT_PHONE}`}>
-              <span>{c.hero.call}</span>
-              <strong>{CONTACT_PHONE_DISPLAY}</strong>
-            </a>
+      <main>
+        <section className="as-home-hero" id="home">
+          <div className="as-home-hero-copy" data-reveal="hero">
+            <p className="as-kicker">{c.hero.eyebrow}</p>
+            <h1>{c.hero.title}<br /><em>{c.hero.accent}</em></h1>
+            <p>{c.hero.body}</p>
+            <div className="as-actions as-hero-actions">
+              <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.hero.primary}<i className="as-arrow" aria-hidden="true" /></a>
+              <a className="as-call-cta" href={`tel:${CONTACT_PHONE}`}>
+                <span>{c.hero.call}</span>
+                <strong>{CONTACT_PHONE_DISPLAY}</strong>
+              </a>
+            </div>
           </div>
-        </div>
-        <div className="as-home-hero-index" aria-hidden="true">
-          <span>01 — 03</span><i /><strong>PRESENCE<br />CONTROL<br />BUSINESS</strong>
-        </div>
-      </section>
-
-      <section className="as-products">
-        <div className="as-products-head" data-reveal>
-          <div>
-            <p className="as-kicker">{c.chapters.eyebrow}</p>
-            <h2>{c.chapters.title}</h2>
+          <div className="as-home-hero-index" aria-hidden="true">
+            <span>01 — 03</span><i /><strong>PRESENCE<br />CONTROL<br />BUSINESS</strong>
           </div>
-          <p>{c.chapters.body}</p>
-        </div>
+        </section>
 
-        <div className="as-products-grid">
-          {products.map((product, index) => (
-            <a className={`as-product ${product.className}`} href={path(lang, product.key)} key={product.key} data-reveal>
-              {product.key === 'presence' && <img src={PRESENCE_IMAGE} alt="" loading="lazy" decoding="async" />}
-              <div className="as-product-shade" />
-              <div className="as-product-no">0{index + 1}</div>
-              <div className="as-product-detail" aria-hidden="true">{product.copy[3]}</div>
-              <div className="as-product-copy">
-                <span>{product.copy[0]}</span>
-                <h3>{product.copy[1]}</h3>
-                <p>{product.copy[2]}</p>
-                <strong>{c.chapters.explore}<i>↗</i></strong>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section className="as-home-standard">
-        <div className="as-standard-inner" data-reveal>
-          <p className="as-kicker">{c.standard.eyebrow}</p>
-          <h2>{c.standard.title}<br /><em>{c.standard.accent}</em></h2>
-          <p>{c.standard.body}</p>
-        </div>
-      </section>
-
-      <section className="as-home-fit">
-        <div data-reveal>
-          <p className="as-kicker">{c.fit.eyebrow}</p>
-          <h2>{c.fit.title}<br /><em>{c.fit.accent}</em></h2>
-        </div>
-        <div data-reveal>
-          <p>{c.fit.body}</p>
-          <a className="as-text-link as-text-link-dark" href={path(lang, 'studio')}>{c.fit.studio}<span>↗</span></a>
-        </div>
-      </section>
-
-      <section className="as-home-close">
-        <div className="as-close-inner" data-reveal>
-          <p className="as-kicker">{c.close.eyebrow}</p>
-          <h2>{c.close.title}<br /><em>{c.close.accent}</em></h2>
-          <p>{c.close.body}</p>
-          <div className="as-close-actions">
-            <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.close.cta}<span>↗</span></a>
-            <a className="as-call-cta as-call-cta-centered" href={`tel:${CONTACT_PHONE}`}>
-              <span>{c.close.call}</span>
-              <strong>{CONTACT_PHONE_DISPLAY}</strong>
-            </a>
+        <section className="as-products" aria-labelledby="archic-layers-title">
+          <div className="as-products-head" data-reveal>
+            <div>
+              <p className="as-kicker">{c.chapters.eyebrow}</p>
+              <h2 id="archic-layers-title">{c.chapters.title}</h2>
+            </div>
+            <p>{c.chapters.body}</p>
           </div>
-        </div>
-      </section>
+
+          <div className="as-products-grid">
+            {products.map((product, index) => (
+              <a className={`as-product ${product.className}`} href={path(lang, product.key)} key={product.key} data-reveal>
+                {product.key === 'presence' && <img src={PRESENCE_IMAGE} alt="" loading="lazy" decoding="async" />}
+                <div className="as-product-shade" />
+                <div className="as-product-no">0{index + 1}</div>
+                <div className="as-product-detail" aria-hidden="true">{product.copy[3]}</div>
+                <div className="as-product-copy">
+                  <span>{product.copy[0]}</span>
+                  <h3>{product.copy[1]}</h3>
+                  <p>{product.copy[2]}</p>
+                  <strong>{c.chapters.explore}<i className="as-arrow" aria-hidden="true" /></strong>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="as-home-standard">
+          <div className="as-standard-inner" data-reveal>
+            <p className="as-kicker">{c.standard.eyebrow}</p>
+            <h2>{c.standard.title}<br /><em>{c.standard.accent}</em></h2>
+            <p>{c.standard.body}</p>
+          </div>
+        </section>
+
+        <section className="as-home-fit">
+          <div data-reveal>
+            <p className="as-kicker">{c.fit.eyebrow}</p>
+            <h2>{c.fit.title}<br /><em>{c.fit.accent}</em></h2>
+          </div>
+          <div data-reveal>
+            <p>{c.fit.body}</p>
+            <a className="as-text-link as-text-link-dark" href={path(lang, 'studio')}>{c.fit.studio}<i className="as-arrow" aria-hidden="true" /></a>
+          </div>
+        </section>
+
+        <section className="as-home-close">
+          <div className="as-close-inner" data-reveal>
+            <p className="as-kicker">{c.close.eyebrow}</p>
+            <h2>{c.close.title}<br /><em>{c.close.accent}</em></h2>
+            <p>{c.close.body}</p>
+            <div className="as-close-actions">
+              <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.close.cta}<i className="as-arrow" aria-hidden="true" /></a>
+              <a className="as-call-cta as-call-cta-centered" href={`tel:${CONTACT_PHONE}`}>
+                <span>{c.close.call}</span>
+                <strong>{CONTACT_PHONE_DISPLAY}</strong>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
 
       <StudioFooter />
     </div>
