@@ -100,7 +100,8 @@
   max-width: 54ch;
   margin: 0;
 }
-.sx-dark .sx-lead {
+.sx-dark .sx-lead,
+.sx-footer .sx-lead {
   color: var(--on-ink-dim);
 }
 

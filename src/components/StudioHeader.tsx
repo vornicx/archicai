@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
 import { STUDIO } from '../content/studio'
-import markAsset from '../assets/archic-mark.png.asset.json'
 
 /**
  * Cabecera del estudio: transparente sobre el hero y sólida en cuanto se
@@ -33,7 +32,7 @@ export default function StudioHeader() {
       <div className="sx-wrap">
         <div className="sx-header-row">
           <a className="sx-brand" href={lang === 'en' ? '/en/' : '/'}>
-            <img src={markAsset.url} alt="" width={26} height={26} />
+            <img src="/archic-mark.png" alt="" width={26} height={26} />
             <span>Archic</span>
           </a>
 
