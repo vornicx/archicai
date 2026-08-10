@@ -132,10 +132,12 @@ function document_({
     <link data-rh="true" rel="canonical" href="${canonical}">
 ${alternateTags}
     <meta name="theme-color" content="#12294c" />
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/archic-mark-512.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/favicon.ico?v=3" sizes="any">
+    <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
+    <link rel="manifest" href="/manifest.json">
     <meta name="google-site-verification" content="${GSC_TOKEN}" />
     <!-- Webfonts are self-hosted (see src/main.tsx): no third-party requests. -->
     <meta data-rh="true" property="og:url" content="${canonical}" />
@@ -145,8 +147,8 @@ ${alternateTags}
     <meta data-rh="true" property="og:locale:alternate" content="${lang === 'es' ? 'en_US' : 'es_ES'}" />
     <meta data-rh="true" property="og:title" content="${esc(title)}">
     <meta data-rh="true" property="og:description" content="${esc(description)}">
-    <meta data-rh="true" property="og:image" content="${ORIGIN}/${ogImage}">
-    <meta data-rh="true" property="og:image:secure_url" content="${ORIGIN}/${ogImage}">
+    <meta data-rh="true" property="og:image" content="${ORIGIN}/${ogImage}?v=3">
+    <meta data-rh="true" property="og:image:secure_url" content="${ORIGIN}/${ogImage}?v=3">
     <meta data-rh="true" property="og:image:type" content="image/png">
     <meta data-rh="true" property="og:image:width" content="1200">
     <meta data-rh="true" property="og:image:height" content="630">
@@ -155,7 +157,7 @@ ${alternateTags}
     <meta data-rh="true" name="twitter:site" content="@ArchicHQ" />
     <meta data-rh="true" name="twitter:title" content="${esc(title)}">
     <meta data-rh="true" name="twitter:description" content="${esc(description)}">
-    <meta data-rh="true" name="twitter:image" content="${ORIGIN}/${ogImage}">
+    <meta data-rh="true" name="twitter:image" content="${ORIGIN}/${ogImage}?v=3">
     <meta data-rh="true" name="twitter:image:alt" content="${esc(ogImageAlt)}">
     <script data-rh="true" type="application/ld+json">
 ${JSON.stringify(graph, null, 2)
