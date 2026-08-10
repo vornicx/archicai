@@ -161,31 +161,145 @@ const SEARCH_INTENTS: Partial<Record<Exclude<ArchicPageKey, 'contact'>, [string,
   ],
 }
 
-function path(lang: 'es' | 'en', slug: string) { return lang === 'en' ? `/en/${slug}/` : `/${slug}/` }
+function path(lang: 'es' | 'en', slug: string) {
+  return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
+}
+
+function Arrow() {
+  return <i className="as-arrow" aria-hidden="true" />
+}
 
 export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
   const { lang } = useLang()
 
   if (page === 'contact') {
     const title = lang === 'es' ? 'Cuéntanos el proyecto.' : 'Tell us about the project.'
-    const body = lang === 'es' ? 'Qué negocio es, qué quieres mejorar y qué resultado esperas. No hace falta un briefing perfecto.' : 'What the business is, what you want to improve and what outcome you expect. A perfect brief is not required.'
+    const body = lang === 'es'
+      ? 'Qué negocio es, qué quieres mejorar y qué resultado esperas. No hace falta un briefing perfecto.'
+      : 'What the business is, what you want to improve and what outcome you expect. A perfect brief is not required.'
     const callLabel = lang === 'es' ? 'Si prefieres hablar, llámanos directamente' : 'If you would rather talk, call us directly'
-    return <div className="as-site as-contact-page"><Helmet><title>{lang === 'es' ? 'Contacto — Archic' : 'Contact — Archic'}</title></Helmet><StudioExperience /><StudioHeader /><section className="as-contact-hero"><div data-reveal><p className="as-kicker">PRIVATE PROJECT ENQUIRY</p><h1>{title}</h1><p>{body}</p><a className="as-contact-direct-call" href={`tel:${CONTACT_PHONE}`}><span>{callLabel}</span><strong>{CONTACT_PHONE_DISPLAY}</strong><i>↗</i></a><div className="as-contact-notes"><span>01 · {lang === 'es' ? 'El negocio' : 'The business'}</span><span>02 · {lang === 'es' ? 'El problema' : 'The problem'}</span><span>03 · {lang === 'es' ? 'El resultado' : 'The outcome'}</span></div></div><div className="as-contact-form" data-reveal><div className="as-form-head"><span>ARCHIC / PROJECT</span><span>PRIVATE ENQUIRY</span></div><StudioContact /></div></section><StudioFooter /></div>
+
+    return (
+      <div className="as-site as-contact-page">
+        <Helmet><title>{lang === 'es' ? 'Contacto — Archic' : 'Contact — Archic'}</title></Helmet>
+        <StudioExperience />
+        <StudioHeader />
+        <section className="as-contact-hero">
+          <div data-reveal>
+            <p className="as-kicker">PRIVATE PROJECT ENQUIRY</p>
+            <h1>{title}</h1>
+            <p>{body}</p>
+            <a className="as-contact-direct-call" href={`tel:${CONTACT_PHONE}`}>
+              <span>{callLabel}</span>
+              <strong>{CONTACT_PHONE_DISPLAY}</strong>
+              <Arrow />
+            </a>
+            <div className="as-contact-notes">
+              <span>01 · {lang === 'es' ? 'El negocio' : 'The business'}</span>
+              <span>02 · {lang === 'es' ? 'El problema' : 'The problem'}</span>
+              <span>03 · {lang === 'es' ? 'El resultado' : 'The outcome'}</span>
+            </div>
+          </div>
+          <div className="as-contact-form" data-reveal>
+            <div className="as-form-head"><span>ARCHIC / PROJECT</span><span>PRIVATE ENQUIRY</span></div>
+            <StudioContact />
+          </div>
+        </section>
+        <StudioFooter />
+      </div>
+    )
   }
 
   const c = COPY[lang][page]
   const pageIndex = PAGE_INDEX[page]
   const intents = lang === 'es' ? SEARCH_INTENTS[page] ?? [] : []
+
   return (
     <div className={`as-site as-detail as-${page}`}>
-      <Helmet><title>{`${c.eyebrow.replace('ARCHIC ', '')} — Archic`}</title><meta name="description" content={c.intro} /></Helmet>
-      <StudioExperience /><StudioHeader />
-      <section className="as-detail-hero"><div className="as-detail-hero-copy" data-reveal="hero"><p className="as-kicker">{c.eyebrow}</p><h1>{c.title}<br /><em>{c.accent}</em></h1><p className="as-lead">{c.intro}</p></div><div className="as-scroll-mark" aria-hidden="true"><span>{pageIndex}</span><i /><strong>{page.toUpperCase()}</strong></div></section>
-      <section className="as-statement"><div className="as-statement-index" data-reveal>ARCHIC / {page.toUpperCase()}</div><div data-reveal><h2>{c.statement}<br /><em>{c.statementAccent}</em></h2><p>{c.statementBody}</p></div></section>
-      <section className="as-feature-section"><div className="as-feature-head" data-reveal><p className="as-kicker">{lang === 'es' ? 'QUÉ CONSTRUIMOS' : 'WHAT WE BUILD'}</p><h2>{lang === 'es' ? 'Una capa digital completa.' : 'A complete digital layer.'}</h2></div><div className="as-feature-list">{c.features.map(([no,name,desc])=><article key={no} data-reveal><span>{no}</span><h3>{name}</h3><p>{desc}</p><i>↗</i></article>)}</div></section>
-      <section className="as-principle"><div className="as-principle-inner" data-reveal><p className="as-kicker">ARCHIC PRINCIPLE</p><h2>{c.principleTitle}</h2><p>{c.principleBody}</p></div></section>
-      {intents.length > 0 && <section className="as-search-intents"><div className="as-search-intents-head" data-reveal><p className="as-kicker">CASOS DE USO</p><h2>Empieza por lo que estás intentando resolver.</h2></div><div className="as-search-intents-list">{intents.map(([label,desc,href],index)=><a href={href} key={href} data-reveal><span>0{index+1}</span><div><strong>{label}</strong><small>{desc}</small></div><i>↗</i></a>)}</div></section>}
-      <section className="as-next"><div data-reveal><p className="as-kicker">{lang === 'es' ? 'SIGUIENTE PASO' : 'NEXT STEP'}</p><h2>{c.ctaTitle}</h2><p>{c.ctaBody}</p></div><div className="as-next-actions" data-reveal><a className="as-next-project" href={path(lang,'contact')}>{lang === 'es' ? 'Hablar de tu proyecto' : 'Talk about your project'}<span>↗</span></a><a className="as-next-call" href={`tel:${CONTACT_PHONE}`}><small>{lang === 'es' ? 'Llamar directamente' : 'Call directly'}</small><strong>{CONTACT_PHONE_DISPLAY}</strong></a></div></section>
+      <Helmet>
+        <title>{`${c.eyebrow.replace('ARCHIC ', '')} — Archic`}</title>
+        <meta name="description" content={c.intro} />
+      </Helmet>
+      <StudioExperience />
+      <StudioHeader />
+
+      <section className="as-detail-hero">
+        <div className="as-detail-hero-copy" data-reveal="hero">
+          <p className="as-kicker">{c.eyebrow}</p>
+          <h1>{c.title}<br /><em>{c.accent}</em></h1>
+          <p className="as-lead">{c.intro}</p>
+        </div>
+        <div className="as-scroll-mark" aria-hidden="true"><span>{pageIndex}</span><i /><strong>{page.toUpperCase()}</strong></div>
+      </section>
+
+      <section className="as-statement">
+        <div className="as-statement-index" data-reveal>ARCHIC / {page.toUpperCase()}</div>
+        <div data-reveal>
+          <h2>{c.statement}<br /><em>{c.statementAccent}</em></h2>
+          <p>{c.statementBody}</p>
+        </div>
+      </section>
+
+      <section className="as-feature-section">
+        <div className="as-feature-head" data-reveal>
+          <p className="as-kicker">{lang === 'es' ? 'QUÉ CONSTRUIMOS' : 'WHAT WE BUILD'}</p>
+          <h2>{lang === 'es' ? 'Una capa digital completa.' : 'A complete digital layer.'}</h2>
+        </div>
+        <div className="as-feature-list">
+          {c.features.map(([no, name, desc]) => (
+            <article key={no} data-reveal>
+              <span>{no}</span>
+              <h3>{name}</h3>
+              <p>{desc}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="as-principle">
+        <div className="as-principle-inner" data-reveal>
+          <p className="as-kicker">ARCHIC PRINCIPLE</p>
+          <h2>{c.principleTitle}</h2>
+          <p>{c.principleBody}</p>
+        </div>
+      </section>
+
+      {intents.length > 0 && (
+        <section className="as-search-intents">
+          <div className="as-search-intents-head" data-reveal>
+            <p className="as-kicker">CASOS DE USO</p>
+            <h2>Empieza por lo que estás intentando resolver.</h2>
+          </div>
+          <div className="as-search-intents-list">
+            {intents.map(([label, desc, href], index) => (
+              <a href={href} key={href} data-reveal>
+                <span>0{index + 1}</span>
+                <div><strong>{label}</strong><small>{desc}</small></div>
+                <Arrow />
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="as-next">
+        <div data-reveal>
+          <p className="as-kicker">{lang === 'es' ? 'SIGUIENTE PASO' : 'NEXT STEP'}</p>
+          <h2>{c.ctaTitle}</h2>
+          <p>{c.ctaBody}</p>
+        </div>
+        <div className="as-next-actions" data-reveal>
+          <a className="as-next-project" href={path(lang, 'contact')}>
+            {lang === 'es' ? 'Hablar de tu proyecto' : 'Talk about your project'}
+            <Arrow />
+          </a>
+          <a className="as-next-call" href={`tel:${CONTACT_PHONE}`}>
+            <small>{lang === 'es' ? 'Llamar directamente' : 'Call directly'}</small>
+            <strong>{CONTACT_PHONE_DISPLAY}</strong>
+          </a>
+        </div>
+      </section>
+
       <StudioFooter />
     </div>
   )
