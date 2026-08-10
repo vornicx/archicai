@@ -1,0 +1,89 @@
+.v5{
+  --archic-display:'Space Grotesk',Inter,Arial,sans-serif;
+  --archic-body:'DM Sans',Inter,Arial,sans-serif;
+  font-family:var(--archic-body);
+}
+
+.v5 h1,
+.v5 h2,
+.v5 h3,
+.v5 .v5-nav,
+.v5 .v5-header-cta,
+.v5 .v5-btn,
+.v5 .v5-link,
+.v5 .v5-eyebrow,
+.v5 .v5-product-label,
+.v5 .v5-browser-brand,
+.v5 .v5-browser-title,
+.v5 .v5-control-row strong,
+.v5 .v5-business-layer,
+.v5 .v5-cap-grid h3,
+.v5 .v5-sectors,
+.v5 .v5-footer-contact a{
+  font-family:var(--archic-display);
+}
+
+.v5 p,
+.v5 .v5-intro-body,
+.v5 .v5-product-copy>p:not(.v5-product-label),
+.v5 .v5-control-row p,
+.v5 .v5-cap-grid p,
+.v5 .v5-cap-head>p,
+.v5 .v5-footer-brand p,
+.v5 .v5-footer-legal a{
+  font-family:var(--archic-body);
+}
+
+/* The wordmark is geometric and restrained. Keep display typography in the same language. */
+.v5 h1,
+.v5 h2{
+  font-weight:500;
+  font-feature-settings:'ss01' 1,'kern' 1;
+}
+
+.v5 h3,
+.v5 .v5-control-row strong{
+  font-weight:500;
+  font-feature-settings:'kern' 1;
+}
+
+/* Remove the editorial-serif treatment from the previous pass. */
+.v5 .v5-intro h2 span,
+.v5 .v5-product-copy h2 span,
+.v5 .v5-browser-title em,
+.v5 .v5-standard h2 span,
+.v5 .v5-closing h2 span{
+  font-family:var(--archic-display);
+  font-style:normal;
+  font-weight:400;
+  letter-spacing:inherit;
+}
+
+/* Product naming should feel like extensions of the ARCHIC wordmark. */
+.v5 .v5-product-label,
+.v5 .v5-browser-brand,
+.v5 .v5-control-top,
+.v5 .v5-control-bottom,
+.v5 .v5-business-signature{
+  font-family:var(--archic-display);
+  font-weight:500;
+  text-transform:uppercase;
+}
+
+.v5 .v5-eyebrow,
+.v5 .v5-product-label{
+  letter-spacing:.2em;
+}
+
+.v5 .v5-nav,
+.v5 .v5-header-cta,
+.v5 .v5-btn{
+  font-weight:500;
+}
+
+@media(max-width:720px){
+  .v5 h1,
+  .v5 h2{
+    letter-spacing:-.055em;
+  }
+}
