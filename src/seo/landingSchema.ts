@@ -1,28 +1,18 @@
 /**
  * Grafo JSON-LD compartido por la página React y el generador de HTML estático.
- *
- * Tenerlo en un único sitio evita que el marcado que ve el rastreador (HTML
- * estático) y el que se hidrata en cliente diverjan, cosa que Search Console
- * reporta como datos estructurados inconsistentes.
+ * Solo se publican datos que puedan verificarse en la propia web.
  */
 import type { ServicePage } from './servicePages'
 import type { LocalLandingPage } from './localPages'
-import { localBusinessNode } from './localBusiness'
-
-const ORIGIN = 'https://archic.es'
+import { organizationNode, SITE_ORIGIN } from './siteSeo'
 
 export function isLocalLanding(page: ServicePage): page is LocalLandingPage {
   return 'local' in page && Boolean((page as LocalLandingPage).local)
 }
 
 export function buildLandingGraph(page: ServicePage, lang: 'es' | 'en' = 'es') {
-  const canonical = `${ORIGIN}${page.path}`
+  const canonical = `${SITE_ORIGIN}${page.path}`
   const local = isLocalLanding(page) ? page.local : null
-
-  /* En una landing local el proveedor del servicio es el negocio local, no la
-     organización genérica: es lo que enlaza el Service con el nodo que Google
-     usa para los resultados del paquete local. */
-  const providerId = local ? `${ORIGIN}/#localbusiness` : `${ORIGIN}/#organization`
 
   const areaServed = local
     ? [
@@ -35,14 +25,14 @@ export function buildLandingGraph(page: ServicePage, lang: 'es' | 'en' = 'es') {
   return {
     '@context': 'https://schema.org',
     '@graph': [
-      ...(local ? [localBusinessNode(local, lang)] : []),
+      organizationNode(),
       {
         '@type': 'Service',
         '@id': `${canonical}#service`,
         name: page.serviceName,
         description: page.meta.description,
         serviceType: page.keyword,
-        provider: { '@id': providerId },
+        provider: { '@id': `${SITE_ORIGIN}/#organization` },
         areaServed,
         availableLanguage: ['es', 'en'],
         ...(local
@@ -66,9 +56,9 @@ export function buildLandingGraph(page: ServicePage, lang: 'es' | 'en' = 'es') {
         '@type': 'BreadcrumbList',
         '@id': `${canonical}#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${ORIGIN}/` },
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_ORIGIN}/` },
           ...(local
-            ? [{ '@type': 'ListItem', position: 2, name: `${local.province}`, item: `${ORIGIN}/diseno-web-sevilla/` }]
+            ? [{ '@type': 'ListItem', position: 2, name: local.province, item: `${SITE_ORIGIN}/diseno-web-sevilla/` }]
             : []),
           {
             '@type': 'ListItem',
@@ -79,24 +69,14 @@ export function buildLandingGraph(page: ServicePage, lang: 'es' | 'en' = 'es') {
         ],
       },
       {
-        '@type': 'FAQPage',
-        '@id': `${canonical}#faq`,
-        inLanguage: lang,
-        mainEntity: page.faq.items.map((item) => ({
-          '@type': 'Question',
-          name: item.q,
-          acceptedAnswer: { '@type': 'Answer', text: item.a },
-        })),
-      },
-      {
         '@type': 'WebPage',
         '@id': `${canonical}#webpage`,
         url: canonical,
         name: page.meta.title,
         description: page.meta.description,
         inLanguage: lang,
-        isPartOf: { '@id': `${ORIGIN}/#website` },
-        about: { '@id': providerId },
+        isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+        about: { '@id': `${canonical}#service` },
         breadcrumb: { '@id': `${canonical}#breadcrumb` },
       },
     ],
