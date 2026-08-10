@@ -66,22 +66,12 @@ export default function StudioContact() {
       <div className="sx-field-row">
         <div className="sx-field">
           <label htmlFor="sx-contact">{c.fields.contact}</label>
-          <input
-            id="sx-contact"
-            name="contact"
-            type="text"
-            required
-            placeholder={c.placeholders.contact}
-          />
+          <input id="sx-contact" name="contact" type="text" required placeholder={c.placeholders.contact} />
         </div>
         <div className="sx-field">
           <label htmlFor="sx-type">{c.fields.type}</label>
           <select id="sx-type" name="type" defaultValue={c.types[0]}>
-            {c.types.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
+            {c.types.map((option) => <option key={option} value={option}>{option}</option>)}
           </select>
         </div>
       </div>
@@ -92,29 +82,16 @@ export default function StudioContact() {
       </div>
 
       <label className="sx-consent" htmlFor="sx-consent">
-        <input
-          id="sx-consent"
-          type="checkbox"
-          checked={consent}
-          onChange={(e) => setConsent(e.target.checked)}
-        />
-        <span>
-          {consentBefore}
-          <a href={LEGAL_PATHS.privacy[lang]}>{n.consentLinkLabel}</a>
-          {consentAfter}
-        </span>
+        <input id="sx-consent" type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+        <span>{consentBefore}<a href={LEGAL_PATHS.privacy[lang]}>{n.consentLinkLabel}</a>{consentAfter}</span>
       </label>
 
       <button type="submit" className="sx-btn sx-btn-solid">
         {c.submit}
-        <span className="sx-btn-arrow" aria-hidden="true">→</span>
+        <i className="as-arrow" aria-hidden="true" />
       </button>
 
-      {status && (
-        <p className="sx-form-msg" data-tone={status.tone} role="status">
-          {status.text}
-        </p>
-      )}
+      {status && <p className="sx-form-msg" data-tone={status.tone} role="status">{status.text}</p>}
     </form>
   )
 }
