@@ -1,11 +1,13 @@
 import { Helmet } from 'react-helmet-async'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_MAIL } from '../i18n/content'
+import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import ContactForm from '../components/ContactForm'
 import { SERVICE_PAGE_BY_PATH, type ServicePage as ServicePageData } from '../seo/servicePages'
 import { LOCAL_PAGE_BY_PATH } from '../seo/localPages'
+import { INTENT_PAGE_BY_PATH } from '../seo/intentPages'
 import { buildLandingGraph, isLocalLanding } from '../seo/landingSchema'
 import { useRevealOnScroll } from '../useReveal'
 import { LANDING_ART } from '../art/ProjectArt'
@@ -14,10 +16,11 @@ import ProcessArc from '../art/ProcessArc'
 
 const ORIGIN = 'https://archic.es'
 
-/** Las landings locales y de servicio comparten plantilla y catálogo de enlaces. */
+/** Las landings locales, de servicio y de intención comparten plantilla y catálogo. */
 const LANDING_BY_PATH: Record<string, ServicePageData> = {
   ...SERVICE_PAGE_BY_PATH,
   ...LOCAL_PAGE_BY_PATH,
+  ...INTENT_PAGE_BY_PATH,
 }
 
 export default function ServicePage({ page }: { page: ServicePageData }) {
@@ -71,15 +74,13 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
                 <a href="#contacto" className="ar-btn ar-btn-primary">
                   {t.hero.ctaPrimary}
                 </a>
-                <a href="#alcance" className="ar-btn ar-btn-ghost">
-                  Ver alcance
+                <a href={`tel:${CONTACT_PHONE}`} className="ar-btn ar-btn-ghost">
+                  Llamar {CONTACT_PHONE_DISPLAY}
                 </a>
               </div>
               <p className="ar-hero-note">{page.hero.note}</p>
             </div>
 
-            {/* Cada landing lleva la ilustración que corresponde a su intención
-                de búsqueda, con el mismo arco de marca detrás que la portada. */}
             {Art && (
               <div className="ar-hero-media">
                 <svg className="ar-hero-arch" viewBox="0 0 320 400" aria-hidden="true" focusable="false" fill="none">
@@ -226,6 +227,10 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
                 <h2 className="ar-h2">{page.cta.title}</h2>
                 <p className="ar-lead">{page.cta.lead}</p>
                 <p className="ar-lead" style={{ marginTop: 20 }}>
+                  Teléfono:{' '}
+                  <a href={`tel:${CONTACT_PHONE}`} className="ar-inline-link">{CONTACT_PHONE_DISPLAY}</a>
+                </p>
+                <p className="ar-lead" style={{ marginTop: 8 }}>
                   {t.contact.directLabel}{' '}
                   <a href={`mailto:${CONTACT_MAIL}`} className="ar-inline-link">
                     {CONTACT_MAIL}
