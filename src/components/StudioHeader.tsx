@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
+import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 
 const COPY = {
   es: {
-    menu: 'Menú', close: 'Cerrar', project: 'Proyecto',
+    menu: 'Menú', close: 'Cerrar', project: 'Proyecto', call: 'Llamar',
     pages: [
       ['Presence', 'Presencia digital', 'presence'],
       ['Control', 'Operación privada', 'control'],
@@ -13,7 +14,7 @@ const COPY = {
     ],
   },
   en: {
-    menu: 'Menu', close: 'Close', project: 'Project',
+    menu: 'Menu', close: 'Close', project: 'Project', call: 'Call',
     pages: [
       ['Presence', 'Digital presence', 'presence'],
       ['Control', 'Private operations', 'control'],
@@ -65,6 +66,10 @@ export default function StudioHeader() {
             <span>/</span>
             <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
           </div>
+          <a className="as-phone-link" href={`tel:${CONTACT_PHONE}`} aria-label={`${c.call} ${CONTACT_PHONE_DISPLAY}`}>
+            <span>{c.call}</span>
+            <strong>{CONTACT_PHONE_DISPLAY}</strong>
+          </a>
           <a className="as-project-link" href={path(lang, 'contact')}>{c.project}<span>↗</span></a>
           <button
             type="button"
@@ -83,7 +88,10 @@ export default function StudioHeader() {
         <div className="as-menu-inner">
           <div className="as-menu-meta">
             <span>ARCHIC / DIGITAL SYSTEMS</span>
-            <span>ES · EN</span>
+            <a className="as-menu-phone" href={`tel:${CONTACT_PHONE}`}>
+              <small>{c.call}</small>
+              <strong>{CONTACT_PHONE_DISPLAY}</strong>
+            </a>
           </div>
           <nav aria-label={t.a11y.mainNav}>
             {c.pages.map(([name, desc, slug], index) => (
