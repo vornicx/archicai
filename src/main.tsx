@@ -11,10 +11,10 @@ import '@fontsource/space-grotesk/latin-500.css'
 import '@fontsource/space-grotesk/latin-600.css'
 import '@fontsource/ibm-plex-mono/latin-400.css'
 import '@fontsource/ibm-plex-mono/latin-500.css'
-import '@fontsource/instrument-serif/latin-400.css'
 import './index.css'
 import './styles/studio.css'
 import './styles/archic-v5.css'
+import './styles/archic-v5-type.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
