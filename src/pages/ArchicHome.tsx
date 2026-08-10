@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useLang } from '../i18n/LanguageContext'
-import { CONTACT_MAIL } from '../i18n/content'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
+import StudioContact from '../components/StudioContact'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 
 const PRESENCE_IMAGE = 'https://images.pexels.com/photos/31080809/pexels-photo-31080809/free-photo-of-elegant-luxury-hotel-lobby-with-warm-ambiance.jpeg?auto=compress&dpr=1&h=750&w=1260'
@@ -91,13 +91,36 @@ const COPY = {
         ['04', 'Software', 'Integraciones, automatización y herramientas a medida.'],
       ],
     },
+    fit: {
+      eyebrow: 'A GOOD FIT',
+      title: 'Archic tiene sentido cuando',
+      accent: 'lo digital importa de verdad.',
+      body: 'Cuando percepción, operación o software influyen directamente en cómo se vende, se trabaja o se escala.',
+      note: 'Encajamos mejor cuando la calidad y el resultado pesan más que encontrar la opción más barata.',
+      items: [
+        ['01', 'Percepción', 'Tu marca necesita transmitir el mismo nivel online que fuera de la pantalla.'],
+        ['02', 'Operación', 'Reservas, leads, clientes o procesos ya no deberían vivir en herramientas desconectadas.'],
+        ['03', 'Ambición', 'Buscas una base digital que pueda crecer contigo, no una solución para salir del paso.'],
+      ],
+      processEyebrow: 'HOW IT STARTS',
+      processTitle: 'Una buena colaboración empieza',
+      processAccent: 'con una buena conversación.',
+      processBody: 'No empezamos enseñándote un paquete cerrado. Primero entendemos el negocio y decidimos dónde una intervención digital puede cambiar realmente el resultado.',
+      steps: [
+        ['01', 'Contexto', 'Nos cuentas dónde estás, qué te frena y qué debería cambiar.'],
+        ['02', 'Dirección', 'Definimos qué merece construirse y qué sería simplemente ruido.'],
+        ['03', 'Ejecución', 'Diseño y desarrollo avanzan bajo una única dirección.'],
+        ['04', 'Evolución', 'Mantenemos y ampliamos cuando seguir construyendo aporta valor.'],
+      ],
+    },
     sectors: ['Hospitality', 'Automotive', 'Yachting', 'Real Estate', 'Premium Services'],
     closing: {
-      eyebrow: 'START A PROJECT',
-      title: 'Haz que se note',
-      accent: 'antes de explicarlo.',
-      body: 'Si el negocio tiene un estándar alto, su parte digital debe transmitirlo desde el primer segundo. Cuéntanos qué quieres elevar.',
-      cta: 'Hablar con Archic',
+      eyebrow: 'PRIVATE PROJECT ENQUIRY',
+      title: 'Cuéntanos qué',
+      accent: 'merece ser mejor.',
+      body: 'No necesitas preparar un briefing perfecto. Con contexto suficiente podemos saber si Archic puede aportar valor real y cuál debería ser el siguiente paso.',
+      prompts: ['Qué negocio es', 'Qué quieres mejorar', 'Qué resultado esperas'],
+      note: 'Sin llamada comercial preparada. Primero entendemos el proyecto.',
     },
   },
   en: {
@@ -182,13 +205,36 @@ const COPY = {
         ['04', 'Software', 'Integrations, automation and custom tools.'],
       ],
     },
+    fit: {
+      eyebrow: 'A GOOD FIT',
+      title: 'Archic makes sense when',
+      accent: 'digital genuinely matters.',
+      body: 'When perception, operations or software directly influence how the business sells, works or scales.',
+      note: 'We are a better fit when quality and outcome matter more than simply finding the cheapest option.',
+      items: [
+        ['01', 'Perception', 'Your brand needs to communicate the same standard online that it does off-screen.'],
+        ['02', 'Operations', 'Bookings, leads, customers or processes should no longer live across disconnected tools.'],
+        ['03', 'Ambition', 'You want a digital foundation that can grow with the business, not a temporary fix.'],
+      ],
+      processEyebrow: 'HOW IT STARTS',
+      processTitle: 'A strong collaboration starts',
+      processAccent: 'with a strong conversation.',
+      processBody: 'We do not begin by showing you a fixed package. First we understand the business and decide where a digital intervention can genuinely change the outcome.',
+      steps: [
+        ['01', 'Context', 'Tell us where you are, what is holding you back and what should change.'],
+        ['02', 'Direction', 'We define what deserves to be built and what would simply be noise.'],
+        ['03', 'Execution', 'Design and development move under one direction.'],
+        ['04', 'Evolution', 'We maintain and expand when continuing to build creates value.'],
+      ],
+    },
     sectors: ['Hospitality', 'Automotive', 'Yachting', 'Real Estate', 'Premium Services'],
     closing: {
-      eyebrow: 'START A PROJECT',
-      title: 'Make it felt',
-      accent: 'before it is explained.',
-      body: 'If the business has a high standard, its digital side should communicate it from the first second. Tell us what you want to elevate.',
-      cta: 'Talk to Archic',
+      eyebrow: 'PRIVATE PROJECT ENQUIRY',
+      title: 'Tell us what',
+      accent: 'deserves to be better.',
+      body: 'You do not need a perfect brief. With enough context we can tell whether Archic can create real value and what the next step should be.',
+      prompts: ['What the business is', 'What you want to improve', 'What outcome you expect'],
+      note: 'No prepared sales call. We understand the project first.',
     },
   },
 }
@@ -388,16 +434,59 @@ export default function ArchicHome() {
           </div>
         </section>
 
+        <section className="v7-fit" id="fit">
+          <div className="v7-fit-head" data-v6-reveal>
+            <p className="v5-eyebrow">{c.fit.eyebrow}</p>
+            <h2>{c.fit.title}<br /><span>{c.fit.accent}</span></h2>
+            <p>{c.fit.body}</p>
+            <strong>{c.fit.note}</strong>
+          </div>
+          <div className="v7-fit-list">
+            {c.fit.items.map(([no, name, desc]) => (
+              <article key={no} data-v6-reveal>
+                <span>{no}</span>
+                <h3>{name}</h3>
+                <p>{desc}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="v7-process">
+            <div className="v7-process-copy" data-v6-reveal>
+              <p className="v5-eyebrow">{c.fit.processEyebrow}</p>
+              <h2>{c.fit.processTitle}<br /><span>{c.fit.processAccent}</span></h2>
+              <p>{c.fit.processBody}</p>
+            </div>
+            <div className="v7-process-steps">
+              {c.fit.steps.map(([no, name, desc]) => (
+                <article key={no} data-v6-reveal>
+                  <span>{no}</span>
+                  <h3>{name}</h3>
+                  <p>{desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="v5-sectors v6-sectors" aria-label="Sectors">
           <div>{[...c.sectors, ...c.sectors].map((sector, index) => <span key={`${sector}-${index}`}>{sector}<i>·</i></span>)}</div>
         </section>
 
-        <section className="v5-closing v6-closing" id="contact">
-          <div className="v6-closing-light" aria-hidden="true" />
-          <p className="v5-eyebrow">{c.closing.eyebrow}</p>
-          <h2 data-v6-reveal>{c.closing.title}<br /><span>{c.closing.accent}</span></h2>
-          <p data-v6-reveal>{c.closing.body}</p>
-          <a className="v5-btn v5-btn-gold" href={`mailto:${CONTACT_MAIL}`}>{c.closing.cta}<span>↗</span></a>
+        <section className="v7-contact" id="contact">
+          <div className="v7-contact-copy" data-v6-reveal>
+            <p className="v5-eyebrow">{c.closing.eyebrow}</p>
+            <h2>{c.closing.title}<br /><span>{c.closing.accent}</span></h2>
+            <p className="v7-contact-body">{c.closing.body}</p>
+            <div className="v7-contact-prompts">
+              {c.closing.prompts.map((prompt, index) => <span key={prompt}><i>0{index + 1}</i>{prompt}</span>)}
+            </div>
+            <small>{c.closing.note}</small>
+          </div>
+          <div className="v7-project-form" data-v6-reveal>
+            <div className="v7-form-head"><span>PROJECT / 01</span><span>ARCHIC · PRIVATE ENQUIRY</span></div>
+            <StudioContact />
+          </div>
         </section>
 
         <StudioFooter />
