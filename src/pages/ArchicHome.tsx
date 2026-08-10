@@ -140,7 +140,7 @@ export default function ArchicHome() {
       <StudioExperience />
       <StudioHeader />
 
-      <main>
+      <div className="as-home-content">
         <section className="as-home-hero" id="home">
           <div className="as-home-hero-copy" data-reveal="hero">
             <p className="as-kicker">{c.hero.eyebrow}</p>
@@ -219,7 +219,7 @@ export default function ArchicHome() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
 
       <StudioFooter />
     </div>
