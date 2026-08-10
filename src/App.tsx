@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import ArchicHome from './pages/ArchicHome'
 import ArchicSitePage from './pages/ArchicSitePage'
+import SiteRouteSeo from './components/SiteRouteSeo'
 /* Secondary routes are split out of the main bundle: they are rarely the
    landing page, so keeping them out of the critical path helps LCP. */
 const LegalPage = lazy(() => import('./pages/LegalPage'))
@@ -78,6 +79,7 @@ function App() {
               {LEGAL_ROUTES}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <SiteRouteSeo />
           </Suspense>
         </main>
       </div>
