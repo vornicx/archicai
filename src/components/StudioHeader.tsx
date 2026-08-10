@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
 
 const COPY = {
-  es: { studio: 'Archic', capabilities: 'Capacidades', standard: 'Estándar', cta: 'Empezar proyecto' },
-  en: { studio: 'Archic', capabilities: 'Capabilities', standard: 'Standard', cta: 'Start a project' },
+  es: { studio: 'Archic', capabilities: 'Sistemas', fit: 'Encaje', cta: 'Empezar proyecto' },
+  en: { studio: 'Archic', capabilities: 'Systems', fit: 'Fit', cta: 'Start a project' },
 }
 
 export default function StudioHeader() {
@@ -22,7 +22,7 @@ export default function StudioHeader() {
   const links = [
     { href: '#studio', label: c.studio },
     { href: '#capabilities', label: c.capabilities },
-    { href: '#contact', label: c.standard },
+    { href: '#fit', label: c.fit },
   ]
 
   return (
