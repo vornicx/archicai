@@ -14,9 +14,14 @@ export default function StudioFooter() {
     <footer className="sx-footer">
       <div className="sx-footer-grid">
         <div>
-          <div className="sx-brand sx-brand-footer">
-            <img src="/brand/archic-mark-light.svg" alt="" width={24} height={24} />
-            <span>ARCHIC</span>
+          <div className="sx-brand sx-brand-footer" role="img" aria-label="Archic">
+            <img
+              className="sx-brand-lockup"
+              src="/brand/archic-lockup-light.svg"
+              alt=""
+              width={981}
+              height={174}
+            />
           </div>
           <p className="sx-footer-tagline">{s.footer.tagline}</p>
           <p className="sx-footer-base">{s.footer.base}</p>

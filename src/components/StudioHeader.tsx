@@ -28,9 +28,14 @@ export default function StudioHeader() {
 
   return (
     <header className="sx-header" data-solid={solid || open}>
-      <a className="sx-brand" href={lang === 'en' ? '/en/' : '/'}>
-        <img src="/brand/archic-mark-light.svg" alt="" width={26} height={26} />
-        <span>ARCHIC</span>
+      <a className="sx-brand" href={lang === 'en' ? '/en/' : '/'} aria-label="Archic">
+        <img
+          className="sx-brand-lockup"
+          src="/brand/archic-lockup-light.svg"
+          alt=""
+          width={981}
+          height={174}
+        />
       </a>
 
       <nav className="sx-nav" aria-label={t.a11y.mainNav}>
