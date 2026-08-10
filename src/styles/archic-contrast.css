@@ -1,0 +1,131 @@
+.as-site{
+  --as-cream:#f7f2ea;
+  --as-cream-2:#e9e0d4;
+  --as-gold:#d8b16d;
+  --as-gold-hi:#e8c98f;
+}
+
+/* Dark surfaces: never let supporting copy disappear into the background. */
+.as-home-hero,
+.as-home-standard,
+.as-home-close,
+.as-detail-hero,
+.as-feature-section,
+.as-next,
+.as-menu-panel,
+.as-footer,
+.as-contact-form{
+  color:var(--as-cream);
+}
+
+.as-home-hero-copy>p:not(.as-kicker),
+.as-home-standard>p:last-child,
+.as-home-close>p:not(.as-kicker),
+.as-lead,
+.as-feature-list p,
+.as-next>div>p:not(.as-kicker),
+.as-menu-inner nav small,
+.as-footer-brand p,
+.as-footer-nav a,
+.as-footer-legal a,
+.as-contact-form .sx-consent,
+.as-contact-form .sx-field label,
+.as-form-head{
+  color:rgba(247,242,234,.74);
+}
+
+.as-home-hero-index,
+.as-menu-meta,
+.as-footer-bottom{
+  color:rgba(247,242,234,.58);
+}
+
+.as-text-link,
+.as-project-link{
+  color:rgba(247,242,234,.86);
+}
+
+.as-product:not(.as-product-business) .as-product-copy p{
+  color:rgba(247,242,234,.78);
+}
+.as-product:not(.as-product-business) .as-product-copy h3,
+.as-product:not(.as-product-business) .as-product-copy strong{
+  color:var(--as-cream);
+}
+
+/* Light surfaces: force dark, readable typography. */
+.as-products,
+.as-home-fit,
+.as-statement,
+.as-principle,
+.as-contact-page,
+.as-product-business{
+  color:#11100e;
+}
+
+.as-products-head>p,
+.as-home-fit>div:last-child>p,
+.as-statement>div:last-child>p,
+.as-principle>p:last-child,
+.as-contact-hero>div:first-child>p:not(.as-kicker),
+.as-contact-notes span,
+.as-product-business .as-product-copy p{
+  color:#4b443b;
+}
+
+.as-product-business .as-product-copy h3,
+.as-product-business .as-product-copy strong{
+  color:#11100e;
+}
+
+.as-text-link-dark{
+  color:#1d1a16;
+}
+
+/* Gold is an accent, not low-contrast body copy. */
+.as-kicker,
+.as-product-no,
+.as-product-copy>span,
+.as-scroll-mark,
+.as-feature-list article>span,
+.as-feature-list i,
+.as-next>a span,
+.as-footer-nav>span,
+.as-footer-legal>span,
+.as-footer-contact>span,
+.as-form-head span:last-child{
+  color:var(--as-gold-hi);
+}
+
+.as-products .as-kicker,
+.as-home-fit .as-kicker,
+.as-home-fit h2 em,
+.as-statement-index,
+.as-statement h2 em,
+.as-principle .as-kicker,
+.as-contact-page .as-kicker,
+.as-product-business .as-product-copy>span,
+.as-product-business .as-product-no,
+.as-product-business .as-product-copy strong i{
+  color:#765527;
+}
+
+/* Forms: placeholders stay secondary but clearly visible. */
+.as-contact-form .sx-field input::placeholder,
+.as-contact-form .sx-field textarea::placeholder{
+  color:rgba(247,242,234,.5);
+}
+.as-contact-form .sx-field input,
+.as-contact-form .sx-field select,
+.as-contact-form .sx-field textarea{
+  color:#fffaf2;
+  border-bottom-color:rgba(247,242,234,.28);
+}
+.as-contact-form .sx-consent a{
+  color:#f4eadb;
+}
+
+/* Preserve hierarchy while preventing tiny UI text from becoming invisible. */
+.as-lang{color:rgba(247,242,234,.68)}
+.as-menu-inner nav a>span{color:var(--as-gold-hi)}
+.as-footer-contact a{color:var(--as-cream)}
