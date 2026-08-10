@@ -1,408 +1,404 @@
 /**
- * Contenido de la portada de Archic como estudio de producto digital.
+ * Copy de la portada de Archic.
  *
  * Vive aparte de `src/i18n/content.ts` porque aquella estructura sostiene las
  * landings de SEO local, que siguen publicadas y no comparten narrativa con
- * esta página. Aquí el objetivo no es keyword coverage: es que un propietario
- * de un negocio premium entienda en diez segundos qué construimos.
+ * esta página. Aquí la regla es la del handoff de marca: frases cortas, sin
+ * clichés de agencia y sin datos de cliente inventados.
  */
 import type { Lang } from '../i18n/content'
 
-export type StudioProject = {
+export type SystemImage = 'digital' | 'hospitality' | 'automotive' | 'yachting'
+
+export type StudioCase = {
   index: string
+  kicker: string
   name: string
-  sector: string
-  headline: string
-  scope: string[]
-  image: 'bocana' | 'automotive' | 'realestate'
+  stack: string
+  desc: string
+  note: string
+  image: SystemImage
   imageAlt: string
 }
 
 export type StudioContent = {
   meta: { title: string; description: string; ogTitle: string; ogDescription: string }
-  nav: { work: string; build: string; sectors: string; method: string; cta: string }
+  nav: { work: string; systems: string; sectors: string; about: string; cta: string }
   hero: {
-    label: string
-    title: string[]
+    eyebrow: string
+    title: string
+    titleAccent: string
     lead: string
     ctaPrimary: string
     ctaSecondary: string
     imageAlt: string
-    scrollHint: string
+    metaLeft: string
+    metaRight: string
   }
-  work: { label: string; title: string; lead: string; scopeLabel: string }
-  projects: StudioProject[]
-  build: {
-    label: string
+  statement: { kicker: string; titleA: string; titleB: string; body: string }
+  work: { kicker: string; note: string; caseLink: string; cases: StudioCase[] }
+  system: {
+    kicker: string
     title: string
+    titleB: string
     lead: string
-    layers: { code: string; name: string; claim: string; desc: string; items: string[] }[]
+    steps: { code: string; name: string; desc: string }[]
+    care: string
   }
-  caseStudy: {
-    label: string
-    title: string
-    lead: string
-    stages: { step: string; title: string; desc: string }[]
+  sectors: {
+    kicker: string
     note: string
+    items: { name: string; line: string; image: SystemImage; imageAlt: string }[]
+    footnote: string
   }
-  sectors: { label: string; title: string; lead: string; items: { name: string; desc: string }[] }
-  method: {
-    label: string
+  principles: { kicker: string; items: { index: string; title: string; desc: string }[] }
+  process: {
+    kicker: string
     title: string
-    lead: string
-    steps: { step: string; name: string; desc: string }[]
+    steps: { code: string; name: string; desc: string }[]
   }
   cta: {
     label: string
     title: string
+    titleAccent: string
     lead: string
     mailLabel: string
     formTitle: string
   }
-  footer: { tagline: string; base: string; rights: string; legal: string }
+  footer: { tagline: string; base: string; rights: string; legal: string; systems: string }
 }
 
 const es: StudioContent = {
   meta: {
-    title: 'Archic — Estudio digital para negocios premium en Marbella',
+    title: 'Archic — Sistemas digitales para negocios excepcionales',
     description:
-      'Diseñamos y construimos la parte digital de negocios excepcionales: web, reservas, paneles de gestión, CRM y software a medida. Marbella, Puerto Banús y Costa del Sol.',
-    ogTitle: 'Archic — Estudio digital para negocios premium',
+      'Diseñamos y construimos la parte digital de negocios excepcionales: experiencia pública, reservas, operaciones y software a medida. Marbella, Puerto Banús y Costa del Sol.',
+    ogTitle: 'Archic — Sistemas digitales para negocios excepcionales',
     ogDescription:
-      'Web, reservas, operaciones y software a medida para restaurantes, inmobiliarias, náutica y automoción de alto nivel.',
+      'Presencia, reservas, control operativo y software a medida para hostelería, automoción, náutica e inmobiliaria de alto nivel.',
   },
   nav: {
     work: 'Proyectos',
-    build: 'Qué construimos',
+    systems: 'Sistemas',
     sectors: 'Sectores',
-    method: 'Método',
-    cta: 'Empezar un proyecto',
+    about: 'Estudio',
+    cta: 'Empezar proyecto',
   },
   hero: {
-    label: 'Estudio digital · Marbella · Puerto Banús',
-    title: ['Diseñamos la parte digital', 'de negocios excepcionales.'],
+    eyebrow: 'ARCHIC — SISTEMAS DIGITALES',
+    title: 'Sistemas digitales para negocios',
+    titleAccent: 'excepcionales.',
     lead:
-      'Presencia, reservas y software operativo construidos a medida. Del primer contacto del cliente a la gestión interna del negocio.',
-    ctaPrimary: 'Empezar un proyecto',
-    ctaSecondary: 'Ver proyectos',
+      'Diseñamos experiencias digitales, software y sistemas operativos que ayudan a negocios ambiciosos a vender, operar y crecer.',
+    ctaPrimary: 'Empezar proyecto',
+    ctaSecondary: 'Ver trabajo',
     imageAlt:
-      'Terraza de restaurante frente al Mediterráneo al anochecer, con vistas al puerto deportivo',
-    scrollHint: 'Proyectos seleccionados',
+      'Sistema digital abstracto: paneles de datos y módulos conectados alrededor del símbolo de Archic',
+    metaLeft: 'Marbella · España',
+    metaRight: 'Presencia · Software · Operaciones',
+  },
+  statement: {
+    kicker: 'QUÉ HACEMOS',
+    titleA: 'La web es la puerta de entrada.',
+    titleB: 'El valor está en el sistema que hay detrás.',
+    body:
+      'Conectamos la experiencia pública del negocio con las herramientas que lo hacen funcionar: reservas, clientes, recursos, flujos de trabajo y decisiones.',
   },
   work: {
-    label: '02 — Proyectos',
-    title: 'Trabajo seleccionado',
-    lead: 'Cada proyecto empieza por la imagen del negocio y termina en su operativa diaria.',
-    scopeLabel: 'Alcance',
+    kicker: 'DIRECCIÓN DE TRABAJO',
+    note: 'Construido alrededor del negocio, nunca alrededor de una plantilla.',
+    caseLink: 'Ver el sistema',
+    cases: [
+      {
+        index: '01',
+        kicker: 'HOSTELERÍA',
+        name: 'La Bocana',
+        stack: 'Presence + Bookings + Control',
+        desc:
+          'Un recorrido de cliente continuo: del descubrimiento y la reserva al servicio en sala, el histórico del cliente y la operativa diaria.',
+        note: 'Proyecto de hostelería en curso.',
+        image: 'hospitality',
+        imageAlt: 'Mesa de restaurante premium con una capa de datos sutil sobre la escena',
+      },
+      {
+        index: '02',
+        kicker: 'MOVILIDAD PREMIUM',
+        name: 'B&M',
+        stack: 'Presence + Fleet + Enquiries',
+        desc:
+          'Una capa digital que une presentación, disponibilidad de flota, solicitudes y gestión de clientes en un solo lugar.',
+        note: 'Concepto de estudio, no un proyecto entregado.',
+        image: 'automotive',
+        imageAlt: 'Deportivo oscuro con una retícula de datos discreta alrededor',
+      },
+    ],
   },
-  projects: [
-    {
-      index: '01',
-      name: 'La Bocana',
-      sector: 'Hospitality',
-      headline:
-        'Una nueva experiencia digital para un restaurante de playa: presencia, reservas y sala conectadas en un mismo sistema.',
-      scope: ['Presence', 'Bookings', 'Control'],
-      image: 'bocana',
-      imageAlt: 'Mesa preparada en un club de playa mediterráneo a la hora dorada',
-    },
-    {
-      index: '02',
-      name: 'B&M Exclusive',
-      sector: 'Luxury automotive',
-      headline:
-        'Catálogo, disponibilidad y solicitudes de reserva para una flota de alquiler exclusivo, con panel interno de gestión.',
-      scope: ['Presence', 'Bookings', 'Control'],
-      image: 'automotive',
-      imageAlt: 'Deportivo oscuro aparcado junto a un puerto deportivo de noche',
-    },
-    {
-      index: '03',
-      name: 'Costa Residences',
-      sector: 'Real estate',
-      headline:
-        'Portfolio de propiedades con fichas editoriales, captación cualificada y gestión de leads para un equipo comercial pequeño.',
-      scope: ['Presence', 'Business'],
-      image: 'realestate',
-      imageAlt: 'Villa contemporánea con piscina reflectante al anochecer',
-    },
-  ],
-  build: {
-    label: '03 — Qué construimos',
-    title: 'Cinco capas. Un único sistema.',
+  system: {
+    kicker: 'UN SOLO SISTEMA',
+    title: 'Un socio.',
+    titleB: 'Un sistema conectado.',
     lead:
-      'Puedes empezar por una y seguir construyendo. No hay que rehacer nada por el camino.',
-    layers: [
+      'Empieza por lo que el negocio necesita hoy. El resto se construye sobre la misma base cuando aporta valor.',
+    steps: [
       {
         code: '01',
         name: 'Presence',
-        claim: 'La imagen pública del negocio, ejecutada al nivel que le corresponde.',
-        desc:
-          'Estrategia, dirección creativa, UX/UI, desarrollo y contenido. Una web que se sostiene sola en cualquier pantalla y convierte.',
-        items: ['Dirección creativa', 'UX/UI y diseño', 'Desarrollo', 'SEO técnico', 'Analítica'],
+        desc: 'Experiencia web premium, conversión, contenido y expresión de marca.',
       },
       {
         code: '02',
         name: 'Bookings',
-        claim: 'Reservas y solicitudes que llegan ordenadas al equipo.',
-        desc:
-          'Disponibilidad, confirmaciones, cancelaciones, lista de espera y avisos por email o WhatsApp, integrados con la web.',
-        items: ['Reservas web', 'Disponibilidad', 'Confirmaciones', 'Waitlist', 'WhatsApp y email'],
+        desc: 'Reservas, solicitudes, disponibilidad, confirmaciones y captación de clientes.',
       },
       {
         code: '03',
         name: 'Control',
-        claim: 'El software con el que se dirige el negocio cada día.',
-        desc:
-          'Paneles internos hechos a la medida de la operación: mesas, propiedades, flota, clientes, usuarios y métricas reales.',
-        items: ['Dashboard', 'CRM', 'Gestión de clientes', 'Inventario', 'Métricas'],
+        desc: 'Operativa, clientes, recursos, flujos de trabajo y visibilidad en tiempo real.',
       },
       {
         code: '04',
         name: 'Business',
-        claim: 'Integraciones y automatizaciones sobre lo que ya usas.',
-        desc:
-          'Conectamos TPV, facturación, ERP y herramientas internas, y eliminamos el trabajo manual que se repite cada semana.',
-        items: ['Integraciones', 'TPV y ERP', 'Facturación', 'Automatizaciones', 'Analítica avanzada'],
-      },
-      {
-        code: '05',
-        name: 'Care',
-        claim: 'Mantenimiento y evolución de toda la infraestructura.',
-        desc:
-          'Seguridad, actualizaciones, monitorización, cambios y mejoras continuas. El sistema mejora con el negocio.',
-        items: ['Seguridad', 'Monitorización', 'Actualizaciones', 'Soporte', 'Evolución'],
+        desc: 'Integraciones, automatización, analítica y software a medida.',
       },
     ],
-  },
-  caseStudy: {
-    label: '04 — Caso de estudio',
-    title: 'La Bocana: de una web a un sistema completo',
-    lead:
-      'Empezó como una presencia digital nueva. Terminó gestionando reservas, sala y relación con clientes en el mismo sitio.',
-    stages: [
-      {
-        step: '01',
-        title: 'Presencia',
-        desc: 'Web editorial con fotografía propia, carta y una narrativa que sostiene el precio.',
-      },
-      {
-        step: '02',
-        title: 'Reservas',
-        desc: 'Reserva en tres pasos, confirmación automática y lista de espera en temporada alta.',
-      },
-      {
-        step: '03',
-        title: 'Operación',
-        desc: 'Panel de sala con turnos, mesas y notas del cliente para el equipo de servicio.',
-      },
-      {
-        step: '04',
-        title: 'Clientes',
-        desc: 'Histórico por cliente, preferencias y datos de ocupación para decidir con criterio.',
-      },
-    ],
-    note: 'Mismo estudio, mismo sistema, sin proveedores intermedios.',
+    care: 'Care — mantenimiento, seguridad y evolución continua de todo el sistema.',
   },
   sectors: {
-    label: '05 — Sectores',
-    title: 'Dónde trabajamos mejor',
-    lead:
-      'Negocios donde la imagen, la experiencia del cliente y la operación pesan lo mismo.',
+    kicker: 'SECTORES',
+    note: 'Experiencia premium fuera. Sistemas precisos dentro.',
     items: [
-      { name: 'Hospitality', desc: 'Restaurantes, beach clubs, hoteles boutique' },
-      { name: 'Real Estate', desc: 'Inmobiliarias de lujo y promotoras' },
-      { name: 'Automotive', desc: 'Alquiler exclusivo, concesionarios, colección' },
-      { name: 'Yachting', desc: 'Charter, brokerage y servicios náuticos' },
-      { name: 'Premium Services', desc: 'Clínicas, estudios y servicios profesionales' },
+      {
+        name: 'Hostelería',
+        line: 'Reservas · Clientes · Servicio',
+        image: 'hospitality',
+        imageAlt: 'Sala de restaurante premium por la noche',
+      },
+      {
+        name: 'Automoción',
+        line: 'Flota · Disponibilidad · Solicitudes',
+        image: 'automotive',
+        imageAlt: 'Vehículo deportivo oscuro en un entorno controlado',
+      },
+      {
+        name: 'Náutica',
+        line: 'Charter · Leads · Operativa',
+        image: 'yachting',
+        imageAlt: 'Yate navegando al atardecer',
+      },
+    ],
+    footnote:
+      'También trabajamos con inmobiliaria y servicios premium, sin convertir a Archic en el cliché de un solo sector.',
+  },
+  principles: {
+    kicker: 'PRINCIPIOS',
+    items: [
+      {
+        index: '01',
+        title: 'Diseñado alrededor del negocio.',
+        desc: 'Entendemos la operación antes de elegir la interfaz.',
+      },
+      {
+        index: '02',
+        title: 'Hecho para operar, no solo para impresionar.',
+        desc: 'La calidad de diseño y la utilidad de negocio son el mismo problema.',
+      },
+      {
+        index: '03',
+        title: 'Preparado para evolucionar.',
+        desc: 'La misma base digital crece de la presencia al software.',
+      },
     ],
   },
-  method: {
-    label: '06 — Método',
-    title: 'Cuatro fases. Sin ruido.',
-    lead: 'Trabajo directo con quien decide. Sin capas intermedias ni informes de relleno.',
+  process: {
+    kicker: 'PROCESO',
+    title: 'Tres fases. Sin ruido.',
     steps: [
-      { step: '01', name: 'Discover', desc: 'Negocio, operación y objetivos. Definimos qué hay que resolver.' },
-      { step: '02', name: 'Design', desc: 'Dirección creativa, estructura e interfaz sobre contenido real.' },
-      { step: '03', name: 'Build', desc: 'Desarrollo, integraciones y pruebas con el equipo del negocio.' },
-      { step: '04', name: 'Evolve', desc: 'Medimos, ajustamos y ampliamos el sistema con el tiempo.' },
+      { code: '01', name: 'Discover', desc: 'Negocio, operación y objetivos. Definimos qué resolver.' },
+      { code: '02', name: 'Build', desc: 'Diseño y desarrollo sobre contenido y procesos reales.' },
+      { code: '03', name: 'Evolve', desc: 'Medimos, ajustamos y ampliamos el sistema con el tiempo.' },
     ],
   },
   cta: {
-    label: '07 — Contacto',
-    title: 'Cuéntanos tu proyecto.',
-    lead:
-      'Respondemos en menos de 24 horas con una primera valoración de alcance y presupuesto.',
+    label: 'EMPEZAR PROYECTO',
+    title: 'Tu negocio merece un sistema digital',
+    titleAccent: 'construido a su medida.',
+    lead: 'Cuéntanos el proyecto y respondemos con una primera valoración de alcance.',
     mailLabel: 'Escríbenos directamente',
-    formTitle: 'Empezar un proyecto',
+    formTitle: 'Empezar proyecto',
   },
   footer: {
-    tagline: 'Diseño, tecnología y software para negocios premium.',
+    tagline: 'Sistemas digitales para negocios excepcionales.',
     base: 'Marbella · Puerto Banús · Costa del Sol · España',
     rights: 'Todos los derechos reservados.',
     legal: 'Legal',
+    systems: 'Sistemas',
   },
 }
 
 const en: StudioContent = {
   meta: {
-    title: 'Archic — Digital studio for premium businesses in Marbella',
+    title: 'Archic — Digital systems for exceptional businesses',
     description:
-      'We design and build the digital side of exceptional businesses: websites, booking systems, admin panels, CRM and custom software. Marbella, Puerto Banús and the Costa del Sol.',
-    ogTitle: 'Archic — Digital studio for premium businesses',
+      'Archic designs and builds the digital side of exceptional businesses: premium experiences, bookings, operations and custom software. Marbella and the Costa del Sol.',
+    ogTitle: 'Archic — Digital systems for exceptional businesses',
     ogDescription:
-      'Websites, bookings, operations and custom software for high-end hospitality, real estate, yachting and automotive.',
+      'Presence, bookings, operational control and custom software for high-end hospitality, automotive, yachting and real estate.',
   },
   nav: {
     work: 'Work',
-    build: 'What we build',
+    systems: 'Systems',
     sectors: 'Sectors',
-    method: 'Method',
+    about: 'Studio',
     cta: 'Start a project',
   },
   hero: {
-    label: 'Digital studio · Marbella · Puerto Banús',
-    title: ['We design the digital side', 'of exceptional businesses.'],
+    eyebrow: 'ARCHIC — DIGITAL SYSTEMS',
+    title: 'Digital systems for exceptional',
+    titleAccent: 'businesses.',
     lead:
-      'Presence, bookings and operational software, built to measure. From the first customer touch to the way the business runs inside.',
+      'We design premium digital experiences, software and operational systems that help ambitious businesses sell, operate and grow.',
     ctaPrimary: 'Start a project',
-    ctaSecondary: 'See work',
-    imageAlt: 'Seafront restaurant terrace at blue hour overlooking a Mediterranean marina',
-    scrollHint: 'Selected work',
+    ctaSecondary: 'See our work',
+    imageAlt:
+      'Abstract digital system: connected data panels and modules around the Archic symbol',
+    metaLeft: 'Marbella · Spain',
+    metaRight: 'Presence · Software · Operations',
+  },
+  statement: {
+    kicker: 'WHAT WE DO',
+    titleA: 'The website is the front door.',
+    titleB: 'The real value is the system behind it.',
+    body:
+      'We connect the public experience of a business with the tools that make it run: reservations, customers, resources, workflows and decisions.',
   },
   work: {
-    label: '02 — Work',
-    title: 'Selected work',
-    lead: 'Every project starts with how the business looks and ends in how it runs.',
-    scopeLabel: 'Scope',
+    kicker: 'SELECTED DIRECTION',
+    note: 'Built around the business, never around a template.',
+    caseLink: 'Explore the system',
+    cases: [
+      {
+        index: '01',
+        kicker: 'HOSPITALITY',
+        name: 'La Bocana',
+        stack: 'Presence + Bookings + Control',
+        desc:
+          'A connected guest journey: from discovery and booking to service, customer history and daily operations.',
+        note: 'Hospitality project in progress.',
+        image: 'hospitality',
+        imageAlt: 'Premium restaurant table with a restrained data layer over the scene',
+      },
+      {
+        index: '02',
+        kicker: 'PREMIUM MOBILITY',
+        name: 'B&M',
+        stack: 'Presence + Fleet + Enquiries',
+        desc:
+          'A premium digital layer connecting presentation, fleet availability, enquiries and customer management.',
+        note: 'Studio concept, not a delivered client project.',
+        image: 'automotive',
+        imageAlt: 'Dark sports car with a discreet data grid around it',
+      },
+    ],
   },
-  projects: [
-    {
-      index: '01',
-      name: 'La Bocana',
-      sector: 'Hospitality',
-      headline:
-        'A new digital experience for a beachfront restaurant: presence, bookings and floor operations in one system.',
-      scope: ['Presence', 'Bookings', 'Control'],
-      image: 'bocana',
-      imageAlt: 'Set table at a Mediterranean beach club during golden hour',
-    },
-    {
-      index: '02',
-      name: 'B&M Exclusive',
-      sector: 'Luxury automotive',
-      headline:
-        'Fleet catalogue, availability and booking requests for an exclusive rental operation, with an internal management panel.',
-      scope: ['Presence', 'Bookings', 'Control'],
-      image: 'automotive',
-      imageAlt: 'Dark sports car parked by a marina at night',
-    },
-    {
-      index: '03',
-      name: 'Costa Residences',
-      sector: 'Real estate',
-      headline:
-        'Property portfolio with editorial listings, qualified enquiries and lead management for a small sales team.',
-      scope: ['Presence', 'Business'],
-      image: 'realestate',
-      imageAlt: 'Contemporary villa with reflecting pool at dusk',
-    },
-  ],
-  build: {
-    label: '03 — What we build',
-    title: 'Five layers. One system.',
-    lead: 'Start with one and keep building. Nothing has to be rebuilt along the way.',
-    layers: [
+  system: {
+    kicker: 'ONE DIGITAL SIDE',
+    title: 'One partner.',
+    titleB: 'One connected system.',
+    lead:
+      'Start with what the business needs today. Build the rest on the same foundation when it creates value.',
+    steps: [
       {
         code: '01',
         name: 'Presence',
-        claim: 'The public face of the business, executed at the level it deserves.',
-        desc:
-          'Strategy, creative direction, UX/UI, development and content. A site that holds up on any screen and converts.',
-        items: ['Creative direction', 'UX/UI design', 'Development', 'Technical SEO', 'Analytics'],
+        desc: 'Premium web experience, conversion, content and brand expression.',
       },
       {
         code: '02',
         name: 'Bookings',
-        claim: 'Reservations and requests that reach the team in order.',
-        desc:
-          'Availability, confirmations, cancellations, waitlists and notifications over email or WhatsApp, wired into the site.',
-        items: ['Web bookings', 'Availability', 'Confirmations', 'Waitlist', 'WhatsApp and email'],
+        desc: 'Reservations, enquiries, availability, confirmations and customer capture.',
       },
       {
         code: '03',
         name: 'Control',
-        claim: 'The software the business is run with, day to day.',
-        desc:
-          'Internal panels shaped around the actual operation: tables, properties, fleet, customers, users and real metrics.',
-        items: ['Dashboard', 'CRM', 'Customer management', 'Inventory', 'Metrics'],
+        desc: 'Operations, customers, resources, workflows and real-time visibility.',
       },
       {
         code: '04',
         name: 'Business',
-        claim: 'Integrations and automation on top of what you already use.',
-        desc:
-          'We connect POS, invoicing, ERP and internal tools, and remove the manual work that repeats every week.',
-        items: ['Integrations', 'POS and ERP', 'Invoicing', 'Automation', 'Advanced analytics'],
-      },
-      {
-        code: '05',
-        name: 'Care',
-        claim: 'Maintenance and evolution of the whole infrastructure.',
-        desc:
-          'Security, updates, monitoring, changes and continuous improvement. The system grows with the business.',
-        items: ['Security', 'Monitoring', 'Updates', 'Support', 'Evolution'],
+        desc: 'Integrations, automation, analytics and custom software.',
       },
     ],
-  },
-  caseStudy: {
-    label: '04 — Case study',
-    title: 'La Bocana: from a website to a complete system',
-    lead:
-      'It started as a new digital presence. It ended up running bookings, the floor and customer relationships in one place.',
-    stages: [
-      { step: '01', title: 'Presence', desc: 'Editorial site with original photography, menu and a narrative that holds the price.' },
-      { step: '02', title: 'Bookings', desc: 'Three-step reservation, automatic confirmation and a waitlist for high season.' },
-      { step: '03', title: 'Operations', desc: 'Floor panel with services, tables and guest notes for the service team.' },
-      { step: '04', title: 'Customers', desc: 'Guest history, preferences and occupancy data to decide with evidence.' },
-    ],
-    note: 'One studio, one system, no middlemen.',
+    care: 'Care — ongoing maintenance, security and evolution of the whole system.',
   },
   sectors: {
-    label: '05 — Sectors',
-    title: 'Where we work best',
-    lead: 'Businesses where image, customer experience and operations carry equal weight.',
+    kicker: 'SECTORS',
+    note: 'Premium experience outside. Precise systems inside.',
     items: [
-      { name: 'Hospitality', desc: 'Restaurants, beach clubs, boutique hotels' },
-      { name: 'Real Estate', desc: 'Luxury agencies and developers' },
-      { name: 'Automotive', desc: 'Exclusive rental, dealerships, collections' },
-      { name: 'Yachting', desc: 'Charter, brokerage and marine services' },
-      { name: 'Premium Services', desc: 'Clinics, studios and professional services' },
+      {
+        name: 'Hospitality',
+        line: 'Reservations · Guests · Service',
+        image: 'hospitality',
+        imageAlt: 'Premium restaurant room at night',
+      },
+      {
+        name: 'Automotive',
+        line: 'Fleet · Availability · Enquiries',
+        image: 'automotive',
+        imageAlt: 'Dark sports car in a controlled environment',
+      },
+      {
+        name: 'Yachting',
+        line: 'Charter · Leads · Operations',
+        image: 'yachting',
+        imageAlt: 'Yacht under way at dusk',
+      },
+    ],
+    footnote:
+      'Also built for real estate and premium service businesses, without turning Archic into a single-industry cliché.',
+  },
+  principles: {
+    kicker: 'PRINCIPLES',
+    items: [
+      {
+        index: '01',
+        title: 'Designed around the business.',
+        desc: 'We understand the operation before choosing the interface.',
+      },
+      {
+        index: '02',
+        title: 'Built to operate, not just impress.',
+        desc: 'Design quality and business usefulness are one problem, not two.',
+      },
+      {
+        index: '03',
+        title: 'Made to evolve.',
+        desc: 'The same digital foundation grows from presence into software.',
+      },
     ],
   },
-  method: {
-    label: '06 — Method',
-    title: 'Four phases. No noise.',
-    lead: 'Direct work with whoever decides. No intermediate layers, no filler reports.',
+  process: {
+    kicker: 'PROCESS',
+    title: 'Three steps. No noise.',
     steps: [
-      { step: '01', name: 'Discover', desc: 'Business, operation and goals. We define what has to be solved.' },
-      { step: '02', name: 'Design', desc: 'Creative direction, structure and interface on real content.' },
-      { step: '03', name: 'Build', desc: 'Development, integrations and testing with the business team.' },
-      { step: '04', name: 'Evolve', desc: 'We measure, adjust and extend the system over time.' },
+      { code: '01', name: 'Discover', desc: 'Business, operation and goals. We define what to solve.' },
+      { code: '02', name: 'Build', desc: 'Design and development on real content and real processes.' },
+      { code: '03', name: 'Evolve', desc: 'We measure, adjust and extend the system over time.' },
     ],
   },
   cta: {
-    label: '07 — Contact',
-    title: 'Tell us about your project.',
-    lead: 'We reply within 24 hours with a first read on scope and budget.',
+    label: 'START A PROJECT',
+    title: 'Your business deserves a digital system',
+    titleAccent: 'built around it.',
+    lead: 'Tell us about the project and we reply with a first view of scope.',
     mailLabel: 'Write to us directly',
     formTitle: 'Start a project',
   },
   footer: {
-    tagline: 'Design, technology and software for premium businesses.',
+    tagline: 'Digital systems for exceptional businesses.',
     base: 'Marbella · Puerto Banús · Costa del Sol · Spain',
     rights: 'All rights reserved.',
     legal: 'Legal',
+    systems: 'Systems',
   },
 }
 

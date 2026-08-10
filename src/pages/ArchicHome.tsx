@@ -1,29 +1,27 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_MAIL } from '../i18n/content'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import StudioContact from '../components/StudioContact'
-import { STUDIO } from '../content/studio'
+import { STUDIO, type SystemImage } from '../content/studio'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 
-import heroImage from '../assets/hero-marbella.jpg'
-import workBocana from '../assets/work-bocana.jpg'
-import workAutomotive from '../assets/work-automotive.jpg'
-import workRealestate from '../assets/work-realestate.jpg'
+/** Imágenes del handoff de marca. Sistemas digitales, nunca arquitectura. */
+const SYSTEM_IMAGES: Record<SystemImage, string> = {
+  digital: '/img/archic-digital-system.webp',
+  hospitality: '/img/archic-hospitality-system.webp',
+  automotive: '/img/archic-automotive-system.webp',
+  yachting: '/img/archic-yachting-system.webp',
+}
 
-const PROJECT_IMAGES = {
-  bocana: workBocana,
-  automotive: workAutomotive,
-  realestate: workRealestate,
-} as const
-
-/** Revelado al hacer scroll: una sola observación por elemento, sin librerías. */
+/** Revelado corto al hacer scroll: una observación por elemento, sin librerías. */
 function useReveal() {
   useEffect(() => {
     const nodes = Array.from(document.querySelectorAll('[data-sx-reveal]'))
-    if (!('IntersectionObserver' in window)) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduced || !('IntersectionObserver' in window)) {
       nodes.forEach((n) => n.classList.add('is-in'))
       return
     }
@@ -35,7 +33,7 @@ function useReveal() {
           io.unobserve(entry.target)
         })
       },
-      { rootMargin: '0px 0px -12% 0px', threshold: 0.12 },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.1 },
     )
     nodes.forEach((n) => io.observe(n))
     return () => io.disconnect()
@@ -47,8 +45,6 @@ export default function ArchicHome() {
   const s = STUDIO[lang]
   const canonicalUrl = homeCanonical(lang)
   const structuredData = buildHomeGraph(lang)
-  const [openLayer, setOpenLayer] = useState(0)
-  const mainRef = useRef<HTMLDivElement>(null)
   useReveal()
 
   return (
@@ -77,250 +73,193 @@ export default function ArchicHome() {
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
-      <div className="sx" ref={mainRef} id="top">
+      <div className="sx" id="top">
         <StudioHeader />
 
         {/* 01 — HERO */}
         <section className="sx-hero">
-          <div className="sx-hero-media">
+          <div className="sx-hero-copy">
+            <p className="sx-eyebrow">{s.hero.eyebrow}</p>
+            <h1 className="sx-h1">
+              {s.hero.title} <span>{s.hero.titleAccent}</span>
+            </h1>
+            <p className="sx-lede">{s.hero.lead}</p>
+            <div className="sx-actions">
+              <a className="sx-btn" href="#contact">
+                {s.hero.ctaPrimary}
+              </a>
+              <a className="sx-textlink" href="#work">
+                {s.hero.ctaSecondary}
+                <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </div>
+          <div className="sx-hero-visual">
             <img
-              src={heroImage}
+              src={SYSTEM_IMAGES.digital}
               alt={s.hero.imageAlt}
-              width={1920}
-              height={1200}
+              width={1664}
+              height={936}
               {...{ fetchpriority: 'high' }}
               decoding="async"
             />
           </div>
-          <div className="sx-hero-veil" aria-hidden="true" />
-          <div className="sx-wrap sx-hero-inner">
-            <p className="sx-label" style={{ color: 'rgba(244,241,236,0.62)' }}>
-              {s.hero.label}
-            </p>
-            <h1 className="sx-display sx-h1 sx-hero-title">
-              {s.hero.title.map((line) => (
-                <span key={line}>{line}</span>
-              ))}
-            </h1>
-            <div className="sx-hero-grid">
-              <p className="sx-hero-lead">{s.hero.lead}</p>
-              <div className="sx-hero-ctas">
-                <a className="sx-btn sx-btn-solid" href="#contact">
-                  {s.hero.ctaPrimary}
-                  <span className="sx-btn-arrow" aria-hidden="true">
-                    →
-                  </span>
+          <div className="sx-hero-meta" aria-hidden="true">
+            <span>{s.hero.metaLeft}</span>
+            <span>{s.hero.metaRight}</span>
+          </div>
+        </section>
+
+        {/* 02 — STATEMENT */}
+        <section id="about" className="sx-statement">
+          <p className="sx-kicker">{s.statement.kicker}</p>
+          <h2 className="sx-h2">
+            {s.statement.titleA}
+            <br />
+            <span>{s.statement.titleB}</span>
+          </h2>
+          <p className="sx-statement-body">{s.statement.body}</p>
+        </section>
+
+        {/* 03 — SELECTED WORK */}
+        <section id="work" className="sx-work">
+          <div className="sx-sec-head">
+            <p className="sx-kicker">{s.work.kicker}</p>
+            <p className="sx-sec-note">{s.work.note}</p>
+          </div>
+
+          {s.work.cases.map((item, i) => (
+            <article
+              key={item.name}
+              className="sx-case"
+              data-flip={i % 2 === 1}
+              data-tone={i % 2 === 1 ? 'paper' : 'graphite'}
+              data-sx-reveal
+            >
+              <div className="sx-case-copy">
+                <p className="sx-case-index">
+                  {item.index} / {item.kicker}
+                </p>
+                <h3 className="sx-h3">{item.name}</h3>
+                <p className="sx-case-stack">{item.stack}</p>
+                <p className="sx-case-desc">{item.desc}</p>
+                <p className="sx-case-note">{item.note}</p>
+                <a className="sx-underline" href="#systems">
+                  {s.work.caseLink}
+                  <span aria-hidden="true">↗</span>
                 </a>
-                <a className="sx-btn sx-btn-line" href="#work">
-                  {s.hero.ctaSecondary}
-                </a>
               </div>
-            </div>
-            <div className="sx-hero-foot">
-              <p className="sx-label">{s.hero.scrollHint}</p>
-              <p className="sx-label">{s.footer.base}</p>
-            </div>
-          </div>
+              <div className="sx-case-media">
+                <img
+                  src={SYSTEM_IMAGES[item.image]}
+                  alt={item.imageAlt}
+                  width={1664}
+                  height={936}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </article>
+          ))}
         </section>
 
-        {/* 02 — SELECTED WORK */}
-        <section id="work" className="sx-section" style={{ scrollMarginTop: 72 }}>
-          <div className="sx-wrap">
-            <div className="sx-head">
-              <div className="sx-head-rule">
-                <p className="sx-label sx-label-accent">{s.work.label}</p>
-                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
-                  {s.work.title}
-                </h2>
-              </div>
-              <p className="sx-lead">{s.work.lead}</p>
-            </div>
-
-            <div className="sx-projects">
-              {s.projects.map((project) => (
-                <article key={project.name} className="sx-project" data-sx-reveal>
-                  <div className="sx-project-media">
-                    <img
-                      src={PROJECT_IMAGES[project.image]}
-                      alt={project.imageAlt}
-                      width={1600}
-                      height={1200}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                  <div>
-                    <span className="sx-project-index">{project.index}</span>
-                    <h3 className="sx-display sx-h3 sx-project-name">{project.name}</h3>
-                    <p className="sx-project-sector">{project.sector}</p>
-                    <p className="sx-project-headline">{project.headline}</p>
-                    <div className="sx-scope">
-                      <span aria-hidden="true">{s.work.scopeLabel}</span>
-                      {project.scope.map((item) => (
-                        <span key={item}>{item}</span>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+        {/* 04 — ONE SYSTEM */}
+        <section id="systems" className="sx-system">
+          <div className="sx-system-intro">
+            <p className="sx-kicker">{s.system.kicker}</p>
+            <h2 className="sx-h2">
+              {s.system.title}
+              <br />
+              <span>{s.system.titleB}</span>
+            </h2>
+            <p className="sx-lede">{s.system.lead}</p>
           </div>
-        </section>
 
-        {/* 03 — WHAT WE BUILD */}
-        <section id="build" className="sx-section sx-dark" style={{ scrollMarginTop: 72 }}>
-          <div className="sx-wrap">
-            <div className="sx-head">
-              <div className="sx-head-rule">
-                <p className="sx-label sx-label-accent">{s.build.label}</p>
-                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
-                  {s.build.title}
-                </h2>
-              </div>
-              <p className="sx-lead">{s.build.lead}</p>
-            </div>
-
-            <div className="sx-layers">
-              {s.build.layers.map((layer, i) => {
-                const open = openLayer === i
-                return (
-                  <div key={layer.name} className="sx-layer" data-open={open}>
-                    <h3 style={{ margin: 0 }}>
-                      <button
-                        type="button"
-                        className="sx-layer-btn"
-                        aria-expanded={open}
-                        aria-controls={`sx-layer-${i}`}
-                        onClick={() => setOpenLayer(open ? -1 : i)}
-                      >
-                        <span className="sx-layer-code">{layer.code}</span>
-                        <span>
-                          <span className="sx-layer-name">Archic {layer.name}</span>
-                          <span className="sx-layer-claim">{layer.claim}</span>
-                        </span>
-                        <span className="sx-layer-plus" aria-hidden="true" />
-                      </button>
-                    </h3>
-                    <div className="sx-layer-panel" id={`sx-layer-${i}`} role="region">
-                      <div>
-                        <div className="sx-layer-body">
-                          <p>{layer.desc}</p>
-                          <ul className="sx-layer-items">
-                            {layer.items.map((item) => (
-                              <li key={item}>{item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* 04 — CASE STUDY */}
-        <section className="sx-section sx-case">
-          <div className="sx-wrap">
-            <div className="sx-head">
-              <div className="sx-head-rule">
-                <p className="sx-label sx-label-accent">{s.caseStudy.label}</p>
-                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
-                  {s.caseStudy.title}
-                </h2>
-              </div>
-              <p className="sx-lead">{s.caseStudy.lead}</p>
-            </div>
-
-            <div className="sx-stages" data-sx-reveal>
-              {s.caseStudy.stages.map((stage) => (
-                <div key={stage.step} className="sx-stage">
-                  <span className="sx-stage-step">{stage.step}</span>
-                  <h3>{stage.title}</h3>
-                  <p>{stage.desc}</p>
-                </div>
-              ))}
-            </div>
-            <p className="sx-case-note">{s.caseStudy.note}</p>
-          </div>
+          <ol className="sx-flow">
+            {s.system.steps.map((step) => (
+              <li key={step.name} className="sx-flow-item" data-sx-reveal>
+                <span className="sx-flow-code">{step.code}</span>
+                <h3>{step.name}</h3>
+                <p>{step.desc}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="sx-flow-care">{s.system.care}</p>
         </section>
 
         {/* 05 — SECTORS */}
-        <section id="sectors" className="sx-section" style={{ scrollMarginTop: 72 }}>
-          <div className="sx-wrap">
-            <div className="sx-head">
-              <div className="sx-head-rule">
-                <p className="sx-label sx-label-accent">{s.sectors.label}</p>
-                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
-                  {s.sectors.title}
-                </h2>
-              </div>
-              <p className="sx-lead">{s.sectors.lead}</p>
-            </div>
+        <section id="sectors" className="sx-sectors">
+          <div className="sx-sec-head sx-on-dark">
+            <p className="sx-kicker">{s.sectors.kicker}</p>
+            <p className="sx-sec-note">{s.sectors.note}</p>
+          </div>
 
-            <div className="sx-sectors">
-              {s.sectors.items.map((item) => (
-                <div key={item.name} className="sx-sector" data-sx-reveal>
-                  <h3>{item.name}</h3>
-                  <p>{item.desc}</p>
+          <div className="sx-sector-grid">
+            {s.sectors.items.map((item) => (
+              <article key={item.name} className="sx-sector" data-sx-reveal>
+                <div className="sx-sector-media">
+                  <img
+                    src={SYSTEM_IMAGES[item.image]}
+                    alt={item.imageAlt}
+                    width={1664}
+                    height={936}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-              ))}
-            </div>
+                <h3>{item.name}</h3>
+                <p>{item.line}</p>
+              </article>
+            ))}
+          </div>
+          <p className="sx-sector-note">{s.sectors.footnote}</p>
+        </section>
+
+        {/* 06 — PRINCIPLES */}
+        <section className="sx-principles">
+          <p className="sx-kicker">{s.principles.kicker}</p>
+          <div className="sx-principle-grid">
+            {s.principles.items.map((item) => (
+              <div key={item.index} className="sx-principle" data-sx-reveal>
+                <span>{item.index}</span>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* 06 — METHOD */}
-        <section id="method" className="sx-section sx-dark" style={{ scrollMarginTop: 72 }}>
-          <div className="sx-wrap">
-            <div className="sx-head">
-              <div className="sx-head-rule">
-                <p className="sx-label sx-label-accent">{s.method.label}</p>
-                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
-                  {s.method.title}
-                </h2>
+        {/* 07 — PROCESS */}
+        <section className="sx-process">
+          <div className="sx-sec-head sx-on-dark">
+            <p className="sx-kicker">{s.process.kicker}</p>
+            <p className="sx-sec-note">{s.process.title}</p>
+          </div>
+          <div className="sx-process-grid">
+            {s.process.steps.map((step) => (
+              <div key={step.name} className="sx-process-step">
+                <span>{step.code}</span>
+                <h3>{step.name}</h3>
+                <p>{step.desc}</p>
               </div>
-              <p className="sx-lead">{s.method.lead}</p>
-            </div>
-
-            <div className="sx-method">
-              {s.method.steps.map((step) => (
-                <div key={step.step} className="sx-step" data-sx-reveal>
-                  <span className="sx-step-num">{step.step}</span>
-                  <h3>{step.name}</h3>
-                  <p>{step.desc}</p>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </section>
 
-        {/* 07 — CONTACT */}
-        <section
-          id="contact"
-          className="sx-section sx-dark"
-          style={{ scrollMarginTop: 72, paddingTop: 0 }}
-        >
-          <div className="sx-wrap">
-            <div className="sx-contact-grid">
-              <div>
-                <p className="sx-label sx-label-accent">{s.cta.label}</p>
-                <h2 className="sx-display sx-h2" style={{ marginTop: 14 }}>
-                  {s.cta.title}
-                </h2>
-                <p className="sx-lead" style={{ marginTop: 18 }}>
-                  {s.cta.lead}
-                </p>
-                <p className="sx-label" style={{ marginTop: 34 }}>
-                  {s.cta.mailLabel}
-                </p>
-                <a className="sx-mail" href={`mailto:${CONTACT_MAIL}`}>
-                  {CONTACT_MAIL}
-                </a>
-              </div>
-              <StudioContact />
-            </div>
+        {/* 08 — CONTACT */}
+        <section id="contact" className="sx-closing">
+          <div className="sx-closing-copy">
+            <p className="sx-kicker">{s.cta.label}</p>
+            <h2 className="sx-h2">
+              {s.cta.title} <span>{s.cta.titleAccent}</span>
+            </h2>
+            <p className="sx-lede">{s.cta.lead}</p>
+            <p className="sx-mail-label">{s.cta.mailLabel}</p>
+            <a className="sx-mail" href={`mailto:${CONTACT_MAIL}`}>
+              {CONTACT_MAIL}
+            </a>
           </div>
+          <StudioContact />
         </section>
 
         <StudioFooter />

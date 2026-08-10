@@ -5,6 +5,8 @@ import { HelmetProvider } from 'react-helmet-async'
 /* Self-hosted webfonts. Serving them from our own origin instead of the Google
    Fonts CDN avoids sending visitor IP addresses to a third party without
    consent (art. 6 GDPR), which also keeps the site free of consent banners. */
+import '@fontsource/inter/latin-400.css'
+import '@fontsource/inter/latin-500.css'
 import '@fontsource/dm-sans/latin-400.css'
 import '@fontsource/dm-sans/latin-500.css'
 import '@fontsource/space-grotesk/latin-400.css'
