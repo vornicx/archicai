@@ -1,175 +1,140 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_MAIL } from '../i18n/content'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
-import StudioContact from '../components/StudioContact'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 
 const COPY = {
   es: {
     meta: {
-      title: 'Archic — La parte digital de negocios excepcionales',
-      description: 'Diseño, desarrollo y software a medida para negocios que necesitan una presencia y unos sistemas digitales a la altura.',
+      title: 'Archic — La capa digital de negocios excepcionales',
+      description: 'Diseñamos webs premium, sistemas operativos y software a medida como una sola capa digital alrededor del negocio.',
     },
     hero: {
-      eyebrow: 'ARCHIC / DIGITAL SYSTEMS STUDIO',
-      titleA: 'La parte digital de',
-      titleB: 'negocios excepcionales.',
-      lead: 'Diseñamos y desarrollamos webs, sistemas y software a medida para negocios donde la experiencia, la imagen y la operación importan de verdad.',
-      primary: 'Hablar con Archic',
-      secondary: 'Ver qué hacemos',
-      meta: ['Strategy', 'Design', 'Development', 'Software'],
-      location: 'España · Trabajamos en remoto y presencial',
+      kicker: 'ARCHIC / DIGITAL LAYER STUDIO',
+      title: 'Tu negocio ya tiene una identidad.',
+      accent: 'Hacemos que su parte digital esté a la misma altura.',
+      body: 'Web, reservas, gestión y software a medida — concebidos como un solo sistema cuando el negocio realmente lo necesita.',
+      cta: 'Empezar proyecto',
+      secondary: 'Explorar el sistema',
+      public: 'Lo que ve el cliente',
+      publicItems: ['Marca digital', 'Web', 'Reservas', 'Conversión'],
+      ops: 'Lo que usa el negocio',
+      opsItems: ['Clientes', 'Operaciones', 'Automatización', 'Software'],
     },
-    premise: {
-      index: '01 / IDEA',
-      title: 'Lo que ve el cliente.',
-      title2: 'Lo que hace funcionar el negocio.',
-      body: 'No tratamos la web, las reservas, la gestión o el software como piezas aisladas. Diseñamos la capa digital que necesita el negocio y hacemos que cada pieza tenga un propósito claro.',
-      note: 'Una buena solución digital no añade complejidad. La elimina.',
+    thesis: {
+      label: '01 / PRINCIPIO',
+      title: 'No diseñamos una web y luego añadimos herramientas.',
+      accent: 'Diseñamos la capa digital completa.',
+      body: 'Cada negocio necesita una combinación distinta. A veces basta una presencia excelente. Otras veces el valor aparece al conectar esa presencia con reservas, clientes, operaciones o software propio.',
     },
-    pillars: [
-      { no: '01', name: 'Experience', title: 'Presencia que está a la altura del negocio.', text: 'Web, dirección digital, interacción, contenido y conversión. Nada de plantillas maquilladas.' },
-      { no: '02', name: 'Operations', title: 'Herramientas que simplifican el día a día.', text: 'Reservas, clientes, recursos, flujos de trabajo y paneles diseñados alrededor de cómo opera el negocio.' },
-      { no: '03', name: 'Software', title: 'Tecnología cuando una herramienta genérica ya no basta.', text: 'Software a medida, integraciones, automatizaciones y sistemas propios cuando existe una razón real para construirlos.' },
-    ],
-    work: {
-      index: '02 / QUÉ CONSTRUIMOS',
-      title: 'No vendemos un paquete.',
-      title2: 'Construimos lo que aporta valor.',
+    capabilities: {
+      label: '02 / CAPACIDADES',
+      title: 'Construimos solo lo que',
+      accent: 'tiene una razón clara para existir.',
       items: [
-        ['01', 'Premium websites', 'Marca digital, experiencia, rendimiento y conversión.'],
-        ['02', 'Bookings & enquiries', 'Reservas, solicitudes, disponibilidad y captación sin fricción.'],
-        ['03', 'Control systems', 'Clientes, recursos, operaciones y visibilidad en un mismo entorno.'],
-        ['04', 'Custom software', 'Herramientas internas y productos digitales construidos a medida.'],
-        ['05', 'Integrations & automation', 'Conectamos sistemas y eliminamos trabajo repetitivo cuando tiene sentido.'],
+        { no: '01', name: 'Brand & Web', short: 'La parte pública.', body: 'Dirección digital, diseño, contenido, experiencia, rendimiento y conversión para que la presencia esté a la altura del negocio.', details: ['Web premium', 'Dirección visual', 'Contenido', 'SEO técnico'] },
+        { no: '02', name: 'Booking & Conversion', short: 'De interés a acción.', body: 'Reservas, solicitudes, disponibilidad y procesos de conversión diseñados para eliminar fricción y trabajo manual.', details: ['Reservas', 'Solicitudes', 'Disponibilidad', 'Confirmaciones'] },
+        { no: '03', name: 'Control & CRM', short: 'La parte operativa.', body: 'Clientes, recursos, reservas, estados y flujos de trabajo reunidos en un entorno diseñado alrededor de cómo funciona el negocio.', details: ['Clientes', 'Operaciones', 'Recursos', 'Reporting'] },
+        { no: '04', name: 'Software & Automation', short: 'Cuando lo genérico deja de servir.', body: 'Software a medida, integraciones y automatización cuando existe una ventaja real en construir una herramienta propia.', details: ['Software a medida', 'Integraciones', 'Automatización', 'Datos'] },
       ],
     },
-    statement: {
-      small: 'OUR STANDARD',
-      title: 'La calidad no es un efecto visual.',
-      title2: 'Es no aceptar decisiones mediocres.',
-      side: 'Claridad · Precisión · Intención · Durabilidad',
-    },
-    approach: {
-      index: '03 / ENFOQUE',
-      title: 'Entender antes de diseñar.',
-      title2: 'Diseñar antes de construir.',
-      lead: 'La tecnología viene después del problema. Empezamos por entender qué necesita mejorar el negocio y elegimos la solución más simple que pueda hacerlo bien.',
-      steps: [
-        ['01', 'Discover', 'Negocio, cliente, operación y objetivos. Definimos el problema real.'],
-        ['02', 'Design & Build', 'Dirección, experiencia y desarrollo tratados como una sola disciplina.'],
-        ['03', 'Evolve', 'Medimos, corregimos y ampliamos solo cuando la siguiente capa aporta valor.'],
+    lab: {
+      label: '03 / CONCEPT LAB',
+      title: 'Sin portfolio inventado.',
+      accent: 'Demostramos capacidad con sistemas conceptuales.',
+      body: 'Hasta que existan casos reales suficientes, preferimos enseñar cómo pensamos un negocio antes que fingir experiencia que todavía no tenemos.',
+      concepts: [
+        { sector: 'HOSPITALITY', flow: ['Descubrir', 'Reservar', 'Llegar', 'Servir', 'Volver'], line: 'Web → Reservas → Cliente → Operación' },
+        { sector: 'PREMIUM MOBILITY', flow: ['Explorar', 'Consultar', 'Validar', 'Entregar', 'Retener'], line: 'Catálogo → Disponibilidad → Lead → Cliente' },
+        { sector: 'PROPERTY', flow: ['Descubrir', 'Filtrar', 'Consultar', 'Visitar', 'Seguir'], line: 'Inventario → Lead → CRM → Seguimiento' },
       ],
+      disclaimer: 'Concepto Archic · No trabajo de cliente',
     },
-    sectors: {
-      index: '04 / SECTORES',
-      title: 'Negocios donde la experiencia',
-      title2: 'forma parte del producto.',
-      items: [
-        ['Hospitality', 'Reservas · Experiencia · Operación'],
-        ['Automotive', 'Presentación · Demanda · Gestión'],
-        ['Real Estate', 'Inventario · Leads · Áreas privadas'],
-        ['Yachting', 'Charter · Leads · Operación'],
-        ['Premium Services', 'Marca · Conversión · Sistemas'],
-      ],
-      note: 'No estamos limitados a un sector. Nos interesan los negocios donde una mejor capa digital puede cambiar de forma visible la experiencia o la operación.',
+    standard: {
+      label: '04 / ESTÁNDAR',
+      title: 'La calidad no se añade al final.',
+      accent: 'Se decide desde el principio.',
+      points: ['Claridad antes que ruido', 'Sistema antes que parche', 'Detalle sin decoración vacía', 'Tecnología solo cuando aporta valor'],
     },
     contact: {
-      index: '05 / START',
-      title: 'Construyamos algo',
-      title2: 'que merezca existir.',
-      body: 'Cuéntanos qué negocio tienes, qué está fallando o qué quieres construir. La primera conversación sirve para decidir si Archic puede aportar valor y por dónde empezar.',
-      mail: 'O escríbenos directamente',
+      label: '05 / START A PROJECT',
+      title: '¿Qué debería hacer mejor',
+      accent: 'la parte digital de tu negocio?',
+      body: 'Cuéntanos qué tienes hoy, qué no funciona y qué quieres conseguir. Empezamos por el problema, no por una lista de servicios.',
+      cta: 'Escribir a Archic',
     },
   },
   en: {
     meta: {
-      title: 'Archic — The digital side of exceptional businesses',
-      description: 'Design, development and custom software for businesses that need a digital presence and systems to match their standard.',
+      title: 'Archic — The digital layer of exceptional businesses',
+      description: 'We design premium websites, operational systems and custom software as one digital layer around the business.',
     },
     hero: {
-      eyebrow: 'ARCHIC / DIGITAL SYSTEMS STUDIO',
-      titleA: 'The digital side of',
-      titleB: 'exceptional businesses.',
-      lead: 'We design and build websites, systems and custom software for businesses where experience, image and operations genuinely matter.',
-      primary: 'Talk to Archic',
-      secondary: 'See what we do',
-      meta: ['Strategy', 'Design', 'Development', 'Software'],
-      location: 'Spain · Remote and on-site',
+      kicker: 'ARCHIC / DIGITAL LAYER STUDIO',
+      title: 'Your business already has an identity.',
+      accent: 'We make its digital side live up to it.',
+      body: 'Web, bookings, operations and custom software — conceived as one system when the business actually needs it.',
+      cta: 'Start a project',
+      secondary: 'Explore the system',
+      public: 'What customers see',
+      publicItems: ['Digital brand', 'Website', 'Bookings', 'Conversion'],
+      ops: 'What the business uses',
+      opsItems: ['Customers', 'Operations', 'Automation', 'Software'],
     },
-    premise: {
-      index: '01 / IDEA',
-      title: 'What the customer sees.',
-      title2: 'What makes the business run.',
-      body: 'We do not treat the website, bookings, management or software as isolated pieces. We design the digital layer the business actually needs and give every part a clear purpose.',
-      note: 'A good digital solution does not add complexity. It removes it.',
+    thesis: {
+      label: '01 / PRINCIPLE',
+      title: 'We do not design a website and bolt tools onto it later.',
+      accent: 'We design the whole digital layer.',
+      body: 'Every business needs a different combination. Sometimes an excellent public presence is enough. Other times the value comes from connecting that presence to bookings, customers, operations or proprietary software.',
     },
-    pillars: [
-      { no: '01', name: 'Experience', title: 'A presence that matches the business.', text: 'Web, digital direction, interaction, content and conversion. No dressed-up templates.' },
-      { no: '02', name: 'Operations', title: 'Tools that simplify daily work.', text: 'Bookings, customers, resources, workflows and control designed around how the business operates.' },
-      { no: '03', name: 'Software', title: 'Technology when generic tools are no longer enough.', text: 'Custom software, integrations, automation and proprietary systems when there is a real reason to build them.' },
-    ],
-    work: {
-      index: '02 / WHAT WE BUILD',
-      title: 'We do not sell a package.',
-      title2: 'We build what creates value.',
+    capabilities: {
+      label: '02 / CAPABILITIES',
+      title: 'We only build what has',
+      accent: 'a clear reason to exist.',
       items: [
-        ['01', 'Premium websites', 'Digital brand, experience, performance and conversion.'],
-        ['02', 'Bookings & enquiries', 'Reservations, requests, availability and frictionless capture.'],
-        ['03', 'Control systems', 'Customers, resources, operations and visibility in one environment.'],
-        ['04', 'Custom software', 'Internal tools and digital products built around the business.'],
-        ['05', 'Integrations & automation', 'We connect systems and remove repetitive work where it makes sense.'],
+        { no: '01', name: 'Brand & Web', short: 'The public layer.', body: 'Digital direction, design, content, experience, performance and conversion so the public presence matches the business.', details: ['Premium web', 'Visual direction', 'Content', 'Technical SEO'] },
+        { no: '02', name: 'Booking & Conversion', short: 'From interest to action.', body: 'Bookings, enquiries, availability and conversion flows designed to remove friction and manual work.', details: ['Bookings', 'Enquiries', 'Availability', 'Confirmations'] },
+        { no: '03', name: 'Control & CRM', short: 'The operating layer.', body: 'Customers, resources, bookings, states and workflows in one environment designed around how the business actually runs.', details: ['Customers', 'Operations', 'Resources', 'Reporting'] },
+        { no: '04', name: 'Software & Automation', short: 'When generic stops being enough.', body: 'Custom software, integrations and automation when there is a real advantage in owning the tool.', details: ['Custom software', 'Integrations', 'Automation', 'Data'] },
       ],
     },
-    statement: {
-      small: 'OUR STANDARD',
-      title: 'Quality is not a visual effect.',
-      title2: 'It is refusing weak decisions.',
-      side: 'Clarity · Precision · Intent · Endurance',
-    },
-    approach: {
-      index: '03 / APPROACH',
-      title: 'Understand before designing.',
-      title2: 'Design before building.',
-      lead: 'Technology comes after the problem. We begin by understanding what the business needs to improve and choose the simplest solution capable of doing it well.',
-      steps: [
-        ['01', 'Discover', 'Business, customer, operation and goals. We define the real problem.'],
-        ['02', 'Design & Build', 'Direction, experience and development treated as one discipline.'],
-        ['03', 'Evolve', 'We measure, correct and expand only when the next layer creates value.'],
+    lab: {
+      label: '03 / CONCEPT LAB',
+      title: 'No invented portfolio.',
+      accent: 'We demonstrate capability through concept systems.',
+      body: 'Until enough real case studies exist, we would rather show how we think about a business than pretend we have experience we do not yet have.',
+      concepts: [
+        { sector: 'HOSPITALITY', flow: ['Discover', 'Book', 'Arrive', 'Serve', 'Return'], line: 'Web → Bookings → Customer → Operations' },
+        { sector: 'PREMIUM MOBILITY', flow: ['Browse', 'Enquire', 'Validate', 'Handover', 'Retain'], line: 'Catalogue → Availability → Lead → Customer' },
+        { sector: 'PROPERTY', flow: ['Discover', 'Filter', 'Enquire', 'Visit', 'Follow up'], line: 'Inventory → Lead → CRM → Follow-up' },
       ],
+      disclaimer: 'Archic concept · Not client work',
     },
-    sectors: {
-      index: '04 / SECTORS',
-      title: 'Businesses where experience',
-      title2: 'is part of the product.',
-      items: [
-        ['Hospitality', 'Bookings · Experience · Operations'],
-        ['Automotive', 'Presentation · Demand · Management'],
-        ['Real Estate', 'Inventory · Leads · Private areas'],
-        ['Yachting', 'Charter · Leads · Operations'],
-        ['Premium Services', 'Brand · Conversion · Systems'],
-      ],
-      note: 'We are not limited to one industry. We care about businesses where a better digital layer can visibly improve the experience or the operation.',
+    standard: {
+      label: '04 / STANDARD',
+      title: 'Quality is not added at the end.',
+      accent: 'It is decided from the beginning.',
+      points: ['Clarity before noise', 'System before patchwork', 'Detail without empty decoration', 'Technology only when it creates value'],
     },
     contact: {
-      index: '05 / START',
-      title: 'Let’s build something',
-      title2: 'worth existing.',
-      body: 'Tell us what business you run, what is not working or what you want to build. The first conversation is simply to decide whether Archic can create value and where to begin.',
-      mail: 'Or write to us directly',
+      label: '05 / START A PROJECT',
+      title: 'What should the digital side',
+      accent: 'of your business do better?',
+      body: 'Tell us what you have today, what is not working and what you want to achieve. We start with the problem, not a service list.',
+      cta: 'Write to Archic',
     },
   },
 }
 
 function useReveal() {
   useEffect(() => {
-    const elements = Array.from(document.querySelectorAll('[data-ax-reveal]'))
+    const nodes = Array.from(document.querySelectorAll('[data-v4-reveal]'))
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced || !('IntersectionObserver' in window)) {
-      elements.forEach((el) => el.classList.add('is-visible'))
+      nodes.forEach((node) => node.classList.add('is-visible'))
       return
     }
     const observer = new IntersectionObserver((entries) => {
@@ -178,8 +143,8 @@ function useReveal() {
         entry.target.classList.add('is-visible')
         observer.unobserve(entry.target)
       })
-    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' })
-    elements.forEach((el) => observer.observe(el))
+    }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' })
+    nodes.forEach((node) => observer.observe(node))
     return () => observer.disconnect()
   }, [])
 }
@@ -187,6 +152,7 @@ function useReveal() {
 export default function ArchicHome() {
   const { lang } = useLang()
   const c = COPY[lang]
+  const [active, setActive] = useState(0)
   const canonicalUrl = homeCanonical(lang)
   const structuredData = buildHomeGraph(lang)
   useReveal()
@@ -209,127 +175,85 @@ export default function ArchicHome() {
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
-      <div className="ax" id="top">
+      <div className="v4" id="top">
         <StudioHeader />
 
-        <section className="ax-hero">
-          <div className="ax-hero-lines" aria-hidden="true" />
-          <div className="ax-hero-copy">
-            <p className="ax-eyebrow">{c.hero.eyebrow}</p>
-            <h1>{c.hero.titleA}<br /><span>{c.hero.titleB}</span></h1>
-            <p className="ax-lead">{c.hero.lead}</p>
-            <div className="ax-actions">
-              <a className="ax-primary" href="#contact">{c.hero.primary}</a>
-              <a className="ax-secondary" href="#work">{c.hero.secondary}<span>↓</span></a>
+        <section className="v4-hero">
+          <div className="v4-hero-copy">
+            <p className="v4-kicker">{c.hero.kicker}</p>
+            <h1>{c.hero.title}<br /><span>{c.hero.accent}</span></h1>
+            <p className="v4-hero-body">{c.hero.body}</p>
+            <div className="v4-actions">
+              <a className="v4-btn" href="#contact">{c.hero.cta}<span>↗</span></a>
+              <a className="v4-link" href="#capabilities">{c.hero.secondary}<span>↓</span></a>
             </div>
           </div>
 
-          <div className="ax-hero-mark" aria-hidden="true">
-            <div className="ax-ring ax-ring-a" />
-            <div className="ax-ring ax-ring-b" />
-            <div className="ax-mark-glow" />
-            <img src="/brand/archic-mark-light.svg" alt="" width={459} height={412} />
-            <div className="ax-mark-caption"><span>ARCHIC</span><span>EST. 2026</span></div>
-          </div>
-
-          <div className="ax-hero-meta">
-            <span>{c.hero.location}</span>
-            <span>{c.hero.meta.join(' · ')}</span>
+          <div className="v4-layer" aria-label="Archic digital layer model">
+            <div className="v4-layer-head"><span>ARCHIC / DIGITAL LAYER</span><span>01 — 08.26</span></div>
+            <div className="v4-layer-half v4-layer-public"><div><p>{c.hero.public}</p>{c.hero.publicItems.map((item, index) => <span key={item}><b>0{index + 1}</b>{item}</span>)}</div></div>
+            <div className="v4-layer-axis"><span className="v4-layer-line" /><span className="v4-layer-mark"><img src="/brand/archic-mark-dark.svg" alt="" /></span><span className="v4-layer-line" /></div>
+            <div className="v4-layer-half v4-layer-ops"><div><p>{c.hero.ops}</p>{c.hero.opsItems.map((item, index) => <span key={item}><b>0{index + 5}</b>{item}</span>)}</div></div>
+            <div className="v4-layer-foot"><span>VISIBLE</span><span>CONNECTED</span><span>OPERATING</span></div>
           </div>
         </section>
 
-        <section className="ax-premise ax-light" id="studio">
-          <div className="ax-section-index">{c.premise.index}</div>
-          <div className="ax-premise-title" data-ax-reveal>
-            <h2>{c.premise.title}<br /><span>{c.premise.title2}</span></h2>
-          </div>
-          <div className="ax-premise-copy" data-ax-reveal>
-            <p>{c.premise.body}</p>
-            <p className="ax-rule-note">{c.premise.note}</p>
-          </div>
+        <section className="v4-thesis" id="studio">
+          <p className="v4-label">{c.thesis.label}</p>
+          <div data-v4-reveal><h2>{c.thesis.title}<br /><span>{c.thesis.accent}</span></h2></div>
+          <p className="v4-thesis-body" data-v4-reveal>{c.thesis.body}</p>
         </section>
 
-        <section className="ax-pillars ax-light">
-          {c.pillars.map((pillar) => (
-            <article key={pillar.no} className="ax-pillar" data-ax-reveal>
-              <div className="ax-pillar-top"><span>{pillar.no}</span><span>{pillar.name}</span></div>
-              <h3>{pillar.title}</h3>
-              <p>{pillar.text}</p>
+        <section className="v4-capabilities" id="capabilities">
+          <header className="v4-section-head">
+            <p className="v4-label">{c.capabilities.label}</p>
+            <h2>{c.capabilities.title}<br /><span>{c.capabilities.accent}</span></h2>
+          </header>
+          <div className="v4-cap-grid">
+            <div className="v4-cap-list">
+              {c.capabilities.items.map((item, index) => (
+                <button key={item.no} type="button" className={`v4-cap-row ${active === index ? 'is-active' : ''}`} onClick={() => setActive(index)} aria-pressed={active === index}>
+                  <span>{item.no}</span><strong>{item.name}</strong><small>{item.short}</small><i>↗</i>
+                </button>
+              ))}
+            </div>
+            <article className="v4-cap-detail" data-v4-reveal>
+              <div className="v4-cap-detail-top"><span>{c.capabilities.items[active].no}</span><span>CAPABILITY</span></div>
+              <h3>{c.capabilities.items[active].name}</h3>
+              <p>{c.capabilities.items[active].body}</p>
+              <div className="v4-cap-tags">{c.capabilities.items[active].details.map((detail) => <span key={detail}>{detail}</span>)}</div>
             </article>
-          ))}
+          </div>
         </section>
 
-        <section className="ax-work" id="work">
-          <div className="ax-work-head">
-            <span className="ax-section-index">{c.work.index}</span>
-            <h2>{c.work.title}<br /><span>{c.work.title2}</span></h2>
-          </div>
-          <div className="ax-service-list">
-            {c.work.items.map(([no, name, desc]) => (
-              <article className="ax-service" key={no} data-ax-reveal>
-                <span className="ax-service-no">{no}</span>
-                <h3>{name}</h3>
-                <p>{desc}</p>
-                <span className="ax-service-arrow">↗</span>
+        <section className="v4-lab" id="concepts">
+          <header className="v4-section-head v4-section-head-dark">
+            <p className="v4-label">{c.lab.label}</p>
+            <div><h2>{c.lab.title}<br /><span>{c.lab.accent}</span></h2><p>{c.lab.body}</p></div>
+          </header>
+          <div className="v4-concepts">
+            {c.lab.concepts.map((concept, conceptIndex) => (
+              <article className="v4-concept" key={concept.sector} data-v4-reveal>
+                <div className="v4-concept-top"><span>0{conceptIndex + 1}</span><span>{concept.sector}</span><span>{c.lab.disclaimer}</span></div>
+                <div className="v4-flow">
+                  {concept.flow.map((step, index) => <div className="v4-flow-step" key={step}><span>0{index + 1}</span><strong>{step}</strong>{index < concept.flow.length - 1 && <i>→</i>}</div>)}
+                </div>
+                <p>{concept.line}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="ax-statement">
-          <div className="ax-statement-mark"><img src="/brand/archic-mark-dark.svg" alt="" /></div>
-          <div className="ax-statement-copy" data-ax-reveal>
-            <p>{c.statement.small}</p>
-            <h2>{c.statement.title}<br /><span>{c.statement.title2}</span></h2>
-          </div>
-          <p className="ax-statement-side">{c.statement.side}</p>
+        <section className="v4-standard">
+          <div className="v4-standard-mark"><img src="/brand/archic-mark-dark.svg" alt="" /></div>
+          <div><p className="v4-label">{c.standard.label}</p><h2>{c.standard.title}<br /><span>{c.standard.accent}</span></h2></div>
+          <ol>{c.standard.points.map((point, index) => <li key={point}><span>0{index + 1}</span>{point}</li>)}</ol>
         </section>
 
-        <section className="ax-approach ax-light" id="approach">
-          <div className="ax-approach-head">
-            <span className="ax-section-index">{c.approach.index}</span>
-            <h2>{c.approach.title}<br /><span>{c.approach.title2}</span></h2>
-            <p>{c.approach.lead}</p>
-          </div>
-          <div className="ax-steps">
-            {c.approach.steps.map(([no, name, desc]) => (
-              <article key={no} className="ax-step" data-ax-reveal>
-                <span>{no}</span>
-                <h3>{name}</h3>
-                <p>{desc}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="ax-sectors" id="sectors">
-          <div className="ax-sectors-head">
-            <span className="ax-section-index">{c.sectors.index}</span>
-            <h2>{c.sectors.title}<br /><span>{c.sectors.title2}</span></h2>
-          </div>
-          <div className="ax-sector-list">
-            {c.sectors.items.map(([name, line], index) => (
-              <div className="ax-sector" key={name} data-ax-reveal>
-                <span>0{index + 1}</span><strong>{name}</strong><small>{line}</small>
-              </div>
-            ))}
-          </div>
-          <p className="ax-sector-note">{c.sectors.note}</p>
-        </section>
-
-        <section className="ax-contact ax-light" id="contact">
-          <div className="ax-contact-head">
-            <span className="ax-section-index">{c.contact.index}</span>
-            <h2>{c.contact.title}<br /><span>{c.contact.title2}</span></h2>
-          </div>
-          <div className="ax-contact-grid">
-            <div className="ax-contact-intro">
-              <p>{c.contact.body}</p>
-              <span>{c.contact.mail}</span>
-              <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}<b>↗</b></a>
-            </div>
-            <StudioContact />
-          </div>
+        <section className="v4-contact" id="contact">
+          <p className="v4-label">{c.contact.label}</p>
+          <h2>{c.contact.title}<br /><span>{c.contact.accent}</span></h2>
+          <div className="v4-contact-bottom"><p>{c.contact.body}</p><a href={`mailto:${CONTACT_MAIL}`}>{c.contact.cta}<span>↗</span></a></div>
         </section>
 
         <StudioFooter />
