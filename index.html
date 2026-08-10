@@ -14,10 +14,12 @@
     <link data-rh="true" rel="alternate" hreflang="en" href="https://archic.es/en/">
     <link data-rh="true" rel="alternate" hreflang="x-default" href="https://archic.es/">
     <meta name="theme-color" content="#0a0a0b" />
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/archic-mark-512.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/favicon.ico?v=3" sizes="any">
+    <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
+    <link rel="manifest" href="/manifest.json">
     <meta name="google-site-verification" content="y-ywY3wwLbE0VyTO3ex8Nf7c4FWClx9R_y4mz_V75ks" />
     <!-- Webfonts are self-hosted (see src/main.tsx): no third-party requests. -->
     <meta data-rh="true" property="og:url" content="https://archic.es/" />
@@ -27,8 +29,8 @@
     <meta data-rh="true" property="og:locale:alternate" content="en_US" />
     <meta data-rh="true" property="og:title" content="Páginas web y software a medida para empresas | Archic">
     <meta data-rh="true" property="og:description" content="Diseñamos páginas web profesionales, ofrecemos mantenimiento y desarrollamos software a medida para pymes y empresas en España.">
-    <meta data-rh="true" property="og:image" content="https://archic.es/og-image.png">
-    <meta data-rh="true" property="og:image:secure_url" content="https://archic.es/og-image.png">
+    <meta data-rh="true" property="og:image" content="https://archic.es/og-image.png?v=3?v=3">
+    <meta data-rh="true" property="og:image:secure_url" content="https://archic.es/og-image.png?v=3?v=3">
     <meta data-rh="true" property="og:image:type" content="image/png">
     <meta data-rh="true" property="og:image:width" content="1200">
     <meta data-rh="true" property="og:image:height" content="630">
@@ -37,7 +39,7 @@
     <meta data-rh="true" name="twitter:site" content="@ArchicHQ" />
     <meta data-rh="true" name="twitter:title" content="Páginas web y software a medida para empresas | Archic">
     <meta data-rh="true" name="twitter:description" content="Diseñamos páginas web profesionales, ofrecemos mantenimiento y desarrollamos software a medida para pymes y empresas en España.">
-    <meta data-rh="true" name="twitter:image" content="https://archic.es/og-image.png">
+    <meta data-rh="true" name="twitter:image" content="https://archic.es/og-image.png?v=3?v=3">
     <meta data-rh="true" name="twitter:image:alt" content="Archic — páginas web y software a medida para empresas">
     <script data-rh="true" type="application/ld+json">
       {
@@ -55,7 +57,7 @@
               "width": 512,
               "height": 512
             },
-            "image": "https://archic.es/og-image.png",
+            "image": "https://archic.es/og-image.png?v=3",
             "email": "vornic@archic.es",
             "description": "Diseñamos páginas web profesionales, ofrecemos mantenimiento y desarrollamos software a medida para pymes y empresas en España.",
             "areaServed": {
@@ -132,7 +134,7 @@
             "@id": "https://archic.es/#localbusiness",
             "name": "Archic",
             "url": "https://archic.es/",
-            "image": "https://archic.es/og-image.png",
+            "image": "https://archic.es/og-image.png?v=3",
             "logo": "https://archic.es/archic-mark-512.png",
             "email": "vornic@archic.es",
             "description": "Estudio de diseño y desarrollo web en Écija (Sevilla). Páginas web, software a medida y mantenimiento para empresas y autónomos de Écija y provincia.",
@@ -161,27 +163,15 @@
               },
               {
                 "@type": "City",
-                "name": "Carmona"
+                "name": "Marbella"
               },
               {
                 "@type": "City",
-                "name": "Osuna"
+                "name": "Puerto Banús"
               },
               {
                 "@type": "City",
-                "name": "Marchena"
-              },
-              {
-                "@type": "City",
-                "name": "Utrera"
-              },
-              {
-                "@type": "City",
-                "name": "Dos Hermanas"
-              },
-              {
-                "@type": "City",
-                "name": "Palma del Río"
+                "name": "Costa del Sol"
               },
               {
                 "@type": "AdministrativeArea",
@@ -237,87 +227,17 @@
             }
           },
           {
-            "@type": "FAQPage",
-            "@id": "https://archic.es/#faq",
-            "inLanguage": "es",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "¿Qué diferencia hay entre una web a medida y una hecha con WordPress, Wix o Shopify?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Un constructor te da una plantilla y una cuota mensual: es rápido de arrancar y suficiente para una web sencilla, pero el rendimiento depende de plugins que no controlas y salir de la plataforma es costoso. Una web a medida se programa para lo que necesita tu negocio: carga más rápido porque no arrastra código que no usas, no depende de licencias de terceros y el resultado se puede alojar donde quieras. Como referencia, esta misma web es a medida, no instala cookies y no hace ni una sola petición a servidores externos."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Cuánto cuesta una página web para una empresa?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Depende del alcance real: número de páginas, si hay catálogo o zona privada, si hace falta versión en otro idioma y si hay que integrar sistemas que ya usáis. No trabajamos con tarifa por horas abierta: analizamos el caso, damos un presupuesto cerrado antes de empezar y ahí queda claro qué incluye y qué mantenimiento necesitará después. Escríbenos con dos líneas sobre el proyecto y te decimos un rango en la primera respuesta."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Cuánto se tarda en tener la web publicada?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Una web corporativa de presentación suele estar lista en unas semanas desde que tenemos los textos y las imágenes definitivos; lo que más alarga los plazos casi nunca es el desarrollo, sino esperar a los contenidos. Un proyecto de software interno se planifica por fases, y desde la primera enseñamos avances funcionando para que no haya sorpresas al final."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿La web es mía? ¿Puedo cambiar de proveedor después?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Sí. Entregamos el código y la configuración, y el dominio se registra siempre a nombre del cliente. Si algún día decides trabajar con otro estudio, te llevas el proyecto sin pedirnos permiso ni pagar por liberarlo. Nos parece la única forma sana de plantear la relación."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Qué es el software a medida y cuándo compensa frente a un programa comercial?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Es una herramienta programada para la forma concreta en la que trabaja una empresa: control de inventario, seguimiento de producción, generación automática de informes, paneles internos. Compensa cuando el programa comercial obliga a cambiar el proceso para encajar en él, cuando se paga por decenas de funciones que nadie usa, o cuando el trabajo real vive en hojas de Excel que solo entiende una persona. Si un software estándar cubre lo que necesitáis, lo decimos: sale más barato para todos."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Trabajáis solo en Écija y Sevilla?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "La base está en Écija, así que en la provincia de Sevilla —Écija, Sevilla capital, Carmona, Osuna, Marchena, Utrera, Dos Hermanas, Palma del Río— podemos vernos en persona. Con el resto de España trabajamos en remoto: videollamada, avances visibles y la misma forma de trabajar. Atendemos en castellano e inglés."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Qué pasa después de publicar? ¿Hay mantenimiento?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Es opcional, pero lo recomendamos: una web sin actualizar acumula fallos de seguridad y se queda atrás en rendimiento. El mantenimiento cubre copias de seguridad, actualizaciones, corrección de errores, monitorización y pequeños cambios de contenido. Si prefieres gestionarlo por tu cuenta, te dejamos la documentación para hacerlo."
-                }
-              }
-            ]
-          },
-          {
             "@type": "WebPage",
             "@id": "https://archic.es/#webpage",
             "url": "https://archic.es/",
-            "name": "Páginas web y software a medida para empresas | Archic",
-            "description": "Diseñamos páginas web profesionales, ofrecemos mantenimiento y desarrollamos software a medida para pymes y empresas en España.",
+            "name": "Archic — La parte digital de negocios excepcionales",
+            "description": "Estrategia, diseño, webs premium y software a medida para construir la parte digital de negocios ambiciosos.",
             "inLanguage": "es",
             "isPartOf": {
               "@id": "https://archic.es/#website"
             },
             "about": {
               "@id": "https://archic.es/#organization"
-            },
-            "speakable": {
-              "@type": "SpeakableSpecification",
-              "cssSelector": [
-                ".ar-answer-body",
-                ".ar-hero-title"
-              ]
             }
           }
         ]

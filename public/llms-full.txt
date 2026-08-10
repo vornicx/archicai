@@ -1,6 +1,6 @@
 # Archic — contenido completo
 
-Última actualización: 2026-08-04
+Última actualización: 2026-08-07
 Origen: https://archic.es/
 
 > Archic es un estudio de diseño y desarrollo web con base en Écija (Sevilla, España). Hace tres cosas: diseña y programa páginas web a medida, desarrolla software interno para empresas —inventarios, paneles de producción, automatización de informes— y mantiene esos sistemas una vez publicados. Trabaja de forma presencial en la provincia de Sevilla y en remoto con el resto de España, en castellano e inglés.
