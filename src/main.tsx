@@ -2,9 +2,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
-/* Self-hosted webfonts. Serving them from our own origin instead of the Google
-   Fonts CDN avoids sending visitor IP addresses to a third party without
-   consent (art. 6 GDPR), which also keeps the site free of consent banners. */
 import '@fontsource/inter/latin-400.css'
 import '@fontsource/inter/latin-500.css'
 import '@fontsource/dm-sans/latin-400.css'
@@ -17,6 +14,7 @@ import '@fontsource/ibm-plex-mono/latin-500.css'
 import '@fontsource/instrument-serif/latin-400.css'
 import './index.css'
 import './styles/studio.css'
+import './styles/archic-v3.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
