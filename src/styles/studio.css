@@ -116,7 +116,8 @@
 
 /* ---------- botones y enlaces --------------------------------------------- */
 
-.sx-btn {
+.sx-btn,
+.sx a.sx-btn {
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -131,7 +132,8 @@
   transition: background 0.26s var(--ease), color 0.26s var(--ease);
 }
 
-.sx-btn:hover {
+.sx-btn:hover,
+.sx a.sx-btn:hover {
   background: transparent;
   color: var(--warm);
 }
@@ -826,14 +828,16 @@
   text-decoration: underline;
 }
 
-.sx-form .sx-btn {
+.sx-form .sx-btn,
+.sx-form button.sx-btn {
   justify-self: start;
   background: var(--ink);
   color: var(--warm);
   border-color: var(--ink);
 }
 
-.sx-form .sx-btn:hover {
+.sx-form .sx-btn:hover,
+.sx a.sx-btn:hover {
   background: transparent;
   color: var(--ink);
 }
