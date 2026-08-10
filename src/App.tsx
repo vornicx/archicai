@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import ArchicHome from './pages/ArchicHome'
+import ArchicSitePage from './pages/ArchicSitePage'
 /* Secondary routes are split out of the main bundle: they are rarely the
    landing page, so keeping them out of the critical path helps LCP. */
 const LegalPage = lazy(() => import('./pages/LegalPage'))
@@ -25,26 +26,18 @@ function SkipLink() {
 
 const LEGAL_KEYS = Object.keys(LEGAL_PATHS) as LegalDocKey[]
 
-/**
- * Each legal document is reachable at its Spanish and English path. Both the
- * trailing-slash and bare forms are registered so a hand-typed URL resolves
- * client-side even before GitHub Pages issues its canonical redirect.
- */
 const LEGAL_ROUTES = LEGAL_KEYS.flatMap((key) =>
   Object.values(LEGAL_PATHS[key]).flatMap((path) => [path, path.replace(/\/$/, '')]).map((path) => (
     <Route key={path} path={path} element={<LegalPage doc={key} />} />
   )),
 )
 
-/* Una URL por intención de búsqueda: cada landing de servicio o local responde
-   a una keyword distinta y tiene su propio HTML estático. */
 const SERVICE_ROUTES = [...SERVICE_PAGES, ...LOCAL_PAGES].flatMap((page) =>
   [page.path, page.path.replace(/\/$/, '')].map((path) => (
     <Route key={path} path={path} element={<ServicePage page={page} />} />
   )),
 )
 
-/* Contenido informativo: una guía por duda que aparece antes de contratar. */
 const GUIDE_ROUTES = [
   ...[GUIDES_INDEX_PATH, GUIDES_INDEX_PATH.replace(/\/$/, '')].map((path) => (
     <Route key={path} path={path} element={<GuidesIndex />} />
@@ -56,6 +49,14 @@ const GUIDE_ROUTES = [
   ),
 ]
 
+const ARCHIC_ROUTES = [
+  ['presence', 'presence'],
+  ['control', 'control'],
+  ['business', 'business'],
+  ['studio', 'studio'],
+  ['contact', 'contact'],
+] as const
+
 function App() {
   return (
     <LanguageProvider>
@@ -66,6 +67,12 @@ function App() {
             <Routes>
               <Route path="/" element={<ArchicHome />} />
               <Route path="/en/" element={<ArchicHome />} />
+              {ARCHIC_ROUTES.flatMap(([slug, page]) => [
+                <Route key={`es-${slug}`} path={`/${slug}/`} element={<ArchicSitePage page={page} />} />,
+                <Route key={`es-bare-${slug}`} path={`/${slug}`} element={<ArchicSitePage page={page} />} />,
+                <Route key={`en-${slug}`} path={`/en/${slug}/`} element={<ArchicSitePage page={page} />} />,
+                <Route key={`en-bare-${slug}`} path={`/en/${slug}`} element={<ArchicSitePage page={page} />} />,
+              ])}
               {SERVICE_ROUTES}
               {GUIDE_ROUTES}
               {LEGAL_ROUTES}
