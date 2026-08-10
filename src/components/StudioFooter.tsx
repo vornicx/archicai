@@ -1,6 +1,7 @@
 import { useLang } from '../i18n/LanguageContext'
 import { LEGAL_PATHS } from '../legal/documents'
 import { CONTACT_MAIL } from '../i18n/content'
+import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 
 const COPY = {
   es: {
@@ -9,6 +10,8 @@ const COPY = {
     legal: 'Legal',
     rights: 'Todos los derechos reservados.',
     explore: 'Explorar',
+    call: 'Llamar',
+    email: 'Email',
     pages: [
       ['Presence', 'presence'],
       ['Control', 'control'],
@@ -23,6 +26,8 @@ const COPY = {
     legal: 'Legal',
     rights: 'All rights reserved.',
     explore: 'Explore',
+    call: 'Call',
+    email: 'Email',
     pages: [
       ['Presence', 'presence'],
       ['Control', 'control'],
@@ -57,7 +62,14 @@ export default function StudioFooter() {
 
         <div className="as-footer-contact">
           <span>CONTACT</span>
-          <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
+          <a className="as-footer-phone" href={`tel:${CONTACT_PHONE}`}>
+            <small>{c.call}</small>
+            {CONTACT_PHONE_DISPLAY}
+          </a>
+          <a className="as-footer-mail" href={`mailto:${CONTACT_MAIL}`}>
+            <small>{c.email}</small>
+            {CONTACT_MAIL}
+          </a>
         </div>
 
         <nav className="as-footer-legal" aria-label={c.legal}>
