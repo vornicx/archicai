@@ -6,6 +6,8 @@ import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 
+const PRESENCE_IMAGE = 'https://images.pexels.com/photos/31080809/pexels-photo-31080809/free-photo-of-elegant-luxury-hotel-lobby-with-warm-ambiance.jpeg?auto=compress&dpr=1&h=750&w=1260'
+
 const COPY = {
   es: {
     meta: {
@@ -46,6 +48,8 @@ const COPY = {
       body: 'Dirección visual, web, contenido, rendimiento y conversión tratados como una sola experiencia. No diseñamos páginas: diseñamos cómo se siente descubrir el negocio.',
       chips: ['Web premium', 'Dirección digital', 'Contenido', 'SEO técnico'],
       concept: 'CONCEPTO ARCHIC · NO ES TRABAJO DE CLIENTE',
+      visualTitle: 'Presencia que cambia la percepción.',
+      visualBody: 'Fotografía, dirección, ritmo y conversión trabajando como una sola pieza.',
     },
     control: {
       label: 'ARCHIC CONTROL',
@@ -135,6 +139,8 @@ const COPY = {
       body: 'Visual direction, web, content, performance and conversion treated as one experience. We do not design pages; we design what discovering the business feels like.',
       chips: ['Premium web', 'Digital direction', 'Content', 'Technical SEO'],
       concept: 'ARCHIC CONCEPT · NOT CLIENT WORK',
+      visualTitle: 'Presence that changes perception.',
+      visualBody: 'Photography, direction, rhythm and conversion working as one piece.',
     },
     control: {
       label: 'ARCHIC CONTROL',
@@ -297,29 +303,22 @@ export default function ArchicHome() {
               <span>ARCHIC CONCEPT 01</span>
               <span>HOSPITALITY / PRESENCE</span>
             </div>
-            <div className="v5-concept-site">
-              <div className="v5-concept-main">
-                <div className="v6-scene" aria-hidden="true"><span>PRIVATE / MEDITERRANEAN</span><i /></div>
-                <p>MARBELLA · PRIVATE HOSPITALITY</p>
-                <h3>A quieter<br /><em>kind of stay.</em></h3>
-                <span>Considered spaces. Personal service. A slower rhythm by the Mediterranean.</span>
-                <button type="button">Reserve a stay <b>↗</b></button>
+            <div className="v6-presence-image-wrap">
+              <img
+                className="v6-presence-image"
+                src={PRESENCE_IMAGE}
+                alt={lang === 'es' ? 'Interior de hospitality de lujo usado en el concepto Archic Presence' : 'Luxury hospitality interior used in the Archic Presence concept'}
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="v6-presence-meta"><span>ARCHIC / PRESENCE</span><span>01 / CONCEPT</span></div>
+              <div className="v6-presence-copy">
+                <span>HOSPITALITY · DIGITAL DIRECTION</span>
+                <h3>{c.presence.visualTitle}</h3>
+                <p>{c.presence.visualBody}</p>
               </div>
-              <aside className="v5-concept-aside">
-                <span className="v5-concept-no">01 / 04</span>
-                <div className="v5-concept-details">
-                  <p>PRIVATE SUITES</p>
-                  <strong>Designed around privacy, light and quiet.</strong>
-                </div>
-                <div className="v5-booking-strip">
-                  <span><small>ARRIVE</small>18 AUG</span>
-                  <span><small>DEPART</small>21 AUG</span>
-                  <span><small>GUESTS</small>02</span>
-                  <i>→</i>
-                </div>
-              </aside>
             </div>
-            <div className="v5-concept-foot"><span>{c.presence.concept}</span><span>DESIGN / EXPERIENCE / CONVERSION</span></div>
+            <div className="v5-concept-foot"><span>{c.presence.concept}</span><span>PHOTO / PEXELS · DESIGN / EXPERIENCE / CONVERSION</span></div>
           </div>
         </section>
 
