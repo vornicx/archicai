@@ -107,29 +107,36 @@ for (const page of pages) {
 
 const sitemapPath = resolve(ROOT, 'public', 'sitemap.xml')
 if (existsSync(sitemapPath)) {
-  let sitemap = readFileSync(sitemapPath, 'utf8')
-
-  for (const page of pages) {
-    const escaped = page.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const routePattern = new RegExp(`\\s*<url>[\\s\\S]*?<loc>https://archic\\.es/(?:en/)?${escaped}/<\\/loc>[\\s\\S]*?<\\/url>`, 'g')
-    sitemap = sitemap.replace(routePattern, '')
-  }
+  const sitemap = readFileSync(sitemapPath, 'utf8')
+  const rootOpen = sitemap.match(/^([\s\S]*?<urlset[^>]*>)/)?.[1]
+  const blocks = sitemap.match(/\s*<url>[\s\S]*?<\/url>/g) ?? []
+  const coreUrls = new Set(
+    pages.flatMap((page) => {
+      const alternates = sitePageAlternates(page)
+      return [alternates.es, alternates.en]
+    }),
+  )
+  const preserved = blocks.filter((block) => {
+    const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1]
+    return !loc || !coreUrls.has(loc)
+  })
 
   const entries = pages.flatMap((page) => {
     const alternates = sitePageAlternates(page)
-    return [
-      { loc: alternates.es, lang: 'es' },
-      { loc: alternates.en, lang: 'en' },
-    ].map(({ loc }) => `  <url>
+    return [alternates.es, alternates.en].map((loc) => `  <url>
     <loc>${loc}</loc>
     <lastmod>${MODIFIED}</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="${alternates.es}" />
     <xhtml:link rel="alternate" hreflang="en" href="${alternates.en}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="${alternates.xDefault}" />
   </url>`)
-  }).join('\n')
+  })
 
-  sitemap = sitemap.replace(/\s*<\/urlset>\s*$/, `\n${entries}\n</urlset>\n`)
-  writeFileSync(sitemapPath, sitemap)
+  if (rootOpen) {
+    writeFileSync(
+      sitemapPath,
+      `${rootOpen}\n${[...preserved.map((block) => block.trim()), ...entries].join('\n')}\n</urlset>\n`,
+    )
+  }
   console.log('updated public/sitemap.xml with core Archic routes')
 }
