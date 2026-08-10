@@ -1,0 +1,147 @@
+.as-site{
+  --as-section-y:clamp(120px,12vw,210px);
+  --as-reading:720px;
+  --as-wide:1540px;
+}
+
+.as-site h1,.as-site h2,.as-site h3{font-synthesis:none}
+.as-site p{text-wrap:pretty}
+
+/* Consistent drawn arrow: no platform-dependent symbol rendering. */
+.as-arrow{
+  position:relative;
+  display:inline-block;
+  flex:0 0 13px;
+  width:13px;
+  height:13px;
+  margin-left:3px;
+}
+.as-arrow::before{
+  content:"";
+  position:absolute;
+  width:9px;
+  height:1px;
+  right:1px;
+  top:6px;
+  background:currentColor;
+  transform:rotate(-45deg);
+  transform-origin:right center;
+}
+.as-arrow::after{
+  content:"";
+  position:absolute;
+  width:6px;
+  height:6px;
+  right:0;
+  top:0;
+  border-top:1px solid currentColor;
+  border-right:1px solid currentColor;
+}
+
+.as-btn .as-arrow,.as-product-copy strong .as-arrow,.as-text-link .as-arrow{color:var(--as-gold-hi)}
+.as-text-link-dark .as-arrow{color:#765526}
+.as-btn:hover .as-arrow,.as-product:hover .as-arrow,.as-text-link:hover .as-arrow{transform:translate(3px,-3px)}
+.as-arrow{transition:transform .4s var(--as-luxe-ease)}
+
+/* Header feels like a control surface, not a tiny utility bar. */
+.as-header{padding-inline:max(var(--as-pad),calc((100vw - 1720px)/2))}
+.as-header-actions{min-height:100%}
+.as-lang button,.as-project-link,.as-menu-button,.as-phone-link{min-height:40px}
+.as-project-link{padding-inline:4px}
+.as-menu-button{padding-inline:3px}
+
+/* Hero: stronger hierarchy and a cleaner first viewport. */
+.as-home-hero{
+  padding-left:max(var(--as-pad),calc((100vw - 1720px)/2));
+  padding-right:max(var(--as-pad),calc((100vw - 1720px)/2));
+}
+.as-home-hero-copy{max-width:1320px}
+.as-home-hero h1{max-width:12.6ch;font-size:clamp(68px,7.15vw,126px);line-height:.93}
+.as-home-hero-copy>p:not(.as-kicker){max-width:690px;font-size:clamp(18px,1.22vw,21px)}
+.as-hero-actions{gap:32px}
+.as-home-hero .as-btn{min-height:58px;padding-inline:27px}
+
+/* Home sections use the same spatial discipline. */
+.as-products,.as-home-fit,.as-home-close{padding-top:var(--as-section-y);padding-bottom:var(--as-section-y)}
+.as-home-standard{min-height:78svh;padding-top:var(--as-section-y);padding-bottom:var(--as-section-y)}
+.as-products-head{max-width:var(--as-wide);margin-left:auto;margin-right:auto;margin-bottom:clamp(70px,7vw,110px)}
+.as-products-grid{max-width:var(--as-wide);margin-inline:auto}
+.as-products-head h2{max-width:10.4ch}
+.as-products-head>p{max-width:610px;font-size:clamp(17px,1.15vw,20px)}
+
+.as-product{min-height:410px}
+.as-product-presence{min-height:790px}
+.as-product-control,.as-product-business{min-height:382px}
+.as-product-copy{max-width:760px}
+.as-product-copy h3{max-width:12ch;margin-top:18px;margin-bottom:18px}
+.as-product-copy p{max-width:48ch}
+.as-product-copy strong{gap:12px;font-size:13px}
+
+.as-standard-inner{max-width:1080px}
+.as-home-standard h2{max-width:10.5ch}
+.as-home-standard>p:last-child,.as-standard-inner>p:last-child{max-width:720px}
+
+.as-home-fit{grid-template-columns:minmax(0,1.05fr) minmax(360px,.75fr);align-items:center}
+.as-home-fit>div:first-child{max-width:900px}
+.as-home-fit>div:last-child{max-width:610px;justify-self:end}
+.as-home-fit>div:last-child>p{font-size:clamp(17px,1.16vw,20px)}
+
+.as-close-inner{max-width:1050px}
+.as-home-close h2{max-width:10.5ch}
+.as-home-close>p:not(.as-kicker),.as-close-inner>p:not(.as-kicker){max-width:680px}
+.as-close-actions{margin-top:40px}
+
+/* Interior pages: one clear rhythm from proposition to proof to contact. */
+.as-detail-hero{padding-left:max(var(--as-pad),calc((100vw - 1720px)/2));padding-right:max(var(--as-pad),calc((100vw - 1720px)/2))}
+.as-detail-hero-copy{max-width:1320px}
+.as-detail-hero h1{max-width:12.5ch}
+.as-lead{max-width:740px}
+.as-statement,.as-feature-section,.as-principle,.as-next{padding-top:var(--as-section-y);padding-bottom:var(--as-section-y)}
+.as-statement>div:last-child,.as-feature-head,.as-feature-list,.as-principle-inner,.as-next{max-width:var(--as-wide)}
+.as-feature-head,.as-feature-list,.as-principle-inner{margin-inline:auto}
+.as-feature-list article{grid-template-columns:64px minmax(220px,.65fr) minmax(320px,1fr) 30px;align-items:center}
+.as-feature-list p{max-width:58ch}
+.as-principle h2{max-width:11ch}
+.as-principle>p:last-child,.as-principle-inner>p:last-child{max-width:720px}
+.as-next{margin-inline:auto;width:100%;grid-template-columns:minmax(0,1fr) minmax(280px,360px)}
+
+/* Contact: telephone is a primary conversion route, form remains deliberate. */
+.as-contact-hero{max-width:1720px;margin-inline:auto;padding-left:max(var(--as-pad),36px);padding-right:max(var(--as-pad),36px)}
+.as-contact-hero>div:first-child{max-width:690px}
+.as-contact-direct-call{max-width:540px}
+.as-contact-form{max-width:760px;justify-self:end;width:100%}
+.as-contact-form .sx-form{padding:clamp(34px,4vw,58px)}
+.as-contact-form .sx-field{margin-bottom:24px}
+.as-contact-form .sx-field input,.as-contact-form .sx-field select,.as-contact-form .sx-field textarea{padding-top:15px;padding-bottom:16px}
+
+/* Footer gains enough presence to close the site intentionally. */
+.as-footer{padding-top:clamp(82px,8vw,120px)}
+.as-footer-top{max-width:var(--as-wide);margin-inline:auto;padding-bottom:clamp(64px,7vw,96px)}
+.as-footer-bottom{max-width:var(--as-wide);margin-inline:auto;padding-top:28px}
+
+@media(max-width:980px){
+  .as-home-fit{grid-template-columns:1fr;gap:54px}
+  .as-home-fit>div:last-child{justify-self:start;max-width:680px}
+  .as-feature-list article{grid-template-columns:50px minmax(190px,.7fr) 1fr 24px}
+}
+
+@media(max-width:720px){
+  .as-site{--as-section-y:96px}
+  .as-header{padding-inline:20px}
+  .as-home-hero,.as-detail-hero{padding-left:22px;padding-right:22px}
+  .as-home-hero h1{font-size:clamp(52px,14.8vw,70px);line-height:.95}
+  .as-home-hero-copy>p:not(.as-kicker){font-size:18px;line-height:1.62}
+  .as-home-hero .as-btn{min-height:54px;padding-inline:22px}
+  .as-products,.as-home-fit,.as-home-close,.as-statement,.as-feature-section,.as-principle,.as-next{padding-left:22px;padding-right:22px}
+  .as-product{min-height:390px}
+  .as-product-presence{min-height:540px}
+  .as-product-control,.as-product-business{min-height:370px}
+  .as-product-copy p{font-size:16px;line-height:1.65}
+  .as-product-copy strong{font-size:13px}
+  .as-feature-list article{grid-template-columns:38px 1fr 22px;align-items:start;padding-top:34px;padding-bottom:34px}
+  .as-feature-list article p{grid-column:2/4;margin-top:10px}
+  .as-feature-list article>i{grid-column:3;grid-row:1}
+  .as-contact-hero{padding-left:22px;padding-right:22px}
+  .as-contact-form{justify-self:stretch}
+  .as-footer-top,.as-footer-bottom{max-width:none}
+}
