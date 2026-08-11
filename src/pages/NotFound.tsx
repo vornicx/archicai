@@ -25,7 +25,7 @@ export default function NotFound() {
           <p className="as-seo-hero-lead">{n.body}</p>
           <div className="as-seo-actions">
             <a className="as-btn as-btn-metal" href={home}>{n.home}<i className="as-arrow" aria-hidden="true" /></a>
-            <a className="as-notfound-link" href={contact}>{n.contact}<i className="as-arrow" aria-hidden="true" /></a>
+            <a className="as-seo-chip" href={contact}>{n.contact}<i className="as-arrow" aria-hidden="true" /></a>
           </div>
         </div>
       </section>
