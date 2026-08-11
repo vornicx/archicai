@@ -191,6 +191,25 @@ html[lang="es"] .a26-studio-mark{font-size:5.7px}
   100%{transform:scaleX(0);transform-origin:right center}
 }
 
+/* Rendering errors get an intentional fallback instead of a white screen. */
+.as-fatal-state{
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  padding:clamp(28px,6vw,90px);
+  background:#090908;
+  color:#f7f5ef;
+  font-family:'DM Sans',Inter,Arial,sans-serif;
+}
+.as-fatal-state>div{width:min(920px,100%)}
+.as-fatal-state span{display:block;margin-bottom:28px;color:rgba(255,255,255,.48);font:500 10px/1.2 'Space Grotesk',Inter,Arial,sans-serif;letter-spacing:.17em}
+.as-fatal-state h1{max-width:12ch;margin:0;font:500 clamp(52px,7vw,108px)/.92 'Space Grotesk',Inter,Arial,sans-serif;letter-spacing:-.06em}
+.as-fatal-state p{max-width:620px;margin:30px 0 0;color:rgba(255,255,255,.6);font-size:17px;line-height:1.7}
+.as-fatal-state>div>div{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.as-fatal-state button,.as-fatal-state a{min-height:50px;display:inline-flex;align-items:center;justify-content:center;padding:0 18px;border:1px solid rgba(255,255,255,.22);background:transparent;color:#f7f5ef;font:500 11px/1 'Space Grotesk',Inter,Arial,sans-serif;cursor:pointer;text-decoration:none}
+.as-fatal-state button{background:#f7f5ef;color:#090908;border-color:#f7f5ef}
+.as-fatal-state button:focus-visible,.as-fatal-state a:focus-visible{outline:1px solid currentColor;outline-offset:5px}
+
 @media(max-width:760px){
   .as-contact-page .sx-type-options label{min-height:50px}
   .as-contact-page .as-contact-form .sx-field input,
@@ -198,6 +217,8 @@ html[lang="es"] .a26-studio-mark{font-size:5.7px}
   html[lang="es"] .a26-presence-frame>strong{font-size:clamp(35px,10vw,41px);line-height:.91}
   html[lang="es"] .ah-study-title{font-size:clamp(48px,14vw,58px)}
   html[lang="es"] .a26-business-foot{letter-spacing:.08em}
+  .as-fatal-state h1{font-size:clamp(48px,14vw,68px)}
+  .as-fatal-state p{font-size:16px}
 }
 
 @media(prefers-reduced-motion:reduce){
