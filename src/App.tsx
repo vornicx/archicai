@@ -11,6 +11,7 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 const ServicePage = lazy(() => import('./pages/ServicePage'))
 const GuidePage = lazy(() => import('./pages/GuidePage'))
 const GuidesIndex = lazy(() => import('./pages/GuidesIndex'))
+const ExplorationPage = lazy(() => import('./pages/ExplorationPage'))
 import { LEGAL_PATHS, type LegalDocKey } from './legal/documents'
 import { LanguageProvider, useLang } from './i18n/LanguageContext'
 import { SERVICE_PAGES } from './seo/servicePages'
@@ -155,6 +156,12 @@ const ARCHIC_ROUTES = [
   ['contact', 'contact'],
 ] as const
 
+const EXPLORATION_ROUTES = [
+  ['hospitality', 'hospitality'],
+  ['mobility', 'mobility'],
+  ['real-estate', 'real-estate'],
+] as const
+
 function App() {
   return (
     <LanguageProvider>
@@ -172,6 +179,12 @@ function App() {
                   <Route key={`es-bare-${slug}`} path={`/${slug}`} element={<ArchicSitePage page={page} />} />,
                   <Route key={`en-${slug}`} path={`/en/${slug}/`} element={<ArchicSitePage page={page} />} />,
                   <Route key={`en-bare-${slug}`} path={`/en/${slug}`} element={<ArchicSitePage page={page} />} />,
+                ])}
+                {EXPLORATION_ROUTES.flatMap(([slug, kind]) => [
+                  <Route key={`exploration-es-${slug}`} path={`/explorations/${slug}/`} element={<ExplorationPage kind={kind} />} />,
+                  <Route key={`exploration-es-bare-${slug}`} path={`/explorations/${slug}`} element={<ExplorationPage kind={kind} />} />,
+                  <Route key={`exploration-en-${slug}`} path={`/en/explorations/${slug}/`} element={<ExplorationPage kind={kind} />} />,
+                  <Route key={`exploration-en-bare-${slug}`} path={`/en/explorations/${slug}`} element={<ExplorationPage kind={kind} />} />,
                 ])}
                 {SERVICE_ROUTES}
                 {GUIDE_ROUTES}
