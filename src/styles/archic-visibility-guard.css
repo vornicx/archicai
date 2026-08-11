@@ -1,0 +1,122 @@
+/* Archic visibility guardrails.
+   Critical interface copy must never depend on inherited colour from legacy layers. */
+
+/* Home hero: explicit high-contrast text on the black surface. */
+.as-home-v2 .ah-hero,
+.as-home-v2 .ah-hero-copy,
+.as-home-v2 .ah-hero h1{
+  color:#f7f5ef;
+}
+
+.as-home-v2 .ah-hero h1 > span{
+  color:#f7f5ef !important;
+  -webkit-text-fill-color:#f7f5ef !important;
+  opacity:1 !important;
+  mix-blend-mode:normal !important;
+}
+
+.as-home-v2 .ah-hero h1 > em{
+  color:#ded9cf !important;
+  -webkit-text-fill-color:#ded9cf !important;
+  opacity:1 !important;
+  mix-blend-mode:normal !important;
+}
+
+.as-home-v2 .ah-hero .ah-kicker{
+  color:#bdb8af !important;
+}
+
+.as-home-v2 .ah-hero-bottom > p{
+  color:#ddd9d1 !important;
+}
+
+/* Primary CTA: never allow white-on-white or transparent text. */
+.as-home-v2 .ah-btn-light,
+.as-home-v2 .ah-btn-light:link,
+.as-home-v2 .ah-btn-light:visited{
+  background:#f7f5ef !important;
+  border-color:#f7f5ef !important;
+  color:#090908 !important;
+  -webkit-text-fill-color:#090908 !important;
+}
+
+.as-home-v2 .ah-btn-light .as-arrow,
+.as-home-v2 .ah-btn-light .as-arrow::before,
+.as-home-v2 .ah-btn-light .as-arrow::after{
+  color:currentColor !important;
+  border-color:currentColor !important;
+}
+
+.as-home-v2 .ah-link,
+.as-home-v2 .ah-link:link,
+.as-home-v2 .ah-link:visited{
+  color:#e1ddd5 !important;
+  -webkit-text-fill-color:#e1ddd5 !important;
+  border-bottom-color:#8e8981 !important;
+}
+
+/* Product/detail dark heroes follow the same hard rule. */
+.as-detail .as-detail-hero h1,
+.as-detail .as-detail-hero h1 > span{
+  color:#f7f5ef !important;
+  -webkit-text-fill-color:#f7f5ef !important;
+  opacity:1 !important;
+}
+
+.as-detail .as-detail-hero h1 > em{
+  color:#ded9cf !important;
+  -webkit-text-fill-color:#ded9cf !important;
+  opacity:1 !important;
+}
+
+/* Dark CTA surfaces across the site. */
+.as-detail .as-next-project,
+.as-editorial-page .as-seo-close .as-btn,
+.as-editorial-page .as-article-cta .as-btn,
+.as-seo-page .as-btn{
+  text-shadow:none;
+}
+
+/* Header controls must remain readable on the black navigation surface. */
+.as-home-v2 .as-menu-button,
+.as-detail .as-menu-button,
+.as-contact-page .as-menu-button,
+.as-seo-page .as-menu-button,
+.as-editorial-page .as-menu-button,
+.as-legal-shell .as-menu-button{
+  color:#f7f5ef !important;
+}
+
+@media(hover:hover){
+  .as-home-v2 .ah-btn-light:hover{
+    background:transparent !important;
+    color:#f7f5ef !important;
+    -webkit-text-fill-color:#f7f5ef !important;
+  }
+}
+
+@media(max-width:760px){
+  /* Mobile first impression: one unmistakable action, then the secondary link. */
+  .as-home-v2 .ah-hero h1{
+    color:#f7f5ef !important;
+  }
+
+  .as-home-v2 .ah-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+    align-items:start;
+  }
+
+  .as-home-v2 .ah-btn-light{
+    width:100%;
+    min-height:58px;
+    justify-content:space-between;
+  }
+
+  .as-home-v2 .ah-link{
+    width:max-content;
+    min-height:38px;
+  }
+}
