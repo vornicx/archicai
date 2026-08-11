@@ -30,6 +30,7 @@ import './styles/archic-interactions.css'
 import './styles/archic-route-transitions.css'
 import './styles/archic-explorations.css'
 import './styles/archic-home-explorations.css'
+import './styles/archic-exploration-product-ui.css'
 /* Safety layers stay last. Feature styles must never be imported below these. */
 import './styles/archic-contrast.css'
 import './styles/archic-visibility-guard.css'
