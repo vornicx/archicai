@@ -20,6 +20,7 @@ import './styles/archic-level5.css'
 import './styles/archic-typography.css'
 import './styles/archic-refinement.css'
 import './styles/archic-seo-refresh.css'
+import './styles/archic-2026.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
