@@ -6,7 +6,7 @@ import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 const COPY = {
   es: {
     tagline: 'Sistemas digitales para negocios excepcionales.',
-    location: 'España · Remote & on-site',
+    location: 'España · Remoto y presencial',
     legal: 'Legal',
     rights: 'Todos los derechos reservados.',
     explore: 'Explorar',
@@ -38,7 +38,8 @@ const COPY = {
   },
 }
 
-function path(lang: 'es' | 'en', slug: string) {
+function path(lang: 'es' | 'en', slug = '') {
+  if (!slug) return lang === 'en' ? '/en/' : '/'
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
 }
 
@@ -51,7 +52,9 @@ export default function StudioFooter() {
     <footer className="as-footer">
       <div className="as-footer-top">
         <div className="as-footer-brand">
-          <img src="/brand/archic-lockup-light.svg" alt="Archic" width={981} height={174} />
+          <a href={path(lang)} aria-label="Archic home">
+            <img src="/brand/archic-lockup-light.svg" alt="Archic" width={981} height={174} />
+          </a>
           <p>{c.tagline}</p>
         </div>
 
