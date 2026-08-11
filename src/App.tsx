@@ -27,8 +27,14 @@ function SkipLink() {
 }
 
 function RouteFallback() {
+  const { lang } = useLang()
   return (
-    <div className="as-route-fallback" role="status" aria-live="polite" aria-label="Loading Archic">
+    <div
+      className="as-route-fallback"
+      role="status"
+      aria-live="polite"
+      aria-label={lang === 'es' ? 'Cargando Archic' : 'Loading Archic'}
+    >
       <div><span>ARCHIC</span><i /></div>
     </div>
   )
