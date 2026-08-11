@@ -8,9 +8,9 @@
   width:100%;
   margin:0 0 11px;
   padding:0;
-  color:rgba(255,255,255,.46);
-  font:500 8px/1 var(--a26-display);
-  letter-spacing:.13em;
+  color:rgba(255,255,255,.58);
+  font:500 9px/1 var(--a26-display);
+  letter-spacing:.12em;
   text-transform:uppercase;
 }
 .as-contact-page .sx-type-options>div{border-top:1px solid rgba(255,255,255,.15)}
@@ -23,7 +23,7 @@
   align-items:center;
   border-bottom:1px solid rgba(255,255,255,.15);
   cursor:pointer;
-  color:rgba(255,255,255,.58);
+  color:rgba(255,255,255,.64);
   transition:padding .4s var(--a26-ease),color .3s var(--a26-ease),background .3s var(--a26-ease);
 }
 .as-contact-page .sx-type-options input{
@@ -33,11 +33,11 @@
   opacity:0;
   pointer-events:none;
 }
-.as-contact-page .sx-type-options span{font:500 12px/1.2 var(--a26-display)}
+.as-contact-page .sx-type-options span{font:500 12px/1.25 var(--a26-display)}
 .as-contact-page .sx-type-options i{
   width:8px;
   height:8px;
-  border:1px solid rgba(255,255,255,.35);
+  border:1px solid rgba(255,255,255,.42);
   transition:background .25s,border-color .25s,transform .35s var(--a26-ease);
 }
 .as-contact-page .sx-type-options input:checked+span{color:var(--a26-white)}
@@ -47,9 +47,36 @@
   .as-contact-page .sx-type-options label:hover{padding-left:10px;color:var(--a26-white);background:rgba(255,255,255,.025)}
 }
 
-.as-contact-page .sx-form-msg{padding-top:14px;border-top:1px solid rgba(255,255,255,.12);line-height:1.55}
+/* Functional microcopy stays quiet, never illegible. */
+.as-contact-page .as-form-head{font-size:8px;letter-spacing:.14em}
+.as-contact-page .as-contact-form .sx-field label{font-size:9px;color:rgba(255,255,255,.58)}
+.as-contact-page .as-contact-form .sx-field input,
+.as-contact-page .as-contact-form .sx-field textarea{font-size:15px;line-height:1.45}
+.as-contact-page .sx-consent{font-size:11px;line-height:1.6;color:rgba(255,255,255,.56)}
+.as-contact-page .sx-form-msg{padding-top:14px;border-top:1px solid rgba(255,255,255,.12);font-size:11px;line-height:1.55}
 .as-contact-page .sx-form-msg[data-tone="error"]{color:#e4b8ae}
 .as-contact-page .sx-form-msg[data-tone="ok"]{color:#c6d4bf}
+
+.as-home-v2 .as-footer-bottom,
+.as-detail .as-footer-bottom,
+.as-contact-page .as-footer-bottom{
+  font-size:9px;
+  line-height:1.5;
+  letter-spacing:.1em;
+  color:rgba(255,255,255,.48);
+}
+.as-home-v2 .as-footer-nav>span,
+.as-home-v2 .as-footer-legal>span,
+.as-home-v2 .as-footer-contact>span,
+.as-detail .as-footer-nav>span,
+.as-detail .as-footer-legal>span,
+.as-detail .as-footer-contact>span,
+.as-contact-page .as-footer-nav>span,
+.as-contact-page .as-footer-legal>span,
+.as-contact-page .as-footer-contact>span{
+  font-size:8px;
+  color:rgba(255,255,255,.52);
+}
 
 /* Reveal timing is contextual rather than globally identical. */
 .as-home-v2.as-experience-ready [data-reveal],
@@ -126,6 +153,8 @@ html[lang="es"] .a26-studio-mark{font-size:5.7px}
 
 @media(max-width:760px){
   .as-contact-page .sx-type-options label{min-height:50px}
+  .as-contact-page .as-contact-form .sx-field input,
+  .as-contact-page .as-contact-form .sx-field textarea{font-size:16px}
   html[lang="es"] .a26-presence-frame>strong{font-size:clamp(35px,10vw,41px);line-height:.91}
   html[lang="es"] .ah-study-title{font-size:clamp(48px,14vw,58px)}
   html[lang="es"] .a26-business-foot{letter-spacing:.08em}
@@ -136,4 +165,8 @@ html[lang="es"] .a26-studio-mark{font-size:5.7px}
   .as-detail.as-experience-ready [data-reveal],
   .as-contact-page.as-experience-ready [data-reveal]{transition-delay:0ms!important}
   .as-route-fallback i::after{animation:none;transform:scaleX(1)}
+  .as-menu-panel,
+  .as-menu-inner nav a,
+  .as-header,
+  .as-menu-button b{transition:none!important}
 }
