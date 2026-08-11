@@ -6,7 +6,16 @@ import { CONTENT, type Content, type Lang } from './content'
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; canSwitchLang: boolean; t: Content }
 
 const LanguageContext = createContext<Ctx | null>(null)
-const CORE_TRANSLATED = new Set(['presence', 'control', 'business', 'studio', 'contact'])
+const CORE_TRANSLATED = new Set([
+  'presence',
+  'control',
+  'business',
+  'studio',
+  'contact',
+  'explorations/hospitality',
+  'explorations/mobility',
+  'explorations/real-estate',
+])
 const LEGAL_KEYS = Object.keys(LEGAL_PATHS) as LegalDocKey[]
 
 function langFromPath(pathname: string): Lang {
