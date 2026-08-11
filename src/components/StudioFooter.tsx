@@ -1,7 +1,7 @@
 import { useLang } from '../i18n/LanguageContext'
 import { LEGAL_PATHS } from '../legal/documents'
 import { CONTACT_MAIL } from '../i18n/content'
-import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
+import { ANTERO_CONTACT, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 
 const COPY = {
   es: {
@@ -13,6 +13,7 @@ const COPY = {
     call: 'Llamar',
     email: 'Correo',
     contact: 'Contacto',
+    primary: 'Contacto principal',
     pages: [
       ['Presence', 'presence'],
       ['Control', 'control'],
@@ -30,6 +31,7 @@ const COPY = {
     call: 'Call',
     email: 'Email',
     contact: 'Contact',
+    primary: 'Primary contact',
     pages: [
       ['Presence', 'presence'],
       ['Control', 'control'],
@@ -67,14 +69,31 @@ export default function StudioFooter() {
 
         <div className="as-footer-contact">
           <span>{c.contact}</span>
-          <a className="as-footer-phone" href={`tel:${CONTACT_PHONE}`}>
-            <small>{c.call}</small>
-            {CONTACT_PHONE_DISPLAY}
-          </a>
-          <a className="as-footer-mail" href={`mailto:${CONTACT_MAIL}`}>
-            <small>{c.email}</small>
-            {CONTACT_MAIL}
-          </a>
+          <div className="as-footer-contact-people">
+            <div className="as-footer-contact-person">
+              <strong className="as-footer-contact-name">{c.primary}</strong>
+              <a className="as-footer-phone" href={`tel:${CONTACT_PHONE}`}>
+                <small>{c.call}</small>
+                {CONTACT_PHONE_DISPLAY}
+              </a>
+              <a className="as-footer-mail" href={`mailto:${CONTACT_MAIL}`}>
+                <small>{c.email}</small>
+                {CONTACT_MAIL}
+              </a>
+            </div>
+
+            <div className="as-footer-contact-person">
+              <strong className="as-footer-contact-name">{ANTERO_CONTACT.name}</strong>
+              <a className="as-footer-phone" href={`tel:${ANTERO_CONTACT.phone}`}>
+                <small>{c.call}</small>
+                {ANTERO_CONTACT.phoneDisplay}
+              </a>
+              <a className="as-footer-mail" href={`mailto:${ANTERO_CONTACT.email}`}>
+                <small>{c.email}</small>
+                {ANTERO_CONTACT.email}
+              </a>
+            </div>
+          </div>
         </div>
 
         <nav className="as-footer-legal" aria-label={c.legal}>
