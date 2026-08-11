@@ -1,37 +1,39 @@
 import { createContext, useCallback, useContext, useMemo } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { CONTENT, type Content, type Lang } from './content'
 
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: Content }
 
 const LanguageContext = createContext<Ctx | null>(null)
 
-function initialLang(): Lang {
-  if (typeof window === 'undefined') return 'es'
-  return window.location.pathname.startsWith('/en') ? 'en' : 'es'
+function langFromPath(pathname: string): Lang {
+  return pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'es'
 }
 
-function translatedPath(target: Lang) {
-  const current = window.location.pathname
-  const hash = window.location.hash
-  const search = window.location.search
-
+function translatedPath(target: Lang, pathname: string, search: string, hash: string) {
   if (target === 'en') {
-    const clean = current.startsWith('/en/') ? current.slice(3) : current
-    const path = clean === '/' ? '/en/' : `/en${clean.startsWith('/') ? clean : `/${clean}`}`
+    if (pathname === '/en' || pathname.startsWith('/en/')) return `${pathname}${search}${hash}`
+    const path = pathname === '/' ? '/en/' : `/en${pathname.startsWith('/') ? pathname : `/${pathname}`}`
     return `${path}${search}${hash}`
   }
 
-  const path = current.startsWith('/en/') ? current.slice(3) || '/' : current
+  const path = pathname === '/en'
+    ? '/'
+    : pathname.startsWith('/en/')
+      ? pathname.slice(3) || '/'
+      : pathname
   return `${path}${search}${hash}`
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const lang = initialLang()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const lang = langFromPath(location.pathname)
 
-  const setLang = useCallback((l: Lang) => {
-    if (l === lang) return
-    window.location.assign(translatedPath(l))
-  }, [lang])
+  const setLang = useCallback((target: Lang) => {
+    if (target === lang) return
+    navigate(translatedPath(target, location.pathname, location.search, location.hash))
+  }, [lang, location.pathname, location.search, location.hash, navigate])
 
   const value = useMemo(() => ({ lang, setLang, t: CONTENT[lang] }), [lang, setLang])
 
