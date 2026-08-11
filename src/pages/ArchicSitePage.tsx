@@ -33,11 +33,11 @@ const COPY: Record<'es' | 'en', Record<Exclude<ArchicPageKey, 'contact'>, PageCo
       intro: 'Dirección digital, web, contenido y conversión construidos como una única experiencia. No diseñamos una plantilla bonita: construimos percepción.',
       statement: 'Una buena web informa.',
       statementAccent: 'Una gran presencia cambia cómo se percibe el negocio.',
-      statementBody: 'Cada decisión —ritmo, fotografía, copy, jerarquía, interacción y rendimiento— debe reforzar la misma sensación. Cuando todo encaja, el resultado parece inevitable.',
+      statementBody: 'Cada decisión —ritmo, fotografía, texto, jerarquía, interacción y rendimiento— debe reforzar la misma sensación. Cuando todo encaja, el resultado parece inevitable.',
       features: [
         ['01', 'Dirección digital', 'Definimos el lenguaje visual y la experiencia antes de pensar en componentes.'],
-        ['02', 'Web premium', 'Diseño y desarrollo a medida, responsive, rápido y pensado para convertir sin parecer agresivo.'],
-        ['03', 'Contenido & estructura', 'Arquitectura, narrativa, fotografía y copy trabajando con una intención comercial clara.'],
+        ['02', 'Web premium', 'Diseño y desarrollo a medida, adaptable, rápido y pensado para convertir sin parecer agresivo.'],
+        ['03', 'Contenido & estructura', 'Arquitectura, narrativa, fotografía y textos trabajando con una intención comercial clara.'],
         ['04', 'Rendimiento & SEO', 'Base técnica sólida, accesible y preparada para crecer sin sacrificar la experiencia.'],
       ],
       principleTitle: 'Menos páginas. Más intención.',
@@ -52,12 +52,12 @@ const COPY: Record<'es' | 'en', Record<Exclude<ArchicPageKey, 'contact'>, PageCo
       intro: 'Reservas, clientes, recursos, operaciones y seguimiento en un entorno privado construido alrededor de cómo funciona realmente tu negocio.',
       statement: 'La experiencia parece simple',
       statementAccent: 'cuando el sistema hace bien el trabajo difícil.',
-      statementBody: 'Control no es otro dashboard lleno de tarjetas. Es una capa operativa diseñada para reducir fricción, evitar información dispersa y convertir el día a día en algo más claro.',
+      statementBody: 'Control no es otro panel lleno de tarjetas. Es una capa operativa diseñada para reducir fricción, evitar información dispersa y convertir el día a día en algo más claro.',
       features: [
         ['01', 'Clientes', 'Perfiles, historial, notas, preferencias y contexto accesible cuando hace falta.'],
         ['02', 'Reservas & solicitudes', 'Entrada, confirmación, estados, disponibilidad y seguimiento desde un único lugar.'],
         ['03', 'Recursos & operaciones', 'Personas, mesas, vehículos, inmuebles, servicios o cualquier recurso que mueva el negocio.'],
-        ['04', 'Visibilidad', 'Información relevante y reporting sin convertir la herramienta en un panel de métricas vacío.'],
+        ['04', 'Visibilidad', 'Información relevante e informes sin convertir la herramienta en un panel de métricas vacío.'],
       ],
       principleTitle: 'Construido alrededor de la operación.',
       principleBody: 'No adaptamos el negocio a una plantilla de software. Observamos el flujo real y construimos la interfaz alrededor de él.',
@@ -97,10 +97,10 @@ const COPY: Record<'es' | 'en', Record<Exclude<ArchicPageKey, 'contact'>, PageCo
         ['03', 'Diseño + desarrollo', 'La experiencia y la implementación se piensan juntas para que el resultado final no pierda intención.'],
         ['04', 'Evolución', 'Construimos bases que puedan crecer cuando el negocio demuestre que necesita más.'],
       ],
-      principleTitle: 'Supervised AI. Human judgement.',
+      principleTitle: 'IA supervisada. Criterio humano.',
       principleBody: 'Usamos inteligencia artificial donde multiplica velocidad y capacidad, pero la dirección, las decisiones y el estándar final siguen siendo responsabilidad humana.',
       ctaTitle: 'Si el proyecto merece atención de verdad, queremos escucharlo.',
-      ctaBody: 'No necesitas llegar con un briefing perfecto. Necesitamos entender el negocio, el problema y el nivel al que quieres llevarlo.',
+      ctaBody: 'No necesitas llegar con un documento perfecto. Necesitamos entender el negocio, el problema y el nivel al que quieres llevarlo.',
     },
   },
   en: {
@@ -176,7 +176,7 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
   if (page === 'contact') {
     const title = lang === 'es' ? 'Cuéntanos el proyecto.' : 'Tell us about the project.'
     const body = lang === 'es'
-      ? 'Qué negocio es, qué quieres mejorar y qué resultado esperas. No hace falta un briefing perfecto.'
+      ? 'Qué negocio es, qué quieres mejorar y qué resultado esperas. No hace falta un documento perfecto.'
       : 'What the business is, what you want to improve and what outcome you expect. A perfect brief is not required.'
     const callLabel = lang === 'es' ? 'Si prefieres hablar, llámanos directamente' : 'If you would rather talk, call us directly'
 
@@ -187,7 +187,7 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
         <StudioHeader />
         <section className="as-contact-hero">
           <div data-reveal>
-            <p className="as-kicker">PRIVATE PROJECT ENQUIRY</p>
+            <p className="as-kicker">{lang === 'es' ? 'CONSULTA PRIVADA DE PROYECTO' : 'PRIVATE PROJECT ENQUIRY'}</p>
             <h1>{title}</h1>
             <p>{body}</p>
             <a className="as-contact-direct-call" href={`tel:${CONTACT_PHONE}`}>
@@ -202,7 +202,10 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
             </div>
           </div>
           <div className="as-contact-form" data-reveal>
-            <div className="as-form-head"><span>ARCHIC / PROJECT</span><span>PRIVATE ENQUIRY</span></div>
+            <div className="as-form-head">
+              <span>{lang === 'es' ? 'ARCHIC / PROYECTO' : 'ARCHIC / PROJECT'}</span>
+              <span>{lang === 'es' ? 'CONSULTA PRIVADA' : 'PRIVATE ENQUIRY'}</span>
+            </div>
             <StudioContact />
           </div>
         </section>
@@ -260,7 +263,7 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
 
       <section className="as-principle">
         <div className="as-principle-inner" data-reveal>
-          <p className="as-kicker">ARCHIC PRINCIPLE</p>
+          <p className="as-kicker">{lang === 'es' ? 'PRINCIPIO ARCHIC' : 'ARCHIC PRINCIPLE'}</p>
           <h2>{c.principleTitle}</h2>
           <p>{c.principleBody}</p>
         </div>
