@@ -5,95 +5,179 @@ import StudioExperience from '../components/StudioExperience'
 import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 import { HOME_SEO, siteOgImage } from '../seo/siteSeo'
-import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
-
-const PRESENCE_IMAGE = 'https://images.pexels.com/photos/31080809/pexels-photo-31080809/free-photo-of-elegant-luxury-hotel-lobby-with-warm-ambiance.jpeg?auto=compress&dpr=1&h=900&w=1440'
+import { CONTACT_PHONE } from '../config/contact'
 
 const COPY = {
   es: {
     hero: {
-      eyebrow: 'ARCHIC — DIGITAL SYSTEMS',
-      title: 'La parte digital de',
-      accent: 'negocios excepcionales.',
-      body: 'Diseñamos lo que ve el cliente y construimos lo que hace funcionar el negocio por detrás. Presencia, operaciones y software con una misma dirección.',
-      primary: 'Hablar de un proyecto',
-      call: 'Llamar directamente',
+      kicker: 'ARCHIC / DIGITAL SYSTEMS',
+      titleA: 'Diseñamos lo que',
+      titleB: 'hace avanzar',
+      titleC: 'un negocio.',
+      body: 'Estrategia, diseño y tecnología bajo una misma dirección. Creamos presencias digitales, sistemas de operación y software a medida con un estándar obsesivo de calidad.',
+      cta: 'Empezar un proyecto',
+      secondary: 'Ver cómo trabajamos',
+      meta: ['ESTUDIO DIGITAL', 'ESPAÑA / REMOTE', '2026'],
     },
-    chapters: {
-      eyebrow: 'THREE LAYERS / ONE STANDARD',
-      title: 'Una empresa. Tres capas digitales.',
-      body: 'Empieza por la necesidad que más valor pueda crear hoy. La arquitectura está pensada para que el resto pueda crecer después sin perder coherencia.',
-      presence: ['ARCHIC PRESENCE', 'Lo que el mundo ve.', 'Dirección digital, web, contenido y conversión.', 'DIRECTION / EXPERIENCE / CONVERSION'],
-      control: ['ARCHIC CONTROL', 'Lo que hace funcionar el día a día.', 'Clientes, reservas, recursos y operaciones en un entorno privado.', 'CLIENTS / BOOKINGS / OPERATIONS'],
-      business: ['ARCHIC BUSINESS', 'Lo que te permite hacer más.', 'Software a medida, automatización, integraciones y datos.', 'SOFTWARE / AUTOMATION / DATA'],
-      explore: 'Explorar',
+    manifesto: {
+      kicker: 'THE ARCHIC STANDARD',
+      lineA: 'No hacemos más ruido.',
+      lineB: 'Hacemos que importe.',
+      body: 'Una experiencia premium no nace de añadir efectos. Nace de una dirección clara, una interfaz precisa, contenido con intención y una ejecución que aguanta el detalle.',
     },
-    standard: {
-      eyebrow: 'THE ARCHIC STANDARD',
-      title: 'Menos ruido.',
-      accent: 'Más intención.',
-      body: 'La calidad no viene de añadir más. Viene de elegir mejor: jerarquía, ritmo, detalle, rendimiento y una dirección clara desde el principio.',
+    layers: {
+      kicker: 'ONE SYSTEM / THREE LAYERS',
+      title: 'Del primer impacto a la operación interna.',
+      body: 'Archic cubre las tres capas que más afectan a cómo se percibe, funciona y escala un negocio.',
+      items: [
+        ['01', 'Presence', 'Lo que el cliente ve.', 'Dirección digital, web, contenido, experiencia y conversión.', 'presence'],
+        ['02', 'Control', 'Lo que mueve el día a día.', 'Clientes, reservas, recursos, operaciones y gestión privada.', 'control'],
+        ['03', 'Business', 'Lo que permite hacer más.', 'Software a medida, automatización, integraciones y datos.', 'business'],
+      ],
+      open: 'Descubrir',
     },
-    fit: {
-      eyebrow: 'WHO WE WORK BEST WITH',
-      title: 'Cuando lo digital',
-      accent: 'sí importa al negocio.',
-      body: 'Encajamos mejor con negocios para los que percepción, experiencia u operación tienen impacto real. Si solo buscas la opción más barata, probablemente no somos la mejor elección.',
-      studio: 'Cómo trabaja Archic',
+    work: {
+      kicker: 'SELECTED EXPLORATIONS',
+      title: 'Diseñamos antes de pedirte que imagines.',
+      body: 'Prototipos y estudios internos con los que probamos nuevas direcciones para hospitality, movilidad premium e inmobiliario. No son casos de éxito: son una muestra del nivel al que queremos llevar cada proyecto.',
+      items: [
+        ['01', 'Hospitality', 'Booking · Experience · Operations', 'Una experiencia de reserva que continúa detrás del mostrador.'],
+        ['02', 'Luxury mobility', 'Discovery · Booking · Fleet', 'Producto, disponibilidad y deseo en una sola narrativa digital.'],
+        ['03', 'Real estate', 'Portfolio · Search · Management', 'Catálogo editorial delante; control operativo detrás.'],
+      ],
+    },
+    principles: {
+      kicker: 'QUALITY IS A SYSTEM',
+      title: 'El detalle no se deja para el final.',
+      items: [
+        ['01', 'Dirección', 'Cada proyecto necesita una idea visual propia. Nada de vestir una plantilla.'],
+        ['02', 'Interacción', 'Cada click, transición, formulario y estado forma parte de la marca.'],
+        ['03', 'Responsive', 'Móvil se diseña. No se limita a encoger la versión de escritorio.'],
+        ['04', 'Performance', 'La percepción premium desaparece en cuanto algo tarda, salta o falla.'],
+      ],
+    },
+    process: {
+      kicker: 'HOW WE BUILD',
+      title: 'Un proceso corto. Una exigencia alta.',
+      steps: [
+        ['01', 'Entender', 'Negocio, cliente, fricción y resultado esperado.'],
+        ['02', 'Dirigir', 'Concepto, arquitectura, contenido y sistema visual.'],
+        ['03', 'Construir', 'Producto funcional con precisión de frontend y backend.'],
+        ['04', 'Refinar', 'Responsive, motion, rendimiento y pasada final de detalle.'],
+      ],
     },
     close: {
-      eyebrow: 'START A PROJECT',
-      title: 'Cuéntanos qué quieres',
-      accent: 'elevar.',
-      body: 'No necesitas llegar con una solución. El negocio, el problema y el resultado esperado son un buen punto de partida.',
-      cta: 'Abrir una conversación',
-      call: 'O llámanos directamente',
+      kicker: 'START A PROJECT',
+      titleA: 'Si lo digital importa,',
+      titleB: 'hagámoslo excepcional.',
+      body: 'Cuéntanos qué quieres mejorar. No necesitas tener la solución definida: empezamos por el negocio y diseñamos desde ahí.',
+      cta: 'Hablar con Archic',
+      call: 'Llamar',
     },
   },
   en: {
     hero: {
-      eyebrow: 'ARCHIC — DIGITAL SYSTEMS',
-      title: 'The digital side of',
-      accent: 'exceptional businesses.',
-      body: 'We design what the customer sees and build what makes the business work behind it. Presence, operations and software under one direction.',
-      primary: 'Talk about a project',
-      call: 'Call directly',
+      kicker: 'ARCHIC / DIGITAL SYSTEMS',
+      titleA: 'We design what',
+      titleB: 'moves a business',
+      titleC: 'forward.',
+      body: 'Strategy, design and technology under one direction. We create digital presence, operating systems and custom software with an obsessive standard of quality.',
+      cta: 'Start a project',
+      secondary: 'See how we work',
+      meta: ['DIGITAL STUDIO', 'SPAIN / REMOTE', '2026'],
     },
-    chapters: {
-      eyebrow: 'THREE LAYERS / ONE STANDARD',
-      title: 'One company. Three digital layers.',
-      body: 'Start with the need that can create the most value today. The architecture is designed so the rest can grow later without losing coherence.',
-      presence: ['ARCHIC PRESENCE', 'What the world sees.', 'Digital direction, web, content and conversion.', 'DIRECTION / EXPERIENCE / CONVERSION'],
-      control: ['ARCHIC CONTROL', 'What makes daily work run.', 'Customers, bookings, resources and operations in a private environment.', 'CLIENTS / BOOKINGS / OPERATIONS'],
-      business: ['ARCHIC BUSINESS', 'What lets you do more.', 'Custom software, automation, integrations and data.', 'SOFTWARE / AUTOMATION / DATA'],
-      explore: 'Explore',
+    manifesto: {
+      kicker: 'THE ARCHIC STANDARD',
+      lineA: 'We do not make more noise.',
+      lineB: 'We make it matter.',
+      body: 'A premium experience does not come from adding effects. It comes from clear direction, precise interfaces, intentional content and execution that holds up under scrutiny.',
     },
-    standard: {
-      eyebrow: 'THE ARCHIC STANDARD',
-      title: 'Less noise.',
-      accent: 'More intent.',
-      body: 'Quality does not come from adding more. It comes from choosing better: hierarchy, rhythm, detail, performance and a clear direction from the beginning.',
+    layers: {
+      kicker: 'ONE SYSTEM / THREE LAYERS',
+      title: 'From first impression to internal operations.',
+      body: 'Archic covers the three layers that most influence how a business is perceived, how it runs and how it scales.',
+      items: [
+        ['01', 'Presence', 'What the customer sees.', 'Digital direction, web, content, experience and conversion.', 'presence'],
+        ['02', 'Control', 'What moves the day to day.', 'Customers, bookings, resources, operations and private management.', 'control'],
+        ['03', 'Business', 'What enables more.', 'Custom software, automation, integrations and data.', 'business'],
+      ],
+      open: 'Explore',
     },
-    fit: {
-      eyebrow: 'WHO WE WORK BEST WITH',
-      title: 'When digital',
-      accent: 'actually matters to the business.',
-      body: 'We work best with businesses where perception, experience or operations have real impact. If the only goal is finding the cheapest option, we are probably not the right choice.',
-      studio: 'How Archic works',
+    work: {
+      kicker: 'SELECTED EXPLORATIONS',
+      title: 'We design before asking you to imagine.',
+      body: 'Internal prototypes and studies where we test new directions for hospitality, premium mobility and real estate. They are not case studies: they are a demonstration of the standard we want every project to reach.',
+      items: [
+        ['01', 'Hospitality', 'Booking · Experience · Operations', 'A booking experience that continues behind the counter.'],
+        ['02', 'Luxury mobility', 'Discovery · Booking · Fleet', 'Product, availability and desire in one digital narrative.'],
+        ['03', 'Real estate', 'Portfolio · Search · Management', 'Editorial catalogue in front; operational control behind.'],
+      ],
+    },
+    principles: {
+      kicker: 'QUALITY IS A SYSTEM',
+      title: 'Detail is not left for the end.',
+      items: [
+        ['01', 'Direction', 'Every project needs its own visual idea. Never a template in disguise.'],
+        ['02', 'Interaction', 'Every click, transition, form and state is part of the brand.'],
+        ['03', 'Responsive', 'Mobile is designed. It is not just a smaller desktop layout.'],
+        ['04', 'Performance', 'Premium perception disappears the moment something is slow, jumps or fails.'],
+      ],
+    },
+    process: {
+      kicker: 'HOW WE BUILD',
+      title: 'A short process. A high bar.',
+      steps: [
+        ['01', 'Understand', 'Business, customer, friction and expected outcome.'],
+        ['02', 'Direct', 'Concept, architecture, content and visual system.'],
+        ['03', 'Build', 'A functional product with frontend and backend precision.'],
+        ['04', 'Refine', 'Responsive, motion, performance and the final detail pass.'],
+      ],
     },
     close: {
-      eyebrow: 'START A PROJECT',
-      title: 'Tell us what you want',
-      accent: 'to elevate.',
-      body: 'You do not need to arrive with a solution. The business, the problem and the expected outcome are enough to start.',
-      cta: 'Open a conversation',
-      call: 'Or call us directly',
+      kicker: 'START A PROJECT',
+      titleA: 'If digital matters,',
+      titleB: 'make it exceptional.',
+      body: 'Tell us what you want to improve. You do not need the solution defined: we start with the business and design from there.',
+      cta: 'Talk to Archic',
+      call: 'Call',
     },
   },
-}
+} as const
 
 function path(lang: 'es' | 'en', slug: string) {
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
+}
+
+function InterfaceStudy({ type }: { type: number }) {
+  if (type === 0) {
+    return (
+      <div className="ah-study ah-study-hospitality" aria-hidden="true">
+        <div className="ah-study-top"><span>TABLE 08</span><span>20:30</span></div>
+        <div className="ah-study-title">Dinner,<br /><em>considered.</em></div>
+        <div className="ah-study-reserve"><span>04</span><i /><span>AUG</span><strong>Reserve</strong></div>
+      </div>
+    )
+  }
+  if (type === 1) {
+    return (
+      <div className="ah-study ah-study-mobility" aria-hidden="true">
+        <div className="ah-car-line" />
+        <div className="ah-study-top"><span>FLEET / 07</span><span>MARBELLA</span></div>
+        <div className="ah-model"><small>MODEL 03</small><strong>GT<br />SERIES</strong></div>
+        <div className="ah-specs"><span>24H</span><span>530 CV</span><span>AUTO</span></div>
+      </div>
+    )
+  }
+  return (
+    <div className="ah-study ah-study-property" aria-hidden="true">
+      <div className="ah-property-grid">
+        <div><span>01</span><strong>Villa<br />Norte</strong></div>
+        <div><small>4 BED</small><small>320 M²</small><b>€1.4M</b></div>
+      </div>
+      <div className="ah-property-list"><i /><i /><i /></div>
+      <div className="ah-property-foot"><span>SELECTED PROPERTY</span><span>VIEW →</span></div>
+    </div>
+  )
 }
 
 export default function ArchicHome() {
@@ -104,14 +188,8 @@ export default function ArchicHome() {
   const structuredData = buildHomeGraph(lang)
   const ogImage = siteOgImage(lang)
 
-  const products = [
-    { key: 'presence', copy: c.chapters.presence, className: 'as-product-presence' },
-    { key: 'control', copy: c.chapters.control, className: 'as-product-control' },
-    { key: 'business', copy: c.chapters.business, className: 'as-product-business' },
-  ]
-
   return (
-    <div className="as-site as-home">
+    <div className="as-site as-home-v2">
       <Helmet htmlAttributes={{ lang }}>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
@@ -140,82 +218,128 @@ export default function ArchicHome() {
       <StudioExperience />
       <StudioHeader />
 
-      <div className="as-home-content">
-        <section className="as-home-hero" id="home">
-          <div className="as-home-hero-copy" data-reveal="hero">
-            <p className="as-kicker">{c.hero.eyebrow}</p>
-            <h1>{c.hero.title}<br /><em>{c.hero.accent}</em></h1>
-            <p>{c.hero.body}</p>
-            <div className="as-actions as-hero-actions">
-              <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.hero.primary}<i className="as-arrow" aria-hidden="true" /></a>
-              <a className="as-call-cta" href={`tel:${CONTACT_PHONE}`}>
-                <span>{c.hero.call}</span>
-                <strong>{CONTACT_PHONE_DISPLAY}</strong>
-              </a>
+      <div className="ah-page">
+        <section className="ah-hero" id="home">
+          <div className="ah-hero-grid" aria-hidden="true" />
+          <div className="ah-hero-copy" data-reveal="hero">
+            <p className="ah-kicker">{c.hero.kicker}</p>
+            <h1>
+              <span>{c.hero.titleA}</span>
+              <em>{c.hero.titleB}</em>
+              <span>{c.hero.titleC}</span>
+            </h1>
+            <div className="ah-hero-bottom">
+              <p>{c.hero.body}</p>
+              <div className="ah-actions">
+                <a className="ah-btn ah-btn-light" href={path(lang, 'contact')}>{c.hero.cta}<i className="as-arrow" aria-hidden="true" /></a>
+                <a className="ah-link" href={path(lang, 'studio')}>{c.hero.secondary}</a>
+              </div>
             </div>
           </div>
-          <div className="as-home-hero-index" aria-hidden="true">
-            <span>01 — 03</span><i /><strong>PRESENCE<br />CONTROL<br />BUSINESS</strong>
+
+          <div className="ah-system-object" aria-hidden="true" data-reveal>
+            <div className="ah-system-label"><span>ARCHIC SYSTEM</span><span>01 — 03</span></div>
+            <div className="ah-layer ah-layer-one"><span>PRESENCE</span><i>01</i></div>
+            <div className="ah-layer ah-layer-two"><span>CONTROL</span><i>02</i></div>
+            <div className="ah-layer ah-layer-three"><span>BUSINESS</span><i>03</i></div>
+            <div className="ah-system-axis"><i /><span>DESIGN → OPERATIONS → SOFTWARE</span></div>
+          </div>
+
+          <div className="ah-hero-meta" aria-hidden="true">
+            {c.hero.meta.map((item) => <span key={item}>{item}</span>)}
           </div>
         </section>
 
-        <section className="as-products" aria-labelledby="archic-layers-title">
-          <div className="as-products-head" data-reveal>
-            <div>
-              <p className="as-kicker">{c.chapters.eyebrow}</p>
-              <h2 id="archic-layers-title">{c.chapters.title}</h2>
-            </div>
-            <p>{c.chapters.body}</p>
+        <section className="ah-manifesto ah-paper">
+          <div className="ah-section-index">01</div>
+          <div className="ah-manifesto-copy" data-reveal>
+            <p className="ah-kicker ah-kicker-dark">{c.manifesto.kicker}</p>
+            <h2>{c.manifesto.lineA}<br /><em>{c.manifesto.lineB}</em></h2>
+            <p>{c.manifesto.body}</p>
           </div>
+        </section>
 
-          <div className="as-products-grid">
-            {products.map((product, index) => (
-              <a className={`as-product ${product.className}`} href={path(lang, product.key)} key={product.key} data-reveal>
-                {product.key === 'presence' && <img src={PRESENCE_IMAGE} alt="" loading="lazy" decoding="async" />}
-                <div className="as-product-shade" />
-                <div className="as-product-no">0{index + 1}</div>
-                <div className="as-product-detail" aria-hidden="true">{product.copy[3]}</div>
-                <div className="as-product-copy">
-                  <span>{product.copy[0]}</span>
-                  <h3>{product.copy[1]}</h3>
-                  <p>{product.copy[2]}</p>
-                  <strong>{c.chapters.explore}<i className="as-arrow" aria-hidden="true" /></strong>
-                </div>
+        <section className="ah-layers">
+          <div className="ah-section-head" data-reveal>
+            <div>
+              <p className="ah-kicker">{c.layers.kicker}</p>
+              <h2>{c.layers.title}</h2>
+            </div>
+            <p>{c.layers.body}</p>
+          </div>
+          <div className="ah-layer-list">
+            {c.layers.items.map(([no, name, title, body, slug]) => (
+              <a href={path(lang, slug)} className="ah-layer-row" key={slug} data-reveal>
+                <span className="ah-row-no">{no}</span>
+                <strong>{name}</strong>
+                <div><h3>{title}</h3><p>{body}</p></div>
+                <span className="ah-row-open">{c.layers.open}<i className="as-arrow" aria-hidden="true" /></span>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="as-home-standard">
-          <div className="as-standard-inner" data-reveal>
-            <p className="as-kicker">{c.standard.eyebrow}</p>
-            <h2>{c.standard.title}<br /><em>{c.standard.accent}</em></h2>
-            <p>{c.standard.body}</p>
+        <section className="ah-work ah-paper">
+          <div className="ah-work-head" data-reveal>
+            <div>
+              <p className="ah-kicker ah-kicker-dark">{c.work.kicker}</p>
+              <h2>{c.work.title}</h2>
+            </div>
+            <p>{c.work.body}</p>
+          </div>
+          <div className="ah-work-grid">
+            {c.work.items.map(([no, title, meta, body], index) => (
+              <article className="ah-work-card" key={title} data-reveal>
+                <InterfaceStudy type={index} />
+                <div className="ah-work-card-copy">
+                  <span>{no}</span>
+                  <div><strong>{title}</strong><small>{meta}</small></div>
+                  <p>{body}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
-        <section className="as-home-fit">
-          <div data-reveal>
-            <p className="as-kicker">{c.fit.eyebrow}</p>
-            <h2>{c.fit.title}<br /><em>{c.fit.accent}</em></h2>
+        <section className="ah-principles">
+          <div className="ah-principles-title" data-reveal>
+            <p className="ah-kicker">{c.principles.kicker}</p>
+            <h2>{c.principles.title}</h2>
           </div>
-          <div data-reveal>
-            <p>{c.fit.body}</p>
-            <a className="as-text-link as-text-link-dark" href={path(lang, 'studio')}>{c.fit.studio}<i className="as-arrow" aria-hidden="true" /></a>
+          <div className="ah-principles-list">
+            {c.principles.items.map(([no, title, body]) => (
+              <article key={no} data-reveal>
+                <span>{no}</span><h3>{title}</h3><p>{body}</p>
+              </article>
+            ))}
           </div>
         </section>
 
-        <section className="as-home-close">
-          <div className="as-close-inner" data-reveal>
-            <p className="as-kicker">{c.close.eyebrow}</p>
-            <h2>{c.close.title}<br /><em>{c.close.accent}</em></h2>
+        <section className="ah-process ah-paper">
+          <div className="ah-process-head" data-reveal>
+            <p className="ah-kicker ah-kicker-dark">{c.process.kicker}</p>
+            <h2>{c.process.title}</h2>
+          </div>
+          <div className="ah-process-grid">
+            {c.process.steps.map(([no, title, body]) => (
+              <article key={no} data-reveal>
+                <span>{no}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="ah-close">
+          <div className="ah-close-line" aria-hidden="true" />
+          <div className="ah-close-copy" data-reveal>
+            <p className="ah-kicker">{c.close.kicker}</p>
+            <h2>{c.close.titleA}<br /><em>{c.close.titleB}</em></h2>
             <p>{c.close.body}</p>
-            <div className="as-close-actions">
-              <a className="as-btn as-btn-metal" href={path(lang, 'contact')}>{c.close.cta}<i className="as-arrow" aria-hidden="true" /></a>
-              <a className="as-call-cta as-call-cta-centered" href={`tel:${CONTACT_PHONE}`}>
-                <span>{c.close.call}</span>
-                <strong>{CONTACT_PHONE_DISPLAY}</strong>
-              </a>
+            <div className="ah-actions ah-actions-center">
+              <a className="ah-btn ah-btn-light" href={path(lang, 'contact')}>{c.close.cta}<i className="as-arrow" aria-hidden="true" /></a>
+              <a className="ah-link" href={`tel:${CONTACT_PHONE}`}>{c.close.call}</a>
             </div>
           </div>
         </section>
