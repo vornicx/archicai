@@ -24,6 +24,7 @@ import './styles/archic-seo-refresh.css'
 import './styles/archic-2026.css'
 import './styles/archic-2026-refinement.css'
 import './styles/archic-product-objects.css'
+import './styles/archic-seo-2026.css'
 import './styles/archic-interactions.css'
 import App from './App'
 
