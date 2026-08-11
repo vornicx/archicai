@@ -1,18 +1,17 @@
 import { Helmet } from 'react-helmet-async'
-import SiteHeader from '../components/SiteHeader'
-import SiteFooter from '../components/SiteFooter'
+import StudioHeader from '../components/StudioHeader'
+import StudioFooter from '../components/StudioFooter'
+import StudioExperience from '../components/StudioExperience'
 import { GUIDES, GUIDES_INDEX_PATH } from '../content/guides'
 import { buildGuidesIndexGraph, GUIDES_INDEX_META } from '../seo/guideSchema'
-import { useRevealOnScroll } from '../useReveal'
 
 const ORIGIN = 'https://archic.es'
 
 export default function GuidesIndex() {
-  useRevealOnScroll()
   const canonical = `${ORIGIN}${GUIDES_INDEX_PATH}`
 
   return (
-    <>
+    <div className="as-site as-editorial-page">
       <Helmet htmlAttributes={{ lang: 'es' }}>
         <title>{GUIDES_INDEX_META.title}</title>
         <meta name="description" content={GUIDES_INDEX_META.description} />
@@ -29,47 +28,47 @@ export default function GuidesIndex() {
         <script type="application/ld+json">{JSON.stringify(buildGuidesIndexGraph())}</script>
       </Helmet>
 
-      <div id="top">
-        <SiteHeader />
+      <StudioExperience />
+      <StudioHeader />
 
-        <nav className="ar-breadcrumb" aria-label="Ruta de navegación">
-          <div className="ar-container">
-            <a href="/">Inicio</a>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">Guías</span>
+      <section className="as-editorial-hero">
+        <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><span>Guías</span></div>
+        <div className="as-seo-layer">ARCHIC / NOTES & GUIDES</div>
+        <h1>Decisiones digitales<br /><em>con más criterio.</em></h1>
+        <p>{GUIDES_INDEX_META.description} Documentos prácticos sobre presencia, operaciones y software para decidir mejor antes de construir.</p>
+      </section>
+
+      <section className="as-seo-section as-seo-light">
+        <div className="as-seo-section-head">
+          <div className="as-seo-index">LIBRARY / {String(GUIDES.length).padStart(2, '0')}</div>
+          <div>
+            <h2>Menos contenido por publicar.<br /><em>Más utilidad real.</em></h2>
+            <div className="as-seo-section-copy" style={{ marginTop: 28 }}><p>No escribimos para llenar un blog. Publicamos cuando una pregunta merece una respuesta suficientemente clara como para ayudar a una empresa a tomar una decisión.</p></div>
           </div>
-        </nav>
+        </div>
 
-        <section className="ar-hero ar-hero-compact">
-          <div className="ar-container">
-            <p className="ar-eyebrow">Guías</p>
-            <h1 className="ar-hero-title">{GUIDES_INDEX_META.heading}</h1>
-            <p className="ar-hero-sub">{GUIDES_INDEX_META.description}</p>
-            <p className="ar-hero-note">
-              Sin listas de «10 trucos». Documentos que se revisan cuando cambia lo que cuentan.
-            </p>
-          </div>
-        </section>
+        <div className="as-guide-grid">
+          {GUIDES.map((guide, index) => (
+            <article className="as-guide-card" key={guide.path}>
+              <span>0{index + 1} · {guide.readingMinutes} MIN</span>
+              <h2><a href={guide.path}>{guide.title}</a></h2>
+              <p>{guide.description}</p>
+              <a href={guide.path}>Leer la guía <i className="as-arrow" aria-hidden="true" /></a>
+            </article>
+          ))}
+        </div>
+      </section>
 
-        <section className="ar-section ar-section-alt">
-          <div className="ar-container">
-            <div className="ar-guide-cards">
-              {GUIDES.map((guide) => (
-                <article key={guide.path} className="ar-guide-card" data-reveal="out">
-                  <p className="ar-note">{guide.readingMinutes} min de lectura</p>
-                  <h2>
-                    <a href={guide.path}>{guide.title}</a>
-                  </h2>
-                  <p>{guide.description}</p>
-                  <span className="ar-service-link">Leer la guía →</span>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+      <section className="as-seo-close">
+        <div>
+          <div className="as-seo-layer">START A PROJECT</div>
+          <h2>La guía puede orientar.<br /><em>El proyecto necesita contexto.</em></h2>
+          <p>Si ya sabes qué quieres mejorar en tu presencia, operación o software, cuéntanos el negocio y el resultado esperado.</p>
+        </div>
+        <a className="as-btn as-btn-metal" href="/contact/">Hablar con Archic<i className="as-arrow" aria-hidden="true" /></a>
+      </section>
 
-        <SiteFooter />
-      </div>
-    </>
+      <StudioFooter />
+    </div>
   )
 }
