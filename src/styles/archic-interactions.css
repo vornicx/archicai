@@ -1,0 +1,62 @@
+/* Interaction precision: bespoke controls, clear focus and deliberate feedback. */
+.as-contact-page .sx-type-options{
+  margin:0 0 28px;
+  padding:0;
+  border:0;
+}
+.as-contact-page .sx-type-options legend{
+  width:100%;
+  margin:0 0 11px;
+  padding:0;
+  color:rgba(255,255,255,.46);
+  font:500 8px/1 var(--a26-display);
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.as-contact-page .sx-type-options>div{border-top:1px solid rgba(255,255,255,.15)}
+.as-contact-page .sx-type-options label{
+  position:relative;
+  min-height:52px;
+  display:grid;
+  grid-template-columns:1fr 10px;
+  gap:16px;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.15);
+  cursor:pointer;
+  color:rgba(255,255,255,.58);
+  transition:padding .4s var(--a26-ease),color .3s var(--a26-ease),background .3s var(--a26-ease);
+}
+.as-contact-page .sx-type-options input{
+  position:absolute;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none;
+}
+.as-contact-page .sx-type-options span{font:500 12px/1.2 var(--a26-display)}
+.as-contact-page .sx-type-options i{
+  width:8px;
+  height:8px;
+  border:1px solid rgba(255,255,255,.35);
+  transition:background .25s,border-color .25s,transform .35s var(--a26-ease);
+}
+.as-contact-page .sx-type-options input:checked+span{color:var(--a26-white)}
+.as-contact-page .sx-type-options input:checked~i{background:var(--a26-white);border-color:var(--a26-white);transform:rotate(45deg)}
+.as-contact-page .sx-type-options label:has(input:focus-visible){outline:1px solid rgba(255,255,255,.75);outline-offset:4px}
+@media(hover:hover){
+  .as-contact-page .sx-type-options label:hover{padding-left:10px;color:var(--a26-white);background:rgba(255,255,255,.025)}
+}
+
+.as-contact-page .sx-form-msg{padding-top:14px;border-top:1px solid rgba(255,255,255,.12);line-height:1.55}
+.as-contact-page .sx-form-msg[data-tone="error"]{color:#e4b8ae}
+.as-contact-page .sx-form-msg[data-tone="ok"]{color:#c6d4bf}
+
+.as-home-v2 .ah-btn,
+.as-detail .as-next-project,
+.as-contact-page .sx-btn{
+  -webkit-tap-highlight-color:transparent;
+}
+
+@media(max-width:760px){
+  .as-contact-page .sx-type-options label{min-height:50px}
+}
