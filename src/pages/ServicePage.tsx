@@ -103,10 +103,10 @@ const POSITIONING: Record<string, Positioning> = {
     layer: 'ARCHIC PRESENCE',
     title: 'En Marbella, la percepción',
     accent: 'forma parte del producto.',
-    lead: 'Diseño y desarrollo web para hospitality, automoción, inmobiliario, servicios premium y negocios donde el cliente decide también por cómo se siente la marca antes de llamar.',
-    statement: 'Luxury no significa añadir dorado y animaciones.',
+    lead: 'Diseño y desarrollo web para hostelería, automoción, inmobiliario, servicios premium y negocios donde el cliente decide también por cómo se siente la marca antes de llamar.',
+    statement: 'El lujo no significa añadir dorado y animaciones.',
     statementAccent: 'Significa control, criterio y detalle.',
-    statementBody: 'Jerarquía, fotografía, ritmo, copy, reserva y rendimiento deben sentirse como una sola experiencia. El objetivo es elevar la percepción sin convertir la web en una caricatura del lujo.',
+    statementBody: 'Jerarquía, fotografía, ritmo, texto, reserva y rendimiento deben sentirse como una sola experiencia. El objetivo es elevar la percepción sin convertir la web en una caricatura del lujo.',
   },
   '/diseno-web-restaurantes/': {
     layer: 'ARCHIC PRESENCE',
@@ -124,7 +124,7 @@ const POSITIONING: Record<string, Positioning> = {
     lead: 'Marca, catálogo, captación y experiencia de búsqueda para inmobiliarias que quieren que cada propiedad y cada interacción refuercen la percepción del negocio.',
     statement: 'El catálogo es la superficie.',
     statementAccent: 'La ventaja aparece cuando presencia y operación se conectan.',
-    statementBody: 'Podemos unir la experiencia pública con Archic Control para gestionar inmuebles, estados, leads y contenido desde una capa privada construida alrededor del equipo.',
+    statementBody: 'Podemos unir la experiencia pública con Archic Control para gestionar inmuebles, estados, oportunidades y contenido desde una capa privada construida alrededor del equipo.',
   },
   '/diseno-web-alquiler-coches/': {
     layer: 'ARCHIC PRESENCE',
@@ -223,14 +223,14 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
 
       <section className="as-seo-section as-seo-light">
         <div className="as-seo-section-head" data-reveal>
-          <div className="as-seo-index">01 / DIRECTION</div>
+          <div className="as-seo-index">01 / DIRECCIÓN</div>
           <div>
             <p className="as-seo-statement">{p.statement}<br /><em>{p.statementAccent}</em></p>
             <div className="as-seo-section-copy"><p>{p.statementBody}</p></div>
           </div>
         </div>
         <div className="as-seo-section-head" data-reveal>
-          <div className="as-seo-index">CONTEXT</div>
+          <div className="as-seo-index">CONTEXTO</div>
           <div>
             <h2>{page.intro.title}</h2>
             <div className="as-seo-section-copy" style={{ marginTop: 30 }}>{page.intro.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
@@ -246,7 +246,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
 
       <section className="as-seo-section as-seo-dark">
         <div className="as-seo-section-head" data-reveal>
-          <div className="as-seo-index">02 / SCOPE</div>
+          <div className="as-seo-index">02 / ALCANCE</div>
           <div><h2>{page.blocks.title}</h2><div className="as-seo-section-copy" style={{ marginTop: 26 }}><p>{page.blocks.lead}</p></div></div>
         </div>
         <div className="as-seo-feature-list">
@@ -262,7 +262,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
 
       <section className="as-seo-section as-seo-light">
         <div className="as-seo-section-head" data-reveal>
-          <div className="as-seo-index">03 / FIT</div>
+          <div className="as-seo-index">03 / ENCAJE</div>
           <div><h2>{page.includes.title}</h2></div>
         </div>
         <ul className="as-seo-list">{page.includes.items.map((item) => <li key={item}>{item}</li>)}</ul>
@@ -270,7 +270,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
 
       <section className="as-seo-section as-seo-dark">
         <div className="as-seo-section-head" data-reveal>
-          <div className="as-seo-index">04 / PROCESS</div>
+          <div className="as-seo-index">04 / PROCESO</div>
           <div><h2>{page.process.title}</h2><div className="as-seo-section-copy" style={{ marginTop: 26 }}><p>Entender primero. Reducir opciones pronto. Diseñar y construir con una dirección común. Publicar solo cuando el sistema esté preparado para sostener el estándar.</p></div></div>
         </div>
         <div className="as-seo-steps">{page.process.steps.map((step) => <div className="as-seo-step" key={step}><p>{step}</p></div>)}</div>
@@ -278,7 +278,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
 
       <section className="as-seo-section as-seo-light">
         <div className="as-seo-section-head" data-reveal>
-          <div className="as-seo-index">05 / FAQ</div>
+          <div className="as-seo-index">05 / PREGUNTAS</div>
           <div><h2>{page.faq.title}</h2></div>
         </div>
         <div className="as-seo-faq">{page.faq.items.map((item) => <details key={item.q}><summary><h3>{item.q}</h3></summary><p>{item.a}</p></details>)}</div>
@@ -286,7 +286,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
 
       {page.related.length > 0 && (
         <section className="as-seo-section as-seo-dark">
-          <div className="as-seo-index">RELATED / ARCHIC SYSTEM</div>
+          <div className="as-seo-index">RELACIONADO / SISTEMA ARCHIC</div>
           <div className="as-seo-related">
             {page.related.map((href) => {
               const related = LANDING_BY_PATH[href]
@@ -301,7 +301,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
 
       <section className="as-seo-close">
         <div data-reveal>
-          <div className="as-seo-layer">START A PROJECT</div>
+          <div className="as-seo-layer">EMPEZAR UN PROYECTO</div>
           <h2>{page.cta.title}<br /><em>Empecemos por el negocio.</em></h2>
           <p>{page.cta.lead} No hace falta que llegues con la solución definida: necesitamos entender el problema, el contexto y el resultado que esperas.</p>
         </div>
