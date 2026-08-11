@@ -1,5 +1,5 @@
-import { Suspense, lazy } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Suspense, lazy, useEffect } from 'react'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import ArchicHome from './pages/ArchicHome'
 import ArchicSitePage from './pages/ArchicSitePage'
 import SiteRouteSeo from './components/SiteRouteSeo'
@@ -24,6 +24,65 @@ function SkipLink() {
       {t.a11y.skip}
     </a>
   )
+}
+
+function SiteNavigationBehavior() {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = decodeURIComponent(location.hash.slice(1))
+      window.requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ block: 'start' })
+      })
+      return
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [location.pathname, location.search, location.hash])
+
+  useEffect(() => {
+    const onDocumentClick = (event: MouseEvent) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) return
+
+      if (!(event.target instanceof Element)) return
+      const anchor = event.target.closest<HTMLAnchorElement>('a[href]')
+      if (!anchor || anchor.hasAttribute('download') || anchor.getAttribute('aria-disabled') === 'true') return
+      if (anchor.target && anchor.target !== '_self') return
+      if (anchor.dataset.native === 'true') return
+
+      const rawHref = anchor.getAttribute('href')
+      if (!rawHref || rawHref.startsWith('#')) return
+
+      let url: URL
+      try {
+        url = new URL(anchor.href, window.location.href)
+      } catch {
+        return
+      }
+
+      if ((url.protocol !== 'http:' && url.protocol !== 'https:') || url.origin !== window.location.origin) return
+      if (/\.[a-z0-9]{2,5}$/i.test(url.pathname)) return
+
+      const current = new URL(window.location.href)
+      if (url.pathname === current.pathname && url.search === current.search && url.hash === current.hash) return
+
+      event.preventDefault()
+      navigate(`${url.pathname}${url.search}${url.hash}`)
+    }
+
+    document.addEventListener('click', onDocumentClick)
+    return () => document.removeEventListener('click', onDocumentClick)
+  }, [navigate])
+
+  return null
 }
 
 const LEGAL_KEYS = Object.keys(LEGAL_PATHS) as LegalDocKey[]
@@ -62,6 +121,7 @@ const ARCHIC_ROUTES = [
 function App() {
   return (
     <LanguageProvider>
+      <SiteNavigationBehavior />
       <div className="site-shell">
         <SkipLink />
         <main id="main-content">
