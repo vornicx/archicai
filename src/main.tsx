@@ -27,6 +27,7 @@ import './styles/archic-product-objects.css'
 import './styles/archic-seo-2026.css'
 import './styles/archic-editorial-2026.css'
 import './styles/archic-interactions.css'
+import './styles/archic-route-transitions.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
