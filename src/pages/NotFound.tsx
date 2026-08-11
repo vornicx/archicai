@@ -1,39 +1,35 @@
-import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import Logo from '../components/Logo'
-import { CONTACT_MAIL } from '../i18n/content'
+import StudioHeader from '../components/StudioHeader'
+import StudioFooter from '../components/StudioFooter'
+import StudioExperience from '../components/StudioExperience'
 import { useLang } from '../i18n/LanguageContext'
 
-function NotFound() {
+export default function NotFound() {
   const { t, lang } = useLang()
   const n = t.notFound
+  const home = lang === 'en' ? '/en/' : '/'
+  const contact = lang === 'en' ? '/en/contact/' : '/contact/'
 
   return (
-    <>
+    <div className="as-site as-seo-page">
       <Helmet>
         <title>{n.title} | Archic</title>
         <meta name="robots" content="noindex, follow" />
       </Helmet>
-      <section className="ar-section" style={{ borderTop: 0 }}>
-        <div className="ar-container">
-          <div className="ar-empty">
-            <Logo size={34} />
-            <p className="ar-eyebrow" style={{ marginTop: 28 }}>{n.eyebrow}</p>
-            <h1 className="ar-h2" style={{ maxWidth: '18ch' }}>{n.title}</h1>
-            <p className="ar-lead">{n.body}</p>
-            <div className="ar-empty-actions">
-              <Link to={lang === 'en' ? '/en/' : '/'} className="ar-btn ar-btn-primary">
-                {n.home}
-              </Link>
-              <a href={`mailto:${CONTACT_MAIL}`} className="ar-btn ar-btn-ghost">
-                {n.contact}
-              </a>
-            </div>
+      <StudioExperience />
+      <StudioHeader />
+      <section className="as-seo-hero" style={{ minHeight: '82svh' }}>
+        <div className="as-seo-hero-main">
+          <div className="as-seo-layer">ARCHIC / 404</div>
+          <h1>{n.title}<br /><em>{lang === 'es' ? 'Volvamos a lo importante.' : 'Back to what matters.'}</em></h1>
+          <p className="as-seo-hero-lead">{n.body}</p>
+          <div className="as-seo-actions">
+            <a className="as-btn as-btn-metal" href={home}>{n.home}<i className="as-arrow" aria-hidden="true" /></a>
+            <a className="as-text-link" href={contact}>{n.contact}<i className="as-arrow" aria-hidden="true" /></a>
           </div>
         </div>
       </section>
-    </>
+      <StudioFooter />
+    </div>
   )
 }
-
-export default NotFound
