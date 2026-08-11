@@ -3,6 +3,7 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import ArchicHome from './pages/ArchicHome'
 import ArchicSitePage from './pages/ArchicSitePage'
 import SiteRouteSeo from './components/SiteRouteSeo'
+import SiteErrorBoundary from './components/SiteErrorBoundary'
 /* Secondary routes are split out of the main bundle: they are rarely the
    landing page, so keeping them out of the critical path helps LCP. */
 const LegalPage = lazy(() => import('./pages/LegalPage'))
@@ -145,28 +146,30 @@ function App() {
   return (
     <LanguageProvider>
       <SiteNavigationBehavior />
-      <div className="site-shell">
-        <SkipLink />
-        <main id="main-content">
-          <Suspense fallback={<RouteFallback />}>
-            <Routes>
-              <Route path="/" element={<ArchicHome />} />
-              <Route path="/en/" element={<ArchicHome />} />
-              {ARCHIC_ROUTES.flatMap(([slug, page]) => [
-                <Route key={`es-${slug}`} path={`/${slug}/`} element={<ArchicSitePage page={page} />} />,
-                <Route key={`es-bare-${slug}`} path={`/${slug}`} element={<ArchicSitePage page={page} />} />,
-                <Route key={`en-${slug}`} path={`/en/${slug}/`} element={<ArchicSitePage page={page} />} />,
-                <Route key={`en-bare-${slug}`} path={`/en/${slug}`} element={<ArchicSitePage page={page} />} />,
-              ])}
-              {SERVICE_ROUTES}
-              {GUIDE_ROUTES}
-              {LEGAL_ROUTES}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <SiteRouteSeo />
-          </Suspense>
-        </main>
-      </div>
+      <SiteErrorBoundary>
+        <div className="site-shell">
+          <SkipLink />
+          <main id="main-content">
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
+                <Route path="/" element={<ArchicHome />} />
+                <Route path="/en/" element={<ArchicHome />} />
+                {ARCHIC_ROUTES.flatMap(([slug, page]) => [
+                  <Route key={`es-${slug}`} path={`/${slug}/`} element={<ArchicSitePage page={page} />} />,
+                  <Route key={`es-bare-${slug}`} path={`/${slug}`} element={<ArchicSitePage page={page} />} />,
+                  <Route key={`en-${slug}`} path={`/en/${slug}/`} element={<ArchicSitePage page={page} />} />,
+                  <Route key={`en-bare-${slug}`} path={`/en/${slug}`} element={<ArchicSitePage page={page} />} />,
+                ])}
+                {SERVICE_ROUTES}
+                {GUIDE_ROUTES}
+                {LEGAL_ROUTES}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <SiteRouteSeo />
+            </Suspense>
+          </main>
+        </div>
+      </SiteErrorBoundary>
     </LanguageProvider>
   )
 }
