@@ -28,7 +28,7 @@ export default class SiteErrorBoundary extends Component<Props, State> {
           <p>{english ? 'Reload the page. If it persists, return to the homepage.' : 'Recarga la página. Si continúa, vuelve al inicio.'}</p>
           <div>
             <button type="button" onClick={() => window.location.reload()}>{english ? 'Reload' : 'Recargar'}</button>
-            <a href={home}>{english ? 'Go home' : 'Volver al inicio'}</a>
+            <a href={home} data-native="true">{english ? 'Go home' : 'Volver al inicio'}</a>
           </div>
         </div>
       </main>
