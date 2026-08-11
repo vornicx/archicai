@@ -11,7 +11,8 @@ const COPY = {
     rights: 'Todos los derechos reservados.',
     explore: 'Explorar',
     call: 'Llamar',
-    email: 'Email',
+    email: 'Correo',
+    contact: 'Contacto',
     pages: [
       ['Presence', 'presence'],
       ['Control', 'control'],
@@ -28,6 +29,7 @@ const COPY = {
     explore: 'Explore',
     call: 'Call',
     email: 'Email',
+    contact: 'Contact',
     pages: [
       ['Presence', 'presence'],
       ['Control', 'control'],
@@ -64,7 +66,7 @@ export default function StudioFooter() {
         </nav>
 
         <div className="as-footer-contact">
-          <span>CONTACT</span>
+          <span>{c.contact}</span>
           <a className="as-footer-phone" href={`tel:${CONTACT_PHONE}`}>
             <small>{c.call}</small>
             {CONTACT_PHONE_DISPLAY}
