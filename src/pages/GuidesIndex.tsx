@@ -32,15 +32,17 @@ export default function GuidesIndex() {
       <StudioHeader />
 
       <section className="as-editorial-hero">
-        <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><span>Guías</span></div>
-        <div className="as-seo-layer">ARCHIC / NOTES & GUIDES</div>
-        <h1>Decisiones digitales<br /><em>con más criterio.</em></h1>
-        <p>{GUIDES_INDEX_META.description} Documentos prácticos sobre presencia, operaciones y software para decidir mejor antes de construir.</p>
+        <div data-reveal="hero">
+          <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><span>Guías</span></div>
+          <div className="as-seo-layer">ARCHIC / NOTAS Y GUÍAS</div>
+          <h1>Decisiones digitales<br /><em>con más criterio.</em></h1>
+          <p>{GUIDES_INDEX_META.description} Documentos prácticos sobre presencia, operaciones y software para decidir mejor antes de construir.</p>
+        </div>
       </section>
 
       <section className="as-seo-section as-seo-light">
-        <div className="as-seo-section-head">
-          <div className="as-seo-index">LIBRARY / {String(GUIDES.length).padStart(2, '0')}</div>
+        <div className="as-seo-section-head" data-reveal>
+          <div className="as-seo-index">BIBLIOTECA / {String(GUIDES.length).padStart(2, '0')}</div>
           <div>
             <h2>Menos contenido por publicar.<br /><em>Más utilidad real.</em></h2>
             <div className="as-seo-section-copy" style={{ marginTop: 28 }}><p>No escribimos para llenar un blog. Publicamos cuando una pregunta merece una respuesta suficientemente clara como para ayudar a una empresa a tomar una decisión.</p></div>
@@ -49,7 +51,7 @@ export default function GuidesIndex() {
 
         <div className="as-guide-grid">
           {GUIDES.map((guide, index) => (
-            <article className="as-guide-card" key={guide.path}>
+            <article className="as-guide-card" key={guide.path} data-reveal>
               <span>0{index + 1} · {guide.readingMinutes} MIN</span>
               <h2><a href={guide.path}>{guide.title}</a></h2>
               <p>{guide.description}</p>
@@ -60,8 +62,8 @@ export default function GuidesIndex() {
       </section>
 
       <section className="as-seo-close">
-        <div>
-          <div className="as-seo-layer">START A PROJECT</div>
+        <div data-reveal>
+          <div className="as-seo-layer">EMPEZAR UN PROYECTO</div>
           <h2>La guía puede orientar.<br /><em>El proyecto necesita contexto.</em></h2>
           <p>Si ya sabes qué quieres mejorar en tu presencia, operación o software, cuéntanos el negocio y el resultado esperado.</p>
         </div>
