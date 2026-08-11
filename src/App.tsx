@@ -18,6 +18,10 @@ import { LOCAL_PAGES } from './seo/localPages'
 import { INTENT_PAGES } from './seo/intentPages'
 import { GUIDES, GUIDES_INDEX_PATH } from './content/guides'
 
+type TransitionDocument = Document & {
+  startViewTransition?: (update: () => void) => unknown
+}
+
 function SkipLink() {
   const { t } = useLang()
   return (
@@ -99,7 +103,16 @@ function SiteNavigationBehavior() {
       if (url.pathname === current.pathname && url.search === current.search && url.hash === current.hash) return
 
       event.preventDefault()
-      navigate(`${url.pathname}${url.search}${url.hash}`)
+      const destination = `${url.pathname}${url.search}${url.hash}`
+      const transitionDocument = document as TransitionDocument
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const update = () => navigate(destination)
+
+      if (!reduceMotion && transitionDocument.startViewTransition) {
+        transitionDocument.startViewTransition(update)
+      } else {
+        update()
+      }
     }
 
     document.addEventListener('click', onDocumentClick)
