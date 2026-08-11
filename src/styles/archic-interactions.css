@@ -51,12 +51,38 @@
 .as-contact-page .sx-form-msg[data-tone="error"]{color:#e4b8ae}
 .as-contact-page .sx-form-msg[data-tone="ok"]{color:#c6d4bf}
 
+/* Reveal timing is contextual rather than globally identical. */
+.as-home-v2.as-experience-ready [data-reveal],
+.as-detail.as-experience-ready [data-reveal],
+.as-contact-page.as-experience-ready [data-reveal]{
+  transition-delay:var(--as-reveal-delay,0ms);
+}
+
 .as-home-v2 .ah-btn,
 .as-detail .as-next-project,
 .as-contact-page .sx-btn{
   -webkit-tap-highlight-color:transparent;
 }
 
+.as-home-v2 .ah-btn:active,
+.as-detail .as-next-project:active,
+.as-contact-page .sx-btn:active{
+  transform:translateY(0) scale(.985);
+}
+
+.as-home-v2 .ah-layer-row:active,
+.as-home-v2 .ah-work-card:active,
+.as-detail .as-feature-list article:active,
+.as-detail .as-search-intents-list a:active{
+  opacity:.82;
+}
+
 @media(max-width:760px){
   .as-contact-page .sx-type-options label{min-height:50px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .as-home-v2.as-experience-ready [data-reveal],
+  .as-detail.as-experience-ready [data-reveal],
+  .as-contact-page.as-experience-ready [data-reveal]{transition-delay:0ms!important}
 }
