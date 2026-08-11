@@ -1,262 +1,242 @@
-.as-site{
-  --as-cream:#fbf7f0;
-  --as-cream-2:#eee5d9;
-  --as-gold:#d6ad67;
-  --as-gold-hi:#e9ca91;
-  --as-copy-dark:#29251f;
-  --as-copy-dark-soft:#4c453c;
-  --as-copy-light:#f7f1e7;
-  --as-copy-light-soft:rgba(247,241,231,.82);
-}
+/* Archic 2026 contrast system.
+   Legibility wins over decorative low-contrast styling.
+   This file must be loaded last. */
 
-/* Core rule: important copy must always read immediately. */
-.as-home-hero,
-.as-home-standard,
-.as-home-close,
-.as-detail-hero,
-.as-feature-section,
-.as-next,
-.as-menu-panel,
-.as-footer,
-.as-contact-form{
-  color:var(--as-copy-light);
-}
-
-.as-products,
-.as-home-fit,
-.as-statement,
-.as-principle,
+.as-home-v2,
+.as-detail,
 .as-contact-page,
-.as-product-business{
-  color:#11100e;
+.as-seo-page,
+.as-editorial-page,
+.as-legal-shell{
+  --archic-dark:#090908;
+  --archic-paper:#f0eee8;
+  --archic-on-dark:#f7f5ef;
+  --archic-on-dark-secondary:#d8d4cb;
+  --archic-on-dark-muted:#aaa59b;
+  --archic-on-dark-micro:#99948b;
+  --archic-on-light:#11100e;
+  --archic-on-light-secondary:#45413b;
+  --archic-on-light-muted:#625e57;
 }
 
-/* Body copy: no luxury-by-low-opacity. */
-.as-home-hero-copy>p:not(.as-kicker),
-.as-home-standard>p:last-child,
-.as-home-close>p:not(.as-kicker),
-.as-lead,
-.as-feature-list p,
-.as-next>div>p:not(.as-kicker),
-.as-menu-inner nav small,
-.as-footer-brand p,
-.as-footer-nav a,
-.as-footer-legal a,
-.as-contact-form .sx-consent,
-.as-contact-form .sx-field label,
-.as-form-head{
-  color:var(--as-copy-light-soft);
+/* Semantic variables. */
+.as-home-v2{
+  --ah-muted:var(--archic-on-dark-secondary);
+  --ah-muted-dark:var(--archic-on-light-secondary);
+}
+.as-detail,
+.as-contact-page,
+.as-seo-page,
+.as-editorial-page,
+.as-legal-shell{
+  --a26-muted-light:var(--archic-on-dark-secondary);
+  --a26-muted-dark:var(--archic-on-light-secondary);
 }
 
-.as-products-head>p,
-.as-home-fit>div:last-child>p,
-.as-statement>div:last-child>p,
-.as-principle>p:last-child,
-.as-contact-hero>div:first-child>p:not(.as-kicker),
-.as-contact-notes span,
-.as-product-business .as-product-copy p{
-  color:var(--as-copy-dark-soft);
-}
+/* Navigation / header. */
+.as-home-v2 .as-lang,
+.as-detail .as-lang,
+.as-contact-page .as-lang,
+.as-seo-page .as-lang,
+.as-editorial-page .as-lang,
+.as-legal-shell .as-lang{color:var(--archic-on-dark-muted)}
 
-/* Scale: only true metadata is allowed to stay tiny. */
-.as-kicker{
-  font-size:11px;
-  line-height:1.4;
-  letter-spacing:.17em;
-}
+.as-home-v2 .as-project-link,
+.as-detail .as-project-link,
+.as-contact-page .as-project-link,
+.as-seo-page .as-project-link,
+.as-editorial-page .as-project-link,
+.as-legal-shell .as-project-link{color:var(--archic-on-dark-secondary);border-color:rgba(255,255,255,.30)}
 
-.as-home-hero-copy>p:not(.as-kicker),
-.as-lead{
-  font-size:clamp(18px,1.4vw,22px);
-  line-height:1.7;
-}
+/* Menu is a paper surface. */
+.as-home-v2 .as-menu-meta,
+.as-detail .as-menu-meta,
+.as-contact-page .as-menu-meta,
+.as-seo-page .as-menu-meta,
+.as-editorial-page .as-menu-meta,
+.as-legal-shell .as-menu-meta,
+.as-home-v2 .as-menu-inner nav a>span,
+.as-detail .as-menu-inner nav a>span,
+.as-contact-page .as-menu-inner nav a>span,
+.as-seo-page .as-menu-inner nav a>span,
+.as-editorial-page .as-menu-inner nav a>span,
+.as-legal-shell .as-menu-inner nav a>span,
+.as-home-v2 .as-menu-inner nav small,
+.as-detail .as-menu-inner nav small,
+.as-contact-page .as-menu-inner nav small,
+.as-seo-page .as-menu-inner nav small,
+.as-editorial-page .as-menu-inner nav small,
+.as-legal-shell .as-menu-inner nav small{color:var(--archic-on-light-muted)}
 
-.as-products-head>p,
-.as-home-fit>div:last-child>p,
-.as-home-standard>p:last-child,
-.as-home-close>p:not(.as-kicker),
-.as-statement>div:last-child>p,
-.as-principle>p:last-child,
-.as-next>div>p:not(.as-kicker),
-.as-contact-hero>div:first-child>p:not(.as-kicker){
-  font-size:clamp(17px,1.25vw,20px);
-  line-height:1.72;
-}
+/* Home — dark surfaces. */
+.ah-kicker{color:var(--archic-on-dark-muted)}
+.ah-link{color:var(--archic-on-dark-secondary);border-bottom-color:rgba(255,255,255,.42)}
+.ah-hero-bottom>p,
+.ah-section-head>p,
+.ah-layer-row p,
+.ah-principles-list p,
+.ah-close-copy>p:not(.ah-kicker){color:var(--archic-on-dark-secondary)}
+.ah-system-label,
+.ah-layer i,
+.ah-system-axis,
+.ah-hero-meta,
+.ah-row-no,
+.ah-row-open,
+.ah-principles-list span,
+.ah-model small,
+.ah-specs{color:var(--archic-on-dark-micro)}
+.ah-layer-three i{color:#514d47}
 
-.as-product-copy>span{
-  font-size:10px;
-  letter-spacing:.15em;
-}
-.as-product-no{font-size:10px}
-.as-product-copy p{
-  font-size:clamp(15px,1.05vw,17px);
-  line-height:1.68;
-}
-.as-product-copy strong{
-  font-size:12px;
-  letter-spacing:.01em;
-}
+/* Home — paper surfaces. */
+.ah-paper{color:var(--archic-on-light)}
+.ah-kicker-dark,
+.ah-section-index,
+.ah-work-card-copy>span,
+.ah-work-card-copy small,
+.ah-process-grid span{color:var(--archic-on-light-muted)}
+.ah-manifesto-copy>p:last-child,
+.ah-work-head>p,
+.ah-work-card-copy p,
+.ah-process-grid p{color:var(--archic-on-light-secondary)}
+.ah-manifesto h2 em{color:#514d47}
 
-.as-feature-list article{
-  padding-top:44px;
-  padding-bottom:44px;
-}
-.as-feature-list article>span{
-  font-size:10px;
-}
-.as-feature-list h3{
-  font-size:clamp(28px,2.55vw,40px);
-}
-.as-feature-list p{
-  font-size:clamp(15px,1.05vw,17px);
-  line-height:1.7;
-}
-.as-feature-list i{font-size:16px}
+/* Product/detail — dark surfaces. */
+.as-detail .as-kicker{color:var(--archic-on-dark-muted)}
+.as-detail .as-lead,
+.as-detail .as-feature-list p,
+.as-detail .as-next>div>p:not(.as-kicker){color:var(--archic-on-dark-secondary)}
+.as-detail .as-scroll-mark,
+.as-detail .as-feature-list article>span,
+.as-detail .as-next-call small{color:var(--archic-on-dark-micro)}
 
-.as-next>a{
-  font-size:14px;
-  min-width:240px;
-  padding:24px 0;
-}
+/* Product/detail — paper surfaces. */
+.as-detail .as-statement-index,
+.as-detail .as-principle .as-kicker,
+.as-detail .as-search-intents-head .as-kicker,
+.as-detail .as-search-intents-list>a>span,
+.as-detail .as-search-intents-list small{color:var(--archic-on-light-muted)}
+.as-detail .as-statement>div:last-child>p,
+.as-detail .as-principle>p:last-child,
+.as-detail .as-principle-inner>p:last-child{color:var(--archic-on-light-secondary)}
+.as-detail .as-statement h2 em{color:#514d47}
 
-.as-menu-inner nav a{
-  min-height:126px;
-}
-.as-menu-inner nav a>span{
-  font-size:10px;
-}
-.as-menu-inner nav small{
-  font-size:14px;
-  line-height:1.5;
-}
-.as-menu-meta{
-  font-size:10px;
-  color:rgba(247,241,231,.72);
-}
-
-.as-lang{
-  font-size:11px;
-  color:rgba(247,241,231,.82);
-}
-.as-project-link,
-.as-menu-button>span{
-  font-size:12px;
-  color:#fbf7f0;
-}
-
-.as-contact-notes span{
-  font-size:13px;
-  padding:18px 0;
-}
-.as-form-head{
-  font-size:10px;
-}
-.as-contact-form .sx-field label{
-  font-size:11px;
-  color:rgba(247,241,231,.82);
-}
-.as-contact-form .sx-field input,
-.as-contact-form .sx-field select,
-.as-contact-form .sx-field textarea{
-  font-size:16px;
-  color:#fffaf2;
-  border-bottom-color:rgba(247,241,231,.34);
-}
-.as-contact-form .sx-field input::placeholder,
-.as-contact-form .sx-field textarea::placeholder{
-  color:rgba(247,241,231,.58);
-}
-.as-contact-form .sx-consent{
-  font-size:12px;
-  line-height:1.6;
-  color:rgba(247,241,231,.74);
-}
-.as-contact-form .sx-consent a{color:#fff2df}
-.as-contact-form .sx-btn{
-  min-height:56px;
-  font-size:12px;
-}
-
-.as-footer-brand p{
-  max-width:330px;
-  font-size:15px;
-  line-height:1.7;
-}
-.as-footer-nav>span,
-.as-footer-legal>span,
-.as-footer-contact>span{
-  font-size:10px;
-  color:var(--as-gold-hi);
-}
-.as-footer-nav a,
-.as-footer-legal a{
-  font-size:14px;
-  color:rgba(247,241,231,.8);
-}
-.as-footer-bottom{
-  font-size:10px;
-  color:rgba(247,241,231,.66);
-}
-
-/* Dark cards. */
-.as-product:not(.as-product-business) .as-product-copy p{
-  color:rgba(251,247,240,.84);
-}
-.as-product:not(.as-product-business) .as-product-copy h3,
-.as-product:not(.as-product-business) .as-product-copy strong{
-  color:#fffaf2;
-}
-
-/* Light card. */
-.as-product-business .as-product-copy h3,
-.as-product-business .as-product-copy strong{
-  color:#11100e;
-}
-.as-product-business .as-product-copy p{color:#443d34}
-
-/* Gold is jewellery: accents only, never essential paragraph copy. */
-.as-kicker,
-.as-product-no,
-.as-product-copy>span,
-.as-scroll-mark,
-.as-feature-list article>span,
-.as-feature-list i,
-.as-next>a span,
-.as-footer-nav>span,
-.as-footer-legal>span,
-.as-footer-contact>span,
-.as-form-head span:last-child{
-  color:var(--as-gold-hi);
-}
-
-.as-products .as-kicker,
-.as-home-fit .as-kicker,
-.as-home-fit h2 em,
-.as-statement-index,
-.as-statement h2 em,
-.as-principle .as-kicker,
+/* Contact. */
 .as-contact-page .as-kicker,
-.as-product-business .as-product-copy>span,
-.as-product-business .as-product-no,
-.as-product-business .as-product-copy strong i{
-  color:#735226;
-}
+.as-contact-page .as-contact-direct-call>span{color:var(--archic-on-light-muted)}
+.as-contact-page .as-contact-hero>div:first-child>p:not(.as-kicker),
+.as-contact-page .as-contact-notes span{color:var(--archic-on-light-secondary)}
+.as-contact-page .as-form-head,
+.as-contact-page .as-form-head span:last-child,
+.as-contact-page .as-contact-form .sx-field label,
+.as-contact-page .sx-type-options legend{color:var(--archic-on-dark-muted)}
+.as-contact-page .sx-type-options label,
+.as-contact-page .sx-consent,
+.as-contact-page .sx-form-msg{color:var(--archic-on-dark-secondary)}
+.as-contact-page .as-contact-form .sx-field input::placeholder,
+.as-contact-page .as-contact-form .sx-field textarea::placeholder{color:var(--archic-on-dark-muted);opacity:1}
 
-.as-text-link{font-size:13px;color:rgba(251,247,240,.9)}
-.as-text-link-dark{color:#1d1a16}
-.as-home-hero-index{font-size:10px;color:rgba(247,241,231,.68)}
-.as-statement-index{font-size:10px}
+/* SEO — dark surfaces. */
+.as-seo-page .as-seo-breadcrumb,
+.as-seo-page .as-seo-breadcrumb span,
+.as-seo-page .as-seo-layer,
+.as-seo-page .as-seo-hero-side span,
+.as-seo-page .as-seo-dark .as-seo-index,
+.as-seo-page .as-seo-feature>span{color:var(--archic-on-dark-micro)}
+.as-seo-page .as-seo-breadcrumb a{color:var(--archic-on-dark-secondary)}
+.as-seo-page .as-seo-hero-lead,
+.as-seo-page .as-seo-hero-side p,
+.as-seo-page .as-seo-dark .as-seo-section-copy>p,
+.as-seo-page .as-seo-feature p{color:var(--archic-on-dark-secondary)}
 
-@media(max-width:720px){
-  .as-kicker{font-size:10px}
-  .as-home-hero-copy>p:not(.as-kicker),.as-lead{font-size:18px}
-  .as-products-head>p,.as-home-fit>div:last-child>p,.as-home-standard>p:last-child,.as-home-close>p:not(.as-kicker),.as-statement>div:last-child>p,.as-principle>p:last-child,.as-next>div>p:not(.as-kicker),.as-contact-hero>div:first-child>p:not(.as-kicker){font-size:17px}
-  .as-product-copy p{font-size:15px}
-  .as-product-copy strong{font-size:12px}
-  .as-feature-list p{font-size:15px}
-  .as-feature-list h3{font-size:30px}
-  .as-contact-form .sx-field label{font-size:10px}
-  .as-contact-form .sx-consent{font-size:11px}
-  .as-footer-nav a,.as-footer-legal a{font-size:13px}
-  .as-footer-bottom{font-size:9px}
+/* SEO — paper surfaces. */
+.as-seo-page .as-seo-light .as-seo-index{color:var(--archic-on-light-muted)}
+.as-seo-page .as-seo-light .as-seo-section-copy>p,
+.as-seo-page .as-seo-list li{color:var(--archic-on-light-secondary)}
+.as-seo-page .as-seo-light h2 em,
+.as-seo-page .as-seo-light .as-seo-statement em{color:#514d47}
+
+/* Editorial / Guides. */
+.as-editorial-page .as-seo-breadcrumb,
+.as-editorial-page .as-seo-breadcrumb span,
+.as-editorial-page .as-seo-layer,
+.as-editorial-page .as-article-meta{color:var(--archic-on-dark-micro)}
+.as-editorial-page .as-seo-breadcrumb a{color:var(--archic-on-dark-secondary)}
+.as-editorial-page .as-editorial-hero>div>p:last-child,
+.as-editorial-page .as-seo-close p{color:var(--archic-on-dark-secondary)}
+.as-editorial-page .as-seo-index,
+.as-editorial-page .as-guide-card>span,
+.as-editorial-page .as-article-toc>span{color:var(--archic-on-light-muted)}
+.as-editorial-page .as-seo-section-copy>p,
+.as-editorial-page .as-guide-card p,
+.as-editorial-page .as-article-toc a{color:var(--archic-on-light-secondary)}
+.as-editorial-page .as-seo-section h2 em{color:#514d47}
+
+/* Legal must never use decorative low contrast. */
+.as-legal-shell .as-seo-breadcrumb,
+.as-legal-shell .as-seo-breadcrumb span,
+.as-legal-shell .as-seo-layer{color:var(--archic-on-light-muted)}
+.as-legal-shell .as-seo-breadcrumb a{color:var(--archic-on-light-secondary)}
+.as-legal-shell p,
+.as-legal-shell li{color:var(--archic-on-light-secondary)}
+.as-legal-shell h1,
+.as-legal-shell h2,
+.as-legal-shell h3,
+.as-legal-shell strong{color:var(--archic-on-light)}
+
+/* Footer. */
+.as-home-v2 .as-footer-brand p,
+.as-detail .as-footer-brand p,
+.as-contact-page .as-footer-brand p,
+.as-seo-page .as-footer-brand p,
+.as-editorial-page .as-footer-brand p,
+.as-legal-shell .as-footer-brand p{color:var(--archic-on-dark-secondary)}
+
+.as-home-v2 .as-footer-nav>span,
+.as-home-v2 .as-footer-legal>span,
+.as-home-v2 .as-footer-contact>span,
+.as-detail .as-footer-nav>span,
+.as-detail .as-footer-legal>span,
+.as-detail .as-footer-contact>span,
+.as-contact-page .as-footer-nav>span,
+.as-contact-page .as-footer-legal>span,
+.as-contact-page .as-footer-contact>span,
+.as-seo-page .as-footer-nav>span,
+.as-seo-page .as-footer-legal>span,
+.as-seo-page .as-footer-contact>span,
+.as-editorial-page .as-footer-nav>span,
+.as-editorial-page .as-footer-legal>span,
+.as-editorial-page .as-footer-contact>span,
+.as-legal-shell .as-footer-nav>span,
+.as-legal-shell .as-footer-legal>span,
+.as-legal-shell .as-footer-contact>span,
+.as-home-v2 .as-footer-bottom,
+.as-detail .as-footer-bottom,
+.as-contact-page .as-footer-bottom,
+.as-seo-page .as-footer-bottom,
+.as-editorial-page .as-footer-bottom,
+.as-legal-shell .as-footer-bottom{color:var(--archic-on-dark-micro)}
+
+.as-home-v2 .as-footer-nav a,
+.as-home-v2 .as-footer-legal a,
+.as-detail .as-footer-nav a,
+.as-detail .as-footer-legal a,
+.as-contact-page .as-footer-nav a,
+.as-contact-page .as-footer-legal a,
+.as-seo-page .as-footer-nav a,
+.as-seo-page .as-footer-legal a,
+.as-editorial-page .as-footer-nav a,
+.as-editorial-page .as-footer-legal a,
+.as-legal-shell .as-footer-nav a,
+.as-legal-shell .as-footer-legal a{color:var(--archic-on-dark-secondary)}
+
+@media(max-width:760px){
+  /* Tiny metadata gets stronger on mobile, never weaker. */
+  .ah-system-label,
+  .ah-hero-meta,
+  .ah-row-no,
+  .ah-principles-list span,
+  .as-detail .as-feature-list article>span,
+  .as-seo-page .as-seo-breadcrumb,
+  .as-editorial-page .as-seo-breadcrumb,
+  .as-editorial-page .as-article-meta{color:var(--archic-on-dark-muted)}
 }
