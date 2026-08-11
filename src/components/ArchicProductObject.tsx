@@ -31,7 +31,7 @@ export default function ArchicProductObject({ page }: { page: ProductPage }) {
         <div className="a26-control-list">
           <div><span>20:00</span><strong>Martínez · 4</strong><i>{es ? 'CONFIRMADA' : 'CONFIRMED'}</i></div>
           <div><span>20:30</span><strong>Alonso · 2</strong><i>{es ? 'LLEGANDO' : 'ARRIVING'}</i></div>
-          <div><span>21:00</span><strong>Private · 8</strong><i>{es ? 'MESA 12' : 'TABLE 12'}</i></div>
+          <div><span>21:00</span><strong>{es ? 'Privado' : 'Private'} · 8</strong><i>{es ? 'MESA 12' : 'TABLE 12'}</i></div>
         </div>
         <div className="a26-control-axis">
           <span>{es ? 'CLIENTES' : 'CLIENTS'}</span><i />
