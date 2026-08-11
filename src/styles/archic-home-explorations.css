@@ -1,0 +1,8 @@
+/* Home entry points for the functional sector explorations. */
+.as-home-v2 .ah-study-link{display:block;color:inherit;text-decoration:none;overflow:hidden}
+.as-home-v2 .ah-study-link .ah-study{transition:transform .75s var(--ah-ease),filter .45s ease}
+.as-home-v2 .ah-work-card:hover .ah-study-link .ah-study{transform:scale(.992)}
+.as-home-v2 .ah-work-open{grid-column:2/-1;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:52px;margin-top:4px;padding-top:17px;border-top:1px solid rgba(9,9,8,.16);color:#11100e!important;-webkit-text-fill-color:#11100e!important;font:500 11px/1 var(--ah-display);text-decoration:none}
+.as-home-v2 .ah-work-open .as-arrow{color:#11100e!important}
+@media(hover:hover){.as-home-v2 .ah-work-open:hover .as-arrow{transform:translate(3px,-3px)}}
+@media(max-width:760px){.as-home-v2 .ah-work-open{grid-column:2;min-height:48px;margin-top:0}.as-home-v2 .ah-study-link .ah-study{transform:none!important}}
