@@ -1,0 +1,20 @@
+/* Progressive route transition: deliberately subtle and optional. */
+@keyframes archic-route-out{
+  to{opacity:.78;filter:blur(1px)}
+}
+@keyframes archic-route-in{
+  from{opacity:.72;filter:blur(1px)}
+  to{opacity:1;filter:none}
+}
+
+::view-transition-old(root){
+  animation:archic-route-out 150ms ease-out both;
+}
+::view-transition-new(root){
+  animation:archic-route-in 260ms cubic-bezier(.16,1,.3,1) both;
+}
+
+@media(prefers-reduced-motion:reduce){
+  ::view-transition-old(root),
+  ::view-transition-new(root){animation:none!important}
+}
