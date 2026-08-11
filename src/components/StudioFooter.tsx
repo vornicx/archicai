@@ -1,7 +1,6 @@
 import { useLang } from '../i18n/LanguageContext'
 import { LEGAL_PATHS } from '../legal/documents'
-import { CONTACT_MAIL } from '../i18n/content'
-import { ANTERO_CONTACT, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
+import { ARCHIC_FOUNDERS } from '../config/contact'
 
 const COPY = {
   es: {
@@ -13,7 +12,9 @@ const COPY = {
     call: 'Llamar',
     email: 'Correo',
     contact: 'Contacto',
-    primary: 'Contacto principal',
+    founders: 'FUNDADORES',
+    foundersTitle: 'Dos áreas. Una misma dirección.',
+    foundersLead: 'Producto y tecnología conectados con crecimiento y relación con clientes desde el inicio de cada proyecto.',
     pages: [
       ['Presence', 'presence'],
       ['Control', 'control'],
@@ -31,7 +32,9 @@ const COPY = {
     call: 'Call',
     email: 'Email',
     contact: 'Contact',
-    primary: 'Primary contact',
+    founders: 'FOUNDERS',
+    foundersTitle: 'Two areas. One direction.',
+    foundersLead: 'Product and technology connected to growth and client partnerships from the beginning of every project.',
     pages: [
       ['Presence', 'presence'],
       ['Control', 'control'],
@@ -51,9 +54,35 @@ export default function StudioFooter() {
   const { lang, t } = useLang()
   const c = COPY[lang]
   const year = new Date().getFullYear()
+  const isStudio = typeof window !== 'undefined' && /^\/(?:en\/)?studio\/?$/.test(window.location.pathname)
 
   return (
     <footer className="as-footer">
+      {isStudio && (
+        <section className="as-footer-founders" aria-labelledby="as-founders-title">
+          <div className="as-footer-founders-intro">
+            <span>{c.founders}</span>
+            <h2 id="as-founders-title">{c.foundersTitle}</h2>
+            <p>{c.foundersLead}</p>
+          </div>
+          <div className="as-footer-founders-list">
+            {ARCHIC_FOUNDERS.map((founder, index) => (
+              <article key={founder.email}>
+                <span>0{index + 1}</span>
+                <div>
+                  <strong>{founder.name}</strong>
+                  <p>{founder.role} · {founder.focus}</p>
+                </div>
+                <div className="as-footer-founder-links">
+                  <a href={`mailto:${founder.email}`}>{founder.email}</a>
+                  <a href={`tel:${founder.phone}`}>{founder.phoneDisplay}</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
       <div className="as-footer-top">
         <div className="as-footer-brand">
           <a href={path(lang)} aria-label="Archic home">
@@ -70,29 +99,22 @@ export default function StudioFooter() {
         <div className="as-footer-contact">
           <span>{c.contact}</span>
           <div className="as-footer-contact-people">
-            <div className="as-footer-contact-person">
-              <strong className="as-footer-contact-name">{c.primary}</strong>
-              <a className="as-footer-phone" href={`tel:${CONTACT_PHONE}`}>
-                <small>{c.call}</small>
-                {CONTACT_PHONE_DISPLAY}
-              </a>
-              <a className="as-footer-mail" href={`mailto:${CONTACT_MAIL}`}>
-                <small>{c.email}</small>
-                {CONTACT_MAIL}
-              </a>
-            </div>
-
-            <div className="as-footer-contact-person">
-              <strong className="as-footer-contact-name">{ANTERO_CONTACT.name}</strong>
-              <a className="as-footer-phone" href={`tel:${ANTERO_CONTACT.phone}`}>
-                <small>{c.call}</small>
-                {ANTERO_CONTACT.phoneDisplay}
-              </a>
-              <a className="as-footer-mail" href={`mailto:${ANTERO_CONTACT.email}`}>
-                <small>{c.email}</small>
-                {ANTERO_CONTACT.email}
-              </a>
-            </div>
+            {ARCHIC_FOUNDERS.map((founder) => (
+              <div className="as-footer-contact-person" key={founder.email}>
+                <div className="as-footer-contact-identity">
+                  <strong className="as-footer-contact-name">{founder.name}</strong>
+                  <span>{founder.role}</span>
+                </div>
+                <a className="as-footer-phone" href={`tel:${founder.phone}`}>
+                  <small>{c.call}</small>
+                  {founder.phoneDisplay}
+                </a>
+                <a className="as-footer-mail" href={`mailto:${founder.email}`}>
+                  <small>{c.email}</small>
+                  {founder.email}
+                </a>
+              </div>
+            ))}
           </div>
         </div>
 
