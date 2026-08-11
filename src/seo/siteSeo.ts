@@ -4,6 +4,27 @@ import { CONTACT_MAIL, type Lang } from '../i18n/content'
 export const SITE_ORIGIN = 'https://archic.es'
 const OG_VERSION = 'v=3'
 
+export const ARCHIC_BASE = {
+  city: 'Écija',
+  province: 'Sevilla',
+  region: 'Andalucía',
+  postalCode: '41400',
+  countryCode: 'ES',
+  countryName: 'España',
+} as const
+
+export const ARCHIC_KNOWS_ABOUT = [
+  'Premium web design',
+  'Digital presence',
+  'Business management software',
+  'Booking systems',
+  'Customer management systems',
+  'Custom software',
+  'Business automation',
+  'System integrations',
+  'Business data systems',
+] as const
+
 export type SitePageKey = 'presence' | 'control' | 'business' | 'studio' | 'contact'
 
 type SeoEntry = {
@@ -123,6 +144,7 @@ export function organizationNode() {
     '@type': 'Organization',
     '@id': `${SITE_ORIGIN}/#organization`,
     name: 'Archic',
+    alternateName: 'Archic Digital Systems',
     url: `${SITE_ORIGIN}/`,
     logo: {
       '@type': 'ImageObject',
@@ -134,13 +156,26 @@ export function organizationNode() {
     image: `${SITE_ORIGIN}/og-image.png?${OG_VERSION}`,
     email: CONTACT_MAIL,
     telephone: CONTACT_PHONE,
+    location: {
+      '@type': 'Place',
+      name: `${ARCHIC_BASE.city}, ${ARCHIC_BASE.province}, ${ARCHIC_BASE.countryName}`,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: ARCHIC_BASE.city,
+        addressRegion: ARCHIC_BASE.province,
+        postalCode: ARCHIC_BASE.postalCode,
+        addressCountry: ARCHIC_BASE.countryCode,
+      },
+    },
     areaServed: { '@type': 'Country', name: 'Spain' },
+    knowsAbout: ARCHIC_KNOWS_ABOUT,
     knowsLanguage: ['es', 'en'],
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: CONTACT_PHONE,
       email: CONTACT_MAIL,
       contactType: 'sales',
+      areaServed: { '@type': 'Country', name: 'Spain' },
       availableLanguage: ['Spanish', 'English'],
     },
   }
