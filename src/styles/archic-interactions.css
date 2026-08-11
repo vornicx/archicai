@@ -77,6 +77,47 @@
   opacity:.82;
 }
 
+/* Secondary lazy routes never fall back to a blank viewport. */
+.as-route-fallback{
+  position:fixed;
+  z-index:300;
+  inset:0;
+  display:grid;
+  place-items:center;
+  min-height:100svh;
+  background:#090908;
+  color:#f7f5ef;
+}
+.as-route-fallback>div{
+  width:min(340px,calc(100vw - 44px));
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:22px;
+  align-items:center;
+  font:500 9px/1 'Space Grotesk',Inter,Arial,sans-serif;
+  letter-spacing:.18em;
+}
+.as-route-fallback i{
+  position:relative;
+  height:1px;
+  overflow:hidden;
+  background:rgba(255,255,255,.15);
+}
+.as-route-fallback i::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#f7f5ef;
+  transform-origin:left center;
+  animation:as-route-load 1.05s cubic-bezier(.16,1,.3,1) infinite;
+}
+@keyframes as-route-load{
+  0%{transform:scaleX(0);transform-origin:left center}
+  48%{transform:scaleX(1);transform-origin:left center}
+  52%{transform:scaleX(1);transform-origin:right center}
+  100%{transform:scaleX(0);transform-origin:right center}
+}
+
 @media(max-width:760px){
   .as-contact-page .sx-type-options label{min-height:50px}
 }
@@ -85,4 +126,5 @@
   .as-home-v2.as-experience-ready [data-reveal],
   .as-detail.as-experience-ready [data-reveal],
   .as-contact-page.as-experience-ready [data-reveal]{transition-delay:0ms!important}
+  .as-route-fallback i::after{animation:none;transform:scaleX(1)}
 }
