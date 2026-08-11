@@ -1,0 +1,83 @@
+/* Archic surface contract — MUST remain the final stylesheet import.
+   This file is the visual safety net for known surfaces after all legacy and feature CSS.
+   Critical text never relies on inheritance, historical utility classes, or source order alone. */
+
+:root{
+  --asc-dark:#090a09;
+  --asc-on-dark:#f4f1e9;
+  --asc-on-dark-accent:#e2cfa7;
+  --asc-on-dark-secondary:#d3cec4;
+  --asc-on-dark-muted:#aaa49a;
+  --asc-on-dark-gold:#d8bd84;
+}
+
+/* Selected explorations are a DARK product showcase, even though older markup may
+   still carry historical paper-surface classes. This contract wins deliberately. */
+.as-site.as-home-v2 .ah-work,
+.as-site.as-home-v2 .ah-work.ah-paper{
+  background:var(--asc-dark)!important;
+  color:var(--asc-on-dark)!important;
+}
+
+.as-site.as-home-v2 .ah-work .ah-work-head h2,
+.as-site.as-home-v2 .ah-work .ah-work-card-copy strong{
+  color:var(--asc-on-dark-accent)!important;
+  -webkit-text-fill-color:var(--asc-on-dark-accent)!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  text-shadow:none!important;
+}
+
+.as-site.as-home-v2 .ah-work .ah-work-head>p,
+.as-site.as-home-v2 .ah-work .ah-work-card-copy p{
+  color:var(--asc-on-dark-secondary)!important;
+  -webkit-text-fill-color:var(--asc-on-dark-secondary)!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+}
+
+.as-site.as-home-v2 .ah-work .ah-kicker,
+.as-site.as-home-v2 .ah-work .ah-kicker-dark,
+.as-site.as-home-v2 .ah-work .ah-work-card-copy>span{
+  color:var(--asc-on-dark-muted)!important;
+  -webkit-text-fill-color:var(--asc-on-dark-muted)!important;
+  opacity:1!important;
+}
+
+.as-site.as-home-v2 .ah-work .ah-work-card-copy small{
+  color:var(--asc-on-dark-gold)!important;
+  -webkit-text-fill-color:var(--asc-on-dark-gold)!important;
+  opacity:1!important;
+}
+
+.as-site.as-home-v2 .ah-work .ah-work-open,
+.as-site.as-home-v2 .ah-work .ah-work-open:link,
+.as-site.as-home-v2 .ah-work .ah-work-open:visited{
+  color:var(--asc-on-dark-gold)!important;
+  -webkit-text-fill-color:var(--asc-on-dark-gold)!important;
+  border-top-color:rgba(216,189,132,.62)!important;
+  opacity:1!important;
+}
+
+.as-site.as-home-v2 .ah-work .ah-work-open .as-arrow,
+.as-site.as-home-v2 .ah-work .ah-work-open .as-arrow::before,
+.as-site.as-home-v2 .ah-work .ah-work-open .as-arrow::after{
+  color:var(--asc-on-dark-gold)!important;
+  border-color:var(--asc-on-dark-gold)!important;
+}
+
+/* Mobile never lowers contrast. */
+@media(max-width:760px){
+  .as-site.as-home-v2 .ah-work .ah-work-head>p,
+  .as-site.as-home-v2 .ah-work .ah-work-card-copy p{
+    color:#ddd8ce!important;
+    -webkit-text-fill-color:#ddd8ce!important;
+  }
+
+  .as-site.as-home-v2 .ah-work .ah-kicker,
+  .as-site.as-home-v2 .ah-work .ah-kicker-dark,
+  .as-site.as-home-v2 .ah-work .ah-work-card-copy>span{
+    color:#bdb7ad!important;
+    -webkit-text-fill-color:#bdb7ad!important;
+  }
+}
