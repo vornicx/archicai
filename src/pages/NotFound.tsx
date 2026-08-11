@@ -11,21 +11,21 @@ export default function NotFound() {
   const contact = lang === 'en' ? '/en/contact/' : '/contact/'
 
   return (
-    <div className="as-site as-seo-page">
-      <Helmet>
+    <div className="as-site as-seo-page as-notfound-page">
+      <Helmet htmlAttributes={{ lang }}>
         <title>{n.title} | Archic</title>
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <StudioExperience />
       <StudioHeader />
-      <section className="as-seo-hero" style={{ minHeight: '82svh' }}>
-        <div className="as-seo-hero-main">
+      <section className="as-seo-hero">
+        <div className="as-seo-hero-main" data-reveal="hero">
           <div className="as-seo-layer">ARCHIC / 404</div>
           <h1>{n.title}<br /><em>{lang === 'es' ? 'Volvamos a lo importante.' : 'Back to what matters.'}</em></h1>
           <p className="as-seo-hero-lead">{n.body}</p>
           <div className="as-seo-actions">
             <a className="as-btn as-btn-metal" href={home}>{n.home}<i className="as-arrow" aria-hidden="true" /></a>
-            <a className="as-text-link" href={contact}>{n.contact}<i className="as-arrow" aria-hidden="true" /></a>
+            <a className="as-notfound-link" href={contact}>{n.contact}<i className="as-arrow" aria-hidden="true" /></a>
           </div>
         </div>
       </section>
