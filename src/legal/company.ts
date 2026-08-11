@@ -1,3 +1,5 @@
+import { CONTACT_PHONE_DISPLAY } from '../config/contact'
+
 /**
  * Identification data required to operate a commercial website in Spain.
  *
@@ -37,11 +39,7 @@ export type CompanyData = {
   country: string
   /** Contact email — direct and effective communication. LSSI art. 10.1.b. */
   email: string
-  /**
-   * Contact phone. Not strictly mandatory when the email is genuinely
-   * effective, but the AEPD and consumer authorities expect a second direct
-   * channel. Leave as `null` only if you deliberately publish email only.
-   */
+  /** Public contact phone. */
   phone: string | Pending
   /**
    * Mercantile Registry entry — mandatory for companies (LSSI art. 10.1.a),
@@ -67,17 +65,14 @@ export const COMPANY: CompanyData = {
 
   country: 'España',
   email: 'vornic@archic.es',
-
-  // TODO(legal): add a contact phone, or document the decision to publish
-  // email only.
-  phone: null,
+  phone: CONTACT_PHONE_DISPLAY,
 
   // TODO(legal): set to `false` if trading as autónomo, or fill in the
   // Mercantile Registry entry (registry, volume, folio, sheet, entry number).
   registry: null,
 
   site: 'https://archic.es',
-  lastUpdated: '2026-08-04',
+  lastUpdated: '2026-08-11',
 }
 
 /**
