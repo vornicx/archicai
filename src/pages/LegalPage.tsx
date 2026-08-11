@@ -119,7 +119,7 @@ export default function LegalPage({ doc: docKey }: { doc: LegalDocKey }) {
       <StudioHeader />
 
       <main className="as-legal-main">
-        <header>
+        <header data-reveal="hero">
           <div className="as-seo-breadcrumb"><a href={home}>Archic</a><span>/</span><span>{doc.title}</span></div>
           <div className="as-seo-layer">ARCHIC / LEGAL</div>
           <h1>{doc.title}</h1>
@@ -142,7 +142,7 @@ export default function LegalPage({ doc: docKey }: { doc: LegalDocKey }) {
           </section>
         ))}
 
-        <a className="as-btn" style={{ border: '1px solid rgba(5,5,5,.28)', color: '#17140f' }} href={home}>{t.legal.backHome}</a>
+        <a className="as-legal-back" href={home}>{t.legal.backHome}<i className="as-arrow" aria-hidden="true" /></a>
       </main>
 
       <StudioFooter />
