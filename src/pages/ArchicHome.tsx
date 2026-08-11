@@ -39,12 +39,13 @@ const COPY = {
     work: {
       kicker: 'EXPLORACIONES SELECCIONADAS',
       title: 'Diseñamos antes de pedirte que imagines.',
-      body: 'Prototipos y estudios internos con los que probamos nuevas direcciones para hostelería, movilidad premium e inmobiliario. No son casos de éxito: son una muestra del nivel al que queremos llevar cada proyecto.',
+      body: 'Prototipos funcionales internos que conectan la experiencia del cliente con la operación real. No son casos de éxito: puedes entrar, usarlos y ver cómo Presence, Control y Business trabajan juntos.',
       items: [
-        ['01', 'Hostelería', 'Reserva · Experiencia · Operación', 'Una experiencia de reserva que continúa detrás del mostrador.'],
-        ['02', 'Movilidad premium', 'Descubrimiento · Reserva · Flota', 'Producto, disponibilidad y deseo en una sola narrativa digital.'],
-        ['03', 'Inmobiliario', 'Catálogo · Búsqueda · Gestión', 'Catálogo editorial delante; control operativo detrás.'],
+        ['01', 'Hostelería', 'Reserva · Experiencia · Operación', 'Reserva una mesa y comprueba cómo esa misma acción llega a sala y genera contexto de cliente.'],
+        ['02', 'Movilidad premium', 'Descubrimiento · Reserva · Flota', 'Elige vehículo y fechas, envía una solicitud y observa cómo entra en la gestión de flota.'],
+        ['03', 'Inmobiliario', 'Catálogo · Búsqueda · Gestión', 'Filtra propiedades, solicita una visita y sigue el lead desde la capa operativa.'],
       ],
+      open: 'Abrir prototipo',
     },
     principles: {
       kicker: 'LA CALIDAD ES UN SISTEMA',
@@ -106,12 +107,13 @@ const COPY = {
     work: {
       kicker: 'SELECTED EXPLORATIONS',
       title: 'We design before asking you to imagine.',
-      body: 'Internal prototypes and studies where we test new directions for hospitality, premium mobility and real estate. They are not case studies: they are a demonstration of the standard we want every project to reach.',
+      body: 'Functional internal prototypes that connect customer experience with real operations. They are not case studies: you can enter, use them and see Presence, Control and Business working together.',
       items: [
-        ['01', 'Hospitality', 'Booking · Experience · Operations', 'A booking experience that continues behind the counter.'],
-        ['02', 'Luxury mobility', 'Discovery · Booking · Fleet', 'Product, availability and desire in one digital narrative.'],
-        ['03', 'Real estate', 'Portfolio · Search · Management', 'Editorial catalogue in front; operational control behind.'],
+        ['01', 'Hospitality', 'Booking · Experience · Operations', 'Book a table and see the same action reach service operations and create customer context.'],
+        ['02', 'Luxury mobility', 'Discovery · Booking · Fleet', 'Choose a vehicle and dates, send an enquiry and watch it enter fleet management.'],
+        ['03', 'Real estate', 'Portfolio · Search · Management', 'Filter properties, request a viewing and follow the lead through the operating layer.'],
       ],
+      open: 'Open prototype',
     },
     principles: {
       kicker: 'QUALITY IS A SYSTEM',
@@ -143,6 +145,8 @@ const COPY = {
     },
   },
 } as const
+
+const EXPLORATION_SLUGS = ['explorations/hospitality', 'explorations/mobility', 'explorations/real-estate'] as const
 
 function path(lang: 'es' | 'en', slug: string) {
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
@@ -288,16 +292,22 @@ export default function ArchicHome() {
             <p>{c.work.body}</p>
           </div>
           <div className="ah-work-grid">
-            {c.work.items.map(([no, title, meta, body], index) => (
-              <article className="ah-work-card" key={title} data-reveal>
-                <InterfaceStudy type={index} lang={lang} />
-                <div className="ah-work-card-copy">
-                  <span>{no}</span>
-                  <div><strong>{title}</strong><small>{meta}</small></div>
-                  <p>{body}</p>
-                </div>
-              </article>
-            ))}
+            {c.work.items.map(([no, title, meta, body], index) => {
+              const href = path(lang, EXPLORATION_SLUGS[index])
+              return (
+                <article className="ah-work-card" key={title} data-reveal>
+                  <a className="ah-study-link" href={href} aria-label={`${c.work.open}: ${title}`}>
+                    <InterfaceStudy type={index} lang={lang} />
+                  </a>
+                  <div className="ah-work-card-copy">
+                    <span>{no}</span>
+                    <div><strong>{title}</strong><small>{meta}</small></div>
+                    <p>{body}</p>
+                    <a className="ah-work-open" href={href}>{c.work.open}<i className="as-arrow" aria-hidden="true" /></a>
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </section>
 
