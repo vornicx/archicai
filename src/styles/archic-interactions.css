@@ -59,7 +59,8 @@
 
 .as-home-v2 .as-footer-bottom,
 .as-detail .as-footer-bottom,
-.as-contact-page .as-footer-bottom{
+.as-contact-page .as-footer-bottom,
+.as-seo-page .as-footer-bottom{
   font-size:9px;
   line-height:1.5;
   letter-spacing:.1em;
@@ -73,7 +74,10 @@
 .as-detail .as-footer-contact>span,
 .as-contact-page .as-footer-nav>span,
 .as-contact-page .as-footer-legal>span,
-.as-contact-page .as-footer-contact>span{
+.as-contact-page .as-footer-contact>span,
+.as-seo-page .as-footer-nav>span,
+.as-seo-page .as-footer-legal>span,
+.as-seo-page .as-footer-contact>span{
   font-size:8px;
   color:rgba(255,255,255,.52);
 }
@@ -81,26 +85,33 @@
 /* Reveal timing is contextual rather than globally identical. */
 .as-home-v2.as-experience-ready [data-reveal],
 .as-detail.as-experience-ready [data-reveal],
-.as-contact-page.as-experience-ready [data-reveal]{
+.as-contact-page.as-experience-ready [data-reveal],
+.as-seo-page.as-experience-ready [data-reveal]{
   transition-delay:var(--as-reveal-delay,0ms);
 }
 
 .as-home-v2 .ah-btn,
 .as-detail .as-next-project,
-.as-contact-page .sx-btn{
+.as-contact-page .sx-btn,
+.as-seo-page .as-btn,
+.as-seo-page .as-seo-chip{
   -webkit-tap-highlight-color:transparent;
 }
 
 .as-home-v2 .ah-btn:active,
 .as-detail .as-next-project:active,
-.as-contact-page .sx-btn:active{
+.as-contact-page .sx-btn:active,
+.as-seo-page .as-btn:active,
+.as-seo-page .as-seo-chip:active{
   transform:translateY(0) scale(.985);
 }
 
 .as-home-v2 .ah-layer-row:active,
 .as-home-v2 .ah-work-card:active,
 .as-detail .as-feature-list article:active,
-.as-detail .as-search-intents-list a:active{
+.as-detail .as-search-intents-list a:active,
+.as-seo-page .as-seo-feature:active,
+.as-seo-page .as-seo-faq summary:active{
   opacity:.82;
 }
 
@@ -163,7 +174,8 @@ html[lang="es"] .a26-studio-mark{font-size:5.7px}
 @media(prefers-reduced-motion:reduce){
   .as-home-v2.as-experience-ready [data-reveal],
   .as-detail.as-experience-ready [data-reveal],
-  .as-contact-page.as-experience-ready [data-reveal]{transition-delay:0ms!important}
+  .as-contact-page.as-experience-ready [data-reveal],
+  .as-seo-page.as-experience-ready [data-reveal]{transition-delay:0ms!important}
   .as-route-fallback i::after{animation:none;transform:scaleX(1)}
   .as-menu-panel,
   .as-menu-inner nav a,
