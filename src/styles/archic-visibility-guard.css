@@ -1,107 +1,430 @@
 /* Archic visibility guardrails.
-   Critical interface copy must never depend on inherited colour from legacy layers. */
+   Final safety layer: critical copy never inherits colour from legacy CSS.
+   Loaded last in main.tsx. */
 
-/* Home hero: explicit high-contrast text on the black surface. */
-.as-home-v2 .ah-hero,
-.as-home-v2 .ah-hero-copy,
-.as-home-v2 .ah-hero h1{
-  color:#f7f5ef;
+:root{
+  --ag-dark:#090908;
+  --ag-light:#f7f5ef;
+  --ag-light-accent:#ded9cf;
+  --ag-light-secondary:#d8d4cb;
+  --ag-light-muted:#aaa59b;
+  --ag-paper:#f0eee8;
+  --ag-ink:#11100e;
+  --ag-ink-secondary:#45413b;
+  --ag-ink-muted:#625e57;
 }
 
-.as-home-v2 .ah-hero h1 > span{
-  color:#f7f5ef !important;
-  -webkit-text-fill-color:#f7f5ef !important;
-  opacity:1 !important;
-  mix-blend-mode:normal !important;
+/* --------------------------------------------------------------------------
+   GLOBAL NAVIGATION
+   -------------------------------------------------------------------------- */
+.as-site.as-home-v2 .as-menu-button,
+.as-site.as-detail .as-menu-button,
+.as-site.as-contact-page .as-menu-button,
+.as-site.as-seo-page .as-menu-button,
+.as-site.as-editorial-page .as-menu-button,
+.as-site.as-legal-shell .as-menu-button{
+  color:var(--ag-light)!important;
+  -webkit-text-fill-color:var(--ag-light)!important;
 }
 
-.as-home-v2 .ah-hero h1 > em{
-  color:#ded9cf !important;
-  -webkit-text-fill-color:#ded9cf !important;
-  opacity:1 !important;
-  mix-blend-mode:normal !important;
+.as-site .as-menu-panel nav a strong,
+.as-site .as-menu-panel .as-menu-phone strong{
+  color:var(--ag-ink)!important;
+  -webkit-text-fill-color:var(--ag-ink)!important;
+  opacity:1!important;
 }
 
-.as-home-v2 .ah-hero .ah-kicker{
-  color:#bdb8af !important;
+.as-site .as-menu-panel nav a small,
+.as-site .as-menu-panel nav a>span,
+.as-site .as-menu-panel .as-menu-meta,
+.as-site .as-menu-panel .as-menu-phone small{
+  color:var(--ag-ink-muted)!important;
+  -webkit-text-fill-color:var(--ag-ink-muted)!important;
 }
 
-.as-home-v2 .ah-hero-bottom > p{
-  color:#ddd9d1 !important;
+/* --------------------------------------------------------------------------
+   HOME — DARK SURFACES
+   -------------------------------------------------------------------------- */
+.as-site.as-home-v2 .ah-hero,
+.as-site.as-home-v2 .ah-layers,
+.as-site.as-home-v2 .ah-principles,
+.as-site.as-home-v2 .ah-close{
+  color:var(--ag-light)!important;
 }
 
-/* Primary CTA: never allow white-on-white or transparent text. */
-.as-home-v2 .ah-btn-light,
-.as-home-v2 .ah-btn-light:link,
-.as-home-v2 .ah-btn-light:visited{
-  background:#f7f5ef !important;
-  border-color:#f7f5ef !important;
-  color:#090908 !important;
-  -webkit-text-fill-color:#090908 !important;
+.as-site.as-home-v2 .ah-hero h1,
+.as-site.as-home-v2 .ah-hero h1>span,
+.as-site.as-home-v2 .ah-layers .ah-section-head h2,
+.as-site.as-home-v2 .ah-layer-row>strong,
+.as-site.as-home-v2 .ah-layer-row h3,
+.as-site.as-home-v2 .ah-principles-title h2,
+.as-site.as-home-v2 .ah-principles-list h3,
+.as-site.as-home-v2 .ah-close h2{
+  color:var(--ag-light)!important;
+  -webkit-text-fill-color:var(--ag-light)!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  text-shadow:none!important;
 }
 
-.as-home-v2 .ah-btn-light .as-arrow,
-.as-home-v2 .ah-btn-light .as-arrow::before,
-.as-home-v2 .ah-btn-light .as-arrow::after{
-  color:currentColor !important;
-  border-color:currentColor !important;
+.as-site.as-home-v2 .ah-hero h1>em,
+.as-site.as-home-v2 .ah-close h2>em{
+  color:var(--ag-light-accent)!important;
+  -webkit-text-fill-color:var(--ag-light-accent)!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
 }
 
-.as-home-v2 .ah-link,
-.as-home-v2 .ah-link:link,
-.as-home-v2 .ah-link:visited{
-  color:#e1ddd5 !important;
-  -webkit-text-fill-color:#e1ddd5 !important;
-  border-bottom-color:#8e8981 !important;
+.as-site.as-home-v2 .ah-hero .ah-kicker,
+.as-site.as-home-v2 .ah-layers .ah-kicker,
+.as-site.as-home-v2 .ah-principles .ah-kicker,
+.as-site.as-home-v2 .ah-close .ah-kicker{
+  color:var(--ag-light-muted)!important;
+  -webkit-text-fill-color:var(--ag-light-muted)!important;
 }
 
-/* Product/detail dark heroes follow the same hard rule. */
-.as-detail .as-detail-hero h1,
-.as-detail .as-detail-hero h1 > span{
-  color:#f7f5ef !important;
-  -webkit-text-fill-color:#f7f5ef !important;
-  opacity:1 !important;
+.as-site.as-home-v2 .ah-hero-bottom>p,
+.as-site.as-home-v2 .ah-section-head>p,
+.as-site.as-home-v2 .ah-layer-row p,
+.as-site.as-home-v2 .ah-principles-list p,
+.as-site.as-home-v2 .ah-close-copy>p:not(.ah-kicker){
+  color:var(--ag-light-secondary)!important;
+  -webkit-text-fill-color:var(--ag-light-secondary)!important;
 }
 
-.as-detail .as-detail-hero h1 > em{
-  color:#ded9cf !important;
-  -webkit-text-fill-color:#ded9cf !important;
-  opacity:1 !important;
+.as-site.as-home-v2 .ah-row-no,
+.as-site.as-home-v2 .ah-row-open,
+.as-site.as-home-v2 .ah-principles-list span,
+.as-site.as-home-v2 .ah-hero-meta,
+.as-site.as-home-v2 .ah-system-label,
+.as-site.as-home-v2 .ah-system-axis{
+  color:var(--ag-light-muted)!important;
+  -webkit-text-fill-color:var(--ag-light-muted)!important;
 }
 
-/* Dark CTA surfaces across the site. */
-.as-detail .as-next-project,
-.as-editorial-page .as-seo-close .as-btn,
-.as-editorial-page .as-article-cta .as-btn,
-.as-seo-page .as-btn{
-  text-shadow:none;
+/* Home primary and secondary actions. */
+.as-site.as-home-v2 .ah-btn-light,
+.as-site.as-home-v2 .ah-btn-light:link,
+.as-site.as-home-v2 .ah-btn-light:visited{
+  background:var(--ag-light)!important;
+  border-color:var(--ag-light)!important;
+  color:var(--ag-dark)!important;
+  -webkit-text-fill-color:var(--ag-dark)!important;
 }
 
-/* Header controls must remain readable on the black navigation surface. */
-.as-home-v2 .as-menu-button,
-.as-detail .as-menu-button,
-.as-contact-page .as-menu-button,
-.as-seo-page .as-menu-button,
-.as-editorial-page .as-menu-button,
-.as-legal-shell .as-menu-button{
-  color:#f7f5ef !important;
+.as-site.as-home-v2 .ah-btn-light .as-arrow,
+.as-site.as-home-v2 .ah-btn-light .as-arrow::before,
+.as-site.as-home-v2 .ah-btn-light .as-arrow::after{
+  color:currentColor!important;
+  border-color:currentColor!important;
+}
+
+.as-site.as-home-v2 .ah-link,
+.as-site.as-home-v2 .ah-link:link,
+.as-site.as-home-v2 .ah-link:visited{
+  color:var(--ag-light-secondary)!important;
+  -webkit-text-fill-color:var(--ag-light-secondary)!important;
+  border-bottom-color:#8e8981!important;
+}
+
+/* --------------------------------------------------------------------------
+   HOME — PAPER SURFACES
+   -------------------------------------------------------------------------- */
+.as-site.as-home-v2 .ah-manifesto,
+.as-site.as-home-v2 .ah-work,
+.as-site.as-home-v2 .ah-process{
+  color:var(--ag-ink)!important;
+}
+
+.as-site.as-home-v2 .ah-manifesto h2,
+.as-site.as-home-v2 .ah-work-head h2,
+.as-site.as-home-v2 .ah-work-card-copy strong,
+.as-site.as-home-v2 .ah-process-head h2,
+.as-site.as-home-v2 .ah-process-grid h3{
+  color:var(--ag-ink)!important;
+  -webkit-text-fill-color:var(--ag-ink)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+
+.as-site.as-home-v2 .ah-manifesto h2>em{
+  color:#514d47!important;
+  -webkit-text-fill-color:#514d47!important;
+}
+
+.as-site.as-home-v2 .ah-manifesto-copy>p:last-child,
+.as-site.as-home-v2 .ah-work-head>p,
+.as-site.as-home-v2 .ah-work-card-copy p,
+.as-site.as-home-v2 .ah-process-grid p{
+  color:var(--ag-ink-secondary)!important;
+  -webkit-text-fill-color:var(--ag-ink-secondary)!important;
+}
+
+.as-site.as-home-v2 .ah-kicker-dark,
+.as-site.as-home-v2 .ah-section-index,
+.as-site.as-home-v2 .ah-work-card-copy>span,
+.as-site.as-home-v2 .ah-work-card-copy small,
+.as-site.as-home-v2 .ah-process-grid span{
+  color:var(--ag-ink-muted)!important;
+  -webkit-text-fill-color:var(--ag-ink-muted)!important;
+}
+
+/* --------------------------------------------------------------------------
+   PRODUCT / DETAIL PAGES — DARK SURFACES
+   -------------------------------------------------------------------------- */
+.as-site.as-detail .as-detail-hero h1,
+.as-site.as-detail .as-detail-hero h1>span,
+.as-site.as-detail .as-feature-section .as-feature-head h2,
+.as-site.as-detail .as-feature-section .as-feature-list h3,
+.as-site.as-detail .as-next h2,
+.as-site.as-detail .as-next-project,
+.as-site.as-detail .as-next-call strong{
+  color:var(--ag-light)!important;
+  -webkit-text-fill-color:var(--ag-light)!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  text-shadow:none!important;
+}
+
+.as-site.as-detail .as-detail-hero h1>em{
+  color:var(--ag-light-accent)!important;
+  -webkit-text-fill-color:var(--ag-light-accent)!important;
+}
+
+.as-site.as-detail .as-detail-hero .as-lead,
+.as-site.as-detail .as-feature-list p,
+.as-site.as-detail .as-next>div>p:not(.as-kicker){
+  color:var(--ag-light-secondary)!important;
+  -webkit-text-fill-color:var(--ag-light-secondary)!important;
+}
+
+.as-site.as-detail .as-detail-hero .as-kicker,
+.as-site.as-detail .as-feature-section .as-kicker,
+.as-site.as-detail .as-next .as-kicker,
+.as-site.as-detail .as-feature-list article>span,
+.as-site.as-detail .as-next-call small{
+  color:var(--ag-light-muted)!important;
+  -webkit-text-fill-color:var(--ag-light-muted)!important;
+}
+
+/* --------------------------------------------------------------------------
+   PRODUCT / DETAIL PAGES — PAPER SURFACES
+   -------------------------------------------------------------------------- */
+.as-site.as-detail .as-statement h2,
+.as-site.as-detail .as-principle h2,
+.as-site.as-detail .as-search-intents-head h2,
+.as-site.as-detail .as-search-intents-list strong{
+  color:var(--ag-ink)!important;
+  -webkit-text-fill-color:var(--ag-ink)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+
+.as-site.as-detail .as-statement h2>em{
+  color:#514d47!important;
+  -webkit-text-fill-color:#514d47!important;
+}
+
+.as-site.as-detail .as-statement>div:last-child>p,
+.as-site.as-detail .as-principle-inner>p:last-child,
+.as-site.as-detail .as-search-intents-list small{
+  color:var(--ag-ink-secondary)!important;
+  -webkit-text-fill-color:var(--ag-ink-secondary)!important;
+}
+
+.as-site.as-detail .as-statement-index,
+.as-site.as-detail .as-principle .as-kicker,
+.as-site.as-detail .as-search-intents .as-kicker,
+.as-site.as-detail .as-search-intents-list>a>span{
+  color:var(--ag-ink-muted)!important;
+  -webkit-text-fill-color:var(--ag-ink-muted)!important;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.as-site.as-contact-page .as-contact-hero h1,
+.as-site.as-contact-page .as-contact-direct-call strong{
+  color:var(--ag-ink)!important;
+  -webkit-text-fill-color:var(--ag-ink)!important;
+  opacity:1!important;
+}
+
+.as-site.as-contact-page .as-contact-hero>div:first-child>p:not(.as-kicker),
+.as-site.as-contact-page .as-contact-notes span{
+  color:var(--ag-ink-secondary)!important;
+  -webkit-text-fill-color:var(--ag-ink-secondary)!important;
+}
+
+.as-site.as-contact-page .as-contact-hero .as-kicker,
+.as-site.as-contact-page .as-contact-direct-call>span{
+  color:var(--ag-ink-muted)!important;
+  -webkit-text-fill-color:var(--ag-ink-muted)!important;
+}
+
+.as-site.as-contact-page .as-contact-form,
+.as-site.as-contact-page .as-contact-form input,
+.as-site.as-contact-page .as-contact-form textarea{
+  color:var(--ag-light)!important;
+  -webkit-text-fill-color:var(--ag-light)!important;
+}
+
+.as-site.as-contact-page .as-contact-form .sx-field label,
+.as-site.as-contact-page .as-contact-form .sx-consent,
+.as-site.as-contact-page .as-contact-form .sx-form-msg,
+.as-site.as-contact-page .as-contact-form .sx-type-options legend{
+  color:var(--ag-light-secondary)!important;
+  -webkit-text-fill-color:var(--ag-light-secondary)!important;
+}
+
+.as-site.as-contact-page .as-contact-form .sx-btn{
+  background:var(--ag-light)!important;
+  border-color:var(--ag-light)!important;
+  color:var(--ag-dark)!important;
+  -webkit-text-fill-color:var(--ag-dark)!important;
+}
+
+/* --------------------------------------------------------------------------
+   SEO LANDINGS
+   -------------------------------------------------------------------------- */
+.as-site.as-seo-page .as-seo-hero h1,
+.as-site.as-seo-page .as-seo-section:not(.as-seo-light) h2,
+.as-site.as-seo-page .as-seo-section:not(.as-seo-light) h3,
+.as-site.as-seo-page .as-seo-section:not(.as-seo-light) strong,
+.as-site.as-seo-page .as-seo-close h2{
+  color:var(--ag-light)!important;
+  -webkit-text-fill-color:var(--ag-light)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+
+.as-site.as-seo-page .as-seo-hero h1 em,
+.as-site.as-seo-page .as-seo-close h2 em{
+  color:var(--ag-light-accent)!important;
+  -webkit-text-fill-color:var(--ag-light-accent)!important;
+}
+
+.as-site.as-seo-page .as-seo-hero-lead,
+.as-site.as-seo-page .as-seo-hero-side p,
+.as-site.as-seo-page .as-seo-section:not(.as-seo-light) p{
+  color:var(--ag-light-secondary)!important;
+  -webkit-text-fill-color:var(--ag-light-secondary)!important;
+}
+
+.as-site.as-seo-page .as-seo-light h1,
+.as-site.as-seo-page .as-seo-light h2,
+.as-site.as-seo-page .as-seo-light h3,
+.as-site.as-seo-page .as-seo-light strong{
+  color:var(--ag-ink)!important;
+  -webkit-text-fill-color:var(--ag-ink)!important;
+  opacity:1!important;
+}
+
+.as-site.as-seo-page .as-seo-light p,
+.as-site.as-seo-page .as-seo-light li{
+  color:var(--ag-ink-secondary)!important;
+  -webkit-text-fill-color:var(--ag-ink-secondary)!important;
+}
+
+/* --------------------------------------------------------------------------
+   GUIDES / EDITORIAL
+   -------------------------------------------------------------------------- */
+.as-site.as-editorial-page .as-editorial-hero h1,
+.as-site.as-editorial-page .as-article-head h1,
+.as-site.as-editorial-page .as-seo-close h2,
+.as-site.as-editorial-page .as-article-cta h2{
+  color:var(--ag-light)!important;
+  -webkit-text-fill-color:var(--ag-light)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+
+.as-site.as-editorial-page .as-editorial-hero h1 em,
+.as-site.as-editorial-page .as-seo-close h2 em{
+  color:var(--ag-light-accent)!important;
+  -webkit-text-fill-color:var(--ag-light-accent)!important;
+}
+
+.as-site.as-editorial-page .as-editorial-hero>div>p:last-child,
+.as-site.as-editorial-page .as-article-answer,
+.as-site.as-editorial-page .as-seo-close p{
+  color:var(--ag-light-secondary)!important;
+  -webkit-text-fill-color:var(--ag-light-secondary)!important;
+}
+
+.as-site.as-editorial-page .as-seo-light h1,
+.as-site.as-editorial-page .as-seo-light h2,
+.as-site.as-editorial-page .as-seo-light h3,
+.as-site.as-editorial-page .as-guide-card h2,
+.as-site.as-editorial-page .as-article-wrap h2,
+.as-site.as-editorial-page .as-article-wrap h3,
+.as-site.as-editorial-page .as-article-wrap strong{
+  color:var(--ag-ink)!important;
+  -webkit-text-fill-color:var(--ag-ink)!important;
+  opacity:1!important;
+}
+
+.as-site.as-editorial-page .as-seo-light p,
+.as-site.as-editorial-page .as-guide-card p,
+.as-site.as-editorial-page .as-article-wrap p,
+.as-site.as-editorial-page .as-article-wrap li{
+  color:var(--ag-ink-secondary)!important;
+  -webkit-text-fill-color:var(--ag-ink-secondary)!important;
+}
+
+/* --------------------------------------------------------------------------
+   LEGAL — ALWAYS HIGH-CONTRAST PAPER
+   -------------------------------------------------------------------------- */
+.as-site.as-legal-shell h1,
+.as-site.as-legal-shell h2,
+.as-site.as-legal-shell h3,
+.as-site.as-legal-shell main strong{
+  color:var(--ag-ink)!important;
+  -webkit-text-fill-color:var(--ag-ink)!important;
+  opacity:1!important;
+}
+
+.as-site.as-legal-shell main p,
+.as-site.as-legal-shell main li{
+  color:var(--ag-ink-secondary)!important;
+  -webkit-text-fill-color:var(--ag-ink-secondary)!important;
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER — ALWAYS DARK
+   -------------------------------------------------------------------------- */
+.as-site .as-footer .as-footer-contact a,
+.as-site .as-footer .as-footer-nav a,
+.as-site .as-footer .as-footer-legal a{
+  color:var(--ag-light-secondary)!important;
+  -webkit-text-fill-color:var(--ag-light-secondary)!important;
+}
+
+.as-site .as-footer .as-footer-brand p{
+  color:var(--ag-light-secondary)!important;
+  -webkit-text-fill-color:var(--ag-light-secondary)!important;
+}
+
+.as-site .as-footer .as-footer-nav>span,
+.as-site .as-footer .as-footer-legal>span,
+.as-site .as-footer .as-footer-contact>span,
+.as-site .as-footer .as-footer-bottom{
+  color:var(--ag-light-muted)!important;
+  -webkit-text-fill-color:var(--ag-light-muted)!important;
 }
 
 @media(hover:hover){
-  .as-home-v2 .ah-btn-light:hover{
-    background:transparent !important;
-    color:#f7f5ef !important;
-    -webkit-text-fill-color:#f7f5ef !important;
+  .as-site.as-home-v2 .ah-btn-light:hover,
+  .as-site.as-contact-page .as-contact-form .sx-btn:hover{
+    background:transparent!important;
+    color:var(--ag-light)!important;
+    -webkit-text-fill-color:var(--ag-light)!important;
   }
 }
 
 @media(max-width:760px){
-  /* Mobile first impression: one unmistakable action, then the secondary link. */
-  .as-home-v2 .ah-hero h1{
-    color:#f7f5ef !important;
-  }
-
-  .as-home-v2 .ah-actions{
+  /* Mobile first: contrast increases, never decreases. */
+  .as-site.as-home-v2 .ah-actions{
     width:100%;
     display:grid;
     grid-template-columns:1fr;
@@ -109,14 +432,28 @@
     align-items:start;
   }
 
-  .as-home-v2 .ah-btn-light{
+  .as-site.as-home-v2 .ah-btn-light{
     width:100%;
     min-height:58px;
     justify-content:space-between;
   }
 
-  .as-home-v2 .ah-link{
+  .as-site.as-home-v2 .ah-link{
     width:max-content;
     min-height:38px;
+  }
+
+  .as-site.as-home-v2 .ah-layers .ah-section-head h2,
+  .as-site.as-home-v2 .ah-layer-row h3,
+  .as-site.as-home-v2 .ah-principles-title h2,
+  .as-site.as-home-v2 .ah-principles-list h3,
+  .as-site.as-detail .as-feature-section h2,
+  .as-site.as-detail .as-feature-section h3,
+  .as-site.as-detail .as-next h2,
+  .as-site.as-seo-page .as-seo-section:not(.as-seo-light) h2,
+  .as-site.as-seo-page .as-seo-section:not(.as-seo-light) h3{
+    color:var(--ag-light)!important;
+    -webkit-text-fill-color:var(--ag-light)!important;
+    opacity:1!important;
   }
 }
