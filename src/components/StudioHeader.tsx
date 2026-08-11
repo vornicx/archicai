@@ -36,7 +36,7 @@ function normalisePath(value: string) {
 }
 
 export default function StudioHeader() {
-  const { lang, setLang, t } = useLang()
+  const { lang, setLang, canSwitchLang, t } = useLang()
   const c = COPY[lang]
   const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
@@ -103,11 +103,13 @@ export default function StudioHeader() {
         </a>
 
         <div className="as-header-actions">
-          <div className="as-lang" role="group" aria-label={t.footer.langLabel}>
-            <button type="button" aria-pressed={lang === 'es'} onClick={() => setLang('es')}>ES</button>
-            <span>/</span>
-            <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
-          </div>
+          {canSwitchLang && (
+            <div className="as-lang" role="group" aria-label={t.footer.langLabel}>
+              <button type="button" aria-pressed={lang === 'es'} onClick={() => setLang('es')}>ES</button>
+              <span>/</span>
+              <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
+            </div>
+          )}
           <a className="as-project-link" href={path(lang, 'contact')}>{c.project}<i className="as-arrow" aria-hidden="true" /></a>
           <button
             ref={menuButtonRef}
@@ -137,7 +139,7 @@ export default function StudioHeader() {
         <div className="as-menu-inner">
           <div className="as-menu-meta">
             <div className="as-menu-identity">
-              <span>ARCHIC / DIGITAL SYSTEMS</span>
+              <span>{lang === 'es' ? 'ARCHIC / SISTEMAS DIGITALES' : 'ARCHIC / DIGITAL SYSTEMS'}</span>
               <small>{lang === 'es' ? 'Presencia · Operación · Software' : 'Presence · Operations · Software'}</small>
             </div>
             <a className="as-menu-phone" href={`tel:${CONTACT_PHONE}`}>
