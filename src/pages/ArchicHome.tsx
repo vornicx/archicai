@@ -10,23 +10,23 @@ import { CONTACT_PHONE } from '../config/contact'
 const COPY = {
   es: {
     hero: {
-      kicker: 'ARCHIC / DIGITAL SYSTEMS',
+      kicker: 'ARCHIC / SISTEMAS DIGITALES',
       titleA: 'Diseñamos lo que',
       titleB: 'hace avanzar',
       titleC: 'un negocio.',
-      body: 'Estrategia, diseño y tecnología bajo una misma dirección. Creamos presencias digitales, sistemas de operación y software a medida con un estándar obsesivo de calidad.',
+      body: 'Estrategia, diseño y tecnología bajo una misma dirección. Creamos presencia digital, sistemas de operación y software a medida con un estándar obsesivo de calidad.',
       cta: 'Empezar un proyecto',
       secondary: 'Ver cómo trabajamos',
-      meta: ['ESTUDIO DIGITAL', 'ESPAÑA / REMOTE', '2026'],
+      meta: ['ESTUDIO DIGITAL', 'ESPAÑA / REMOTO', '2026'],
     },
     manifesto: {
-      kicker: 'THE ARCHIC STANDARD',
+      kicker: 'EL ESTÁNDAR ARCHIC',
       lineA: 'No hacemos más ruido.',
       lineB: 'Hacemos que importe.',
       body: 'Una experiencia premium no nace de añadir efectos. Nace de una dirección clara, una interfaz precisa, contenido con intención y una ejecución que aguanta el detalle.',
     },
     layers: {
-      kicker: 'ONE SYSTEM / THREE LAYERS',
+      kicker: 'UN SISTEMA / TRES CAPAS',
       title: 'Del primer impacto a la operación interna.',
       body: 'Archic cubre las tres capas que más afectan a cómo se percibe, funciona y escala un negocio.',
       items: [
@@ -37,37 +37,37 @@ const COPY = {
       open: 'Descubrir',
     },
     work: {
-      kicker: 'SELECTED EXPLORATIONS',
+      kicker: 'EXPLORACIONES SELECCIONADAS',
       title: 'Diseñamos antes de pedirte que imagines.',
-      body: 'Prototipos y estudios internos con los que probamos nuevas direcciones para hospitality, movilidad premium e inmobiliario. No son casos de éxito: son una muestra del nivel al que queremos llevar cada proyecto.',
+      body: 'Prototipos y estudios internos con los que probamos nuevas direcciones para hostelería, movilidad premium e inmobiliario. No son casos de éxito: son una muestra del nivel al que queremos llevar cada proyecto.',
       items: [
-        ['01', 'Hospitality', 'Booking · Experience · Operations', 'Una experiencia de reserva que continúa detrás del mostrador.'],
-        ['02', 'Luxury mobility', 'Discovery · Booking · Fleet', 'Producto, disponibilidad y deseo en una sola narrativa digital.'],
-        ['03', 'Real estate', 'Portfolio · Search · Management', 'Catálogo editorial delante; control operativo detrás.'],
+        ['01', 'Hostelería', 'Reserva · Experiencia · Operación', 'Una experiencia de reserva que continúa detrás del mostrador.'],
+        ['02', 'Movilidad premium', 'Descubrimiento · Reserva · Flota', 'Producto, disponibilidad y deseo en una sola narrativa digital.'],
+        ['03', 'Inmobiliario', 'Catálogo · Búsqueda · Gestión', 'Catálogo editorial delante; control operativo detrás.'],
       ],
     },
     principles: {
-      kicker: 'QUALITY IS A SYSTEM',
+      kicker: 'LA CALIDAD ES UN SISTEMA',
       title: 'El detalle no se deja para el final.',
       items: [
         ['01', 'Dirección', 'Cada proyecto necesita una idea visual propia. Nada de vestir una plantilla.'],
-        ['02', 'Interacción', 'Cada click, transición, formulario y estado forma parte de la marca.'],
+        ['02', 'Interacción', 'Cada clic, transición, formulario y estado forma parte de la marca.'],
         ['03', 'Responsive', 'Móvil se diseña. No se limita a encoger la versión de escritorio.'],
-        ['04', 'Performance', 'La percepción premium desaparece en cuanto algo tarda, salta o falla.'],
+        ['04', 'Rendimiento', 'La percepción premium desaparece en cuanto algo tarda, salta o falla.'],
       ],
     },
     process: {
-      kicker: 'HOW WE BUILD',
+      kicker: 'CÓMO CONSTRUIMOS',
       title: 'Un proceso corto. Una exigencia alta.',
       steps: [
         ['01', 'Entender', 'Negocio, cliente, fricción y resultado esperado.'],
         ['02', 'Dirigir', 'Concepto, arquitectura, contenido y sistema visual.'],
         ['03', 'Construir', 'Producto funcional con precisión de frontend y backend.'],
-        ['04', 'Refinar', 'Responsive, motion, rendimiento y pasada final de detalle.'],
+        ['04', 'Refinar', 'Móvil, movimiento, rendimiento y pasada final de detalle.'],
       ],
     },
     close: {
-      kicker: 'START A PROJECT',
+      kicker: 'EMPEZAR UN PROYECTO',
       titleA: 'Si lo digital importa,',
       titleB: 'hagámoslo excepcional.',
       body: 'Cuéntanos qué quieres mejorar. No necesitas tener la solución definida: empezamos por el negocio y diseñamos desde ahí.',
@@ -148,13 +148,13 @@ function path(lang: 'es' | 'en', slug: string) {
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
 }
 
-function InterfaceStudy({ type }: { type: number }) {
+function InterfaceStudy({ type, lang }: { type: number; lang: 'es' | 'en' }) {
   if (type === 0) {
     return (
       <div className="ah-study ah-study-hospitality" aria-hidden="true">
-        <div className="ah-study-top"><span>TABLE 08</span><span>20:30</span></div>
-        <div className="ah-study-title">Dinner,<br /><em>considered.</em></div>
-        <div className="ah-study-reserve"><span>04</span><i /><span>AUG</span><strong>Reserve</strong></div>
+        <div className="ah-study-top"><span>{lang === 'es' ? 'MESA 08' : 'TABLE 08'}</span><span>20:30</span></div>
+        <div className="ah-study-title">{lang === 'es' ? 'Cena,' : 'Dinner,'}<br /><em>{lang === 'es' ? 'bien pensada.' : 'considered.'}</em></div>
+        <div className="ah-study-reserve"><span>04</span><i /><span>{lang === 'es' ? 'AGO' : 'AUG'}</span><strong>{lang === 'es' ? 'Reservar' : 'Reserve'}</strong></div>
       </div>
     )
   }
@@ -162,8 +162,8 @@ function InterfaceStudy({ type }: { type: number }) {
     return (
       <div className="ah-study ah-study-mobility" aria-hidden="true">
         <div className="ah-car-line" />
-        <div className="ah-study-top"><span>FLEET / 07</span><span>MARBELLA</span></div>
-        <div className="ah-model"><small>MODEL 03</small><strong>GT<br />SERIES</strong></div>
+        <div className="ah-study-top"><span>{lang === 'es' ? 'FLOTA / 07' : 'FLEET / 07'}</span><span>MARBELLA</span></div>
+        <div className="ah-model"><small>{lang === 'es' ? 'MODELO 03' : 'MODEL 03'}</small><strong>GT<br />SERIES</strong></div>
         <div className="ah-specs"><span>24H</span><span>530 CV</span><span>AUTO</span></div>
       </div>
     )
@@ -172,10 +172,10 @@ function InterfaceStudy({ type }: { type: number }) {
     <div className="ah-study ah-study-property" aria-hidden="true">
       <div className="ah-property-grid">
         <div><span>01</span><strong>Villa<br />Norte</strong></div>
-        <div><small>4 BED</small><small>320 M²</small><b>€1.4M</b></div>
+        <div><small>{lang === 'es' ? '4 HAB' : '4 BED'}</small><small>320 M²</small><b>€1.4M</b></div>
       </div>
       <div className="ah-property-list"><i /><i /><i /></div>
-      <div className="ah-property-foot"><span>SELECTED PROPERTY</span><span>VIEW →</span></div>
+      <div className="ah-property-foot"><span>{lang === 'es' ? 'PROPIEDAD SELECCIONADA' : 'SELECTED PROPERTY'}</span><span>{lang === 'es' ? 'VER →' : 'VIEW →'}</span></div>
     </div>
   )
 }
@@ -238,11 +238,11 @@ export default function ArchicHome() {
           </div>
 
           <div className="ah-system-object" aria-hidden="true" data-reveal>
-            <div className="ah-system-label"><span>ARCHIC SYSTEM</span><span>01 — 03</span></div>
+            <div className="ah-system-label"><span>{lang === 'es' ? 'SISTEMA ARCHIC' : 'ARCHIC SYSTEM'}</span><span>01 — 03</span></div>
             <div className="ah-layer ah-layer-one"><span>PRESENCE</span><i>01</i></div>
             <div className="ah-layer ah-layer-two"><span>CONTROL</span><i>02</i></div>
             <div className="ah-layer ah-layer-three"><span>BUSINESS</span><i>03</i></div>
-            <div className="ah-system-axis"><i /><span>DESIGN → OPERATIONS → SOFTWARE</span></div>
+            <div className="ah-system-axis"><i /><span>{lang === 'es' ? 'DISEÑO → OPERACIÓN → SOFTWARE' : 'DESIGN → OPERATIONS → SOFTWARE'}</span></div>
           </div>
 
           <div className="ah-hero-meta" aria-hidden="true">
@@ -290,7 +290,7 @@ export default function ArchicHome() {
           <div className="ah-work-grid">
             {c.work.items.map(([no, title, meta, body], index) => (
               <article className="ah-work-card" key={title} data-reveal>
-                <InterfaceStudy type={index} />
+                <InterfaceStudy type={index} lang={lang} />
                 <div className="ah-work-card-copy">
                   <span>{no}</span>
                   <div><strong>{title}</strong><small>{meta}</small></div>
