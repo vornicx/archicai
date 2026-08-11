@@ -3,6 +3,7 @@ import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import StudioContact from '../components/StudioContact'
 import StudioExperience from '../components/StudioExperience'
+import ArchicProductObject from '../components/ArchicProductObject'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 
@@ -229,6 +230,7 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
           <h1>{c.title}<br /><em>{c.accent}</em></h1>
           <p className="as-lead">{c.intro}</p>
         </div>
+        <ArchicProductObject page={page} />
         <div className="as-scroll-mark" aria-hidden="true"><span>{pageIndex}</span><i /><strong>{page.toUpperCase()}</strong></div>
       </section>
 
