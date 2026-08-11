@@ -10,6 +10,22 @@ export default function StudioExperience() {
 
     root.classList.add('as-experience-ready')
 
+    if (!reduceMotion) {
+      const parentOrder = new Map<HTMLElement, number>()
+      revealTargets.forEach((target) => {
+        if (target.dataset.reveal === 'hero') {
+          target.style.setProperty('--as-reveal-delay', '0ms')
+          return
+        }
+
+        const parent = target.parentElement
+        if (!parent) return
+        const order = parentOrder.get(parent) ?? 0
+        parentOrder.set(parent, order + 1)
+        target.style.setProperty('--as-reveal-delay', `${Math.min(order, 3) * 55}ms`)
+      })
+    }
+
     let observer: IntersectionObserver | null = null
     if (reduceMotion || !('IntersectionObserver' in window)) {
       revealTargets.forEach((target) => target.classList.add('is-visible'))
@@ -22,7 +38,7 @@ export default function StudioExperience() {
             observer?.unobserve(entry.target)
           })
         },
-        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+        { threshold: 0.1, rootMargin: '0px 0px -6% 0px' },
       )
       revealTargets.forEach((target) => observer?.observe(target))
     }
@@ -48,6 +64,7 @@ export default function StudioExperience() {
       if (raf) window.cancelAnimationFrame(raf)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
+      revealTargets.forEach((target) => target.style.removeProperty('--as-reveal-delay'))
       root.classList.remove('as-experience-ready')
     }
   }, [])
