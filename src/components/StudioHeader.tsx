@@ -72,10 +72,6 @@ export default function StudioHeader() {
             <span>/</span>
             <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
           </div>
-          <a className="as-phone-link" href={`tel:${CONTACT_PHONE}`} aria-label={`${c.call} ${CONTACT_PHONE_DISPLAY}`}>
-            <span>{c.call}</span>
-            <strong>{CONTACT_PHONE_DISPLAY}</strong>
-          </a>
           <a className="as-project-link" href={path(lang, 'contact')}>{c.project}<i className="as-arrow" aria-hidden="true" /></a>
           <button
             type="button"
