@@ -30,6 +30,7 @@ import './styles/archic-interactions.css'
 import './styles/archic-route-transitions.css'
 import './styles/archic-contrast.css'
 import './styles/archic-visibility-guard.css'
+import './styles/archic-explorations.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
