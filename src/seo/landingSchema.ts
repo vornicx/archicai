@@ -1,6 +1,9 @@
 /**
  * Grafo JSON-LD compartido por la página React y el generador de HTML estático.
  * Solo se publican datos que puedan verificarse en la propia web.
+ *
+ * Las landings geográficas describen mercados atendidos. No crean ni sugieren
+ * oficinas, sedes o sucursales de Archic en la ciudad objetivo.
  */
 import type { ServicePage } from './servicePages'
 import type { LocalLandingPage } from './localPages'
@@ -16,11 +19,12 @@ export function buildLandingGraph(page: ServicePage, lang: 'es' | 'en' = 'es') {
 
   const areaServed = local
     ? [
+        { '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' },
         { '@type': 'City', name: local.city },
         ...local.alsoServes.map((name) => ({ '@type': 'City', name })),
-        { '@type': 'AdministrativeArea', name: `Provincia de ${local.province}` },
+        { '@type': 'AdministrativeArea', name: local.province },
       ]
-    : [{ '@type': 'Country', name: 'España' }]
+    : [{ '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' }]
 
   return {
     '@context': 'https://schema.org',
@@ -56,13 +60,10 @@ export function buildLandingGraph(page: ServicePage, lang: 'es' | 'en' = 'es') {
         '@type': 'BreadcrumbList',
         '@id': `${canonical}#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_ORIGIN}/` },
-          ...(local
-            ? [{ '@type': 'ListItem', position: 2, name: local.province, item: `${SITE_ORIGIN}/diseno-web-sevilla/` }]
-            : []),
+          { '@type': 'ListItem', position: 1, name: lang === 'es' ? 'Inicio' : 'Home', item: `${SITE_ORIGIN}/` },
           {
             '@type': 'ListItem',
-            position: local ? 3 : 2,
+            position: 2,
             name: page.breadcrumb,
             item: canonical,
           },
