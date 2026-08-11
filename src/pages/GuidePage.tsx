@@ -73,14 +73,16 @@ export default function GuidePage({ guide }: { guide: Guide }) {
 
       <article>
         <header className="as-article-head">
-          <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><a href={GUIDES_INDEX_PATH}>Guías</a><span>/</span><span>{guide.title}</span></div>
-          <div className="as-seo-layer">ARCHIC / GUIDE · {guide.readingMinutes} MIN</div>
-          <h1>{guide.title}</h1>
-          <p className="as-article-answer">{guide.answer}</p>
-          <p className="as-article-meta">
-            Publicada el <time dateTime={guide.published}>{formatDate(guide.published)}</time>
-            {guide.updated !== guide.published && <> · Revisada el <time dateTime={guide.updated}>{formatDate(guide.updated)}</time></>}
-          </p>
+          <div data-reveal="hero">
+            <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><a href={GUIDES_INDEX_PATH}>Guías</a><span>/</span><span>{guide.title}</span></div>
+            <div className="as-seo-layer">ARCHIC / GUÍA · {guide.readingMinutes} MIN</div>
+            <h1>{guide.title}</h1>
+            <p className="as-article-answer">{guide.answer}</p>
+            <p className="as-article-meta">
+              Publicada el <time dateTime={guide.published}>{formatDate(guide.published)}</time>
+              {guide.updated !== guide.published && <> · Revisada el <time dateTime={guide.updated}>{formatDate(guide.updated)}</time></>}
+            </p>
+          </div>
         </header>
 
         <div className="as-article-wrap">
@@ -108,7 +110,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
             </section>
 
             <aside className="as-article-cta">
-              <div className="as-seo-layer">FROM GUIDE TO SYSTEM</div>
+              <div className="as-seo-layer">DE LA GUÍA AL SISTEMA</div>
               <h2>¿Quieres aplicarlo a tu negocio?</h2>
               <p>Cuéntanos qué quieres mejorar. Archic trabaja sobre tres capas: Presence para lo que ve el cliente, Control para la operación privada y Business para software, automatización e integraciones.</p>
               <a className="as-btn as-btn-metal" href="/contact/">Hablar de un proyecto<i className="as-arrow" aria-hidden="true" /></a>
@@ -117,8 +119,8 @@ export default function GuidePage({ guide }: { guide: Guide }) {
             {guide.related.length > 0 && (
               <section>
                 <h2>Seguir leyendo</h2>
-                <div className="as-seo-related">
-                  {guide.related.map((link) => <a key={link.href} href={link.href} className="as-seo-chip" style={{ color: '#3d342a', borderColor: 'rgba(5,5,5,.18)' }}>{link.label}</a>)}
+                <div className="as-seo-related as-editorial-related">
+                  {guide.related.map((link) => <a key={link.href} href={link.href} className="as-seo-chip">{link.label}</a>)}
                 </div>
               </section>
             )}
