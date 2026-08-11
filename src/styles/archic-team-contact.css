@@ -1,4 +1,82 @@
-/* Archic team contact — keeps both direct contacts clear without turning the footer into a directory. */
+/* Archic founders and direct contact hierarchy. */
+.as-footer-founders{
+  width:min(100%,1680px);
+  margin:0 auto;
+  padding:0 0 clamp(72px,7vw,112px);
+  display:grid;
+  grid-template-columns:minmax(260px,.55fr) minmax(0,1.15fr);
+  gap:clamp(48px,7vw,118px);
+  border-bottom:1px solid rgba(247,245,239,.14);
+}
+
+.as-footer-founders-intro>span{
+  color:rgba(247,245,239,.36);
+  font:500 8px/1.2 'Space Grotesk',Inter,Arial,sans-serif;
+  letter-spacing:.16em;
+}
+
+.as-footer-founders-intro h2{
+  max-width:9ch;
+  margin:20px 0 22px;
+  color:#f7f5ef;
+  font:500 clamp(42px,4.5vw,72px)/.94 'Space Grotesk',Inter,Arial,sans-serif;
+  letter-spacing:-.055em;
+}
+
+.as-footer-founders-intro p{
+  max-width:470px;
+  margin:0;
+  color:rgba(247,245,239,.52);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.as-footer-founders-list{
+  border-top:1px solid rgba(247,245,239,.16);
+}
+
+.as-footer-founders-list article{
+  display:grid;
+  grid-template-columns:48px minmax(220px,.85fr) minmax(220px,.65fr);
+  gap:24px;
+  align-items:center;
+  min-height:132px;
+  border-bottom:1px solid rgba(247,245,239,.14);
+}
+
+.as-footer-founders-list article>span{
+  color:rgba(247,245,239,.32);
+  font:500 9px/1 'Space Grotesk',Inter,Arial,sans-serif;
+  letter-spacing:.1em;
+}
+
+.as-footer-founders-list article strong{
+  display:block;
+  color:#f7f5ef;
+  font:500 clamp(24px,2vw,33px)/1 'Space Grotesk',Inter,Arial,sans-serif;
+  letter-spacing:-.04em;
+}
+
+.as-footer-founders-list article p{
+  margin:8px 0 0;
+  color:#dfc99d;
+  font:500 10px/1.35 'Space Grotesk',Inter,Arial,sans-serif;
+  letter-spacing:.035em;
+}
+
+.as-footer-founder-links{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:flex-start;
+}
+
+.as-footer-founder-links a{
+  color:rgba(247,245,239,.58);
+  font-size:12px;
+  overflow-wrap:anywhere;
+}
+
 .as-footer-contact-people{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -15,10 +93,24 @@
   border-top:1px solid rgba(247,245,239,.14);
 }
 
+.as-footer-contact-identity{
+  display:flex;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:7px 10px;
+}
+
 .as-footer-contact-name{
   color:rgba(247,245,239,.76);
   font:500 9px/1.2 'Space Grotesk',Inter,Arial,sans-serif;
   letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.as-footer-contact-identity>span{
+  color:rgba(247,245,239,.36);
+  font:500 8px/1.2 'Space Grotesk',Inter,Arial,sans-serif;
+  letter-spacing:.1em;
   text-transform:uppercase;
 }
 
@@ -49,10 +141,30 @@
 }
 
 @media (hover:hover){
-  .as-footer-contact-person>a:hover{color:#dfc99d!important}
+  .as-footer-contact-person>a:hover,
+  .as-footer-founder-links a:hover{color:#dfc99d!important}
+}
+
+@media(max-width:900px){
+  .as-footer-founders{grid-template-columns:1fr;gap:38px}
+  .as-footer-founders-intro h2{max-width:12ch}
 }
 
 @media(max-width:760px){
+  .as-footer-founders{padding-bottom:64px}
+  .as-footer-founders-list article{
+    grid-template-columns:34px minmax(0,1fr);
+    gap:18px;
+    min-height:0;
+    padding:25px 0;
+    align-items:start;
+  }
+  .as-footer-founder-links{
+    grid-column:2;
+    margin-top:5px;
+  }
+  .as-footer-founders-list article strong{font-size:25px}
+  .as-footer-founders-list article p{font-size:9px;line-height:1.45}
   .as-footer-contact-people{grid-template-columns:1fr;gap:24px;margin-top:18px}
   .as-footer-contact-person{gap:10px;padding-top:16px}
   .as-footer-contact-person .as-footer-phone{font-size:20px!important}
