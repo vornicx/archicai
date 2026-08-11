@@ -26,13 +26,30 @@ function SkipLink() {
   )
 }
 
+function RouteFallback() {
+  return (
+    <div className="as-route-fallback" role="status" aria-live="polite" aria-label="Loading Archic">
+      <div><span>ARCHIC</span><i /></div>
+    </div>
+  )
+}
+
 function SiteNavigationBehavior() {
   const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
+    const previous = window.history.scrollRestoration
+    window.history.scrollRestoration = 'manual'
+    return () => {
+      window.history.scrollRestoration = previous
+    }
+  }, [])
+
+  useEffect(() => {
     if (location.hash) {
-      const id = decodeURIComponent(location.hash.slice(1))
+      let id = location.hash.slice(1)
+      try { id = decodeURIComponent(id) } catch { /* keep the literal hash id */ }
       window.requestAnimationFrame(() => {
         document.getElementById(id)?.scrollIntoView({ block: 'start' })
       })
@@ -125,7 +142,7 @@ function App() {
       <div className="site-shell">
         <SkipLink />
         <main id="main-content">
-          <Suspense fallback={null}>
+          <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<ArchicHome />} />
               <Route path="/en/" element={<ArchicHome />} />
