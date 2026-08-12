@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { CONTACT_MAIL } from '../i18n/content'
 import { useLang } from '../i18n/LanguageContext'
 import { LEGAL_PATHS } from '../legal/documents'
+import { ANTERO_CONTACT, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 
 export default function StudioContact() {
   const { t, lang } = useLang()
@@ -12,6 +13,11 @@ export default function StudioContact() {
 
   const [consentBefore, consentAfter] = n.consent.split('{link}')
   const formLabel = lang === 'es' ? 'Consulta de proyecto Archic' : 'Archic project enquiry'
+  const directTitle = lang === 'es' ? 'CONTACTO DIRECTO' : 'DIRECT CONTACT'
+  const directBody = lang === 'es'
+    ? 'Habla directamente con cualquiera de los dos fundadores según lo que necesites.'
+    : 'Talk directly with either founder depending on what you need.'
+  const formDivider = lang === 'es' ? 'O cuéntanos el proyecto' : 'Or tell us about the project'
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -52,6 +58,41 @@ export default function StudioContact() {
 
   return (
     <form className="sx-form" onSubmit={handleSubmit} noValidate aria-label={formLabel}>
+      <section className="sx-direct-team" aria-label={directTitle}>
+        <div className="sx-direct-team-head">
+          <span>{directTitle}</span>
+          <p>{directBody}</p>
+        </div>
+
+        <div className="sx-direct-team-grid">
+          <article className="sx-direct-founder">
+            <span>01</span>
+            <div className="sx-direct-founder-identity">
+              <strong>Vadim Vornic</strong>
+              <small>Co-Founder · Product &amp; Technology</small>
+            </div>
+            <div className="sx-direct-founder-links">
+              <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
+              <a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE_DISPLAY}</a>
+            </div>
+          </article>
+
+          <article className="sx-direct-founder">
+            <span>02</span>
+            <div className="sx-direct-founder-identity">
+              <strong>{ANTERO_CONTACT.name}</strong>
+              <small>Co-Founder · Growth &amp; Client Partnerships</small>
+            </div>
+            <div className="sx-direct-founder-links">
+              <a href={`mailto:${ANTERO_CONTACT.email}`}>{ANTERO_CONTACT.email}</a>
+              <a href={`tel:${ANTERO_CONTACT.phone}`}>{ANTERO_CONTACT.phoneDisplay}</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div className="sx-form-divider"><span>{formDivider}</span></div>
+
       <div className="sx-field-row">
         <div className="sx-field">
           <label htmlFor="sx-name">{c.fields.name}</label>
