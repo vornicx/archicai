@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
-import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
 
 const COPY = {
   es: {
-    menu: 'Menú', close: 'Cerrar', project: 'Proyecto', call: 'Llamar',
+    menu: 'Menú', close: 'Cerrar', project: 'Proyecto',
     pages: [
       ['Presence', 'Presencia digital', 'presence'],
       ['Control', 'Operación privada', 'control'],
@@ -14,7 +13,7 @@ const COPY = {
     ],
   },
   en: {
-    menu: 'Menu', close: 'Close', project: 'Project', call: 'Call',
+    menu: 'Menu', close: 'Close', project: 'Project',
     pages: [
       ['Presence', 'Digital presence', 'presence'],
       ['Control', 'Private operations', 'control'],
@@ -142,10 +141,6 @@ export default function StudioHeader() {
               <span>{lang === 'es' ? 'ARCHIC / SISTEMAS DIGITALES' : 'ARCHIC / DIGITAL SYSTEMS'}</span>
               <small>{lang === 'es' ? 'Presencia · Operación · Software' : 'Presence · Operations · Software'}</small>
             </div>
-            <a className="as-menu-phone" href={`tel:${CONTACT_PHONE}`}>
-              <small>{c.call}</small>
-              <strong>{CONTACT_PHONE_DISPLAY}</strong>
-            </a>
           </div>
           <nav aria-label={t.a11y.mainNav}>
             {c.pages.map(([name, desc, slug], index) => {
