@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { CONTACT_MAIL } from '../i18n/content'
 import { useLang } from '../i18n/LanguageContext'
 import { LEGAL_PATHS } from '../legal/documents'
-import { ANTERO_CONTACT, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
+import { ARCHIC_FOUNDERS } from '../config/contact'
 
 export default function StudioContact() {
   const { t, lang } = useLang()
@@ -65,29 +65,19 @@ export default function StudioContact() {
         </div>
 
         <div className="sx-direct-team-grid">
-          <article className="sx-direct-founder">
-            <span>01</span>
-            <div className="sx-direct-founder-identity">
-              <strong>Vadim Vornic</strong>
-              <small>Co-Founder · Product &amp; Technology</small>
-            </div>
-            <div className="sx-direct-founder-links">
-              <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
-              <a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE_DISPLAY}</a>
-            </div>
-          </article>
-
-          <article className="sx-direct-founder">
-            <span>02</span>
-            <div className="sx-direct-founder-identity">
-              <strong>{ANTERO_CONTACT.name}</strong>
-              <small>Co-Founder · Growth &amp; Client Partnerships</small>
-            </div>
-            <div className="sx-direct-founder-links">
-              <a href={`mailto:${ANTERO_CONTACT.email}`}>{ANTERO_CONTACT.email}</a>
-              <a href={`tel:${ANTERO_CONTACT.phone}`}>{ANTERO_CONTACT.phoneDisplay}</a>
-            </div>
-          </article>
+          {ARCHIC_FOUNDERS.map((founder, index) => (
+            <article className="sx-direct-founder" key={founder.email}>
+              <span>0{index + 1}</span>
+              <div className="sx-direct-founder-identity">
+                <strong>{founder.name}</strong>
+                <small>{founder.role} · {founder.focus}</small>
+              </div>
+              <div className="sx-direct-founder-links">
+                <a href={`mailto:${founder.email}`}>{founder.email}</a>
+                <a href={`tel:${founder.phone}`}>{founder.phoneDisplay}</a>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
