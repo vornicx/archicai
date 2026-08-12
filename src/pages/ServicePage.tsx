@@ -193,11 +193,11 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic" />
         <meta property="og:locale" content="es_ES" />
-        <meta property="og:image" content={`${ORIGIN}/og-image.png?v=3`} />
+        <meta property="og:image" content={`${ORIGIN}/og-image.png?v=20260812`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={page.meta.title} />
         <meta name="twitter:description" content={page.meta.description} />
-        <meta name="twitter:image" content={`${ORIGIN}/og-image.png?v=3`} />
+        <meta name="twitter:image" content={`${ORIGIN}/og-image.png?v=20260812`} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 

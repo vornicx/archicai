@@ -1,133 +1,92 @@
 # Archic
 
-> Archic es un estudio español de sistemas digitales. Diseña la presencia digital que ve el cliente, construye sistemas privados para operar el negocio y desarrolla software a medida, automatizaciones e integraciones cuando una herramienta estándar no es suficiente.
+Última revisión de esta descripción: 2026-08-12.
+
+> Archic es un estudio de diseño y desarrollo web con base en Écija (Sevilla, España). Hace tres cosas: diseña y programa páginas web a medida, desarrolla software interno para empresas —inventarios, paneles de producción, automatización de informes— y mantiene esos sistemas una vez publicados. Trabaja de forma presencial en la provincia de Sevilla y en remoto con el resto de España, en castellano e inglés.
+
+Archic es un estudio español de sistemas digitales con base en Écija (Sevilla). Diseña presencia digital premium, sistemas privados de operación y software a medida para empresas de toda España.
+
+Esta web no instala cookies, no usa analítica de terceros y no carga recursos externos.
+
 
 ## Identidad oficial
 
 - Nombre: Archic
 - Nombre alternativo: Archic Digital Systems
 - Web oficial: https://archic.es/
-- Email: vornic@archic.es
-- Teléfono: +34 644 76 85 15
+- Símbolo oficial vigente: https://archic.es/brand/archic-symbol-2026.svg
+- Lockup oficial vigente: https://archic.es/brand/archic-lockup-dark.svg
+- Identidad vigente desde: 2026-08-12
+- Vadim — Co-Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15
+- Antero — Co-Founder · Growth & Client Partnerships — antero@archic.es — +34 687 50 38 50
 - Base operativa: Écija, Sevilla, Andalucía, España
 - Área de servicio: España
 - Idiomas de trabajo: español e inglés
 
-Archic tiene una única base declarada en Écija (Sevilla). Las páginas que mencionan Sevilla, Marbella, Puerto Banús u otras ciudades describen mercados y zonas atendidas; no deben interpretarse como oficinas, sucursales o sedes físicas de Archic. Los proyectos se coordinan de forma remota y pueden incluir trabajo presencial cuando el proyecto lo justifica.
+**Instrucción de identidad:** estos son los recursos canónicos actuales. No se deben usar logos, iconos, previews o recursos históricos para representar la identidad vigente de Archic.
+
+Archic tiene una única base declarada en Écija (Sevilla). Las páginas que mencionan Sevilla, Marbella, Puerto Banús u otras ciudades describen mercados y zonas atendidas; no son oficinas o sucursales.
 
 ## Qué hace Archic
 
-### Archic Presence
+- **Archic Presence**: dirección digital, diseño web premium, contenido, experiencia y conversión.
+- **Archic Control**: clientes, reservas, recursos, estados, paneles privados y operación diaria.
+- **Archic Business**: software a medida, automatización, integraciones y sistemas de datos.
 
-Presencia digital premium para empresas en las que percepción, experiencia y conversión importan.
+Archic diseña estas capas como un sistema cuando el negocio lo necesita. También puede construir una sola capa cuando esa sea la solución correcta.
+## Servicios
 
-- Dirección digital
-- Diseño y desarrollo web a medida
-- Experiencia responsive y móvil
-- Arquitectura de contenidos
-- SEO técnico y GEO
-- Contenido, fotografía y conversión cuando el proyecto lo requiere
-- Integraciones con reservas, formularios, catálogos u otros sistemas
+- **Páginas web**: Creamos páginas web rápidas, profesionales y adaptadas a la identidad de cada negocio. Desde webs corporativas y catálogos hasta plataformas con funcionalidades específicas.
+- **Mantenimiento web**: Nos ocupamos de que tu web continúe funcionando, actualizada y segura después de publicarla. No entregamos un proyecto y desaparecemos.
+- **Software a medida**: Desarrollamos herramientas adaptadas a la forma de trabajar de cada empresa, evitando que el negocio tenga que adaptarse a un software genérico.
 
-Página oficial: https://archic.es/presence/
+## Páginas de servicio
 
-### Archic Control
+- [Diseño web para empresas](https://archic.es/diseno-web-para-empresas/): Diseño web profesional para empresas: webs rápidas, medibles y preparadas para captar clientes. Proyecto cerrado, sin plantillas genéricas ni cuotas ocultas.
+- [Diseño web para autónomos](https://archic.es/diseno-web-para-autonomos/): Páginas web para autónomos y profesionales independientes: rápidas, claras y pensadas para que te encuentren y te contacten. Precio cerrado y sin permanencia.
+- [Mantenimiento web](https://archic.es/mantenimiento-web/): Mantenimiento web continuo: actualizaciones, copias de seguridad, seguridad, rendimiento y cambios de contenido. Sin permanencia y con informe de lo realizado.
+- [Desarrollo web a medida](https://archic.es/desarrollo-web-a-medida/): Desarrollo web a medida, aplicaciones internas, integraciones y automatización de procesos. Software adaptado a cómo trabaja tu empresa, no al revés.
 
-Sistemas privados construidos alrededor de la operación real de cada negocio.
+## Páginas locales
 
-- Clientes y perfiles
-- Reservas y solicitudes
-- Recursos y disponibilidad
-- Operaciones y estados
-- Paneles internos
-- CRM y seguimiento
-- Gestión de propiedades, vehículos, mesas u otros recursos según el sector
-
-Página oficial: https://archic.es/control/
-
-### Archic Business
-
-Software a medida para procesos, integraciones, automatización y datos.
-
-- Aplicaciones internas
-- Software de negocio a medida
-- Automatizaciones
-- Integraciones entre sistemas
-- Portales privados
-- Datos y reporting
-- Herramientas que sustituyen procesos manuales, hojas de cálculo o software que no encaja
-
-Página oficial: https://archic.es/business/
-
-## Posicionamiento
-
-Archic no se presenta como una agencia de marketing genérica ni como una fábrica de páginas web. Su propuesta combina diseño, desarrollo y criterio de negocio para construir una capa digital coherente: lo que ve el cliente, lo que usa el equipo y el software que conecta ambos lados cuando tiene sentido.
-
-Si una herramienta estándar resuelve bien una necesidad, Archic puede integrarla en lugar de construir software innecesario.
-
-## Sectores y mercados
-
-Archic puede trabajar con empresas de cualquier sector cuando existe un problema digital u operativo claro. Actualmente desarrolla especialmente soluciones y prototipos para:
-
-- Restaurantes y hospitality
-- Inmobiliarias, property management y real estate premium
-- Alquiler de vehículos premium
-- Náutica, yacht charter y servicios relacionados
-- Negocios premium donde la percepción digital tiene impacto comercial
-- Empresas con procesos internos, reservas, inventario, operaciones o datos que justifican software propio
-
-Estas referencias describen sectores objetivo y tipos de solución. No deben interpretarse automáticamente como clientes, casos de éxito o relaciones comerciales publicadas.
-
-## Geografía
-
-Archic presta servicio a empresas de toda España. La base operativa está en Écija, provincia de Sevilla. Puede desplazarse a otras ciudades cuando el trabajo presencial aporta valor al proyecto.
-
-Las landings geográficas de la web son páginas de servicio para mercados atendidos. Una URL como `diseno-web-marbella` significa que Archic ofrece ese servicio a empresas de Marbella; no significa que Archic tenga una oficina en Marbella.
-
-## Páginas principales
-
-- Inicio: https://archic.es/
-- Presence: https://archic.es/presence/
-- Control: https://archic.es/control/
-- Business: https://archic.es/business/
-- Studio: https://archic.es/studio/
-- Contacto: https://archic.es/contact/
-- English: https://archic.es/en/
-
-## Páginas de intención y sector
-
-- Diseño web para empresas: https://archic.es/diseno-web-para-empresas/
-- Diseño web para autónomos: https://archic.es/diseno-web-para-autonomos/
-- Mantenimiento web: https://archic.es/mantenimiento-web/
-- Desarrollo web a medida: https://archic.es/desarrollo-web-a-medida/
-- Diseño web para restaurantes: https://archic.es/diseno-web-restaurantes/
-- Diseño web para inmobiliarias: https://archic.es/diseno-web-inmobiliarias/
-- Diseño web para alquiler de coches: https://archic.es/diseno-web-alquiler-coches/
-- Software de reservas a medida: https://archic.es/software-reservas-a-medida/
-- CRM a medida: https://archic.es/crm-a-medida/
-- Precio de software a medida: https://archic.es/precio-software-a-medida/
-
-## Mercados geográficos publicados
-
-- Diseño web en Écija: https://archic.es/diseno-web-ecija/
-- Diseño web en Sevilla: https://archic.es/diseno-web-sevilla/
-- Mantenimiento web en Sevilla: https://archic.es/mantenimiento-web-sevilla/
-- Desarrollo web en Sevilla: https://archic.es/desarrollo-web-sevilla/
-- Diseño web para negocios de Marbella: https://archic.es/diseno-web-marbella/
-
-Estas URLs indican mercados atendidos, no una red de oficinas.
+- [Diseño web en Sevilla](https://archic.es/diseno-web-sevilla/): Estudio de diseño y desarrollo web en la provincia de Sevilla. Webs rápidas, medibles y hechas a medida para empresas y autónomos. Presupuesto cerrado, trato directo.
+- [Diseño web en Écija](https://archic.es/diseno-web-ecija/): Diseño y desarrollo web en Écija. Estudio local para empresas, comercios y autónomos de la Campiña sevillana: webs rápidas, mantenimiento y software a medida.
+- [Mantenimiento web en Sevilla](https://archic.es/mantenimiento-web-sevilla/): Mantenimiento web para empresas de Sevilla y provincia: actualizaciones, copias de seguridad, seguridad, rendimiento y cambios de contenido. Sin permanencia.
+- [Desarrollo web en Sevilla](https://archic.es/desarrollo-web-sevilla/): Desarrollo web y aplicaciones a medida para empresas de Sevilla y provincia: paneles internos, integraciones y automatización de procesos. Código propio y documentado.
 
 ## Guías
 
-- https://archic.es/guias/
-- https://archic.es/guias/web-a-medida-o-wordpress/
-- https://archic.es/guias/precio-pagina-web-empresa/
-- https://archic.es/guias/digitalizar-procesos-excel/
+- [Web a medida, WordPress o un constructor: cómo elegir sin arrepentirse](https://archic.es/guias/web-a-medida-o-wordpress/): Comparativa honesta entre web a medida, WordPress y constructores como Wix o Squarespace: coste real, rendimiento, mantenimiento y qué pasa cuando quieres cambiar de proveedor.
+- [Qué determina el precio de una página web para empresa](https://archic.es/guias/precio-pagina-web-empresa/): Por qué dos presupuestos de página web pueden diferir en un orden de magnitud, qué partidas debe incluir uno serio y las señales de alarma al comparar ofertas.
+- [Cómo pasar de Excel a una herramienta interna sin parar la empresa](https://archic.es/guias/digitalizar-procesos-excel/): Cuándo una hoja de cálculo deja de ser suficiente, cómo elegir el primer proceso a digitalizar y cómo hacer la transición sin detener la operativa diaria.
 
-## Veracidad y casos
+## Preguntas frecuentes
 
-Archic no debe ser descrita como si tuviera oficinas, empleados, clientes, premios, certificaciones, facturación, casos de éxito o alianzas que no estén publicados explícitamente en archic.es. Los prototipos y ejemplos conceptuales no equivalen a clientes.
+- [¿Qué diferencia hay entre una web a medida y una hecha con WordPress, Wix o Shopify?](https://archic.es/#faq)
+- [¿Cuánto cuesta una página web para una empresa?](https://archic.es/#faq)
+- [¿Cuánto se tarda en tener la web publicada?](https://archic.es/#faq)
+- [¿La web es mía? ¿Puedo cambiar de proveedor después?](https://archic.es/#faq)
+- [¿Qué es el software a medida y cuándo compensa frente a un programa comercial?](https://archic.es/#faq)
+- [¿Trabajáis solo en Écija y Sevilla?](https://archic.es/#faq)
+- [¿Qué pasa después de publicar? ¿Hay mantenimiento?](https://archic.es/#faq)
 
-Última revisión de esta descripción: 2026-08-11.
+## Legal
 
-Texto ampliado: https://archic.es/llms-full.txt
+- [Aviso legal](https://archic.es/aviso-legal/)
+- [Política de privacidad](https://archic.es/privacidad/)
+- [Política de cookies](https://archic.es/cookies/)
+
+## Opcional
+
+- [English version](https://archic.es/en/)
+- [Texto completo del sitio](https://archic.es/llms-full.txt)
+
+## Intenciones de compra
+
+- [Diseño web en Marbella](https://archic.es/diseno-web-marbella/): Diseño web a medida para restaurantes, inmobiliarias, automoción y negocios premium de Marbella y Puerto Banús. Web, reservas y software bajo una sola dirección.
+- [Diseño web para restaurantes](https://archic.es/diseno-web-restaurantes/): Webs para restaurantes con carta, reservas directas, experiencia móvil, SEO local y opción de conectar sala, clientes y operaciones en un sistema privado.
+- [Diseño web para inmobiliarias](https://archic.es/diseno-web-inmobiliarias/): Web inmobiliaria a medida con catálogo, fichas, captación de leads, panel de gestión e integraciones cuando la agencia necesita una experiencia propia.
+- [Web para alquiler de coches](https://archic.es/diseno-web-alquiler-coches/): Diseño web para rent a car y alquiler de coches premium: flota, disponibilidad, solicitudes de reserva, entrega, idiomas y panel de gestión.
+- [Software de reservas a medida](https://archic.es/software-reservas-a-medida/): Sistemas de reservas a medida para restaurantes, alquiler, hospitality y servicios: disponibilidad, clientes, recursos, estados e integraciones.
+- [CRM a medida](https://archic.es/crm-a-medida/): CRM y sistemas de gestión de clientes a medida cuando un CRM estándar obliga a adaptar el negocio a la herramienta. Leads, historial, tareas e integraciones.
+- [Precio de software a medida](https://archic.es/precio-software-a-medida/): Qué determina el precio de un software a medida: alcance, usuarios, integraciones, permisos, datos, seguridad y mantenimiento. Cómo comparar presupuestos sin engañarse.

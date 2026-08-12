@@ -23,7 +23,7 @@ export default function GuidesIndex() {
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic" />
         <meta property="og:locale" content="es_ES" />
-        <meta property="og:image" content={`${ORIGIN}/og-image.png?v=3`} />
+        <meta property="og:image" content={`${ORIGIN}/og-image.png?v=20260812`} />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">{JSON.stringify(buildGuidesIndexGraph())}</script>
       </Helmet>
