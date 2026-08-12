@@ -7,8 +7,7 @@
  * despliegue no simule una revisión que no ha ocurrido.
  */
 import { GUIDES, GUIDES_INDEX_PATH, type Guide } from '../content/guides'
-
-const ORIGIN = 'https://archic.es'
+import { SITE_ORIGIN, siteOgImage } from './siteSeo'
 
 const GUIDES_INDEX_TITLE = 'Guías de diseño web y software para empresas'
 const GUIDES_INDEX_DESCRIPTION =
@@ -21,11 +20,20 @@ export const GUIDES_INDEX_META = {
 }
 
 export function buildGuideGraph(guide: Guide) {
-  const canonical = `${ORIGIN}${guide.path}`
+  const canonical = `${SITE_ORIGIN}${guide.path}`
+  const imageId = `${canonical}#primaryimage`
 
   return {
     '@context': 'https://schema.org',
     '@graph': [
+      {
+        '@type': 'ImageObject',
+        '@id': imageId,
+        url: siteOgImage('es'),
+        contentUrl: siteOgImage('es'),
+        width: 1200,
+        height: 630,
+      },
       {
         '@type': 'Article',
         '@id': `${canonical}#article`,
@@ -37,22 +45,22 @@ export function buildGuideGraph(guide: Guide) {
         inLanguage: 'es',
         datePublished: guide.published,
         dateModified: guide.updated,
-        author: { '@id': `${ORIGIN}/#organization` },
-        publisher: { '@id': `${ORIGIN}/#organization` },
-        image: `${ORIGIN}/og-image.png`,
+        author: { '@id': `${SITE_ORIGIN}/#organization` },
+        publisher: { '@id': `${SITE_ORIGIN}/#organization` },
+        image: { '@id': imageId },
         mainEntityOfPage: { '@id': `${canonical}#webpage` },
         about: guide.secondary.map((name) => ({ '@type': 'Thing', name })),
         keywords: [guide.keyword, ...guide.secondary].join(', '),
         wordCount: countWords(guide),
         timeRequired: `PT${guide.readingMinutes}M`,
-        isPartOf: { '@id': `${ORIGIN}${GUIDES_INDEX_PATH}#collection` },
+        isPartOf: { '@id': `${SITE_ORIGIN}${GUIDES_INDEX_PATH}#collection` },
       },
       {
         '@type': 'BreadcrumbList',
         '@id': `${canonical}#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${ORIGIN}/` },
-          { '@type': 'ListItem', position: 2, name: 'Guías', item: `${ORIGIN}${GUIDES_INDEX_PATH}` },
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_ORIGIN}/` },
+          { '@type': 'ListItem', position: 2, name: 'Guías', item: `${SITE_ORIGIN}${GUIDES_INDEX_PATH}` },
           { '@type': 'ListItem', position: 3, name: guide.title, item: canonical },
         ],
       },
@@ -73,9 +81,9 @@ export function buildGuideGraph(guide: Guide) {
         name: guide.metaTitle,
         description: guide.description,
         inLanguage: 'es',
-        isPartOf: { '@id': `${ORIGIN}/#website` },
+        isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
         breadcrumb: { '@id': `${canonical}#breadcrumb` },
-        primaryImageOfPage: { '@id': `${ORIGIN}/#organization` },
+        primaryImageOfPage: { '@id': imageId },
         speakable: {
           '@type': 'SpeakableSpecification',
           cssSelector: ['.ar-guide-answer'],
@@ -86,7 +94,7 @@ export function buildGuideGraph(guide: Guide) {
 }
 
 export function buildGuidesIndexGraph() {
-  const canonical = `${ORIGIN}${GUIDES_INDEX_PATH}`
+  const canonical = `${SITE_ORIGIN}${GUIDES_INDEX_PATH}`
 
   return {
     '@context': 'https://schema.org',
@@ -98,8 +106,8 @@ export function buildGuidesIndexGraph() {
         name: GUIDES_INDEX_META.title,
         description: GUIDES_INDEX_META.description,
         inLanguage: 'es',
-        isPartOf: { '@id': `${ORIGIN}/#website` },
-        publisher: { '@id': `${ORIGIN}/#organization` },
+        isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+        publisher: { '@id': `${SITE_ORIGIN}/#organization` },
         breadcrumb: { '@id': `${canonical}#breadcrumb` },
         mainEntity: { '@id': `${canonical}#list` },
       },
@@ -111,7 +119,7 @@ export function buildGuidesIndexGraph() {
         itemListElement: GUIDES.map((guide, i) => ({
           '@type': 'ListItem',
           position: i + 1,
-          url: `${ORIGIN}${guide.path}`,
+          url: `${SITE_ORIGIN}${guide.path}`,
           name: guide.title,
         })),
       },
@@ -119,7 +127,7 @@ export function buildGuidesIndexGraph() {
         '@type': 'BreadcrumbList',
         '@id': `${canonical}#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${ORIGIN}/` },
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_ORIGIN}/` },
           { '@type': 'ListItem', position: 2, name: 'Guías', item: canonical },
         ],
       },
