@@ -18,6 +18,8 @@ const BRAND_LINKS = [
   `    <link rel="manifest" href="/manifest.json?${BRAND_QUERY}" />`,
 ].join('\n')
 
+const CURRENT_SUMMARY = 'Archic es un estudio español de sistemas digitales con base en Écija (Sevilla). Diseña tres capas conectadas: Presence para presencia digital premium, Control para operaciones privadas y Business para software a medida, automatización, integraciones y datos. Trabaja con empresas de toda España, en español e inglés.'
+
 const CURRENT_ARCHITECTURE = `## Qué hace Archic\n\n- **Archic Presence**: dirección digital, diseño web premium, contenido, experiencia y conversión.\n- **Archic Control**: clientes, reservas, recursos, estados, paneles privados y operación diaria.\n- **Archic Business**: software a medida, automatización, integraciones y sistemas de datos.\n\nArchic diseña estas capas como un sistema cuando el negocio lo necesita. También puede construir una sola capa cuando esa sea la solución correcta.`
 
 function walk(dir: string, out: string[] = []) {
@@ -43,7 +45,6 @@ function replaceMeta(html: string, key: string, value: string) {
 
 function normalizeBrandHead(html: string) {
   let next = html
-    // Collapse any chain created by historical generators or previous cache-busts.
     .replace(/\?v=(?:3|20260812)(?:\?v=(?:3|20260812))*/g, `?${BRAND_QUERY}`)
     .replace(/&amp;v=(?:3|20260812)(?:\?v=(?:3|20260812))*/g, `&amp;${BRAND_QUERY}`)
     .replaceAll('https://archic.es/archic-mark-512.png', SYMBOL_URL)
@@ -71,6 +72,11 @@ function replaceOrInsertSection(source: string, heading: string, block: string, 
   return `${source.trimEnd()}\n\n${block.trimEnd()}\n`
 }
 
+function replaceOpeningSummary(source: string) {
+  if (/^> Archic[^\n]*$/m.test(source)) return source.replace(/^> Archic[^\n]*$/m, `> ${CURRENT_SUMMARY}`)
+  return source
+}
+
 for (const file of walk(ROOT)) {
   const before = readFileSync(file, 'utf8')
   const after = normalizeBrandHead(before)
@@ -95,10 +101,10 @@ for (const lang of ['es', 'en'] as const) {
 
 const llmsPath = resolve(ROOT, 'public', 'llms.txt')
 if (existsSync(llmsPath)) {
-  let llms = readFileSync(llmsPath, 'utf8')
+  let llms = replaceOpeningSummary(readFileSync(llmsPath, 'utf8'))
   llms = llms.replace(
     /Archic es una marca comercial española\.[^\n]*/,
-    'Archic es un estudio español de sistemas digitales con base en Écija (Sevilla). Diseña presencia digital premium, sistemas privados de operación y software a medida para empresas de toda España.',
+    CURRENT_SUMMARY,
   )
 
   const identity = `## Identidad oficial\n\n- Nombre: Archic\n- Nombre alternativo: Archic Digital Systems\n- Web oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Co-Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Antero — Co-Founder · Growth & Client Partnerships — antero@archic.es — +34 687 50 38 50\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** estos son los recursos canónicos actuales. No se deben usar logos, iconos, previews o recursos históricos para representar la identidad vigente de Archic.\n\nArchic tiene una única base declarada en Écija (Sevilla). Las páginas que mencionan Sevilla, Marbella, Puerto Banús u otras ciudades describen mercados y zonas atendidas; no son oficinas o sucursales.`
@@ -114,17 +120,16 @@ if (existsSync(llmsPath)) {
 
 const llmsFullPath = resolve(ROOT, 'public', 'llms-full.txt')
 if (existsSync(llmsFullPath)) {
-  let full = readFileSync(llmsFullPath, 'utf8')
+  let full = replaceOpeningSummary(readFileSync(llmsFullPath, 'utf8'))
   full = full.replace(/Última actualización: \d{4}-\d{2}-\d{2}/, `Última actualización: ${IDENTITY_DATE}`)
-  full = full.replace(
-    /Archic es un estudio español de sistemas digitales\.[^\n]*/,
-    'Archic es un estudio español de sistemas digitales con base en Écija (Sevilla). Su arquitectura actual se divide en Presence, Control y Business, y trabaja con empresas de toda España.',
-  )
 
   const identity = `## Identidad verificable\n\n- Marca: Archic\n- Nombre alternativo: Archic Digital Systems\n- Sitio oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Co-Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Antero — Co-Founder · Growth & Client Partnerships — antero@archic.es — +34 687 50 38 50\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic.`
 
-  full = replaceOrInsertSection(full, 'Identidad verificable', identity, 'Resumen de entidad')
-  full = replaceOrInsertSection(full, 'Qué hace Archic', CURRENT_ARCHITECTURE, 'Archic Presence')
+  // Remove older copies first, then place the current identity immediately after the intro.
+  full = full.replace(/\n## Identidad verificable[\s\S]*?(?=\n## |$)/g, '')
+  full = full.replace(/\n## Qué hace Archic[\s\S]*?(?=\n## |$)/g, '')
+  full = replaceOrInsertSection(full, 'Identidad verificable', identity, 'Cuatro cosas que puedes verificar ahora mismo.')
+  full = replaceOrInsertSection(full, 'Qué hace Archic', CURRENT_ARCHITECTURE, 'Cuatro cosas que puedes verificar ahora mismo.')
   writeFileSync(llmsFullPath, full)
 }
 
