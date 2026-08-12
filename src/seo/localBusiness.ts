@@ -1,4 +1,5 @@
-import { CONTACT_PHONE } from '../config/contact'
+import { VADIM_CONTACT } from '../config/contact'
+import { ARCHIC_SYMBOL_URL, SITE_ORIGIN, siteOgImage } from './siteSeo'
 
 /**
  * Datos verificables de Archic para marcado geográfico.
@@ -13,8 +14,8 @@ import { CONTACT_PHONE } from '../config/contact'
 export const LOCAL_BUSINESS = {
   name: 'Archic',
   legalName: null as string | null,
-  email: 'vornic@archic.es',
-  telephone: CONTACT_PHONE,
+  email: VADIM_CONTACT.email,
+  telephone: VADIM_CONTACT.phone,
   streetAddress: null as string | null,
   postalCode: '41400',
   city: 'Écija',
@@ -34,8 +35,6 @@ export type LocalScope = {
   /** Se conserva por compatibilidad con datos antiguos, pero no implica sede. */
   geo?: { latitude: number; longitude: number }
 }
-
-const ORIGIN = 'https://archic.es'
 
 function verifiedPostalAddress() {
   if (!LOCAL_BUSINESS.streetAddress) return null
@@ -70,12 +69,12 @@ export function localBusinessNode(scope: LocalScope, lang: 'es' | 'en' = 'es') {
 
   return {
     '@type': 'ProfessionalService',
-    '@id': `${ORIGIN}/#professionalservice`,
+    '@id': `${SITE_ORIGIN}/#professionalservice`,
     name: LOCAL_BUSINESS.name,
     ...(LOCAL_BUSINESS.legalName ? { legalName: LOCAL_BUSINESS.legalName } : {}),
-    url: `${ORIGIN}/`,
-    image: `${ORIGIN}/og-image.png`,
-    logo: `${ORIGIN}/archic-mark-512.png`,
+    url: `${SITE_ORIGIN}/`,
+    image: siteOgImage(lang),
+    logo: ARCHIC_SYMBOL_URL,
     email: LOCAL_BUSINESS.email,
     telephone: LOCAL_BUSINESS.telephone,
     ...(LOCAL_BUSINESS.googleBusinessProfile ? { sameAs: [LOCAL_BUSINESS.googleBusinessProfile] } : {}),
@@ -89,6 +88,6 @@ export function localBusinessNode(scope: LocalScope, lang: 'es' | 'en' = 'es') {
       { '@type': 'AdministrativeArea', name: scope.province },
     ],
     knowsLanguage: ['es', 'en'],
-    parentOrganization: { '@id': `${ORIGIN}/#organization` },
+    parentOrganization: { '@id': `${SITE_ORIGIN}/#organization` },
   }
 }
