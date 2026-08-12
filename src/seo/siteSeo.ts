@@ -1,8 +1,11 @@
-import { CONTACT_PHONE } from '../config/contact'
-import { CONTACT_MAIL, type Lang } from '../i18n/content'
+import { ANTERO_CONTACT, VADIM_CONTACT } from '../config/contact'
+import { type Lang } from '../i18n/content'
 
 export const SITE_ORIGIN = 'https://archic.es'
-const OG_VERSION = 'v=3'
+export const BRAND_VERSION = '20260812'
+export const ARCHIC_SYMBOL_URL = `${SITE_ORIGIN}/brand/archic-symbol-2026.svg`
+export const ARCHIC_LOCKUP_URL = `${SITE_ORIGIN}/brand/archic-lockup-dark.svg`
+const OG_VERSION = `v=${BRAND_VERSION}`
 
 export const ARCHIC_BASE = {
   city: 'Écija',
@@ -140,6 +143,12 @@ export function siteOgImage(lang: Lang) {
 }
 
 export function organizationNode() {
+  const contactBase = {
+    '@type': 'ContactPoint',
+    areaServed: { '@type': 'Country', name: 'Spain' },
+    availableLanguage: ['Spanish', 'English'],
+  }
+
   return {
     '@type': 'Organization',
     '@id': `${SITE_ORIGIN}/#organization`,
@@ -148,14 +157,28 @@ export function organizationNode() {
     url: `${SITE_ORIGIN}/`,
     logo: {
       '@type': 'ImageObject',
-      url: `${SITE_ORIGIN}/archic-mark-512.png`,
-      contentUrl: `${SITE_ORIGIN}/archic-mark-512.png`,
+      '@id': `${SITE_ORIGIN}/#logo`,
+      url: ARCHIC_SYMBOL_URL,
+      contentUrl: ARCHIC_SYMBOL_URL,
       width: 512,
       height: 512,
+      caption: 'Archic',
     },
-    image: `${SITE_ORIGIN}/og-image.png?${OG_VERSION}`,
-    email: CONTACT_MAIL,
-    telephone: CONTACT_PHONE,
+    image: siteOgImage('es'),
+    email: VADIM_CONTACT.email,
+    telephone: VADIM_CONTACT.phone,
+    founder: [
+      {
+        '@type': 'Person',
+        name: VADIM_CONTACT.name,
+        jobTitle: `${VADIM_CONTACT.role} · ${VADIM_CONTACT.focus}`,
+      },
+      {
+        '@type': 'Person',
+        name: ANTERO_CONTACT.name,
+        jobTitle: `${ANTERO_CONTACT.role} · ${ANTERO_CONTACT.focus}`,
+      },
+    ],
     location: {
       '@type': 'Place',
       name: `${ARCHIC_BASE.city}, ${ARCHIC_BASE.province}, ${ARCHIC_BASE.countryName}`,
@@ -170,14 +193,20 @@ export function organizationNode() {
     areaServed: { '@type': 'Country', name: 'Spain' },
     knowsAbout: ARCHIC_KNOWS_ABOUT,
     knowsLanguage: ['es', 'en'],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: CONTACT_PHONE,
-      email: CONTACT_MAIL,
-      contactType: 'sales',
-      areaServed: { '@type': 'Country', name: 'Spain' },
-      availableLanguage: ['Spanish', 'English'],
-    },
+    contactPoint: [
+      {
+        ...contactBase,
+        telephone: VADIM_CONTACT.phone,
+        email: VADIM_CONTACT.email,
+        contactType: 'project enquiries',
+      },
+      {
+        ...contactBase,
+        telephone: ANTERO_CONTACT.phone,
+        email: ANTERO_CONTACT.email,
+        contactType: 'sales and client partnerships',
+      },
+    ],
   }
 }
 
