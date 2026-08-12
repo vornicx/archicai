@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { BRAND_VERSION } from '../src/seo/siteSeo'
 
 const ROOT = resolve(import.meta.dir, '..')
 const core = [
@@ -18,6 +19,7 @@ const core = [
 ]
 
 const errors: string[] = []
+const escapedBrandVersion = BRAND_VERSION.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 for (const relative of core) {
   const file = resolve(ROOT, relative)
@@ -32,9 +34,9 @@ for (const relative of core) {
     ['description', /<meta[^>]+name="description"[^>]+content="[^"]{40,}"/i],
     ['canonical', /<link[^>]+rel="canonical"[^>]+href="https:\/\/archic\.es\//i],
     ['robots', /<meta[^>]+name="robots"[^>]+index, follow/i],
-    ['manifest', /<link[^>]+rel="manifest"[^>]+href="\/manifest\.json"/i],
-    ['adaptive favicon', /<link[^>]+href="\/favicon\.svg\?v=3"[^>]+image\/svg\+xml/i],
-    ['Open Graph image', /<meta[^>]+property="og:image"[^>]+content="https:\/\/archic\.es\/og-image(?:-en)?\.png\?v=3"/i],
+    ['manifest', new RegExp(`<link[^>]+rel="manifest"[^>]+href="/manifest\\.json\\?v=${escapedBrandVersion}"`, 'i')],
+    ['canonical brand symbol', /<link[^>]+rel="icon"[^>]+href="\/brand\/archic-symbol-2026\.svg"[^>]+image\/svg\+xml/i],
+    ['Open Graph image', new RegExp(`<meta[^>]+property="og:image"[^>]+content="https://archic\\.es/og-image(?:-en)?\\.png\\?v=${escapedBrandVersion}"`, 'i')],
     ['JSON-LD', /<script[^>]+application\/ld\+json[^>]*>[\s\S]+?<\/script>/i],
   ] as const
 
@@ -42,7 +44,9 @@ for (const relative of core) {
     if (!pattern.test(html)) errors.push(`${relative}: missing or invalid ${label}`)
   }
 
-  if (html.includes('?v=3?v=3')) errors.push(`${relative}: duplicated cache version`)
+  if (html.includes('?v=3')) errors.push(`${relative}: legacy v=3 brand resource remains`)
+  if (html.includes('/archic-mark-512.png')) errors.push(`${relative}: legacy organization logo URL remains`)
+  if (html.includes('/og-image.jpg')) errors.push(`${relative}: legacy social preview URL remains`)
   if (html.includes('/site.webmanifest')) errors.push(`${relative}: legacy manifest reference`)
   if (relative === 'index.html' || relative === 'en/index.html') {
     if (html.includes('#localbusiness') || html.includes('openingHoursSpecification')) {
@@ -75,4 +79,4 @@ if (errors.length) {
   process.exit(1)
 }
 
-console.log(`SEO validation passed for ${core.length} core HTML documents`)
+console.log(`SEO validation passed for ${core.length} core HTML documents with Archic brand ${BRAND_VERSION}`)
