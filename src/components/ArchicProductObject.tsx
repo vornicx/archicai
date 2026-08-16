@@ -27,16 +27,16 @@ export default function ArchicProductObject({ page }: { page: ProductPage }) {
     return (
       <div className="a26-object a26-object-control" aria-hidden="true" data-reveal>
         <div className="a26-object-top"><span>ARCHIC / CONTROL</span><span>02</span></div>
-        <div className="a26-control-head"><span>{es ? 'HOY / OPERACIONES' : 'TODAY / OPERATIONS'}</span><strong>18:42</strong></div>
+        <div className="a26-control-head"><span>WHITE-LABEL / {es ? 'SISTEMAS REALES' : 'REAL SYSTEMS'}</span><strong>03</strong></div>
         <div className="a26-control-list">
-          <div><span>20:00</span><strong>Martínez · 4</strong><i>{es ? 'CONFIRMADA' : 'CONFIRMED'}</i></div>
-          <div><span>20:30</span><strong>Alonso · 2</strong><i>{es ? 'LLEGANDO' : 'ARRIVING'}</i></div>
-          <div><span>21:00</span><strong>{es ? 'Privado' : 'Private'} · 8</strong><i>{es ? 'MESA 12' : 'TABLE 12'}</i></div>
+          <div><span>01</span><strong>{es ? 'Hostelería · reservas + sala' : 'Hospitality · bookings + floor'}</strong><i>08 {es ? 'HOY' : 'TODAY'}</i></div>
+          <div><span>02</span><strong>{es ? 'Movilidad · flota + solicitudes' : 'Mobility · fleet + enquiries'}</strong><i>16 {es ? 'UNIDADES' : 'UNITS'}</i></div>
+          <div><span>03</span><strong>{es ? 'Inmobiliario · portfolio + CRM' : 'Real estate · portfolio + CRM'}</strong><i>06 {es ? 'ABIERTOS' : 'OPEN'}</i></div>
         </div>
         <div className="a26-control-axis">
-          <span>{es ? 'CLIENTES' : 'CLIENTS'}</span><i />
-          <span>{es ? 'RECURSOS' : 'RESOURCES'}</span><i />
-          <span>{es ? 'SERVICIO' : 'SERVICE'}</span>
+          <span>{es ? 'OPERACIÓN' : 'OPERATIONS'}</span><i />
+          <span>{es ? 'DATOS FICTICIOS' : 'FICTIONAL DATA'}</span><i />
+          <span>{es ? 'INTERACTIVO' : 'INTERACTIVE'}</span>
         </div>
       </div>
     )
