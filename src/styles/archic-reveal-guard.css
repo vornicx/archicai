@@ -1,0 +1,16 @@
+/* Content visibility is non-negotiable.
+   Reveal motion remains a progressive enhancement; it may never create empty sections. */
+.as-home-v2.as-experience-ready [data-reveal],
+.as-detail.as-experience-ready [data-reveal],
+.as-contact-page.as-experience-ready [data-reveal]{
+  opacity:1!important;
+  transform:none!important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .as-home-v2.as-experience-ready [data-reveal],
+  .as-detail.as-experience-ready [data-reveal],
+  .as-contact-page.as-experience-ready [data-reveal]{
+    transition:none!important;
+  }
+}
