@@ -26,6 +26,18 @@ export default function StudioExperience() {
       })
     }
 
+    const revealInRange = () => {
+      const viewport = window.innerHeight || document.documentElement.clientHeight
+      revealTargets.forEach((target) => {
+        if (target.classList.contains('is-visible')) return
+        const rect = target.getBoundingClientRect()
+        if (rect.top <= viewport * 1.12 && rect.bottom >= -viewport * 0.12) {
+          target.classList.add('is-visible')
+          observer?.unobserve(target)
+        }
+      })
+    }
+
     let observer: IntersectionObserver | null = null
     if (reduceMotion || !('IntersectionObserver' in window)) {
       revealTargets.forEach((target) => target.classList.add('is-visible'))
@@ -38,9 +50,10 @@ export default function StudioExperience() {
             observer?.unobserve(entry.target)
           })
         },
-        { threshold: 0.1, rootMargin: '0px 0px -6% 0px' },
+        { threshold: 0.08, rootMargin: '0px 0px -4% 0px' },
       )
       revealTargets.forEach((target) => observer?.observe(target))
+      revealInRange()
     }
 
     let raf = 0
@@ -49,6 +62,7 @@ export default function StudioExperience() {
       const max = document.documentElement.scrollHeight - window.innerHeight
       const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0
       root.style.setProperty('--as-progress', progress.toFixed(4))
+      revealInRange()
     }
     const onScroll = () => {
       if (raf) return
@@ -59,8 +73,14 @@ export default function StudioExperience() {
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll, { passive: true })
 
+    // Last-resort guard: motion is optional; content visibility is not.
+    const visibilityGuard = window.setTimeout(() => {
+      revealTargets.forEach((target) => target.classList.add('is-visible'))
+    }, 4200)
+
     return () => {
       observer?.disconnect()
+      window.clearTimeout(visibilityGuard)
       if (raf) window.cancelAnimationFrame(raf)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
