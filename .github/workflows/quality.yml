@@ -14,22 +14,35 @@ concurrency:
 
 jobs:
   build:
-    name: TypeScript + Vite build
+    name: Archic Quality Standard 2026.1
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Use Node.js 20
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
+
+      - name: Use Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Build
+      - name: Generate static pages and SEO
+        run: npm run gen:pages
+
+      - name: TypeScript + production build
         run: npm run build
+
+      - name: Archic Quality Gate
+        run: npm run quality:gate
