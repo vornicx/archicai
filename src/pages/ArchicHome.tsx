@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
@@ -17,7 +18,7 @@ const COPY = {
       body: 'Estrategia, diseño y tecnología bajo una misma dirección. Creamos presencia digital, sistemas de operación y software a medida con un estándar obsesivo de calidad.',
       cta: 'Empezar un proyecto',
       secondary: 'Ver cómo trabajamos',
-      meta: ['ESTUDIO DIGITAL', 'ESPAÑA / REMOTO', '2026'],
+      meta: ['03 SISTEMAS WHITE-LABEL', 'ES / EN', 'QA AUTOMATIZADO', 'RESPONSIVE'],
     },
     manifesto: {
       kicker: 'EL ESTÁNDAR ARCHIC',
@@ -85,7 +86,7 @@ const COPY = {
       body: 'Strategy, design and technology under one direction. We create digital presence, operating systems and custom software with an obsessive standard of quality.',
       cta: 'Start a project',
       secondary: 'See how we work',
-      meta: ['DIGITAL STUDIO', 'SPAIN / REMOTE', '2026'],
+      meta: ['03 WHITE-LABEL SYSTEMS', 'ES / EN', 'AUTOMATED QA', 'RESPONSIVE'],
     },
     manifesto: {
       kicker: 'THE ARCHIC STANDARD',
@@ -146,13 +147,113 @@ const COPY = {
   },
 } as const
 
+type Lang = 'es' | 'en'
+type SystemTone = 'positive' | 'accent' | 'neutral'
+type HeroSystem = {
+  id: string
+  tab: string
+  label: string
+  title: string
+  preview: string
+  href: string
+  metric: string
+  metricLabel: string
+  stats: [string, string, SystemTone][]
+}
+
+const HERO_SYSTEMS: Record<Lang, HeroSystem[]> = {
+  es: [
+    {
+      id: 'hospitality', tab: 'Hostelería', label: 'CONTROL / SERVICIO', title: 'Reservas y sala en un mismo sistema.',
+      preview: '/software/hospitality-preview.svg', href: 'explorations/hospitality', metric: '82%', metricLabel: 'ocupación',
+      stats: [['08', 'reservas hoy', 'positive'], ['06', 'clientes activos', 'neutral'], ['01', 'acción pendiente', 'accent']],
+    },
+    {
+      id: 'mobility', tab: 'Movilidad', label: 'CONTROL / FLOTA', title: 'Disponibilidad, solicitudes y movimientos.',
+      preview: '/software/mobility-preview.svg', href: 'explorations/mobility', metric: '78%', metricLabel: 'utilización',
+      stats: [['16', 'vehículos', 'positive'], ['05', 'alquilados', 'neutral'], ['03', 'solicitudes', 'accent']],
+    },
+    {
+      id: 'property', tab: 'Inmobiliario', label: 'CONTROL / CRM', title: 'Portfolio, leads y visitas con contexto.',
+      preview: '/software/real-estate-preview.svg', href: 'explorations/real-estate', metric: '92%', metricLabel: 'contenido',
+      stats: [['12', 'propiedades', 'positive'], ['06', 'leads abiertos', 'neutral'], ['02', 'visitas', 'accent']],
+    },
+  ],
+  en: [
+    {
+      id: 'hospitality', tab: 'Hospitality', label: 'CONTROL / SERVICE', title: 'Bookings and floor operations in one system.',
+      preview: '/software/hospitality-preview.svg', href: 'explorations/hospitality', metric: '82%', metricLabel: 'occupancy',
+      stats: [['08', 'bookings today', 'positive'], ['06', 'active customers', 'neutral'], ['01', 'action pending', 'accent']],
+    },
+    {
+      id: 'mobility', tab: 'Mobility', label: 'CONTROL / FLEET', title: 'Availability, enquiries and fleet movements.',
+      preview: '/software/mobility-preview.svg', href: 'explorations/mobility', metric: '78%', metricLabel: 'utilisation',
+      stats: [['16', 'vehicles', 'positive'], ['05', 'on hire', 'neutral'], ['03', 'enquiries', 'accent']],
+    },
+    {
+      id: 'property', tab: 'Real estate', label: 'CONTROL / CRM', title: 'Portfolio, leads and viewings with context.',
+      preview: '/software/real-estate-preview.svg', href: 'explorations/real-estate', metric: '92%', metricLabel: 'content score',
+      stats: [['12', 'properties', 'positive'], ['06', 'open leads', 'neutral'], ['02', 'viewings', 'accent']],
+    },
+  ],
+}
+
 const EXPLORATION_SLUGS = ['explorations/hospitality', 'explorations/mobility', 'explorations/real-estate'] as const
 
-function path(lang: 'es' | 'en', slug: string) {
+function path(lang: Lang, slug: string) {
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
 }
 
-function InterfaceStudy({ type, lang }: { type: number; lang: 'es' | 'en' }) {
+function HeroSystemConsole({ lang }: { lang: Lang }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const systems = HERO_SYSTEMS[lang]
+  const active = systems[activeIndex]
+
+  return (
+    <div className="ahs-system" data-reveal>
+      <div className="ahs-topbar">
+        <div className="ahs-brand"><img src="/brand/archic-symbol-2026.svg" alt="" /><span>ARCHIC CONTROL</span></div>
+        <div className="ahs-live"><i />{lang === 'es' ? 'WHITE-LABEL / DEMO' : 'WHITE-LABEL / DEMO'}</div>
+      </div>
+      <div className="ahs-tabs" role="tablist" aria-label={lang === 'es' ? 'Sistemas de demostración' : 'Demo systems'}>
+        {systems.map((system, index) => (
+          <button
+            key={system.id}
+            id={`ahs-tab-${system.id}`}
+            type="button"
+            role="tab"
+            aria-selected={activeIndex === index}
+            aria-controls="ahs-panel"
+            onClick={() => setActiveIndex(index)}
+          >
+            <span>0{index + 1}</span><strong>{system.tab}</strong>
+          </button>
+        ))}
+      </div>
+      <div id="ahs-panel" className="ahs-panel" role="tabpanel" aria-labelledby={`ahs-tab-${active.id}`}>
+        <div className="ahs-preview">
+          <img key={active.id} src={active.preview} alt="" />
+          <div className="ahs-preview-status"><i /><span>{lang === 'es' ? 'DATOS FICTICIOS' : 'FICTIONAL DATA'}</span></div>
+        </div>
+        <div className="ahs-summary">
+          <div><small>{active.label}</small><h2>{active.title}</h2></div>
+          <strong>{active.metric}<small>{active.metricLabel}</small></strong>
+        </div>
+        <div className="ahs-stats">
+          {active.stats.map(([value, label, tone]) => (
+            <div data-tone={tone} key={label}><strong>{value}</strong><span>{label}</span></div>
+          ))}
+        </div>
+        <a className="ahs-open" href={path(lang, active.href)}>
+          <span>{lang === 'es' ? 'Abrir entorno interactivo' : 'Open interactive environment'}</span>
+          <i className="as-arrow" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  )
+}
+
+function InterfaceStudy({ type, lang }: { type: number; lang: Lang }) {
   if (type === 0) {
     return (
       <div className="ah-study ah-study-hospitality" aria-hidden="true">
@@ -193,7 +294,7 @@ export default function ArchicHome() {
   const ogImage = siteOgImage(lang)
 
   return (
-    <div className="as-site as-home-v2">
+    <div className="as-site as-home-v2" data-quality-standard="archic-2026.1">
       <Helmet htmlAttributes={{ lang }}>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
@@ -241,15 +342,9 @@ export default function ArchicHome() {
             </div>
           </div>
 
-          <div className="ah-system-object" aria-hidden="true" data-reveal>
-            <div className="ah-system-label"><span>{lang === 'es' ? 'SISTEMA ARCHIC' : 'ARCHIC SYSTEM'}</span><span>01 — 03</span></div>
-            <div className="ah-layer ah-layer-one"><span>PRESENCE</span><i>01</i></div>
-            <div className="ah-layer ah-layer-two"><span>CONTROL</span><i>02</i></div>
-            <div className="ah-layer ah-layer-three"><span>BUSINESS</span><i>03</i></div>
-            <div className="ah-system-axis"><i /><span>{lang === 'es' ? 'DISEÑO → OPERACIÓN → SOFTWARE' : 'DESIGN → OPERATIONS → SOFTWARE'}</span></div>
-          </div>
+          <HeroSystemConsole lang={lang} />
 
-          <div className="ah-hero-meta" aria-hidden="true">
+          <div className="ah-hero-meta">
             {c.hero.meta.map((item) => <span key={item}>{item}</span>)}
           </div>
         </section>
