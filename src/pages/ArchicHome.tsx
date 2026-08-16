@@ -37,15 +37,15 @@ const COPY = {
       open: 'Descubrir',
     },
     work: {
-      kicker: 'EXPLORACIONES SELECCIONADAS',
-      title: 'Diseñamos antes de pedirte que imagines.',
-      body: 'Prototipos funcionales internos que conectan la experiencia del cliente con la operación real. No son casos de éxito: puedes entrar, usarlos y ver cómo Presence, Control y Business trabajan juntos.',
+      kicker: 'SISTEMAS WHITE-LABEL',
+      title: 'Software real, sin pedirte que lo imagines.',
+      body: 'Entornos interactivos derivados de sistemas que ya hemos desarrollado. Eliminamos marca, contactos y datos del proyecto original, y preservamos los workflows que hacen útil al producto.',
       items: [
-        ['01', 'Hostelería', 'Reserva · Experiencia · Operación', 'Reserva una mesa y comprueba cómo esa misma acción llega a sala y genera contexto de cliente.'],
-        ['02', 'Movilidad premium', 'Descubrimiento · Reserva · Flota', 'Elige vehículo y fechas, envía una solicitud y observa cómo entra en la gestión de flota.'],
-        ['03', 'Inmobiliario', 'Catálogo · Búsqueda · Gestión', 'Filtra propiedades, solicita una visita y sigue el lead desde la capa operativa.'],
+        ['01', 'Hostelería', 'Reservas · Sala · Clientes · Carta', 'Opera reservas, ocupación, clientes y servicio desde una versión neutral basada en un sistema de hostelería desarrollado por Archic.'],
+        ['02', 'Movilidad premium', 'Flota · Solicitudes · Calendario · Clientes', 'Gestiona disponibilidad, tarifas, solicitudes y movimientos de flota en un entorno white-label con datos ficticios.'],
+        ['03', 'Inmobiliario', 'Propiedades · CRM · Visitas · Contenido', 'Recorre portfolio, enquiries, prioridades, visitas y calidad de contenido con la lógica de una plataforma inmobiliaria completa.'],
       ],
-      open: 'Abrir prototipo',
+      open: 'Abrir sistema',
     },
     principles: {
       kicker: 'LA CALIDAD ES UN SISTEMA',
@@ -105,15 +105,15 @@ const COPY = {
       open: 'Explore',
     },
     work: {
-      kicker: 'SELECTED EXPLORATIONS',
-      title: 'We design before asking you to imagine.',
-      body: 'Functional internal prototypes that connect customer experience with real operations. They are not case studies: you can enter, use them and see Presence, Control and Business working together.',
+      kicker: 'WHITE-LABEL SYSTEMS',
+      title: 'Real software, without asking you to imagine it.',
+      body: 'Interactive environments derived from systems we have already built. We remove the original brand, contacts and project data while preserving the workflows that make the product useful.',
       items: [
-        ['01', 'Hospitality', 'Booking · Experience · Operations', 'Book a table and see the same action reach service operations and create customer context.'],
-        ['02', 'Luxury mobility', 'Discovery · Booking · Fleet', 'Choose a vehicle and dates, send an enquiry and watch it enter fleet management.'],
-        ['03', 'Real estate', 'Portfolio · Search · Management', 'Filter properties, request a viewing and follow the lead through the operating layer.'],
+        ['01', 'Hospitality', 'Bookings · Floor · Customers · Menu', 'Operate bookings, occupancy, customers and service in a neutral version based on a hospitality system built by Archic.'],
+        ['02', 'Luxury mobility', 'Fleet · Enquiries · Calendar · Clients', 'Manage availability, rates, enquiries and fleet movements inside a white-label environment with fictional data.'],
+        ['03', 'Real estate', 'Properties · CRM · Viewings · Content', 'Explore portfolio, enquiries, priorities, viewings and content quality with the logic of a complete property platform.'],
       ],
-      open: 'Open prototype',
+      open: 'Open system',
     },
     principles: {
       kicker: 'QUALITY IS A SYSTEM',
@@ -156,9 +156,9 @@ function InterfaceStudy({ type, lang }: { type: number; lang: 'es' | 'en' }) {
   if (type === 0) {
     return (
       <div className="ah-study ah-study-hospitality" aria-hidden="true">
-        <div className="ah-study-top"><span>{lang === 'es' ? 'MESA 08' : 'TABLE 08'}</span><span>20:30</span></div>
-        <div className="ah-study-title">{lang === 'es' ? 'Cena,' : 'Dinner,'}<br /><em>{lang === 'es' ? 'bien pensada.' : 'considered.'}</em></div>
-        <div className="ah-study-reserve"><span>04</span><i /><span>{lang === 'es' ? 'AGO' : 'AUG'}</span><strong>{lang === 'es' ? 'Reservar' : 'Reserve'}</strong></div>
+        <div className="ah-study-top"><span>CONTROL / {lang === 'es' ? 'HOY' : 'TODAY'}</span><span>82%</span></div>
+        <div className="ah-study-title">08<br /><em>{lang === 'es' ? 'reservas.' : 'bookings.'}</em></div>
+        <div className="ah-study-reserve"><span>{lang === 'es' ? 'SALA' : 'FLOOR'}</span><i /><span>06</span><strong>{lang === 'es' ? 'Clientes' : 'Customers'}</strong></div>
       </div>
     )
   }
@@ -166,20 +166,20 @@ function InterfaceStudy({ type, lang }: { type: number; lang: 'es' | 'en' }) {
     return (
       <div className="ah-study ah-study-mobility" aria-hidden="true">
         <div className="ah-car-line" />
-        <div className="ah-study-top"><span>{lang === 'es' ? 'FLOTA / 07' : 'FLEET / 07'}</span><span>MARBELLA</span></div>
-        <div className="ah-model"><small>{lang === 'es' ? 'MODELO 03' : 'MODEL 03'}</small><strong>GT<br />SERIES</strong></div>
-        <div className="ah-specs"><span>24H</span><span>530 CV</span><span>AUTO</span></div>
+        <div className="ah-study-top"><span>CONTROL / FLEET</span><span>16 {lang === 'es' ? 'UNIDADES' : 'UNITS'}</span></div>
+        <div className="ah-model"><small>AVAILABLE / 01</small><strong>APEX<br />GT</strong></div>
+        <div className="ah-specs"><span>€690/D</span><span>530 CV</span><span>78%</span></div>
       </div>
     )
   }
   return (
     <div className="ah-study ah-study-property" aria-hidden="true">
       <div className="ah-property-grid">
-        <div><span>01</span><strong>Villa<br />Norte</strong></div>
-        <div><small>{lang === 'es' ? '4 HAB' : '4 BED'}</small><small>320 M²</small><b>€1.4M</b></div>
+        <div><span>CONTROL</span><strong>Portfolio<br />12</strong></div>
+        <div><small>CRM</small><small>{lang === 'es' ? '06 ABIERTOS' : '06 OPEN'}</small><b>92%</b></div>
       </div>
       <div className="ah-property-list"><i /><i /><i /></div>
-      <div className="ah-property-foot"><span>{lang === 'es' ? 'PROPIEDAD SELECCIONADA' : 'SELECTED PROPERTY'}</span><span>{lang === 'es' ? 'VER →' : 'VIEW →'}</span></div>
+      <div className="ah-property-foot"><span>{lang === 'es' ? 'ENQUIRIES · VISITAS · CONTENIDO' : 'ENQUIRIES · VIEWINGS · CONTENT'}</span><span>{lang === 'es' ? 'ABRIR →' : 'OPEN →'}</span></div>
     </div>
   )
 }
