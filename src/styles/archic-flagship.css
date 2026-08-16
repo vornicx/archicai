@@ -1,0 +1,321 @@
+/* Archic flagship pass — 2026.1
+   This layer exists for one reason: archic.es must feel stronger than the work it sells.
+   It deliberately replaces generic editorial rows with product-led, image-led composition. */
+
+:root{
+  --af-gold:#d7bd85;
+  --af-ink:#090908;
+  --af-paper:#f0eee8;
+  --af-line:rgba(255,255,255,.14);
+  --af-ease:cubic-bezier(.16,1,.3,1);
+}
+
+/* --------------------------------------------------------------------------
+   HOME — LESS GENERIC EDITORIAL, MORE PROOF
+   -------------------------------------------------------------------------- */
+.as-home-v2 .ah-manifesto{
+  min-height:72svh;
+  padding-top:clamp(110px,10vw,165px);
+  padding-bottom:clamp(110px,10vw,165px);
+}
+.as-home-v2 .ah-manifesto-copy{max-width:1380px}
+.as-home-v2 .ah-manifesto h2{max-width:10.5ch}
+.as-home-v2 .ah-manifesto-copy>p:last-child{max-width:570px}
+
+/* Presence / Control / Business become three visual product stages instead of a list. */
+.as-home-v2 .ah-layers{
+  position:relative;
+  padding-top:clamp(110px,10vw,168px);
+  padding-bottom:clamp(110px,10vw,168px);
+  overflow:hidden;
+}
+.as-home-v2 .ah-layers::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 86% 10%,rgba(215,189,133,.07),transparent 26%),
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:auto,100% 132px;
+  mask-image:linear-gradient(to bottom,#000,transparent 96%);
+}
+.as-home-v2 .ah-section-head,
+.as-home-v2 .ah-layer-list{position:relative;z-index:1}
+.as-home-v2 .ah-section-head{margin-bottom:clamp(52px,6vw,86px)}
+.as-home-v2 .ah-section-head h2{max-width:9.5ch}
+
+.as-home-v2 .ah-layer-list{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  border-top:0;
+}
+.as-home-v2 .ah-layer-row{
+  position:relative;
+  isolation:isolate;
+  min-height:clamp(500px,48vw,690px);
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-end;
+  gap:0;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;
+  background:#11120f;
+  transition:transform .7s var(--af-ease),border-color .45s ease,box-shadow .55s ease;
+}
+.as-home-v2 .ah-layer-row::before{
+  content:'';
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  width:auto;
+  background:
+    linear-gradient(to top,rgba(7,8,7,.98) 0%,rgba(7,8,7,.82) 29%,rgba(7,8,7,.14) 66%,rgba(7,8,7,.08) 100%),
+    linear-gradient(120deg,rgba(215,189,133,.08),transparent 42%);
+  transform:none;
+  transition:none;
+}
+.as-home-v2 .ah-layer-row::after{
+  content:'';
+  position:absolute;
+  z-index:-2;
+  inset:0;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:cover;
+  opacity:.9;
+  filter:saturate(.82) contrast(1.04) brightness(.76);
+  transform:scale(1.025);
+  transition:transform 1.15s var(--af-ease),filter .7s ease;
+}
+.as-home-v2 .ah-layer-row:nth-child(1)::after{background-image:url('/img/archic-digital-system.webp')}
+.as-home-v2 .ah-layer-row:nth-child(2)::after{background-image:url('/img/archic-hospitality-system.webp')}
+.as-home-v2 .ah-layer-row:nth-child(3)::after{background-image:url('/img/archic-automotive-system.webp')}
+.as-home-v2 .ah-row-no{
+  position:absolute;
+  top:24px;
+  left:24px;
+  color:rgba(255,255,255,.58)!important;
+  font-size:8px;
+  letter-spacing:.16em;
+}
+.as-home-v2 .ah-layer-row>strong{
+  position:absolute;
+  top:23px;
+  right:24px;
+  color:rgba(255,255,255,.82)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.82)!important;
+  font-size:9px;
+  line-height:1;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.as-home-v2 .ah-layer-row>div{width:100%}
+.as-home-v2 .ah-layer-row h3{
+  max-width:8ch;
+  margin:0;
+  color:#f6f2e9!important;
+  -webkit-text-fill-color:#f6f2e9!important;
+  font-size:clamp(40px,3.7vw,66px);
+  line-height:.92;
+  letter-spacing:-.055em;
+}
+.as-home-v2 .ah-layer-row p{
+  max-width:29ch;
+  margin-top:18px;
+  color:rgba(247,245,239,.72)!important;
+  -webkit-text-fill-color:rgba(247,245,239,.72)!important;
+  font-size:14px;
+  line-height:1.6;
+}
+.as-home-v2 .ah-row-open{
+  width:100%;
+  margin-top:28px;
+  padding-top:18px;
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.18);
+  color:#e0c78f!important;
+  -webkit-text-fill-color:#e0c78f!important;
+  font-size:9px;
+  letter-spacing:.04em;
+}
+@media(hover:hover){
+  .as-home-v2 .ah-layer-row:hover{
+    transform:translateY(-6px);
+    border-color:rgba(215,189,133,.48);
+    box-shadow:0 34px 90px rgba(0,0,0,.38);
+  }
+  .as-home-v2 .ah-layer-row:hover::after{transform:scale(1.065);filter:saturate(.96) contrast(1.05) brightness(.86)}
+}
+
+/* White-label systems read as hero-grade case studies rather than product thumbnails. */
+.as-home-v2 .ah-work{padding-top:clamp(115px,10vw,170px);padding-bottom:clamp(115px,10vw,170px)}
+.as-home-v2 .ah-work-head{margin-bottom:clamp(58px,6vw,92px)}
+.as-home-v2 .ah-work-head h2{max-width:9.3ch}
+.as-home-v2 .ah-work-card,
+.as-home-v2 .ah-work-card:first-child,
+.as-home-v2 .ah-work-card:not(:first-child){
+  padding:clamp(52px,5vw,78px) 0;
+  gap:clamp(46px,6vw,96px);
+}
+.as-home-v2 .ah-study-link .ah-study,
+.as-home-v2 .ah-work-card:first-child .ah-study,
+.as-home-v2 .ah-work-card:not(:first-child) .ah-study{
+  border-radius:14px;
+  box-shadow:0 38px 100px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.03) inset;
+}
+.as-home-v2 .ah-work-card-copy strong{max-width:8ch!important}
+.as-home-v2 .ah-work-card-copy p{max-width:31ch}
+
+/* Principles are compact and deliberate; no dead dark acreage. */
+.as-home-v2 .ah-principles{
+  padding-top:clamp(105px,9vw,150px);
+  padding-bottom:clamp(105px,9vw,150px);
+}
+.as-home-v2 .ah-principles-title{
+  display:grid;
+  grid-template-columns:.68fr 1.32fr;
+  gap:8vw;
+  align-items:end;
+  margin-bottom:clamp(52px,5vw,78px);
+}
+.as-home-v2 .ah-principles-title h2{max-width:9ch;margin:0 0 0 auto}
+.as-home-v2 .ah-principles-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  border-top:1px solid rgba(255,255,255,.14);
+  border-left:1px solid rgba(255,255,255,.14);
+}
+.as-home-v2 .ah-principles-list article{
+  min-height:260px;
+  padding:28px;
+  display:grid;
+  grid-template-columns:44px 1fr;
+  grid-template-rows:auto 1fr auto;
+  gap:22px;
+  border-right:1px solid rgba(255,255,255,.14);
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.as-home-v2 .ah-principles-list span{font-size:8px;letter-spacing:.14em}
+.as-home-v2 .ah-principles-list h3{align-self:end;font-size:clamp(36px,3.2vw,54px);line-height:.94;letter-spacing:-.05em}
+.as-home-v2 .ah-principles-list p{grid-column:2;max-width:38ch;font-size:14px;line-height:1.62}
+
+.as-home-v2 .ah-process{padding-top:clamp(105px,9vw,150px);padding-bottom:clamp(105px,9vw,150px)}
+.as-home-v2 .ah-process-head{margin-bottom:clamp(52px,5vw,80px)}
+.as-home-v2 .ah-process-grid article{min-height:310px;padding:26px 24px}
+
+/* --------------------------------------------------------------------------
+   PRODUCT ROUTES — THEY SHOULD FEEL LIKE PRODUCTS, NOT TEMPLATE SUBPAGES
+   -------------------------------------------------------------------------- */
+.as-detail .as-detail-hero{
+  grid-template-columns:minmax(0,1.02fr) minmax(500px,.78fr);
+  gap:46px clamp(58px,6vw,104px);
+  padding-top:clamp(126px,10vw,170px);
+  padding-bottom:34px;
+}
+.as-detail .as-detail-hero-copy{align-self:center}
+.as-detail .as-detail-hero h1{max-width:10.4ch;font-size:clamp(66px,7.2vw,126px)}
+.as-detail .as-lead{max-width:650px;margin-top:32px}
+.as-detail .a26-object{
+  align-self:center;
+  min-height:clamp(500px,43vw,650px);
+  margin:0;
+  border-color:rgba(255,255,255,.2);
+  border-radius:14px;
+  box-shadow:0 42px 110px rgba(0,0,0,.34),0 0 0 1px rgba(255,255,255,.025) inset;
+}
+.as-detail .as-scroll-mark{padding-top:18px}
+
+.as-detail .as-statement{padding-top:clamp(105px,10vw,170px);padding-bottom:clamp(105px,10vw,170px)}
+.as-detail .as-statement h2{max-width:11.5ch}
+.as-detail .as-feature-section{padding-top:clamp(105px,10vw,168px);padding-bottom:clamp(105px,10vw,168px)}
+.as-detail .as-feature-head{margin-bottom:clamp(54px,6vw,88px)}
+.as-detail .as-feature-list article{
+  position:relative;
+  min-height:168px;
+  padding:34px 0;
+  transition:padding .55s var(--af-ease),background .45s ease,border-color .45s ease;
+}
+.as-detail .as-feature-list article::after{
+  content:'↗';
+  position:absolute;
+  right:6px;
+  top:50%;
+  transform:translateY(-50%);
+  color:rgba(215,189,133,.52);
+  font-size:16px;
+  opacity:0;
+  transition:opacity .35s ease,transform .45s var(--af-ease);
+}
+@media(hover:hover){
+  .as-detail .as-feature-list article:hover{padding-left:18px;padding-right:42px;border-bottom-color:rgba(215,189,133,.33)}
+  .as-detail .as-feature-list article:hover::after{opacity:1;transform:translate(4px,-50%)}
+}
+.as-detail .as-principle{padding-top:clamp(110px,10vw,170px);padding-bottom:clamp(110px,10vw,170px)}
+.as-detail .as-search-intents{padding-top:clamp(96px,9vw,145px);padding-bottom:clamp(96px,9vw,145px)}
+.as-detail .as-next{padding-top:clamp(108px,10vw,170px);padding-bottom:clamp(108px,10vw,170px)}
+
+/* Contact: premium, direct, less presentation-deck whitespace. */
+.as-contact-page .as-contact-hero{
+  padding-top:clamp(128px,10vw,170px);
+  padding-bottom:clamp(80px,7vw,112px);
+  gap:clamp(54px,7vw,104px);
+}
+.as-contact-page .as-contact-hero h1{max-width:8.4ch}
+.as-contact-page .as-contact-notes{margin-top:30px}
+.as-contact-page .as-contact-form{border-radius:14px;box-shadow:0 34px 90px rgba(0,0,0,.16)}
+
+/* --------------------------------------------------------------------------
+   MOBILE — DESIGNED, NOT SHRUNK
+   -------------------------------------------------------------------------- */
+@media(max-width:1080px){
+  .as-home-v2 .ah-layer-list{grid-template-columns:1fr}
+  .as-home-v2 .ah-layer-row{min-height:560px}
+  .as-home-v2 .ah-layer-row h3{max-width:9ch;font-size:clamp(48px,7vw,70px)}
+  .as-home-v2 .ah-principles-title{grid-template-columns:1fr;gap:28px}
+  .as-home-v2 .ah-principles-title h2{margin-left:0}
+  .as-detail .as-detail-hero{grid-template-columns:1fr;grid-template-rows:auto auto auto;padding-top:clamp(120px,14vw,168px)}
+  .as-detail .a26-object{grid-column:1;width:min(760px,100%);justify-self:end;min-height:560px}
+}
+
+@media(max-width:760px){
+  .as-home-v2 .ah-manifesto{padding-top:88px;padding-bottom:88px}
+  .as-home-v2 .ah-layers{padding-top:88px;padding-bottom:92px}
+  .as-home-v2 .ah-section-head{margin-bottom:38px}
+  .as-home-v2 .ah-layer-list{gap:12px}
+  .as-home-v2 .ah-layer-row{min-height:470px;padding:20px;border-radius:10px}
+  .as-home-v2 .ah-row-no{top:19px;left:19px}
+  .as-home-v2 .ah-layer-row>strong{top:19px;right:19px;font-size:8px}
+  .as-home-v2 .ah-layer-row h3{max-width:8ch;font-size:clamp(43px,12vw,58px)}
+  .as-home-v2 .ah-layer-row p{max-width:31ch;font-size:14px}
+  .as-home-v2 .ah-work{padding-top:88px;padding-bottom:94px}
+  .as-home-v2 .ah-principles{padding-top:88px;padding-bottom:92px}
+  .as-home-v2 .ah-principles-list{grid-template-columns:1fr}
+  .as-home-v2 .ah-principles-list article{min-height:220px;padding:22px;grid-template-columns:34px 1fr}
+  .as-home-v2 .ah-principles-list h3{font-size:36px}
+  .as-home-v2 .ah-process{padding-top:88px;padding-bottom:92px}
+  .as-home-v2 .ah-process-grid article{min-height:220px}
+
+  .as-detail .as-detail-hero{padding-top:104px;gap:30px}
+  .as-detail .as-detail-hero h1{font-size:clamp(55px,15vw,74px);line-height:.87}
+  .as-detail .as-lead{margin-top:24px;font-size:15px;line-height:1.62}
+  .as-detail .a26-object{width:100%;min-height:390px;border-radius:10px;box-shadow:0 24px 70px rgba(0,0,0,.32)}
+  .as-detail .as-statement,.as-detail .as-feature-section,.as-detail .as-principle,.as-detail .as-search-intents,.as-detail .as-next{padding-top:88px;padding-bottom:88px}
+  .as-detail .as-feature-list article{min-height:0;padding:26px 0}
+  .as-detail .as-feature-list article::after{display:none}
+
+  .as-contact-page .as-contact-hero{padding-top:104px;padding-bottom:76px;gap:44px}
+  .as-contact-page .as-contact-form{border-radius:10px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .as-home-v2 .ah-layer-row,
+  .as-home-v2 .ah-layer-row::after,
+  .as-detail .as-feature-list article,
+  .as-detail .as-feature-list article::after{transition:none!important;transform:none!important}
+}
