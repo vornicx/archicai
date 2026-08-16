@@ -22,8 +22,14 @@ const ARCHIC_DIRS = [
   ...ARCHIC_SLUGS.map((slug) => `en/${slug}`),
 ]
 
+const EXPLORATION_SLUGS = ['hospitality', 'mobility', 'real-estate']
+const EXPLORATION_DIRS = [
+  ...EXPLORATION_SLUGS.map((slug) => `explorations/${slug}`),
+  ...EXPLORATION_SLUGS.map((slug) => `en/explorations/${slug}`),
+]
+
 const pageInputs = Object.fromEntries(
-  [...LANDING_DIRS, ...GUIDE_DIRS, 'guias', ...ARCHIC_DIRS]
+  [...LANDING_DIRS, ...GUIDE_DIRS, 'guias', ...ARCHIC_DIRS, ...EXPLORATION_DIRS]
     .map((name) => [name, resolve(__dirname, `${name}/index.html`)] as const)
     .filter(([, file]) => existsSync(file)),
 )
