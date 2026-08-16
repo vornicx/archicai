@@ -10,34 +10,34 @@ const explorations = [
   {
     slug: 'hospitality',
     es: {
-      title: 'Hostelería conectada — Exploración Archic',
-      description: 'Prototipo funcional de Archic que conecta reserva, cliente, servicio y operación para hostelería.',
+      title: 'Hospitality Control white-label — Archic',
+      description: 'Entorno white-label interactivo de Archic para reservas, sala, clientes y operación de hostelería con datos ficticios.',
     },
     en: {
-      title: 'Connected hospitality — Archic exploration',
-      description: 'A functional Archic prototype connecting booking, customer, service and operations for hospitality.',
+      title: 'White-label Hospitality Control — Archic',
+      description: 'An interactive Archic white-label environment for bookings, floor operations, customers and hospitality workflows using fictional data.',
     },
   },
   {
     slug: 'mobility',
     es: {
-      title: 'Movilidad premium conectada — Exploración Archic',
-      description: 'Prototipo funcional de Archic para descubrimiento de flota, disponibilidad, solicitudes y gestión operativa.',
+      title: 'Mobility Control white-label — Archic',
+      description: 'Entorno white-label interactivo de Archic para flota, disponibilidad, solicitudes, calendario y clientes con datos ficticios.',
     },
     en: {
-      title: 'Connected premium mobility — Archic exploration',
-      description: 'A functional Archic prototype for fleet discovery, availability, enquiries and operational management.',
+      title: 'White-label Mobility Control — Archic',
+      description: 'An interactive Archic white-label environment for fleet, availability, enquiries, calendar and clients using fictional data.',
     },
   },
   {
     slug: 'real-estate',
     es: {
-      title: 'Inmobiliario conectado — Exploración Archic',
-      description: 'Prototipo funcional de Archic que conecta catálogo, búsqueda, solicitudes de visita y gestión de leads.',
+      title: 'Property Control white-label — Archic',
+      description: 'Entorno white-label interactivo de Archic para propiedades, CRM, leads, visitas y contenido con datos ficticios.',
     },
     en: {
-      title: 'Connected real estate — Archic exploration',
-      description: 'A functional Archic prototype connecting property discovery, viewing requests and lead management.',
+      title: 'White-label Property Control — Archic',
+      description: 'An interactive Archic white-label environment for properties, CRM, leads, viewings and content using fictional data.',
     },
   },
 ] as const
@@ -64,9 +64,10 @@ function pageHtml(slug: string, lang: 'es' | 'en', title: string, description: s
     <link rel="alternate" hreflang="en" href="${enUrl}" />
     <link rel="alternate" hreflang="x-default" href="${esUrl}" />
     <meta name="theme-color" content="#090908" />
-    <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
-    <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
+    <link rel="icon" href="/brand/archic-symbol-2026.svg" type="image/svg+xml" sizes="any" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Archic" />
     <meta property="og:url" content="${canonical}" />
@@ -122,5 +123,5 @@ if (existsSync(sitemapPath)) {
   if (rootOpen) {
     writeFileSync(sitemapPath, `${rootOpen}\n${[...preserved.map((block) => block.trim()), ...entries].join('\n')}\n</urlset>\n`)
   }
-  console.log('updated public/sitemap.xml with Archic exploration routes')
+  console.log('updated public/sitemap.xml with Archic white-label routes')
 }
