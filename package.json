@@ -8,17 +8,18 @@
     "build": "tsc -b && vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
-    "gen:pages": "bun run scripts/generate-static-pages.ts && bun run scripts/generate-archic-site-pages.ts && bun run scripts/generate-exploration-pages.ts && bun run scripts/generate-intent-pages.ts && bun run scripts/postprocess-generated-seo.ts && bun run scripts/validate-generated-seo.ts"
+    "gen:pages": "bun run scripts/generate-static-pages.ts && bun run scripts/generate-archic-site-pages.ts && bun run scripts/generate-exploration-pages.ts && bun run scripts/generate-intent-pages.ts && bun run scripts/postprocess-generated-seo.ts && bun run scripts/validate-generated-seo.ts",
+    "quality:gate": "node scripts/quality-gate.mjs"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/instrument-serif": "^5.3.0",
-    "@fontsource/inter": "^5.3.0",
-    "@fontsource/space-grotesk": "^5.2.10",
+    "@fontsource/inter": "^5.3.1",
+    "@fontsource/space-grotesk": "^5.2.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-helmet-async": "^3.0.0",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^6.28.0"
   },
   "devDependencies": {
