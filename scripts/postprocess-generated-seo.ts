@@ -10,10 +10,10 @@ const SYMBOL_PATH = '/brand/archic-symbol-2026.svg'
 const SYMBOL_URL = `https://archic.es${SYMBOL_PATH}`
 const LOCKUP_URL = 'https://archic.es/brand/archic-lockup-dark.svg'
 
-// Keep one stable, raster favicon as the canonical search favicon. Google
-// recommends a stable square icon of at least 48x48; extra icon candidates can
-// cause old cached assets to linger on search surfaces after a rebrand.
+// Expose only current brand assets in the generated head. The 48x48 PNG uses
+// a stable URL for search engines, while the SVG remains the canonical brand symbol.
 const BRAND_LINKS = [
+  `    <link rel="icon" href="${SYMBOL_PATH}" type="image/svg+xml" sizes="any" />`,
   `    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />`,
   `    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />`,
   `    <link rel="manifest" href="/manifest.json?${BRAND_QUERY}" />`,
