@@ -39,6 +39,9 @@ jobs:
       # respecto a los textos de src/, aunque alguien olvide ejecutarlo en local.
       - run: npm run gen:pages
       - run: npm run build
+      # El propio sitio de Archic es benchmark #1: identidad, rutas white-label,
+      # metadatos y presupuesto de bundle deben pasar antes de publicar.
+      - run: npm run quality:gate
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
