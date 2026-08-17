@@ -37,6 +37,7 @@ import './styles/archic-flagship.css'
 import './styles/archic-flagship-rebuild.css'
 import './styles/archic-flagship-demo.css'
 import './styles/archic-reveal-guard.css'
+import './styles/archic-luxury-audit-fix.css'
 /* Safety layers stay last. Feature styles must never be imported below these. */
 import './styles/archic-contrast.css'
 import './styles/archic-visibility-guard.css'
