@@ -35,6 +35,7 @@ import './styles/archic-team-contact.css'
 import './styles/archic-standard-2026.css'
 import './styles/archic-flagship.css'
 import './styles/archic-market-focus.css'
+import './styles/archic-home-final.css'
 import './styles/archic-reveal-guard.css'
 /* Safety layers stay last. Feature styles must never be imported below these. */
 import './styles/archic-contrast.css'
