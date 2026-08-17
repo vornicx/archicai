@@ -13,6 +13,11 @@
 .af3-work-media>img{transform:none!important}
 @media(hover:hover){.af3-work:hover .af3-work-media>img{transform:scale(1.04)!important}}
 
+/* Public portfolio accuracy: until a concept becomes a contracted case study, the interface says so.
+   This avoids implying a client relationship while still showing the work Archic actually built. */
+.af3-work-meta span:last-child{font-size:0}
+.af3-work-meta span:last-child::after{content:'ARCHIC / CONCEPT BUILD';font-size:8px;letter-spacing:.12em}
+
 /* Keep the editorial serif line expressive without colliding with the sans line above it. */
 .af3-transition-copy h2 em{display:block;margin-top:8px;font-size:.92em;line-height:.86}
 
@@ -78,4 +83,5 @@
   .af3-text-link{min-height:44px;display:inline-flex;align-items:center;padding:9px 0 8px}
   .af3-system-link{min-height:44px;padding:10px 0}
   .af3-transition-copy h2 em{margin-top:10px;font-size:.88em;line-height:.88}
+  .af3-work-meta span:last-child::after{font-size:7px}
 }
