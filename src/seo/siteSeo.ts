@@ -16,6 +16,14 @@ export const ARCHIC_BASE = {
   countryName: 'España',
 } as const
 
+export const ARCHIC_SERVICE_AREAS = [
+  { '@type': 'City', name: 'Écija' },
+  { '@type': 'City', name: 'Sevilla' },
+  { '@type': 'City', name: 'Marbella' },
+  { '@type': 'AdministrativeArea', name: 'Costa del Sol' },
+  { '@type': 'Country', name: 'Spain' },
+] as const
+
 export const ARCHIC_KNOWS_ABOUT = [
   'Premium web design',
   'Digital presence',
@@ -26,6 +34,14 @@ export const ARCHIC_KNOWS_ABOUT = [
   'Business automation',
   'System integrations',
   'Business data systems',
+  'Luxury mobility websites',
+  'Luxury car rental systems',
+  'Hospitality booking systems',
+  'Restaurant reservation systems',
+  'Premium real estate websites',
+  'Property CRM systems',
+  'Yacht charter websites',
+  'Premium service businesses',
 ] as const
 
 export type SitePageKey = 'presence' | 'control' | 'business' | 'studio' | 'contact'
@@ -41,14 +57,14 @@ type SeoEntry = {
 export const HOME_SEO: Record<Lang, SeoEntry> = {
   es: {
     title: 'Diseño web premium y software a medida para empresas | Archic',
-    description: 'Diseñamos webs premium, sistemas de gestión y software a medida para empresas que compiten por experiencia, eficiencia y percepción de marca.',
-    ogAlt: 'Archic — diseño web premium, sistemas y software a medida',
+    description: 'Diseño web premium y software a medida para empresas, con especialización en movilidad premium, hospitality e inmobiliario. Marbella, Sevilla y España.',
+    ogAlt: 'Archic — diseño web premium y sistemas para negocios de alto valor',
     schemaName: 'Archic',
   },
   en: {
     title: 'Premium web design and custom software for businesses | Archic',
-    description: 'Premium websites, business management systems and custom software for companies competing on experience, efficiency and brand perception.',
-    ogAlt: 'Archic — premium web design, systems and custom software',
+    description: 'Premium web design and custom software, with growing depth in luxury mobility, hospitality and real estate. Marbella, Seville and projects across Spain.',
+    ogAlt: 'Archic — premium web design and systems for high-value businesses',
     schemaName: 'Archic',
   },
 }
@@ -190,7 +206,7 @@ export function organizationNode() {
         addressCountry: ARCHIC_BASE.countryCode,
       },
     },
-    areaServed: { '@type': 'Country', name: 'Spain' },
+    areaServed: ARCHIC_SERVICE_AREAS,
     knowsAbout: ARCHIC_KNOWS_ABOUT,
     knowsLanguage: ['es', 'en'],
     contactPoint: [
