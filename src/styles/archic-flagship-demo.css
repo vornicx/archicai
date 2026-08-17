@@ -8,6 +8,14 @@
   transform:none!important;
 }
 
+/* Media starts optically exact. Depth is introduced only on capable hover devices, so the base
+   render does not manufacture false clipping/overflow around the project frames. */
+.af3-work-media>img{transform:none!important}
+@media(hover:hover){.af3-work:hover .af3-work-media>img{transform:scale(1.04)!important}}
+
+/* Keep the editorial serif line expressive without colliding with the sans line above it. */
+.af3-transition-copy h2 em{display:block;margin-top:8px;font-size:.92em;line-height:.86}
+
 .af3-demo{
   position:absolute;
   z-index:12;
@@ -64,7 +72,10 @@
 @media(max-width:760px){
   .af3-demo{left:3%;right:3%;bottom:2%;width:auto}
   .af3-demo-head{min-height:36px;padding:0 10px;font-size:6px}
-  .af3-demo-tabs button{padding:10px 5px;font-size:6px}
+  .af3-demo-tabs button{min-height:44px;padding:11px 5px;font-size:6px}
   .af3-demo-body{grid-template-columns:1.08fr .92fr;min-height:136px}
   .af3-demo-copy{padding:12px 10px}.af3-demo-copy strong{font-size:17px}.af3-demo-copy span{margin-top:12px;padding-top:8px;font-size:7px}
+  .af3-text-link{min-height:44px;display:inline-flex;align-items:center;padding:9px 0 8px}
+  .af3-system-link{min-height:44px;padding:10px 0}
+  .af3-transition-copy h2 em{margin-top:10px;font-size:.88em;line-height:.88}
 }
