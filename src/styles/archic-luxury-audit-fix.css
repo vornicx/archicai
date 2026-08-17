@@ -1,0 +1,50 @@
+/* Production visual-audit fixes for the 2026.3 luxury homepage.
+   Keep this before the global safety layers; selectors are intentionally scoped to af4. */
+
+/* Legacy typography layers can still target nested span/em nodes. The flagship dark surfaces
+   declare their text colour explicitly so contrast never depends on inheritance. */
+.af4-site .af4-hero-copy h1,
+.af4-site .af4-hero-copy h1 span,
+.af4-site .af4-prototype-intro h2,
+.af4-site .af4-direction-copy h2,
+.af4-site .af4-direction-copy h2 span,
+.af4-site .af4-close-copy h2{
+  color:#f5f0e7!important;
+  -webkit-text-fill-color:#f5f0e7!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+}
+
+.af4-site .af4-hero-copy h1 em,
+.af4-site .af4-direction-copy h2 em,
+.af4-site .af4-close-copy h2 em{
+  color:#eadcc0!important;
+  -webkit-text-fill-color:#eadcc0!important;
+  opacity:1!important;
+}
+
+/* Prototype anchors are grid items on desktop, which implicitly blockifies them. Once the
+   mobile container switches from grid to block they must remain block boxes or their absolutely
+   positioned media/copy collapses into the same line box and the cards overlap. */
+.af4-site .af4-prototype{
+  display:block;
+  isolation:isolate;
+}
+
+.af4-site .af4-prototype>div:last-child,
+.af4-site .af4-prototype-badge,
+.af4-site .af4-prototype-code{
+  opacity:1!important;
+  visibility:visible!important;
+}
+
+@media(max-width:720px){
+  .af4-site .af4-prototype-grid{display:block!important}
+  .af4-site .af4-prototype,
+  .af4-site .af4-prototype:first-child{
+    display:block!important;
+    width:100%;
+    min-height:440px;
+    margin:0 0 10px;
+  }
+}
