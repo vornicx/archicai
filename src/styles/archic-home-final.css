@@ -1,0 +1,379 @@
+/* Archic home final pass — product proof over agency copy. */
+
+.as-home-v2 .ah-section-head h2{
+  max-width:12.5ch;
+}
+
+.as-home-v2 .ah-work-head h2{
+  max-width:11.5ch;
+}
+
+/* --------------------------------------------------------------------------
+   QUALITY GATE — SHOW THE STANDARD INSTEAD OF EXPLAINING A GENERIC PROCESS
+   -------------------------------------------------------------------------- */
+.as-home-v2 .ah-quality{
+  position:relative;
+  isolation:isolate;
+  display:grid;
+  grid-template-columns:minmax(0,.76fr) minmax(540px,1.24fr);
+  gap:clamp(64px,8vw,130px);
+  align-items:center;
+  padding:clamp(118px,11vw,188px) clamp(28px,5.4vw,88px);
+  overflow:hidden;
+  background:#090a08;
+  color:#f4f0e7;
+}
+
+.as-home-v2 .ah-quality::before{
+  content:'';
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 78% 18%,rgba(215,189,133,.085),transparent 30%),
+    linear-gradient(rgba(255,255,255,.026) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.021) 1px,transparent 1px);
+  background-size:auto,100% 90px,90px 100%;
+  mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);
+}
+
+.as-home-v2 .ah-quality::after{
+  content:'QA';
+  position:absolute;
+  z-index:-1;
+  left:-.035em;
+  bottom:-.16em;
+  color:rgba(255,255,255,.025);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(190px,31vw,520px);
+  font-weight:600;
+  line-height:.72;
+  letter-spacing:-.095em;
+  pointer-events:none;
+}
+
+.as-home-v2 .ah-quality-copy{
+  position:relative;
+  z-index:1;
+  max-width:620px;
+}
+
+.as-home-v2 .ah-quality-copy .ah-kicker{
+  color:rgba(244,240,231,.62)!important;
+  -webkit-text-fill-color:rgba(244,240,231,.62)!important;
+}
+
+.as-home-v2 .ah-quality-copy h2{
+  margin:28px 0 0;
+  max-width:9.4ch;
+  color:#f4f0e7!important;
+  -webkit-text-fill-color:#f4f0e7!important;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(62px,6.1vw,108px);
+  font-weight:500;
+  line-height:.88;
+  letter-spacing:-.07em;
+}
+
+.as-home-v2 .ah-quality-copy h2 span,
+.as-home-v2 .ah-quality-copy h2 em{
+  display:block;
+}
+
+.as-home-v2 .ah-quality-copy h2 em{
+  color:#d7bd85!important;
+  -webkit-text-fill-color:#d7bd85!important;
+  font-family:'Instrument Serif',serif;
+  font-weight:400;
+}
+
+.as-home-v2 .ah-quality-copy>p:not(.ah-kicker){
+  max-width:48ch;
+  margin:34px 0 0;
+  color:rgba(244,240,231,.66)!important;
+  -webkit-text-fill-color:rgba(244,240,231,.66)!important;
+  font-size:15px;
+  line-height:1.75;
+}
+
+.as-home-v2 .ah-quality-flow{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:48px;
+  color:rgba(244,240,231,.5);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  letter-spacing:.13em;
+}
+
+.as-home-v2 .ah-quality-flow i{
+  width:clamp(28px,4vw,64px);
+  height:1px;
+  background:linear-gradient(90deg,rgba(215,189,133,.18),rgba(215,189,133,.75));
+}
+
+.as-home-v2 .ah-quality-console{
+  position:relative;
+  z-index:2;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:14px;
+  background:rgba(13,14,12,.88);
+  box-shadow:0 42px 120px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.018) inset;
+  backdrop-filter:blur(18px);
+}
+
+.as-home-v2 .ahq-topbar{
+  min-height:58px;
+  padding:0 19px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.025);
+}
+
+.as-home-v2 .ahq-topbar>div,
+.as-home-v2 .ahq-status{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  letter-spacing:.12em;
+}
+
+.as-home-v2 .ahq-topbar img{
+  width:18px;
+  height:18px;
+  filter:invert(1);
+  opacity:.9;
+}
+
+.as-home-v2 .ahq-status{
+  color:#d7bd85;
+}
+
+.as-home-v2 .ahq-status i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#d7bd85;
+  box-shadow:0 0 0 5px rgba(215,189,133,.08);
+}
+
+.as-home-v2 .ahq-command{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:82px;
+  padding:0 24px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  background:#0a0b09;
+  font-family:'IBM Plex Mono',monospace;
+}
+
+.as-home-v2 .ahq-command span{
+  color:#d7bd85;
+  font-size:13px;
+}
+
+.as-home-v2 .ahq-command code{
+  color:rgba(244,240,231,.86);
+  font-family:inherit;
+  font-size:12px;
+}
+
+.as-home-v2 .ahq-log{
+  padding:4px 0;
+}
+
+.as-home-v2 .ahq-row{
+  min-height:88px;
+  padding:18px 22px;
+  display:grid;
+  grid-template-columns:38px minmax(110px,.72fr) minmax(170px,1.3fr) auto;
+  gap:18px;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.085);
+  transition:background .35s ease,padding .45s cubic-bezier(.16,1,.3,1);
+}
+
+.as-home-v2 .ahq-row:last-child{
+  border-bottom:0;
+}
+
+.as-home-v2 .ahq-row>span,
+.as-home-v2 .ahq-row>b{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  letter-spacing:.12em;
+}
+
+.as-home-v2 .ahq-row>span{
+  color:rgba(244,240,231,.34);
+}
+
+.as-home-v2 .ahq-row>strong{
+  color:#f4f0e7!important;
+  -webkit-text-fill-color:#f4f0e7!important;
+  font-size:14px;
+  font-weight:500;
+}
+
+.as-home-v2 .ahq-row>p{
+  margin:0;
+  color:rgba(244,240,231,.49)!important;
+  -webkit-text-fill-color:rgba(244,240,231,.49)!important;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.as-home-v2 .ahq-row>b{
+  color:#d7bd85!important;
+  -webkit-text-fill-color:#d7bd85!important;
+  font-weight:500;
+}
+
+@media(hover:hover){
+  .as-home-v2 .ahq-row:hover{
+    padding-left:28px;
+    background:rgba(255,255,255,.025);
+  }
+}
+
+.as-home-v2 .ahq-foot{
+  min-height:48px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.12);
+  background:rgba(215,189,133,.04);
+  color:rgba(244,240,231,.44);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:8px;
+  letter-spacing:.14em;
+}
+
+/* Remove inherited spacing assumptions from the old manifesto/process cadence. */
+.as-home-v2 .amf{
+  margin-top:0;
+}
+
+@media(max-width:1080px){
+  .as-home-v2 .ah-quality{
+    grid-template-columns:1fr;
+    gap:64px;
+  }
+
+  .as-home-v2 .ah-quality-copy{
+    max-width:760px;
+  }
+
+  .as-home-v2 .ah-quality-copy h2{
+    max-width:10.5ch;
+  }
+
+  .as-home-v2 .ah-quality-console{
+    width:min(820px,100%);
+    justify-self:end;
+  }
+}
+
+@media(max-width:760px){
+  .as-home-v2 .ah-quality{
+    gap:46px;
+    padding:92px 20px 96px;
+  }
+
+  .as-home-v2 .ah-quality::after{
+    font-size:240px;
+    bottom:-.06em;
+  }
+
+  .as-home-v2 .ah-quality-copy h2{
+    margin-top:22px;
+    max-width:9.2ch;
+    font-size:clamp(54px,16vw,76px);
+  }
+
+  .as-home-v2 .ah-quality-copy>p:not(.ah-kicker){
+    margin-top:26px;
+    font-size:14px;
+  }
+
+  .as-home-v2 .ah-quality-flow{
+    margin-top:36px;
+    gap:9px;
+    font-size:8px;
+  }
+
+  .as-home-v2 .ah-quality-flow i{
+    flex:1;
+    min-width:18px;
+  }
+
+  .as-home-v2 .ah-quality-console{
+    border-radius:10px;
+  }
+
+  .as-home-v2 .ahq-topbar{
+    min-height:52px;
+    padding:0 14px;
+  }
+
+  .as-home-v2 .ahq-topbar>div,
+  .as-home-v2 .ahq-status{
+    gap:7px;
+    font-size:7px;
+  }
+
+  .as-home-v2 .ahq-topbar img{
+    width:16px;
+    height:16px;
+  }
+
+  .as-home-v2 .ahq-command{
+    min-height:68px;
+    padding:0 16px;
+  }
+
+  .as-home-v2 .ahq-command code{
+    font-size:10px;
+  }
+
+  .as-home-v2 .ahq-row{
+    min-height:0;
+    padding:18px 15px;
+    grid-template-columns:24px 1fr auto;
+    gap:10px 12px;
+  }
+
+  .as-home-v2 .ahq-row>strong{
+    font-size:13px;
+  }
+
+  .as-home-v2 .ahq-row>p{
+    grid-column:2 / 4;
+    max-width:35ch;
+    font-size:11px;
+  }
+
+  .as-home-v2 .ahq-row>b{
+    font-size:7px;
+  }
+
+  .as-home-v2 .ahq-foot{
+    padding:0 15px;
+    font-size:7px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .as-home-v2 .ahq-row{
+    transition:none;
+  }
+}
