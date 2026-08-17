@@ -1,313 +1,317 @@
-import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import StudioExperience from '../components/StudioExperience'
-import MarketFocus from '../components/MarketFocus'
 import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 import { HOME_SEO, siteOgImage } from '../seo/siteSeo'
 import { CONTACT_PHONE } from '../config/contact'
 
 type Lang = 'es' | 'en'
-type SystemTone = 'positive' | 'accent' | 'neutral'
-type HeroSystem = {
-  id: string
-  tab: string
-  label: string
-  title: string
-  preview: string
+
+type WorkItem = {
+  name: string
+  kind: string
+  scope: string
+  image: string
   href: string
-  metric: string
-  metricLabel: string
-  stats: [string, string, SystemTone][]
+  tone: 'light' | 'dark'
+  feature: 'property' | 'hospitality' | 'mobility' | 'yachting'
 }
 
 const COPY = {
   es: {
     hero: {
-      kicker: 'ARCHIC / DIGITAL SYSTEMS',
-      titleA: 'Diseñamos lo que',
-      titleB: 'hace avanzar',
-      titleC: 'un negocio.',
-      body: 'Diseñamos webs, experiencias digitales y software a medida para negocios que necesitan algo más que presencia: captar mejor, operar mejor y crecer sin perder nivel.',
+      kicker: 'ARCHIC / DIGITAL PRODUCT STUDIO',
+      line1: 'Tu negocio ya tiene',
+      line2: 'un nivel.',
+      line3: 'Lo digital tiene que',
+      line4: 'estar a la altura.',
+      lead: 'Diseñamos y construimos webs, producto digital y software a medida para empresas que cuidan cómo se perciben y cómo funcionan.',
       cta: 'Empezar un proyecto',
-      secondary: 'Ver cómo trabajamos',
-      meta: ['ÉCIJA · SEVILLA', 'MARBELLA · COSTA DEL SOL', 'MOBILITY · HOSPITALITY · REAL ESTATE', 'ES / EN'],
+      work: 'Ver trabajo seleccionado',
+      note: 'Écija · Sevilla · Marbella · España',
     },
-    layers: {
-      kicker: 'PRESENCIA / CONTROL / NEGOCIO',
-      title: 'Lo que ve el cliente. Lo que usa el equipo. Lo que hace crecer el negocio.',
-      body: 'Cada proyecto entra por una necesidad distinta. Podemos resolver solo la capa pública o conectar marca, operaciones y software en un mismo sistema.',
-      items: [
-        ['01', 'Presence', 'Una presencia que sostiene el valor.', 'Dirección digital, web, contenido, experiencia y conversión.', 'presence'],
-        ['02', 'Control', 'Una operación que no depende de parches.', 'Clientes, reservas, recursos, operaciones y gestión privada.', 'control'],
-        ['03', 'Business', 'Software para lo que ya no cabe en una web.', 'Automatización, integraciones, datos y producto a medida.', 'business'],
-      ],
-      open: 'Descubrir',
-    },
-    work: {
-      kicker: 'VERTICALES / SOFTWARE QUE SE PUEDE PROBAR',
-      title: 'No solo lo contamos. Puedes entrar.',
-      body: 'Estamos construyendo profundidad en hospitality, movilidad premium e inmobiliario. Los entornos son white-label y usan datos ficticios, pero la lógica de producto es real.',
-      items: [
-        ['01', 'Hostelería', 'Reservas · Sala · Clientes · Carta', 'Opera reservas, ocupación, clientes y servicio desde una versión neutral basada en un sistema de hostelería desarrollado por Archic.'],
-        ['02', 'Movilidad premium', 'Flota · Solicitudes · Calendario · Clientes', 'Gestiona disponibilidad, tarifas, solicitudes y movimientos de flota en un entorno white-label con datos ficticios.'],
-        ['03', 'Inmobiliario', 'Propiedades · CRM · Visitas · Contenido', 'Recorre portfolio, enquiries, prioridades, visitas y calidad de contenido con la lógica de una plataforma inmobiliaria completa.'],
-      ],
+    reel: ['WEB', 'PRODUCT', 'SOFTWARE', 'SYSTEMS', 'MOTION', 'OPERATIONS'],
+    selected: {
+      kicker: 'SELECTED WORK / 2026',
+      title: 'El estándar se demuestra trabajando.',
+      lead: 'No queremos que confíes en una lista de promesas. Queremos que veas cómo resolvemos negocios distintos cuando marca, producto y operación tienen que sentirse como una sola cosa.',
       open: 'Abrir sistema',
     },
-    standard: {
-      kicker: 'ARCHIC QUALITY GATE / 2026.1',
-      titleA: '“Se ve bien”',
-      titleB: 'no es el final.',
-      body: 'La entrega pasa por una capa de verificación propia: estructura, responsive, interacción, estados, rendimiento y revisión visual. El detalle se comprueba antes de publicar.',
-      command: 'npm run quality:gate',
-      status: 'PASS',
-      checks: [
-        ['01', 'Arquitectura', 'Rutas, jerarquía, contenido y enlaces'],
-        ['02', 'Responsive', 'Desktop y móvil tratados como experiencias'],
-        ['03', 'Producto', 'Formularios, estados y recorridos críticos'],
-        ['04', 'Rendimiento', 'Carga, estabilidad y percepción de velocidad'],
-        ['05', 'Visual audit', 'Encuadre, contraste, overflow y detalle final'],
+    transition: {
+      overline: 'ARCHIC / HOW WE THINK',
+      titleA: 'No empezamos por',
+      titleB: '“qué páginas necesitas”.',
+      body: 'Empezamos por lo que el cliente debe sentir, lo que el negocio necesita conseguir y lo que el equipo tiene que poder gestionar después.',
+    },
+    system: {
+      kicker: 'ONE DIGITAL SYSTEM',
+      title: 'Presencia delante. Control detrás. Negocio conectado.',
+      lead: 'Una web premium pierde valor si la operación que hay detrás sigue dependiendo de hojas sueltas, WhatsApp, herramientas desconectadas o tareas manuales.',
+      labels: ['Cliente', 'Presencia', 'Conversión', 'Control', 'Datos', 'Negocio'],
+      lanes: [
+        ['01', 'Presence', 'Marca, contenido, web y experiencia pública.', 'presence'],
+        ['02', 'Control', 'Clientes, reservas, inventario, flota, propiedades y operaciones.', 'control'],
+        ['03', 'Business', 'Automatización, integraciones, datos y software a medida.', 'business'],
       ],
-      footerA: 'BUILD',
-      footerB: 'VERIFY',
-      footerC: 'SHIP',
+      cta: 'Ver cómo se conecta',
+    },
+    direction: {
+      kicker: 'WHERE WE ARE GOING',
+      titleA: 'Construimos cerca.',
+      titleB: 'Subimos el listón hacia sectores donde lo digital pesa más.',
+      body: 'Seguimos trabajando con buenos negocios de Écija y Sevilla mientras acumulamos profundidad en Marbella y Costa del Sol, especialmente en movilidad premium, hospitality, real estate y servicios de alto valor.',
+      sectors: ['Luxury mobility', 'Hospitality', 'Real estate', 'Yachting / charter'],
+      local: 'Base / Écija · Sevilla',
+      target: 'Foco creciente / Marbella · Costa del Sol',
+      cta: 'Ver enfoque en Marbella',
+    },
+    quality: {
+      kicker: 'ARCHIC QUALITY STANDARD / 2026.1',
+      titleA: 'Antes de publicar,',
+      titleB: 'intentamos romperlo.',
+      body: 'Responsive real, estados, formularios, overflow, contraste, rendimiento y recorridos críticos. El acabado no se revisa al final: forma parte del build.',
+      checks: [
+        ['01', 'Architecture', 'routes / hierarchy / content', 'PASS'],
+        ['02', 'Responsive', 'desktop / mobile / touch', 'PASS'],
+        ['03', 'Product', 'forms / states / journeys', 'PASS'],
+        ['04', 'Performance', 'load / stability / motion', 'PASS'],
+        ['05', 'Visual audit', 'crop / contrast / overflow', 'PASS'],
+      ],
+      terminal: '$ npm run quality:gate',
+      output: 'ARCHIC QUALITY GATE — PASS',
     },
     close: {
-      kicker: 'ÉCIJA · SEVILLA · MARBELLA · ESPAÑA',
-      titleA: 'Una web puede abrir la puerta.',
-      titleB: 'El sistema decide hasta dónde llegas.',
-      body: 'Cuéntanos cómo vendes, reservas, gestionas o atiendes hoy. Empezamos por la fricción que de verdad existe y construimos desde ahí.',
+      kicker: 'ARCHIC / START A PROJECT',
+      titleA: 'Si vamos a hacer algo,',
+      titleB: 'que merezca existir.',
+      body: 'Cuéntanos qué negocio tienes, qué no está funcionando como debería y hasta dónde quieres llevarlo. Nosotros planteamos la experiencia y el sistema alrededor.',
       cta: 'Hablar con Archic',
       call: 'Llamar',
     },
   },
   en: {
     hero: {
-      kicker: 'ARCHIC / DIGITAL SYSTEMS',
-      titleA: 'We design what',
-      titleB: 'moves a business',
-      titleC: 'forward.',
-      body: 'We design websites, digital experiences and custom software for businesses that need more than presence: stronger acquisition, better operations and room to grow without losing quality.',
+      kicker: 'ARCHIC / DIGITAL PRODUCT STUDIO',
+      line1: 'Your business already',
+      line2: 'has a level.',
+      line3: 'Digital should',
+      line4: 'live up to it.',
+      lead: 'We design and build websites, digital products and custom software for businesses that care about how they are perceived and how they operate.',
       cta: 'Start a project',
-      secondary: 'See how we work',
-      meta: ['ÉCIJA · SEVILLE', 'MARBELLA · COSTA DEL SOL', 'MOBILITY · HOSPITALITY · REAL ESTATE', 'ES / EN'],
+      work: 'View selected work',
+      note: 'Écija · Seville · Marbella · Spain',
     },
-    layers: {
-      kicker: 'PRESENCE / CONTROL / BUSINESS',
-      title: 'What customers see. What teams use. What lets the business grow.',
-      body: 'Every project starts from a different need. We can solve the public-facing layer only, or connect brand, operations and software into one system.',
-      items: [
-        ['01', 'Presence', 'A presence that sustains value.', 'Digital direction, web, content, experience and conversion.', 'presence'],
-        ['02', 'Control', 'Operations without patchwork.', 'Customers, bookings, resources, operations and private management.', 'control'],
-        ['03', 'Business', 'Software for what no longer fits inside a website.', 'Automation, integrations, data and custom product.', 'business'],
-      ],
-      open: 'Explore',
-    },
-    work: {
-      kicker: 'VERTICALS / SOFTWARE YOU CAN TEST',
-      title: 'We do not just describe it. You can enter it.',
-      body: 'We are building depth in hospitality, luxury mobility and real estate. The environments are white-label and use fictional data, but the product logic is real.',
-      items: [
-        ['01', 'Hospitality', 'Bookings · Floor · Customers · Menu', 'Operate bookings, occupancy, customers and service in a neutral version based on a hospitality system built by Archic.'],
-        ['02', 'Luxury mobility', 'Fleet · Enquiries · Calendar · Clients', 'Manage availability, rates, enquiries and fleet movements inside a white-label environment with fictional data.'],
-        ['03', 'Real estate', 'Properties · CRM · Viewings · Content', 'Explore portfolio, enquiries, priorities, viewings and content quality with the logic of a complete property platform.'],
-      ],
+    reel: ['WEB', 'PRODUCT', 'SOFTWARE', 'SYSTEMS', 'MOTION', 'OPERATIONS'],
+    selected: {
+      kicker: 'SELECTED WORK / 2026',
+      title: 'The standard is proven in the work.',
+      lead: 'We do not want you to trust a list of promises. We want you to see how we approach different businesses when brand, product and operations have to feel like one system.',
       open: 'Open system',
     },
-    standard: {
-      kicker: 'ARCHIC QUALITY GATE / 2026.1',
-      titleA: '“Looks good”',
-      titleB: 'is not the finish line.',
-      body: 'Delivery runs through our own verification layer: structure, responsive behaviour, interaction, states, performance and visual review. Detail is checked before release.',
-      command: 'npm run quality:gate',
-      status: 'PASS',
-      checks: [
-        ['01', 'Architecture', 'Routes, hierarchy, content and links'],
-        ['02', 'Responsive', 'Desktop and mobile treated as experiences'],
-        ['03', 'Product', 'Forms, states and critical journeys'],
-        ['04', 'Performance', 'Loading, stability and perceived speed'],
-        ['05', 'Visual audit', 'Framing, contrast, overflow and final detail'],
+    transition: {
+      overline: 'ARCHIC / HOW WE THINK',
+      titleA: 'We do not start with',
+      titleB: '“which pages do you need”.',
+      body: 'We start with what the customer should feel, what the business needs to achieve and what the team must be able to manage afterwards.',
+    },
+    system: {
+      kicker: 'ONE DIGITAL SYSTEM',
+      title: 'Presence in front. Control behind. Business connected.',
+      lead: 'A premium website loses value if the operation behind it still depends on loose spreadsheets, WhatsApp, disconnected tools or manual tasks.',
+      labels: ['Customer', 'Presence', 'Conversion', 'Control', 'Data', 'Business'],
+      lanes: [
+        ['01', 'Presence', 'Brand, content, website and public experience.', 'presence'],
+        ['02', 'Control', 'Customers, bookings, inventory, fleet, properties and operations.', 'control'],
+        ['03', 'Business', 'Automation, integrations, data and custom software.', 'business'],
       ],
-      footerA: 'BUILD',
-      footerB: 'VERIFY',
-      footerC: 'SHIP',
+      cta: 'See how it connects',
+    },
+    direction: {
+      kicker: 'WHERE WE ARE GOING',
+      titleA: 'We build close to home.',
+      titleB: 'We raise the bar toward sectors where digital matters more.',
+      body: 'We continue working with strong businesses in Écija and Seville while building depth in Marbella and the Costa del Sol, especially across luxury mobility, hospitality, real estate and high-value services.',
+      sectors: ['Luxury mobility', 'Hospitality', 'Real estate', 'Yachting / charter'],
+      local: 'Base / Écija · Seville',
+      target: 'Growing focus / Marbella · Costa del Sol',
+      cta: 'See our Marbella focus',
+    },
+    quality: {
+      kicker: 'ARCHIC QUALITY STANDARD / 2026.1',
+      titleA: 'Before we publish,',
+      titleB: 'we try to break it.',
+      body: 'Real responsive behaviour, states, forms, overflow, contrast, performance and critical journeys. Finish is not reviewed at the end: it is part of the build.',
+      checks: [
+        ['01', 'Architecture', 'routes / hierarchy / content', 'PASS'],
+        ['02', 'Responsive', 'desktop / mobile / touch', 'PASS'],
+        ['03', 'Product', 'forms / states / journeys', 'PASS'],
+        ['04', 'Performance', 'load / stability / motion', 'PASS'],
+        ['05', 'Visual audit', 'crop / contrast / overflow', 'PASS'],
+      ],
+      terminal: '$ npm run quality:gate',
+      output: 'ARCHIC QUALITY GATE — PASS',
     },
     close: {
-      kicker: 'ÉCIJA · SEVILLE · MARBELLA · SPAIN',
-      titleA: 'A website can open the door.',
-      titleB: 'The system decides how far you go.',
-      body: 'Tell us how you sell, book, manage or serve customers today. We start with the friction that actually exists and build from there.',
+      kicker: 'ARCHIC / START A PROJECT',
+      titleA: 'If we are going to build it,',
+      titleB: 'it should deserve to exist.',
+      body: 'Tell us what business you run, what is not working as it should and how far you want to take it. We shape the experience and system around that.',
       cta: 'Talk to Archic',
       call: 'Call',
     },
   },
 } as const
 
-const HERO_SYSTEMS: Record<Lang, HeroSystem[]> = {
+const WORK: Record<Lang, WorkItem[]> = {
   es: [
     {
-      id: 'hospitality', tab: 'Hostelería', label: 'CONTROL / SERVICIO', title: 'Reservas y sala en un mismo sistema.',
-      preview: '/software/hospitality-preview.svg', href: 'explorations/hospitality', metric: '82%', metricLabel: 'ocupación',
-      stats: [['08', 'reservas hoy', 'positive'], ['06', 'clientes activos', 'neutral'], ['01', 'acción pendiente', 'accent']],
+      name: 'Marbella For Sale',
+      kind: 'Luxury real estate',
+      scope: 'Dirección digital · Portfolio · CRM · Owner Studio',
+      image: '/img/archic-digital-system.webp',
+      href: '/explorations/real-estate/',
+      tone: 'light',
+      feature: 'property',
     },
     {
-      id: 'mobility', tab: 'Movilidad', label: 'CONTROL / FLOTA', title: 'Disponibilidad, solicitudes y movimientos.',
-      preview: '/software/mobility-preview.svg', href: 'explorations/mobility', metric: '78%', metricLabel: 'utilización',
-      stats: [['16', 'vehículos', 'positive'], ['05', 'alquilados', 'neutral'], ['03', 'solicitudes', 'accent']],
+      name: 'La Bocana',
+      kind: 'Hospitality / Puerto Banús',
+      scope: 'Web · Reservas · Sala · Clientes · Carta',
+      image: '/img/archic-hospitality-system.webp',
+      href: '/explorations/hospitality/',
+      tone: 'dark',
+      feature: 'hospitality',
     },
     {
-      id: 'property', tab: 'Inmobiliario', label: 'CONTROL / CRM', title: 'Portfolio, leads y visitas con contexto.',
-      preview: '/software/real-estate-preview.svg', href: 'explorations/real-estate', metric: '92%', metricLabel: 'contenido',
-      stats: [['12', 'propiedades', 'positive'], ['06', 'leads abiertos', 'neutral'], ['02', 'visitas', 'accent']],
+      name: 'Five Star Rentals',
+      kind: 'Luxury mobility',
+      scope: 'Brand presence · Fleet · Enquiries · Owner access',
+      image: '/img/archic-automotive-system.webp',
+      href: '/explorations/mobility/',
+      tone: 'dark',
+      feature: 'mobility',
+    },
+    {
+      name: 'Marbella Boat Charter',
+      kind: 'Yachting / charter',
+      scope: 'Experience · Fleet · WhatsApp conversion',
+      image: '/img/archic-yachting-system.webp',
+      href: '/diseno-web-marbella/',
+      tone: 'light',
+      feature: 'yachting',
     },
   ],
   en: [
     {
-      id: 'hospitality', tab: 'Hospitality', label: 'CONTROL / SERVICE', title: 'Bookings and floor operations in one system.',
-      preview: '/software/hospitality-preview.svg', href: 'explorations/hospitality', metric: '82%', metricLabel: 'occupancy',
-      stats: [['08', 'bookings today', 'positive'], ['06', 'active customers', 'neutral'], ['01', 'action pending', 'accent']],
+      name: 'Marbella For Sale',
+      kind: 'Luxury real estate',
+      scope: 'Digital direction · Portfolio · CRM · Owner Studio',
+      image: '/img/archic-digital-system.webp',
+      href: '/en/explorations/real-estate/',
+      tone: 'light',
+      feature: 'property',
     },
     {
-      id: 'mobility', tab: 'Mobility', label: 'CONTROL / FLEET', title: 'Availability, enquiries and fleet movements.',
-      preview: '/software/mobility-preview.svg', href: 'explorations/mobility', metric: '78%', metricLabel: 'utilisation',
-      stats: [['16', 'vehicles', 'positive'], ['05', 'on hire', 'neutral'], ['03', 'enquiries', 'accent']],
+      name: 'La Bocana',
+      kind: 'Hospitality / Puerto Banús',
+      scope: 'Website · Bookings · Floor · Customers · Menu',
+      image: '/img/archic-hospitality-system.webp',
+      href: '/en/explorations/hospitality/',
+      tone: 'dark',
+      feature: 'hospitality',
     },
     {
-      id: 'property', tab: 'Real estate', label: 'CONTROL / CRM', title: 'Portfolio, leads and viewings with context.',
-      preview: '/software/real-estate-preview.svg', href: 'explorations/real-estate', metric: '92%', metricLabel: 'content score',
-      stats: [['12', 'properties', 'positive'], ['06', 'open leads', 'neutral'], ['02', 'viewings', 'accent']],
+      name: 'Five Star Rentals',
+      kind: 'Luxury mobility',
+      scope: 'Brand presence · Fleet · Enquiries · Owner access',
+      image: '/img/archic-automotive-system.webp',
+      href: '/en/explorations/mobility/',
+      tone: 'dark',
+      feature: 'mobility',
+    },
+    {
+      name: 'Marbella Boat Charter',
+      kind: 'Yachting / charter',
+      scope: 'Experience · Fleet · WhatsApp conversion',
+      image: '/img/archic-yachting-system.webp',
+      href: '/en/diseno-web-marbella/',
+      tone: 'light',
+      feature: 'yachting',
     },
   ],
 }
-
-const EXPLORATION_SLUGS = ['explorations/hospitality', 'explorations/mobility', 'explorations/real-estate'] as const
 
 function path(lang: Lang, slug: string) {
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
 }
 
-function HeroSystemConsole({ lang }: { lang: Lang }) {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const systems = HERO_SYSTEMS[lang]
-  const active = systems[activeIndex]
-
-  return (
-    <div className="ahs-system" data-reveal>
-      <div className="ahs-topbar">
-        <div className="ahs-brand"><img src="/brand/archic-symbol-2026.svg" alt="" /><span>ARCHIC CONTROL</span></div>
-        <div className="ahs-live"><i />WHITE-LABEL / DEMO</div>
-      </div>
-      <div className="ahs-tabs" role="tablist" aria-label={lang === 'es' ? 'Sistemas de demostración' : 'Demo systems'}>
-        {systems.map((system, index) => (
-          <button
-            key={system.id}
-            id={`ahs-tab-${system.id}`}
-            type="button"
-            role="tab"
-            aria-selected={activeIndex === index}
-            aria-controls="ahs-panel"
-            onClick={() => setActiveIndex(index)}
-          >
-            <span>0{index + 1}</span><strong>{system.tab}</strong>
-          </button>
-        ))}
-      </div>
-      <div id="ahs-panel" className="ahs-panel" role="tabpanel" aria-labelledby={`ahs-tab-${active.id}`}>
-        <div className="ahs-preview">
-          <img key={active.id} src={active.preview} alt="" />
-          <div className="ahs-preview-status"><i /><span>{lang === 'es' ? 'DATOS FICTICIOS' : 'FICTIONAL DATA'}</span></div>
-        </div>
-        <div className="ahs-summary">
-          <div><small>{active.label}</small><h2>{active.title}</h2></div>
-          <strong>{active.metric}<small>{active.metricLabel}</small></strong>
-        </div>
-        <div className="ahs-stats">
-          {active.stats.map(([value, label, tone]) => (
-            <div data-tone={tone} key={label}><strong>{value}</strong><span>{label}</span></div>
-          ))}
-        </div>
-        <a className="ahs-open" href={path(lang, active.href)}>
-          <span>{lang === 'es' ? 'Abrir entorno interactivo' : 'Open interactive environment'}</span>
-          <i className="as-arrow" aria-hidden="true" />
-        </a>
-      </div>
-    </div>
-  )
+function Arrow() {
+  return <i className="as-arrow" aria-hidden="true" />
 }
 
-function InterfaceStudy({ type, lang }: { type: number; lang: Lang }) {
-  if (type === 0) {
+function ProjectInstrument({ feature, lang }: { feature: WorkItem['feature']; lang: Lang }) {
+  if (feature === 'property') {
     return (
-      <div className="ah-study ah-study-hospitality" aria-hidden="true">
-        <div className="ah-study-top"><span>CONTROL / {lang === 'es' ? 'HOY' : 'TODAY'}</span><span>82%</span></div>
-        <div className="ah-study-title">08<br /><em>{lang === 'es' ? 'reservas.' : 'bookings.'}</em></div>
-        <div className="ah-study-reserve"><span>{lang === 'es' ? 'SALA' : 'FLOOR'}</span><i /><span>06</span><strong>{lang === 'es' ? 'Clientes' : 'Customers'}</strong></div>
+      <div className="af3-instrument af3-property" aria-hidden="true">
+        <div className="af3-browser-bar"><span /><span /><span /><b>marbella / owner studio</b></div>
+        <div className="af3-property-grid">
+          <div className="af3-property-main"><small>PORTFOLIO</small><strong>12</strong><span>{lang === 'es' ? 'propiedades activas' : 'active properties'}</span></div>
+          <div><small>CRM</small><strong>06</strong><span>{lang === 'es' ? 'leads abiertos' : 'open leads'}</span></div>
+          <div><small>CONTENT</small><strong>92%</strong><span>{lang === 'es' ? 'completitud' : 'completion'}</span></div>
+        </div>
       </div>
     )
   }
 
-  if (type === 1) {
+  if (feature === 'hospitality') {
     return (
-      <div className="ah-study ah-study-mobility" aria-hidden="true">
-        <div className="ah-car-line" />
-        <div className="ah-study-top"><span>CONTROL / FLEET</span><span>16 {lang === 'es' ? 'UNIDADES' : 'UNITS'}</span></div>
-        <div className="ah-model"><small>AVAILABLE / 01</small><strong>APEX<br />GT</strong></div>
-        <div className="ah-specs"><span>€690/D</span><span>530 CV</span><span>78%</span></div>
+      <div className="af3-instrument af3-hospitality" aria-hidden="true">
+        <div className="af3-table-map">
+          <span className="is-live">T01</span><span>T02</span><span className="is-live">T03</span><span>T04</span><span>T05</span><span className="is-live">T06</span>
+        </div>
+        <div className="af3-hospitality-stats"><small>{lang === 'es' ? 'HOY / SALA' : 'TODAY / FLOOR'}</small><strong>08</strong><span>{lang === 'es' ? 'reservas' : 'bookings'}</span><b>82%</b></div>
+      </div>
+    )
+  }
+
+  if (feature === 'mobility') {
+    return (
+      <div className="af3-instrument af3-mobility" aria-hidden="true">
+        <div className="af3-fleet-head"><small>FLEET / LIVE</small><span>16 {lang === 'es' ? 'UNIDADES' : 'UNITS'}</span></div>
+        <div className="af3-fleet-model"><span>AVAILABLE / 01</span><strong>APEX<br />GT</strong></div>
+        <div className="af3-fleet-spec"><span>€690 / D</span><span>530 CV</span><span>78%</span></div>
       </div>
     )
   }
 
   return (
-    <div className="ah-study ah-study-property" aria-hidden="true">
-      <div className="ah-property-grid">
-        <div><span>CONTROL</span><strong>Portfolio<br />12</strong></div>
-        <div><small>CRM</small><small>{lang === 'es' ? '06 ABIERTOS' : '06 OPEN'}</small><b>92%</b></div>
-      </div>
-      <div className="ah-property-list"><i /><i /><i /></div>
-      <div className="ah-property-foot"><span>{lang === 'es' ? 'ENQUIRIES · VISITAS · CONTENIDO' : 'ENQUIRIES · VIEWINGS · CONTENT'}</span><span>{lang === 'es' ? 'ABRIR →' : 'OPEN →'}</span></div>
+    <div className="af3-instrument af3-yachting" aria-hidden="true">
+      <div className="af3-yacht-route"><i /><i /><i /></div>
+      <small>MARBELLA / 36.51°N</small>
+      <strong>{lang === 'es' ? 'CONSULTA' : 'ENQUIRY'}</strong>
+      <span>WhatsApp / direct</span>
     </div>
   )
 }
 
-function QualityGate({ lang }: { lang: Lang }) {
-  const c = COPY[lang].standard
-
+function WorkCard({ item, index, lang, open }: { item: WorkItem; index: number; lang: Lang; open: string }) {
   return (
-    <section className="ah-quality" aria-labelledby="archic-quality-title">
-      <div className="ah-quality-copy" data-reveal>
-        <p className="ah-kicker">{c.kicker}</p>
-        <h2 id="archic-quality-title"><span>{c.titleA}</span><em>{c.titleB}</em></h2>
-        <p>{c.body}</p>
-        <div className="ah-quality-flow" aria-label={lang === 'es' ? 'Flujo de entrega' : 'Delivery flow'}>
-          <span>{c.footerA}</span><i /><span>{c.footerB}</span><i /><span>{c.footerC}</span>
-        </div>
+    <article className={`af3-work af3-work-${index + 1}`} data-tone={item.tone} data-reveal>
+      <div className="af3-work-media">
+        <img src={item.image} alt="" loading={index === 0 ? 'eager' : 'lazy'} />
+        <div className="af3-work-shade" />
+        <ProjectInstrument feature={item.feature} lang={lang} />
+        <span className="af3-work-index">0{index + 1}</span>
       </div>
-
-      <div className="ah-quality-console" data-reveal>
-        <div className="ahq-topbar">
-          <div><img src="/brand/archic-symbol-2026.svg" alt="" /><span>QUALITY / GATE</span></div>
-          <span className="ahq-status"><i />{c.status}</span>
-        </div>
-        <div className="ahq-command"><span>$</span><code>{c.command}</code></div>
-        <div className="ahq-log">
-          {c.checks.map(([no, label, detail]) => (
-            <div className="ahq-row" key={no}>
-              <span>{no}</span>
-              <strong>{label}</strong>
-              <p>{detail}</p>
-              <b>PASS</b>
-            </div>
-          ))}
-        </div>
-        <div className="ahq-foot">
-          <span>ARCHIC_2026.1</span>
-          <span>5 / 5</span>
-        </div>
+      <div className="af3-work-copy">
+        <div className="af3-work-meta"><span>{item.kind}</span><span>ARCHIC / 2026</span></div>
+        <h3>{item.name}</h3>
+        <p>{item.scope}</p>
+        <a href={item.href}>{open}<Arrow /></a>
       </div>
-    </section>
+    </article>
   )
 }
 
@@ -318,9 +322,10 @@ export default function ArchicHome() {
   const canonicalUrl = homeCanonical(lang)
   const structuredData = buildHomeGraph(lang)
   const ogImage = siteOgImage(lang)
+  const work = WORK[lang]
 
   return (
-    <div className="as-site as-home-v2" data-quality-standard="archic-2026.1">
+    <div className="as-site af3-site" data-quality-standard="archic-2026.1">
       <Helmet htmlAttributes={{ lang }}>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
@@ -349,97 +354,135 @@ export default function ArchicHome() {
       <StudioExperience />
       <StudioHeader />
 
-      <div className="ah-page">
-        <section className="ah-hero" id="home">
-          <div className="ah-hero-grid" aria-hidden="true" />
-          <div className="ah-hero-copy" data-reveal="hero">
-            <p className="ah-kicker">{c.hero.kicker}</p>
+      <main className="af3-main">
+        <section className="af3-hero" id="home">
+          <div className="af3-hero-grid" aria-hidden="true" />
+          <div className="af3-hero-copy" data-reveal="hero">
+            <p className="af3-kicker">{c.hero.kicker}</p>
             <h1>
-              <span>{c.hero.titleA}</span>
-              <em>{c.hero.titleB}</em>
-              <span>{c.hero.titleC}</span>
+              <span>{c.hero.line1}</span>
+              <em>{c.hero.line2}</em>
+              <span>{c.hero.line3}</span>
+              <em>{c.hero.line4}</em>
             </h1>
-            <div className="ah-hero-bottom">
-              <p>{c.hero.body}</p>
-              <div className="ah-actions">
-                <a className="ah-btn ah-btn-light" href={path(lang, 'contact')}>{c.hero.cta}<i className="as-arrow" aria-hidden="true" /></a>
-                <a className="ah-link" href={path(lang, 'studio')}>{c.hero.secondary}</a>
+            <div className="af3-hero-bottom">
+              <p>{c.hero.lead}</p>
+              <div className="af3-actions">
+                <a className="af3-button" href={path(lang, 'contact')}>{c.hero.cta}<Arrow /></a>
+                <a className="af3-text-link" href="#selected-work">{c.hero.work}</a>
               </div>
             </div>
           </div>
 
-          <HeroSystemConsole lang={lang} />
-
-          <div className="ah-hero-meta">
-            {c.hero.meta.map((item) => <span key={item}>{item}</span>)}
-          </div>
-        </section>
-
-        <MarketFocus />
-
-        <section className="ah-layers">
-          <div className="ah-section-head" data-reveal>
-            <div>
-              <p className="ah-kicker">{c.layers.kicker}</p>
-              <h2>{c.layers.title}</h2>
+          <div className="af3-hero-stage" data-reveal aria-label={lang === 'es' ? 'Muestra visual de trabajo Archic' : 'Archic work showcase'}>
+            <div className="af3-stage-card af3-stage-card-a"><img src="/img/archic-digital-system.webp" alt="" /><span>MARBELLA FOR SALE</span></div>
+            <div className="af3-stage-card af3-stage-card-b"><img src="/img/archic-hospitality-system.webp" alt="" /><span>LA BOCANA</span></div>
+            <div className="af3-stage-card af3-stage-card-c"><img src="/img/archic-automotive-system.webp" alt="" /><span>FIVE STAR RENTALS</span></div>
+            <div className="af3-stage-core">
+              <img src="/brand/archic-symbol-2026.svg" alt="" />
+              <span>DESIGN / BUILD / OPERATE</span>
             </div>
-            <p>{c.layers.body}</p>
           </div>
-          <div className="ah-layer-list">
-            {c.layers.items.map(([no, name, title, body, slug]) => (
-              <a href={path(lang, slug)} className="ah-layer-row" key={slug} data-reveal>
-                <span className="ah-row-no">{no}</span>
-                <strong>{name}</strong>
-                <div><h3>{title}</h3><p>{body}</p></div>
-                <span className="ah-row-open">{c.layers.open}<i className="as-arrow" aria-hidden="true" /></span>
-              </a>
-            ))}
+
+          <div className="af3-hero-foot">
+            <span>{c.hero.note}</span>
+            <span>SCROLL / 01</span>
           </div>
         </section>
 
-        <section className="ah-work ah-paper">
-          <div className="ah-work-head" data-reveal>
-            <div>
-              <p className="ah-kicker ah-kicker-dark">{c.work.kicker}</p>
-              <h2>{c.work.title}</h2>
+        <div className="af3-reel" aria-hidden="true">
+          <div>{[...c.reel, ...c.reel].map((item, i) => <span key={`${item}-${i}`}>{item}<i /></span>)}</div>
+        </div>
+
+        <section className="af3-selected" id="selected-work">
+          <header className="af3-selected-head" data-reveal>
+            <p className="af3-kicker af3-kicker-dark">{c.selected.kicker}</p>
+            <h2>{c.selected.title}</h2>
+            <p>{c.selected.lead}</p>
+          </header>
+
+          <div className="af3-work-list">
+            {work.map((item, index) => <WorkCard key={item.name} item={item} index={index} lang={lang as Lang} open={c.selected.open} />)}
+          </div>
+        </section>
+
+        <section className="af3-transition">
+          <div className="af3-transition-word" aria-hidden="true">SYSTEM</div>
+          <div className="af3-transition-copy" data-reveal>
+            <p className="af3-kicker">{c.transition.overline}</p>
+            <h2>{c.transition.titleA}<br /><em>{c.transition.titleB}</em></h2>
+            <p>{c.transition.body}</p>
+          </div>
+        </section>
+
+        <section className="af3-system">
+          <div className="af3-system-head" data-reveal>
+            <div><p className="af3-kicker af3-kicker-dark">{c.system.kicker}</p><h2>{c.system.title}</h2></div>
+            <p>{c.system.lead}</p>
+          </div>
+
+          <div className="af3-system-map" data-reveal>
+            <div className="af3-map-track" aria-hidden="true">
+              {c.system.labels.map((label, index) => <div key={label}><span>0{index + 1}</span><strong>{label}</strong>{index < c.system.labels.length - 1 && <i />}</div>)}
             </div>
-            <p>{c.work.body}</p>
+            <div className="af3-map-lanes">
+              {c.system.lanes.map(([no, title, body, slug]) => (
+                <a href={path(lang, slug)} key={slug}>
+                  <span>{no}</span>
+                  <strong>{title}</strong>
+                  <p>{body}</p>
+                  <Arrow />
+                </a>
+              ))}
+            </div>
           </div>
-          <div className="ah-work-grid">
-            {c.work.items.map(([no, title, meta, body], index) => {
-              const href = path(lang, EXPLORATION_SLUGS[index])
-              return (
-                <article className="ah-work-card" key={title} data-reveal>
-                  <a className="ah-study-link" href={href} aria-label={`${c.work.open}: ${title}`}>
-                    <InterfaceStudy type={index} lang={lang} />
-                  </a>
-                  <div className="ah-work-card-copy">
-                    <span>{no}</span>
-                    <div><strong>{title}</strong><small>{meta}</small></div>
-                    <p>{body}</p>
-                    <a className="ah-work-open" href={href}>{c.work.open}<i className="as-arrow" aria-hidden="true" /></a>
-                  </div>
-                </article>
-              )
-            })}
+          <a className="af3-system-link" href={path(lang, 'business')}>{c.system.cta}<Arrow /></a>
+        </section>
+
+        <section className="af3-direction">
+          <div className="af3-direction-media" aria-hidden="true"><img src="/img/archic-yachting-system.webp" alt="" /><div /></div>
+          <div className="af3-direction-copy" data-reveal>
+            <p className="af3-kicker">{c.direction.kicker}</p>
+            <h2><span>{c.direction.titleA}</span><em>{c.direction.titleB}</em></h2>
+            <p>{c.direction.body}</p>
+            <div className="af3-direction-sectors">{c.direction.sectors.map((sector) => <span key={sector}>{sector}</span>)}</div>
+            <div className="af3-direction-geo"><span>{c.direction.local}</span><span>{c.direction.target}</span></div>
+            <a className="af3-button af3-button-light" href={lang === 'en' ? '/en/diseno-web-marbella/' : '/diseno-web-marbella/'}>{c.direction.cta}<Arrow /></a>
           </div>
         </section>
 
-        <QualityGate lang={lang} />
+        <section className="af3-quality">
+          <div className="af3-quality-copy" data-reveal>
+            <p className="af3-kicker">{c.quality.kicker}</p>
+            <h2>{c.quality.titleA}<br /><em>{c.quality.titleB}</em></h2>
+            <p>{c.quality.body}</p>
+          </div>
+          <div className="af3-quality-console" data-reveal>
+            <div className="af3-console-head"><span>ARCHIC / QA</span><span className="is-live"><i />LIVE STANDARD</span></div>
+            <div className="af3-console-command"><span>terminal</span><code>{c.quality.terminal}</code></div>
+            <div className="af3-console-checks">
+              {c.quality.checks.map(([no, name, detail, status]) => (
+                <div key={no}><span>{no}</span><strong>{name}</strong><small>{detail}</small><b>{status}</b></div>
+              ))}
+            </div>
+            <div className="af3-console-output"><span>✓</span><strong>{c.quality.output}</strong><small>2026.1 / READY TO SHIP</small></div>
+          </div>
+        </section>
 
-        <section className="ah-close">
-          <div className="ah-close-line" aria-hidden="true" />
-          <div className="ah-close-copy" data-reveal>
-            <p className="ah-kicker">{c.close.kicker}</p>
+        <section className="af3-close">
+          <div className="af3-close-grid" aria-hidden="true" />
+          <div className="af3-close-copy" data-reveal>
+            <p className="af3-kicker">{c.close.kicker}</p>
             <h2>{c.close.titleA}<br /><em>{c.close.titleB}</em></h2>
             <p>{c.close.body}</p>
-            <div className="ah-actions ah-actions-center">
-              <a className="ah-btn ah-btn-light" href={path(lang, 'contact')}>{c.close.cta}<i className="as-arrow" aria-hidden="true" /></a>
-              <a className="ah-link" href={`tel:${CONTACT_PHONE}`}>{c.close.call}</a>
+            <div className="af3-actions af3-actions-center">
+              <a className="af3-button" href={path(lang, 'contact')}>{c.close.cta}<Arrow /></a>
+              <a className="af3-text-link" href={`tel:${CONTACT_PHONE}`}>{c.close.call}</a>
             </div>
           </div>
+          <div className="af3-close-mark" aria-hidden="true"><img src="/brand/archic-symbol-2026.svg" alt="" /></div>
         </section>
-      </div>
+      </main>
 
       <StudioFooter />
     </div>
