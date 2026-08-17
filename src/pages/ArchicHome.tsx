@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import StudioExperience from '../components/StudioExperience'
+import MarketFocus from '../components/MarketFocus'
 import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 import { HOME_SEO, siteOgImage } from '../seo/siteSeo'
@@ -11,25 +12,25 @@ import { CONTACT_PHONE } from '../config/contact'
 const COPY = {
   es: {
     hero: {
-      kicker: 'ARCHIC / SISTEMAS DIGITALES',
+      kicker: 'ARCHIC / MARBELLA · SEVILLA',
       titleA: 'Diseñamos lo que',
       titleB: 'hace avanzar',
       titleC: 'un negocio.',
-      body: 'Estrategia, diseño y tecnología bajo una misma dirección. Creamos presencia digital, sistemas de operación y software a medida con un estándar obsesivo de calidad.',
+      body: 'Diseñamos presencia digital y sistemas de operación para negocios donde la percepción, la reserva, la venta y el servicio importan: movilidad premium, hospitality, real estate y servicios de alto valor.',
       cta: 'Empezar un proyecto',
       secondary: 'Ver cómo trabajamos',
-      meta: ['03 SISTEMAS WHITE-LABEL', 'ES / EN', 'QA AUTOMATIZADO', 'RESPONSIVE'],
+      meta: ['MARBELLA · SEVILLA', 'MOBILITY · HOSPITALITY', 'REAL ESTATE · YACHTING', 'ES / EN'],
     },
     manifesto: {
-      kicker: 'EL ESTÁNDAR ARCHIC',
-      lineA: 'No hacemos más ruido.',
-      lineB: 'Hacemos que importe.',
-      body: 'Una experiencia premium no nace de añadir efectos. Nace de una dirección clara, una interfaz precisa, contenido con intención y una ejecución que aguanta el detalle.',
+      kicker: 'DEL IMPACTO A LA OPERACIÓN',
+      lineA: 'La web no acaba',
+      lineB: 'en la portada.',
+      body: 'Cuando un negocio vive de reservas, flota, propiedades, clientes o servicio, diseñamos también lo que ocurre detrás: sistemas privados, automatización y datos bajo la misma dirección visual.',
     },
     layers: {
-      kicker: 'UN SISTEMA / TRES CAPAS',
-      title: 'Del primer impacto a la operación interna.',
-      body: 'Archic cubre las tres capas que más afectan a cómo se percibe, funciona y escala un negocio.',
+      kicker: 'PRESENCIA / CONTROL / NEGOCIO',
+      title: 'Una marca fuerte por fuera. Una operación mejor por dentro.',
+      body: 'No vendemos una colección de pantallas. Diseñamos la capa que el cliente ve y, cuando tiene sentido, el sistema que el equipo usa para trabajar.',
       items: [
         ['01', 'Presence', 'Lo que el cliente ve.', 'Dirección digital, web, contenido, experiencia y conversión.', 'presence'],
         ['02', 'Control', 'Lo que mueve el día a día.', 'Clientes, reservas, recursos, operaciones y gestión privada.', 'control'],
@@ -38,9 +39,9 @@ const COPY = {
       open: 'Descubrir',
     },
     work: {
-      kicker: 'SISTEMAS WHITE-LABEL',
-      title: 'Software real, sin pedirte que lo imagines.',
-      body: 'Entornos interactivos derivados de sistemas que ya hemos desarrollado. Eliminamos marca, contactos y datos del proyecto original, y preservamos los workflows que hacen útil al producto.',
+      kicker: 'VERTICALES / SOFTWARE REAL',
+      title: 'Especialización que se puede abrir y probar.',
+      body: 'Estamos acumulando profundidad en hospitality, movilidad premium e inmobiliario: sectores donde una mejor experiencia digital puede mover reservas, utilización, leads y percepción de valor.',
       items: [
         ['01', 'Hostelería', 'Reservas · Sala · Clientes · Carta', 'Opera reservas, ocupación, clientes y servicio desde una versión neutral basada en un sistema de hostelería desarrollado por Archic.'],
         ['02', 'Movilidad premium', 'Flota · Solicitudes · Calendario · Clientes', 'Gestiona disponibilidad, tarifas, solicitudes y movimientos de flota en un entorno white-label con datos ficticios.'],
@@ -59,8 +60,8 @@ const COPY = {
       ],
     },
     process: {
-      kicker: 'CÓMO CONSTRUIMOS',
-      title: 'Un proceso corto. Una exigencia alta.',
+      kicker: 'MENOS HANDOFFS / MÁS CONTROL',
+      title: 'Entender el negocio antes de diseñar la interfaz.',
       steps: [
         ['01', 'Entender', 'Negocio, cliente, fricción y resultado esperado.'],
         ['02', 'Dirigir', 'Concepto, arquitectura, contenido y sistema visual.'],
@@ -69,35 +70,35 @@ const COPY = {
       ],
     },
     close: {
-      kicker: 'EMPEZAR UN PROYECTO',
-      titleA: 'Si lo digital importa,',
-      titleB: 'hagámoslo excepcional.',
-      body: 'Cuéntanos qué quieres mejorar. No necesitas tener la solución definida: empezamos por el negocio y diseñamos desde ahí.',
+      kicker: 'MARBELLA · SEVILLA · ESPAÑA',
+      titleA: 'Si tu negocio compite arriba,',
+      titleB: 'su sistema digital también.',
+      body: 'Cuéntanos cómo vendes, reservas, gestionas o atiendes hoy. Entramos por la fricción real y construimos la solución alrededor.',
       cta: 'Hablar con Archic',
       call: 'Llamar',
     },
   },
   en: {
     hero: {
-      kicker: 'ARCHIC / DIGITAL SYSTEMS',
+      kicker: 'ARCHIC / MARBELLA · SEVILLE',
       titleA: 'We design what',
       titleB: 'moves a business',
       titleC: 'forward.',
-      body: 'Strategy, design and technology under one direction. We create digital presence, operating systems and custom software with an obsessive standard of quality.',
+      body: 'We design digital presence and operating systems for businesses where perception, booking, sales and service matter: luxury mobility, hospitality, real estate and high-value services.',
       cta: 'Start a project',
       secondary: 'See how we work',
-      meta: ['03 WHITE-LABEL SYSTEMS', 'ES / EN', 'AUTOMATED QA', 'RESPONSIVE'],
+      meta: ['MARBELLA · SEVILLE', 'MOBILITY · HOSPITALITY', 'REAL ESTATE · YACHTING', 'ES / EN'],
     },
     manifesto: {
-      kicker: 'THE ARCHIC STANDARD',
-      lineA: 'We do not make more noise.',
-      lineB: 'We make it matter.',
-      body: 'A premium experience does not come from adding effects. It comes from clear direction, precise interfaces, intentional content and execution that holds up under scrutiny.',
+      kicker: 'FROM IMPACT TO OPERATIONS',
+      lineA: 'The website does not end',
+      lineB: 'at the homepage.',
+      body: 'When a business runs on bookings, fleet, properties, customers or service, we also design what happens behind the interface: private systems, automation and data under the same visual direction.',
     },
     layers: {
-      kicker: 'ONE SYSTEM / THREE LAYERS',
-      title: 'From first impression to internal operations.',
-      body: 'Archic covers the three layers that most influence how a business is perceived, how it runs and how it scales.',
+      kicker: 'PRESENCE / CONTROL / BUSINESS',
+      title: 'A stronger brand outside. A better operation inside.',
+      body: 'We do not sell a collection of screens. We design what the customer sees and, when it matters, the system the team uses to operate.',
       items: [
         ['01', 'Presence', 'What the customer sees.', 'Digital direction, web, content, experience and conversion.', 'presence'],
         ['02', 'Control', 'What moves the day to day.', 'Customers, bookings, resources, operations and private management.', 'control'],
@@ -106,9 +107,9 @@ const COPY = {
       open: 'Explore',
     },
     work: {
-      kicker: 'WHITE-LABEL SYSTEMS',
-      title: 'Real software, without asking you to imagine it.',
-      body: 'Interactive environments derived from systems we have already built. We remove the original brand, contacts and project data while preserving the workflows that make the product useful.',
+      kicker: 'VERTICALS / REAL SOFTWARE',
+      title: 'Specialisation you can open and test.',
+      body: 'We are building depth in hospitality, luxury mobility and real estate: sectors where a better digital experience can move bookings, utilisation, leads and perceived value.',
       items: [
         ['01', 'Hospitality', 'Bookings · Floor · Customers · Menu', 'Operate bookings, occupancy, customers and service in a neutral version based on a hospitality system built by Archic.'],
         ['02', 'Luxury mobility', 'Fleet · Enquiries · Calendar · Clients', 'Manage availability, rates, enquiries and fleet movements inside a white-label environment with fictional data.'],
@@ -127,8 +128,8 @@ const COPY = {
       ],
     },
     process: {
-      kicker: 'HOW WE BUILD',
-      title: 'A short process. A high bar.',
+      kicker: 'FEWER HANDOFFS / MORE CONTROL',
+      title: 'Understand the business before designing the interface.',
       steps: [
         ['01', 'Understand', 'Business, customer, friction and expected outcome.'],
         ['02', 'Direct', 'Concept, architecture, content and visual system.'],
@@ -137,10 +138,10 @@ const COPY = {
       ],
     },
     close: {
-      kicker: 'START A PROJECT',
-      titleA: 'If digital matters,',
-      titleB: 'make it exceptional.',
-      body: 'Tell us what you want to improve. You do not need the solution defined: we start with the business and design from there.',
+      kicker: 'MARBELLA · SEVILLE · SPAIN',
+      titleA: 'If your business competes at the top,',
+      titleB: 'its digital system should too.',
+      body: 'Tell us how you sell, book, manage or serve customers today. We start with the real friction and build the solution around it.',
       cta: 'Talk to Archic',
       call: 'Call',
     },
@@ -357,6 +358,8 @@ export default function ArchicHome() {
             <p>{c.manifesto.body}</p>
           </div>
         </section>
+
+        <MarketFocus />
 
         <section className="ah-layers">
           <div className="ah-section-head" data-reveal>
