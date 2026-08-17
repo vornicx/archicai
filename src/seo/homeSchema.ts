@@ -15,11 +15,17 @@ export function buildHomeGraph(lang: Lang) {
         ['Archic Presence', 'Diseño web premium y presencia digital', `${SITE_ORIGIN}/presence/`],
         ['Archic Control', 'Software de gestión a medida para clientes, reservas, recursos y operaciones', `${SITE_ORIGIN}/control/`],
         ['Archic Business', 'Software a medida, automatización, integraciones y datos', `${SITE_ORIGIN}/business/`],
+        ['Movilidad premium', 'Web, solicitudes, flota y CRM para rent a car, renting y negocios de automoción premium', `${SITE_ORIGIN}/diseno-web-alquiler-coches/`],
+        ['Hospitality', 'Web, reservas, sala, carta y gestión de clientes para restaurantes y hospitality', `${SITE_ORIGIN}/diseno-web-restaurantes/`],
+        ['Real estate premium', 'Web, portfolio, captación, leads y CRM para inmobiliarias y real estate premium', `${SITE_ORIGIN}/diseno-web-inmobiliarias/`],
       ]
     : [
         ['Archic Presence', 'Premium web design and digital presence', `${SITE_ORIGIN}/en/presence/`],
         ['Archic Control', 'Custom management software for customers, bookings, resources and operations', `${SITE_ORIGIN}/en/control/`],
         ['Archic Business', 'Custom software, automation, integrations and data', `${SITE_ORIGIN}/en/business/`],
+        ['Luxury mobility', 'Web, fleet, enquiries and CRM for premium rental, leasing and automotive businesses', `${SITE_ORIGIN}/en/explorations/mobility/`],
+        ['Hospitality', 'Web, bookings, floor operations, menus and customer management for hospitality businesses', `${SITE_ORIGIN}/en/explorations/hospitality/`],
+        ['Premium real estate', 'Web, listings, acquisition, leads and CRM for premium real estate businesses', `${SITE_ORIGIN}/en/explorations/real-estate/`],
       ]
 
   const organization = {
@@ -27,7 +33,7 @@ export function buildHomeGraph(lang: Lang) {
     description: seo.description,
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: lang === 'es' ? 'Sistemas digitales para empresas' : 'Digital systems for businesses',
+      name: lang === 'es' ? 'Sistemas digitales para negocios de alto valor' : 'Digital systems for high-value businesses',
       itemListElement: services.map(([name, description, url]) => ({
         '@type': 'Offer',
         itemOffered: {
