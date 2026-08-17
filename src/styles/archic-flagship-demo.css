@@ -1,4 +1,13 @@
 /* Interactive proof inside the flagship hero. It behaves like product UI, not a fourth marketing block. */
+
+/* Flagship content is visible by default. Motion may enhance it, but visibility never depends on JS
+   or on an IntersectionObserver catching every large editorial block during fast scrolling. */
+.af3-site [data-reveal]{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+
 .af3-demo{
   position:absolute;
   z-index:12;
