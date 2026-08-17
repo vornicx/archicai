@@ -9,145 +9,6 @@ import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 import { HOME_SEO, siteOgImage } from '../seo/siteSeo'
 import { CONTACT_PHONE } from '../config/contact'
 
-const COPY = {
-  es: {
-    hero: {
-      kicker: 'ARCHIC / MARBELLA · SEVILLA',
-      titleA: 'Diseñamos lo que',
-      titleB: 'hace avanzar',
-      titleC: 'un negocio.',
-      body: 'Diseñamos presencia digital y sistemas de operación para negocios donde la percepción, la reserva, la venta y el servicio importan: movilidad premium, hospitality, real estate y servicios de alto valor.',
-      cta: 'Empezar un proyecto',
-      secondary: 'Ver cómo trabajamos',
-      meta: ['MARBELLA · SEVILLA', 'MOBILITY · HOSPITALITY', 'REAL ESTATE · YACHTING', 'ES / EN'],
-    },
-    manifesto: {
-      kicker: 'DEL IMPACTO A LA OPERACIÓN',
-      lineA: 'La web no acaba',
-      lineB: 'en la portada.',
-      body: 'Cuando un negocio vive de reservas, flota, propiedades, clientes o servicio, diseñamos también lo que ocurre detrás: sistemas privados, automatización y datos bajo la misma dirección visual.',
-    },
-    layers: {
-      kicker: 'PRESENCIA / CONTROL / NEGOCIO',
-      title: 'Una marca fuerte por fuera. Una operación mejor por dentro.',
-      body: 'No vendemos una colección de pantallas. Diseñamos la capa que el cliente ve y, cuando tiene sentido, el sistema que el equipo usa para trabajar.',
-      items: [
-        ['01', 'Presence', 'Lo que el cliente ve.', 'Dirección digital, web, contenido, experiencia y conversión.', 'presence'],
-        ['02', 'Control', 'Lo que mueve el día a día.', 'Clientes, reservas, recursos, operaciones y gestión privada.', 'control'],
-        ['03', 'Business', 'Lo que permite hacer más.', 'Software a medida, automatización, integraciones y datos.', 'business'],
-      ],
-      open: 'Descubrir',
-    },
-    work: {
-      kicker: 'VERTICALES / SOFTWARE REAL',
-      title: 'Especialización que se puede abrir y probar.',
-      body: 'Estamos acumulando profundidad en hospitality, movilidad premium e inmobiliario: sectores donde una mejor experiencia digital puede mover reservas, utilización, leads y percepción de valor.',
-      items: [
-        ['01', 'Hostelería', 'Reservas · Sala · Clientes · Carta', 'Opera reservas, ocupación, clientes y servicio desde una versión neutral basada en un sistema de hostelería desarrollado por Archic.'],
-        ['02', 'Movilidad premium', 'Flota · Solicitudes · Calendario · Clientes', 'Gestiona disponibilidad, tarifas, solicitudes y movimientos de flota en un entorno white-label con datos ficticios.'],
-        ['03', 'Inmobiliario', 'Propiedades · CRM · Visitas · Contenido', 'Recorre portfolio, enquiries, prioridades, visitas y calidad de contenido con la lógica de una plataforma inmobiliaria completa.'],
-      ],
-      open: 'Abrir sistema',
-    },
-    principles: {
-      kicker: 'LA CALIDAD ES UN SISTEMA',
-      title: 'El detalle no se deja para el final.',
-      items: [
-        ['01', 'Dirección', 'Cada proyecto necesita una idea visual propia. Nada de vestir una plantilla.'],
-        ['02', 'Interacción', 'Cada clic, transición, formulario y estado forma parte de la marca.'],
-        ['03', 'Responsive', 'Móvil se diseña. No se limita a encoger la versión de escritorio.'],
-        ['04', 'Rendimiento', 'La percepción premium desaparece en cuanto algo tarda, salta o falla.'],
-      ],
-    },
-    process: {
-      kicker: 'MENOS HANDOFFS / MÁS CONTROL',
-      title: 'Entender el negocio antes de diseñar la interfaz.',
-      steps: [
-        ['01', 'Entender', 'Negocio, cliente, fricción y resultado esperado.'],
-        ['02', 'Dirigir', 'Concepto, arquitectura, contenido y sistema visual.'],
-        ['03', 'Construir', 'Producto funcional con precisión de frontend y backend.'],
-        ['04', 'Refinar', 'Móvil, movimiento, rendimiento y pasada final de detalle.'],
-      ],
-    },
-    close: {
-      kicker: 'MARBELLA · SEVILLA · ESPAÑA',
-      titleA: 'Si tu negocio compite arriba,',
-      titleB: 'su sistema digital también.',
-      body: 'Cuéntanos cómo vendes, reservas, gestionas o atiendes hoy. Entramos por la fricción real y construimos la solución alrededor.',
-      cta: 'Hablar con Archic',
-      call: 'Llamar',
-    },
-  },
-  en: {
-    hero: {
-      kicker: 'ARCHIC / MARBELLA · SEVILLE',
-      titleA: 'We design what',
-      titleB: 'moves a business',
-      titleC: 'forward.',
-      body: 'We design digital presence and operating systems for businesses where perception, booking, sales and service matter: luxury mobility, hospitality, real estate and high-value services.',
-      cta: 'Start a project',
-      secondary: 'See how we work',
-      meta: ['MARBELLA · SEVILLE', 'MOBILITY · HOSPITALITY', 'REAL ESTATE · YACHTING', 'ES / EN'],
-    },
-    manifesto: {
-      kicker: 'FROM IMPACT TO OPERATIONS',
-      lineA: 'The website does not end',
-      lineB: 'at the homepage.',
-      body: 'When a business runs on bookings, fleet, properties, customers or service, we also design what happens behind the interface: private systems, automation and data under the same visual direction.',
-    },
-    layers: {
-      kicker: 'PRESENCE / CONTROL / BUSINESS',
-      title: 'A stronger brand outside. A better operation inside.',
-      body: 'We do not sell a collection of screens. We design what the customer sees and, when it matters, the system the team uses to operate.',
-      items: [
-        ['01', 'Presence', 'What the customer sees.', 'Digital direction, web, content, experience and conversion.', 'presence'],
-        ['02', 'Control', 'What moves the day to day.', 'Customers, bookings, resources, operations and private management.', 'control'],
-        ['03', 'Business', 'What enables more.', 'Custom software, automation, integrations and data.', 'business'],
-      ],
-      open: 'Explore',
-    },
-    work: {
-      kicker: 'VERTICALS / REAL SOFTWARE',
-      title: 'Specialisation you can open and test.',
-      body: 'We are building depth in hospitality, luxury mobility and real estate: sectors where a better digital experience can move bookings, utilisation, leads and perceived value.',
-      items: [
-        ['01', 'Hospitality', 'Bookings · Floor · Customers · Menu', 'Operate bookings, occupancy, customers and service in a neutral version based on a hospitality system built by Archic.'],
-        ['02', 'Luxury mobility', 'Fleet · Enquiries · Calendar · Clients', 'Manage availability, rates, enquiries and fleet movements inside a white-label environment with fictional data.'],
-        ['03', 'Real estate', 'Properties · CRM · Viewings · Content', 'Explore portfolio, enquiries, priorities, viewings and content quality with the logic of a complete property platform.'],
-      ],
-      open: 'Open system',
-    },
-    principles: {
-      kicker: 'QUALITY IS A SYSTEM',
-      title: 'Detail is not left for the end.',
-      items: [
-        ['01', 'Direction', 'Every project needs its own visual idea. Never a template in disguise.'],
-        ['02', 'Interaction', 'Every click, transition, form and state is part of the brand.'],
-        ['03', 'Responsive', 'Mobile is designed. It is not just a smaller desktop layout.'],
-        ['04', 'Performance', 'Premium perception disappears the moment something is slow, jumps or fails.'],
-      ],
-    },
-    process: {
-      kicker: 'FEWER HANDOFFS / MORE CONTROL',
-      title: 'Understand the business before designing the interface.',
-      steps: [
-        ['01', 'Understand', 'Business, customer, friction and expected outcome.'],
-        ['02', 'Direct', 'Concept, architecture, content and visual system.'],
-        ['03', 'Build', 'A functional product with frontend and backend precision.'],
-        ['04', 'Refine', 'Responsive, motion, performance and the final detail pass.'],
-      ],
-    },
-    close: {
-      kicker: 'MARBELLA · SEVILLE · SPAIN',
-      titleA: 'If your business competes at the top,',
-      titleB: 'its digital system should too.',
-      body: 'Tell us how you sell, book, manage or serve customers today. We start with the real friction and build the solution around it.',
-      cta: 'Talk to Archic',
-      call: 'Call',
-    },
-  },
-} as const
-
 type Lang = 'es' | 'en'
 type SystemTone = 'positive' | 'accent' | 'neutral'
 type HeroSystem = {
@@ -161,6 +22,129 @@ type HeroSystem = {
   metricLabel: string
   stats: [string, string, SystemTone][]
 }
+
+const COPY = {
+  es: {
+    hero: {
+      kicker: 'ARCHIC / DIGITAL SYSTEMS',
+      titleA: 'Diseñamos lo que',
+      titleB: 'hace avanzar',
+      titleC: 'un negocio.',
+      body: 'Diseñamos webs, experiencias digitales y software a medida para negocios que necesitan algo más que presencia: captar mejor, operar mejor y crecer sin perder nivel.',
+      cta: 'Empezar un proyecto',
+      secondary: 'Ver cómo trabajamos',
+      meta: ['ÉCIJA · SEVILLA', 'MARBELLA · COSTA DEL SOL', 'MOBILITY · HOSPITALITY · REAL ESTATE', 'ES / EN'],
+    },
+    layers: {
+      kicker: 'PRESENCIA / CONTROL / NEGOCIO',
+      title: 'Lo que ve el cliente. Lo que usa el equipo. Lo que hace crecer el negocio.',
+      body: 'Cada proyecto entra por una necesidad distinta. Podemos resolver solo la capa pública o conectar marca, operaciones y software en un mismo sistema.',
+      items: [
+        ['01', 'Presence', 'Una presencia que sostiene el valor.', 'Dirección digital, web, contenido, experiencia y conversión.', 'presence'],
+        ['02', 'Control', 'Una operación que no depende de parches.', 'Clientes, reservas, recursos, operaciones y gestión privada.', 'control'],
+        ['03', 'Business', 'Software para lo que ya no cabe en una web.', 'Automatización, integraciones, datos y producto a medida.', 'business'],
+      ],
+      open: 'Descubrir',
+    },
+    work: {
+      kicker: 'VERTICALES / SOFTWARE QUE SE PUEDE PROBAR',
+      title: 'No solo lo contamos. Puedes entrar.',
+      body: 'Estamos construyendo profundidad en hospitality, movilidad premium e inmobiliario. Los entornos son white-label y usan datos ficticios, pero la lógica de producto es real.',
+      items: [
+        ['01', 'Hostelería', 'Reservas · Sala · Clientes · Carta', 'Opera reservas, ocupación, clientes y servicio desde una versión neutral basada en un sistema de hostelería desarrollado por Archic.'],
+        ['02', 'Movilidad premium', 'Flota · Solicitudes · Calendario · Clientes', 'Gestiona disponibilidad, tarifas, solicitudes y movimientos de flota en un entorno white-label con datos ficticios.'],
+        ['03', 'Inmobiliario', 'Propiedades · CRM · Visitas · Contenido', 'Recorre portfolio, enquiries, prioridades, visitas y calidad de contenido con la lógica de una plataforma inmobiliaria completa.'],
+      ],
+      open: 'Abrir sistema',
+    },
+    standard: {
+      kicker: 'ARCHIC QUALITY GATE / 2026.1',
+      titleA: '“Se ve bien”',
+      titleB: 'no es el final.',
+      body: 'La entrega pasa por una capa de verificación propia: estructura, responsive, interacción, estados, rendimiento y revisión visual. El detalle se comprueba antes de publicar.',
+      command: 'npm run quality:gate',
+      status: 'PASS',
+      checks: [
+        ['01', 'Arquitectura', 'Rutas, jerarquía, contenido y enlaces'],
+        ['02', 'Responsive', 'Desktop y móvil tratados como experiencias'],
+        ['03', 'Producto', 'Formularios, estados y recorridos críticos'],
+        ['04', 'Rendimiento', 'Carga, estabilidad y percepción de velocidad'],
+        ['05', 'Visual audit', 'Encuadre, contraste, overflow y detalle final'],
+      ],
+      footerA: 'BUILD',
+      footerB: 'VERIFY',
+      footerC: 'SHIP',
+    },
+    close: {
+      kicker: 'ÉCIJA · SEVILLA · MARBELLA · ESPAÑA',
+      titleA: 'Una web puede abrir la puerta.',
+      titleB: 'El sistema decide hasta dónde llegas.',
+      body: 'Cuéntanos cómo vendes, reservas, gestionas o atiendes hoy. Empezamos por la fricción que de verdad existe y construimos desde ahí.',
+      cta: 'Hablar con Archic',
+      call: 'Llamar',
+    },
+  },
+  en: {
+    hero: {
+      kicker: 'ARCHIC / DIGITAL SYSTEMS',
+      titleA: 'We design what',
+      titleB: 'moves a business',
+      titleC: 'forward.',
+      body: 'We design websites, digital experiences and custom software for businesses that need more than presence: stronger acquisition, better operations and room to grow without losing quality.',
+      cta: 'Start a project',
+      secondary: 'See how we work',
+      meta: ['ÉCIJA · SEVILLE', 'MARBELLA · COSTA DEL SOL', 'MOBILITY · HOSPITALITY · REAL ESTATE', 'ES / EN'],
+    },
+    layers: {
+      kicker: 'PRESENCE / CONTROL / BUSINESS',
+      title: 'What customers see. What teams use. What lets the business grow.',
+      body: 'Every project starts from a different need. We can solve the public-facing layer only, or connect brand, operations and software into one system.',
+      items: [
+        ['01', 'Presence', 'A presence that sustains value.', 'Digital direction, web, content, experience and conversion.', 'presence'],
+        ['02', 'Control', 'Operations without patchwork.', 'Customers, bookings, resources, operations and private management.', 'control'],
+        ['03', 'Business', 'Software for what no longer fits inside a website.', 'Automation, integrations, data and custom product.', 'business'],
+      ],
+      open: 'Explore',
+    },
+    work: {
+      kicker: 'VERTICALS / SOFTWARE YOU CAN TEST',
+      title: 'We do not just describe it. You can enter it.',
+      body: 'We are building depth in hospitality, luxury mobility and real estate. The environments are white-label and use fictional data, but the product logic is real.',
+      items: [
+        ['01', 'Hospitality', 'Bookings · Floor · Customers · Menu', 'Operate bookings, occupancy, customers and service in a neutral version based on a hospitality system built by Archic.'],
+        ['02', 'Luxury mobility', 'Fleet · Enquiries · Calendar · Clients', 'Manage availability, rates, enquiries and fleet movements inside a white-label environment with fictional data.'],
+        ['03', 'Real estate', 'Properties · CRM · Viewings · Content', 'Explore portfolio, enquiries, priorities, viewings and content quality with the logic of a complete property platform.'],
+      ],
+      open: 'Open system',
+    },
+    standard: {
+      kicker: 'ARCHIC QUALITY GATE / 2026.1',
+      titleA: '“Looks good”',
+      titleB: 'is not the finish line.',
+      body: 'Delivery runs through our own verification layer: structure, responsive behaviour, interaction, states, performance and visual review. Detail is checked before release.',
+      command: 'npm run quality:gate',
+      status: 'PASS',
+      checks: [
+        ['01', 'Architecture', 'Routes, hierarchy, content and links'],
+        ['02', 'Responsive', 'Desktop and mobile treated as experiences'],
+        ['03', 'Product', 'Forms, states and critical journeys'],
+        ['04', 'Performance', 'Loading, stability and perceived speed'],
+        ['05', 'Visual audit', 'Framing, contrast, overflow and final detail'],
+      ],
+      footerA: 'BUILD',
+      footerB: 'VERIFY',
+      footerC: 'SHIP',
+    },
+    close: {
+      kicker: 'ÉCIJA · SEVILLE · MARBELLA · SPAIN',
+      titleA: 'A website can open the door.',
+      titleB: 'The system decides how far you go.',
+      body: 'Tell us how you sell, book, manage or serve customers today. We start with the friction that actually exists and build from there.',
+      cta: 'Talk to Archic',
+      call: 'Call',
+    },
+  },
+} as const
 
 const HERO_SYSTEMS: Record<Lang, HeroSystem[]> = {
   es: [
@@ -214,7 +198,7 @@ function HeroSystemConsole({ lang }: { lang: Lang }) {
     <div className="ahs-system" data-reveal>
       <div className="ahs-topbar">
         <div className="ahs-brand"><img src="/brand/archic-symbol-2026.svg" alt="" /><span>ARCHIC CONTROL</span></div>
-        <div className="ahs-live"><i />{lang === 'es' ? 'WHITE-LABEL / DEMO' : 'WHITE-LABEL / DEMO'}</div>
+        <div className="ahs-live"><i />WHITE-LABEL / DEMO</div>
       </div>
       <div className="ahs-tabs" role="tablist" aria-label={lang === 'es' ? 'Sistemas de demostración' : 'Demo systems'}>
         {systems.map((system, index) => (
@@ -264,6 +248,7 @@ function InterfaceStudy({ type, lang }: { type: number; lang: Lang }) {
       </div>
     )
   }
+
   if (type === 1) {
     return (
       <div className="ah-study ah-study-mobility" aria-hidden="true">
@@ -274,6 +259,7 @@ function InterfaceStudy({ type, lang }: { type: number; lang: Lang }) {
       </div>
     )
   }
+
   return (
     <div className="ah-study ah-study-property" aria-hidden="true">
       <div className="ah-property-grid">
@@ -283,6 +269,45 @@ function InterfaceStudy({ type, lang }: { type: number; lang: Lang }) {
       <div className="ah-property-list"><i /><i /><i /></div>
       <div className="ah-property-foot"><span>{lang === 'es' ? 'ENQUIRIES · VISITAS · CONTENIDO' : 'ENQUIRIES · VIEWINGS · CONTENT'}</span><span>{lang === 'es' ? 'ABRIR →' : 'OPEN →'}</span></div>
     </div>
+  )
+}
+
+function QualityGate({ lang }: { lang: Lang }) {
+  const c = COPY[lang].standard
+
+  return (
+    <section className="ah-quality" aria-labelledby="archic-quality-title">
+      <div className="ah-quality-copy" data-reveal>
+        <p className="ah-kicker">{c.kicker}</p>
+        <h2 id="archic-quality-title"><span>{c.titleA}</span><em>{c.titleB}</em></h2>
+        <p>{c.body}</p>
+        <div className="ah-quality-flow" aria-label={lang === 'es' ? 'Flujo de entrega' : 'Delivery flow'}>
+          <span>{c.footerA}</span><i /><span>{c.footerB}</span><i /><span>{c.footerC}</span>
+        </div>
+      </div>
+
+      <div className="ah-quality-console" data-reveal>
+        <div className="ahq-topbar">
+          <div><img src="/brand/archic-symbol-2026.svg" alt="" /><span>QUALITY / GATE</span></div>
+          <span className="ahq-status"><i />{c.status}</span>
+        </div>
+        <div className="ahq-command"><span>$</span><code>{c.command}</code></div>
+        <div className="ahq-log">
+          {c.checks.map(([no, label, detail]) => (
+            <div className="ahq-row" key={no}>
+              <span>{no}</span>
+              <strong>{label}</strong>
+              <p>{detail}</p>
+              <b>PASS</b>
+            </div>
+          ))}
+        </div>
+        <div className="ahq-foot">
+          <span>ARCHIC_2026.1</span>
+          <span>5 / 5</span>
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -350,15 +375,6 @@ export default function ArchicHome() {
           </div>
         </section>
 
-        <section className="ah-manifesto ah-paper">
-          <div className="ah-section-index">01</div>
-          <div className="ah-manifesto-copy" data-reveal>
-            <p className="ah-kicker ah-kicker-dark">{c.manifesto.kicker}</p>
-            <h2>{c.manifesto.lineA}<br /><em>{c.manifesto.lineB}</em></h2>
-            <p>{c.manifesto.body}</p>
-          </div>
-        </section>
-
         <MarketFocus />
 
         <section className="ah-layers">
@@ -409,35 +425,7 @@ export default function ArchicHome() {
           </div>
         </section>
 
-        <section className="ah-principles">
-          <div className="ah-principles-title" data-reveal>
-            <p className="ah-kicker">{c.principles.kicker}</p>
-            <h2>{c.principles.title}</h2>
-          </div>
-          <div className="ah-principles-list">
-            {c.principles.items.map(([no, title, body]) => (
-              <article key={no} data-reveal>
-                <span>{no}</span><h3>{title}</h3><p>{body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="ah-process ah-paper">
-          <div className="ah-process-head" data-reveal>
-            <p className="ah-kicker ah-kicker-dark">{c.process.kicker}</p>
-            <h2>{c.process.title}</h2>
-          </div>
-          <div className="ah-process-grid">
-            {c.process.steps.map(([no, title, body]) => (
-              <article key={no} data-reveal>
-                <span>{no}</span>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+        <QualityGate lang={lang} />
 
         <section className="ah-close">
           <div className="ah-close-line" aria-hidden="true" />
