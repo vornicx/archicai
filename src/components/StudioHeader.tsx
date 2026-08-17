@@ -8,6 +8,7 @@ const COPY = {
       ['Presence', 'Presencia digital', 'presence'],
       ['Control', 'Operación privada', 'control'],
       ['Business', 'Software a medida', 'business'],
+      ['Prototipos', 'Concept builds', '#prototypes'],
       ['Studio', 'Cómo trabajamos', 'studio'],
       ['Contacto', 'Hablar de un proyecto', 'contact'],
     ],
@@ -18,6 +19,7 @@ const COPY = {
       ['Presence', 'Digital presence', 'presence'],
       ['Control', 'Private operations', 'control'],
       ['Business', 'Custom software', 'business'],
+      ['Prototypes', 'Concept builds', '#prototypes'],
       ['Studio', 'How we work', 'studio'],
       ['Contact', 'Talk about a project', 'contact'],
     ],
@@ -25,7 +27,9 @@ const COPY = {
 }
 
 function path(lang: 'es' | 'en', slug = '') {
-  if (!slug) return lang === 'en' ? '/en/' : '/'
+  const root = lang === 'en' ? '/en/' : '/'
+  if (!slug) return root
+  if (slug.startsWith('#')) return `${root}${slug}`
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
 }
 
@@ -145,7 +149,8 @@ export default function StudioHeader() {
           <nav aria-label={t.a11y.mainNav}>
             {c.pages.map(([name, desc, slug], index) => {
               const href = path(lang, slug)
-              const isCurrent = currentPath === normalisePath(href)
+              const isAnchor = slug.startsWith('#')
+              const isCurrent = !isAnchor && currentPath === normalisePath(href)
               return (
                 <a
                   href={href}
