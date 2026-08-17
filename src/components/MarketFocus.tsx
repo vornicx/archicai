@@ -68,7 +68,7 @@ const COPY = {
         title: 'Luxury mobility',
         meta: 'Fleet · Availability · Enquiries · CRM',
         body: 'Brand presence and internal systems for premium rentals, leasing, dealerships and high-value automotive services.',
-        href: '/diseno-web-alquiler-coches/',
+        href: '/en/explorations/mobility/',
         cta: 'Explore solution',
       },
       {
@@ -77,7 +77,7 @@ const COPY = {
         title: 'Hospitality',
         meta: 'Bookings · Floor · Menu · Customers',
         body: 'Restaurants, beach clubs and experiences where booking, service and perception should feel like one brand.',
-        href: '/diseno-web-restaurantes/',
+        href: '/en/explorations/hospitality/',
         cta: 'Explore solution',
       },
       {
@@ -86,7 +86,7 @@ const COPY = {
         title: 'Real estate',
         meta: 'Portfolio · Leads · CRM · SEO',
         body: 'Premium property platforms combining listings, acquisition, sales operations and visual direction worthy of high-value assets.',
-        href: '/diseno-web-inmobiliarias/',
+        href: '/en/explorations/real-estate/',
         cta: 'Explore solution',
       },
     ],
@@ -118,7 +118,7 @@ export default function MarketFocus() {
       </div>
 
       <div className="amf-stage">
-        <a className="amf-place" href={lang === 'en' ? '/diseno-web-marbella/' : '/diseno-web-marbella/'} data-reveal>
+        <a className="amf-place" href="/diseno-web-marbella/" data-reveal>
           <div className="amf-place-top">
             <span>{c.place.eyebrow}</span>
             <span>36.51° N / 4.88° W</span>
