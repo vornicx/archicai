@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process'
 import { resolve, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
+  HOME_SEO,
   SITE_PAGE_SEO,
   SITE_ORIGIN,
   buildSitePageGraph,
@@ -11,6 +12,7 @@ import {
   sitePageCanonical,
   type SitePageKey,
 } from '../src/seo/siteSeo'
+import { buildHomeGraph, homeCanonical } from '../src/seo/homeSchema'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const GSC_TOKEN = 'y-ywY3wwLbE0VyTO3ex8Nf7c4FWClx9R_y4mz_V75ks'
@@ -37,20 +39,25 @@ function lastModified(sourceFile: string): string {
 
 const MODIFIED = lastModified('src/seo/siteSeo.ts')
 
-function html(lang: 'es' | 'en', page: SitePageKey) {
-  const seo = SITE_PAGE_SEO[lang][page]
-  const canonical = sitePageCanonical(lang, page)
-  const alternates = sitePageAlternates(page)
+function headDocument(input: {
+  lang: 'es' | 'en'
+  canonical: string
+  title: string
+  description: string
+  ogAlt: string
+  graph: unknown
+  alternates: { es: string; en: string; xDefault: string }
+}) {
+  const { lang, canonical, title, description, ogAlt, graph, alternates } = input
   const image = siteOgImage(lang)
-  const graph = buildSitePageGraph(page, lang)
 
   return `<!doctype html>
 <html lang="${lang}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${esc(seo.title)}</title>
-    <meta name="description" content="${esc(seo.description)}" />
+    <title>${esc(title)}</title>
+    <meta name="description" content="${esc(description)}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="Archic" />
@@ -72,20 +79,20 @@ function html(lang: 'es' | 'en', page: SitePageKey) {
     <meta property="og:locale" content="${lang === 'es' ? 'es_ES' : 'en_US'}" />
     <meta property="og:locale:alternate" content="${lang === 'es' ? 'en_US' : 'es_ES'}" />
     <meta property="og:url" content="${canonical}" />
-    <meta property="og:title" content="${esc(seo.title)}" />
-    <meta property="og:description" content="${esc(seo.description)}" />
+    <meta property="og:title" content="${esc(title)}" />
+    <meta property="og:description" content="${esc(description)}" />
     <meta property="og:image" content="${image}" />
     <meta property="og:image:secure_url" content="${image}" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="${esc(seo.ogAlt)}" />
+    <meta property="og:image:alt" content="${esc(ogAlt)}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@ArchicHQ" />
-    <meta name="twitter:title" content="${esc(seo.title)}" />
-    <meta name="twitter:description" content="${esc(seo.description)}" />
+    <meta name="twitter:title" content="${esc(title)}" />
+    <meta name="twitter:description" content="${esc(description)}" />
     <meta name="twitter:image" content="${image}" />
-    <meta name="twitter:image:alt" content="${esc(seo.ogAlt)}" />
+    <meta name="twitter:image:alt" content="${esc(ogAlt)}" />
     <script type="application/ld+json">${JSON.stringify(graph)}</script>
   </head>
   <body>
@@ -96,6 +103,19 @@ function html(lang: 'es' | 'en', page: SitePageKey) {
 `
 }
 
+function html(lang: 'es' | 'en', page: SitePageKey) {
+  const seo = SITE_PAGE_SEO[lang][page]
+  return headDocument({
+    lang,
+    canonical: sitePageCanonical(lang, page),
+    title: seo.title,
+    description: seo.description,
+    ogAlt: seo.ogAlt,
+    graph: buildSitePageGraph(page, lang),
+    alternates: sitePageAlternates(page),
+  })
+}
+
 for (const page of pages) {
   for (const lang of ['es', 'en'] as const) {
     const dir = lang === 'en' ? resolve(ROOT, 'en', page) : resolve(ROOT, page)
@@ -103,6 +123,31 @@ for (const page of pages) {
     writeFileSync(resolve(dir, 'index.html'), html(lang, page))
     console.log(`written ${lang === 'en' ? 'en/' : ''}${page}/index.html`)
   }
+}
+
+const homeAlternates = {
+  es: `${SITE_ORIGIN}/`,
+  en: `${SITE_ORIGIN}/en/`,
+  xDefault: `${SITE_ORIGIN}/`,
+}
+
+for (const lang of ['es', 'en'] as const) {
+  const seo = HOME_SEO[lang]
+  const dir = lang === 'en' ? resolve(ROOT, 'en') : ROOT
+  mkdirSync(dir, { recursive: true })
+  writeFileSync(
+    resolve(dir, 'index.html'),
+    headDocument({
+      lang,
+      canonical: homeCanonical(lang),
+      title: seo.title,
+      description: seo.description,
+      ogAlt: seo.ogAlt,
+      graph: buildHomeGraph(lang),
+      alternates: homeAlternates,
+    }),
+  )
+  console.log(`written commercial home ${lang === 'en' ? 'en/' : ''}index.html`)
 }
 
 const sitemapPath = resolve(ROOT, 'public', 'sitemap.xml')
@@ -139,4 +184,61 @@ if (existsSync(sitemapPath)) {
     )
   }
   console.log('updated public/sitemap.xml with core Archic routes')
+}
+
+const commercialSummaryEs = `Archic construye la capa digital de empresas: la presencia que ve el cliente, los sistemas privados que usa el equipo y el software a medida que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.`
+
+const commercialBlockEs = `## Modelo de trabajo 2026
+
+- **Archic Presence**: dirección digital, web premium, contenido, conversión y base técnica de búsqueda.
+- **Archic Control**: sistemas privados para clientes, reservas, recursos, disponibilidad y operación.
+- **Archic Business**: software a medida, automatización, integraciones y datos.
+- **Digital Opportunity Audit**: diagnóstico de presencia, conversión, búsqueda y operación para priorizar qué merece construirse primero.
+- **Archic Evolution**: monitorización y mejora continua después del lanzamiento.
+
+## Archic Method
+
+1. Discovery — entender el negocio, el problema y la señal que demostraría una mejora.
+2. Architecture — definir información, recorridos, datos, funcionalidades y dirección antes de multiplicar pantallas.
+3. Build — diseño y desarrollo sobre producto real y navegable.
+4. Validation — QA funcional, mobile, visual, rendimiento, accesibilidad, búsqueda y recorridos críticos.
+5. Evolution — medir, aprender y priorizar mejoras con datos reales.
+
+## Inversión orientativa
+
+- Presence: desde 1.200 €.
+- Control: desde 2.500 €.
+- Business: desde 4.000 €.
+- Evolution: desde 150 €/mes.
+
+Son mínimos orientativos, no paquetes cerrados. El presupuesto final se fija después del diagnóstico y depende del alcance.
+
+## Estándar de evidencia
+
+Los prototipos y concept builds se etiquetan como tales y no se presentan como clientes. Archic solo publica un resultado de negocio como caso de éxito cuando existe una línea base y una fuente de datos que permita demostrarlo. La base Search & AI Readiness incluye metadatos, Schema.org, sitemap, canonicals, crawlability, contenido semántico y llms cuando aporta; no se prometen posiciones ni visibilidad en IA sin evidencia.
+`
+
+const llmsPath = resolve(ROOT, 'public', 'llms.txt')
+if (existsSync(llmsPath)) {
+  let llms = readFileSync(llmsPath, 'utf8')
+  llms = llms.replace(/^> .*$/m, `> ${commercialSummaryEs}`)
+  if (!llms.includes('## Modelo de trabajo 2026')) {
+    llms = llms.replace('\n## Servicios\n', `\n${commercialBlockEs}\n## Servicios\n`)
+  }
+  writeFileSync(llmsPath, llms)
+  console.log('updated public/llms.txt with current commercial model')
+}
+
+const llmsFullPath = resolve(ROOT, 'public', 'llms-full.txt')
+if (existsSync(llmsFullPath)) {
+  let llmsFull = readFileSync(llmsFullPath, 'utf8')
+  llmsFull = llmsFull.replace(/^> .*$/m, `> ${commercialSummaryEs}`)
+  if (!llmsFull.includes('## Modelo de trabajo 2026')) {
+    const firstSection = llmsFull.indexOf('\n## ')
+    if (firstSection !== -1) {
+      llmsFull = `${llmsFull.slice(0, firstSection)}\n\n${commercialBlockEs}${llmsFull.slice(firstSection)}`
+    }
+  }
+  writeFileSync(llmsFullPath, llmsFull)
+  console.log('updated public/llms-full.txt with current commercial model')
 }
