@@ -14,6 +14,10 @@ const routes = [
   ['hospitality', '/explorations/hospitality/'],
   ['mobility', '/explorations/mobility/'],
   ['real-estate', '/explorations/real-estate/'],
+  ['seo-restaurants', '/diseno-web-restaurantes/'],
+  ['seo-sevilla', '/diseno-web-sevilla/'],
+  ['seo-reservations', '/software-reservas-a-medida/'],
+  ['seo-software', '/precio-software-a-medida/'],
 ]
 
 const viewports = [
