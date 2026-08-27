@@ -1,242 +1,68 @@
-/* Archic 2026 contrast system.
-   Legibility wins over decorative low-contrast styling.
-   This file must be loaded last. */
-
-.as-home-v2,
-.as-detail,
-.as-contact-page,
-.as-seo-page,
-.as-editorial-page,
-.as-legal-shell{
-  --archic-dark:#090908;
-  --archic-paper:#f0eee8;
-  --archic-on-dark:#f7f5ef;
-  --archic-on-dark-secondary:#d8d4cb;
-  --archic-on-dark-muted:#aaa59b;
-  --archic-on-dark-micro:#99948b;
-  --archic-on-light:#11100e;
-  --archic-on-light-secondary:#45413b;
-  --archic-on-light-muted:#625e57;
+/* Archic 2026 contrast system. Legibility wins over decorative low contrast. */
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell){
+  --archic-dark:#090908;--archic-paper:#f0eee8;--archic-on-dark:#f7f5ef;
+  --archic-on-dark-secondary:#d8d4cb;--archic-on-dark-muted:#aaa59b;--archic-on-dark-micro:#99948b;
+  --archic-on-light:#11100e;--archic-on-light-secondary:#45413b;--archic-on-light-muted:#625e57
 }
+.as-home-v2{--ah-muted:var(--archic-on-dark-secondary);--ah-muted-dark:var(--archic-on-light-secondary)}
+:is(.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell){--a26-muted-light:var(--archic-on-dark-secondary);--a26-muted-dark:var(--archic-on-light-secondary)}
 
-/* Semantic variables. */
-.as-home-v2{
-  --ah-muted:var(--archic-on-dark-secondary);
-  --ah-muted-dark:var(--archic-on-light-secondary);
-}
-.as-detail,
-.as-contact-page,
-.as-seo-page,
-.as-editorial-page,
-.as-legal-shell{
-  --a26-muted-light:var(--archic-on-dark-secondary);
-  --a26-muted-dark:var(--archic-on-light-secondary);
-}
+/* Navigation / menu. */
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) .as-lang{color:var(--archic-on-dark-muted)}
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) .as-project-link{color:var(--archic-on-dark-secondary);border-color:rgba(255,255,255,.30)}
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) :is(.as-menu-meta,.as-menu-inner nav a>span,.as-menu-inner nav small){color:var(--archic-on-light-muted)}
 
-/* Navigation / header. */
-.as-home-v2 .as-lang,
-.as-detail .as-lang,
-.as-contact-page .as-lang,
-.as-seo-page .as-lang,
-.as-editorial-page .as-lang,
-.as-legal-shell .as-lang{color:var(--archic-on-dark-muted)}
-
-.as-home-v2 .as-project-link,
-.as-detail .as-project-link,
-.as-contact-page .as-project-link,
-.as-seo-page .as-project-link,
-.as-editorial-page .as-project-link,
-.as-legal-shell .as-project-link{color:var(--archic-on-dark-secondary);border-color:rgba(255,255,255,.30)}
-
-/* Menu is a paper surface. */
-.as-home-v2 .as-menu-meta,
-.as-detail .as-menu-meta,
-.as-contact-page .as-menu-meta,
-.as-seo-page .as-menu-meta,
-.as-editorial-page .as-menu-meta,
-.as-legal-shell .as-menu-meta,
-.as-home-v2 .as-menu-inner nav a>span,
-.as-detail .as-menu-inner nav a>span,
-.as-contact-page .as-menu-inner nav a>span,
-.as-seo-page .as-menu-inner nav a>span,
-.as-editorial-page .as-menu-inner nav a>span,
-.as-legal-shell .as-menu-inner nav a>span,
-.as-home-v2 .as-menu-inner nav small,
-.as-detail .as-menu-inner nav small,
-.as-contact-page .as-menu-inner nav small,
-.as-seo-page .as-menu-inner nav small,
-.as-editorial-page .as-menu-inner nav small,
-.as-legal-shell .as-menu-inner nav small{color:var(--archic-on-light-muted)}
-
-/* Home — dark surfaces. */
+/* Home. */
 .ah-kicker{color:var(--archic-on-dark-muted)}
 .ah-link{color:var(--archic-on-dark-secondary);border-bottom-color:rgba(255,255,255,.42)}
-.ah-hero-bottom>p,
-.ah-section-head>p,
-.ah-layer-row p,
-.ah-principles-list p,
-.ah-close-copy>p:not(.ah-kicker){color:var(--archic-on-dark-secondary)}
-.ah-system-label,
-.ah-layer i,
-.ah-system-axis,
-.ah-hero-meta,
-.ah-row-no,
-.ah-row-open,
-.ah-principles-list span,
-.ah-model small,
-.ah-specs{color:var(--archic-on-dark-micro)}
-.ah-layer-three i{color:#514d47}
-
-/* Home — paper surfaces. */
+:is(.ah-hero-bottom>p,.ah-section-head>p,.ah-layer-row p,.ah-principles-list p,.ah-close-copy>p:not(.ah-kicker)){color:var(--archic-on-dark-secondary)}
+:is(.ah-system-label,.ah-layer i,.ah-system-axis,.ah-hero-meta,.ah-row-no,.ah-row-open,.ah-principles-list span,.ah-model small,.ah-specs){color:var(--archic-on-dark-micro)}
+.ah-layer-three i,.ah-manifesto h2 em{color:#514d47}
 .ah-paper{color:var(--archic-on-light)}
-.ah-kicker-dark,
-.ah-section-index,
-.ah-work-card-copy>span,
-.ah-work-card-copy small,
-.ah-process-grid span{color:var(--archic-on-light-muted)}
-.ah-manifesto-copy>p:last-child,
-.ah-work-head>p,
-.ah-work-card-copy p,
-.ah-process-grid p{color:var(--archic-on-light-secondary)}
-.ah-manifesto h2 em{color:#514d47}
+:is(.ah-kicker-dark,.ah-section-index,.ah-work-card-copy>span,.ah-work-card-copy small,.ah-process-grid span){color:var(--archic-on-light-muted)}
+:is(.ah-manifesto-copy>p:last-child,.ah-work-head>p,.ah-work-card-copy p,.ah-process-grid p){color:var(--archic-on-light-secondary)}
 
-/* Product/detail — dark surfaces. */
+/* Product/detail. */
 .as-detail .as-kicker{color:var(--archic-on-dark-muted)}
-.as-detail .as-lead,
-.as-detail .as-feature-list p,
-.as-detail .as-next>div>p:not(.as-kicker){color:var(--archic-on-dark-secondary)}
-.as-detail .as-scroll-mark,
-.as-detail .as-feature-list article>span,
-.as-detail .as-next-call small{color:var(--archic-on-dark-micro)}
-
-/* Product/detail — paper surfaces. */
-.as-detail .as-statement-index,
-.as-detail .as-principle .as-kicker,
-.as-detail .as-search-intents-head .as-kicker,
-.as-detail .as-search-intents-list>a>span,
-.as-detail .as-search-intents-list small{color:var(--archic-on-light-muted)}
-.as-detail .as-statement>div:last-child>p,
-.as-detail .as-principle>p:last-child,
-.as-detail .as-principle-inner>p:last-child{color:var(--archic-on-light-secondary)}
+.as-detail :is(.as-lead,.as-feature-list p,.as-next>div>p:not(.as-kicker)){color:var(--archic-on-dark-secondary)}
+.as-detail :is(.as-scroll-mark,.as-feature-list article>span,.as-next-call small){color:var(--archic-on-dark-micro)}
+.as-detail :is(.as-statement-index,.as-principle .as-kicker,.as-search-intents-head .as-kicker,.as-search-intents-list>a>span,.as-search-intents-list small){color:var(--archic-on-light-muted)}
+.as-detail :is(.as-statement>div:last-child>p,.as-principle>p:last-child,.as-principle-inner>p:last-child){color:var(--archic-on-light-secondary)}
 .as-detail .as-statement h2 em{color:#514d47}
 
 /* Contact. */
-.as-contact-page .as-kicker,
-.as-contact-page .as-contact-direct-call>span{color:var(--archic-on-light-muted)}
-.as-contact-page .as-contact-hero>div:first-child>p:not(.as-kicker),
-.as-contact-page .as-contact-notes span{color:var(--archic-on-light-secondary)}
-.as-contact-page .as-form-head,
-.as-contact-page .as-form-head span:last-child,
-.as-contact-page .as-contact-form .sx-field label,
-.as-contact-page .sx-type-options legend{color:var(--archic-on-dark-muted)}
-.as-contact-page .sx-type-options label,
-.as-contact-page .sx-consent,
-.as-contact-page .sx-form-msg{color:var(--archic-on-dark-secondary)}
-.as-contact-page .as-contact-form .sx-field input::placeholder,
-.as-contact-page .as-contact-form .sx-field textarea::placeholder{color:var(--archic-on-dark-muted);opacity:1}
+.as-contact-page :is(.as-kicker,.as-contact-direct-call>span){color:var(--archic-on-light-muted)}
+.as-contact-page :is(.as-contact-hero>div:first-child>p:not(.as-kicker),.as-contact-notes span){color:var(--archic-on-light-secondary)}
+.as-contact-page :is(.as-form-head,.as-form-head span:last-child,.as-contact-form .sx-field label,.sx-type-options legend){color:var(--archic-on-dark-muted)}
+.as-contact-page :is(.sx-type-options label,.sx-consent,.sx-form-msg){color:var(--archic-on-dark-secondary)}
+.as-contact-page .as-contact-form :is(.sx-field input::placeholder,.sx-field textarea::placeholder){color:var(--archic-on-dark-muted);opacity:1}
 
-/* SEO — dark surfaces. */
-.as-seo-page .as-seo-breadcrumb,
-.as-seo-page .as-seo-breadcrumb span,
-.as-seo-page .as-seo-layer,
-.as-seo-page .as-seo-hero-side span,
-.as-seo-page .as-seo-dark .as-seo-index,
-.as-seo-page .as-seo-feature>span{color:var(--archic-on-dark-micro)}
+/* SEO. */
+.as-seo-page :is(.as-seo-breadcrumb,.as-seo-breadcrumb span,.as-seo-layer,.as-seo-hero-side span,.as-seo-dark .as-seo-index,.as-seo-feature>span){color:var(--archic-on-dark-micro)}
 .as-seo-page .as-seo-breadcrumb a{color:var(--archic-on-dark-secondary)}
-.as-seo-page .as-seo-hero-lead,
-.as-seo-page .as-seo-hero-side p,
-.as-seo-page .as-seo-dark .as-seo-section-copy>p,
-.as-seo-page .as-seo-feature p{color:var(--archic-on-dark-secondary)}
-
-/* SEO — paper surfaces. */
+.as-seo-page :is(.as-seo-hero-lead,.as-seo-hero-side p,.as-seo-dark .as-seo-section-copy>p,.as-seo-feature p){color:var(--archic-on-dark-secondary)}
 .as-seo-page .as-seo-light .as-seo-index{color:var(--archic-on-light-muted)}
-.as-seo-page .as-seo-light .as-seo-section-copy>p,
-.as-seo-page .as-seo-list li{color:var(--archic-on-light-secondary)}
-.as-seo-page .as-seo-light h2 em,
-.as-seo-page .as-seo-light .as-seo-statement em{color:#514d47}
+.as-seo-page :is(.as-seo-light .as-seo-section-copy>p,.as-seo-list li){color:var(--archic-on-light-secondary)}
+.as-seo-page .as-seo-light :is(h2 em,.as-seo-statement em){color:#514d47}
 
 /* Editorial / Guides. */
-.as-editorial-page .as-seo-breadcrumb,
-.as-editorial-page .as-seo-breadcrumb span,
-.as-editorial-page .as-seo-layer,
-.as-editorial-page .as-article-meta{color:var(--archic-on-dark-micro)}
+.as-editorial-page :is(.as-seo-breadcrumb,.as-seo-breadcrumb span,.as-seo-layer,.as-article-meta){color:var(--archic-on-dark-micro)}
 .as-editorial-page .as-seo-breadcrumb a{color:var(--archic-on-dark-secondary)}
-.as-editorial-page .as-editorial-hero>div>p:last-child,
-.as-editorial-page .as-seo-close p{color:var(--archic-on-dark-secondary)}
-.as-editorial-page .as-seo-index,
-.as-editorial-page .as-guide-card>span,
-.as-editorial-page .as-article-toc>span{color:var(--archic-on-light-muted)}
-.as-editorial-page .as-seo-section-copy>p,
-.as-editorial-page .as-guide-card p,
-.as-editorial-page .as-article-toc a{color:var(--archic-on-light-secondary)}
+.as-editorial-page :is(.as-editorial-hero>div>p:last-child,.as-seo-close p){color:var(--archic-on-dark-secondary)}
+.as-editorial-page :is(.as-seo-index,.as-guide-card>span,.as-article-toc>span){color:var(--archic-on-light-muted)}
+.as-editorial-page :is(.as-seo-section-copy>p,.as-guide-card p,.as-article-toc a){color:var(--archic-on-light-secondary)}
 .as-editorial-page .as-seo-section h2 em{color:#514d47}
 
-/* Legal must never use decorative low contrast. */
-.as-legal-shell .as-seo-breadcrumb,
-.as-legal-shell .as-seo-breadcrumb span,
-.as-legal-shell .as-seo-layer{color:var(--archic-on-light-muted)}
-.as-legal-shell .as-seo-breadcrumb a{color:var(--archic-on-light-secondary)}
-.as-legal-shell p,
-.as-legal-shell li{color:var(--archic-on-light-secondary)}
-.as-legal-shell h1,
-.as-legal-shell h2,
-.as-legal-shell h3,
-.as-legal-shell strong{color:var(--archic-on-light)}
+/* Legal. */
+.as-legal-shell :is(.as-seo-breadcrumb,.as-seo-breadcrumb span,.as-seo-layer){color:var(--archic-on-light-muted)}
+.as-legal-shell .as-seo-breadcrumb a,.as-legal-shell :is(p,li){color:var(--archic-on-light-secondary)}
+.as-legal-shell :is(h1,h2,h3,strong){color:var(--archic-on-light)}
 
 /* Footer. */
-.as-home-v2 .as-footer-brand p,
-.as-detail .as-footer-brand p,
-.as-contact-page .as-footer-brand p,
-.as-seo-page .as-footer-brand p,
-.as-editorial-page .as-footer-brand p,
-.as-legal-shell .as-footer-brand p{color:var(--archic-on-dark-secondary)}
-
-.as-home-v2 .as-footer-nav>span,
-.as-home-v2 .as-footer-legal>span,
-.as-home-v2 .as-footer-contact>span,
-.as-detail .as-footer-nav>span,
-.as-detail .as-footer-legal>span,
-.as-detail .as-footer-contact>span,
-.as-contact-page .as-footer-nav>span,
-.as-contact-page .as-footer-legal>span,
-.as-contact-page .as-footer-contact>span,
-.as-seo-page .as-footer-nav>span,
-.as-seo-page .as-footer-legal>span,
-.as-seo-page .as-footer-contact>span,
-.as-editorial-page .as-footer-nav>span,
-.as-editorial-page .as-footer-legal>span,
-.as-editorial-page .as-footer-contact>span,
-.as-legal-shell .as-footer-nav>span,
-.as-legal-shell .as-footer-legal>span,
-.as-legal-shell .as-footer-contact>span,
-.as-home-v2 .as-footer-bottom,
-.as-detail .as-footer-bottom,
-.as-contact-page .as-footer-bottom,
-.as-seo-page .as-footer-bottom,
-.as-editorial-page .as-footer-bottom,
-.as-legal-shell .as-footer-bottom{color:var(--archic-on-dark-micro)}
-
-.as-home-v2 .as-footer-nav a,
-.as-home-v2 .as-footer-legal a,
-.as-detail .as-footer-nav a,
-.as-detail .as-footer-legal a,
-.as-contact-page .as-footer-nav a,
-.as-contact-page .as-footer-legal a,
-.as-seo-page .as-footer-nav a,
-.as-seo-page .as-footer-legal a,
-.as-editorial-page .as-footer-nav a,
-.as-editorial-page .as-footer-legal a,
-.as-legal-shell .as-footer-nav a,
-.as-legal-shell .as-footer-legal a{color:var(--archic-on-dark-secondary)}
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) .as-footer-brand p{color:var(--archic-on-dark-secondary)}
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) :is(.as-footer-nav>span,.as-footer-legal>span,.as-footer-contact>span,.as-footer-bottom){color:var(--archic-on-dark-micro)}
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) :is(.as-footer-nav a,.as-footer-legal a){color:var(--archic-on-dark-secondary)}
 
 @media(max-width:760px){
-  /* Tiny metadata gets stronger on mobile, never weaker. */
-  .ah-system-label,
-  .ah-hero-meta,
-  .ah-row-no,
-  .ah-principles-list span,
-  .as-detail .as-feature-list article>span,
-  .as-seo-page .as-seo-breadcrumb,
-  .as-editorial-page .as-seo-breadcrumb,
-  .as-editorial-page .as-article-meta{color:var(--archic-on-dark-muted)}
+  :is(.ah-system-label,.ah-hero-meta,.ah-row-no,.ah-principles-list span,.as-detail .as-feature-list article>span,.as-seo-page .as-seo-breadcrumb,.as-editorial-page .as-seo-breadcrumb,.as-editorial-page .as-article-meta){color:var(--archic-on-dark-muted)}
 }

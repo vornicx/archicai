@@ -32,12 +32,12 @@ async function revealWholePage(page) {
     const step = Math.max(320, Math.floor(window.innerHeight * 0.72))
     for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
       window.scrollTo(0, y)
-      await new Promise((resolve) => setTimeout(resolve, 45))
+      await new Promise((resolve) => setTimeout(resolve, 70))
     }
     window.scrollTo(0, document.documentElement.scrollHeight)
-    await new Promise((resolve) => setTimeout(resolve, 120))
+    await new Promise((resolve) => setTimeout(resolve, 180))
     window.scrollTo(0, 0)
-    await new Promise((resolve) => setTimeout(resolve, 120))
+    await new Promise((resolve) => setTimeout(resolve, 180))
   })
 }
 
@@ -48,6 +48,8 @@ for (const [viewportName, viewport] of viewports) {
     const page = await context.newPage()
     const requestFailures = []
     const badResponses = []
+    const consoleErrors = []
+    const pageErrors = []
 
     page.on('requestfailed', (request) => {
       requestFailures.push({ url: request.url(), error: request.failure()?.errorText || 'request failed' })
@@ -55,21 +57,37 @@ for (const [viewportName, viewport] of viewports) {
     page.on('response', (response) => {
       if (response.status() >= 400) badResponses.push({ url: response.url(), status: response.status() })
     })
+    page.on('console', (message) => {
+      if (message.type() === 'error') consoleErrors.push(message.text())
+    })
+    page.on('pageerror', (error) => pageErrors.push(error.message))
 
     const url = new URL(route, baseUrl).toString()
     let navigationError = null
+    let menuHealthy = null
 
     try {
       await page.goto(url, { waitUntil: 'networkidle', timeout: 45_000 })
       await page.evaluate(async () => {
         if (document.fonts?.ready) await document.fonts.ready
       })
+
+      const menuButton = page.locator('.as-menu-button').first()
+      if (await menuButton.count()) {
+        await menuButton.click()
+        const panel = page.locator('#archic-menu')
+        const open = await panel.getAttribute('data-open')
+        const visibleLinks = await panel.locator('nav a:visible').count()
+        menuHealthy = open === 'true' && visibleLinks > 0
+        await page.keyboard.press('Escape')
+      }
+
       await revealWholePage(page)
     } catch (error) {
       navigationError = error instanceof Error ? error.message : String(error)
     }
 
-    const diagnostics = navigationError ? null : await page.evaluate(() => {
+    const diagnostics = navigationError ? null : await page.evaluate((mode) => {
       const isVisible = (el) => {
         const style = getComputedStyle(el)
         const rect = el.getBoundingClientRect()
@@ -88,10 +106,13 @@ for (const [viewportName, viewport] of viewports) {
       const outside = []
       const clippedText = []
       const smallTargets = []
+      const weakPrimaryTargets = []
 
       for (const el of all) {
         if (!(el instanceof HTMLElement) || !isVisible(el)) continue
         if (el.closest('[aria-hidden="true"]')) continue
+        if (el.classList.contains('skip-link')) continue
+
         const rect = el.getBoundingClientRect()
         const style = getComputedStyle(el)
 
@@ -103,23 +124,30 @@ for (const [viewportName, viewport] of viewports) {
         const clipsX = ['hidden', 'clip'].includes(style.overflowX) && el.scrollWidth > el.clientWidth + 2
         const clipsY = ['hidden', 'clip'].includes(style.overflowY) && el.scrollHeight > el.clientHeight + 2
         if (text && (clipsX || clipsY)) {
-          clippedText.push({
-            element: label(el),
-            client: `${el.clientWidth}x${el.clientHeight}`,
-            scroll: `${el.scrollWidth}x${el.scrollHeight}`,
-          })
+          clippedText.push({ element: label(el), client: `${el.clientWidth}x${el.clientHeight}`, scroll: `${el.scrollWidth}x${el.scrollHeight}` })
         }
 
-        if (el.matches('a,button,input,select,textarea,[role="button"]')) {
-          if (rect.width < 34 || rect.height < 34) {
-            smallTargets.push({ element: label(el), size: `${Math.round(rect.width)}x${Math.round(rect.height)}` })
-          }
+        if (el.matches('a,button,input,select,textarea,[role="button"]') && (rect.width < 34 || rect.height < 34)) {
+          smallTargets.push({ element: label(el), size: `${Math.round(rect.width)}x${Math.round(rect.height)}` })
+        }
+
+        const primary = el.matches('.ag-btn,.as-btn,.sx-btn,.sx-button,.as-menu-button,.as-project-link,.as-brand,.axv-layer-switch button,.axv-product button')
+        const min = mode === 'mobile' ? 40 : 36
+        if (primary && (rect.width < min || rect.height < min)) {
+          weakPrimaryTargets.push({ element: label(el), size: `${Math.round(rect.width)}x${Math.round(rect.height)}`, required: min })
         }
       }
 
       const brokenImages = Array.from(document.images)
         .filter((img) => !img.complete || img.naturalWidth === 0)
         .map((img) => img.currentSrc || img.src)
+
+      const hiddenReveals = Array.from(document.querySelectorAll('[data-reveal]'))
+        .filter((el) => {
+          const style = getComputedStyle(el)
+          return style.display !== 'none' && style.visibility !== 'hidden' && Number(style.opacity || 1) < 0.5
+        })
+        .map(label)
 
       return {
         title: document.title,
@@ -133,14 +161,27 @@ for (const [viewportName, viewport] of viewports) {
         outside: outside.slice(0, 30),
         clippedText: clippedText.slice(0, 30),
         smallTargets: smallTargets.slice(0, 30),
+        weakPrimaryTargets: weakPrimaryTargets.slice(0, 30),
+        hiddenReveals: hiddenReveals.slice(0, 30),
         brokenImages,
       }
-    })
+    }, viewportName)
 
     const screenshotPath = `${outputRoot}/screenshots/${viewportName}/${name}.png`
     if (!navigationError) {
       await page.screenshot({ path: screenshotPath, fullPage: true, animations: 'disabled' })
     }
+
+    const blockers = []
+    if (navigationError) blockers.push('navigation')
+    if (requestFailures.length || badResponses.length) blockers.push('network/http')
+    if (consoleErrors.length || pageErrors.length) blockers.push('runtime-console')
+    if (menuHealthy === false) blockers.push('menu-interaction')
+    if (diagnostics?.horizontalOverflow) blockers.push('horizontal-overflow')
+    if (diagnostics?.brokenImages.length) blockers.push('broken-images')
+    if (diagnostics?.clippedText.length) blockers.push('clipped-text')
+    if (diagnostics?.weakPrimaryTargets.length) blockers.push('primary-target-size')
+    if (diagnostics?.hiddenReveals.length) blockers.push('hidden-reveal-content')
 
     results.push({
       viewport: viewportName,
@@ -148,9 +189,13 @@ for (const [viewportName, viewport] of viewports) {
       route,
       url,
       navigationError,
+      menuHealthy,
       requestFailures: requestFailures.slice(0, 30),
       badResponses: badResponses.slice(0, 30),
+      consoleErrors: consoleErrors.slice(0, 30),
+      pageErrors: pageErrors.slice(0, 30),
       diagnostics,
+      blockers,
       screenshot: navigationError ? null : screenshotPath,
     })
 
@@ -162,10 +207,12 @@ for (const [viewportName, viewport] of viewports) {
 
 await browser.close()
 
+const blockingResults = results.filter((item) => item.blockers.length)
 const report = {
   generatedAt: new Date().toISOString(),
   baseUrl,
   standard: 'Archic Quality Standard 2026.1',
+  blocking: blockingResults.length,
   results,
 }
 
@@ -176,21 +223,31 @@ const lines = [
   '',
   `Generated: ${report.generatedAt}`,
   `Base URL: ${baseUrl}`,
+  `Blocking route/view combinations: ${blockingResults.length}`,
   '',
-  '| Viewport | Route | H overflow | Outside | Clipped text | Broken images | HTTP/request errors |',
-  '|---|---|---:|---:|---:|---:|---:|',
+  '| Viewport | Route | Overflow | Clipped | Primary targets | Hidden reveals | Broken images | Runtime/network | Menu |',
+  '|---|---|---:|---:|---:|---:|---:|---:|---:|',
 ]
 
 for (const item of results) {
   const d = item.diagnostics
-  const errors = item.requestFailures.length + item.badResponses.length + (item.navigationError ? 1 : 0)
-  lines.push(`| ${item.viewport} | ${item.route} | ${d?.horizontalOverflow ? 'YES' : 'no'} | ${d?.outside.length ?? '-'} | ${d?.clippedText.length ?? '-'} | ${d?.brokenImages.length ?? '-'} | ${errors} |`)
+  const errors = item.requestFailures.length + item.badResponses.length + item.consoleErrors.length + item.pageErrors.length + (item.navigationError ? 1 : 0)
+  lines.push(`| ${item.viewport} | ${item.route} | ${d?.horizontalOverflow ? 'YES' : 'no'} | ${d?.clippedText.length ?? '-'} | ${d?.weakPrimaryTargets.length ?? '-'} | ${d?.hiddenReveals.length ?? '-'} | ${d?.brokenImages.length ?? '-'} | ${errors} | ${item.menuHealthy === false ? 'FAIL' : 'ok'} |`)
 }
 
-lines.push('', '## Notes', '')
-lines.push('- Screenshots are full-page renders after scrolling through the document so reveal-on-scroll content is visible.')
-lines.push('- “Outside” excludes elements inside `aria-hidden=true`; inspect the JSON before treating every item as a defect.')
-lines.push('- Small interactive targets are recorded in `report.json` as an accessibility/UX review aid, but do not automatically fail the audit.')
+lines.push('', '## Blocking policy', '')
+lines.push('- Navigation, HTTP/request failures, runtime console errors, horizontal overflow, broken images and a broken menu interaction fail the audit.')
+lines.push('- Visible clipped text, hidden reveal content and undersized primary controls fail the audit.')
+lines.push('- Secondary tiny links remain recorded under `smallTargets` for review, but do not block release by themselves.')
+lines.push('- Screenshots are full-page renders after scrolling through the document so reveal-on-scroll content is exercised.')
 
 await writeFile(`${outputRoot}/report.md`, `${lines.join('\n')}\n`)
 console.log(lines.join('\n'))
+
+if (blockingResults.length) {
+  console.error(`\nVisual audit failed: ${blockingResults.length} route/view combination(s) contain blocking defects.`)
+  for (const item of blockingResults) console.error(`  ✗ ${item.viewport} ${item.route}: ${item.blockers.join(', ')}`)
+  process.exit(1)
+}
+
+console.log('\nVisual audit passed with zero blocking defects.')
