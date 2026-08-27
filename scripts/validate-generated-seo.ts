@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { BRAND_VERSION } from '../src/seo/siteSeo'
 
 const ROOT = resolve(import.meta.dir, '..')
+const ORIGIN = 'https://archic.es'
 const core = [
   'index.html',
   'en/index.html',
@@ -21,6 +22,16 @@ const core = [
 const errors: string[] = []
 const escapedBrandVersion = BRAND_VERSION.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
+function sourceFileForUrl(url: string) {
+  const pathname = new URL(url).pathname
+  if (pathname === '/') return resolve(ROOT, 'index.html')
+  return resolve(ROOT, pathname.replace(/^\/|\/$/g, ''), 'index.html')
+}
+
+function hasEmptyRoot(html: string) {
+  return /<div\s+id=["']root["']\s*>\s*<\/div>/i.test(html)
+}
+
 for (const relative of core) {
   const file = resolve(ROOT, relative)
   if (!existsSync(file)) {
@@ -33,7 +44,7 @@ for (const relative of core) {
     ['title', /<title>[^<]{8,}<\/title>/i],
     ['description', /<meta[^>]+name="description"[^>]+content="[^"]{40,}"/i],
     ['canonical', /<link[^>]+rel="canonical"[^>]+href="https:\/\/archic\.es\//i],
-    ['robots', /<meta[^>]+name="robots"[^>]+index, follow/i],
+    ['robots', /<meta[^>]+name="robots"[^>]+content="index, follow(?:,|\")/i],
     ['manifest', new RegExp(`<link[^>]+rel="manifest"[^>]+href="/manifest\\.json\\?v=${escapedBrandVersion}"`, 'i')],
     ['canonical brand symbol', /<link[^>]+rel="icon"[^>]+href="\/brand\/archic-symbol-2026\.svg"[^>]+image\/svg\+xml/i],
     ['Open Graph image', new RegExp(`<meta[^>]+property="og:image"[^>]+content="https://archic\\.es/og-image(?:-en)?\\.png\\?v=${escapedBrandVersion}"`, 'i')],
@@ -44,6 +55,7 @@ for (const relative of core) {
     if (!pattern.test(html)) errors.push(`${relative}: missing or invalid ${label}`)
   }
 
+  if (hasEmptyRoot(html)) errors.push(`${relative}: empty root leaves crawlers without prerendered content`)
   if (html.includes('?v=3')) errors.push(`${relative}: legacy v=3 brand resource remains`)
   if (html.includes('/archic-mark-512.png')) errors.push(`${relative}: legacy organization logo URL remains`)
   if (html.includes('/og-image.jpg')) errors.push(`${relative}: legacy social preview URL remains`)
@@ -70,6 +82,44 @@ if (existsSync(sitemapPath)) {
   const locs = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1])
   const unique = new Set(locs)
   if (unique.size !== locs.length) errors.push('public/sitemap.xml: duplicate URLs')
+
+  const forbiddenPrefixes = [
+    '/aviso-legal/',
+    '/privacidad/',
+    '/cookies/',
+    '/en/legal-notice/',
+    '/en/privacy/',
+    '/en/cookies/',
+    '/explorations/',
+    '/en/explorations/',
+  ]
+
+  for (const loc of locs) {
+    let url: URL
+    try {
+      url = new URL(loc)
+    } catch {
+      errors.push(`public/sitemap.xml: invalid URL ${loc}`)
+      continue
+    }
+
+    if (url.origin !== ORIGIN) errors.push(`public/sitemap.xml: foreign origin ${loc}`)
+    if (forbiddenPrefixes.some((path) => url.pathname.startsWith(path))) {
+      errors.push(`public/sitemap.xml: noindex/non-commercial route leaked into sitemap: ${url.pathname}`)
+    }
+
+    const htmlFile = sourceFileForUrl(loc)
+    if (!existsSync(htmlFile)) {
+      errors.push(`public/sitemap.xml: ${url.pathname} has no generated HTML document`)
+      continue
+    }
+
+    const html = readFileSync(htmlFile, 'utf8')
+    if (hasEmptyRoot(html)) errors.push(`${url.pathname}: sitemap URL has an empty prerender root`)
+    if (/<meta[^>]+name="robots"[^>]+content="noindex\b/i.test(html)) {
+      errors.push(`${url.pathname}: noindex URL must not appear in sitemap`)
+    }
+  }
 } else {
   errors.push('public/sitemap.xml: missing file')
 }
@@ -79,4 +129,4 @@ if (errors.length) {
   process.exit(1)
 }
 
-console.log(`SEO validation passed for ${core.length} core HTML documents with Archic brand ${BRAND_VERSION}`)
+console.log(`SEO validation passed for ${core.length} core HTML documents and every sitemap URL with Archic brand ${BRAND_VERSION}`)
