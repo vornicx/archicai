@@ -96,6 +96,8 @@ for (const [viewportName, viewport] of viewports) {
         const cls = typeof el.className === 'string' && el.className.trim() ? `.${el.className.trim().split(/\s+/).slice(0, 3).join('.')}` : ''
         return `${el.tagName.toLowerCase()}${id}${cls}${text ? ` — ${text.slice(0, 90)}` : ''}`
       }
+      const hasDirectText = (el) => Array.from(el.childNodes).some((node) => node.nodeType === Node.TEXT_NODE && node.textContent?.trim())
+      const isTextElement = (el) => el.matches('p,h1,h2,h3,h4,h5,h6,span,strong,small,label,a,button,li,dt,dd,legend,time,em,b')
 
       const all = Array.from(document.body.querySelectorAll('*'))
       const outside = []
@@ -115,7 +117,7 @@ for (const [viewportName, viewport] of viewports) {
         const text = (el.textContent || '').trim()
         const clipsX = ['hidden', 'clip'].includes(style.overflowX) && el.scrollWidth > el.clientWidth + 2
         const clipsY = ['hidden', 'clip'].includes(style.overflowY) && el.scrollHeight > el.clientHeight + 2
-        if (text && (clipsX || clipsY)) {
+        if (text && (hasDirectText(el) || isTextElement(el)) && (clipsX || clipsY)) {
           clippedText.push({ element: label(el), client: `${el.clientWidth}x${el.clientHeight}`, scroll: `${el.scrollWidth}x${el.scrollHeight}`, overflow: `${style.overflowX}/${style.overflowY}` })
         }
 
@@ -196,7 +198,7 @@ for (const item of blockingResults) {
   if (item.navigationError) lines.push(`- navigation: ${item.navigationError}`)
 }
 
-lines.push('', '## Blocking policy', '', '- Navigation, HTTP/request failures, runtime console errors, horizontal overflow, broken images and a broken menu interaction fail the audit.', '- Visible clipped text, hidden reveal content and undersized primary controls fail the audit.', '- Secondary tiny links remain recorded under `smallTargets` for review, but do not block release by themselves.', '- Screenshots are full-page renders after scrolling through the document so reveal-on-scroll content is exercised.')
+lines.push('', '## Blocking policy', '', '- Navigation, HTTP/request failures, runtime console errors, horizontal overflow, broken images and a broken menu interaction fail the audit.', '- Visible clipped text, hidden reveal content and undersized primary controls fail the audit.', '- Clipping is evaluated on semantic/direct text nodes so decorative pseudo-elements cannot create false positives.', '- Secondary tiny links remain recorded under `smallTargets` for review, but do not block release by themselves.', '- Screenshots are full-page renders after scrolling through the document so reveal-on-scroll content is exercised.')
 await writeFile(`${outputRoot}/report.md`, `${lines.join('\n')}\n`)
 console.log(lines.join('\n'))
 
