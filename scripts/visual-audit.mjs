@@ -18,6 +18,9 @@ const routes = [
   ['seo-sevilla', '/diseno-web-sevilla/'],
   ['seo-reservations', '/software-reservas-a-medida/'],
   ['seo-software', '/precio-software-a-medida/'],
+  ['guides-index', '/guias/'],
+  ['guide-wordpress', '/guias/web-a-medida-o-wordpress/'],
+  ['legal-privacy', '/privacidad/'],
 ]
 
 const viewports = [
