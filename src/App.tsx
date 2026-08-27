@@ -1,11 +1,11 @@
 import { Suspense, lazy, useEffect } from 'react'
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import ArchicHome from './pages/ArchicHome'
-import ArchicSitePage from './pages/ArchicSitePage'
 import SiteRouteSeo from './components/SiteRouteSeo'
 import SiteErrorBoundary from './components/SiteErrorBoundary'
 /* Secondary routes are split out of the main bundle: they are rarely the
    landing page, so keeping them out of the critical path helps LCP. */
+const ArchicSitePage = lazy(() => import('./pages/ArchicSitePage'))
 const LegalPage = lazy(() => import('./pages/LegalPage'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const ServicePage = lazy(() => import('./pages/ServicePage'))
