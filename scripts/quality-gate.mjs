@@ -54,10 +54,21 @@ check(home.includes('FICTIONAL DATA') && home.includes('DATOS FICTICIOS'), 'Publ
 const main = read('src/main.tsx')
 const standardIndex = main.indexOf("./styles/archic-standard-2026.css")
 const contrastIndex = main.indexOf("./styles/archic-contrast.css")
+const readabilityIndex = main.indexOf("./styles/archic-readability.css")
 const visibilityIndex = main.indexOf("./styles/archic-visibility-guard.css")
 const surfaceIndex = main.indexOf("./styles/archic-surface-contract.css")
 check(standardIndex >= 0, 'Archic Standard stylesheet is loaded')
-check(standardIndex < contrastIndex && contrastIndex < visibilityIndex && visibilityIndex < surfaceIndex, 'Safety styles remain last in the intended order')
+check(present('src/styles/archic-readability.css'), 'Interactive readability safety layer exists')
+check(
+  standardIndex < contrastIndex && contrastIndex < readabilityIndex && readabilityIndex < visibilityIndex && visibilityIndex < surfaceIndex,
+  'Safety styles remain last in the intended order',
+)
+if (present('src/styles/archic-readability.css')) {
+  const readability = read('src/styles/archic-readability.css')
+  check(readability.includes('.as-menu-inner nav a small'), 'Menu descriptions have an explicit readability rule')
+  check(readability.includes("[class*='btn']") && readability.includes("[class*='cta']"), 'CTA readability applies across button systems')
+  check(readability.includes('@media(max-width:760px)'), 'Interactive readability has a mobile contract')
+}
 
 // The three public white-label previews must exist and must not leak known client brands.
 const bannedDemoTerms = ['Five Star Rentals', 'Marbella For Sale', 'La Bocana', 'Zusto', 'Mfinity']
