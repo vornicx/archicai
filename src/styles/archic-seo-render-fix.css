@@ -1,0 +1,7 @@
+/* Commercial search routes must paint every section deterministically.
+   Full-page captures, print/PDF flows and fast programmatic navigation should never
+   depend on viewport proximity to render decision-critical commercial content. */
+.as-seo-page .as-seo-section{
+  content-visibility:visible!important;
+  contain-intrinsic-size:auto!important;
+}
