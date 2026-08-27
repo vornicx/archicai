@@ -6,22 +6,20 @@ const COPY = {
     menu: 'Menú', close: 'Cerrar', project: 'Diagnóstico',
     pages: [
       ['Trabajo', 'Concept builds seleccionados', '#selected-work'],
+      ['Sistema', 'Presence · Control · Business', '#system'],
       ['Método', 'Cómo construimos y validamos', '#method'],
-      ['Presence', 'Presencia digital', 'presence'],
-      ['Control', 'Operación privada', 'control'],
-      ['Business', 'Software a medida', 'business'],
-      ['Contacto', 'Hablar de un proyecto', 'contact'],
+      ['Inversión', 'Puntos de entrada', '#investment'],
+      ['Contacto', 'Cuéntanos qué debe cambiar', '#contact'],
     ],
   },
   en: {
-    menu: 'Menu', close: 'Close', project: 'Audit',
+    menu: 'Menu', close: 'Close', project: 'Diagnosis',
     pages: [
       ['Work', 'Selected concept builds', '#selected-work'],
+      ['System', 'Presence · Control · Business', '#system'],
       ['Method', 'How we build and validate', '#method'],
-      ['Presence', 'Digital presence', 'presence'],
-      ['Control', 'Private operations', 'control'],
-      ['Business', 'Custom software', 'business'],
-      ['Contact', 'Talk about a project', 'contact'],
+      ['Investment', 'Entry points', '#investment'],
+      ['Contact', 'Tell us what must change', '#contact'],
     ],
   },
 }
@@ -33,11 +31,6 @@ function path(lang: 'es' | 'en', slug = '') {
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
 }
 
-function normalisePath(value: string) {
-  if (value === '/') return '/'
-  return value.replace(/\/$/, '')
-}
-
 export default function StudioHeader() {
   const { lang, setLang, canSwitchLang, t } = useLang()
   const c = COPY[lang]
@@ -45,7 +38,6 @@ export default function StudioHeader() {
   const [open, setOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const menuPanelRef = useRef<HTMLDivElement>(null)
-  const currentPath = typeof window === 'undefined' ? '' : normalisePath(window.location.pathname)
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 18)
@@ -147,25 +139,19 @@ export default function StudioHeader() {
             </div>
           </div>
           <nav aria-label={t.a11y.mainNav}>
-            {c.pages.map(([name, desc, slug], index) => {
-              const href = path(lang, slug)
-              const isAnchor = slug.startsWith('#')
-              const isCurrent = !isAnchor && currentPath === normalisePath(href)
-              return (
-                <a
-                  href={href}
-                  key={slug}
-                  onClick={() => setOpen(false)}
-                  aria-current={isCurrent ? 'page' : undefined}
-                  data-archic-intent={`menu:${slug.replace('#', '')}`}
-                >
-                  <span>0{index + 1}</span>
-                  <strong>{name}</strong>
-                  <small>{desc}</small>
-                  {isCurrent ? <i className="as-current-mark" aria-hidden="true" /> : <i className="as-arrow" aria-hidden="true" />}
-                </a>
-              )
-            })}
+            {c.pages.map(([name, desc, slug], index) => (
+              <a
+                href={path(lang, slug)}
+                key={slug}
+                onClick={() => setOpen(false)}
+                data-archic-intent={`menu:${slug.replace('#', '')}`}
+              >
+                <span>0{index + 1}</span>
+                <strong>{name}</strong>
+                <small>{desc}</small>
+                <i className="as-arrow" aria-hidden="true" />
+              </a>
+            ))}
           </nav>
         </div>
       </div>
