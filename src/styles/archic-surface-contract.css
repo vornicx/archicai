@@ -125,6 +125,49 @@
   border-color:var(--asc-on-dark-gold)!important;
 }
 
+/* Editorial routes are intentionally mixed-surface documents. Legacy visibility
+   guards treat everything inside article-wrap as paper, so the final contract
+   restores dark CTAs and lets guide-title links inherit their editorial heading. */
+.as-site.as-editorial-page .as-guide-card h2>a,
+.as-site.as-editorial-page .as-guide-card h2>a:link,
+.as-site.as-editorial-page .as-guide-card h2>a:visited{
+  display:block!important;
+  color:#171917!important;
+  -webkit-text-fill-color:#171917!important;
+  font:inherit!important;
+  font-size:inherit!important;
+  font-weight:inherit!important;
+  line-height:inherit!important;
+  letter-spacing:inherit!important;
+  text-transform:none!important;
+  white-space:normal!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  text-shadow:none!important;
+}
+
+.as-site.as-editorial-page .as-article-cta{
+  background:#111311!important;
+  color:#fff!important;
+}
+
+.as-site.as-editorial-page .as-article-cta h2{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:none!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  text-shadow:none!important;
+}
+
+.as-site.as-editorial-page .as-article-cta>p{
+  color:rgba(255,255,255,.66)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.66)!important;
+  background:none!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+}
+
 /* Mobile never lowers contrast. */
 @media(max-width:760px){
   .as-site.ah-site .ah-hero .ah-hero-lower>p{
@@ -150,5 +193,10 @@
   .as-site.as-home-v2 .ah-work .ah-work-card-copy>span{
     color:#bdb7ad!important;
     -webkit-text-fill-color:#bdb7ad!important;
+  }
+
+  .as-site.as-editorial-page .as-article-cta>p{
+    color:rgba(255,255,255,.72)!important;
+    -webkit-text-fill-color:rgba(255,255,255,.72)!important;
   }
 }
