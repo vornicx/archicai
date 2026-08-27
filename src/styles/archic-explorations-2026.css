@@ -1,0 +1,426 @@
+/* Archic explorations / 2026.4
+   The interactive product is the proof. The page around it only provides context,
+   sector identity and a route back into the Archic system. Sans-first, no luxury-template language. */
+.axp-page{
+  --ax-dark:#111311;
+  --ax-dark-2:#181b18;
+  --ax-paper:#fff;
+  --ax-soft:#f4f4f1;
+  --ax-white:#fff;
+  --ax-light-copy:rgba(255,255,255,.68);
+  --ax-light-muted:rgba(255,255,255,.42);
+  --ax-dark-copy:#171917;
+  --ax-dark-muted:#666b66;
+  --ax-line-light:rgba(255,255,255,.15);
+  --ax-line-dark:rgba(17,19,17,.15);
+  --ax-gold:#b89456;
+  --ax-gold-light:#d4b77f;
+  --ax-pad:clamp(22px,4.6vw,78px);
+  --ax-wide:1680px;
+  --ax-display:'Space Grotesk','DM Sans',Arial,sans-serif;
+  --ax-body:'DM Sans',Arial,sans-serif;
+  --ax-ease:cubic-bezier(.16,1,.3,1);
+  min-height:100%;
+  overflow:clip;
+  background:var(--ax-paper);
+  color:var(--ax-dark-copy);
+  font-family:var(--ax-body);
+}
+
+.axp-page *,
+.axp-page *::before,
+.axp-page *::after{box-sizing:border-box}
+.axp-page ::selection{background:#c8aa70;color:#111311}
+.axp-page button,.axp-page a{font:inherit}
+.axp-page button{cursor:pointer}
+.axp-page h1,.axp-page h2,.axp-page h3,.axp-page p{margin-top:0}
+.axp-page h1,.axp-page h2,.axp-page h3{font-synthesis:none;text-wrap:balance}
+.axp-page p{text-wrap:pretty}
+
+/* Keep the public shell consistent with the redesigned Archic routes. */
+.axp-page .as-header{
+  height:74px;
+  padding-inline:var(--ax-pad);
+  background:rgba(17,19,17,.88);
+  border-bottom:1px solid rgba(255,255,255,.11);
+  backdrop-filter:blur(18px) saturate(115%);
+}
+.axp-page .as-header[data-solid='true']{background:rgba(17,19,17,.96)}
+.axp-page .as-brand img{width:132px}
+.axp-page .as-header-actions{gap:18px}
+.axp-page .as-lang{color:rgba(255,255,255,.58);font-size:9px}
+.axp-page .as-project-link{min-height:36px;padding:0 13px;border:1px solid rgba(212,183,127,.48);color:var(--ax-gold-light);font-size:10px}
+.axp-page .as-project-link:hover{background:var(--ax-gold);border-color:var(--ax-gold);color:#111311}
+.axp-page .as-menu-button{color:#fff}
+.axp-page .as-menu-panel{background:#fff;color:#111311}
+.axp-page .as-menu-meta,.axp-page .as-menu-inner nav a>span,.axp-page .as-menu-inner nav small{color:#6c706b}
+.axp-page .as-menu-inner nav i,.axp-page .as-menu-phone{color:#111311}
+
+.axp-kicker{
+  margin:0;
+  color:var(--ax-gold-light);
+  font:600 9px/1.25 'IBM Plex Mono',monospace;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.axp-kicker-dark{color:#725728}
+
+/* --------------------------------------------------------------------------
+   HERO / ONE BRAND, THREE SECTOR MOTIFS
+   -------------------------------------------------------------------------- */
+.axp-hero{
+  position:relative;
+  isolation:isolate;
+  min-height:max(720px,100svh);
+  padding:clamp(148px,14vw,214px) var(--ax-pad) 44px;
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(310px,.46fr);
+  grid-template-rows:1fr auto;
+  gap:64px clamp(54px,8vw,138px);
+  align-items:end;
+  overflow:hidden;
+  background:var(--ax-dark);
+  color:#fff;
+}
+
+.axp-hero::before,
+.axp-hero::after{
+  content:'';
+  position:absolute;
+  z-index:-2;
+  pointer-events:none;
+}
+
+.axp-hero::before{
+  inset:74px var(--ax-pad) 0;
+  opacity:.8;
+}
+
+.axp-hero::after{
+  z-index:-1;
+  inset:0;
+  background:linear-gradient(90deg,rgba(17,19,17,.2),transparent 58%,rgba(17,19,17,.16));
+}
+
+.axp-hero-grid{display:none}
+
+/* Hospitality: service rhythm / seating bands. */
+.axp-hospitality .axp-hero::before{
+  background:
+    linear-gradient(rgba(255,255,255,.036) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px),
+    radial-gradient(circle at 79% 26%,transparent 0 46px,rgba(212,183,127,.14) 47px 48px,transparent 49px),
+    radial-gradient(circle at 88% 56%,transparent 0 30px,rgba(212,183,127,.1) 31px 32px,transparent 33px);
+  background-size:100% 82px,calc(100% / 6) 100%,auto,auto;
+  mask-image:linear-gradient(to bottom,#000,transparent 94%);
+}
+
+/* Mobility: route / availability rails. */
+.axp-mobility .axp-hero::before{
+  inset:74px -8vw -16% 36%;
+  background:
+    linear-gradient(118deg,transparent 0 39%,rgba(212,183,127,.16) 39% 39.12%,transparent 39.12% 49%,rgba(255,255,255,.055) 49% 49.12%,transparent 49.12%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 92px);
+  transform:skewX(-8deg);
+  mask-image:linear-gradient(90deg,transparent,#000 20%,#000 78%,transparent);
+}
+
+/* Real estate: portfolio / architectural grid. */
+.axp-real-estate .axp-hero::before{
+  inset:74px var(--ax-pad) 8%;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,transparent 64%,rgba(212,183,127,.11) 64% 64.12%,transparent 64.12%),
+    linear-gradient(transparent 62%,rgba(212,183,127,.11) 62% 62.14%,transparent 62.14%);
+  background-size:100% 118px,calc(100% / 5) 100%,auto,auto;
+  mask-image:linear-gradient(to bottom,#000,transparent 96%);
+}
+
+.axp-hero-copy{align-self:end;max-width:1220px;color:#fff}
+.axp-hero-copy .axp-kicker{color:var(--ax-gold-light)!important;-webkit-text-fill-color:var(--ax-gold-light)!important}
+.axp-hero h1{
+  max-width:11.4ch;
+  margin:27px 0 0;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font:530 clamp(68px,7.6vw,130px)/.87 var(--ax-display);
+  letter-spacing:-.067em;
+}
+.axp-hero h1 span{display:block;color:#fff!important;-webkit-text-fill-color:#fff!important}
+.axp-hero h1 em{
+  display:block;
+  margin-top:8px;
+  color:var(--ax-gold-light)!important;
+  -webkit-text-fill-color:var(--ax-gold-light)!important;
+  font:530 1em/.91 var(--ax-display)!important;
+  font-style:normal!important;
+  letter-spacing:-.067em!important;
+}
+.axp-hero-copy>p:last-child{
+  max-width:720px;
+  margin:38px 0 0;
+  color:rgba(255,255,255,.66)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.66)!important;
+  font-size:clamp(16px,1.2vw,20px);
+  line-height:1.68;
+}
+
+.axp-hero-proof{
+  align-self:end;
+  display:grid;
+  gap:18px;
+  padding:24px 0;
+  border-top:1px solid var(--ax-line-light);
+  border-bottom:1px solid var(--ax-line-light);
+  color:#fff;
+}
+.axp-hero-proof::before{
+  content:'SYSTEM PROOF';
+  width:max-content;
+  padding:6px 7px;
+  border:1px solid rgba(212,183,127,.36);
+  color:var(--ax-gold-light);
+  font:600 7px/1 'IBM Plex Mono',monospace;
+  letter-spacing:.1em;
+}
+.axp-hero-proof span{color:rgba(255,255,255,.42);font:600 8px/1.3 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.axp-hero-proof strong{color:#fff!important;-webkit-text-fill-color:#fff!important;font:520 clamp(22px,2vw,30px)/1.18 var(--ax-display);letter-spacing:-.035em}
+.axp-hero-proof small{color:rgba(255,255,255,.46);font-size:11px;line-height:1.55}
+
+/* --------------------------------------------------------------------------
+   DEMO INTRO / product UI is owned by archic-exploration-product-ui.css
+   -------------------------------------------------------------------------- */
+.axp-demo-section{padding:clamp(100px,10vw,160px) var(--ax-pad);background:var(--ax-dark);color:#fff}
+.axp-demo-intro,.axp-demo-shell{width:min(100%,var(--ax-wide));margin-inline:auto}
+.axp-demo-intro{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(300px,.52fr);
+  gap:clamp(48px,7vw,110px);
+  align-items:end;
+  margin-bottom:clamp(54px,6vw,88px);
+}
+.axp-demo-intro h2{
+  max-width:10ch;
+  margin:21px 0 0;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font:520 clamp(50px,5.7vw,90px)/.93 var(--ax-display);
+  letter-spacing:-.06em;
+}
+.axp-demo-intro>p:last-child{max-width:620px;margin:0;color:rgba(255,255,255,.62);font-size:16px;line-height:1.7}
+
+/* --------------------------------------------------------------------------
+   WHAT THE DEMO PROVES
+   -------------------------------------------------------------------------- */
+.axp-proof-section{
+  position:relative;
+  padding:clamp(100px,10vw,160px) var(--ax-pad);
+  overflow:hidden;
+  background:#fff;
+  color:var(--ax-dark-copy);
+}
+.axp-proof-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.45;
+  background:linear-gradient(rgba(17,19,17,.035) 1px,transparent 1px);
+  background-size:100% 120px;
+  mask-image:linear-gradient(to bottom,#000,transparent 90%);
+}
+.axp-proof-head,.axp-proof-grid{position:relative;width:min(100%,var(--ax-wide));margin-inline:auto}
+.axp-proof-head{
+  display:grid;
+  grid-template-columns:minmax(130px,.28fr) minmax(0,1fr);
+  gap:clamp(38px,7vw,110px);
+  align-items:start;
+  padding-bottom:clamp(50px,6vw,82px);
+}
+.axp-proof-head .axp-kicker{color:#725728!important;-webkit-text-fill-color:#725728!important}
+.axp-proof-head h2{
+  max-width:930px;
+  margin:0;
+  color:var(--ax-dark-copy)!important;
+  -webkit-text-fill-color:var(--ax-dark-copy)!important;
+  font:520 clamp(48px,6vw,86px)/.98 var(--ax-display);
+  letter-spacing:-.055em;
+}
+
+.axp-proof-grid{border-top:1px solid var(--ax-line-dark);border-bottom:1px solid var(--ax-line-dark)}
+.axp-proof-grid article{position:relative;min-width:0}
+.axp-proof-grid article>span{display:block;color:#725728;font:600 8px/1.3 'IBM Plex Mono',monospace;letter-spacing:.1em}
+.axp-proof-grid h3{margin:0;color:var(--ax-dark-copy)!important;-webkit-text-fill-color:var(--ax-dark-copy)!important;font:520 clamp(28px,3vw,44px)/1 var(--ax-display);letter-spacing:-.045em}
+.axp-proof-grid p{max-width:520px;margin:0;color:var(--ax-dark-muted);font-size:14px;line-height:1.62}
+
+/* Hospitality reads like a floor/service board: one main statement + two support columns. */
+.axp-hospitality .axp-proof-grid{display:grid;grid-template-columns:1.22fr .89fr .89fr}
+.axp-hospitality .axp-proof-grid article{min-height:300px;padding:28px 28px 30px;border-right:1px solid var(--ax-line-dark);display:flex;flex-direction:column}
+.axp-hospitality .axp-proof-grid article:first-child{padding-left:0}
+.axp-hospitality .axp-proof-grid article:last-child{border-right:0}
+.axp-hospitality .axp-proof-grid h3{margin-top:auto;margin-bottom:18px}
+
+/* Mobility is a route: three horizontal checkpoints, not three cards. */
+.axp-mobility .axp-proof-grid{display:block}
+.axp-mobility .axp-proof-grid article{
+  min-height:148px;
+  display:grid;
+  grid-template-columns:120px minmax(260px,.7fr) minmax(0,1fr) 46px;
+  gap:28px;
+  align-items:center;
+  padding:26px 0;
+  border-bottom:1px solid var(--ax-line-dark);
+}
+.axp-mobility .axp-proof-grid article:last-child{border-bottom:0}
+.axp-mobility .axp-proof-grid article::after{content:'→';justify-self:end;color:#725728;font-size:17px}
+.axp-mobility .axp-proof-grid h3{font-size:clamp(30px,3vw,46px)}
+.axp-mobility .axp-proof-grid p{max-width:640px}
+
+/* Real estate behaves like a portfolio matrix: two modules + one full-width rule. */
+.axp-real-estate .axp-proof-grid{display:grid;grid-template-columns:1fr 1fr}
+.axp-real-estate .axp-proof-grid article{min-height:290px;padding:28px 34px 32px 0;display:flex;flex-direction:column;border-right:1px solid var(--ax-line-dark)}
+.axp-real-estate .axp-proof-grid article:nth-child(2){padding-left:34px;padding-right:0;border-right:0}
+.axp-real-estate .axp-proof-grid article:nth-child(3){grid-column:1/-1;min-height:190px;padding:28px 0;border-top:1px solid var(--ax-line-dark);border-right:0;display:grid;grid-template-columns:150px minmax(260px,.75fr) minmax(0,1fr);gap:30px;align-items:center}
+.axp-real-estate .axp-proof-grid article:not(:nth-child(3)) h3{margin-top:auto;margin-bottom:18px}
+
+/* --------------------------------------------------------------------------
+   FINAL CTA
+   -------------------------------------------------------------------------- */
+.axp-next{
+  position:relative;
+  isolation:isolate;
+  padding:clamp(110px,12vw,188px) var(--ax-pad);
+  display:grid;
+  grid-template-columns:minmax(0,1.24fr) minmax(250px,.42fr);
+  gap:clamp(58px,10vw,150px);
+  align-items:end;
+  overflow:hidden;
+  background:var(--ax-dark);
+  color:#fff;
+}
+.axp-next::before{
+  content:'';
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:100% 108px,calc(100% / 6) 100%;
+  mask-image:linear-gradient(90deg,#000,transparent 74%);
+}
+.axp-next>div{max-width:980px}
+.axp-next .axp-kicker{color:var(--ax-gold-light)!important;-webkit-text-fill-color:var(--ax-gold-light)!important}
+.axp-next h2{max-width:930px;margin:28px 0 0;color:#fff!important;-webkit-text-fill-color:#fff!important;font:520 clamp(54px,6.8vw,98px)/.94 var(--ax-display);letter-spacing:-.06em}
+.axp-next>div>p:last-child{max-width:700px;margin:30px 0 0;color:rgba(255,255,255,.58)!important;-webkit-text-fill-color:rgba(255,255,255,.58)!important;font-size:15px;line-height:1.65}
+.axp-next>a{
+  min-height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:0 20px;
+  background:var(--ax-gold);
+  border:1px solid var(--ax-gold);
+  color:#111311!important;
+  -webkit-text-fill-color:#111311!important;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:650;
+  transition:transform .22s ease,background .22s ease;
+}
+.axp-next>a:hover{transform:translateY(-2px);background:#c7a96f}
+
+/* Keep lower sections cheap to render on long full-page demos. */
+.axp-proof-section,.axp-next{content-visibility:auto;contain-intrinsic-size:900px}
+
+@media(max-width:1080px){
+  .axp-hero{grid-template-columns:minmax(0,1fr) minmax(270px,.42fr);gap:48px}
+  .axp-hospitality .axp-proof-grid{grid-template-columns:1fr 1fr}
+  .axp-hospitality .axp-proof-grid article:first-child{grid-column:1/-1;min-height:250px;padding-right:0;border-right:0;border-bottom:1px solid var(--ax-line-dark)}
+  .axp-hospitality .axp-proof-grid article:nth-child(2){padding-left:0}
+  .axp-mobility .axp-proof-grid article{grid-template-columns:90px minmax(220px,.7fr) minmax(0,1fr) 36px}
+  .axp-next{grid-template-columns:1fr minmax(240px,.38fr)}
+}
+
+@media(max-width:820px){
+  .axp-page .as-header{height:68px;padding-inline:18px}
+  .axp-page .as-brand img{width:116px}
+  .axp-page .as-project-link{display:none}
+
+  .axp-hero{
+    min-height:auto;
+    padding:126px 18px 42px;
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto;
+    gap:52px;
+  }
+  .axp-hero::before{inset:68px 18px 0}
+  .axp-mobility .axp-hero::before{inset:68px -30% -10% 12%}
+  .axp-hero h1{max-width:10ch;font-size:clamp(55px,13vw,84px);line-height:.89}
+  .axp-hero-copy>p:last-child{margin-top:28px;font-size:15px}
+  .axp-hero-proof{max-width:620px}
+
+  .axp-demo-section{padding-inline:18px}
+  .axp-demo-intro{grid-template-columns:1fr;gap:28px}
+  .axp-demo-intro h2{font-size:clamp(45px,10vw,70px)}
+  .axp-demo-intro>p:last-child{max-width:660px;font-size:15px}
+
+  .axp-proof-section{padding:88px 18px}
+  .axp-proof-head{grid-template-columns:1fr;gap:24px;padding-bottom:48px}
+  .axp-proof-head h2{font-size:clamp(44px,10.8vw,70px)}
+
+  .axp-hospitality .axp-proof-grid,
+  .axp-real-estate .axp-proof-grid{grid-template-columns:1fr}
+  .axp-hospitality .axp-proof-grid article,
+  .axp-hospitality .axp-proof-grid article:first-child,
+  .axp-hospitality .axp-proof-grid article:nth-child(2),
+  .axp-real-estate .axp-proof-grid article,
+  .axp-real-estate .axp-proof-grid article:nth-child(2){grid-column:auto;min-height:220px;padding:25px 0;border-right:0;border-bottom:1px solid var(--ax-line-dark)}
+  .axp-hospitality .axp-proof-grid article:last-child,
+  .axp-real-estate .axp-proof-grid article:nth-child(3){border-bottom:0}
+  .axp-real-estate .axp-proof-grid article:nth-child(3){grid-column:auto;min-height:220px;display:flex;align-items:stretch;gap:0;border-top:0}
+  .axp-hospitality .axp-proof-grid h3,
+  .axp-real-estate .axp-proof-grid h3{margin-top:auto;margin-bottom:16px}
+
+  .axp-mobility .axp-proof-grid article{min-height:0;grid-template-columns:46px 1fr 30px;grid-template-rows:auto auto;gap:14px 18px;padding:24px 0}
+  .axp-mobility .axp-proof-grid article>span{grid-row:1/3}
+  .axp-mobility .axp-proof-grid article>p{grid-column:2/4}
+  .axp-mobility .axp-proof-grid article::after{grid-column:3;grid-row:1}
+
+  .axp-next{padding:92px 18px;grid-template-columns:1fr;gap:50px}
+  .axp-next h2{font-size:clamp(49px,11.8vw,76px)}
+  .axp-next>a{width:min(100%,480px)}
+}
+
+@media(max-width:560px){
+  .axp-hero{padding-top:118px;gap:44px}
+  .axp-hero h1{font-size:clamp(49px,14.1vw,70px);letter-spacing:-.06em}
+  .axp-hero h1 em{letter-spacing:-.06em!important}
+  .axp-hero-proof{gap:14px;padding:20px 0}
+  .axp-hero-proof strong{font-size:23px}
+
+  .axp-demo-section{padding-top:78px;padding-bottom:84px}
+  .axp-demo-intro{margin-bottom:44px;padding-bottom:28px}
+  .axp-demo-intro h2{font-size:43px}
+
+  .axp-proof-section{padding-top:76px;padding-bottom:78px}
+  .axp-proof-head h2{font-size:43px}
+  .axp-proof-grid h3{font-size:31px}
+  .axp-hospitality .axp-proof-grid article,
+  .axp-hospitality .axp-proof-grid article:first-child,
+  .axp-hospitality .axp-proof-grid article:nth-child(2),
+  .axp-real-estate .axp-proof-grid article,
+  .axp-real-estate .axp-proof-grid article:nth-child(2),
+  .axp-real-estate .axp-proof-grid article:nth-child(3){min-height:190px}
+
+  .axp-next{padding-top:82px;padding-bottom:86px}
+  .axp-next h2{font-size:46px}
+  .axp-next>a{width:100%;min-height:58px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .axp-page *,
+  .axp-page *::before,
+  .axp-page *::after{transition-duration:.001ms!important;animation-duration:.001ms!important;scroll-behavior:auto!important}
+}
