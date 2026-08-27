@@ -1,0 +1,112 @@
+/* Archic hardening layer — layout, interaction and mobile resilience.
+   This file fixes concrete issues found by the rendered desktop/iPhone audit.
+   It must load before the final contrast/readability/visibility safety layers. */
+
+/* Detail heroes must never crop real content just to preserve a 100vh composition. */
+.as-detail .as-detail-hero{
+  height:auto!important;
+  min-height:100svh!important;
+  box-sizing:border-box;
+}
+
+/* Navigation identity is also an interactive target, not only a logo image. */
+.site-shell .as-brand{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  min-width:44px;
+}
+
+/* Compact controls still need dependable pointer/touch geometry. */
+.site-shell :is(a,button,[role='button']){
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.site-shell .as-lang button{
+  min-width:40px!important;
+  min-height:40px!important;
+}
+
+/* Commercial-home text actions were visually readable but only ~20px tall. */
+.ag-site :is(.ag-case-copy>a,.ag-evolution-copy>a,.ag-offer>a,.ag-console-copy>em){
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  padding-block:8px;
+}
+
+/* SEO/service funnels: make the audit path and direct-call path robust targets. */
+.as-seo-page :is(.as-seo-call,.as-seo-chip,.as-seo-close a){
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+}
+
+/* Footer links should remain compact visually without becoming tiny hit areas. */
+.site-shell :is(.as-footer-nav,.as-footer-legal) a{
+  display:flex;
+  align-items:center;
+  width:fit-content;
+  min-height:40px;
+  padding-block:7px;
+}
+
+.site-shell :is(.as-footer-contact-person>a,.as-footer-founder-links a){
+  min-height:40px;
+  padding-block:6px;
+  justify-content:center;
+}
+
+/* Contact consent is one large target. The native checkbox stays clearly visible. */
+.as-contact-page .sx-consent{
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:12px!important;
+  min-height:44px;
+  padding-block:8px;
+  cursor:pointer;
+}
+
+.as-contact-page .sx-consent input[type='checkbox']{
+  flex:0 0 auto;
+  width:20px!important;
+  height:20px!important;
+  margin:0!important;
+  margin-top:1px!important;
+  accent-color:#d6b36f;
+}
+
+/* White-label demos contain real controls; 32px mobile actions are too fragile. */
+.site-shell .axv-product button{
+  min-height:40px;
+}
+
+/* Keyboard focus must not be clipped by components with decorative overflow. */
+.site-shell :is(a,button,input,textarea,select):focus-visible{
+  scroll-margin:96px;
+}
+
+@media(max-width:760px){
+  .as-detail .as-detail-hero{
+    min-height:100svh!important;
+    height:auto!important;
+    padding-bottom:max(48px,env(safe-area-inset-bottom))!important;
+  }
+
+  .site-shell .as-lang button,
+  .site-shell .axv-product button{
+    min-width:44px;
+    min-height:44px!important;
+  }
+
+  .site-shell :is(.as-footer-nav,.as-footer-legal) a,
+  .site-shell :is(.as-footer-contact-person>a,.as-footer-founder-links a){
+    min-height:44px;
+  }
+
+  .ag-site :is(.ag-case-copy>a,.ag-evolution-copy>a,.ag-offer>a,.ag-console-copy>em),
+  .as-seo-page :is(.as-seo-call,.as-seo-chip,.as-seo-close a){
+    min-height:44px;
+  }
+}
