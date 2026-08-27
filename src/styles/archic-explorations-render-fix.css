@@ -1,0 +1,9 @@
+/* Render stability for long interactive exploration routes.
+   The closing CTA must be present in full-page capture and immediately available
+   as the user approaches it; do not defer this commercial endpoint on mobile. */
+@media (max-width: 820px) {
+  .axp-page .axp-next {
+    content-visibility: visible !important;
+    contain-intrinsic-size: auto !important;
+  }
+}
