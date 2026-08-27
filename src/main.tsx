@@ -38,8 +38,9 @@ import './styles/archic-flagship-rebuild.css'
 import './styles/archic-flagship-demo.css'
 import './styles/archic-reveal-guard.css'
 import './styles/archic-luxury-audit-fix.css'
-/* Safety layers stay last. Feature styles must never be imported below these. */
+/* Safety layers stay last. Readability is part of the safety contract. */
 import './styles/archic-contrast.css'
+import './styles/archic-readability.css'
 import './styles/archic-visibility-guard.css'
 import './styles/archic-surface-contract.css'
 import App from './App'
