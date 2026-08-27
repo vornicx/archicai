@@ -11,8 +11,8 @@
   --asc-on-dark-gold:#d8bd84;
 }
 
-/* Seven-moment Archic home. The final contract explicitly locks the hero hierarchy
-   because historical home selectors must never darken the new graphite surface. */
+/* Seven-moment Archic home. The final contract explicitly locks critical hierarchy
+   because historical home selectors must never darken the new graphite surfaces. */
 .as-site.ah-site .ah-hero{
   background:#111311!important;
   color:#fff!important;
@@ -37,6 +37,37 @@
 .as-site.ah-site .ah-hero .ah-hero-lower>p{
   color:rgba(255,255,255,.72)!important;
   -webkit-text-fill-color:rgba(255,255,255,.72)!important;
+}
+
+.as-site.ah-site .ah-system-lane[data-active='true'] h3,
+.as-site.ah-site .ah-method .ah-method-list h3,
+.as-site.ah-site .ah-method .ah-quality-list h3,
+.as-site.ah-site .ah-audit .ah-audit-grid h3{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+}
+
+.as-site.ah-site .ah-method .ah-method-list p,
+.as-site.ah-site .ah-method .ah-quality-list p,
+.as-site.ah-site .ah-audit .ah-audit-grid p{
+  color:rgba(255,255,255,.62)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.62)!important;
+}
+
+.as-site.ah-site .ah-button-gold,
+.as-site.ah-site .ah-button-gold:link,
+.as-site.ah-site .ah-button-gold:visited{
+  color:#111311!important;
+  -webkit-text-fill-color:#111311!important;
+}
+
+.as-site.ah-site .ah-button-ink,
+.as-site.ah-site .ah-button-ink:link,
+.as-site.ah-site .ah-button-ink:visited{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
 }
 
 /* Selected explorations are a DARK product showcase, even though older markup may
@@ -99,6 +130,13 @@
   .as-site.ah-site .ah-hero .ah-hero-lower>p{
     color:rgba(255,255,255,.78)!important;
     -webkit-text-fill-color:rgba(255,255,255,.78)!important;
+  }
+
+  .as-site.ah-site .ah-method .ah-method-list p,
+  .as-site.ah-site .ah-method .ah-quality-list p,
+  .as-site.ah-site .ah-audit .ah-audit-grid p{
+    color:rgba(255,255,255,.7)!important;
+    -webkit-text-fill-color:rgba(255,255,255,.7)!important;
   }
 
   .as-site.as-home-v2 .ah-work .ah-work-head>p,
