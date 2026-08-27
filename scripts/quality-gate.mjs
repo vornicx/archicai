@@ -143,7 +143,7 @@ if (mainCss) {
 }
 if (mainJs) {
   const size = bytes(join('dist', 'assets', mainJs))
-  check(size <= 430 * 1024, 'Main JS stays under 430 KiB', `${Math.round(size / 1024)} KiB`)
+  check(size <= 400 * 1024, 'Main JS stays under 400 KiB', `${Math.round(size / 1024)} KiB`)
 }
 
 console.log(`\nArchic Quality Gate 2026.1 — ${passes.length} checks passed`)
