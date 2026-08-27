@@ -44,11 +44,24 @@ check(!present('public/favicon.ico'), 'Legacy favicon.ico is absent from public 
 // Home is the reference implementation.
 const home = read('src/pages/ArchicHome.tsx')
 check(home.includes('data-quality-standard="archic-public-2026.2"'), 'Home declares Archic Public Quality Standard 2026.2')
-check(home.includes('HeroSystemConsole'), 'Home contains immediate interactive product proof')
+check(home.includes('ControlDemo'), 'Home contains interactive Archic Control product proof')
+check(
+  home.includes('Diseñamos lo que ve tu cliente.') && home.includes('Construimos lo que mueve tu negocio.'),
+  'Home preserves the approved Archic positioning statement',
+)
+check(!home.includes('heroMarbella'), 'Home no longer uses a luxury-property hero image')
 for (const preview of ['hospitality-preview.svg', 'mobility-preview.svg', 'real-estate-preview.svg']) {
   check(home.includes(`/software/${preview}`), `Home references ${preview}`)
 }
 check(home.includes('FICTIONAL DATA') && home.includes('DATOS FICTICIOS'), 'Public demos are explicitly marked as fictional data')
+
+check(present('src/styles/archic-home-2026.css'), 'Seven-moment home design system exists')
+if (present('src/styles/archic-home-2026.css')) {
+  const homeStyle = read('src/styles/archic-home-2026.css')
+  check(!homeStyle.includes('Instrument Serif'), 'Home design system contains no serif typography')
+  check(homeStyle.includes('--ah-paper: #ffffff'), 'Home design system preserves a true-white surface')
+  check(homeStyle.includes('--ah-ink: #111311') && homeStyle.includes('--ah-gold: #b89456'), 'Home design system preserves graphite and gold identity tokens')
+}
 
 // Cascade contract: hardening loads before the final safety layers.
 const main = read('src/main.tsx')
