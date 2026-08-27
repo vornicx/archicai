@@ -21,10 +21,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           # El generador saca el <lastmod> del sitemap de la fecha del último
-          # commit que tocó cada fichero de contenido. Con el clon superficial
-          # que hace la acción por defecto solo existe un commit, así que todas
-          # las páginas saldrían modificadas hoy y el lastmod dejaría de ser
-          # una señal útil para Google.
+          # commit que tocó cada fichero de contenido. Necesitamos el historial
+          # completo para no convertir cada deploy en una falsa actualización.
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -34,9 +32,8 @@ jobs:
         with:
           bun-version: latest
       - run: npm ci
-      # Regenera el HTML estático, el sitemap y los ficheros llms antes de
-      # compilar: así el <head> que ve el rastreador no puede quedarse atrás
-      # respecto a los textos de src/, aunque alguien olvide ejecutarlo en local.
+      # Regenera HTML estático, sitemap, llms y la capa de prerender SEO antes
+      # de compilar. Así Google/Bing/Brave reciben contenido útil incluso sin JS.
       - run: npm run gen:pages
       - run: npm run build
       # El propio sitio de Archic es benchmark #1: identidad, rutas white-label,
@@ -55,3 +52,14 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # IndexNow se envía DESPUÉS de publicar, para que la clave y las URLs ya
+      # estén disponibles en archic.es cuando Bing/participantes las validen.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Notify Bing and IndexNow search engines
+        run: bun run scripts/submit-indexnow.ts
