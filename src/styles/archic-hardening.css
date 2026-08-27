@@ -1,13 +1,3 @@
-/* Rendered hardening: only rules backed by desktop/iPhone audit findings. */
+/* Rendered layout hardening. */
 .as-detail .as-detail-hero{height:auto!important;min-height:100svh!important}
-.site-shell .as-brand{display:inline-flex;align-items:center;min-width:44px;min-height:44px}
-.site-shell .as-lang button{min-width:40px!important;min-height:40px!important}
-.ag-site :is(.ag-case-copy>a,.ag-evolution-copy>a,.ag-offer>a){display:inline-flex;align-items:center;min-height:44px;padding-block:8px}
-.as-contact-page .sx-consent{display:flex!important;align-items:flex-start!important;gap:12px!important;min-height:44px;padding-block:8px;cursor:pointer}
-.as-contact-page .sx-consent input[type='checkbox']{flex:0 0 auto;width:20px!important;height:20px!important;margin:1px 0 0!important;accent-color:#d6b36f}
-.site-shell .axv-product button{min-height:40px}
-@media(max-width:760px){
-  .as-detail .as-detail-hero{height:auto!important;min-height:100svh!important;padding-bottom:max(48px,env(safe-area-inset-bottom))!important}
-  .site-shell :is(.as-lang button,.axv-product button){min-width:44px;min-height:44px!important}
-  .site-shell :is(.as-footer-nav,.as-footer-legal) a,.site-shell :is(.as-footer-contact-person>a,.as-footer-founder-links a){display:flex;align-items:center;min-height:44px}
-}
+@media(max-width:760px){.as-detail .as-detail-hero{padding-bottom:max(48px,env(safe-area-inset-bottom))!important}}
