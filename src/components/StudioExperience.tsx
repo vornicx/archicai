@@ -1,12 +1,16 @@
 import { useEffect } from 'react'
+import { captureAttribution, recordIntent } from '../analytics/leadAttribution'
 
 export default function StudioExperience() {
   useEffect(() => {
     const root = document.querySelector<HTMLElement>('.as-site')
     if (!root) return
 
+    captureAttribution()
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const revealTargets = Array.from(root.querySelectorAll<HTMLElement>('[data-reveal]'))
+    const measurementTargets = Array.from(root.querySelectorAll<HTMLElement>('[data-archic-view]'))
 
     root.classList.add('as-experience-ready')
 
@@ -56,6 +60,30 @@ export default function StudioExperience() {
       revealInRange()
     }
 
+    let measurementObserver: IntersectionObserver | null = null
+    if ('IntersectionObserver' in window && measurementTargets.length) {
+      measurementObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return
+            const value = (entry.target as HTMLElement).dataset.archicView
+            if (value) recordIntent(`view:${value}`)
+            measurementObserver?.unobserve(entry.target)
+          })
+        },
+        { threshold: 0.35 },
+      )
+      measurementTargets.forEach((target) => measurementObserver?.observe(target))
+    }
+
+    const onIntentClick = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) return
+      const target = event.target.closest<HTMLElement>('[data-archic-intent]')
+      const intent = target?.dataset.archicIntent
+      if (intent) recordIntent(intent)
+    }
+    document.addEventListener('click', onIntentClick)
+
     let raf = 0
     const updateProgress = () => {
       raf = 0
@@ -80,10 +108,12 @@ export default function StudioExperience() {
 
     return () => {
       observer?.disconnect()
+      measurementObserver?.disconnect()
       window.clearTimeout(visibilityGuard)
       if (raf) window.cancelAnimationFrame(raf)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
+      document.removeEventListener('click', onIntentClick)
       revealTargets.forEach((target) => target.style.removeProperty('--as-reveal-delay'))
       root.classList.remove('as-experience-ready')
     }

@@ -29,7 +29,8 @@ function findAsset(pattern) {
 }
 
 // Standard and canonical identity.
-check(present('ARCHIC_QUALITY_STANDARD_2026.md'), 'Quality standard is versioned in the repository')
+check(present('ARCHIC_QUALITY_STANDARD_2026.md'), 'Internal quality standard is versioned in the repository')
+check(present('ARCHIC_PUBLIC_QUALITY_STANDARD_2026.2.md'), 'Public quality standard is versioned in the repository')
 check(present('public/brand/archic-symbol-2026.svg'), 'Canonical Archic symbol exists')
 check(present('public/brand/identity-version.txt'), 'Identity manifest exists')
 if (present('public/brand/identity-version.txt')) {
@@ -42,7 +43,7 @@ check(!present('public/favicon.ico'), 'Legacy favicon.ico is absent from public 
 
 // Home is the reference implementation.
 const home = read('src/pages/ArchicHome.tsx')
-check(home.includes('data-quality-standard="archic-2026.1"'), 'Home declares Archic Quality Standard 2026.1')
+check(home.includes('data-quality-standard="archic-public-2026.2"'), 'Home declares Archic Public Quality Standard 2026.2')
 check(home.includes('HeroSystemConsole'), 'Home contains immediate interactive product proof')
 for (const preview of ['hospitality-preview.svg', 'mobility-preview.svg', 'real-estate-preview.svg']) {
   check(home.includes(`/software/${preview}`), `Home references ${preview}`)

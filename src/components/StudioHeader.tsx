@@ -3,24 +3,24 @@ import { useLang } from '../i18n/LanguageContext'
 
 const COPY = {
   es: {
-    menu: 'Menú', close: 'Cerrar', project: 'Proyecto',
+    menu: 'Menú', close: 'Cerrar', project: 'Diagnóstico',
     pages: [
+      ['Trabajo', 'Concept builds seleccionados', '#selected-work'],
+      ['Método', 'Cómo construimos y validamos', '#method'],
       ['Presence', 'Presencia digital', 'presence'],
       ['Control', 'Operación privada', 'control'],
       ['Business', 'Software a medida', 'business'],
-      ['Prototipos', 'Concept builds', '#prototypes'],
-      ['Studio', 'Cómo trabajamos', 'studio'],
       ['Contacto', 'Hablar de un proyecto', 'contact'],
     ],
   },
   en: {
-    menu: 'Menu', close: 'Close', project: 'Project',
+    menu: 'Menu', close: 'Close', project: 'Audit',
     pages: [
+      ['Work', 'Selected concept builds', '#selected-work'],
+      ['Method', 'How we build and validate', '#method'],
       ['Presence', 'Digital presence', 'presence'],
       ['Control', 'Private operations', 'control'],
       ['Business', 'Custom software', 'business'],
-      ['Prototypes', 'Concept builds', '#prototypes'],
-      ['Studio', 'How we work', 'studio'],
       ['Contact', 'Talk about a project', 'contact'],
     ],
   },
@@ -113,7 +113,7 @@ export default function StudioHeader() {
               <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
             </div>
           )}
-          <a className="as-project-link" href={path(lang, 'contact')}>{c.project}<i className="as-arrow" aria-hidden="true" /></a>
+          <a className="as-project-link" href={path(lang, '#audit')} data-archic-intent="nav:audit">{c.project}<i className="as-arrow" aria-hidden="true" /></a>
           <button
             ref={menuButtonRef}
             type="button"
@@ -157,6 +157,7 @@ export default function StudioHeader() {
                   key={slug}
                   onClick={() => setOpen(false)}
                   aria-current={isCurrent ? 'page' : undefined}
+                  data-archic-intent={`menu:${slug.replace('#', '')}`}
                 >
                   <span>0{index + 1}</span>
                   <strong>{name}</strong>
