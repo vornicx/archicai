@@ -11,6 +11,34 @@
   --asc-on-dark-gold:#d8bd84;
 }
 
+/* Seven-moment Archic home. The final contract explicitly locks the hero hierarchy
+   because historical home selectors must never darken the new graphite surface. */
+.as-site.ah-site .ah-hero{
+  background:#111311!important;
+  color:#fff!important;
+}
+
+.as-site.ah-site .ah-hero .ah-hero-top h1,
+.as-site.ah-site .ah-hero .ah-hero-top h1>span:first-child{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  text-shadow:none!important;
+}
+
+.as-site.ah-site .ah-hero .ah-hero-top h1>span:last-child{
+  color:#d4b77f!important;
+  -webkit-text-fill-color:#d4b77f!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+}
+
+.as-site.ah-site .ah-hero .ah-hero-lower>p{
+  color:rgba(255,255,255,.72)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.72)!important;
+}
+
 /* Selected explorations are a DARK product showcase, even though older markup may
    still carry historical paper-surface classes. This contract wins deliberately. */
 .as-site.as-home-v2 .ah-work,
@@ -68,6 +96,11 @@
 
 /* Mobile never lowers contrast. */
 @media(max-width:760px){
+  .as-site.ah-site .ah-hero .ah-hero-lower>p{
+    color:rgba(255,255,255,.78)!important;
+    -webkit-text-fill-color:rgba(255,255,255,.78)!important;
+  }
+
   .as-site.as-home-v2 .ah-work .ah-work-head>p,
   .as-site.as-home-v2 .ah-work .ah-work-card-copy p{
     color:#ddd8ce!important;
