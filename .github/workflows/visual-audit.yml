@@ -2,6 +2,8 @@ name: Archic Visual Audit
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
     paths:
@@ -67,15 +69,26 @@ jobs:
           exit 1
 
       - name: Capture full visual audit
+        id: visual_audit
+        continue-on-error: true
         env:
           AUDIT_BASE_URL: http://127.0.0.1:4173
           AUDIT_OUTPUT: visual-audit
         run: node scripts/visual-audit.mjs
 
       - name: Upload screenshots and diagnostics
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: archic-visual-audit
           path: visual-audit
           retention-days: 7
           if-no-files-found: error
+
+      - name: Enforce visual audit result
+        if: always()
+        run: |
+          if [ "${{ steps.visual_audit.outcome }}" != "success" ]; then
+            echo "Visual audit failed. Diagnostics were uploaded above."
+            exit 1
+          fi
