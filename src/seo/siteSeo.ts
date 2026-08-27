@@ -2,7 +2,7 @@ import { ANTERO_CONTACT, VADIM_CONTACT } from '../config/contact'
 import { type Lang } from '../i18n/content'
 
 export const SITE_ORIGIN = 'https://archic.es'
-export const BRAND_VERSION = '20260812'
+export const BRAND_VERSION = '20260827'
 export const ARCHIC_SYMBOL_URL = `${SITE_ORIGIN}/brand/archic-symbol-2026.svg`
 export const ARCHIC_LOCKUP_URL = `${SITE_ORIGIN}/brand/archic-lockup-dark.svg`
 const OG_VERSION = `v=${BRAND_VERSION}`
@@ -27,6 +27,12 @@ export const ARCHIC_SERVICE_AREAS = [
 export const ARCHIC_KNOWS_ABOUT = [
   'Premium web design',
   'Digital presence',
+  'Digital opportunity audits',
+  'Conversion measurement',
+  'Search and AI readiness',
+  'Technical SEO',
+  'Structured data',
+  'Supervised AI workflows',
   'Business management software',
   'Booking systems',
   'Customer management systems',
@@ -41,6 +47,8 @@ export const ARCHIC_KNOWS_ABOUT = [
   'Premium real estate websites',
   'Property CRM systems',
   'Yacht charter websites',
+  'Education platforms',
+  'Industrial operations software',
   'Premium service businesses',
 ] as const
 
@@ -56,15 +64,15 @@ type SeoEntry = {
 
 export const HOME_SEO: Record<Lang, SeoEntry> = {
   es: {
-    title: 'Diseño web premium y software a medida para empresas | Archic',
-    description: 'Diseño web premium y software a medida para empresas, con especialización en movilidad premium, hospitality e inmobiliario. Marbella, Sevilla y España.',
-    ogAlt: 'Archic — diseño web premium y sistemas para negocios de alto valor',
+    title: 'Sistemas digitales, diseño web premium y software a medida | Archic',
+    description: 'Archic construye la capa digital de empresas: presencia premium, sistemas privados y software a medida. Diagnóstico, desarrollo, QA y evolución continua.',
+    ogAlt: 'Archic — sistemas digitales, diseño web premium y software a medida',
     schemaName: 'Archic',
   },
   en: {
-    title: 'Premium web design and custom software for businesses | Archic',
-    description: 'Premium web design and custom software, with growing depth in luxury mobility, hospitality and real estate. Marbella, Seville and projects across Spain.',
-    ogAlt: 'Archic — premium web design and systems for high-value businesses',
+    title: 'Digital systems, premium web design and custom software | Archic',
+    description: 'Archic builds the digital layer of businesses: premium presence, private operating systems and custom software, from diagnosis to continuous evolution.',
+    ogAlt: 'Archic — digital systems, premium web design and custom software',
     schemaName: 'Archic',
   },
 }
@@ -99,9 +107,9 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
       schemaName: 'Archic Studio',
     },
     contact: {
-      title: 'Contacto y proyectos digitales | Archic',
-      description: 'Cuéntanos qué negocio tienes, qué quieres mejorar y qué resultado buscas. Habla con Archic por teléfono o envía una consulta de proyecto.',
-      ogAlt: 'Contacto con Archic para nuevos proyectos digitales',
+      title: 'Contacto y diagnóstico de proyectos digitales | Archic',
+      description: 'Cuéntanos cómo funciona tu negocio, qué no está funcionando y qué resultado buscas. Solicita un diagnóstico o habla directamente con Archic.',
+      ogAlt: 'Contacto y Digital Opportunity Audit con Archic',
       schemaName: 'Contacto — Archic',
     },
   },
@@ -134,9 +142,9 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
       schemaName: 'Archic Studio',
     },
     contact: {
-      title: 'Contact and digital projects | Archic',
-      description: 'Tell us about the business, what you want to improve and the outcome you need. Call Archic or send a private project enquiry.',
-      ogAlt: 'Contact Archic about a new digital project',
+      title: 'Contact and digital opportunity audit | Archic',
+      description: 'Tell us how the business works, what is not working and what outcome you need. Request an audit or talk directly with Archic.',
+      ogAlt: 'Contact Archic or request a Digital Opportunity Audit',
       schemaName: 'Contact — Archic',
     },
   },
