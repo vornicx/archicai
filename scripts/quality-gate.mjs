@@ -69,14 +69,15 @@ check(
 if (present('src/styles/archic-hardening.css')) {
   const hardening = read('src/styles/archic-hardening.css')
   check(hardening.includes('.as-detail .as-detail-hero'), 'Hardening protects detail heroes from fixed-height clipping')
-  check(hardening.includes('.sx-consent') && hardening.includes("input[type='checkbox']"), 'Consent control has a touch-target contract')
-  check(hardening.includes('.axv-product button'), 'White-label demo controls have a touch-target contract')
 }
 
 if (present('src/styles/archic-readability.css')) {
   const readability = read('src/styles/archic-readability.css')
   check(readability.includes('.as-menu-inner nav a small'), 'Menu descriptions have an explicit readability rule')
   check(readability.includes("[class*='btn']") && readability.includes("[class*='cta']"), 'CTA readability applies across button systems')
+  check(readability.includes('.sx-consent') && readability.includes("input[type='checkbox']"), 'Consent control has a touch-target contract')
+  check(readability.includes('.axv-product button'), 'White-label demo controls have a touch-target contract')
+  check(readability.includes('.as-brand') && readability.includes('.as-lang button'), 'Header identity and language controls have a touch-target contract')
   check(readability.includes('@media(max-width:760px)'), 'Interactive readability has a mobile contract')
 }
 
