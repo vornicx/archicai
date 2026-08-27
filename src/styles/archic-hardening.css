@@ -1,3 +1,11 @@
 /* Rendered layout hardening. */
-.as-detail .as-detail-hero{height:auto!important;min-height:100svh!important}
-@media(max-width:760px){.as-detail .as-detail-hero{padding-bottom:max(48px,env(safe-area-inset-bottom))!important}}
+.as-detail .as-detail-hero{
+  height:auto!important;
+  min-height:calc(100svh + 16px)!important;
+}
+@media(max-width:760px){
+  .as-detail .as-detail-hero{
+    min-height:calc(100svh + 16px)!important;
+    padding-bottom:max(48px,env(safe-area-inset-bottom))!important;
+  }
+}
