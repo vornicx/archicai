@@ -1,5 +1,9 @@
 /* Content visibility is non-negotiable.
    Motion is progressive enhancement: no public Archic route may depend on
    IntersectionObserver timing to make content readable. */
+.ag-site.as-experience-ready [data-reveal],
 .as-site.as-experience-ready [data-reveal]{opacity:1!important;transform:none!important}
-@media(prefers-reduced-motion:reduce){.as-site.as-experience-ready [data-reveal]{transition:none!important}}
+@media(prefers-reduced-motion:reduce){
+  .ag-site.as-experience-ready [data-reveal],
+  .as-site.as-experience-ready [data-reveal]{transition:none!important}
+}
