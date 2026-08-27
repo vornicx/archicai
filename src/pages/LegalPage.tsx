@@ -102,7 +102,7 @@ export default function LegalPage({ doc: docKey }: { doc: LegalDocKey }) {
       <Helmet htmlAttributes={{ lang }}>
         <title>{`${doc.title} | ${COMPANY.brand}`}</title>
         <meta name="description" content={doc.intro} />
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="noindex, follow" />
         <link rel="canonical" href={canonical} />
         <link rel="alternate" hrefLang="es" href={`${COMPANY.site}${LEGAL_PATHS[docKey].es}`} />
         <link rel="alternate" hrefLang="en" href={`${COMPANY.site}${LEGAL_PATHS[docKey].en}`} />
