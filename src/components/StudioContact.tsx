@@ -24,6 +24,9 @@ const QUALIFY = {
     detailsPlaceholder: 'Plazos, herramientas actuales, referencias, restricciones o cualquier detalle que debamos conocer.',
     auditType: 'Digital Opportunity Audit',
     contextLabel: 'Contexto de llegada (sesión, sin tracking externo)',
+    sending: 'Enviando…',
+    sent: 'Consulta enviada. La hemos recibido y te responderemos lo antes posible.',
+    fallback: 'No hemos podido enviarla automáticamente. Abrimos tu correo como alternativa para no perder la consulta.',
   },
   en: {
     directTitle: 'DIRECT CONTACT',
@@ -43,6 +46,9 @@ const QUALIFY = {
     detailsPlaceholder: 'Timing, current tools, references, constraints or anything else we should know.',
     auditType: 'Digital Opportunity Audit',
     contextLabel: 'Arrival context (session only, no external tracking)',
+    sending: 'Sending…',
+    sent: 'Enquiry sent. We have received it and will reply as soon as possible.',
+    fallback: 'Automatic delivery failed. We are opening your email app as a fallback so the enquiry is not lost.',
   },
 } as const
 
@@ -53,19 +59,25 @@ export default function StudioContact() {
   const q = QUALIFY[lang]
   const [status, setStatus] = useState<{ tone: 'ok' | 'error'; text: string } | null>(null)
   const [consent, setConsent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [startedAt] = useState(() => Date.now())
 
   const [consentBefore, consentAfter] = n.consent.split('{link}')
   const formLabel = lang === 'es' ? 'Consulta de proyecto Archic' : 'Archic project enquiry'
   const isAudit = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('intent') === 'audit'
   const typeOptions = isAudit ? [q.auditType, ...c.types] : c.types
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
+    if (sending) return
+
+    const form = e.currentTarget
+    const data = new FormData(form)
     const name = String(data.get('name') ?? '').trim()
     const contact = String(data.get('contact') ?? '').trim()
     const company = String(data.get('company') ?? '').trim()
     const website = String(data.get('website') ?? '').trim()
+    const companyWebsite = String(data.get('companyWebsite') ?? '').trim()
     const type = String(data.get('type') ?? typeOptions[0])
     const revenue = String(data.get('revenue') ?? '').trim()
     const challenge = String(data.get('challenge') ?? '').trim()
@@ -109,11 +121,49 @@ export default function StudioContact() {
       details || '-',
       ...(attribution.length ? ['', `— ${q.contextLabel} —`, ...attribution] : []),
     ].join('\n')
-
-    window.location.href = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(
+    const mailto = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(
       `${type} — ${company || name}`,
     )}&body=${encodeURIComponent(body)}`
-    setStatus({ tone: 'ok', text: c.sent })
+
+    setSending(true)
+    setStatus(null)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          contact,
+          company,
+          website,
+          companyWebsite,
+          type,
+          revenue,
+          challenge,
+          outcome,
+          investment,
+          details,
+          attribution,
+          language: lang,
+          consent: true,
+          startedAt,
+        }),
+      })
+
+      if (!response.ok) throw new Error(`contact_delivery_${response.status}`)
+
+      recordIntent('contact:delivered')
+      form.reset()
+      setConsent(false)
+      setStatus({ tone: 'ok', text: q.sent })
+    } catch {
+      recordIntent('contact:fallback')
+      setStatus({ tone: 'error', text: q.fallback })
+      window.location.href = mailto
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -142,6 +192,11 @@ export default function StudioContact() {
       </section>
 
       <div className="sx-form-divider"><span>{q.divider}</span></div>
+
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+        <label htmlFor="sx-company-website">Leave this field empty</label>
+        <input id="sx-company-website" name="companyWebsite" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
 
       <div className="sx-field-row">
         <div className="sx-field">
@@ -216,8 +271,8 @@ export default function StudioContact() {
         <span>{consentBefore}<a href={LEGAL_PATHS.privacy[lang]}>{n.consentLinkLabel}</a>{consentAfter}</span>
       </label>
 
-      <button type="submit" className="sx-btn sx-btn-solid" data-archic-intent="contact:send">
-        {c.submit}
+      <button type="submit" className="sx-btn sx-btn-solid" data-archic-intent="contact:send" disabled={sending} aria-busy={sending}>
+        {sending ? q.sending : c.submit}
         <i className="as-arrow" aria-hidden="true" />
       </button>
 
