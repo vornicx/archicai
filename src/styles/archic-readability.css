@@ -1,0 +1,330 @@
+/* Archic readability pass — menu and interactive text.
+   Readability wins over decorative micro-type on every public surface. */
+
+:root{
+  --ar-text-on-dark:#f8f6f0;
+  --ar-text-on-dark-soft:#ddd8ce;
+  --ar-text-on-light:#11100e;
+  --ar-text-on-light-soft:#4b4740;
+  --ar-accent:#e0bf82;
+  --ar-focus:#f0c979;
+}
+
+/* Base rendering for every real button in the public site. */
+.site-shell button{
+  font-family:'DM Sans',Inter,Arial,sans-serif;
+  font-weight:600;
+  letter-spacing:.01em;
+  line-height:1.2;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Any link/button styled as a CTA gets readable type without changing layout intent. */
+.site-shell :is(a,button)[class*='btn'],
+.site-shell :is(a,button)[class*='button'],
+.site-shell :is(a,button)[class*='cta']{
+  font-family:'DM Sans',Inter,Arial,sans-serif;
+  font-size:max(12px,.75rem);
+  font-weight:600;
+  letter-spacing:.01em;
+  line-height:1.2;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Header controls: never use tiny, low-contrast navigation text. */
+.site-shell .as-project-link,
+.site-shell .as-menu-button>span{
+  font-family:'DM Sans',Inter,Arial,sans-serif;
+  font-size:12px!important;
+  font-weight:600!important;
+  letter-spacing:.01em!important;
+  line-height:1.2!important;
+  color:var(--ar-text-on-dark)!important;
+  -webkit-text-fill-color:var(--ar-text-on-dark)!important;
+  opacity:1!important;
+  text-shadow:0 1px 12px rgba(0,0,0,.2);
+}
+
+.site-shell .as-project-link{
+  min-height:42px;
+  padding-inline:14px;
+  border-color:rgba(255,255,255,.38)!important;
+  background:rgba(7,7,7,.2);
+}
+
+.site-shell .as-lang{
+  color:var(--ar-text-on-dark-soft)!important;
+  -webkit-text-fill-color:var(--ar-text-on-dark-soft)!important;
+  font-size:10px!important;
+  font-weight:600;
+}
+
+.site-shell .as-lang button{
+  min-width:30px;
+  min-height:36px;
+  padding:7px 5px!important;
+  color:inherit!important;
+  -webkit-text-fill-color:inherit!important;
+  font-size:10px!important;
+  font-weight:600!important;
+  opacity:1!important;
+}
+
+.site-shell .as-lang button[aria-pressed='true']{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Main menu: strong hierarchy and no decorative low-contrast copy. */
+.site-shell .as-menu-inner nav a strong{
+  font-family:'Space Grotesk',Inter,Arial,sans-serif;
+  font-weight:600!important;
+  letter-spacing:-.025em!important;
+  line-height:1.04!important;
+  opacity:1!important;
+}
+
+.site-shell .as-menu-inner nav a small{
+  font-family:'DM Sans',Inter,Arial,sans-serif;
+  font-size:13px!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  line-height:1.4!important;
+  opacity:1!important;
+}
+
+.site-shell .as-menu-inner nav a>span{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:9px!important;
+  font-weight:600!important;
+  letter-spacing:.08em!important;
+  opacity:1!important;
+}
+
+/* The current strategy home uses a dark menu. */
+.ag-site .as-menu-panel{
+  background:#0b0c0b!important;
+  color:var(--ar-text-on-dark)!important;
+}
+
+.ag-site .as-menu-meta,
+.ag-site .as-menu-inner nav a small{
+  color:var(--ar-text-on-dark-soft)!important;
+  -webkit-text-fill-color:var(--ar-text-on-dark-soft)!important;
+}
+
+.ag-site .as-menu-inner nav a strong{
+  color:var(--ar-text-on-dark)!important;
+  -webkit-text-fill-color:var(--ar-text-on-dark)!important;
+}
+
+.ag-site .as-menu-inner nav a>span,
+.ag-site .as-menu-inner nav a .as-arrow{
+  color:var(--ar-accent)!important;
+  -webkit-text-fill-color:var(--ar-accent)!important;
+}
+
+.ag-site .as-menu-inner nav a:hover,
+.ag-site .as-menu-inner nav a:focus-visible{
+  background:rgba(255,255,255,.055)!important;
+}
+
+/* Legacy / detail surfaces use the paper menu treatment. */
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) .as-menu-panel{
+  background:#f0eee8!important;
+  color:var(--ar-text-on-light)!important;
+}
+
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) .as-menu-inner nav a strong{
+  color:var(--ar-text-on-light)!important;
+  -webkit-text-fill-color:var(--ar-text-on-light)!important;
+}
+
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) .as-menu-meta,
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) .as-menu-inner nav a small{
+  color:var(--ar-text-on-light-soft)!important;
+  -webkit-text-fill-color:var(--ar-text-on-light-soft)!important;
+}
+
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) .as-menu-inner nav a>span,
+:is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell) .as-menu-inner nav a .as-arrow{
+  color:#765824!important;
+  -webkit-text-fill-color:#765824!important;
+}
+
+/* New commercial home CTA system. */
+.ag-site .ag-btn{
+  min-height:50px;
+  padding-inline:22px;
+  font-size:13px!important;
+  font-weight:650!important;
+  letter-spacing:.005em!important;
+}
+
+.ag-site .ag-btn-primary{
+  color:#0c0c0a!important;
+  -webkit-text-fill-color:#0c0c0a!important;
+  background:#c6a361!important;
+}
+
+.ag-site .ag-btn-quiet{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:rgba(255,255,255,.55)!important;
+  background:rgba(5,5,5,.28)!important;
+}
+
+.ag-site .ag-btn-ink{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:#11110f!important;
+}
+
+.ag-site .ag-console-tabs button{
+  min-height:48px;
+  color:rgba(255,255,255,.72)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.72)!important;
+  font-size:12px!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+}
+
+.ag-site .ag-console-tabs button[aria-selected='true']{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:rgba(255,255,255,.11)!important;
+}
+
+.ag-site .ag-console-copy em,
+.ag-site .ag-case-copy>a,
+.ag-site .ag-evolution-copy>a,
+.ag-site .ag-offer>a{
+  font-size:12px!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+}
+
+/* Existing Archic detail / studio button systems. */
+.site-shell .as-btn,
+.site-shell .sx-button,
+.site-shell .sx-btn{
+  min-height:48px;
+  font-size:13px!important;
+  font-weight:600!important;
+  letter-spacing:.005em!important;
+}
+
+.site-shell .as-btn-metal{
+  color:var(--ar-text-on-dark)!important;
+  -webkit-text-fill-color:var(--ar-text-on-dark)!important;
+  border-color:rgba(224,191,130,.7)!important;
+}
+
+.site-shell .sx-button{
+  color:#11100e!important;
+  -webkit-text-fill-color:#11100e!important;
+  background:#d2a957!important;
+}
+
+.site-shell .sx-button:hover,
+.site-shell .sx-button:focus-visible{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:#171714!important;
+}
+
+/* Contact submit and form choice controls. */
+.as-contact-page .sx-btn{
+  min-height:52px!important;
+  color:#11100e!important;
+  -webkit-text-fill-color:#11100e!important;
+  background:#d6b36f!important;
+  border-color:#d6b36f!important;
+}
+
+.as-contact-page .sx-type-options label{
+  color:#e8e4dc!important;
+  -webkit-text-fill-color:#e8e4dc!important;
+  font-size:13px!important;
+  font-weight:500!important;
+  line-height:1.35!important;
+}
+
+/* Product-demo tabs and controls are small by nature; keep them compact, not tiny. */
+.site-shell .axv-layer-switch button{
+  min-height:48px;
+  color:#d8d4cb!important;
+  -webkit-text-fill-color:#d8d4cb!important;
+  font-size:12px!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+}
+
+.site-shell .axv-layer-switch button small{
+  color:#aaa59b!important;
+  -webkit-text-fill-color:#aaa59b!important;
+  font-size:10px!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+}
+
+.site-shell .axv-layer-switch button[aria-selected='true'],
+.site-shell .axv-layer-switch button[aria-selected='true'] small{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Keyboard readability is part of legibility. */
+.site-shell :is(a,button,input,textarea,select):focus-visible{
+  outline:2px solid var(--ar-focus)!important;
+  outline-offset:3px!important;
+}
+
+@media(max-width:760px){
+  .site-shell .as-header-actions{gap:12px}
+
+  .site-shell .as-project-link{
+    min-height:40px;
+    padding-inline:11px;
+    font-size:11px!important;
+  }
+
+  .site-shell .as-menu-button{
+    min-height:44px;
+    min-width:44px;
+    justify-content:flex-end;
+  }
+
+  .site-shell .as-menu-button>span{
+    font-size:11px!important;
+  }
+
+  .site-shell .as-menu-inner nav a{
+    min-height:96px!important;
+  }
+
+  .site-shell .as-menu-inner nav a strong{
+    font-size:clamp(26px,8.5vw,36px)!important;
+    line-height:1!important;
+  }
+
+  .site-shell .as-menu-inner nav a small{
+    font-size:12px!important;
+    line-height:1.35!important;
+  }
+
+  .site-shell :is(a,button)[class*='btn'],
+  .site-shell :is(a,button)[class*='button'],
+  .site-shell :is(a,button)[class*='cta']{
+    font-size:13px!important;
+  }
+
+  .ag-site .ag-btn,
+  .site-shell .as-btn,
+  .site-shell .sx-button,
+  .site-shell .sx-btn{
+    min-height:50px;
+  }
+}
