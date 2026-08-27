@@ -50,25 +50,43 @@ for (const preview of ['hospitality-preview.svg', 'mobility-preview.svg', 'real-
 }
 check(home.includes('FICTIONAL DATA') && home.includes('DATOS FICTICIOS'), 'Public demos are explicitly marked as fictional data')
 
-// Cascade contract: product refinement must load before the safety layers.
+// Cascade contract: hardening loads before the final safety layers.
 const main = read('src/main.tsx')
 const standardIndex = main.indexOf("./styles/archic-standard-2026.css")
+const hardeningIndex = main.indexOf("./styles/archic-hardening.css")
 const contrastIndex = main.indexOf("./styles/archic-contrast.css")
 const readabilityIndex = main.indexOf("./styles/archic-readability.css")
 const visibilityIndex = main.indexOf("./styles/archic-visibility-guard.css")
 const surfaceIndex = main.indexOf("./styles/archic-surface-contract.css")
 check(standardIndex >= 0, 'Archic Standard stylesheet is loaded')
+check(present('src/styles/archic-hardening.css'), 'Rendered hardening layer exists')
 check(present('src/styles/archic-readability.css'), 'Interactive readability safety layer exists')
 check(
-  standardIndex < contrastIndex && contrastIndex < readabilityIndex && readabilityIndex < visibilityIndex && visibilityIndex < surfaceIndex,
-  'Safety styles remain last in the intended order',
+  standardIndex < hardeningIndex && hardeningIndex < contrastIndex && contrastIndex < readabilityIndex && readabilityIndex < visibilityIndex && visibilityIndex < surfaceIndex,
+  'Hardening and safety styles remain in the intended order',
 )
+
+if (present('src/styles/archic-hardening.css')) {
+  const hardening = read('src/styles/archic-hardening.css')
+  check(hardening.includes('.as-detail .as-detail-hero'), 'Hardening protects detail heroes from fixed-height clipping')
+  check(hardening.includes('.sx-consent') && hardening.includes("input[type='checkbox']"), 'Consent control has a touch-target contract')
+  check(hardening.includes('.axv-product button'), 'White-label demo controls have a touch-target contract')
+}
+
 if (present('src/styles/archic-readability.css')) {
   const readability = read('src/styles/archic-readability.css')
   check(readability.includes('.as-menu-inner nav a small'), 'Menu descriptions have an explicit readability rule')
   check(readability.includes("[class*='btn']") && readability.includes("[class*='cta']"), 'CTA readability applies across button systems')
   check(readability.includes('@media(max-width:760px)'), 'Interactive readability has a mobile contract')
 }
+
+const revealGuard = read('src/styles/archic-reveal-guard.css')
+check(revealGuard.includes('.ag-site.as-experience-ready [data-reveal]'), 'Commercial home reveal motion cannot hide content')
+
+// Search discovery remains open while optional model-training crawl is separated.
+const robots = read('public/robots.txt')
+check(/User-agent: OAI-SearchBot\s+Allow: \//m.test(robots), 'OAI-SearchBot remains allowed for search discovery')
+check(/User-agent: GPTBot\s+Disallow: \//m.test(robots), 'GPTBot training crawl is explicitly separated from search discovery')
 
 // The three public white-label previews must exist and must not leak known client brands.
 const bannedDemoTerms = ['Five Star Rentals', 'Marbella For Sale', 'La Bocana', 'Zusto', 'Mfinity']
