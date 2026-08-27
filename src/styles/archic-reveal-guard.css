@@ -1,18 +1,5 @@
 /* Content visibility is non-negotiable.
-   Reveal motion remains a progressive enhancement; it may never create empty sections. */
-.ag-site.as-experience-ready [data-reveal],
-.as-home-v2.as-experience-ready [data-reveal],
-.as-detail.as-experience-ready [data-reveal],
-.as-contact-page.as-experience-ready [data-reveal]{
-  opacity:1!important;
-  transform:none!important;
-}
-
-@media(prefers-reduced-motion:reduce){
-  .ag-site.as-experience-ready [data-reveal],
-  .as-home-v2.as-experience-ready [data-reveal],
-  .as-detail.as-experience-ready [data-reveal],
-  .as-contact-page.as-experience-ready [data-reveal]{
-    transition:none!important;
-  }
-}
+   Motion is progressive enhancement: no public Archic route may depend on
+   IntersectionObserver timing to make content readable. */
+.as-site.as-experience-ready [data-reveal]{opacity:1!important;transform:none!important}
+@media(prefers-reduced-motion:reduce){.as-site.as-experience-ready [data-reveal]{transition:none!important}}
