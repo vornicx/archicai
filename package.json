@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "node server/contact-api.mjs",
     "build": "tsc -b && vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",

@@ -5,6 +5,8 @@ import { LEGAL_PATHS } from '../legal/documents'
 import { ARCHIC_FOUNDERS } from '../config/contact'
 import { getAttributionSummary, recordIntent } from '../analytics/leadAttribution'
 
+const CONTACT_API_URL = 'https://contact-api-production-c100.up.railway.app/api/contact'
+
 const QUALIFY = {
   es: {
     directTitle: 'CONTACTO DIRECTO',
@@ -129,7 +131,7 @@ export default function StudioContact() {
     setStatus(null)
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(CONTACT_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
