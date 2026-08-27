@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
-    "gen:pages": "bun run scripts/generate-static-pages.ts && bun run scripts/generate-archic-site-pages.ts && bun run scripts/generate-exploration-pages.ts && bun run scripts/generate-intent-pages.ts && bun run scripts/postprocess-generated-seo.ts && bun run scripts/validate-generated-seo.ts",
+    "gen:pages": "bun run scripts/generate-static-pages.ts && bun run scripts/generate-archic-site-pages.ts && bun run scripts/generate-exploration-pages.ts && bun run scripts/generate-intent-pages.ts && bun run scripts/postprocess-generated-seo.ts && bun run scripts/seo-hardening.ts && bun run scripts/validate-generated-seo.ts",
+    "submit:indexnow": "bun run scripts/submit-indexnow.ts",
     "quality:gate": "node scripts/quality-gate.mjs"
   },
   "dependencies": {
