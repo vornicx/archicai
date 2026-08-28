@@ -39,6 +39,7 @@ import './styles/archic-flagship-demo.css'
 import './styles/archic-reveal-guard.css'
 import './styles/archic-luxury-audit-fix.css'
 import './styles/archic-hardening.css'
+import './styles/archic-home-2026-3.css'
 /* Safety layers stay last. Readability is part of the safety contract. */
 import './styles/archic-contrast.css'
 import './styles/archic-readability.css'
