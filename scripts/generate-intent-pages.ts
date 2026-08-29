@@ -3,6 +3,7 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { INTENT_PAGES } from '../src/seo/intentPages'
 import { buildLandingGraph } from '../src/seo/landingSchema'
+import { BRAND_VERSION, siteOgImage } from '../src/seo/siteSeo'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = 'https://archic.es'
@@ -28,12 +29,10 @@ function html(page: (typeof INTENT_PAGES)[number]) {
     <meta name="application-name" content="Archic" />
     <link rel="canonical" href="${canonical}" />
     <meta name="theme-color" content="#0a0a0b" />
-    <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
-    <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=3" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/brand/archic-symbol-2026.svg" type="image/svg+xml" sizes="any" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=${BRAND_VERSION}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=${BRAND_VERSION}" />
+    <link rel="manifest" href="/manifest.json?v=${BRAND_VERSION}" />
     <meta name="google-site-verification" content="${GSC_TOKEN}" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Archic" />
@@ -41,8 +40,8 @@ function html(page: (typeof INTENT_PAGES)[number]) {
     <meta property="og:url" content="${canonical}" />
     <meta property="og:title" content="${esc(page.meta.title)}" />
     <meta property="og:description" content="${esc(page.meta.description)}" />
-    <meta property="og:image" content="${ORIGIN}/og-image.png?v=3" />
-    <meta property="og:image:secure_url" content="${ORIGIN}/og-image.png?v=3" />
+    <meta property="og:image" content="${siteOgImage('es')}" />
+    <meta property="og:image:secure_url" content="${siteOgImage('es')}" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -51,7 +50,7 @@ function html(page: (typeof INTENT_PAGES)[number]) {
     <meta name="twitter:site" content="@ArchicHQ" />
     <meta name="twitter:title" content="${esc(page.meta.title)}" />
     <meta name="twitter:description" content="${esc(page.meta.description)}" />
-    <meta name="twitter:image" content="${ORIGIN}/og-image.png?v=3" />
+    <meta name="twitter:image" content="${siteOgImage('es')}" />
     <script type="application/ld+json">${JSON.stringify(graph)}</script>
   </head>
   <body>

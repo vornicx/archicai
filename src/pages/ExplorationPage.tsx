@@ -1,9 +1,12 @@
-import { FormEvent, ReactNode, useMemo, useState } from 'react'
+import { useMemo, useState, type FormEvent, type KeyboardEvent, type ReactNode } from 'react'
 import { Helmet } from 'react-helmet-async'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import StudioExperience from '../components/StudioExperience'
 import { useLang } from '../i18n/LanguageContext'
+import '../styles/archic-explorations-2026.css'
+import '../styles/archic-exploration-product-ui.css'
+import '../styles/archic-explorations-render-fix.css'
 
 export type ExplorationKind = 'hospitality' | 'mobility' | 'real-estate'
 type DemoView = 'experience' | 'control' | 'business'
@@ -49,8 +52,24 @@ function Arrow() { return <i className="as-arrow" aria-hidden="true" /> }
 
 function LayerSwitch({ active, onChange, lang }: { active: DemoView; onChange: (v: DemoView) => void; lang: Lang }) {
   const items: [DemoView, string][] = [['experience', 'Presence'], ['control', 'Control'], ['business', 'Business']]
+
+  const moveTab = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+    event.preventDefault()
+    const last = items.length - 1
+    const next = event.key === 'Home'
+      ? 0
+      : event.key === 'End'
+        ? last
+        : event.key === 'ArrowLeft'
+          ? index === 0 ? last : index - 1
+          : index === last ? 0 : index + 1
+    onChange(items[next][0])
+    event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('button')[next]?.focus()
+  }
+
   return <div className="axv-layer-switch" role="tablist" aria-label={t(lang, 'Capas del sistema', 'System layers')}>
-    {items.map(([value, label]) => <button key={value} type="button" role="tab" aria-selected={active === value} className={active === value ? 'is-active' : ''} onClick={() => onChange(value)}><span>{label}</span><small>{value === 'experience' ? t(lang, 'Cliente', 'Customer') : value === 'control' ? t(lang, 'Operación', 'Operations') : t(lang, 'Lógica', 'Logic')}</small></button>)}
+    {items.map(([value, label], index) => <button key={value} id={`axv-layer-tab-${value}`} type="button" role="tab" aria-selected={active === value} aria-controls="axv-product-view" tabIndex={active === value ? 0 : -1} className={active === value ? 'is-active' : ''} onClick={() => onChange(value)} onKeyDown={(event) => moveTab(event, index)}><span>{label}</span><small>{value === 'experience' ? t(lang, 'Cliente', 'Customer') : value === 'control' ? t(lang, 'Operación', 'Operations') : t(lang, 'Lógica', 'Logic')}</small></button>)}
   </div>
 }
 
@@ -69,10 +88,10 @@ function ProductShell({ kind, view, setView, lang, children }: { kind: Explorati
         <nav>{nav.map((item, index) => <span className={index === 0 ? 'is-active' : ''} key={item}><i>{String(index + 1).padStart(2, '0')}</i><b>{item}</b></span>)}</nav>
         <div className="axv-side-user"><i>WL</i><span><b>{t(lang, 'Entorno white-label', 'White-label environment')}</b><small>{t(lang, 'Sin datos de clientes', 'No client data')}</small></span></div>
       </aside>
-      <main className="axv-product-main">
+      <div className="axv-product-main">
         <LayerSwitch active={view} onChange={setView} lang={lang} />
-        <div className="axv-product-view">{children}</div>
-      </main>
+        <div id="axv-product-view" className="axv-product-view" role="tabpanel" aria-labelledby={`axv-layer-tab-${view}`}>{children}</div>
+      </div>
     </div>
   </div>
 }
@@ -164,13 +183,15 @@ export default function ExplorationPage({ kind }: { kind: ExplorationKind }) {
   const title = `${c.title} ${c.accent} — Archic Control`
   const canonicalPath = lang === 'en' ? `/en/explorations/${kind}/` : `/explorations/${kind}/`
 
-  return <div className={`as-site axp-page axp-${kind} axv-page`}>
+  return <div className={`as-site axp-page axp-${kind} axv-page`} data-quality-standard="archic-design-system-1.0.0">
     <Helmet htmlAttributes={{ lang }}><title>{title}</title><meta name="description" content={c.intro} /><meta name="robots" content="index, follow" /><link rel="canonical" href={`https://archic.es${canonicalPath}`} /><link rel="alternate" hrefLang="es" href={`https://archic.es/explorations/${kind}/`} /><link rel="alternate" hrefLang="en" href={`https://archic.es/en/explorations/${kind}/`} /></Helmet>
     <StudioExperience /><StudioHeader />
+    <main id="main-content" tabIndex={-1}>
     <section className="axp-hero"><div className="axp-hero-grid" aria-hidden="true" /><div className="axp-hero-copy" data-reveal="hero"><p className="axp-kicker">ARCHIC CONTROL / WHITE-LABEL {meta.no}</p><h1><span>{c.title}</span><em>{c.accent}</em></h1><p>{c.intro}</p></div><div className="axp-hero-proof" data-reveal><span>{c.label}</span><strong>{c.proof}</strong><small>{t(lang, 'Basado en software desarrollado por Archic · identidad y datos ficticios', 'Based on software built by Archic · fictional identity and data')}</small></div></section>
     <section className="axp-demo-section axv-demo-section"><div className="axp-demo-intro" data-reveal><p className="axp-kicker axp-kicker-dark">{t(lang, 'ENTORNO INTERACTIVO', 'INTERACTIVE ENVIRONMENT')}</p><h2>{t(lang, 'No es un mockup. Es la lógica de un sistema real, anonimizada.', 'Not a mockup. The logic of a real build, anonymised.')}</h2><p>{t(lang, 'Partimos de software que ya hemos desarrollado, eliminamos cualquier identidad o dato del proyecto original y mantenemos los flujos que hacen útil al producto. Empiezas en Control; cambia de capa para probar el recorrido completo.', 'We start from software we have already built, remove any identity or data from the original project and preserve the flows that make the product useful. You start in Control; switch layers to test the complete journey.')}</p></div><ProductShell kind={kind} view={view} setView={setView} lang={lang}>{kind === 'hospitality' && <HospitalityDemo view={view} setView={setView} lang={lang} />}{kind === 'mobility' && <MobilityDemo view={view} setView={setView} lang={lang} />}{kind === 'real-estate' && <RealEstateDemo view={view} setView={setView} lang={lang} />}</ProductShell></section>
     <section className="axp-proof-section"><div className="axp-proof-head" data-reveal><p className="axp-kicker">ARCHIC SYSTEM</p><h2>{t(lang, 'Lo que preservamos al hacer white-label.', 'What we preserve when we white-label.')}</h2></div><div className="axp-proof-grid"><article data-reveal><span>01 / PRESENCE</span><h3>{t(lang, 'La experiencia que inicia el dato.', 'The experience that starts the data.')}</h3><p>{t(lang, 'La interacción pública sigue conectada al sistema, no se convierte en una maqueta aislada.', 'The public interaction remains connected to the system rather than becoming an isolated mockup.')}</p></article><article data-reveal><span>02 / CONTROL</span><h3>{t(lang, 'Los workflows que usa el equipo.', 'The workflows the team uses.')}</h3><p>{t(lang, 'Estados, recursos, prioridades, calendarios y gestión mantienen la arquitectura del producto desarrollado.', 'Statuses, resources, priorities, calendars and management preserve the architecture of the product we built.')}</p></article><article data-reveal><span>03 / PRIVACY</span><h3>{t(lang, 'Nada identificable del proyecto original.', 'Nothing identifiable from the original project.')}</h3><p>{t(lang, 'Marca, clientes, contactos, ubicaciones sensibles y datos operativos se sustituyen por contenido ficticio.', 'Brand, customers, contacts, sensitive locations and operational data are replaced with fictional content.')}</p></article></div></section>
     <section className="axp-next"><div data-reveal><p className="axp-kicker">{t(lang, 'DE DEMO A SISTEMA PROPIO', 'FROM DEMO TO YOUR OWN SYSTEM')}</p><h2>{t(lang, 'La base demuestra capacidad. Tu negocio define la versión final.', 'The base proves capability. Your business defines the final version.')}</h2><p>{t(lang, 'No vendemos este entorno como plantilla. Para cada empresa redefinimos flujos, permisos, integraciones, datos y dirección visual alrededor de su operación real.', 'We do not sell this environment as a template. For each company we redefine flows, permissions, integrations, data and visual direction around its real operation.')}</p></div><a href={path(lang, 'contact')} data-reveal>{t(lang, 'Hablar de un proyecto', 'Talk about a project')}<Arrow /></a></section>
+    </main>
     <StudioFooter />
   </div>
 }

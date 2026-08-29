@@ -9,8 +9,8 @@
     "build": "tsc -b && vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
-    "gen:pages": "bun run scripts/generate-static-pages.ts && bun run scripts/generate-archic-site-pages.ts && bun run scripts/generate-exploration-pages.ts && bun run scripts/generate-intent-pages.ts && bun run scripts/postprocess-generated-seo.ts && bun run scripts/seo-hardening.ts && bun run scripts/validate-generated-seo.ts",
-    "submit:indexnow": "bun run scripts/submit-indexnow.ts",
+    "gen:pages": "node --import tsx scripts/generate-static-pages.ts && node --import tsx scripts/generate-archic-site-pages.ts && node --import tsx scripts/generate-exploration-pages.ts && node --import tsx scripts/generate-intent-pages.ts && node --import tsx scripts/postprocess-generated-seo.ts && node --import tsx scripts/seo-hardening.ts && node --import tsx scripts/validate-generated-seo.ts",
+    "submit:indexnow": "node --import tsx scripts/submit-indexnow.ts",
     "quality:gate": "node scripts/quality-gate.mjs"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.23.12",
     "typescript": "~5.6.2",
     "vite": "^6.0.5"
   }

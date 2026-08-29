@@ -18,7 +18,7 @@ function Shell({ children, section, nav, lang }: { children: React.ReactNode; se
           </nav>
           <div className="ah-software-user"><i>AV</i><span><b>{es(lang, 'Equipo Archic', 'Archic team')}</b><small>{es(lang, 'Vista demo', 'Demo view')}</small></span></div>
         </aside>
-        <main className="ah-software-main">{children}</main>
+        <div className="ah-software-main">{children}</div>
       </div>
     </div>
   )

@@ -6,10 +6,9 @@ import StudioExperience from '../components/StudioExperience'
 import ArchicProductObject from '../components/ArchicProductObject'
 import { useLang } from '../i18n/LanguageContext'
 import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
-import workRealEstate from '../assets/work-realestate.jpg'
-import workBocana from '../assets/work-bocana.jpg'
-import workAutomotive from '../assets/work-automotive.jpg'
 import '../styles/archic-routes-2026.css'
+import '../styles/archic-product-objects.css'
+import '../styles/archic-contact-route-form.css'
 
 export type ArchicPageKey = 'presence' | 'control' | 'business' | 'studio' | 'contact'
 type ProductKey = Exclude<ArchicPageKey, 'contact'>
@@ -236,9 +235,27 @@ const SEARCH_INTENTS: Partial<Record<Exclude<ProductKey, 'studio'>, [string, str
 }
 
 const WORK_PROOF = [
-  { name: 'Marbella For Sale', kind: 'REAL ESTATE', image: workRealEstate, slug: 'real-estate' },
-  { name: 'La Bocana', kind: 'HOSPITALITY', image: workBocana, slug: 'hospitality' },
-  { name: 'Five Star Rentals', kind: 'MOBILITY', image: workAutomotive, slug: 'mobility' },
+  {
+    es: 'Sistema inmobiliario',
+    en: 'Property system',
+    kind: 'REAL ESTATE',
+    preview: '/software/real-estate-preview.svg',
+    slug: 'real-estate',
+  },
+  {
+    es: 'Sistema de hospitality',
+    en: 'Hospitality system',
+    kind: 'HOSPITALITY',
+    preview: '/software/hospitality-preview.svg',
+    slug: 'hospitality',
+  },
+  {
+    es: 'Sistema de movilidad',
+    en: 'Mobility system',
+    kind: 'MOBILITY',
+    preview: '/software/mobility-preview.svg',
+    slug: 'mobility',
+  },
 ] as const
 
 const CONTROL_PROOF = [
@@ -272,10 +289,10 @@ function PresenceProof({ lang }: { lang: Lang }) {
   return (
     <div className="ar-presence-proof">
       {WORK_PROOF.map((item, index) => (
-        <a href={explorationPath(lang, item.slug)} key={item.name} data-reveal data-archic-intent={`presence-proof:${item.slug}`}>
-          <div><img src={item.image} alt="" loading="lazy" /><span>0{index + 1} / {item.kind}</span></div>
-          <strong>{item.name}</strong>
-          <small>{lang === 'es' ? 'CONCEPT BUILD · ABRIR' : 'CONCEPT BUILD · OPEN'}</small>
+        <a href={explorationPath(lang, item.slug)} key={item.slug} data-reveal data-archic-intent={`presence-proof:${item.slug}`}>
+          <div><img src={item.preview} alt="" loading="lazy" /><span>0{index + 1} / {item.kind}</span></div>
+          <strong>{lang === 'es' ? item.es : item.en}</strong>
+          <small>{lang === 'es' ? 'DATOS FICTICIOS / DEMO · ABRIR' : 'FICTIONAL DATA / DEMO · OPEN'}</small>
         </a>
       ))}
     </div>
@@ -372,11 +389,11 @@ function ContactPage({ lang }: { lang: Lang }) {
     : [['01', 'Business', 'What you sell, to whom and how a sale, booking or decision happens.'], ['02', 'Friction', 'What is failing, costing time or limiting growth.'], ['03', 'Outcome', 'What should be different if the project works.'], ['04', 'Range', 'Priority, dependencies and a reasonable investment before design.']]
 
   return (
-    <div className="as-site ar-site ar-contact-route" data-quality-standard="archic-public-2026.2">
+    <div className="as-site ar-site ar-contact-route" data-quality-standard="archic-design-system-1.0.0">
       <Helmet><title>{es ? 'Diagnóstico y contacto — Archic' : 'Diagnosis and contact — Archic'}</title><meta name="description" content={es ? 'Cuéntanos qué debe cambiar en tu presencia, operación o software. Archic diagnostica primero y define la solución después.' : 'Tell us what needs to change across presence, operations or software. Archic diagnoses first and defines the solution afterwards.'} /></Helmet>
       <StudioExperience />
       <StudioHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <section className="ar-contact-intro">
           <div className="ar-shell">
             <p className="ar-kicker" data-reveal="hero">{es ? 'ARCHIC / DIAGNÓSTICO' : 'ARCHIC / DIAGNOSIS'}</p>
@@ -421,12 +438,12 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
   const es = currentLang === 'es'
 
   return (
-    <div className={`as-site ar-site ar-route ar-${page}`} data-quality-standard="archic-public-2026.2">
+    <div className={`as-site ar-site ar-route ar-${page}`} data-quality-standard="archic-design-system-1.0.0">
       <Helmet><title>{`${c.eyebrow.split('/').pop()?.trim()} — Archic`}</title><meta name="description" content={c.intro} /></Helmet>
       <StudioExperience />
       <StudioHeader />
 
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <section className="ar-hero" data-archic-view={`${page}-hero`}>
           <div className="ar-shell ar-hero-grid">
             <div className="ar-hero-copy" data-reveal="hero">

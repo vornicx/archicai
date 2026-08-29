@@ -1,8 +1,9 @@
 import { existsSync, readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { BRAND_VERSION } from '../src/seo/siteSeo'
 
-const ROOT = resolve(import.meta.dir, '..')
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = 'https://archic.es'
 const core = [
   'index.html',

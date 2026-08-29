@@ -3,6 +3,8 @@ import { execFileSync } from 'node:child_process'
 import { resolve, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
+  ARCHIC_COMMERCIAL_SUMMARY_ES,
+  BRAND_VERSION,
   HOME_SEO,
   SITE_PAGE_SEO,
   SITE_ORIGIN,
@@ -68,12 +70,10 @@ function headDocument(input: {
     <link rel="alternate" hreflang="en" href="${alternates.en}" />
     <link rel="alternate" hreflang="x-default" href="${alternates.xDefault}" />
     <meta name="theme-color" content="#0a0a0b" />
-    <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
-    <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=3" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/brand/archic-symbol-2026.svg" type="image/svg+xml" sizes="any" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=${BRAND_VERSION}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=${BRAND_VERSION}" />
+    <link rel="manifest" href="/manifest.json?v=${BRAND_VERSION}" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Archic" />
     <meta property="og:locale" content="${lang === 'es' ? 'es_ES' : 'en_US'}" />
@@ -186,8 +186,6 @@ if (existsSync(sitemapPath)) {
   console.log('updated public/sitemap.xml with core Archic routes')
 }
 
-const commercialSummaryEs = `Archic construye la capa digital de empresas: la presencia que ve el cliente, los sistemas privados que usa el equipo y el software a medida que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.`
-
 const commercialBlockEs = `## Modelo de trabajo 2026
 
 - **Archic Presence**: dirección digital, web premium, contenido, conversión y base técnica de búsqueda.
@@ -221,7 +219,7 @@ Los prototipos y concept builds se etiquetan como tales y no se presentan como c
 const llmsPath = resolve(ROOT, 'public', 'llms.txt')
 if (existsSync(llmsPath)) {
   let llms = readFileSync(llmsPath, 'utf8')
-  llms = llms.replace(/^> .*$/m, `> ${commercialSummaryEs}`)
+  llms = llms.replace(/^> .*$/m, `> ${ARCHIC_COMMERCIAL_SUMMARY_ES}`)
   if (!llms.includes('## Modelo de trabajo 2026')) {
     llms = llms.replace('\n## Servicios\n', `\n${commercialBlockEs}\n## Servicios\n`)
   }
@@ -232,7 +230,7 @@ if (existsSync(llmsPath)) {
 const llmsFullPath = resolve(ROOT, 'public', 'llms-full.txt')
 if (existsSync(llmsFullPath)) {
   let llmsFull = readFileSync(llmsFullPath, 'utf8')
-  llmsFull = llmsFull.replace(/^> .*$/m, `> ${commercialSummaryEs}`)
+  llmsFull = llmsFull.replace(/^> .*$/m, `> ${ARCHIC_COMMERCIAL_SUMMARY_ES}`)
   if (!llmsFull.includes('## Modelo de trabajo 2026')) {
     const firstSection = llmsFull.indexOf('\n## ')
     if (firstSection !== -1) {

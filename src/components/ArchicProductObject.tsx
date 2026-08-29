@@ -27,7 +27,7 @@ export default function ArchicProductObject({ page }: { page: ProductPage }) {
     return (
       <div className="a26-object a26-object-control" aria-hidden="true" data-reveal>
         <div className="a26-object-top"><span>ARCHIC / CONTROL</span><span>02</span></div>
-        <div className="a26-control-head"><span>WHITE-LABEL / {es ? 'SISTEMAS REALES' : 'REAL SYSTEMS'}</span><strong>03</strong></div>
+        <div className="a26-control-head"><span>WHITE-LABEL / {es ? 'FLUJOS DEMO' : 'DEMO FLOWS'}</span><strong>03</strong></div>
         <div className="a26-control-list">
           <div><span>01</span><strong>{es ? 'Hostelería · reservas + sala' : 'Hospitality · bookings + floor'}</strong><i>08 {es ? 'HOY' : 'TODAY'}</i></div>
           <div><span>02</span><strong>{es ? 'Movilidad · flota + solicitudes' : 'Mobility · fleet + enquiries'}</strong><i>16 {es ? 'UNIDADES' : 'UNITS'}</i></div>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type KeyboardEvent } from 'react'
 import { Helmet } from 'react-helmet-async'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
@@ -7,13 +7,10 @@ import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 import { HOME_SEO, siteOgImage } from '../seo/siteSeo'
 import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
-import workRealEstate from '../assets/work-realestate.jpg'
-import workBocana from '../assets/work-bocana.jpg'
-import workAutomotive from '../assets/work-automotive.jpg'
-import '../styles/archic-home-2026.css'
 
 type Lang = 'es' | 'en'
 type DemoId = 'hospitality' | 'mobility' | 'property'
+type SystemLayer = 'presence' | 'control' | 'business'
 
 type WorkItem = {
   name: string
@@ -36,15 +33,24 @@ type DemoItem = {
   href: string
 }
 
+type HeroProofItem = {
+  id: SystemLayer
+  eyebrow: string
+  title: string
+  body: string
+  metric: string
+  metricLabel: string
+  href: string
+}
+
 const COPY = {
   es: {
     hero: {
-      title: ['Diseñamos lo que ve tu cliente.', 'Construimos lo que mueve tu negocio.'],
+      title: ['Lo que tu cliente ve.', 'Lo que tu negocio necesita.'],
       lead: 'Presencia digital, sistemas internos y software a medida diseñados como una sola capa. Dirección humana, IA supervisada y código que se entrega.',
       primary: 'Cuéntanos qué debe cambiar',
-      secondary: 'Ver trabajo',
+      secondary: 'Ver sistemas',
       rail: ['Dirección humana', 'IA supervisada', 'Código propio', 'QA real'],
-      systemLabel: 'UN SISTEMA / TRES CAPAS',
       system: [
         ['Presence', 'Percepción + conversión'],
         ['Control', 'Operación privada'],
@@ -135,12 +141,11 @@ const COPY = {
   },
   en: {
     hero: {
-      title: ['We design what your customer sees.', 'We build what moves your business.'],
+      title: ['What your customer sees.', 'What your business needs.'],
       lead: 'Digital presence, internal systems and custom software designed as one layer. Human direction, supervised AI and code you own.',
       primary: 'Tell us what must change',
-      secondary: 'View work',
+      secondary: 'View systems',
       rail: ['Human direction', 'Supervised AI', 'Owned code', 'Real QA'],
-      systemLabel: 'ONE SYSTEM / THREE LAYERS',
       system: [
         ['Presence', 'Perception + conversion'],
         ['Control', 'Private operations'],
@@ -236,7 +241,7 @@ const WORK: Record<Lang, WorkItem[]> = {
     {
       name: 'Marbella For Sale',
       kind: 'Real estate de alta gama',
-      image: workRealEstate,
+      image: '/software/real-estate-preview.svg',
       href: '/explorations/real-estate/',
       code: '01 / REAL ESTATE',
       publicLayer: 'Portfolio editorial, búsqueda, comparación y captación de enquiry.',
@@ -245,7 +250,7 @@ const WORK: Record<Lang, WorkItem[]> = {
     {
       name: 'La Bocana',
       kind: 'Hospitality / Puerto Banús',
-      image: workBocana,
+      image: '/software/hospitality-preview.svg',
       href: '/explorations/hospitality/',
       code: '02 / HOSPITALITY',
       publicLayer: 'Presencia, carta, reserva y experiencia de marca conectadas.',
@@ -254,7 +259,7 @@ const WORK: Record<Lang, WorkItem[]> = {
     {
       name: 'Five Star Rentals',
       kind: 'Luxury mobility',
-      image: workAutomotive,
+      image: '/software/mobility-preview.svg',
       href: '/explorations/mobility/',
       code: '03 / MOBILITY',
       publicLayer: 'Flota, fichas, galerías y solicitud con lenguaje de producto premium.',
@@ -265,7 +270,7 @@ const WORK: Record<Lang, WorkItem[]> = {
     {
       name: 'Marbella For Sale',
       kind: 'High-end real estate',
-      image: workRealEstate,
+      image: '/software/real-estate-preview.svg',
       href: '/en/explorations/real-estate/',
       code: '01 / REAL ESTATE',
       publicLayer: 'Editorial portfolio, search, comparison and enquiry capture.',
@@ -274,7 +279,7 @@ const WORK: Record<Lang, WorkItem[]> = {
     {
       name: 'La Bocana',
       kind: 'Hospitality / Puerto Banús',
-      image: workBocana,
+      image: '/software/hospitality-preview.svg',
       href: '/en/explorations/hospitality/',
       code: '02 / HOSPITALITY',
       publicLayer: 'Presence, menu, booking and brand experience connected.',
@@ -283,11 +288,72 @@ const WORK: Record<Lang, WorkItem[]> = {
     {
       name: 'Five Star Rentals',
       kind: 'Luxury mobility',
-      image: workAutomotive,
+      image: '/software/mobility-preview.svg',
       href: '/en/explorations/mobility/',
       code: '03 / MOBILITY',
       publicLayer: 'Fleet, detail pages, galleries and enquiries with premium product language.',
       privateLayer: 'Owner access, availability, offers and enquiry management.',
+    },
+  ],
+}
+
+const HERO_PROOFS: Record<Lang, HeroProofItem[]> = {
+  es: [
+    {
+      id: 'presence',
+      eyebrow: 'PRESENCE / EXPERIENCIA PÚBLICA',
+      title: 'Una presencia que explica, orienta y convierte.',
+      body: 'Narrativa, contenido y recorridos conectados con la operación real del negocio.',
+      metric: '03',
+      metricLabel: 'recorridos clave',
+      href: '/presence/',
+    },
+    {
+      id: 'control',
+      eyebrow: 'CONTROL / OPERACIÓN PRIVADA',
+      title: 'Reservas, clientes y capacidad en contexto.',
+      body: 'Una demostración white-label de la capa privada que utiliza el equipo.',
+      metric: '82%',
+      metricLabel: 'ocupación demo',
+      href: '/explorations/hospitality/',
+    },
+    {
+      id: 'business',
+      eyebrow: 'BUSINESS / LÓGICA PROPIA',
+      title: 'Los procesos dejan de depender de trabajo repetido.',
+      body: 'Automatizaciones e integraciones hechas alrededor de cómo funciona el negocio.',
+      metric: '11',
+      metricLabel: 'eventos conectados',
+      href: '/business/',
+    },
+  ],
+  en: [
+    {
+      id: 'presence',
+      eyebrow: 'PRESENCE / PUBLIC EXPERIENCE',
+      title: 'A presence that explains, guides and converts.',
+      body: 'Narrative, content and journeys connected to how the business actually operates.',
+      metric: '03',
+      metricLabel: 'key journeys',
+      href: '/en/presence/',
+    },
+    {
+      id: 'control',
+      eyebrow: 'CONTROL / PRIVATE OPERATIONS',
+      title: 'Bookings, customers and capacity in context.',
+      body: 'A white-label demonstration of the private layer used by the team.',
+      metric: '82%',
+      metricLabel: 'demo occupancy',
+      href: '/en/explorations/hospitality/',
+    },
+    {
+      id: 'business',
+      eyebrow: 'BUSINESS / OWN LOGIC',
+      title: 'Processes stop depending on repeated manual work.',
+      body: 'Automations and integrations built around the way the business operates.',
+      metric: '11',
+      metricLabel: 'connected events',
+      href: '/en/business/',
     },
   ],
 }
@@ -313,6 +379,107 @@ function Arrow() {
   return <i className="as-arrow" aria-hidden="true" />
 }
 
+function PresenceProof({ lang }: { lang: Lang }) {
+  return (
+    <div className="ah-proof-presence" aria-hidden="true">
+      <div className="ah-presence-nav"><b>ARCHIC / FIELD NOTES</b><span>{lang === 'es' ? 'PROYECTO' : 'PROJECT'}</span></div>
+      <div className="ah-presence-title">
+        <small>{lang === 'es' ? 'CLARIDAD ANTES QUE RUIDO' : 'CLARITY BEFORE NOISE'}</small>
+        <strong>{lang === 'es' ? 'Una decisión clara en cada pantalla.' : 'One clear decision on every screen.'}</strong>
+      </div>
+      <div className="ah-presence-flow">
+        <span>01 / {lang === 'es' ? 'ENTENDER' : 'UNDERSTAND'}</span>
+        <span>02 / {lang === 'es' ? 'CONFIAR' : 'TRUST'}</span>
+        <span>03 / {lang === 'es' ? 'ACTUAR' : 'ACT'}</span>
+      </div>
+    </div>
+  )
+}
+
+function BusinessProof({ lang }: { lang: Lang }) {
+  const events = lang === 'es'
+    ? ['Solicitud recibida', 'Datos validados', 'Equipo asignado', 'Seguimiento creado']
+    : ['Request received', 'Data validated', 'Team assigned', 'Follow-up created']
+
+  return (
+    <div className="ah-proof-business" aria-hidden="true">
+      <div className="ah-business-flow">
+        {events.map((event, index) => (
+          <div key={event}><span>{String(index + 1).padStart(2, '0')}</span><strong>{event}</strong><i /></div>
+        ))}
+      </div>
+      <div className="ah-business-log">
+        <small>AUTOMATION / LIVE LOG</small>
+        <p><b>09:42:16</b> lead.qualified</p>
+        <p><b>09:42:17</b> crm.record.created</p>
+        <p><b>09:42:18</b> owner.notified</p>
+      </div>
+    </div>
+  )
+}
+
+function HeroSystemProof({ lang, active, onChange }: { lang: Lang; active: number; onChange: (index: number) => void }) {
+  const items = HERO_PROOFS[lang]
+  const proof = items[active]
+
+  const moveTab = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return
+    event.preventDefault()
+    const last = items.length - 1
+    const next = event.key === 'Home'
+      ? 0
+      : event.key === 'End'
+        ? last
+        : event.key === 'ArrowLeft' || event.key === 'ArrowUp'
+          ? index === 0 ? last : index - 1
+          : index === last ? 0 : index + 1
+    onChange(next)
+    event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('button')[next]?.focus()
+  }
+
+  return (
+    <aside className="ah-proof" data-layer={proof.id} data-reveal aria-label={lang === 'es' ? 'Demostración del sistema Archic' : 'Archic system demonstration'}>
+      <div className="ah-proof-bar">
+        <span>ARCHIC / SYSTEM 1.0</span>
+        <b>{lang === 'es' ? 'DEMO / DATOS FICTICIOS' : 'DEMO / FICTIONAL DATA'}</b>
+      </div>
+      <div className="ah-proof-grid">
+        <div className="ah-proof-tabs" role="tablist" aria-label={lang === 'es' ? 'Capas del sistema' : 'System layers'}>
+          {items.map((item, index) => (
+            <button
+              key={item.id}
+              id={`ah-proof-tab-${item.id}`}
+              type="button"
+              role="tab"
+              aria-selected={active === index}
+              aria-controls="ah-proof-panel"
+              tabIndex={active === index ? 0 : -1}
+              onClick={() => onChange(index)}
+              onKeyDown={(event) => moveTab(event, index)}
+            >
+              <span>0{index + 1}</span>
+              <strong>{item.id}</strong>
+              <small>{COPY[lang].hero.system[index][1]}</small>
+            </button>
+          ))}
+        </div>
+        <div id="ah-proof-panel" role="tabpanel" className="ah-proof-panel" aria-labelledby={`ah-proof-tab-${proof.id}`}>
+          <div className="ah-proof-screen">
+            {proof.id === 'presence' && <PresenceProof lang={lang} />}
+            {proof.id === 'control' && <img src="/software/hospitality-preview.svg" alt="" />}
+            {proof.id === 'business' && <BusinessProof lang={lang} />}
+          </div>
+          <div className="ah-proof-summary">
+            <div><small>{proof.eyebrow}</small><strong>{proof.title}</strong><p>{proof.body}</p></div>
+            <div className="ah-proof-metric"><b>{proof.metric}</b><span>{proof.metricLabel}</span></div>
+            <a className="ah-proof-open" href={proof.href} data-archic-intent={`hero-proof:${proof.id}`} aria-label={proof.title}><Arrow /></a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  )
+}
+
 function SectionHead({ index, title, body, dark = false }: { index: string; title: string; body: string; dark?: boolean }) {
   return (
     <header className={`ah-head${dark ? ' ah-head-dark' : ''}`} data-reveal>
@@ -331,6 +498,21 @@ function ControlDemo({ lang }: { lang: Lang }) {
   const demos = DEMOS[lang]
   const demo = demos[active]
 
+  const moveTab = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+    event.preventDefault()
+    const last = demos.length - 1
+    const next = event.key === 'Home'
+      ? 0
+      : event.key === 'End'
+        ? last
+        : event.key === 'ArrowLeft'
+          ? index === 0 ? last : index - 1
+          : index === last ? 0 : index + 1
+    setActive(next)
+    event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('button')[next]?.focus()
+  }
+
   return (
     <div className="ah-demo" data-reveal>
       <div className="ah-demo-intro">
@@ -344,18 +526,32 @@ function ControlDemo({ lang }: { lang: Lang }) {
       <div className="ah-demo-product">
         <div className="ah-demo-tabs" role="tablist" aria-label={lang === 'es' ? 'Demos de Archic Control' : 'Archic Control demos'}>
           {demos.map((item, index) => (
-            <button key={item.id} type="button" role="tab" aria-selected={active === index} onClick={() => setActive(index)}>{item.tab}</button>
+            <button
+              key={item.id}
+              id={`ah-demo-tab-${item.id}`}
+              type="button"
+              role="tab"
+              aria-selected={active === index}
+              aria-controls="ah-demo-panel"
+              tabIndex={active === index ? 0 : -1}
+              onClick={() => setActive(index)}
+              onKeyDown={(event) => moveTab(event, index)}
+            >
+              {item.tab}
+            </button>
           ))}
         </div>
-        <a className="ah-demo-screen" href={demo.href} data-archic-intent={`control-demo:${demo.id}`}>
-          <div className="ah-demo-media"><img key={demo.id} src={demo.preview} alt="" /></div>
-          <div className="ah-demo-copy">
-            <small>{demo.label}</small>
-            <strong>{demo.title}</strong>
-            <div><b>{demo.metric}</b><span>{demo.metricLabel}</span></div>
-            <em>{c.demoOpen}<Arrow /></em>
-          </div>
-        </a>
+        <div id="ah-demo-panel" role="tabpanel" aria-labelledby={`ah-demo-tab-${demo.id}`}>
+          <a className="ah-demo-screen" href={demo.href} data-archic-intent={`control-demo:${demo.id}`}>
+            <div className="ah-demo-media"><img key={demo.id} src={demo.preview} alt="" /></div>
+            <div className="ah-demo-copy">
+              <small>{demo.label}</small>
+              <strong>{demo.title}</strong>
+              <div><b>{demo.metric}</b><span>{demo.metricLabel}</span></div>
+              <em>{c.demoOpen}<Arrow /></em>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   )
@@ -384,6 +580,7 @@ function WorkFeature({ item, lang, index }: { item: WorkItem; lang: Lang; index:
 
 export default function ArchicHome() {
   const { lang } = useLang()
+  const [heroSystem, setHeroSystem] = useState(1)
   const currentLang = lang as Lang
   const c = COPY[currentLang]
   const seo = HOME_SEO[currentLang]
@@ -394,7 +591,7 @@ export default function ArchicHome() {
   const contactHref = currentLang === 'en' ? '/en/contact/' : '/contact/'
 
   return (
-    <div className="as-site ah-site" data-quality-standard="archic-public-2026.2">
+    <div className="as-site ah-site" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang: currentLang }}>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
@@ -423,7 +620,7 @@ export default function ArchicHome() {
       <StudioExperience />
       <StudioHeader />
 
-      <main className="ah-main">
+      <main id="main-content" className="ah-main" tabIndex={-1}>
         <section className="ah-hero" id="home" data-archic-view="hero">
           <div className="ah-shell ah-hero-inner">
             <div className="ah-hero-top" data-reveal="hero">
@@ -433,21 +630,11 @@ export default function ArchicHome() {
                 <p>{c.hero.lead}</p>
                 <div className="ah-actions">
                   <a className="ah-button ah-button-gold" href={auditHref} data-archic-intent="hero:audit">{c.hero.primary}</a>
-                  <a className="ah-text-link ah-text-link-light" href="#selected-work" data-archic-intent="hero:work">{c.hero.secondary}<Arrow /></a>
+                  <a className="ah-text-link ah-text-link-light" href="#system" data-archic-intent="hero:system">{c.hero.secondary}<Arrow /></a>
                 </div>
               </div>
             </div>
-
-            <div className="ah-hero-system" data-reveal>
-              <div className="ah-hero-system-label"><span>{c.hero.systemLabel}</span><span>2026.2</span></div>
-              <div className="ah-hero-system-grid">
-                {c.hero.system.map(([name, role], index) => (
-                  <a key={name} href={pagePath(currentLang, name.toLowerCase())} data-archic-intent={`hero-system:${name.toLowerCase()}`}>
-                    <span>0{index + 1}</span><strong>{name}</strong><small>{role}</small><Arrow />
-                  </a>
-                ))}
-              </div>
-            </div>
+            <HeroSystemProof lang={currentLang} active={heroSystem} onChange={setHeroSystem} />
           </div>
           <div className="ah-hero-rail" aria-label={currentLang === 'es' ? 'Principios de Archic' : 'Archic principles'}>
             <div className="ah-shell">

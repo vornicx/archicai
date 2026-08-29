@@ -21,7 +21,7 @@ export default class SiteErrorBoundary extends Component<Props, State> {
     const home = english ? '/en/' : '/'
 
     return (
-      <main className="as-fatal-state" role="alert">
+      <main id="main-content" className="as-fatal-state" role="alert" tabIndex={-1}>
         <div>
           <span>ARCHIC / SYSTEM</span>
           <h1>{english ? 'Something interrupted the experience.' : 'Algo ha interrumpido la experiencia.'}</h1>

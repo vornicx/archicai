@@ -4,7 +4,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <url>
     <loc>https://archic.es/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/" />
@@ -13,7 +13,7 @@
   </url>
 <url>
     <loc>https://archic.es/en/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/" />
@@ -22,281 +22,185 @@
   </url>
 <url>
     <loc>https://archic.es/diseno-web-para-empresas/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/diseno-web-para-autonomos/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/mantenimiento-web/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/desarrollo-web-a-medida/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/diseno-web-sevilla/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/diseno-web-ecija/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/mantenimiento-web-sevilla/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/desarrollo-web-sevilla/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/guias/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 <url>
     <loc>https://archic.es/guias/web-a-medida-o-wordpress/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 <url>
     <loc>https://archic.es/guias/precio-pagina-web-empresa/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 <url>
     <loc>https://archic.es/guias/digitalizar-procesos-excel/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 <url>
-    <loc>https://archic.es/aviso-legal/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/aviso-legal/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/legal-notice/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/aviso-legal/" />
-  </url>
-<url>
-    <loc>https://archic.es/en/legal-notice/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/aviso-legal/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/legal-notice/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/aviso-legal/" />
-  </url>
-<url>
-    <loc>https://archic.es/privacidad/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/privacidad/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/privacy/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/privacidad/" />
-  </url>
-<url>
-    <loc>https://archic.es/en/privacy/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/privacidad/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/privacy/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/privacidad/" />
-  </url>
-<url>
-    <loc>https://archic.es/cookies/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/cookies/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/cookies/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/cookies/" />
-  </url>
-<url>
-    <loc>https://archic.es/en/cookies/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/cookies/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/cookies/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/cookies/" />
-  </url>
-<url>
     <loc>https://archic.es/presence/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/presence/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/presence/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/presence/" />
   </url>
 <url>
     <loc>https://archic.es/en/presence/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/presence/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/presence/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/presence/" />
   </url>
 <url>
     <loc>https://archic.es/control/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/control/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/control/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/control/" />
   </url>
 <url>
     <loc>https://archic.es/en/control/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/control/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/control/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/control/" />
   </url>
 <url>
     <loc>https://archic.es/business/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/business/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/business/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/business/" />
   </url>
 <url>
     <loc>https://archic.es/en/business/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/business/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/business/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/business/" />
   </url>
 <url>
     <loc>https://archic.es/studio/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/studio/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/studio/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/studio/" />
   </url>
 <url>
     <loc>https://archic.es/en/studio/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/studio/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/studio/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/studio/" />
   </url>
 <url>
     <loc>https://archic.es/contact/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/contact/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/contact/" />
   </url>
 <url>
     <loc>https://archic.es/en/contact/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/contact/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/contact/" />
   </url>
 <url>
-    <loc>https://archic.es/explorations/hospitality/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/explorations/hospitality/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/explorations/hospitality/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/explorations/hospitality/" />
-  </url>
-<url>
-    <loc>https://archic.es/en/explorations/hospitality/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/explorations/hospitality/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/explorations/hospitality/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/explorations/hospitality/" />
-  </url>
-<url>
-    <loc>https://archic.es/explorations/mobility/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/explorations/mobility/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/explorations/mobility/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/explorations/mobility/" />
-  </url>
-<url>
-    <loc>https://archic.es/en/explorations/mobility/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/explorations/mobility/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/explorations/mobility/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/explorations/mobility/" />
-  </url>
-<url>
-    <loc>https://archic.es/explorations/real-estate/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/explorations/real-estate/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/explorations/real-estate/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/explorations/real-estate/" />
-  </url>
-<url>
-    <loc>https://archic.es/en/explorations/real-estate/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="es" href="https://archic.es/explorations/real-estate/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://archic.es/en/explorations/real-estate/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://archic.es/explorations/real-estate/" />
-  </url>
-<url>
     <loc>https://archic.es/diseno-web-marbella/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/diseno-web-restaurantes/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/diseno-web-inmobiliarias/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/diseno-web-alquiler-coches/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/software-reservas-a-medida/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/crm-a-medida/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
     <loc>https://archic.es/precio-software-a-medida/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

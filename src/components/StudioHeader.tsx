@@ -93,8 +93,9 @@ export default function StudioHeader() {
   return (
     <>
       <header className="as-header" data-solid={solid || open}>
-        <a href={path(lang)} className="as-brand" aria-label="Archic home">
-          <img src="/brand/archic-lockup-light.svg" alt="Archic" width={981} height={174} />
+        <a href={path(lang)} className="as-brand" aria-label={lang === 'es' ? 'Archic · inicio' : 'Archic · home'}>
+          <img className="as-brand-light" src="/brand/archic-lockup-light.svg" alt="" width={981} height={174} />
+          <img className="as-brand-dark" src="/brand/archic-lockup-dark.svg" alt="" width={981} height={174} />
         </a>
 
         <div className="as-header-actions">
@@ -143,6 +144,7 @@ export default function StudioHeader() {
               <a
                 href={path(lang, slug)}
                 key={slug}
+                tabIndex={open ? 0 : -1}
                 onClick={() => setOpen(false)}
                 data-archic-intent={`menu:${slug.replace('#', '')}`}
               >

@@ -13,7 +13,7 @@
  *   - public/sitemap.xml                  → con lastmod real por página
  *   - public/llms.txt y llms-full.txt     → índice y texto plano para asistentes
  *
- * Uso: bun run scripts/generate-static-pages.ts
+ * Uso: npm run gen:pages
  */
 import { mkdirSync, writeFileSync, statSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
@@ -28,6 +28,7 @@ import { GUIDES, GUIDES_INDEX_PATH } from '../src/content/guides'
 import { buildGuideGraph, buildGuidesIndexGraph, GUIDES_INDEX_META } from '../src/seo/guideSchema'
 import { CONTENT, CONTACT_MAIL, type Lang } from '../src/i18n/content'
 import { LOCAL_BUSINESS } from '../src/seo/localBusiness'
+import { ARCHIC_COMMERCIAL_SUMMARY_ES, BRAND_VERSION } from '../src/seo/siteSeo'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = 'https://archic.es'
@@ -132,12 +133,10 @@ function document_({
     <link data-rh="true" rel="canonical" href="${canonical}">
 ${alternateTags}
     <meta name="theme-color" content="#0a0a0b" />
-    <link rel="icon" href="/favicon.ico?v=3" sizes="any">
-    <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=3">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/brand/archic-symbol-2026.svg" type="image/svg+xml" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=${BRAND_VERSION}">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=${BRAND_VERSION}">
+    <link rel="manifest" href="/manifest.json?v=${BRAND_VERSION}">
     <meta name="google-site-verification" content="${GSC_TOKEN}" />
     <!-- Webfonts are self-hosted (see src/main.tsx): no third-party requests. -->
     <meta data-rh="true" property="og:url" content="${canonical}" />
@@ -422,9 +421,9 @@ const es = CONTENT.es
 
 const llms = `# Archic
 
-> ${es.answer.body}
+> ${ARCHIC_COMMERCIAL_SUMMARY_ES}
 
-Archic es una marca comercial española. Contacto: ${CONTACT_MAIL}. Base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.postalCode}), provincia de ${LOCAL_BUSINESS.province}, ${LOCAL_BUSINESS.region}, España. Idiomas de trabajo: castellano e inglés.
+${ARCHIC_COMMERCIAL_SUMMARY_ES} Contacto: ${CONTACT_MAIL}. Base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.postalCode}), provincia de ${LOCAL_BUSINESS.province}, ${LOCAL_BUSINESS.region}, España. Idiomas de trabajo: castellano e inglés.
 
 Esta web no instala cookies, no usa analítica de terceros y no carga recursos externos.
 
@@ -541,7 +540,7 @@ const llmsFull = `# Archic — contenido completo
 Última actualización: ${MODIFIED.home}
 Origen: ${ORIGIN}/
 
-> ${es.answer.body}
+> ${ARCHIC_COMMERCIAL_SUMMARY_ES}
 
 ## ${es.facts.title}
 

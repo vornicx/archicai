@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { BRAND_VERSION, siteOgImage } from '../src/seo/siteSeo'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = 'https://archic.es'
@@ -65,15 +66,20 @@ function pageHtml(slug: string, lang: 'es' | 'en', title: string, description: s
     <link rel="alternate" hreflang="x-default" href="${esUrl}" />
     <meta name="theme-color" content="#090908" />
     <link rel="icon" href="/brand/archic-symbol-2026.svg" type="image/svg+xml" sizes="any" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=${BRAND_VERSION}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=${BRAND_VERSION}" />
+    <link rel="manifest" href="/manifest.json?v=${BRAND_VERSION}" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Archic" />
     <meta property="og:url" content="${canonical}" />
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:description" content="${esc(description)}" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="${siteOgImage(lang)}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Archic — ${esc(title.replace(' — Archic', ''))}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="${siteOgImage(lang)}" />
   </head>
   <body>
     <div id="root"></div>

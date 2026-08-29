@@ -200,3 +200,65 @@
     -webkit-text-fill-color:rgba(255,255,255,.72)!important;
   }
 }
+
+/* Archic Design System 1.0 home contract.
+   The home moved from a generic dark-luxury treatment to the canonical Archic
+   black/gold identity on mineral paper. These rules intentionally supersede the
+   historical seven-moment contract above while keeping dark technical chapters. */
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-hero{
+  background:#f1efe8!important;
+  color:#0a0a0b!important;
+}
+
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-hero .ah-hero-top h1,
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-hero .ah-hero-top h1>span:first-child{
+  color:#0a0a0b!important;
+  -webkit-text-fill-color:#0a0a0b!important;
+}
+
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-hero .ah-hero-top h1>span:last-child{
+  color:#9a7339!important;
+  -webkit-text-fill-color:#9a7339!important;
+}
+
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-hero .ah-hero-lower>p{
+  color:#4c4f48!important;
+  -webkit-text-fill-color:#4c4f48!important;
+}
+
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .as-header :is(.as-project-link,.as-menu-button,.as-menu-button>span,.as-lang){
+  color:#0a0a0b!important;
+  -webkit-text-fill-color:#0a0a0b!important;
+}
+
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .as-header .as-project-link{
+  border-color:#0a0a0b!important;
+  background:transparent!important;
+}
+
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .as-header .as-project-link:hover{
+  color:#f8f6ef!important;
+  -webkit-text-fill-color:#f8f6ef!important;
+  background:#0a0a0b!important;
+}
+
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-system-lane[data-active='true'] h3{
+  color:#0a0a0b!important;
+  -webkit-text-fill-color:#0a0a0b!important;
+}
+
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-button-gold,
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-button-gold:link,
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-button-gold:visited{
+  background:#c9a56a!important;
+  border-color:#c9a56a!important;
+  color:#0a0a0b!important;
+  -webkit-text-fill-color:#0a0a0b!important;
+}
+
+.as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-button-gold:hover{
+  background:#0a0a0b!important;
+  border-color:#0a0a0b!important;
+  color:#f8f6ef!important;
+  -webkit-text-fill-color:#f8f6ef!important;
+}

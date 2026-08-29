@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import '@fontsource/instrument-serif/latin-400.css'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import StudioExperience from '../components/StudioExperience'
@@ -11,13 +12,14 @@ export default function NotFound() {
   const contact = lang === 'en' ? '/en/contact/' : '/contact/'
 
   return (
-    <div className="as-site as-seo-page as-notfound-page">
+    <div className="as-site as-seo-page as-notfound-page" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang }}>
         <title>{n.title} | Archic</title>
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <StudioExperience />
       <StudioHeader />
+      <main id="main-content" tabIndex={-1}>
       <section className="as-seo-hero">
         <div className="as-seo-hero-main" data-reveal="hero">
           <div className="as-seo-layer">ARCHIC / 404</div>
@@ -29,6 +31,7 @@ export default function NotFound() {
           </div>
         </div>
       </section>
+      </main>
       <StudioFooter />
     </div>
   )

@@ -61,7 +61,7 @@
 .a26-presence-nav{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;font-size:8px;letter-spacing:.13em;color:rgba(255,255,255,.48)}
 .a26-presence-nav i{height:1px;background:rgba(255,255,255,.18)}
 .a26-presence-frame>strong{position:relative;z-index:2;font-size:clamp(40px,3.6vw,64px);line-height:.88;letter-spacing:-.06em;font-weight:500}
-.a26-presence-frame>strong em{font-family:var(--a26-serif);font-style:normal;font-weight:400;color:#d9d2c5;letter-spacing:-.035em}
+.a26-presence-frame>strong em{font-family:'Space Grotesk','DM Sans',sans-serif;font-style:normal;font-weight:500;color:#d9d2c5;letter-spacing:-.055em}
 .a26-presence-foot{display:flex;justify-content:space-between;gap:12px;font-size:7px;letter-spacing:.12em;color:rgba(255,255,255,.42)}
 
 /* Control — operational calm rather than dashboard-card clutter. */

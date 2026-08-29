@@ -5,6 +5,8 @@ export const SITE_ORIGIN = 'https://archic.es'
 export const BRAND_VERSION = '20260827'
 export const ARCHIC_SYMBOL_URL = `${SITE_ORIGIN}/brand/archic-symbol-2026.svg`
 export const ARCHIC_LOCKUP_URL = `${SITE_ORIGIN}/brand/archic-lockup-dark.svg`
+export const ARCHIC_COMMERCIAL_SUMMARY_ES =
+  'Archic construye la capa digital de empresas: la presencia que ve el cliente, los sistemas privados que usa el equipo y el software a medida que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.'
 const OG_VERSION = `v=${BRAND_VERSION}`
 
 export const ARCHIC_BASE = {

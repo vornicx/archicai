@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import '@fontsource/instrument-serif/latin-400.css'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import StudioExperience from '../components/StudioExperience'
@@ -11,7 +12,7 @@ export default function GuidesIndex() {
   const canonical = `${ORIGIN}${GUIDES_INDEX_PATH}`
 
   return (
-    <div className="as-site as-editorial-page">
+    <div className="as-site as-editorial-page" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang: 'es' }}>
         <title>{GUIDES_INDEX_META.title}</title>
         <meta name="description" content={GUIDES_INDEX_META.description} />
@@ -31,6 +32,7 @@ export default function GuidesIndex() {
       <StudioExperience />
       <StudioHeader />
 
+      <main id="main-content" tabIndex={-1}>
       <section className="as-editorial-hero">
         <div data-reveal="hero">
           <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><span>Guías</span></div>
@@ -69,6 +71,7 @@ export default function GuidesIndex() {
         </div>
         <a className="as-btn as-btn-metal" href="/contact/">Hablar con Archic<i className="as-arrow" aria-hidden="true" /></a>
       </section>
+      </main>
 
       <StudioFooter />
     </div>

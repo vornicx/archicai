@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "project": {
+    "name": "Archic Website",
+    "slug": "archic-website",
+    "mode": "production",
+    "kind": "marketing",
+    "sector": "digital systems, web and custom software studio",
+    "decisionDate": "2026-08-28"
+  },
+  "direction": {
+    "density": 4,
+    "volume": 2,
+    "geometry": 7,
+    "temperature": 4,
+    "era": 6,
+    "kinetics": 3,
+    "leadMedium": "Type + Data",
+    "distance": 3,
+    "primaryArchetype": "Editorial Spread",
+    "secondaryArchetype": "Dossier",
+    "justification": "Archic must explain a connected digital system and prove it with operational interfaces in the first viewport. Type establishes the commercial promise; data and white-label product UI provide evidence. Editorial Spread creates a recognisable public voice while Dossier rows keep services, method, investment and QA exact and comparable.",
+    "sectorsUnrelatedToPrevious": true,
+    "archetypeRepeatJustification": "This is Archic's own reference implementation. The archetype is selected from its content and proof requirements, not inherited from client work."
+  },
+  "assets": {
+    "policy": "verified-production-assets",
+    "provenanceFile": "docs/asset-provenance.md",
+    "verified": true
+  },
+  "foundation": {
+    "version": "1.0.0"
+  },
+  "exceptions": [
+    {
+      "area": "legacy exploration photography",
+      "status": "resolved — excluded from production",
+      "reason": "The repository does not contain enough source and licence evidence for the legacy JPG and WebP sets. They now live under src/assets/concept, no production route imports them, and all public product proof uses Archic-authored white-label SVG interfaces with explicit demo labels."
+    }
+  ]
+}

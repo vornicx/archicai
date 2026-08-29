@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import '@fontsource/instrument-serif/latin-400.css'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import StudioExperience from '../components/StudioExperience'
@@ -181,7 +182,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
   const p = POSITIONING[page.path] ?? DEFAULT_POSITIONING
 
   return (
-    <div className="as-site as-seo-page">
+    <div className="as-site as-seo-page" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang: 'es' }}>
         <title>{page.meta.title}</title>
         <meta name="description" content={page.meta.description} />
@@ -204,6 +205,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
       <StudioExperience />
       <StudioHeader />
 
+      <main id="main-content" tabIndex={-1}>
       <section className="as-seo-hero">
         <div className="as-seo-hero-main" data-reveal="hero">
           <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><span>{page.breadcrumb}</span></div>
@@ -307,6 +309,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
         </div>
         <a className="as-btn as-btn-metal" href="/contact/">Abrir una conversación<i className="as-arrow" aria-hidden="true" /></a>
       </section>
+      </main>
 
       <StudioFooter />
     </div>

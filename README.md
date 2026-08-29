@@ -60,6 +60,12 @@ This repository contains the marketing site for [archic.es](https://archic.es).
 
 The site is available in Spanish at `/` and in English at `/en/`, with separate canonical URLs, `hreflang` annotations and localized metadata.
 
+## Archic Design System 1.0
+
+Every production change is governed by [`project.config.json`](project.config.json) and the Markdown evidence linked from [`ARCHIC_DESIGN_SYSTEM_IMPLEMENTATION.md`](ARCHIC_DESIGN_SYSTEM_IMPLEMENTATION.md). The project contract fixes the Foundation version, Direction Vector, composition archetypes, asset policy and documented exceptions.
+
+The current Archic identity is canonical: `/brand/archic-symbol-2026.svg`, the dark/light lockups in `/brand/`, Archic black `#0A0A0B` and Archic gold `#C9A56A`. New visual direction may change composition and art direction, but it must not invent a replacement brand.
+
 ## Generated files — do not edit by hand
 
 Every HTML entry point and the sitemap are produced by the static-page generation pipeline from sources in `src/`. Public AI summaries (`public/llms.txt` and `public/llms-full.txt`) are maintained as the explicit current identity corpus for assistants and crawlers.
@@ -102,4 +108,5 @@ npm run dev
 ```bash
 npm run build
 npm run preview
+npm run quality:gate
 ```

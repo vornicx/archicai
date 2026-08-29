@@ -92,9 +92,6 @@
   transform:scale(1.025);
   transition:transform 1.15s var(--af-ease),filter .7s ease;
 }
-.as-home-v2 .ah-layer-row:nth-child(1)::after{background-image:url('/img/archic-digital-system.webp')}
-.as-home-v2 .ah-layer-row:nth-child(2)::after{background-image:url('/img/archic-hospitality-system.webp')}
-.as-home-v2 .ah-layer-row:nth-child(3)::after{background-image:url('/img/archic-automotive-system.webp')}
 .as-home-v2 .ah-row-no{
   position:absolute;
   top:24px;

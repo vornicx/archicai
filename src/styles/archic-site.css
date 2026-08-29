@@ -33,7 +33,7 @@
   transition:background .45s var(--as-ease),border-color .45s var(--as-ease);
 }
 .as-header[data-solid="true"]{background:rgba(5,5,5,.94);border-bottom-color:rgba(205,167,101,.14)}
-.as-brand img{width:116px;height:auto}
+.as-brand img{width:116px;height:auto}.as-brand img.as-brand-dark{display:none}
 .as-header-actions{display:flex;align-items:center;gap:20px}
 .as-lang{display:flex;gap:4px;align-items:center;font-family:var(--as-display);font-size:9px;color:rgba(243,238,229,.42)}
 .as-lang button{border:0;background:transparent;color:inherit;padding:4px 1px;cursor:pointer}

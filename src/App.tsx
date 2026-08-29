@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from 'react'
+import { Suspense, lazy, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import ArchicHome from './pages/ArchicHome'
 import SiteRouteSeo from './components/SiteRouteSeo'
@@ -35,20 +35,23 @@ function SkipLink() {
 function RouteFallback() {
   const { lang } = useLang()
   return (
-    <div
+    <main
+      id="main-content"
       className="as-route-fallback"
       role="status"
       aria-live="polite"
       aria-label={lang === 'es' ? 'Cargando Archic' : 'Loading Archic'}
+      tabIndex={-1}
     >
       <div><span>ARCHIC</span><i /></div>
-    </div>
+    </main>
   )
 }
 
 function SiteNavigationBehavior() {
   const location = useLocation()
   const navigate = useNavigate()
+  const previousPath = useRef(location.pathname)
 
   useEffect(() => {
     const previous = window.history.scrollRestoration
@@ -69,6 +72,33 @@ function SiteNavigationBehavior() {
     }
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
   }, [location.pathname, location.search, location.hash])
+
+  useEffect(() => {
+    const changedRoute = previousPath.current !== location.pathname
+    previousPath.current = location.pathname
+    if (!changedRoute) return
+
+    let observer: MutationObserver | null = null
+    const focusMain = () => {
+      const main = document.getElementById('main-content')
+      if (!main || main.classList.contains('as-route-fallback')) return false
+      main.focus({ preventScroll: true })
+      return true
+    }
+
+    if (!focusMain()) {
+      observer = new MutationObserver(() => {
+        if (focusMain()) observer?.disconnect()
+      })
+      observer.observe(document.body, { childList: true, subtree: true })
+    }
+
+    const stopWaiting = window.setTimeout(() => observer?.disconnect(), 2500)
+    return () => {
+      observer?.disconnect()
+      window.clearTimeout(stopWaiting)
+    }
+  }, [location.pathname])
 
   useEffect(() => {
     const onDocumentClick = (event: MouseEvent) => {
@@ -169,7 +199,7 @@ function App() {
       <SiteErrorBoundary>
         <div className="site-shell">
           <SkipLink />
-          <main id="main-content">
+          <div className="site-route-content">
             <Suspense fallback={<RouteFallback />}>
               <Routes>
                 <Route path="/" element={<ArchicHome />} />
@@ -193,7 +223,7 @@ function App() {
               </Routes>
               <SiteRouteSeo />
             </Suspense>
-          </main>
+          </div>
         </div>
       </SiteErrorBoundary>
     </LanguageProvider>

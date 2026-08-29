@@ -87,6 +87,12 @@ export default function StudioContact() {
     const investment = String(data.get('investment') ?? q.investmentOptions[0])
     const details = String(data.get('details') ?? '').trim()
 
+    if (!form.checkValidity()) {
+      form.reportValidity()
+      setStatus({ tone: 'error', text: c.errorRequired })
+      return
+    }
+
     if (!name || !revenue || !challenge || !outcome) {
       setStatus({ tone: 'error', text: c.errorRequired })
       return
@@ -269,7 +275,7 @@ export default function StudioContact() {
       </div>
 
       <label className="sx-consent" htmlFor="sx-consent">
-        <input id="sx-consent" type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+        <input id="sx-consent" type="checkbox" required checked={consent} onChange={(e) => setConsent(e.target.checked)} />
         <span>{consentBefore}<a href={LEGAL_PATHS.privacy[lang]}>{n.consentLinkLabel}</a>{consentAfter}</span>
       </label>
 
@@ -278,7 +284,7 @@ export default function StudioContact() {
         <i className="as-arrow" aria-hidden="true" />
       </button>
 
-      {status && <p className="sx-form-msg" data-tone={status.tone} role="status">{status.text}</p>}
+      {status && <p className="sx-form-msg" data-tone={status.tone} role={status.tone === 'error' ? 'alert' : 'status'}>{status.text}</p>}
     </form>
   )
 }

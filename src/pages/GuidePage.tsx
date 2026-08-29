@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import '@fontsource/instrument-serif/latin-400.css'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import StudioExperience from '../components/StudioExperience'
@@ -46,7 +47,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
   const canonical = `${ORIGIN}${guide.path}`
 
   return (
-    <div className="as-site as-editorial-page">
+    <div className="as-site as-editorial-page" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang: 'es' }}>
         <title>{guide.metaTitle}</title>
         <meta name="description" content={guide.description} />
@@ -71,6 +72,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
       <StudioExperience />
       <StudioHeader />
 
+      <main id="main-content" tabIndex={-1}>
       <article>
         <header className="as-article-head">
           <div data-reveal="hero">
@@ -127,6 +129,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
           </div>
         </div>
       </article>
+      </main>
 
       <StudioFooter />
     </div>

@@ -1,10 +1,64 @@
 # Archic — contenido completo
 
-Última actualización: 2026-08-12
+Última actualización: 2026-08-29
 Origen: https://archic.es/
 
-> Archic es un estudio de diseño y desarrollo web con base en Écija (Sevilla, España). Hace tres cosas: diseña y programa páginas web a medida, desarrolla software interno para empresas —inventarios, paneles de producción, automatización de informes— y mantiene esos sistemas una vez publicados. Trabaja de forma presencial en la provincia de Sevilla y en remoto con el resto de España, en castellano e inglés.
+> Archic construye la capa digital de empresas: la presencia que ve el cliente, los sistemas privados que usa el equipo y el software a medida que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.
 
+
+## Modelo de trabajo 2026
+
+- **Archic Presence**: dirección digital, web premium, contenido, conversión y base técnica de búsqueda.
+- **Archic Control**: sistemas privados para clientes, reservas, recursos, disponibilidad y operación.
+- **Archic Business**: software a medida, automatización, integraciones y datos.
+- **Digital Opportunity Audit**: diagnóstico de presencia, conversión, búsqueda y operación para priorizar qué merece construirse primero.
+- **Archic Evolution**: monitorización y mejora continua después del lanzamiento.
+
+## Archic Method
+
+1. Discovery — entender el negocio, el problema y la señal que demostraría una mejora.
+2. Architecture — definir información, recorridos, datos, funcionalidades y dirección antes de multiplicar pantallas.
+3. Build — diseño y desarrollo sobre producto real y navegable.
+4. Validation — QA funcional, mobile, visual, rendimiento, accesibilidad, búsqueda y recorridos críticos.
+5. Evolution — medir, aprender y priorizar mejoras con datos reales.
+
+## Inversión orientativa
+
+- Presence: desde 1.200 €.
+- Control: desde 2.500 €.
+- Business: desde 4.000 €.
+- Evolution: desde 150 €/mes.
+
+Son mínimos orientativos, no paquetes cerrados. El presupuesto final se fija después del diagnóstico y depende del alcance.
+
+## Estándar de evidencia
+
+Los prototipos y concept builds se etiquetan como tales y no se presentan como clientes. Archic solo publica un resultado de negocio como caso de éxito cuando existe una línea base y una fuente de datos que permita demostrarlo. La base Search & AI Readiness incluye metadatos, Schema.org, sitemap, canonicals, crawlability, contenido semántico y llms cuando aporta; no se prometen posiciones ni visibilidad en IA sin evidencia.
+
+
+## Identidad verificable
+
+- Marca: Archic
+- Nombre alternativo: Archic Digital Systems
+- Sitio oficial: https://archic.es/
+- Símbolo oficial vigente: https://archic.es/brand/archic-symbol-2026.svg
+- Lockup oficial vigente: https://archic.es/brand/archic-lockup-dark.svg
+- Identidad vigente desde: 2026-08-12
+- Vadim — Co-Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15
+- Antero — Co-Founder · Growth & Client Partnerships — antero@archic.es — +34 687 50 38 50
+- Base operativa: Écija, Sevilla, Andalucía, España
+- Área de servicio: España
+- Idiomas de trabajo: español e inglés
+
+**Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic.
+
+## Qué hace Archic
+
+- **Archic Presence**: dirección digital, diseño web premium, contenido, experiencia y conversión.
+- **Archic Control**: clientes, reservas, recursos, estados, paneles privados y operación diaria.
+- **Archic Business**: software a medida, automatización, integraciones y sistemas de datos.
+
+Archic diseña estas capas como un sistema cuando el negocio lo necesita. También puede construir una sola capa cuando esa sea la solución correcta.
 ## Cuatro cosas que puedes verificar ahora mismo.
 
 - **0 cookies y peticiones a terceros**: Esta web no instala cookies ni carga nada de servidores ajenos: ni analítica, ni tipografías externas, ni píxeles de redes sociales. Por eso no hay banner de consentimiento que aceptar. Ábrela con las herramientas de desarrollo y compruébalo.
@@ -1141,27 +1195,3 @@ Sí, y es la forma que preferimos. La primera fase debe resolver un flujo comple
 **¿Qué costes quedan después?**
 
 Infraestructura, mantenimiento, soporte y futuras mejoras. Deben aparecer en la propuesta antes de empezar.
-
-## Identidad verificable
-
-- Marca: Archic
-- Nombre alternativo: Archic Digital Systems
-- Sitio oficial: https://archic.es/
-- Símbolo oficial vigente: https://archic.es/brand/archic-symbol-2026.svg
-- Lockup oficial vigente: https://archic.es/brand/archic-lockup-dark.svg
-- Identidad vigente desde: 2026-08-12
-- Vadim — Co-Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15
-- Antero — Co-Founder · Growth & Client Partnerships — antero@archic.es — +34 687 50 38 50
-- Base operativa: Écija, Sevilla, Andalucía, España
-- Área de servicio: España
-- Idiomas de trabajo: español e inglés
-
-**Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic.
-
-## Qué hace Archic
-
-- **Archic Presence**: dirección digital, diseño web premium, contenido, experiencia y conversión.
-- **Archic Control**: clientes, reservas, recursos, estados, paneles privados y operación diaria.
-- **Archic Business**: software a medida, automatización, integraciones y sistemas de datos.
-
-Archic diseña estas capas como un sistema cuando el negocio lo necesita. También puede construir una sola capa cuando esa sea la solución correcta.

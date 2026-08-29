@@ -87,6 +87,10 @@ img {
   top: 12px;
 }
 
+#main-content:focus {
+  outline: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 3px;

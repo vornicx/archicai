@@ -1,5 +1,6 @@
 import { Fragment, type ReactNode } from 'react'
 import { Helmet } from 'react-helmet-async'
+import '@fontsource/instrument-serif/latin-400.css'
 import { useLang } from '../i18n/LanguageContext'
 import { COMPANY, PROCESSORS } from '../legal/company'
 import { LEGAL_DOCS, LEGAL_PATHS, type Block, type LegalDocKey } from '../legal/documents'
@@ -98,7 +99,7 @@ export default function LegalPage({ doc: docKey }: { doc: LegalDocKey }) {
   const otherLang = lang === 'es' ? 'en' : 'es'
 
   return (
-    <div className="as-site as-legal-shell">
+    <div className="as-site as-legal-shell" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang }}>
         <title>{`${doc.title} | ${COMPANY.brand}`}</title>
         <meta name="description" content={doc.intro} />
@@ -118,7 +119,7 @@ export default function LegalPage({ doc: docKey }: { doc: LegalDocKey }) {
       <StudioExperience />
       <StudioHeader />
 
-      <main className="as-legal-main">
+      <main id="main-content" className="as-legal-main" tabIndex={-1}>
         <header data-reveal="hero">
           <div className="as-seo-breadcrumb"><a href={home}>Archic</a><span>/</span><span>{doc.title}</span></div>
           <div className="as-seo-layer">ARCHIC / LEGAL</div>
