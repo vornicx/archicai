@@ -274,6 +274,23 @@
 
 .ah-hero-lower .ah-actions {
   margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.ah-hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.ah-hero-note {
+  max-width: 48ch;
+  color: var(--ah-muted);
+  font: 500 10px/1.45 'IBM Plex Mono', monospace;
+  letter-spacing: 0.025em;
 }
 
 .ah-hero-rail {
@@ -1064,11 +1081,17 @@
 
   .ah-hero-lower .ah-actions {
     margin-top: 24px;
+    align-items: stretch;
   }
 
-  .ah-actions {
-    align-items: stretch;
+  .ah-hero-cta-row {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 14px;
+  }
+
+  .ah-hero-cta-row .ah-text-link {
+    min-height: 44px;
   }
 
   .ah-button {

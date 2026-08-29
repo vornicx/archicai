@@ -46,11 +46,13 @@ type HeroProofItem = {
 const COPY = {
   es: {
     hero: {
-      title: ['Lo que tu cliente ve.', 'Lo que tu negocio necesita.'],
-      lead: 'Presencia digital, sistemas internos y software a medida diseñados como una sola capa. Dirección humana, IA supervisada y código que se entrega.',
-      primary: 'Cuéntanos qué debe cambiar',
-      secondary: 'Ver sistemas',
-      rail: ['Dirección humana', 'IA supervisada', 'Código propio', 'QA real'],
+      kicker: 'ARCHIC / WEB · APPS · SOFTWARE',
+      title: ['Más que una web.', 'Un sistema para crecer.'],
+      lead: 'Diseñamos y desarrollamos webs, web apps y software web a medida para negocios que necesitan vender mejor, operar con menos fricción y crecer sin depender de herramientas que no encajan.',
+      primary: 'Solicitar diagnóstico',
+      secondary: 'Ver proyectos',
+      note: 'Diagnóstico inicial sin coste · Respuesta en 24–48 h laborables.',
+      rail: ['Webs que convierten', 'Web apps a medida', 'Software web', 'Automatización'],
       system: [
         ['Presence', 'Percepción + conversión'],
         ['Control', 'Operación privada'],
@@ -59,8 +61,8 @@ const COPY = {
     },
     work: {
       index: '01 / TRABAJO',
-      title: 'No enseñamos una estética. Enseñamos lo que construiríamos.',
-      body: 'Estos concept builds convierten una oportunidad de negocio en una experiencia navegable: lo público que ve el cliente y el sistema privado que utiliza el equipo.',
+      title: 'Diseñamos la parte visible. Construimos lo que la hace funcionar.',
+      body: 'Estos concept builds muestran cómo convertimos una oportunidad de negocio en un producto navegable: la experiencia que vende y el sistema privado que utiliza el equipo.',
       concept: 'CONCEPT BUILD',
       publicLabel: 'PRESENCE',
       privateLabel: 'CONTROL / BUSINESS',
@@ -68,8 +70,8 @@ const COPY = {
     },
     system: {
       index: '02 / SISTEMA ARCHIC',
-      title: 'Una web puede ser la puerta. No tiene por qué ser el sistema entero.',
-      body: 'Separamos el problema en tres capas para construir solo lo necesario ahora y dejar una arquitectura que pueda crecer después.',
+      title: 'Web, operación y software no deberían vivir separados.',
+      body: 'Unimos presencia, herramientas internas y lógica de negocio para construir lo necesario ahora sin cerrar el camino a lo que vendrá después.',
       lanes: [
         ['01', 'Presence', 'Lo que el mercado percibe', 'Dirección digital, web, contenido, catálogo, captación, reservas o solicitudes. Desde el primer impacto hasta la conversión.'],
         ['02', 'Control', 'Lo que el equipo necesita operar', 'Clientes, reservas, recursos, disponibilidad, estados, propietarios, contenido o cualquier flujo privado que hoy dependa de fricción manual.'],
@@ -119,8 +121,8 @@ const COPY = {
     },
     audit: {
       index: '05 / DIAGNÓSTICO',
-      title: 'Primero encontramos qué merece cambiar.',
-      body: 'No empezamos preguntando “qué web quieres”. Miramos qué ve hoy el cliente, dónde se pierde intención y qué parte de la operación está generando fricción.',
+      title: 'Primero detectamos dónde se pierden ventas y tiempo.',
+      body: 'No empezamos preguntando “qué web quieres”. Revisamos qué ve el cliente, dónde se pierde intención y qué parte de la operación obliga al equipo a trabajar peor.',
       outputs: [
         ['Señal comercial', 'Qué está fallando en percepción, claridad, confianza o conversión.'],
         ['Fricción operativa', 'Qué tareas o pasos manuales podrían resolverse mejor con producto.'],
@@ -141,11 +143,13 @@ const COPY = {
   },
   en: {
     hero: {
-      title: ['What your customer sees.', 'What your business needs.'],
-      lead: 'Digital presence, internal systems and custom software designed as one layer. Human direction, supervised AI and code you own.',
-      primary: 'Tell us what must change',
-      secondary: 'View systems',
-      rail: ['Human direction', 'Supervised AI', 'Owned code', 'Real QA'],
+      kicker: 'ARCHIC / WEB · APPS · SOFTWARE',
+      title: ['More than a website.', 'A system built to grow.'],
+      lead: 'We design and build websites, web apps and custom web software for businesses that need to sell better, operate with less friction and grow beyond tools that no longer fit.',
+      primary: 'Request a diagnosis',
+      secondary: 'View projects',
+      note: 'No-cost initial diagnosis · Reply within 1–2 business days.',
+      rail: ['Websites that convert', 'Custom web apps', 'Web software', 'Automation'],
       system: [
         ['Presence', 'Perception + conversion'],
         ['Control', 'Private operations'],
@@ -154,8 +158,8 @@ const COPY = {
     },
     work: {
       index: '01 / WORK',
-      title: 'We do not show an aesthetic. We show what we would build.',
-      body: 'These concept builds turn a business opportunity into a navigable experience: the public layer the customer sees and the private system the team uses.',
+      title: 'We design the visible layer. We build what makes it work.',
+      body: 'These concept builds show how we turn a business opportunity into a navigable product: the experience that sells and the private system the team uses.',
       concept: 'CONCEPT BUILD',
       publicLabel: 'PRESENCE',
       privateLabel: 'CONTROL / BUSINESS',
@@ -163,8 +167,8 @@ const COPY = {
     },
     system: {
       index: '02 / ARCHIC SYSTEM',
-      title: 'A website can be the door. It does not have to be the whole system.',
-      body: 'We separate the problem into three layers so we build only what is needed now while leaving an architecture that can grow later.',
+      title: 'Web, operations and software should not live apart.',
+      body: 'We connect presence, internal tools and business logic to build what is needed now without closing the path to what comes next.',
       lanes: [
         ['01', 'Presence', 'What the market perceives', 'Digital direction, website, content, catalogue, acquisition, bookings or enquiries. From first impression to conversion.'],
         ['02', 'Control', 'What the team needs to operate', 'Customers, bookings, resources, availability, states, owners, content or any private flow still dependent on manual friction.'],
@@ -214,8 +218,8 @@ const COPY = {
     },
     audit: {
       index: '05 / DIAGNOSIS',
-      title: 'First we find what is worth changing.',
-      body: 'We do not start by asking “what website do you want?”. We look at what customers see today, where intent is lost and which part of the operation creates friction.',
+      title: 'First we find where sales and time are being lost.',
+      body: 'We do not start by asking “what website do you want?”. We review what customers see, where intent is lost and which part of the operation forces the team to work worse.',
       outputs: [
         ['Commercial signal', 'What is failing in perception, clarity, trust or conversion.'],
         ['Operational friction', 'Which tasks or manual steps could be solved better with product.'],
@@ -624,13 +628,16 @@ export default function ArchicHome() {
         <section className="ah-hero" id="home" data-archic-view="hero">
           <div className="ah-shell ah-hero-inner">
             <div className="ah-hero-top" data-reveal="hero">
-              <p>ARCHIC / DIGITAL SYSTEMS</p>
+              <p>{c.hero.kicker}</p>
               <h1><span>{c.hero.title[0]}</span><span>{c.hero.title[1]}</span></h1>
               <div className="ah-hero-lower">
                 <p>{c.hero.lead}</p>
                 <div className="ah-actions">
-                  <a className="ah-button ah-button-gold" href={auditHref} data-archic-intent="hero:audit">{c.hero.primary}</a>
-                  <a className="ah-text-link ah-text-link-light" href="#system" data-archic-intent="hero:system">{c.hero.secondary}<Arrow /></a>
+                  <div className="ah-hero-cta-row">
+                    <a className="ah-button ah-button-gold" href={auditHref} data-archic-intent="hero:audit">{c.hero.primary}</a>
+                    <a className="ah-text-link ah-text-link-light" href="#selected-work" data-archic-intent="hero:work">{c.hero.secondary}<Arrow /></a>
+                  </div>
+                  <small className="ah-hero-note">{c.hero.note}</small>
                 </div>
               </div>
             </div>

@@ -6,7 +6,7 @@ export const BRAND_VERSION = '20260827'
 export const ARCHIC_SYMBOL_URL = `${SITE_ORIGIN}/brand/archic-symbol-2026.svg`
 export const ARCHIC_LOCKUP_URL = `${SITE_ORIGIN}/brand/archic-lockup-dark.svg`
 export const ARCHIC_COMMERCIAL_SUMMARY_ES =
-  'Archic construye la capa digital de empresas: la presencia que ve el cliente, los sistemas privados que usa el equipo y el software a medida que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.'
+  'Archic diseña y desarrolla webs, web apps y software web a medida: la presencia que ve el cliente, los sistemas privados que usa el equipo y la lógica que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.'
 const OG_VERSION = `v=${BRAND_VERSION}`
 
 export const ARCHIC_BASE = {
@@ -28,6 +28,8 @@ export const ARCHIC_SERVICE_AREAS = [
 
 export const ARCHIC_KNOWS_ABOUT = [
   'Premium web design',
+  'Web application development',
+  'Custom web software',
   'Digital presence',
   'Digital opportunity audits',
   'Conversion measurement',
@@ -66,15 +68,15 @@ type SeoEntry = {
 
 export const HOME_SEO: Record<Lang, SeoEntry> = {
   es: {
-    title: 'Sistemas digitales, diseño web premium y software a medida | Archic',
-    description: 'Archic construye la capa digital de empresas: presencia premium, sistemas privados y software a medida. Diagnóstico, desarrollo, QA y evolución continua.',
-    ogAlt: 'Archic — sistemas digitales, diseño web premium y software a medida',
+    title: 'Diseño web, web apps y software a medida | Archic',
+    description: 'Archic diseña y desarrolla webs premium, web apps y software web a medida para vender mejor, reducir fricción operativa y construir una ventaja propia.',
+    ogAlt: 'Archic — diseño web, web apps y software web a medida',
     schemaName: 'Archic',
   },
   en: {
-    title: 'Digital systems, premium web design and custom software | Archic',
-    description: 'Archic builds the digital layer of businesses: premium presence, private operating systems and custom software, from diagnosis to continuous evolution.',
-    ogAlt: 'Archic — digital systems, premium web design and custom software',
+    title: 'Web design, web apps and custom software | Archic',
+    description: 'Archic designs and builds premium websites, web apps and custom web software to improve sales, reduce operational friction and create a lasting advantage.',
+    ogAlt: 'Archic — web design, web apps and custom web software',
     schemaName: 'Archic',
   },
 }

@@ -83,8 +83,10 @@ const explorationRoutes = read('src/pages/ExplorationPage.tsx')
 check(home.includes('data-quality-standard="archic-design-system-1.0.0"'), 'Home declares Archic Design System 1.0.0')
 check(home.includes('ControlDemo'), 'Home contains interactive Archic Control product proof')
 check(
-  home.includes('Lo que tu cliente ve.') && home.includes('Lo que tu negocio necesita.'),
-  'Home carries the approved customer-and-operation positioning statement',
+  home.includes('Más que una web.') &&
+    home.includes('Un sistema para crecer.') &&
+    home.includes('web apps y software web a medida'),
+  'Home carries the approved web, app and custom-software positioning statement',
 )
 check(!home.includes('heroMarbella'), 'Home no longer uses a luxury-property hero image')
 check(!home.includes("from '../assets/work-"), 'Home proof does not depend on unknown-provenance photography')
@@ -179,7 +181,11 @@ check(/User-agent: GPTBot\s+Disallow: \//m.test(robots), 'GPTBot training crawl 
 const llms = read('public/llms.txt')
 const llmsFull = read('public/llms-full.txt')
 check(llms.includes('Última revisión de esta descripción: 2026-08-29.'), 'Public AI summary carries the current content review date')
-check(llms.includes('Archic construye la capa digital de empresas') && llms.includes('## Modelo de trabajo 2026'), 'Public AI summary uses the current Archic commercial model')
+check(
+  llms.includes('Archic diseña y desarrolla webs, web apps y software web a medida') &&
+    llms.includes('## Modelo de trabajo 2026'),
+  'Public AI summary uses the current Archic commercial model',
+)
 check(llms.includes('Archic Presence') && llms.includes('Archic Control') && llms.includes('Archic Business'), 'Public AI summary explains the three Archic layers')
 check(llmsFull.includes('## Identidad verificable') && llmsFull.includes('/brand/archic-symbol-2026.svg'), 'Full AI corpus exposes only the canonical Archic identity')
 check(llmsFull.includes('Los prototipos y concept builds se etiquetan como tales'), 'Full AI corpus carries the evidence policy')
