@@ -6,22 +6,22 @@
     "mode": "production",
     "kind": "marketing",
     "sector": "digital systems, web and custom software studio",
-    "decisionDate": "2026-08-28"
+    "decisionDate": "2026-08-31"
   },
   "direction": {
-    "density": 4,
-    "volume": 2,
-    "geometry": 7,
-    "temperature": 4,
-    "era": 6,
-    "kinetics": 3,
-    "leadMedium": "Type + Data",
+    "density": 3,
+    "volume": 3,
+    "geometry": 4,
+    "temperature": 3,
+    "era": 4,
+    "kinetics": 2,
+    "leadMedium": "Image",
     "distance": 3,
-    "primaryArchetype": "Editorial Spread",
-    "secondaryArchetype": "Dossier",
-    "justification": "Archic must explain a connected digital system and prove it with operational interfaces in the first viewport. Type establishes the commercial promise; data and white-label product UI provide evidence. Editorial Spread creates a recognisable public voice while Dossier rows keep services, method, investment and QA exact and comparable.",
+    "primaryArchetype": "Cinematic Sequence",
+    "secondaryArchetype": "Editorial Spread",
+    "justification": "Archic needs to create desire before explaining process. Photography and large directed product scenes establish perceived quality; editorial typography carries the commercial argument; UI proof appears inside authored compositions instead of becoming the aesthetic itself. The sequence alternates cinematic dark chapters with precise editorial light chapters.",
     "sectorsUnrelatedToPrevious": true,
-    "archetypeRepeatJustification": "This is Archic's own reference implementation. The archetype is selected from its content and proof requirements, not inherited from client work."
+    "archetypeRepeatJustification": "This is Archic's own production site. Cinematic Sequence and Editorial Spread are selected because the approved visual reference relies on art-directed imagery, strong serif hierarchy, portfolio scenes and quiet editorial rhythm rather than technical dashboards."
   },
   "assets": {
     "policy": "verified-production-assets",
@@ -35,7 +35,12 @@
     {
       "area": "legacy exploration photography",
       "status": "resolved — excluded from production",
-      "reason": "The repository does not contain enough source and licence evidence for the legacy JPG and WebP sets. They now live under src/assets/concept, no production route imports them, and all public product proof uses Archic-authored white-label SVG interfaces with explicit demo labels."
+      "reason": "The repository does not contain enough source and licence evidence for the legacy JPG and WebP sets. They remain outside the active production graph."
+    },
+    {
+      "area": "editorial reference photography",
+      "status": "approved with provenance",
+      "reason": "V3 uses named Unsplash License images as non-client art-direction material and clearly avoids presenting representative yacht photography as actual fleet inventory."
     }
   ]
 }
