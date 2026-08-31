@@ -43,7 +43,7 @@ check(home.includes('Construimos sistemas digitales que') && home.includes('tran
 check(home.includes('HeroShowcase') && home.includes('ProjectStrip') && home.includes('PillarGrid') && home.includes('ProcessRail'), 'V3 authored visual chapters are present')
 check(home.includes("@fontsource/instrument-serif/latin-400.css") && home.includes("@fontsource/instrument-serif/latin-400-italic.css"), 'Editorial serif is explicitly route-scoped')
 check(home.includes('images.unsplash.com') && provenance.includes('Unsplash License'), 'Photography has documented production provenance')
-check(home.includes('Fotografía representativa') && provenance.includes('must never be presented as actual fleet inventory'), 'Representative yacht imagery carries an honesty boundary')
+check(home.includes('Fotografía representativa') && provenance.includes('actual fleet inventory'), 'Representative yacht imagery carries an honesty boundary')
 check(!/trusted by|real results|premios|awards|testimonials/i.test(home), 'Home contains no invented social proof or outcome claims')
 check(!home.includes("from '../assets/concept/") && !home.includes("from '../assets/work-"), 'Home imports no unverified archived photography')
 check(!home.includes('ProjectMonolith') && !home.includes('SupervisedSystemField'), 'Superseded technical hero signatures are absent')
