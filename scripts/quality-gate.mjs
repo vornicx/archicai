@@ -85,20 +85,21 @@ const home = present('src/pages/ArchicHomeAAA.tsx') ? read('src/pages/ArchicHome
 const productRoutes = read('src/pages/ArchicSitePage.tsx')
 const explorationRoutes = read('src/pages/ExplorationPage.tsx')
 
-check(homeEntry.includes("export { default } from './ArchicHomeAAA'") || home.includes('aaa-design-world-class-art-direction'), 'Home entry resolves to the AAA art-directed implementation')
-check(home.includes('data-quality-standard="aaa-design-world-class-art-direction"'), 'Home declares the active AAA Design art direction')
+check(homeEntry.includes("export { default } from './ArchicHomeAAA'") || home.includes('aaa-design-art-direction-v2'), 'Home entry resolves to the AAA art-directed implementation')
+check(home.includes('data-quality-standard="aaa-design-art-direction-v2"'), 'Home declares AAA Design Art Direction v2')
 check(
-  home.includes('Diseñamos lo que el cliente ve.') &&
-    home.includes('Construimos el sistema detrás.') &&
-    home.includes('Webs, web apps y software web a medida'),
-  'Home carries the approved Presence / Control / Business positioning',
+  home.includes('Que te vean mejor.') &&
+    home.includes('Que trabajes mejor.') &&
+    home.includes('Diseñamos webs, web apps y software web a medida'),
+  'Home carries the approved perception + operation positioning',
 )
-check(home.includes('SupervisedSystemField'), 'Home contains the Supervised System Field signature')
-check(home.includes('ResponsiveProof'), 'Home contains authored responsive proof')
-check(home.includes('BuildTrace'), 'Home contains the Build / Quality Trace')
-check(home.includes('CONCEPT BUILD'), 'Home explicitly labels selected public work as concept builds')
-check(!home.includes('heroMarbella'), 'Home no longer uses a luxury-property hero image')
+check(home.includes('ProjectMonolith'), 'Home contains the Project Monolith signature')
+check(home.includes('PillarGrid'), 'Home contains the Presence / Control / Business visual system')
+check(home.includes('ProcessRail'), 'Home contains the authored process rail')
+check(home.includes('Concept build') && home.includes('CONCEPT BUILD'), 'Home explicitly labels public work as concept builds')
+check(!home.includes('heroMarbella'), 'Home does not use the legacy luxury-property hero image')
 check(!home.includes("from '../assets/work-"), 'Home proof does not depend on unknown-provenance photography')
+check(!home.includes("from '../assets/concept/"), 'Home imports no archived concept photography')
 check(!productRoutes.includes("from '../assets/work-") && !productRoutes.includes("from '../assets/concept/"), 'Product routes do not depend on archived concept photography')
 check(productRoutes.includes('data-quality-standard="archic-design-system-1.0.0"') && explorationRoutes.includes('data-quality-standard="archic-design-system-1.0.0"'), 'Product and exploration routes declare Design System 1.0.0')
 check(productRoutes.includes('DATOS FICTICIOS / DEMO') && productRoutes.includes('FICTIONAL DATA / DEMO'), 'Product-route proof is explicitly marked as fictional data')
@@ -115,8 +116,10 @@ if (present('public/archic-aaa.css')) {
   check(aaaStyle.includes('--aaa-gold:#c9a56a') && aaaStyle.includes('--aaa-ink:#0a0a0b'), 'AAA home uses canonical Archic black and gold tokens')
   check(!aaaStyle.includes('Instrument Serif'), 'AAA home contains no editorial-serif shortcut')
   check(aaaStyle.includes('@media(prefers-reduced-motion:reduce)'), 'AAA home defines reduced-motion behaviour')
-  check(aaaStyle.includes('.aaa-system-field') && aaaStyle.includes('.aaa-responsive-proof') && aaaStyle.includes('.aaa-build-trace'), 'AAA visual resource families are styled')
-  check(!/magnetic|particle|webgl|glassmorphism/i.test(aaaStyle), 'AAA home avoids banned generic effect fingerprints')
+  check(aaaStyle.includes('.aaa-monolith') && aaaStyle.includes('.aaa-pillars') && aaaStyle.includes('.aaa-work-grid') && aaaStyle.includes('.aaa-process-rail'), 'AAA v2 visual resource families are styled')
+  check(!aaaStyle.includes('.aaa-system-field') && !aaaStyle.includes('.aaa-build-trace'), 'Superseded technical-field visual language is absent')
+  check(!/magnetic|particle|webgl|glassmorphism|radial-gradient/i.test(aaaStyle), 'AAA home avoids banned generic effect fingerprints')
+  check(!aaaStyle.includes('border-radius:'), 'AAA home avoids rounded-card language')
 }
 
 check(present('src/styles/archic-home-system-1.css'), 'Legacy Design System 1.0 home direction layer remains versioned for historical compatibility')
@@ -265,7 +268,7 @@ if (mainJs) {
   check(size <= 150 * 1024, 'Main JS stays under 150 KiB gzip', `${Math.round(size / 1024)} KiB gzip`)
 }
 
-console.log(`\nArchic Quality Gate · AAA Design — ${passes.length} checks passed`)
+console.log(`\nArchic Quality Gate · AAA Design v2 — ${passes.length} checks passed`)
 for (const label of passes) console.log(`  ✓ ${label}`)
 
 if (failures.length) {
