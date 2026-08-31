@@ -12,359 +12,214 @@ type Lang = 'es' | 'en'
 
 type WorkItem = {
   name: string
-  kind: string
+  sector: string
+  scope: string
   image: string
   href: string
-  code: string
-  publicLayer: string
-  privateLayer: string
+  index: string
 }
 
 const COPY = {
   es: {
     hero: {
-      overline: 'ARCHIC / PRESENCE · CONTROL · BUSINESS',
-      title: ['Diseñamos lo que el cliente ve.', 'Construimos el sistema detrás.'],
-      lead: 'Webs, web apps y software web a medida para negocios que necesitan vender mejor, operar con menos fricción y crecer sin encajar a la fuerza en herramientas genéricas.',
-      primary: 'Solicitar diagnóstico',
-      secondary: 'Ver concept builds',
-      note: 'La IA acelera la ejecución. La dirección humana decide qué merece salir.',
+      title: ['Que te vean mejor.', 'Que trabajes mejor.'],
+      lead: 'Diseñamos webs, web apps y software web a medida para transformar cómo tu negocio se presenta, vende y opera.',
+      primary: 'Cuéntanos tu proyecto',
+      secondary: 'Ver trabajo',
+      note: 'Dirección humana · IA supervisada · QA real',
+      stage: 'Una experiencia pública y el sistema que la sostiene.',
     },
-    field: {
-      title: 'Cada capa, bajo dirección.',
-      body: 'Presence atrae y convierte. Control organiza la operación. Business conecta lógica, datos y automatización.',
-      labels: ['PRESENCE', 'CONTROL', 'BUSINESS'],
-      proof: ['DISEÑO', 'OPERACIÓN', 'SOFTWARE'],
+    rail: ['Dirección digital', 'Webs', 'Web apps', 'Software web'],
+    system: {
+      title: 'Tres capas. Una dirección.',
+      body: 'No vendemos páginas sueltas. Diseñamos la capa que más impacto tiene ahora y dejamos preparada la siguiente.',
+      items: [
+        ['Presence', 'Que te entiendan y te elijan.', 'Dirección visual, contenido, captación, catálogo, reservas y experiencia pública.'],
+        ['Control', 'Que el negocio esté bajo control.', 'Clientes, recursos, reservas, disponibilidad, estados y flujos internos.'],
+        ['Business', 'Que el software se adapte a ti.', 'Software web, automatización e integraciones cuando lo genérico deja de encajar.'],
+      ],
     },
     work: {
-      index: '01 / TRABAJO',
-      title: 'El trabajo se enseña grande.',
-      body: 'Concept builds navegables que muestran cómo una oportunidad se convierte en experiencia pública y sistema operativo privado. Sin logos inventados, sin resultados fabricados.',
-      concept: 'CONCEPT BUILD',
-      publicLabel: 'PRESENCE',
-      privateLabel: 'CONTROL / BUSINESS',
-      open: 'Explorar proyecto',
-    },
-    system: {
-      index: '02 / SISTEMA ARCHIC',
-      title: 'Tres capas. Un solo negocio.',
-      body: 'No tratamos web, operación y software como encargos aislados. Diseñamos la capa que hace falta ahora sin bloquear la siguiente.',
-      layers: [
-        ['01', 'Presence', 'Percepción + conversión', 'Dirección digital, contenido, catálogo, captación, reservas y experiencia pública.'],
-        ['02', 'Control', 'Operación privada', 'Clientes, reservas, recursos, disponibilidad, estados, propietarios y flujos internos.'],
-        ['03', 'Business', 'Lógica propia', 'Software web, automatización, integraciones y datos cuando lo estándar deja de encajar.'],
-      ],
-    },
-    responsive: {
-      index: '03 / COMPOSICIÓN',
-      title: 'Responsive no significa encoger.',
-      body: 'La misma intención se recompone para cada ancho. Jerarquía, crop, navegación y densidad cambian; la identidad no desaparece en móvil.',
-      views: ['DESKTOP', 'TABLET', 'MOBILE'],
+      title: 'Trabajo que se puede abrir.',
+      body: 'Concept builds navegables. Nada de renders vacíos ni resultados inventados.',
+      concept: 'Concept build',
+      open: 'Abrir proyecto',
     },
     method: {
-      index: '04 / MÉTODO + QUALITY STANDARD',
-      title: 'El proyecto avanza por decisiones verificables.',
-      body: 'Primero entendemos. Después dirigimos. Construimos sobre producto real y lo forzamos hasta encontrar dónde falla.',
+      title: 'Menos teatro. Más decisiones.',
+      body: 'Entendemos el negocio, elegimos una dirección, construimos sobre producto real y lo sometemos a QA antes de darlo por terminado.',
       steps: [
-        ['01', 'Diagnóstico', 'Negocio, cliente, operación, competencia, restricciones y señal de valor.'],
-        ['02', 'Dirección', 'Arquitectura, recorridos, contenido, datos y mundo visual antes de multiplicar pantallas.'],
-        ['03', 'Construcción', 'Diseño y desarrollo avanzan juntos sobre una experiencia real y navegable.'],
-        ['04', 'Stress / QA', 'Mobile, recorrido crítico, visual, rendimiento, accesibilidad, búsqueda y estados.'],
-        ['05', 'Evolución', 'Lo que ocurra en uso real decide el siguiente movimiento.'],
+        ['01', 'Entender', 'Negocio, cliente, operación y oportunidad.'],
+        ['02', 'Dirigir', 'Arquitectura, contenido y mundo visual.'],
+        ['03', 'Construir', 'Diseño y desarrollo sobre una experiencia real.'],
+        ['04', 'Forzar', 'Mobile, rendimiento, accesibilidad y recorrido crítico.'],
+        ['05', 'Lanzar', 'Producción, medición y siguiente decisión.'],
       ],
-      gates: ['Mobile específico', 'Recorrido crítico', 'QA visual', 'Rendimiento', 'Accesibilidad', 'Search + AI', 'Integridad'],
-      foot: 'Si no supera el estándar, no cuenta como terminado.',
     },
     investment: {
-      index: '05 / INVERSIÓN',
-      title: 'Puntos de entrada claros. El alcance viene después.',
-      body: 'No convertimos negocios distintos en paquetes idénticos. Estos mínimos indican desde dónde empieza cada tipo de sistema.',
+      title: 'Empezamos donde tiene sentido.',
+      body: 'Cada negocio necesita una mezcla distinta. Estos son los puntos de entrada actuales.',
       from: 'desde',
       items: [
-        ['Presence', '1.200 €', 'Presencia digital premium'],
-        ['Control', '2.500 €', 'Sistema privado de operación'],
-        ['Business', '4.000 €', 'Software web a medida'],
+        ['Presence', '1.200 €', 'Presencia digital'],
+        ['Control', '2.500 €', 'Operación privada'],
+        ['Business', '4.000 €', 'Software web'],
         ['Evolution', '150 €/mes', 'Mejora continua'],
       ],
       note: 'Mínimos orientativos · IVA no incluido · presupuesto final tras diagnóstico',
     },
-    audit: {
-      index: '06 / DIAGNÓSTICO',
-      title: ['Antes de diseñar,', 'encontramos qué debe cambiar.'],
-      body: 'Revisamos qué ve el cliente, dónde se pierde intención y qué parte de la operación obliga al equipo a trabajar peor. Después decidimos qué merece construirse primero.',
-      primary: 'Solicitar diagnóstico',
+    close: {
+      title: ['Si tu negocio ya creció,', 'que se note.'],
+      body: 'Cuéntanos qué quieres vender, ordenar o construir. Te diremos por dónde empezar.',
+      primary: 'Cuéntanos tu proyecto',
       phone: 'Llamar',
-      note: 'Sin coste para proyectos con encaje. Si no somos la solución correcta, te lo diremos.',
+      note: 'Sin coste para proyectos con encaje.',
     },
   },
   en: {
     hero: {
-      overline: 'ARCHIC / PRESENCE · CONTROL · BUSINESS',
-      title: ['We design what customers see.', 'We build the system behind it.'],
-      lead: 'Websites, web apps and custom web software for businesses that need to sell better, operate with less friction and grow beyond generic tools that no longer fit.',
-      primary: 'Request a diagnosis',
-      secondary: 'View concept builds',
-      note: 'AI accelerates execution. Human direction decides what deserves to ship.',
+      title: ['Look better.', 'Work better.'],
+      lead: 'We design websites, web apps and custom web software that transform how your business presents itself, sells and operates.',
+      primary: 'Tell us about your project',
+      secondary: 'See the work',
+      note: 'Human direction · Supervised AI · Real QA',
+      stage: 'A public experience and the system that supports it.',
     },
-    field: {
-      title: 'Every layer, under direction.',
-      body: 'Presence attracts and converts. Control organizes operations. Business connects logic, data and automation.',
-      labels: ['PRESENCE', 'CONTROL', 'BUSINESS'],
-      proof: ['DESIGN', 'OPERATIONS', 'SOFTWARE'],
+    rail: ['Digital direction', 'Websites', 'Web apps', 'Web software'],
+    system: {
+      title: 'Three layers. One direction.',
+      body: 'We do not sell isolated pages. We design the layer with the highest impact now and leave the next one ready.',
+      items: [
+        ['Presence', 'Be understood. Be chosen.', 'Visual direction, content, acquisition, catalogues, bookings and public experience.'],
+        ['Control', 'Keep the operation under control.', 'Customers, resources, bookings, availability, states and internal workflows.'],
+        ['Business', 'Make software fit the business.', 'Web software, automation and integrations when generic tools stop fitting.'],
+      ],
     },
     work: {
-      index: '01 / WORK',
-      title: 'Show the work at full scale.',
-      body: 'Navigable concept builds showing how an opportunity becomes a public experience and a private operating system. No invented logos, no fabricated outcomes.',
-      concept: 'CONCEPT BUILD',
-      publicLabel: 'PRESENCE',
-      privateLabel: 'CONTROL / BUSINESS',
-      open: 'Explore project',
-    },
-    system: {
-      index: '02 / ARCHIC SYSTEM',
-      title: 'Three layers. One business.',
-      body: 'We do not treat website, operations and software as isolated jobs. We design the layer needed now without blocking the next one.',
-      layers: [
-        ['01', 'Presence', 'Perception + conversion', 'Digital direction, content, catalogue, acquisition, bookings and public experience.'],
-        ['02', 'Control', 'Private operations', 'Customers, bookings, resources, availability, states, owners and internal flows.'],
-        ['03', 'Business', 'Own logic', 'Web software, automation, integrations and data when standard tools stop fitting.'],
-      ],
-    },
-    responsive: {
-      index: '03 / COMPOSITION',
-      title: 'Responsive does not mean shrink.',
-      body: 'The same intent is recomposed for each width. Hierarchy, crop, navigation and density change; the identity does not disappear on mobile.',
-      views: ['DESKTOP', 'TABLET', 'MOBILE'],
+      title: 'Work you can actually open.',
+      body: 'Navigable concept builds. No empty renders and no fabricated outcomes.',
+      concept: 'Concept build',
+      open: 'Open project',
     },
     method: {
-      index: '04 / METHOD + QUALITY STANDARD',
-      title: 'The project advances through verifiable decisions.',
-      body: 'First we understand. Then we direct. We build on the real product and stress it until we find where it fails.',
+      title: 'Less theatre. More decisions.',
+      body: 'We understand the business, choose a direction, build on the real product and push it through QA before calling it finished.',
       steps: [
-        ['01', 'Diagnosis', 'Business, customer, operation, competition, constraints and a signal of value.'],
-        ['02', 'Direction', 'Architecture, journeys, content, data and visual world before multiplying screens.'],
-        ['03', 'Build', 'Design and development move together on a real navigable experience.'],
-        ['04', 'Stress / QA', 'Mobile, critical journey, visual quality, performance, accessibility, search and states.'],
-        ['05', 'Evolution', 'What happens in real use decides the next move.'],
+        ['01', 'Understand', 'Business, customer, operation and opportunity.'],
+        ['02', 'Direct', 'Architecture, content and visual world.'],
+        ['03', 'Build', 'Design and development on a real experience.'],
+        ['04', 'Stress', 'Mobile, performance, accessibility and critical journey.'],
+        ['05', 'Launch', 'Production, measurement and the next decision.'],
       ],
-      gates: ['Mobile-specific', 'Critical journey', 'Visual QA', 'Performance', 'Accessibility', 'Search + AI', 'Integrity'],
-      foot: 'If it does not pass the standard, it is not finished.',
     },
     investment: {
-      index: '05 / INVESTMENT',
-      title: 'Clear entry points. Scope comes after understanding.',
-      body: 'We do not force different businesses into identical packages. These minimums show where each system type starts.',
+      title: 'Start where it makes sense.',
+      body: 'Every business needs a different mix. These are our current entry points.',
       from: 'from',
       items: [
-        ['Presence', '€1,200', 'Premium digital presence'],
-        ['Control', '€2,500', 'Private operations system'],
-        ['Business', '€4,000', 'Custom web software'],
+        ['Presence', '€1,200', 'Digital presence'],
+        ['Control', '€2,500', 'Private operations'],
+        ['Business', '€4,000', 'Web software'],
         ['Evolution', '€150/mo', 'Continuous improvement'],
       ],
       note: 'Indicative minimums · VAT not included · final quote after diagnosis',
     },
-    audit: {
-      index: '06 / DIAGNOSIS',
-      title: ['Before design,', 'we find what must change.'],
-      body: 'We review what customers see, where intent is lost and which part of the operation forces the team to work worse. Then we decide what deserves to be built first.',
-      primary: 'Request a diagnosis',
+    close: {
+      title: ['If the business has grown,', 'it should look like it.'],
+      body: 'Tell us what you need to sell, organise or build. We will tell you where to start.',
+      primary: 'Tell us about your project',
       phone: 'Call',
-      note: 'No cost for projects with fit. If we are not the right solution, we will say so.',
+      note: 'No cost for projects with fit.',
     },
   },
 } as const
 
 const WORK: Record<Lang, WorkItem[]> = {
   es: [
-    {
-      name: 'Marbella For Sale',
-      kind: 'Real estate de alta gama',
-      image: '/software/real-estate-preview.svg',
-      href: '/explorations/real-estate/',
-      code: '01 / REAL ESTATE',
-      publicLayer: 'Portfolio editorial, búsqueda, comparación y captación de enquiry.',
-      privateLayer: 'Owner Studio, propiedades, leads y seguimiento en un mismo sistema.',
-    },
-    {
-      name: 'La Bocana',
-      kind: 'Hospitality / Puerto Banús',
-      image: '/software/hospitality-preview.svg',
-      href: '/explorations/hospitality/',
-      code: '02 / HOSPITALITY',
-      publicLayer: 'Presencia, carta, reserva y experiencia de marca conectadas.',
-      privateLayer: 'Reservas, sala, clientes, disponibilidad y operación diaria.',
-    },
-    {
-      name: 'Five Star Rentals',
-      kind: 'Luxury mobility',
-      image: '/software/mobility-preview.svg',
-      href: '/explorations/mobility/',
-      code: '03 / MOBILITY',
-      publicLayer: 'Flota, fichas, galerías y solicitud con lenguaje de producto premium.',
-      privateLayer: 'Owner access, disponibilidad, ofertas y gestión de solicitudes.',
-    },
+    { name: 'Marbella For Sale', sector: 'Real estate', scope: 'Presence + Owner Studio', image: '/software/real-estate-preview.svg', href: '/explorations/real-estate/', index: '01' },
+    { name: 'La Bocana', sector: 'Hospitality', scope: 'Presence + Reservas', image: '/software/hospitality-preview.svg', href: '/explorations/hospitality/', index: '02' },
+    { name: 'Five Star Rentals', sector: 'Mobility', scope: 'Flota + Owner access', image: '/software/mobility-preview.svg', href: '/explorations/mobility/', index: '03' },
   ],
   en: [
-    {
-      name: 'Marbella For Sale',
-      kind: 'High-end real estate',
-      image: '/software/real-estate-preview.svg',
-      href: '/en/explorations/real-estate/',
-      code: '01 / REAL ESTATE',
-      publicLayer: 'Editorial portfolio, search, comparison and enquiry capture.',
-      privateLayer: 'Owner Studio, properties, leads and follow-up in one system.',
-    },
-    {
-      name: 'La Bocana',
-      kind: 'Hospitality / Puerto Banús',
-      image: '/software/hospitality-preview.svg',
-      href: '/en/explorations/hospitality/',
-      code: '02 / HOSPITALITY',
-      publicLayer: 'Presence, menu, booking and brand experience connected.',
-      privateLayer: 'Bookings, floor, customers, availability and daily operations.',
-    },
-    {
-      name: 'Five Star Rentals',
-      kind: 'Luxury mobility',
-      image: '/software/mobility-preview.svg',
-      href: '/en/explorations/mobility/',
-      code: '03 / MOBILITY',
-      publicLayer: 'Fleet, detail pages, galleries and enquiries with premium product language.',
-      privateLayer: 'Owner access, availability, offers and enquiry management.',
-    },
+    { name: 'Marbella For Sale', sector: 'Real estate', scope: 'Presence + Owner Studio', image: '/software/real-estate-preview.svg', href: '/en/explorations/real-estate/', index: '01' },
+    { name: 'La Bocana', sector: 'Hospitality', scope: 'Presence + Bookings', image: '/software/hospitality-preview.svg', href: '/en/explorations/hospitality/', index: '02' },
+    { name: 'Five Star Rentals', sector: 'Mobility', scope: 'Fleet + Owner access', image: '/software/mobility-preview.svg', href: '/en/explorations/mobility/', index: '03' },
   ],
 }
+
+const PILLAR_ASSETS = ['/software/real-estate-preview.svg', '/software/hospitality-preview.svg', '/software/mobility-preview.svg']
 
 function Arrow() {
   return <i className="as-arrow" aria-hidden="true" />
 }
 
-function WorkFeature({ item, lang, index }: { item: WorkItem; lang: Lang; index: number }) {
-  const c = COPY[lang].work
+function ProjectMonolith({ lang }: { lang: Lang }) {
+  const c = COPY[lang].hero
   return (
-    <article className="aaa-work-item" data-side={index % 2 === 0 ? 'left' : 'right'}>
-      <a className="aaa-work-media" href={item.href} data-archic-intent={`work:${item.name}`}>
-        <img src={item.image} alt="" loading={index === 0 ? 'eager' : 'lazy'} />
-        <span>{item.code}</span>
-      </a>
-      <div className="aaa-work-copy">
-        <div className="aaa-work-meta"><span>{item.kind}</span><span>{c.concept}</span></div>
-        <h3>{item.name}</h3>
-        <dl>
-          <div><dt>{c.publicLabel}</dt><dd>{item.publicLayer}</dd></div>
-          <div><dt>{c.privateLabel}</dt><dd>{item.privateLayer}</dd></div>
-        </dl>
-        <a className="aaa-inline-link" href={item.href} data-archic-intent={`work-open:${item.name}`}>{c.open}<Arrow /></a>
+    <div className="aaa-monolith" aria-hidden="true">
+      <div className="aaa-monolith-shadow" />
+      <div className="aaa-monolith-object">
+        <div className="aaa-monolith-bar"><span>ARCHIC / CONCEPT BUILD</span><b>01</b></div>
+        <div className="aaa-monolith-media"><img src="/software/real-estate-preview.svg" alt="" /></div>
+        <div className="aaa-monolith-foot"><strong>{c.stage}</strong><span>PRESENCE / CONTROL</span></div>
       </div>
-    </article>
-  )
-}
-
-function SupervisedSystemField({ lang }: { lang: Lang }) {
-  const c = COPY[lang].field
-  return (
-    <div className="aaa-system-field" aria-hidden="true">
-      <div className="aaa-field-grid" />
-      <div className="aaa-field-measure aaa-field-measure-a"><span>1440</span></div>
-      <div className="aaa-field-measure aaa-field-measure-b"><span>390</span></div>
-
-      <figure className="aaa-field-plane aaa-field-plane-presence">
-        <img src="/software/real-estate-preview.svg" alt="" />
-        <figcaption><b>01</b><span>{c.labels[0]}</span><small>{c.proof[0]}</small></figcaption>
-      </figure>
-
-      <figure className="aaa-field-plane aaa-field-plane-control">
-        <img src="/software/hospitality-preview.svg" alt="" />
-        <figcaption><b>02</b><span>{c.labels[1]}</span><small>{c.proof[1]}</small></figcaption>
-      </figure>
-
-      <figure className="aaa-field-plane aaa-field-plane-business">
-        <img src="/software/mobility-preview.svg" alt="" />
-        <figcaption><b>03</b><span>{c.labels[2]}</span><small>{c.proof[2]}</small></figcaption>
-      </figure>
-
-      <svg className="aaa-field-trace" viewBox="0 0 760 560" fill="none">
-        <path d="M70 438 L178 438 L226 382 L348 382 L414 302 L534 302 L596 224 L694 224" />
-        <circle cx="178" cy="438" r="5" />
-        <circle cx="348" cy="382" r="5" />
-        <circle cx="534" cy="302" r="5" />
-        <circle cx="694" cy="224" r="6" className="is-gold" />
-      </svg>
-
-      <div className="aaa-field-caption"><strong>{c.title}</strong><p>{c.body}</p></div>
-      <div className="aaa-field-stamp"><span>ARCHIC</span><b>QUALITY / DIRECTED</b></div>
+      <span className="aaa-monolith-edge" />
+      <span className="aaa-monolith-orbit aaa-monolith-orbit-a" />
+      <span className="aaa-monolith-orbit aaa-monolith-orbit-b" />
     </div>
   )
 }
 
-function SystemDiagram({ lang }: { lang: Lang }) {
+function PillarGrid({ lang }: { lang: Lang }) {
   const c = COPY[lang].system
   return (
-    <div className="aaa-system-diagram">
-      <div className="aaa-system-core">
-        <span>ARCHIC</span>
-        <strong>{lang === 'es' ? 'Un negocio / varias capas' : 'One business / multiple layers'}</strong>
-      </div>
-      {c.layers.map(([no, name, meta, body], index) => (
-        <a className="aaa-system-layer" href={lang === 'en' ? `/en/${name.toLowerCase()}/` : `/${name.toLowerCase()}/`} key={name} data-layer={index + 1}>
-          <span>{no}</span>
-          <div><small>{meta}</small><h3>{name}</h3><p>{body}</p></div>
-          <Arrow />
+    <div className="aaa-pillars">
+      {c.items.map(([name, headline, body], index) => (
+        <a className="aaa-pillar" href={lang === 'en' ? `/en/${name.toLowerCase()}/` : `/${name.toLowerCase()}/`} key={name}>
+          <div className="aaa-pillar-copy">
+            <span>0{index + 1}</span>
+            <h3>{name}</h3>
+            <strong>{headline}</strong>
+            <p>{body}</p>
+            <Arrow />
+          </div>
+          <div className="aaa-pillar-media"><img src={PILLAR_ASSETS[index]} alt="" loading="lazy" /></div>
         </a>
       ))}
     </div>
   )
 }
 
-function ResponsiveProof({ lang }: { lang: Lang }) {
-  const c = COPY[lang].responsive
-  const assets = ['/software/real-estate-preview.svg', '/software/hospitality-preview.svg', '/software/mobility-preview.svg']
+function WorkCard({ item, featured, lang }: { item: WorkItem; featured?: boolean; lang: Lang }) {
+  const c = COPY[lang].work
   return (
-    <div className="aaa-responsive-proof" aria-hidden="true">
-      {c.views.map((label, index) => (
-        <figure key={label} data-view={index}>
-          <div><img src={assets[index]} alt="" loading="lazy" /></div>
-          <figcaption><span>0{index + 1}</span><b>{label}</b></figcaption>
-        </figure>
-      ))}
-      <svg viewBox="0 0 1100 250" fill="none">
-        <path d="M44 190 H290 C340 190 354 94 426 94 H642 C716 94 714 166 790 166 H1042" />
-      </svg>
-    </div>
+    <article className={`aaa-work-card${featured ? ' is-featured' : ''}`}>
+      <a className="aaa-work-image" href={item.href} data-archic-intent={`work:${item.name}`}>
+        <img src={item.image} alt={`${item.name} · ${c.concept}`} loading={featured ? 'eager' : 'lazy'} />
+        <span>{c.concept}</span>
+      </a>
+      <div className="aaa-work-info">
+        <span>{item.index}</span>
+        <div><small>{item.sector}</small><h3>{item.name}</h3><p>{item.scope}</p></div>
+        <a href={item.href} aria-label={`${c.open}: ${item.name}`} data-archic-intent={`work-open:${item.name}`}><Arrow /></a>
+      </div>
+    </article>
   )
 }
 
-function BuildTrace({ lang }: { lang: Lang }) {
+function ProcessRail({ lang }: { lang: Lang }) {
   const c = COPY[lang].method
   return (
-    <div className="aaa-build-trace">
-      <div className="aaa-build-path" aria-hidden="true">
-        <svg viewBox="0 0 1200 430" fill="none">
-          <path className="trace-base" d="M64 332 H208 L274 246 H452 L516 160 H704 L770 244 H952 L1018 160 H1144" />
-          <path className="trace-active" d="M64 332 H208 L274 246 H452 L516 160 H704" />
-          {[['64','332'],['274','246'],['516','160'],['770','244'],['1018','160']].map(([x,y], index) => <circle key={x} cx={x} cy={y} r={index === 3 ? 8 : 6} />)}
-        </svg>
-        <div className="aaa-trace-gates">
-          {c.gates.map((gate, index) => <span key={gate} style={{ '--i': index } as React.CSSProperties}><b>✓</b>{gate}</span>)}
-        </div>
-      </div>
-      <div className="aaa-method-steps">
-        {c.steps.map(([no, phase, body]) => (
-          <article key={no}><span>{no}</span><div><h3>{phase}</h3><p>{body}</p></div></article>
-        ))}
-      </div>
-      <p className="aaa-method-foot">{c.foot}</p>
+    <div className="aaa-process-rail">
+      {c.steps.map(([no, title, body]) => (
+        <article key={no}>
+          <span>{no}</span>
+          <i aria-hidden="true" />
+          <h3>{title}</h3>
+          <p>{body}</p>
+        </article>
+      ))}
     </div>
-  )
-}
-
-function SectionHead({ index, title, body, dark = false }: { index: string; title: string; body: string; dark?: boolean }) {
-  return (
-    <header className={`aaa-section-head${dark ? ' is-dark' : ''}`}>
-      <p>{index}</p>
-      <div><h2>{title}</h2><p>{body}</p></div>
-    </header>
   )
 }
 
@@ -379,7 +234,7 @@ export default function ArchicHomeAAA() {
   const auditHref = currentLang === 'en' ? '/en/contact/?intent=audit' : '/contact/?intent=audit'
 
   return (
-    <div className="as-site aaa-site" data-quality-standard="aaa-design-world-class-art-direction">
+    <div className="as-site aaa-site" data-quality-standard="aaa-design-art-direction-v2">
       <Helmet htmlAttributes={{ lang: currentLang }}>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
@@ -410,80 +265,91 @@ export default function ArchicHomeAAA() {
 
       <main id="main-content" className="aaa-main" tabIndex={-1}>
         <section className="aaa-hero" id="home" data-archic-view="hero">
+          <div className="aaa-hero-rule" aria-hidden="true" />
           <div className="aaa-shell aaa-hero-shell">
             <div className="aaa-hero-copy">
-              <p className="aaa-overline">{c.hero.overline}</p>
               <h1><span>{c.hero.title[0]}</span><span>{c.hero.title[1]}</span></h1>
-              <p className="aaa-hero-lead">{c.hero.lead}</p>
+              <p>{c.hero.lead}</p>
               <div className="aaa-hero-actions">
-                <a className="aaa-button aaa-button-gold" href={auditHref} data-archic-intent="hero:audit">{c.hero.primary}</a>
-                <a className="aaa-inline-link is-light" href="#selected-work" data-archic-intent="hero:work">{c.hero.secondary}<Arrow /></a>
+                <a className="aaa-button aaa-button-light" href={auditHref} data-archic-intent="hero:audit">{c.hero.primary}<Arrow /></a>
+                <a className="aaa-text-link" href="#selected-work" data-archic-intent="hero:work">{c.hero.secondary}<Arrow /></a>
               </div>
               <small>{c.hero.note}</small>
             </div>
-            <SupervisedSystemField lang={currentLang} />
+            <ProjectMonolith lang={currentLang} />
+          </div>
+        </section>
+
+        <div className="aaa-capability-rail" aria-label={currentLang === 'es' ? 'Capacidades' : 'Capabilities'}>
+          <div className="aaa-shell">{c.rail.map((item, index) => <span key={item}><b>0{index + 1}</b>{item}</span>)}</div>
+        </div>
+
+        <section className="aaa-system aaa-section" id="system" data-archic-view="system">
+          <div className="aaa-shell">
+            <header className="aaa-intro">
+              <h2>{c.system.title}</h2>
+              <p>{c.system.body}</p>
+            </header>
+            <PillarGrid lang={currentLang} />
           </div>
         </section>
 
         <section className="aaa-work aaa-section" id="selected-work" data-archic-view="selected-work">
           <div className="aaa-shell">
-            <SectionHead index={c.work.index} title={c.work.title} body={c.work.body} />
-            <div className="aaa-work-list">
-              {WORK[currentLang].map((item, index) => <WorkFeature key={item.name} item={item} lang={currentLang} index={index} />)}
+            <header className="aaa-intro is-light">
+              <h2>{c.work.title}</h2>
+              <p>{c.work.body}</p>
+            </header>
+            <div className="aaa-work-grid">
+              <WorkCard item={WORK[currentLang][0]} featured lang={currentLang} />
+              <div className="aaa-work-pair">
+                <WorkCard item={WORK[currentLang][1]} lang={currentLang} />
+                <WorkCard item={WORK[currentLang][2]} lang={currentLang} />
+              </div>
             </div>
-          </div>
-        </section>
-
-        <section className="aaa-system aaa-section" id="system" data-archic-view="system">
-          <div className="aaa-shell">
-            <SectionHead index={c.system.index} title={c.system.title} body={c.system.body} dark />
-            <SystemDiagram lang={currentLang} />
-          </div>
-        </section>
-
-        <section className="aaa-responsive aaa-section" data-archic-view="responsive-proof">
-          <div className="aaa-shell">
-            <SectionHead index={c.responsive.index} title={c.responsive.title} body={c.responsive.body} />
-            <ResponsiveProof lang={currentLang} />
           </div>
         </section>
 
         <section className="aaa-method aaa-section" id="method" data-archic-view="method-quality">
           <div className="aaa-shell">
-            <SectionHead index={c.method.index} title={c.method.title} body={c.method.body} dark />
-            <BuildTrace lang={currentLang} />
+            <header className="aaa-intro">
+              <h2>{c.method.title}</h2>
+              <p>{c.method.body}</p>
+            </header>
+            <ProcessRail lang={currentLang} />
           </div>
         </section>
 
         <section className="aaa-investment aaa-section" id="investment" data-archic-view="investment">
-          <div className="aaa-shell">
-            <SectionHead index={c.investment.index} title={c.investment.title} body={c.investment.body} />
-            <div className="aaa-price-table">
-              {c.investment.items.map(([name, price, subtitle], index) => (
+          <div className="aaa-shell aaa-investment-grid">
+            <header>
+              <h2>{c.investment.title}</h2>
+              <p>{c.investment.body}</p>
+            </header>
+            <div className="aaa-price-list">
+              {c.investment.items.map(([name, price, subtitle]) => (
                 <a href={auditHref} key={name} data-archic-intent={`investment:${name}`}>
-                  <span>0{index + 1}</span>
                   <div><h3>{name}</h3><p>{subtitle}</p></div>
                   <small>{c.investment.from}</small>
                   <strong>{price}</strong>
                   <Arrow />
                 </a>
               ))}
+              <p className="aaa-price-note">{c.investment.note}</p>
             </div>
-            <p className="aaa-price-note">{c.investment.note}</p>
           </div>
         </section>
 
-        <section className="aaa-audit" id="audit" data-archic-view="audit">
-          <div className="aaa-shell aaa-audit-grid">
-            <p className="aaa-audit-index">{c.audit.index}</p>
-            <div className="aaa-audit-title"><h2>{c.audit.title[0]}<span>{c.audit.title[1]}</span></h2></div>
-            <div className="aaa-audit-copy">
-              <p>{c.audit.body}</p>
-              <div>
-                <a className="aaa-button aaa-button-ink" href={auditHref} data-archic-intent="audit:request">{c.audit.primary}</a>
-                <a className="aaa-inline-link" href={`tel:${CONTACT_PHONE}`} data-archic-intent="audit:call">{c.audit.phone} · {CONTACT_PHONE_DISPLAY}<Arrow /></a>
+        <section className="aaa-close" id="audit" data-archic-view="audit">
+          <div className="aaa-shell aaa-close-grid">
+            <h2>{c.close.title[0]}<span>{c.close.title[1]}</span></h2>
+            <div>
+              <p>{c.close.body}</p>
+              <div className="aaa-close-actions">
+                <a className="aaa-button aaa-button-ink" href={auditHref} data-archic-intent="audit:request">{c.close.primary}<Arrow /></a>
+                <a className="aaa-text-link is-ink" href={`tel:${CONTACT_PHONE}`} data-archic-intent="audit:call">{c.close.phone} · {CONTACT_PHONE_DISPLAY}<Arrow /></a>
               </div>
-              <small>{c.audit.note}</small>
+              <small>{c.close.note}</small>
             </div>
           </div>
         </section>
