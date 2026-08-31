@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import { gzipSync } from 'node:zlib'
 
 const ROOT = resolve(process.cwd())
@@ -30,6 +30,9 @@ check(present('ARCHIC_QUALITY_STANDARD_2026.md'), 'Internal quality standard is 
 check(present('ARCHIC_PUBLIC_QUALITY_STANDARD_2026.2.md'), 'Public quality standard is versioned in the repository')
 check(present('ARCHIC_DESIGN_SYSTEM_IMPLEMENTATION.md'), 'Design System 1.0 implementation record is versioned')
 check(present('project.config.json'), 'Design System 1.0 project contract exists')
+check(present('AAA_VISUAL_DIRECTION.md'), 'Active AAA Visual Direction Bible is versioned')
+check(present('AGENTS.md'), 'Repo-level AAA agent contract exists')
+check(present('.cursor/rules/aaa-design.mdc'), 'Always-on Cursor AAA Design rule exists')
 for (const standardFile of ['docs/brand-brief.md', 'docs/direction-vector.md', 'docs/art-direction.md', 'docs/asset-provenance.md', 'docs/qa-signoff.md']) {
   check(present(standardFile), `Project standard file exists: ${standardFile}`)
 }
@@ -76,18 +79,24 @@ for (const archivedAsset of [
   check(present(archivedAsset), `Unverified visual is retained outside the production graph: ${archivedAsset}`)
 }
 
-// Home is the reference implementation.
-const home = read('src/pages/ArchicHome.tsx')
+// Home is the AAA reference implementation.
+const homeEntry = read('src/pages/ArchicHome.tsx')
+const home = present('src/pages/ArchicHomeAAA.tsx') ? read('src/pages/ArchicHomeAAA.tsx') : homeEntry
 const productRoutes = read('src/pages/ArchicSitePage.tsx')
 const explorationRoutes = read('src/pages/ExplorationPage.tsx')
-check(home.includes('data-quality-standard="archic-design-system-1.0.0"'), 'Home declares Archic Design System 1.0.0')
-check(home.includes('ControlDemo'), 'Home contains interactive Archic Control product proof')
+
+check(homeEntry.includes("export { default } from './ArchicHomeAAA'") || home.includes('aaa-design-world-class-art-direction'), 'Home entry resolves to the AAA art-directed implementation')
+check(home.includes('data-quality-standard="aaa-design-world-class-art-direction"'), 'Home declares the active AAA Design art direction')
 check(
-  home.includes('Más que una web.') &&
-    home.includes('Un sistema para crecer.') &&
-    home.includes('web apps y software web a medida'),
-  'Home carries the approved web, app and custom-software positioning statement',
+  home.includes('Diseñamos lo que el cliente ve.') &&
+    home.includes('Construimos el sistema detrás.') &&
+    home.includes('Webs, web apps y software web a medida'),
+  'Home carries the approved Presence / Control / Business positioning',
 )
+check(home.includes('SupervisedSystemField'), 'Home contains the Supervised System Field signature')
+check(home.includes('ResponsiveProof'), 'Home contains authored responsive proof')
+check(home.includes('BuildTrace'), 'Home contains the Build / Quality Trace')
+check(home.includes('CONCEPT BUILD'), 'Home explicitly labels selected public work as concept builds')
 check(!home.includes('heroMarbella'), 'Home no longer uses a luxury-property hero image')
 check(!home.includes("from '../assets/work-"), 'Home proof does not depend on unknown-provenance photography')
 check(!productRoutes.includes("from '../assets/work-") && !productRoutes.includes("from '../assets/concept/"), 'Product routes do not depend on archived concept photography')
@@ -95,40 +104,43 @@ check(productRoutes.includes('data-quality-standard="archic-design-system-1.0.0"
 check(productRoutes.includes('DATOS FICTICIOS / DEMO') && productRoutes.includes('FICTIONAL DATA / DEMO'), 'Product-route proof is explicitly marked as fictional data')
 for (const preview of ['hospitality-preview.svg', 'mobility-preview.svg', 'real-estate-preview.svg']) {
   check(productRoutes.includes(`/software/${preview}`), `Product routes reference ${preview}`)
+  check(home.includes(`/software/${preview}`), `AAA home references ${preview}`)
 }
-check(home.includes('HeroSystemProof') && home.includes("role=\"tablist\""), 'Hero contains the interactive three-layer system proof')
-check(home.includes('ArrowLeft') && home.includes('ArrowRight') && home.includes('Home') && home.includes('End'), 'Hero system tabs implement keyboard navigation')
-check((home.match(/tabIndex=\{active === index \? 0 : -1\}/g) ?? []).length >= 2, 'Home tab systems use a roving keyboard tab stop')
-check(home.includes('id="ah-demo-panel"') && home.includes('aria-labelledby={`ah-demo-tab-${demo.id}`}'), 'Control demo exposes its tab-panel relationship')
 check(read('src/pages/ExplorationPage.tsx').includes('id="axv-product-view"') && read('src/pages/ExplorationPage.tsx').includes('aria-controls="axv-product-view"'), 'Exploration layers expose their tab-panel relationship')
-for (const preview of ['hospitality-preview.svg', 'mobility-preview.svg', 'real-estate-preview.svg']) {
-  check(home.includes(`/software/${preview}`), `Home references ${preview}`)
-}
-check(home.includes('FICTIONAL DATA') && home.includes('DATOS FICTICIOS'), 'Public demos are explicitly marked as fictional data')
 
-check(present('src/styles/archic-home-system-1.css'), 'Design System 1.0 home direction layer exists')
+check(present('public/archic-aaa.css'), 'AAA homepage art-direction stylesheet exists as route asset')
+check(present('src/pages/ArchicHomeAAA.css'), 'AAA homepage CSS entry exists')
+if (present('public/archic-aaa.css')) {
+  const aaaStyle = read('public/archic-aaa.css')
+  check(aaaStyle.includes('--aaa-gold:#c9a56a') && aaaStyle.includes('--aaa-ink:#0a0a0b'), 'AAA home uses canonical Archic black and gold tokens')
+  check(!aaaStyle.includes('Instrument Serif'), 'AAA home contains no editorial-serif shortcut')
+  check(aaaStyle.includes('@media(prefers-reduced-motion:reduce)'), 'AAA home defines reduced-motion behaviour')
+  check(aaaStyle.includes('.aaa-system-field') && aaaStyle.includes('.aaa-responsive-proof') && aaaStyle.includes('.aaa-build-trace'), 'AAA visual resource families are styled')
+  check(!/magnetic|particle|webgl|glassmorphism/i.test(aaaStyle), 'AAA home avoids banned generic effect fingerprints')
+}
+
+check(present('src/styles/archic-home-system-1.css'), 'Legacy Design System 1.0 home direction layer remains versioned for historical compatibility')
 check(read('src/styles/archic-routes-2026.css').includes('--ar-gold: #c9a56a') && read('src/styles/archic-routes-2026.css').includes('--ar-ink: #0a0a0b'), 'Product routes use canonical Archic black and gold tokens')
 if (present('src/styles/archic-home-system-1.css')) {
   const homeStyle = read('src/styles/archic-home-system-1.css')
-  check(!homeStyle.includes('Instrument Serif'), 'Design System 1.0 home contains no decorative serif typography')
-  check(!homeStyle.includes('gradient'), 'Design System 1.0 home contains no decorative gradients')
-  check(homeStyle.includes('--ah-brand-gold: #c9a56a') && homeStyle.includes('--ah-ink: #0a0a0b'), 'Home direction uses the canonical Archic black and gold tokens')
-  check(homeStyle.includes('.ah-proof-tabs') && homeStyle.includes("[aria-selected='true']"), 'System switcher has explicit selected-state styling')
-  check(homeStyle.includes('@media (prefers-reduced-motion: reduce)'), 'Home direction defines reduced-motion behaviour')
+  check(!homeStyle.includes('Instrument Serif'), 'Legacy Design System 1.0 home contains no decorative serif typography')
+  check(homeStyle.includes('--ah-brand-gold: #c9a56a') && homeStyle.includes('--ah-ink: #0a0a0b'), 'Legacy home direction uses canonical Archic black and gold tokens')
 }
 
-// Cascade contract: hardening loads before the final safety layers.
+// Cascade contract and route landmarks.
 const main = read('src/main.tsx')
 const app = read('src/App.tsx')
 check(!app.includes('<main id="main-content">'), 'Router shell does not nest page landmarks inside a global main')
 check(app.includes('<main') && app.includes('className="as-route-fallback"'), 'Lazy-route fallback preserves the main landmark')
 check(app.includes('MutationObserver') && app.includes("main.focus({ preventScroll: true })"), 'Client-side route changes transfer focus to the destination main landmark')
-for (const pageFile of ['src/pages/ArchicHome.tsx', 'src/pages/ArchicSitePage.tsx', 'src/pages/ExplorationPage.tsx', 'src/pages/LegalPage.tsx', 'src/pages/ServicePage.tsx', 'src/pages/GuidePage.tsx', 'src/pages/GuidesIndex.tsx', 'src/pages/NotFound.tsx']) {
+check(home.includes('id="main-content"'), 'AAA home owns its main landmark')
+for (const pageFile of ['src/pages/ArchicSitePage.tsx', 'src/pages/ExplorationPage.tsx', 'src/pages/LegalPage.tsx', 'src/pages/ServicePage.tsx', 'src/pages/GuidePage.tsx', 'src/pages/GuidesIndex.tsx', 'src/pages/NotFound.tsx']) {
   const pageSource = read(pageFile)
   check(pageSource.includes('id="main-content"'), `Route owns its main landmark: ${pageFile}`)
   check(pageSource.includes('data-quality-standard="archic-design-system-1.0.0"'), `Route declares Design System 1.0.0: ${pageFile}`)
 }
 check(read('src/components/ArchicProductObject.tsx').includes("es ? 'FLUJOS DEMO' : 'DEMO FLOWS'"), 'Control product object avoids an unqualified real-system claim')
+
 const hardeningIndex = main.indexOf("./styles/archic-hardening.css")
 const homeBaseIndex = main.indexOf("./styles/archic-home-2026.css")
 const homeSystemIndex = main.indexOf("./styles/archic-home-system-1.css")
@@ -136,7 +148,7 @@ const contrastIndex = main.indexOf("./styles/archic-contrast.css")
 const readabilityIndex = main.indexOf("./styles/archic-readability.css")
 const visibilityIndex = main.indexOf("./styles/archic-visibility-guard.css")
 const surfaceIndex = main.indexOf("./styles/archic-surface-contract.css")
-check(homeSystemIndex >= 0, 'Design System 1.0 home stylesheet is loaded')
+check(homeSystemIndex >= 0, 'Design System 1.0 home stylesheet remains loaded')
 check(!main.includes('archic-exploration-product-ui.css') && !main.includes('@fontsource/instrument-serif'), 'Exploration UI and decorative serif font stay out of the home entry')
 check(read('src/pages/ExplorationPage.tsx').includes('archic-exploration-product-ui.css'), 'Interactive exploration CSS is route-split')
 check(read('src/pages/ArchicSitePage.tsx').includes('archic-contact-route-form.css'), 'Contact and product-route CSS is route-split')
@@ -171,7 +183,7 @@ check(contactForm.includes('type="checkbox" required') && contactForm.includes("
 check(read('src/components/StudioHeader.tsx').includes('tabIndex={open ? 0 : -1}'), 'Closed navigation removes hidden menu links from the tab order')
 
 const revealGuard = read('src/styles/archic-reveal-guard.css')
-check(revealGuard.includes('.ag-site.as-experience-ready [data-reveal]'), 'Commercial home reveal motion cannot hide content')
+check(revealGuard.includes('.ag-site.as-experience-ready [data-reveal]'), 'Commercial reveal guard remains available for routes that use it')
 
 // Search discovery remains open while optional model-training crawl is separated.
 const robots = read('public/robots.txt')
@@ -233,6 +245,7 @@ for (const entry of requiredEntries) {
 check(present('dist/software/hospitality-preview.svg'), 'Hospitality preview ships in dist')
 check(present('dist/software/mobility-preview.svg'), 'Mobility preview ships in dist')
 check(present('dist/software/real-estate-preview.svg'), 'Real-estate preview ships in dist')
+check(present('dist/archic-aaa.css'), 'AAA art-direction stylesheet ships in dist')
 check(!present('dist/favicon.ico'), 'Production artifact contains no legacy favicon.ico')
 check(!present('dist/img'), 'Production artifact contains no archived concept imagery')
 
@@ -252,7 +265,7 @@ if (mainJs) {
   check(size <= 150 * 1024, 'Main JS stays under 150 KiB gzip', `${Math.round(size / 1024)} KiB gzip`)
 }
 
-console.log(`\nArchic Quality Gate · Design System 1.0 — ${passes.length} checks passed`)
+console.log(`\nArchic Quality Gate · AAA Design — ${passes.length} checks passed`)
 for (const label of passes) console.log(`  ✓ ${label}`)
 
 if (failures.length) {
