@@ -1,140 +1,154 @@
 # Archic — Active Visual Direction Bible
 
-**Status:** production direction · AAA Design · 2026-08-31
+**Status:** production direction · AAA Design · Art Direction v2 · 2026-08-31
 
-This document is the active art-direction contract for `archic.es`. It is subordinate to verified business truth, the canonical Archic brand assets, accessibility/performance requirements and the central `vornicx/archic-design-system` AAA Design standard.
+This is the active art-direction contract for `archic.es`. The previous Supervised System Field direction is superseded.
+
+## Why v1 was rejected
+
+The first AAA direction improved structure but still read like a technically competent developer portfolio: interface planes, measurement marks, QA traces and explanatory diagrams carried too much of the visual identity. It proved process before creating desire, and mobile collapsed into documentation-like stacks.
+
+V2 deliberately removes that behaviour.
 
 ## Core truth
 
-Archic connects three layers of the same business:
+Archic improves two things at once:
 
-- **Presence** — what customers see, understand and act on.
-- **Control** — what the team needs to operate privately.
-- **Business** — software, automation, integrations and data when generic tools no longer fit.
+1. **how a business is perceived and chosen**;
+2. **how that business actually operates behind the screen**.
 
-The differentiator is not an AI aesthetic. It is **supervised execution**: diagnosis, direction, engineering and QA accelerated by AI while human direction remains accountable for the result.
-
-## Creative territories considered
-
-### A · Digital Architecture
-A spatial system of planes, joints, sections and project fragments. Strong connection to the name Archic, but risk of drifting into generic architecture/3D aesthetics.
-
-### B · Supervised System Field — SELECTED
-Actual concept-build fragments, responsive crops, Presence/Control/Business layers and QA/construction marks form one visual production surface. The work itself becomes the graphic material.
-
-Why it wins:
-- strongest link to real Archic process and assets;
-- supports commercial proof without fabricated metrics;
-- survives desktop/mobile without needing heavy 3D;
-- expresses both design and engineering;
-- can extend across homepage, case studies, social frames and proposals.
-
-### C · Evidence Ledger
-A rigorous proof/documentation world built from checklists, receipts, diffs and QA evidence. Credible, but too operational and visually cold as the primary public expression.
+Archic builds websites, web apps and custom web software. AI accelerates execution; accountable human direction decides what gets designed, built and shipped.
 
 ## Creative platform
 
-> **Every digital layer, visibly under direction.**
+> **Que te vean mejor. Que trabajes mejor.**
 
-This is a generative art-direction idea, not required visible copy.
+English: **Look better. Work better.**
+
+The platform is both commercial and generative. Every visual chapter must reinforce perception, operation, or the connection between them.
+
+## Art-direction principle
+
+**One strong object beats a field of UI fragments.**
+
+Archic's own digital work is treated like a product worthy of art direction: large, precise, materially framed and given space. The experience does not mimic a design tool, QA dashboard or developer workspace.
 
 ## Visual world
 
-### Subjects / objects
-- real Archic concept-build previews;
-- interface crops;
-- viewport boundaries;
-- Presence / Control / Business layers;
-- QA gates;
-- selection/crop/measurement marks;
-- process traces;
-- project labels that describe real/demo status.
+### Ground
+- black `#0A0A0B` for high-intensity moments;
+- true white for clarity and commercial confidence;
+- neutral soft grey for quiet utility sections;
+- canonical Archic gold `#C9A56A` only as a deliberate signal.
 
-### Materials
-- Archic black `#0A0A0B`;
-- canonical Archic gold `#C9A56A` as direction/selection signal;
-- paper-white neutral surfaces;
-- actual project imagery and UI.
+No warm editorial cream.
 
-### Light / depth
-Depth comes from overlap, crop and layering of real work. No neon, glow cloud, chrome blob or generic glass.
+### Lead medium
+**Digital object + typography.**
+
+The page uses Archic-authored white-label concept builds as the visible product. They appear as large controlled objects, not a cloud of screenshots.
+
+### Signature resource
+
+**Project Monolith.**
+
+A single large concept-build surface occupies the hero like a designed physical object: dark frame, crisp information rail, one gold edge, controlled perspective and generous negative space.
+
+The signature must remain legible as a static composition. Motion is secondary.
 
 ### Typography
-- Space Grotesk: display / major statements;
-- DM Sans: body / commercial copy;
-- IBM Plex Mono: sparse utility/evidence labels only.
+- Space Grotesk for display and major commercial statements;
+- DM Sans for body/interface copy;
+- IBM Plex Mono only for sparse factual labels.
 
-No mono-everywhere shortcut. No warm editorial-serif default.
+No decorative serif. No random italic emphasis. No oversized mono metadata system.
 
-### Graphic grammar
-- crop marks;
-- viewport dimensions;
-- selection lines;
-- construction joins;
-- QA gates;
-- thin measurement traces;
-- gold only where something is selected, directed or approved.
+### Composition
+- bold split first viewport;
+- large uninterrupted media rather than collections of equal cards;
+- strong alternation between black and white chapters;
+- open three-column system sections rather than rounded containers;
+- one large featured work object plus two supporting objects;
+- process expressed as a quiet rail, not a diagram;
+- final conversion moment uses the gold signal at full scale.
+
+### Geometry
+Mostly sharp. Borders are structural. Media can have a restrained 2–6px optical radius only when needed by the underlying preview; the page does not use rounded-card language.
 
 ### Motion
-- assembly and separation of layers;
-- small spatial response on signature system field;
-- restrained image scale on deliberate hover;
-- no blanket fade-up-on-scroll requirement.
-
-### Explicitly absent
-- invented clients/awards/testimonials;
-- unlabelled fake metrics;
-- generic SaaS dashboards as hero art;
-- decorative particles/orbs;
-- acid-tech gradients;
-- random 3D objects;
-- library-demo visual fingerprints;
-- repetitive card grids.
-
-## Signature resource
-
-### Supervised System Field
-The hero uses real `/software/*-preview.svg` concept-build material as layered planes connected by a QA/direction trace. Presence, Control and Business remain distinct but visibly part of one supervised system.
-
-**Mobile:** recomposed layers stay visible; the signature is reduced, not deleted.
-
-**Reduced motion:** static layered composition remains complete.
+- Project Monolith receives a small perspective response on capable pointers;
+- project imagery gets restrained scale response;
+- links/arrows respond quickly;
+- no blanket scroll reveals;
+- no parallax required;
+- reduced-motion state is fully composed.
 
 ## Narrative storyboard
 
-| Chapter | User question | Message | Proof | Lead resource | Emotional beat |
-|---|---|---|---|---|---|
-| Thesis | What does Archic actually build? | Visible experience + system behind it | Three-layer architecture | Supervised System Field | capability / clarity |
-| Work | Can they really design/build? | Show concept builds honestly | Existing exploration previews | large project crops | confidence |
-| System | How does it fit together? | Presence, Control and Business are one model | Three connected layer descriptions | system diagram | coherence |
-| Composition | Does quality survive mobile? | Responsive is recomposition | real project preview crops | responsive proof composition | craft |
-| Method | How do they avoid weak delivery? | decisions are stress-tested | real Quality Standard concepts | Build / Quality Trace | rigor |
-| Investment | Is there a realistic entry point? | clear minimums, scope later | current published price floors | quiet price table | transparency |
-| Diagnosis | What happens next? | understand the business before prescribing | current diagnosis offer | decisive close | action |
+| Chapter | User question | Answer | Visual behaviour |
+|---|---|---|---|
+| Hero | What does Archic improve? | Perception and operation | Project Monolith + short platform statement |
+| Capability rail | What do they actually make? | Direction, websites, web apps, software | terse factual rail |
+| System | How broad is the offer? | Presence, Control, Business | three open columns + project material |
+| Work | Can I see it? | yes, concept builds are navigable | one dominant work surface + two supporting surfaces |
+| Method | How do they work? | understand → direct → build → stress → launch | quiet linear rail |
+| Investment | Can I enter at a realistic level? | clear current minimums | unboxed list |
+| Close | What do I do next? | tell Archic what needs to change | full gold conversion chapter |
 
-## Asset production matrix
+## Asset rules
 
-| Asset | Job | Source | Desktop | Mobile | Fallback | Provenance | Status |
-|---|---|---|---|---|---|---|---|
-| Real-estate preview | project/system material | `/software/real-estate-preview.svg` | full/cropped | cropped | static SVG | repo-owned concept build | ready |
-| Hospitality preview | project/system material | `/software/hospitality-preview.svg` | full/cropped | cropped | static SVG | repo-owned concept build | ready |
-| Mobility preview | project/system material | `/software/mobility-preview.svg` | full/cropped | cropped | static SVG | repo-owned concept build | ready |
-| Supervised System Field | signature | `ArchicHomeAAA.tsx` + CSS | layered | recomposed | static composition | authored in repo | ready |
-| Responsive Proof | responsive craft proof | same repo previews | 3 ratios | compressed composition | static images | authored in repo | ready |
-| Build / Quality Trace | method proof | custom SVG/CSS + published quality concepts | full trace | simplified trace | ordered HTML steps | authored in repo | ready |
+Approved production visual material remains:
+
+- `/software/real-estate-preview.svg`
+- `/software/hospitality-preview.svg`
+- `/software/mobility-preview.svg`
+- canonical Archic brand assets
+
+These are Archic-authored white-label concept/demo surfaces. They must remain honestly labelled as concept builds where presented as work.
+
+No generated photography, unverified client imagery or fabricated social proof enters production.
+
+## Explicitly absent
+
+- fake client-logo rails;
+- awards/testimonials/metrics without evidence;
+- UI measurement grids as identity;
+- QA traces as hero art;
+- multi-plane screenshot clouds;
+- browser chrome for decoration;
+- generic dark-tech glows;
+- glassmorphism;
+- WebGL/chrome blobs;
+- random 3D;
+- cream/editorial-serif agency styling;
+- bento grids;
+- repetitive rounded cards;
+- decorative marquees;
+- generic 'premium agency' copy.
+
+## Mobile contract
+
+Mobile is not desktop with the visual world removed.
+
+- the platform statement remains large and decisive;
+- Project Monolith becomes a flat, readable product object rather than a tiny perspective mockup;
+- system items retain substantial media;
+- work remains image-led;
+- process becomes a vertical authored rail;
+- the gold close remains a strong final chapter.
 
 ## Authorship gate
 
-A future change fails if:
-1. it could be transferred unchanged to a competitor;
-2. a vague “premium agency website” prompt would plausibly produce it;
-3. it introduces a current AI-default cluster;
-4. it weakens the Supervised System Field / three-layer logic without a new approved territory;
-5. it uses library defaults as brand expression;
-6. mobile removes the visual world;
-7. it invents proof;
-8. it makes the page busier without making it more authored.
+A future change fails when:
 
-For substantial redesigns, return to AAA Design: truth → three territories → platform → visual world → rendered signature → storyboard → assets → system → build → critique → subtraction.
+1. the hero becomes busier but not more memorable;
+2. multiple tiny UI fragments replace one strong product object;
+3. process/QA becomes the primary aesthetic again;
+4. a library/template fingerprint becomes visible;
+5. a section exists only because agency sites usually contain it;
+6. mobile deletes the art direction;
+7. proof is invented;
+8. the change could be transferred unchanged to another digital studio;
+9. the page begins looking like a vague prompt for 'premium AI agency website'.
 
-For small changes, preserve this direction and run the authorship/slop sweep on affected viewports.
+For substantial redesigns, AAA Design still requires research, three territories, concepting, rendered critique and QA before replacement of this direction.
