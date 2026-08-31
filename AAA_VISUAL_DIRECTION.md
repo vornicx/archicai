@@ -1,154 +1,133 @@
 # Archic — Active Visual Direction Bible
 
-**Status:** production direction · AAA Design · Art Direction v2 · 2026-08-31
+**Status:** production direction · AAA Design · Art Direction v3 · 2026-08-31
 
-This is the active art-direction contract for `archic.es`. The previous Supervised System Field direction is superseded.
+This is the active art-direction contract for `archic.es`. V2's Project Monolith direction is superseded.
 
-## Why v1 was rejected
+## Why v2 was rejected
 
-The first AAA direction improved structure but still read like a technically competent developer portfolio: interface planes, measurement marks, QA traces and explanatory diagrams carried too much of the visual identity. It proved process before creating desire, and mobile collapsed into documentation-like stacks.
+V2 was cleaner than the technical v1, but it still looked like a developer-led portfolio: too much UI used as art, too little photography, weak editorial hierarchy and not enough visual material. It was competent, but not at the level of the approved agency reference.
 
-V2 deliberately removes that behaviour.
+The approved reference changed the target. The website must feel like a directed brand campaign first and a software studio site second.
 
 ## Core truth
 
-Archic improves two things at once:
-
-1. **how a business is perceived and chosen**;
-2. **how that business actually operates behind the screen**.
-
-Archic builds websites, web apps and custom web software. AI accelerates execution; accountable human direction decides what gets designed, built and shipped.
+Archic improves both how a business is perceived and how it operates. It builds websites, web apps and custom web software with human direction and AI-accelerated execution.
 
 ## Creative platform
 
-> **Que te vean mejor. Que trabajes mejor.**
+> **Construimos sistemas digitales que transforman negocios.**
 
-English: **Look better. Work better.**
+English: **We build digital systems that transform businesses.**
 
-The platform is both commercial and generative. Every visual chapter must reinforce perception, operation, or the connection between them.
+The phrase is commercial, but the art direction must prove the transformation visually before explaining process.
 
 ## Art-direction principle
 
-**One strong object beats a field of UI fragments.**
+**Image creates desire. Typography gives it authority. Product proof makes it credible.**
 
-Archic's own digital work is treated like a product worthy of art direction: large, precise, materially framed and given space. The experience does not mimic a design tool, QA dashboard or developer workspace.
+Do not start with dashboards, diagrams or technical metaphors. Start with a visual world strong enough to carry the brand even with the UI removed.
 
 ## Visual world
 
 ### Ground
-- black `#0A0A0B` for high-intensity moments;
-- true white for clarity and commercial confidence;
-- neutral soft grey for quiet utility sections;
-- canonical Archic gold `#C9A56A` only as a deliberate signal.
-
-No warm editorial cream.
+- near-black `#080808` for cinematic chapters;
+- cool editorial paper `#F2F1ED` / `#F7F7F5` for clarity;
+- canonical Archic gold `#C9A56A` only as emphasis;
+- no cream/terracotta agency cliché and no dark-tech glow language.
 
 ### Lead medium
-**Digital object + typography.**
+**Image.**
 
-The page uses Archic-authored white-label concept builds as the visible product. They appear as large controlled objects, not a cloud of screenshots.
+Photography is allowed and encouraged when its provenance is documented. It is used as art-direction material, not as fabricated client proof.
 
 ### Signature resource
 
-**Project Monolith.**
+**Directed project scene.**
 
-A single large concept-build surface occupies the hero like a designed physical object: dark frame, crisp information rail, one gold edge, controlled perspective and generous negative space.
-
-The signature must remain legible as a static composition. Motion is secondary.
+The hero combines a dark architectural environment with one large framed project scene. The frame behaves like a physical display inside the environment rather than a floating UI card. The screen contains one decisive image, one editorial message and sparse navigation.
 
 ### Typography
-- Space Grotesk for display and major commercial statements;
-- DM Sans for body/interface copy;
-- IBM Plex Mono only for sparse factual labels.
-
-No decorative serif. No random italic emphasis. No oversized mono metadata system.
+- Instrument Serif for major editorial statements;
+- DM Sans for navigation, body and interface copy;
+- italic is allowed only for one generative concept word in a major statement, matching the approved reference;
+- no random serif/sans switching and no mono metadata system as visual identity.
 
 ### Composition
-- bold split first viewport;
-- large uninterrupted media rather than collections of equal cards;
-- strong alternation between black and white chapters;
-- open three-column system sections rather than rounded containers;
-- one large featured work object plus two supporting objects;
-- process expressed as a quiet rail, not a diagram;
-- final conversion moment uses the gold signal at full scale.
-
-### Geometry
-Mostly sharp. Borders are structural. Media can have a restrained 2–6px optical radius only when needed by the underlying preview; the page does not use rounded-card language.
+- cinematic split hero: editorial statement left, one dominant project scene right;
+- horizontal navigation on desktop;
+- project/brand strip directly below the hero;
+- light three-pillar chapter with image-led vertical columns;
+- dark selected-work chapter with a small editorial intro and three large visual cards;
+- light process chapter with five restrained icon steps;
+- compact dark conversion chapter;
+- no pricing table on the homepage.
 
 ### Motion
-- Project Monolith receives a small perspective response on capable pointers;
-- project imagery gets restrained scale response;
-- links/arrows respond quickly;
-- no blanket scroll reveals;
-- no parallax required;
-- reduced-motion state is fully composed.
+- restrained hover response on project scene and images;
+- fast link feedback;
+- no blanket reveal animation;
+- no parallax requirement;
+- reduced-motion layout remains fully composed.
 
 ## Narrative storyboard
 
 | Chapter | User question | Answer | Visual behaviour |
 |---|---|---|---|
-| Hero | What does Archic improve? | Perception and operation | Project Monolith + short platform statement |
-| Capability rail | What do they actually make? | Direction, websites, web apps, software | terse factual rail |
-| System | How broad is the offer? | Presence, Control, Business | three open columns + project material |
-| Work | Can I see it? | yes, concept builds are navigable | one dominant work surface + two supporting surfaces |
-| Method | How do they work? | understand → direct → build → stress → launch | quiet linear rail |
-| Investment | Can I enter at a realistic level? | clear current minimums | unboxed list |
-| Close | What do I do next? | tell Archic what needs to change | full gold conversion chapter |
+| Hero | What level does Archic operate at? | high-end direction + digital systems | architecture + editorial serif + dominant project scene |
+| Project strip | Is there actual work behind the brand? | yes, named Archic projects/builds | quiet horizontal project rail; never 'trusted by' without proof |
+| Services | What do they build? | Presence, Control, Business | three image-led editorial columns |
+| Work | What does the output look like? | different projects, different identities | dark visual portfolio grid |
+| Process | How do they work? | discover → design → build → quality → scale | clean five-step rail with authored icons |
+| Close | What next? | start a project | compact dark conversion moment |
 
 ## Asset rules
 
-Approved production visual material remains:
+Production may use:
+- canonical Archic brand assets;
+- Archic-authored white-label UI previews where explicitly labelled demo/concept;
+- documented Unsplash License photography as non-client art-direction material;
+- public project imagery whose source and status are recorded in `docs/asset-provenance.md`.
 
-- `/software/real-estate-preview.svg`
-- `/software/hospitality-preview.svg`
-- `/software/mobility-preview.svg`
-- canonical Archic brand assets
-
-These are Archic-authored white-label concept/demo surfaces. They must remain honestly labelled as concept builds where presented as work.
-
-No generated photography, unverified client imagery or fabricated social proof enters production.
+Representative yacht photography must never be presented as Marbella Boat Charter's actual fleet. Generated concept imagery remains reference-only unless explicitly approved and documented for production.
 
 ## Explicitly absent
 
-- fake client-logo rails;
-- awards/testimonials/metrics without evidence;
+- fake trust-logo rows;
+- invented awards, metrics, testimonials or results;
 - UI measurement grids as identity;
 - QA traces as hero art;
-- multi-plane screenshot clouds;
-- browser chrome for decoration;
-- generic dark-tech glows;
-- glassmorphism;
-- WebGL/chrome blobs;
-- random 3D;
-- cream/editorial-serif agency styling;
-- bento grids;
-- repetitive rounded cards;
-- decorative marquees;
-- generic 'premium agency' copy.
+- screenshot clouds;
+- dark-tech glows, WebGL blobs or glassmorphism;
+- editorial cream + terracotta default styling;
+- bento grids by default;
+- rounded-card systems;
+- pricing tables on the homepage;
+- generic agency copy such as 'we create digital experiences for ambitious brands'.
 
 ## Mobile contract
 
-Mobile is not desktop with the visual world removed.
-
-- the platform statement remains large and decisive;
-- Project Monolith becomes a flat, readable product object rather than a tiny perspective mockup;
-- system items retain substantial media;
-- work remains image-led;
-- process becomes a vertical authored rail;
-- the gold close remains a strong final chapter.
+Mobile keeps the art direction:
+- large serif statement remains the first memory;
+- hero photography still exists, but the overlay becomes darker for legibility;
+- the project scene becomes flat and readable instead of tiny perspective decoration;
+- project rail becomes a two-column editorial list;
+- pillars and work become full-width image-led stories;
+- process becomes a vertical icon rail;
+- close stays compact and decisive.
 
 ## Authorship gate
 
 A future change fails when:
+1. UI replaces art direction as the primary visual material;
+2. the hero could belong to any software agency after swapping the logo;
+3. photography is added without provenance or without a role;
+4. representative imagery is mistaken for client reality;
+5. serif/italic becomes decorative costume instead of hierarchy;
+6. visual density rises without improving memory;
+7. mobile removes the image-led composition;
+8. a generic premium-agency template becomes visible;
+9. the project strip turns into fake social proof;
+10. the page becomes more technically clever but less desirable.
 
-1. the hero becomes busier but not more memorable;
-2. multiple tiny UI fragments replace one strong product object;
-3. process/QA becomes the primary aesthetic again;
-4. a library/template fingerprint becomes visible;
-5. a section exists only because agency sites usually contain it;
-6. mobile deletes the art direction;
-7. proof is invented;
-8. the change could be transferred unchanged to another digital studio;
-9. the page begins looking like a vague prompt for 'premium AI agency website'.
-
-For substantial redesigns, AAA Design still requires research, three territories, concepting, rendered critique and QA before replacement of this direction.
+For substantial redesigns, AAA Design still requires reference research, three territories, rendered concept critique and responsive QA before this direction may be replaced.
