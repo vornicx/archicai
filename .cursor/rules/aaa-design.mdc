@@ -1,0 +1,16 @@
+---
+alwaysApply: true
+---
+# Archic AAA Design
+
+For every frontend or visual change:
+
+- Read `AGENTS.md` first.
+- Read `AAA_VISUAL_DIRECTION.md` before touching the homepage or shared brand expression.
+- Preserve verified legal, SEO, i18n, analytics, accessibility and canonical brand assets.
+- Small changes stay inside the active direction and must pass the authorship/slop sweep.
+- Substantial redesigns use: truth → 3 territories → platform → visual world → rendered signature → storyboard → assets → system → build → critique → subtraction.
+- Never use a component library, trendy effect, AI-default cluster or generic premium aesthetic as art direction.
+- Never invent clients, awards, testimonials or metrics.
+- Mobile is a separately composed expression of the same visual world.
+- Run `npm run build` and `npm run quality:gate`, then inspect rendered desktop/mobile before declaring completion.
