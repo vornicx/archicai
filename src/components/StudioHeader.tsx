@@ -3,23 +3,23 @@ import { useLang } from '../i18n/LanguageContext'
 
 const COPY = {
   es: {
-    menu: 'Menú', close: 'Cerrar', project: 'Diagnóstico',
+    menu: 'Menú', close: 'Cerrar', project: 'Proyecto',
     pages: [
       ['Trabajo', 'Concept builds seleccionados', '#selected-work'],
       ['Sistema', 'Presence · Control · Business', '#system'],
       ['Método', 'Cómo construimos y validamos', '#method'],
       ['Inversión', 'Puntos de entrada', '#investment'],
-      ['Contacto', 'Cuéntanos qué debe cambiar', '#contact'],
+      ['Contacto', 'Cuéntanos qué quieres construir', '#audit'],
     ],
   },
   en: {
-    menu: 'Menu', close: 'Close', project: 'Diagnosis',
+    menu: 'Menu', close: 'Close', project: 'Start a project',
     pages: [
       ['Work', 'Selected concept builds', '#selected-work'],
       ['System', 'Presence · Control · Business', '#system'],
       ['Method', 'How we build and validate', '#method'],
       ['Investment', 'Entry points', '#investment'],
-      ['Contact', 'Tell us what must change', '#contact'],
+      ['Contact', 'Tell us what you want to build', '#audit'],
     ],
   },
 }
