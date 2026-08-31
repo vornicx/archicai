@@ -1,0 +1,56 @@
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-hero h1,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-hero h1>span,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-work-story h2,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-work-story h2>span,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-work-card-copy h3,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-close h2{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  text-shadow:none!important;
+}
+
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-hero h1>em,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-close h2>em{
+  color:#c9a56a!important;
+  -webkit-text-fill-color:#c9a56a!important;
+  opacity:1!important;
+}
+
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-hero-lead,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-work-story>p:not(.aaa-kicker),
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-work-card-copy p,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-close-grid>p{
+  color:rgba(255,255,255,.72)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.72)!important;
+}
+
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-button-light,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-button-light:link,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-button-light:visited{
+  background:#fff!important;
+  border-color:#fff!important;
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+}
+
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-button-light .as-arrow,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-button-light .as-arrow::before,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-button-light .as-arrow::after{
+  color:#080808!important;
+  border-color:#080808!important;
+}
+
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-text-link,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-text-link:link,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-text-link:visited{
+  color:rgba(255,255,255,.86)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.86)!important;
+}
+
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-work-card-copy small,
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3'] .aaa-kicker:not(.is-ink){
+  color:#c9a56a!important;
+  -webkit-text-fill-color:#c9a56a!important;
+}
