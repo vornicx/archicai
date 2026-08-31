@@ -3,22 +3,36 @@ import { useLang } from '../i18n/LanguageContext'
 
 const COPY = {
   es: {
-    menu: 'Menú', close: 'Cerrar', project: 'Proyecto',
+    menu: 'Menú', close: 'Cerrar', project: 'Empezar proyecto',
+    nav: [
+      ['Trabajo', '#selected-work'],
+      ['Proceso', '#method'],
+      ['Servicios', '#system'],
+      ['Recursos', 'guides'],
+      ['Contacto', '#audit'],
+    ],
     pages: [
-      ['Trabajo', 'Concept builds seleccionados', '#selected-work'],
-      ['Sistema', 'Presence · Control · Business', '#system'],
-      ['Método', 'Cómo construimos y validamos', '#method'],
-      ['Inversión', 'Puntos de entrada', '#investment'],
+      ['Trabajo', 'Proyectos y concept builds', '#selected-work'],
+      ['Servicios', 'Presence · Control · Business', '#system'],
+      ['Proceso', 'Cómo dirigimos y construimos', '#method'],
+      ['Recursos', 'Guías y criterio digital', 'guides'],
       ['Contacto', 'Cuéntanos qué quieres construir', '#audit'],
     ],
   },
   en: {
     menu: 'Menu', close: 'Close', project: 'Start a project',
+    nav: [
+      ['Work', '#selected-work'],
+      ['Process', '#method'],
+      ['Services', '#system'],
+      ['Resources', 'guides'],
+      ['Contact', '#audit'],
+    ],
     pages: [
-      ['Work', 'Selected concept builds', '#selected-work'],
-      ['System', 'Presence · Control · Business', '#system'],
-      ['Method', 'How we build and validate', '#method'],
-      ['Investment', 'Entry points', '#investment'],
+      ['Work', 'Projects and concept builds', '#selected-work'],
+      ['Services', 'Presence · Control · Business', '#system'],
+      ['Process', 'How we direct and build', '#method'],
+      ['Resources', 'Guides and digital thinking', 'guides'],
       ['Contact', 'Tell us what you want to build', '#audit'],
     ],
   },
@@ -97,6 +111,12 @@ export default function StudioHeader() {
           <img className="as-brand-light" src="/brand/archic-lockup-light.svg" alt="" width={981} height={174} />
           <img className="as-brand-dark" src="/brand/archic-lockup-dark.svg" alt="" width={981} height={174} />
         </a>
+
+        <nav className="as-desktop-nav" aria-label={t.a11y.mainNav}>
+          {c.nav.map(([name, slug]) => (
+            <a key={slug} href={path(lang, slug)} data-archic-intent={`desktop-nav:${slug.replace('#', '')}`}>{name}</a>
+          ))}
+        </nav>
 
         <div className="as-header-actions">
           {canSwitchLang && (
