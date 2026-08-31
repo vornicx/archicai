@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "gen:pages": "node --import tsx scripts/generate-static-pages.ts && node --import tsx scripts/generate-archic-site-pages.ts && node --import tsx scripts/generate-exploration-pages.ts && node --import tsx scripts/generate-intent-pages.ts && node --import tsx scripts/postprocess-generated-seo.ts && node --import tsx scripts/seo-hardening.ts && node --import tsx scripts/validate-generated-seo.ts",
     "submit:indexnow": "node --import tsx scripts/submit-indexnow.ts",
-    "quality:gate": "node scripts/quality-gate.mjs"
+    "quality:gate": "node scripts/quality-gate-v3.mjs"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.8",
