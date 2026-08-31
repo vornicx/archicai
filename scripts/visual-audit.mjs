@@ -50,7 +50,7 @@ async function revealWholePage(page) {
 
 async function verifyMenu(page) {
   const button = page.locator('.as-menu-button').first()
-  if (!(await button.count())) return null
+  if (!(await button.count()) || !(await button.isVisible())) return null
 
   const panel = page.locator('#archic-menu')
   const firstLink = panel.locator('nav a').first()
