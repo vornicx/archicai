@@ -21,6 +21,7 @@ for (const file of [
 const packageJson = JSON.parse(read('package.json'))
 const tsconfig = JSON.parse(read('tsconfig.json'))
 const main = read('src/main.tsx')
+const homeStyleEntry = read('src/pages/ArchicHomeAAA.css')
 const contactUi = read('src/components/StudioContact.tsx')
 const contactApi = read('server/contact-api.mjs')
 const visualWorkflow = read('.github/workflows/visual-audit.yml')
@@ -33,6 +34,10 @@ check(tsconfig.compilerOptions?.noUncheckedSideEffectImports === true, 'Unchecke
 const globalStyleImports = [...main.matchAll(/import ['"]\.\/styles\/([^'"]+\.css)['"]/g)].map((match) => match[1])
 check(globalStyleImports.length <= 23, 'Global CSS cascade does not exceed the current legacy budget', `${globalStyleImports.length} global layers`)
 check(new Set(globalStyleImports).size === globalStyleImports.length, 'Global CSS imports contain no duplicates')
+
+const homeStyleLayers = [...homeStyleEntry.matchAll(/@import\s+url\(['"]?([^)'"\s]+)['"]?\)/g)].map((match) => match[1])
+check(homeStyleLayers.length <= 3, 'AAA home route does not accumulate another patch stylesheet', `${homeStyleLayers.length} route layers`)
+check(new Set(homeStyleLayers).size === homeStyleLayers.length, 'AAA home route style imports contain no duplicates')
 
 check(contactUi.includes('CONTACT_TIMEOUT_MS'), 'Contact UI declares an explicit dependency deadline')
 check(contactUi.includes('new AbortController()') && contactUi.includes('signal: controller.signal'), 'Contact UI propagates cancellation to fetch')
