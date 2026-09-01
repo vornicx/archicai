@@ -1,0 +1,111 @@
+/* AAA Art Direction v3 — craft pass
+   Refines optical rhythm, image treatment, interaction and mobile composition
+   without changing the approved visual world. */
+
+.as-site.aaa-site[data-quality-standard='aaa-design-art-direction-v3']{
+  --aaa-ease:cubic-bezier(.22,.72,.18,1);
+}
+
+/* Typography: less UI-like, more deliberate editorial rhythm. */
+.as-site.aaa-site .aaa-hero h1,
+.as-site.aaa-site .aaa-section-story h2,
+.as-site.aaa-site .aaa-work-story h2,
+.as-site.aaa-site .aaa-method-story h2,
+.as-site.aaa-site .aaa-close h2{
+  text-wrap:balance;
+  font-kerning:normal;
+  font-optical-sizing:auto;
+}
+.as-site.aaa-site .aaa-hero-lead,
+.as-site.aaa-site .aaa-section-story>p:not(.aaa-kicker),
+.as-site.aaa-site .aaa-work-story>p:not(.aaa-kicker),
+.as-site.aaa-site .aaa-method-story>p:not(.aaa-kicker){text-wrap:pretty}
+
+/* Header becomes a precise overlay instead of a generic sticky bar. */
+.as-site.aaa-site .as-header{transition:background-color .35s var(--aaa-ease),border-color .35s var(--aaa-ease),height .35s var(--aaa-ease)}
+.as-site.aaa-site .as-header[data-solid='true']{height:64px;background:rgba(7,7,7,.88)!important;backdrop-filter:blur(20px) saturate(120%)!important}
+.as-site.aaa-site .as-desktop-nav a{position:relative;padding:9px 0}
+.as-site.aaa-site .as-desktop-nav a::after{content:'';position:absolute;left:0;right:100%;bottom:3px;height:1px;background:#fff;transition:right .28s var(--aaa-ease)}
+.as-site.aaa-site .as-desktop-nav a:hover::after{right:0}
+
+/* Hero: increase cinematic depth while keeping the photograph honest. */
+.as-site.aaa-site .aaa-hero-background{transform:scale(1.015);filter:saturate(.48) contrast(1.09) brightness(.55)}
+.as-site.aaa-site .aaa-hero-overlay{background:linear-gradient(90deg,rgba(3,3,3,.97) 0%,rgba(3,3,3,.78) 33%,rgba(3,3,3,.24) 69%,rgba(3,3,3,.56) 100%),linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.46))}
+.as-site.aaa-site .aaa-showcase-frame{border-width:11px;box-shadow:0 42px 90px rgba(0,0,0,.48),0 0 0 1px rgba(255,255,255,.045) inset;transition:transform .7s var(--aaa-ease),box-shadow .7s var(--aaa-ease)}
+.as-site.aaa-site .aaa-showcase:hover .aaa-showcase-frame{transform:rotateY(-2.4deg) rotateX(.3deg) translate3d(0,-7px,0);box-shadow:0 52px 110px rgba(0,0,0,.56),0 0 0 1px rgba(255,255,255,.06) inset}
+.as-site.aaa-site .aaa-showcase-frame>img{transition:transform 1.15s var(--aaa-ease),filter .7s ease}
+.as-site.aaa-site .aaa-showcase:hover .aaa-showcase-frame>img{transform:scale(1.018);filter:saturate(.88) contrast(1.03) brightness(.8)}
+.as-site.aaa-site .aaa-showcase-index i{transition:background-color .22s ease,color .22s ease,border-color .22s ease}
+.as-site.aaa-site .aaa-showcase-index i:hover{background:#fff;color:#080808;border-color:#fff}
+
+/* Project strip: quieter and more brand-like. */
+.as-site.aaa-site .aaa-project-strip-inner strong{opacity:.72;transition:opacity .22s ease,transform .3s var(--aaa-ease)}
+.as-site.aaa-site .aaa-project-strip-inner strong:hover{opacity:1;transform:translateY(-1px)}
+
+/* Image chapters get material depth rather than more decoration. */
+.as-site.aaa-site .aaa-pillar-media,.as-site.aaa-site .aaa-work-image{isolation:isolate}
+.as-site.aaa-site .aaa-pillar-media::after,.as-site.aaa-site .aaa-work-image::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.055),transparent 32%,transparent 72%,rgba(0,0,0,.05));mix-blend-mode:soft-light;z-index:1}
+.as-site.aaa-site .aaa-pillar-media{position:relative}
+.as-site.aaa-site .aaa-pillar{transition:background-color .35s ease,transform .45s var(--aaa-ease)}
+.as-site.aaa-site .aaa-pillar:hover{transform:translateY(-3px)}
+.as-site.aaa-site .aaa-pillar-media img{transition:transform .95s var(--aaa-ease),filter .5s ease}
+.as-site.aaa-site .aaa-pillar:hover .aaa-pillar-media img{transform:scale(1.035)}
+.as-site.aaa-site .aaa-work-image>img{transition:transform 1s var(--aaa-ease),filter .5s ease}
+.as-site.aaa-site .aaa-work-image:hover>img{transform:scale(1.035)}
+.as-site.aaa-site .aaa-work-card-copy{transition:transform .45s var(--aaa-ease)}
+.as-site.aaa-site .aaa-work-image:hover .aaa-work-card-copy{transform:translateY(-4px)}
+
+/* Process: icons become less app-component-like. */
+.as-site.aaa-site .aaa-step-icon{background:transparent;color:#080808;border:1px solid rgba(8,8,8,.78);transition:background-color .25s ease,color .25s ease,transform .4s var(--aaa-ease)}
+.as-site.aaa-site .aaa-process-rail article:hover .aaa-step-icon{background:#080808;color:#fff;transform:translateY(-3px)}
+.as-site.aaa-site .aaa-process-rail article{transition:background-color .3s ease}
+.as-site.aaa-site .aaa-process-rail article:hover{background:rgba(8,8,8,.025)}
+
+/* Buttons feel tactile without becoming animated widgets. */
+.as-site.aaa-site .aaa-button,.as-site.aaa-site .aaa-project-link{transition:background-color .22s ease,color .22s ease,transform .32s var(--aaa-ease),box-shadow .32s var(--aaa-ease)}
+.as-site.aaa-site .aaa-button:hover{transform:translateY(-2px);box-shadow:0 9px 28px rgba(0,0,0,.16)}
+
+@media (max-width:760px){
+  /* Mobile is its own composition: less chrome, stronger image-first pacing. */
+  .as-site.aaa-site{--aaa-shell:calc(100vw - 36px)}
+  .as-site.aaa-site .as-header{height:62px;padding:0 18px;border-bottom-color:rgba(255,255,255,.11)!important}
+  .as-site.aaa-site .as-header[data-solid='true']{height:58px}
+  .as-site.aaa-site .as-brand img{width:104px}
+  .as-site.aaa-site .aaa-hero{min-height:760px;height:auto;padding-top:104px;padding-bottom:32px}
+  .as-site.aaa-site .aaa-hero-background{object-position:62% center;transform:scale(1.03)}
+  .as-site.aaa-site .aaa-hero-overlay{background:linear-gradient(180deg,rgba(3,3,3,.91) 0%,rgba(3,3,3,.76) 42%,rgba(3,3,3,.36) 66%,rgba(3,3,3,.78) 100%)}
+  .as-site.aaa-site .aaa-hero h1{font-size:clamp(48px,14.2vw,68px);line-height:.91;letter-spacing:-.05em;max-width:8.4ch}
+  .as-site.aaa-site .aaa-hero-lead{max-width:31ch;font-size:12px;line-height:1.58}
+  .as-site.aaa-site .aaa-hero-actions{gap:18px;align-items:center}
+  .as-site.aaa-site .aaa-showcase{margin-top:36px;height:300px}
+  .as-site.aaa-site .aaa-showcase-frame{inset:0;border-width:7px;transform:none;box-shadow:0 24px 55px rgba(0,0,0,.45)}
+  .as-site.aaa-site .aaa-showcase:hover .aaa-showcase-frame{transform:none}
+  .as-site.aaa-site .aaa-showcase-copy{left:19px;top:20px;bottom:19px;width:48%}
+  .as-site.aaa-site .aaa-showcase-copy strong{margin-top:25px;font-size:31px;line-height:.94}
+  .as-site.aaa-site .aaa-showcase-index{right:13px;bottom:13px}
+  .as-site.aaa-site .aaa-project-strip{overflow:hidden}
+  .as-site.aaa-site .aaa-project-strip-inner{display:flex;min-height:74px;gap:28px;overflow-x:auto;scrollbar-width:none;padding-right:18px}
+  .as-site.aaa-site .aaa-project-strip-inner::-webkit-scrollbar{display:none}
+  .as-site.aaa-site .aaa-project-strip-inner>span{flex:0 0 76px}
+  .as-site.aaa-site .aaa-project-strip-inner strong{flex:0 0 auto;font-size:14px}
+  .as-site.aaa-site .aaa-section{padding:72px 0}
+  .as-site.aaa-site .aaa-section-story h2,.as-site.aaa-site .aaa-work-story h2,.as-site.aaa-site .aaa-method-story h2{font-size:clamp(46px,13vw,61px);line-height:.94}
+  .as-site.aaa-site .aaa-pillar:hover,.as-site.aaa-site .aaa-work-image:hover .aaa-work-card-copy{transform:none}
+  .as-site.aaa-site .aaa-pillar-media img,.as-site.aaa-site .aaa-work-image>img{transition:none}
+  .as-site.aaa-site .aaa-work-image{height:min(118vw,500px)}
+  .as-site.aaa-site .aaa-process-rail{gap:0}
+  .as-site.aaa-site .aaa-process-rail article{padding-top:22px;padding-bottom:24px}
+  .as-site.aaa-site .aaa-step-icon{width:38px;height:38px;margin-bottom:18px}
+  .as-site.aaa-site .aaa-close{padding:56px 0 62px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .as-site.aaa-site .aaa-showcase-frame,
+  .as-site.aaa-site .aaa-showcase-frame>img,
+  .as-site.aaa-site .aaa-pillar,
+  .as-site.aaa-site .aaa-pillar-media img,
+  .as-site.aaa-site .aaa-work-image>img,
+  .as-site.aaa-site .aaa-work-card-copy,
+  .as-site.aaa-site .aaa-step-icon,
+  .as-site.aaa-site .aaa-button{transition:none!important;transform:none!important}
+}
