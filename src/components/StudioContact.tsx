@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CONTACT_MAIL } from '../i18n/content'
 import { useLang } from '../i18n/LanguageContext'
 import { LEGAL_PATHS } from '../legal/documents'
@@ -6,6 +6,7 @@ import { ARCHIC_FOUNDERS } from '../config/contact'
 import { getAttributionSummary, recordIntent } from '../analytics/leadAttribution'
 
 const CONTACT_API_URL = 'https://contact-api-production-c100.up.railway.app/api/contact'
+const CONTACT_TIMEOUT_MS = 10_000
 
 const QUALIFY = {
   es: {
@@ -63,6 +64,17 @@ export default function StudioContact() {
   const [consent, setConsent] = useState(false)
   const [sending, setSending] = useState(false)
   const [startedAt] = useState(() => Date.now())
+  const mountedRef = useRef(true)
+  const requestRef = useRef<AbortController | null>(null)
+
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+      requestRef.current?.abort()
+      requestRef.current = null
+    }
+  }, [])
 
   const [consentBefore, consentAfter] = n.consent.split('{link}')
   const formLabel = lang === 'es' ? 'Consulta de proyecto Archic' : 'Archic project enquiry'
@@ -133,6 +145,11 @@ export default function StudioContact() {
       `${type} — ${company || name}`,
     )}&body=${encodeURIComponent(body)}`
 
+    requestRef.current?.abort()
+    const controller = new AbortController()
+    requestRef.current = controller
+    const timeoutId = window.setTimeout(() => controller.abort(), CONTACT_TIMEOUT_MS)
+
     setSending(true)
     setStatus(null)
 
@@ -157,25 +174,32 @@ export default function StudioContact() {
           consent: true,
           startedAt,
         }),
+        signal: controller.signal,
       })
 
       if (!response.ok) throw new Error(`contact_delivery_${response.status}`)
+      if (!mountedRef.current) return
 
       recordIntent('contact:delivered')
       form.reset()
       setConsent(false)
       setStatus({ tone: 'ok', text: q.sent })
     } catch {
+      // Navigating away intentionally aborts the in-flight request. Do not open
+      // the mail client after the component has already left the page.
+      if (!mountedRef.current) return
       recordIntent('contact:fallback')
       setStatus({ tone: 'error', text: q.fallback })
       window.location.href = mailto
     } finally {
-      setSending(false)
+      window.clearTimeout(timeoutId)
+      if (requestRef.current === controller) requestRef.current = null
+      if (mountedRef.current) setSending(false)
     }
   }
 
   return (
-    <form className="sx-form" onSubmit={handleSubmit} noValidate aria-label={formLabel}>
+    <form className="sx-form" onSubmit={handleSubmit} noValidate aria-label={formLabel} aria-busy={sending}>
       <section className="sx-direct-team" aria-label={q.directTitle}>
         <div className="sx-direct-team-head">
           <span>{q.directTitle}</span>
@@ -203,28 +227,28 @@ export default function StudioContact() {
 
       <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
         <label htmlFor="sx-company-website">Leave this field empty</label>
-        <input id="sx-company-website" name="companyWebsite" type="text" tabIndex={-1} autoComplete="off" />
+        <input id="sx-company-website" name="companyWebsite" type="text" tabIndex={-1} autoComplete="off" maxLength={200} />
       </div>
 
       <div className="sx-field-row">
         <div className="sx-field">
           <label htmlFor="sx-name">{c.fields.name}</label>
-          <input id="sx-name" name="name" type="text" autoComplete="name" required placeholder={c.placeholders.name} />
+          <input id="sx-name" name="name" type="text" autoComplete="name" required maxLength={120} placeholder={c.placeholders.name} />
         </div>
         <div className="sx-field">
           <label htmlFor="sx-company">{c.fields.company}</label>
-          <input id="sx-company" name="company" type="text" autoComplete="organization" placeholder={c.placeholders.company} />
+          <input id="sx-company" name="company" type="text" autoComplete="organization" maxLength={160} placeholder={c.placeholders.company} />
         </div>
       </div>
 
       <div className="sx-field-row">
         <div className="sx-field">
           <label htmlFor="sx-contact">{c.fields.contact}</label>
-          <input id="sx-contact" name="contact" type="text" required placeholder={c.placeholders.contact} />
+          <input id="sx-contact" name="contact" type="text" required maxLength={240} placeholder={c.placeholders.contact} />
         </div>
         <div className="sx-field">
           <label htmlFor="sx-website">{q.website}</label>
-          <input id="sx-website" name="website" type="url" autoComplete="url" placeholder={q.websitePlaceholder} />
+          <input id="sx-website" name="website" type="url" autoComplete="url" maxLength={300} placeholder={q.websitePlaceholder} />
         </div>
       </div>
 
@@ -243,17 +267,17 @@ export default function StudioContact() {
 
       <div className="sx-field">
         <label htmlFor="sx-revenue">{q.revenue}</label>
-        <textarea id="sx-revenue" name="revenue" required placeholder={q.revenuePlaceholder} />
+        <textarea id="sx-revenue" name="revenue" required maxLength={2000} placeholder={q.revenuePlaceholder} />
       </div>
 
       <div className="sx-field">
         <label htmlFor="sx-challenge">{q.challenge}</label>
-        <textarea id="sx-challenge" name="challenge" required placeholder={q.challengePlaceholder} />
+        <textarea id="sx-challenge" name="challenge" required maxLength={2000} placeholder={q.challengePlaceholder} />
       </div>
 
       <div className="sx-field">
         <label htmlFor="sx-outcome">{q.outcome}</label>
-        <textarea id="sx-outcome" name="outcome" required placeholder={q.outcomePlaceholder} />
+        <textarea id="sx-outcome" name="outcome" required maxLength={2000} placeholder={q.outcomePlaceholder} />
       </div>
 
       <fieldset className="sx-type-options sx-investment-options">
@@ -271,7 +295,7 @@ export default function StudioContact() {
 
       <div className="sx-field">
         <label htmlFor="sx-details">{q.details}</label>
-        <textarea id="sx-details" name="details" placeholder={q.detailsPlaceholder} />
+        <textarea id="sx-details" name="details" maxLength={3000} placeholder={q.detailsPlaceholder} />
       </div>
 
       <label className="sx-consent" htmlFor="sx-consent">

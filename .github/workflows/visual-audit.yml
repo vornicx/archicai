@@ -9,6 +9,7 @@ on:
     paths:
       - '.github/workflows/visual-audit.yml'
       - 'scripts/visual-audit.mjs'
+      - 'scripts/boundary-audit.mjs'
       - 'src/**'
       - 'public/**'
       - 'vite.config.ts'
@@ -24,9 +25,9 @@ concurrency:
 
 jobs:
   audit:
-    name: Desktop + iPhone visual audit
+    name: Rendered + boundary audit
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
 
     steps:
       - name: Checkout
@@ -76,6 +77,14 @@ jobs:
           AUDIT_OUTPUT: visual-audit
         run: node scripts/visual-audit.mjs
 
+      - name: Exercise compact and reduced-motion boundaries
+        id: boundary_audit
+        continue-on-error: true
+        env:
+          AUDIT_BASE_URL: http://127.0.0.1:4173
+          AUDIT_OUTPUT: visual-audit
+        run: node scripts/boundary-audit.mjs
+
       - name: Upload screenshots and diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -85,10 +94,16 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 
-      - name: Enforce visual audit result
+      - name: Enforce rendered quality result
         if: always()
         run: |
+          failed=0
           if [ "${{ steps.visual_audit.outcome }}" != "success" ]; then
             echo "Visual audit failed. Diagnostics were uploaded above."
-            exit 1
+            failed=1
           fi
+          if [ "${{ steps.boundary_audit.outcome }}" != "success" ]; then
+            echo "Boundary audit failed. Inspect boundary-report.json in the artifact."
+            failed=1
+          fi
+          exit "$failed"
