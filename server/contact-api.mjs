@@ -112,7 +112,7 @@ async function readJson(req) {
   return parsed
 }
 
-async function deliver(input, requestId, fetchImpl = fetch) {
+async function deliver(input, requestId, { fetchImpl, apiKey, deliveryTimeoutMs }) {
   const name = text(input.name, 120)
   const company = text(input.company, 160)
   const contact = text(input.contact, 240)
@@ -140,7 +140,6 @@ async function deliver(input, requestId, fetchImpl = fetch) {
     return { status: 200, payload: { ok: true } }
   }
 
-  const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) {
     console.error('Contact delivery unavailable', { requestId, reason: 'missing_resend_api_key' })
     return { status: 503, payload: { ok: false, error: 'delivery_unavailable' } }
@@ -175,7 +174,7 @@ async function deliver(input, requestId, fetchImpl = fetch) {
         ...(replyTo ? { reply_to: replyTo } : {}),
         tags: [{ name: 'source', value: 'archic-web' }],
       }),
-      signal: AbortSignal.timeout(DELIVERY_TIMEOUT_MS),
+      signal: AbortSignal.timeout(deliveryTimeoutMs),
     })
 
     if (!response.ok) {
@@ -196,8 +195,12 @@ async function deliver(input, requestId, fetchImpl = fetch) {
   return { status: 200, payload: { ok: true } }
 }
 
-export function createContactServer() {
-  const limiter = createRateLimiter()
+export function createContactServer({
+  fetchImpl = fetch,
+  apiKey = process.env.RESEND_API_KEY,
+  deliveryTimeoutMs = DELIVERY_TIMEOUT_MS,
+  limiter = createRateLimiter(),
+} = {}) {
   const server = http.createServer(async (req, res) => {
     const requestId = text(req.headers['x-railway-request-id'], 100) || randomUUID()
     res.setHeader('X-Request-Id', requestId)
@@ -222,7 +225,7 @@ export function createContactServer() {
 
     try {
       const input = await readJson(req)
-      const result = await deliver(input, requestId)
+      const result = await deliver(input, requestId, { fetchImpl, apiKey, deliveryTimeoutMs })
       return json(res, result.status, result.payload)
     } catch (error) {
       if (error instanceof Error && error.message === 'payload_too_large') {
