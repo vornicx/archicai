@@ -16,6 +16,11 @@ function text(value, max = 2_000) {
   return String(value ?? '').trim().slice(0, max)
 }
 
+function errorField(error, field) {
+  if (!error || typeof error !== 'object' || !(field in error)) return ''
+  return String(error[field] ?? '')
+}
+
 function extractEmail(value) {
   const match = String(value ?? '').match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)
   return match?.[0] ?? null
@@ -183,11 +188,12 @@ async function deliver(input, requestId, { fetchImpl, apiKey, deliveryTimeoutMs 
       return { status: 502, payload: { ok: false, error: 'delivery_failed' } }
     }
   } catch (error) {
-    const timedOut = error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError')
+    const errorName = errorField(error, 'name')
+    const timedOut = errorName === 'TimeoutError' || errorName === 'AbortError'
     console.error('Contact delivery dependency failed', {
       requestId,
       reason: timedOut ? 'timeout' : 'network_error',
-      error: error instanceof Error ? error.message.slice(0, 180) : 'unknown_error',
+      error: errorField(error, 'message').slice(0, 180) || 'unknown_error',
     })
     return { status: timedOut ? 504 : 502, payload: { ok: false, error: timedOut ? 'delivery_timeout' : 'delivery_failed' } }
   }
@@ -233,7 +239,7 @@ export function createContactServer({
       }
       console.error('Contact API rejected request', {
         requestId,
-        reason: error instanceof Error ? error.message.slice(0, 180) : 'unknown_error',
+        reason: errorField(error, 'message').slice(0, 180) || 'unknown_error',
       })
       return json(res, 400, { ok: false, error: 'invalid_request' })
     }
