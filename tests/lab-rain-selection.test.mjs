@@ -23,3 +23,15 @@ test('summary uses the MET condition and rounds temperature', () => {
   assert.notEqual(s.split(' · ')[3], '—')
   assert.equal(hourSummary({ time: 'x', temperatureC: null, precipitationMm: 0, symbolCode: null }, '01:00', 'en-GB', 'en'), '01:00 · 0.0 mm · — °C · —')
 })
+
+import { hourParts, scrollEdges } from '../src/lab/hourSelection.ts'
+test('hourParts splits real values and marks missing ones with —', () => {
+  assert.deepEqual(hourParts({ time: 'x', temperatureC: 17.4, precipitationMm: 0.6, symbolCode: null }, 'es-ES', 'es'), { rain: '0,6 mm', temp: '17 °C', condition: '—' })
+  assert.deepEqual(hourParts({ time: 'x', temperatureC: null, precipitationMm: null, symbolCode: null }, 'en-GB', 'en'), { rain: '— mm', temp: '— °C', condition: '—' })
+})
+test('scrollEdges reports hidden content on each side', () => {
+  assert.deepEqual(scrollEdges(0, 300, 1000), { start: false, end: true })
+  assert.deepEqual(scrollEdges(350, 300, 1000), { start: true, end: true })
+  assert.deepEqual(scrollEdges(700, 300, 1000), { start: true, end: false })
+  assert.deepEqual(scrollEdges(0, 300, 300), { start: false, end: false })
+})

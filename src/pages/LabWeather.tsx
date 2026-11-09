@@ -7,6 +7,7 @@ import { fetchForecast, type Point } from '../lab/weatherClient'
 import { parseSymbol, conditionLabel, skyTone } from '../lab/weatherSymbol'
 import { WeatherGlyph } from '../lab/WeatherGlyph'
 import { RainBars } from '../lab/RainBars'
+import { hourParts, scrollEdges } from '../lab/hourSelection'
 import { forecastReducer, forecastView, initialForecast, placeKey } from '../lab/forecastState'
 import { nextHourIndex, hourSummary } from '../lab/hourSelection'
 import '../styles/archic-light.css'
@@ -28,7 +29,7 @@ const COPY = {
     description: 'Predicción meteorológica por horas y lluvia en litros por metro cuadrado, con fuente y hora de actualización visibles.',
     location: 'Ubicación', device: 'Usar mi ubicación', coords: 'Introducir coordenadas', latitude: 'Latitud', longitude: 'Longitud', go: 'Consultar',
     simple: 'Resumen', detail: 'Detalle', refresh: 'Actualizar', mode: 'Nivel de detalle',
-    loading: 'Consultando la predicción…', failure: 'No hemos podido obtener la predicción.', retry: 'Reintentar', empty: 'La fuente no ha devuelto intervalos horarios para esta ubicación.',
+    loading: 'Consultando la predicción…', failure: 'No hemos podido obtener la predicción.', failureAt: (p: string) => `No hemos podido obtener la predicción para ${p}.`, loadingAt: (p: string) => `Consultando la predicción para ${p}…`, prevHours: 'Horas anteriores', nextHours: 'Horas siguientes', retry: 'Reintentar', empty: 'La fuente no ha devuelto intervalos horarios para esta ubicación.',
     invalid: 'Introduce una latitud entre −90 y 90 y una longitud entre −180 y 180.',
     geoError: 'No se pudo acceder a tu ubicación. Revisa los permisos del navegador.',
     model: 'Predicción de modelo, no observación', forHour: 'Para', rain24: 'Lluvia prevista · 24 h', rain6: 'Próximas 6 h', unit: 'l/m²',
@@ -50,7 +51,7 @@ const COPY = {
     description: 'Hourly weather forecasts and rainfall in millimetres, with the source and update time in view.',
     location: 'Location', device: 'Use my location', coords: 'Enter coordinates', latitude: 'Latitude', longitude: 'Longitude', go: 'Go',
     simple: 'Overview', detail: 'Detail', refresh: 'Refresh', mode: 'Detail level',
-    loading: 'Loading the forecast…', failure: 'We could not load the forecast.', retry: 'Try again', empty: 'The source returned no hourly intervals for this location.',
+    loading: 'Loading the forecast…', failure: 'We could not load the forecast.', failureAt: (p: string) => `We could not load the forecast for ${p}.`, loadingAt: (p: string) => `Loading the forecast for ${p}…`, prevHours: 'Earlier hours', nextHours: 'Later hours', retry: 'Try again', empty: 'The source returned no hourly intervals for this location.',
     invalid: 'Enter a latitude between −90 and 90 and a longitude between −180 and 180.',
     geoError: 'We could not access your location. Check your browser permissions.',
     model: 'Model forecast, not an observation', forHour: 'For', rain24: 'Forecast rainfall · 24 h', rain6: 'Next 6 h', unit: 'mm',
@@ -99,6 +100,8 @@ export default function LabWeather() {
   const [formError, setFormError] = useState('')
   const [selected, setSelected] = useState(0)
   const stripRef = useRef<HTMLUListElement>(null)
+  const [edges, setEdges] = useState({ start: false, end: false })
+  const readEdges = () => { const el = stripRef.current; if (el) setEdges(scrollEdges(el.scrollLeft, el.clientWidth, el.scrollWidth)) }
 
   useEffect(() => {
     const controller = new AbortController()
@@ -113,11 +116,13 @@ export default function LabWeather() {
     return () => controller.abort()
   }, [key, place.lat, place.lon, revision])
 
-  const view = forecastView(state)
+  const view = forecastView(state, key)
   const payload = view.data?.payload ?? null
   const now = view.data?.receivedAt ?? 0
-  const loading = state.status === 'loading'
+  const loading = view.loading
   const error = view.error
+  // Re-measure the strip edges when its content or the viewport changes.
+  useEffect(() => { readEdges(); window.addEventListener('resize', readEdges); return () => window.removeEventListener('resize', readEdges) }, [view.data, mode])
   // A new forecast (new place or refresh) resets the hour selection to the interval in progress.
   useEffect(() => { setSelected(0) }, [view.data])
 
@@ -191,12 +196,18 @@ export default function LabWeather() {
   const hourSlot = hourly.slice(0, 24)
   const sel = Math.min(selected, Math.max(0, hourSlot.length - 1))
   const selPoint = hourSlot[sel] ?? null
+  const selParts = selPoint ? hourParts(selPoint, locale, lang) : null
   const selText = selPoint ? hourSummary(selPoint, sel === 0 ? c.nowWord + ' ' + hour(selPoint.time) : hour(selPoint.time), locale, lang) : ''
   const pick = (i: number) => {
     setSelected(i)
     const el = stripRef.current?.querySelectorAll('button')[i] as HTMLButtonElement | undefined
     el?.focus({ preventScroll: true })
     el?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  }
+  const pageStrip = (dir: 1 | -1) => {
+    const el = stripRef.current
+    if (!el) return
+    el.scrollBy({ left: dir * Math.max(144, el.clientWidth - 72), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
   }
   const onStripKey = (e: KeyboardEvent<HTMLUListElement>) => {
     const next = nextHourIndex(sel, e.key, hourSlot.length)
@@ -267,11 +278,14 @@ export default function LabWeather() {
         </div>
 
         <div aria-live="polite" aria-busy={loading}>
-          {view.loadingFresh && <><p className="lw-sr" role="status">{c.loading}</p><div className="lw-skeleton" aria-hidden="true"><span>{placeName}</span><span>{c.loading}</span></div></>}
+          {view.loadingFresh && <><p className="lw-sr" role="status">{c.loadingAt(placeName)}</p><div className="lw-skeleton" aria-hidden="true">
+            <div className="lw-skel-now"><span>{placeName}</span><i className="lw-skel-temp" /><i className="lw-skel-line" /><i className="lw-skel-line is-short" /></div>
+            <div className="lw-skel-rain"><span>{c.loading}</span><i className="lw-skel-line is-short" /><i className="lw-skel-chart" /></div>
+          </div></>}
           {view.refreshing && <p className="lw-refreshing" role="status">{c.refreshing}</p>}
           {error && !loading && (
             <div className="lw-state" role="alert">
-              <p>{c.failure}</p>
+              <p>{c.failureAt(placeName)}</p>
               <button className="lw-pill" type="button" onClick={() => setRevision((n) => n + 1)}>{c.retry}</button>
             </div>
           )}
@@ -308,7 +322,14 @@ export default function LabWeather() {
                   <figure className="lw-chart">
                     <figcaption className="lw-chart-head"><span>{c.chartTitle}</span><span>{c.chartRange(hourly.length)}</span></figcaption>
                     <RainBars hourly={hourly} locale={locale} timeZone={tz} label={chartLabel} selectedIndex={sel} />
-                    {selPoint && <p className="lw-chart-sel" aria-live="polite"><span className="lw-sr">{c.selectedHour}: </span><time dateTime={selPoint.time}>{selText}</time></p>}
+                    {selPoint && selParts && (
+                      <p className="lw-chart-sel" aria-live="polite" aria-label={`${c.selectedHour}: ${selText}`}>
+                        <time dateTime={selPoint.time}>{sel === 0 ? `${c.nowWord} · ${hour(selPoint.time)}` : hour(selPoint.time)}</time>
+                        <span data-wet={(selPoint.precipitationMm ?? 0) > 0 || undefined}>{selParts.rain}</span>
+                        <span>{selParts.temp}</span>
+                        <span>{selParts.condition}</span>
+                      </p>
+                    )}
                     <p className="lw-sr">{chartLabel}</p>
                   </figure>
                 </div>
@@ -323,7 +344,9 @@ export default function LabWeather() {
                   </div>
                 </div>
                 <p className="lw-sr" id="lw-strip-hint">{c.stripHint}</p>
-                <ul className="lw-strip" ref={stripRef} onKeyDown={onStripKey} aria-describedby="lw-strip-hint">
+                <div className="lw-strip-wrap" data-more-start={edges.start || undefined} data-more-end={edges.end || undefined}>
+                <button type="button" className="lw-strip-nav is-prev" onClick={() => pageStrip(-1)} disabled={!edges.start} aria-label={c.prevHours} tabIndex={-1}><span aria-hidden="true">‹</span></button>
+                <ul className="lw-strip" ref={stripRef} onScroll={readEdges} onKeyDown={onStripKey} aria-describedby="lw-strip-hint">
                   {hourSlot.map((p, i) => {
                     const cond = parseSymbol(p.symbolCode)
                     const label = conditionLabel(cond, lang)
@@ -339,6 +362,8 @@ export default function LabWeather() {
                     )
                   })}
                 </ul>
+                <button type="button" className="lw-strip-nav is-next" onClick={() => pageStrip(1)} disabled={!edges.end} aria-label={c.nextHours} tabIndex={-1}><span aria-hidden="true">›</span></button>
+                </div>
               </section>
 
               {mode === 'detail' && (

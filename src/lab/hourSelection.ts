@@ -21,3 +21,18 @@ export function hourSummary(p: P, hourText: string, locale: string, lang: 'es' |
   const cond = conditionLabel(parseSymbol(p.symbolCode), lang) ?? '—'
   return [hourText, mm, t, cond].join(' · ')
 }
+
+/** Same facts as hourSummary, split so the UI can lay them out as a wrapping micro-row. */
+export function hourParts(p: P, locale: string, lang: 'es' | 'en'): { rain: string; temp: string; condition: string } {
+  const n = (v: number, d: number) => new Intl.NumberFormat(locale, { minimumFractionDigits: d, maximumFractionDigits: d }).format(v)
+  return {
+    rain: p.precipitationMm === null || !Number.isFinite(p.precipitationMm) ? '— mm' : `${n(p.precipitationMm, 1)} mm`,
+    temp: p.temperatureC === null || !Number.isFinite(p.temperatureC) ? '— °C' : `${n(p.temperatureC, 0)} °C`,
+    condition: conditionLabel(parseSymbol(p.symbolCode), lang) ?? '—',
+  }
+}
+
+/** Which edges of a horizontally scrollable strip still hide content (1px tolerance for subpixel widths). */
+export function scrollEdges(scrollLeft: number, clientWidth: number, scrollWidth: number): { start: boolean; end: boolean } {
+  return { start: scrollLeft > 1, end: scrollLeft + clientWidth < scrollWidth - 1 }
+}

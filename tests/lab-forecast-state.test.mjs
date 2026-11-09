@@ -53,3 +53,27 @@ test('a failure from a superseded request does not mark the new place as failed'
   s = r(s, { type: 'fail', key: ECIJA, id: 1 })
   assert.equal(v(s).error, false)
 })
+
+test('render right after a place change (before the start effect) shows no data from the old place', () => {
+  let s = r(initialForecast(ECIJA), { type: 'start', key: ECIJA, id: 1 })
+  s = r(s, { type: 'resolve', key: ECIJA, id: 1, payload: pay(17), at: 1 })
+  // setPlace(Tokyo) re-renders with the Écija state still in the reducer.
+  const view = v(s, TOKYO)
+  assert.equal(view.data, null)
+  assert.equal(view.loadingFresh, true)
+  assert.equal(view.loading, true)
+  assert.equal(view.refreshing, false)
+  assert.equal(view.error, false)
+})
+
+test('a failed Écija state is not shown as a Tokyo error on the first Tokyo render', () => {
+  let s = r(initialForecast(ECIJA), { type: 'start', key: ECIJA, id: 1 })
+  s = r(s, { type: 'fail', key: ECIJA, id: 1 })
+  assert.equal(v(s, TOKYO).error, false)
+  assert.equal(v(s, ECIJA).error, true)
+})
+
+test('coordinates that round to the same 0.001 cell share a key', () => {
+  assert.equal(placeKey(37.5412, -5.0831), placeKey(37.5409, -5.0829))
+  assert.notEqual(placeKey(37.541, -5.083), placeKey(37.542, -5.083))
+})

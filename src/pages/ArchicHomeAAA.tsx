@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { Helmet } from 'react-helmet-async'
 import '@fontsource-variable/geist/wght.css'
 import StudioHeader from '../components/StudioHeader'
@@ -11,12 +12,18 @@ import { SkyCredit, SKY_WIDE } from '../lab/skyAsset'
 import '../styles/archic-light.css'
 
 type Lang = 'es' | 'en'
-type WorkItem = { name: string; sector: string; scope: string; image: string; href: string; note: string }
+type WorkItem = {
+  name: string; sector: string; scope: string; href: string; domain: string; status: string
+  // Image provenance is always shown: client material vs representative photography.
+  image: { base: string; widths: [number, number]; ratio: string; credit: string }
+}
 
-// Portfolio photography: provenance in docs/asset-provenance.md.
-const ARCHITECTURE_ONE = 'https://images.unsplash.com/photo-1776514222617-cd3d0139c926?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=1200'
-const YACHT_IMAGE = 'https://images.unsplash.com/photo-1770929356223-639d10f7feee?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=1200'
-const MAFESUR_IMAGE = 'https://www.mafesur.es/wp-content/uploads/2025/09/20200923_132714-1024x498.jpg'
+// Portfolio photography, archived locally (no hotlinks). Provenance in docs/asset-provenance.md.
+const IMG = {
+  mafesur: { base: '/media/work/mafesur', widths: [720, 1024] as [number, number], ratio: '1024 / 498' },
+  yacht: { base: '/media/work/yacht', widths: [720, 1200] as [number, number], ratio: '4 / 5' },
+  cosmo: { base: '/media/work/cosmo', widths: [720, 1200] as [number, number], ratio: '4 / 5' },
+}
 
 const COPY = {
   es: {
@@ -119,14 +126,14 @@ const COPY = {
 
 const WORK: Record<Lang, WorkItem[]> = {
   es: [
-    { name: 'Mafesur', sector: 'Automoción', scope: 'Concesionario + taller · Presence', image: MAFESUR_IMAGE, href: 'https://mafesur.vercel.app/', note: 'Proyecto Archic' },
-    { name: 'Marbella Boat Charter', sector: 'Charter', scope: 'Presence + plataforma', image: YACHT_IMAGE, href: 'https://github.com/vornicx/marbellaboatcharter', note: 'Fotografía representativa · build en curso' },
-    { name: 'Cosmo School', sector: 'Educación', scope: 'Presence + experiencia digital', image: ARCHITECTURE_ONE, href: 'https://cosmoschool-weld.vercel.app/', note: 'Proyecto Archic Lab · visual editorial' },
+    { name: 'Mafesur', sector: 'Automoción', scope: 'Concesionario y taller · web Presence', href: 'https://mafesur.vercel.app/', domain: 'mafesur.vercel.app', status: 'Publicado', image: { ...IMG.mafesur, credit: 'Imagen: instalaciones del cliente, de su web pública' } },
+    { name: 'Marbella Boat Charter', sector: 'Charter náutico', scope: 'Web y plataforma de reservas', href: 'https://github.com/vornicx/marbellaboatcharter', domain: 'github.com/vornicx', status: 'En construcción', image: { ...IMG.yacht, credit: 'Fotografía representativa · ionut dobre / Unsplash' } },
+    { name: 'Cosmo School', sector: 'Educación', scope: 'Web y experiencia digital', href: 'https://cosmoschool-weld.vercel.app/', domain: 'cosmoschool-weld.vercel.app', status: 'Publicado', image: { ...IMG.cosmo, credit: 'Fotografía representativa · Jonas Gerlach / Unsplash' } },
   ],
   en: [
-    { name: 'Mafesur', sector: 'Automotive', scope: 'Dealership + workshop · Presence', image: MAFESUR_IMAGE, href: 'https://mafesur.vercel.app/', note: 'Archic project' },
-    { name: 'Marbella Boat Charter', sector: 'Charter', scope: 'Presence + platform', image: YACHT_IMAGE, href: 'https://github.com/vornicx/marbellaboatcharter', note: 'Representative photography · build in progress' },
-    { name: 'Cosmo School', sector: 'Education', scope: 'Presence + digital experience', image: ARCHITECTURE_ONE, href: 'https://cosmoschool-weld.vercel.app/', note: 'Archic Lab project · editorial visual' },
+    { name: 'Mafesur', sector: 'Automotive', scope: 'Dealership and workshop · Presence website', href: 'https://mafesur.vercel.app/', domain: 'mafesur.vercel.app', status: 'Live', image: { ...IMG.mafesur, credit: 'Image: client premises, from their public website' } },
+    { name: 'Marbella Boat Charter', sector: 'Yacht charter', scope: 'Website and booking platform', href: 'https://github.com/vornicx/marbellaboatcharter', domain: 'github.com/vornicx', status: 'In progress', image: { ...IMG.yacht, credit: 'Representative photography · ionut dobre / Unsplash' } },
+    { name: 'Cosmo School', sector: 'Education', scope: 'Website and digital experience', href: 'https://cosmoschool-weld.vercel.app/', domain: 'cosmoschool-weld.vercel.app', status: 'Live', image: { ...IMG.cosmo, credit: 'Representative photography · Jonas Gerlach / Unsplash' } },
   ],
 }
 
@@ -225,19 +232,29 @@ export default function ArchicHomeAAA() {
               <div><p className="al-label">{c.work.label}</p><h2 className="al-h2">{c.work.title}</h2></div>
               <p className="al-body">{c.work.body}</p>
             </header>
-            <div className="al-work-grid">
-              {WORK[L].map((item) => (
-                <article className="al-work" key={item.name}>
-                  <a href={item.href} target="_blank" rel="noreferrer" data-archic-intent={`work:${item.name}`} aria-label={`${c.work.open}: ${item.name}`}>
-                    <div className="al-work-media"><img src={item.image} alt={`${item.name} · ${item.sector}`} loading="lazy" decoding="async" /></div>
+            <ol className="al-work-grid">
+              {WORK[L].map((item, i) => (
+                <li className="al-work" key={item.name}>
+                  <a href={item.href} target="_blank" rel="noreferrer" data-archic-intent={`work:${item.name}`}>
+                    <figure className="al-work-media" style={{ '--al-ratio': item.image.ratio } as CSSProperties}>
+                      <img
+                        src={`${item.image.base}-${item.image.widths[0]}.webp`}
+                        srcSet={`${item.image.base}-${item.image.widths[0]}.webp ${item.image.widths[0]}w, ${item.image.base}-${item.image.widths[1]}.webp ${item.image.widths[1]}w`}
+                        sizes={i === 0 ? '(max-width: 960px) 100vw, 66vw' : '(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw'}
+                        alt={`${item.name} · ${item.sector}`} loading="lazy" decoding="async"
+                      />
+                    </figure>
                     <div className="al-work-meta">
-                      <div><h3>{item.name}</h3><p>{item.sector} · {item.scope}</p><small>{item.note}</small></div>
-                      <b aria-hidden="true">↗</b>
+                      <span className="al-work-no">0{i + 1}</span>
+                      <h3>{item.name} <b aria-hidden="true">↗</b><span className="al-sr"> ({c.work.open})</span></h3>
+                      <p>{item.sector} · {item.scope}</p>
+                      <p className="al-work-status"><span data-state={item.status === 'Publicado' || item.status === 'Live' ? 'live' : 'wip'}>{item.status}</span>{item.domain}</p>
                     </div>
                   </a>
-                </article>
+                  <p className="al-work-credit">{item.image.credit}</p>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </section>
 

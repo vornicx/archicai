@@ -62,3 +62,5 @@ Also inspect rendered desktop + mobile, reduced motion, contact/critical paths, 
 ## Archic Lab Weather backend
 - Weather data is served only by the Lovable Cloud Edge Function `lab-weather` (logic in `supabase/functions/_shared/labWeather.ts`, tested by `npm run test:weather`); never reintroduce `/api/*` hosting functions or browser calls to api.met.no — Lovable hosting does not run them and MET requires an identifying User-Agent.
 - Its cache and rate limit are per-isolate memory, not shared across Edge instances; treat them as abuse mitigation, not a guaranteed provider cache.
+- Weather's `forecastView(state, currentKey)` must receive the key of the place being rendered, so the render after a place change (before the fetch effect runs) never shows the previous place's data; tested in `tests/lab-forecast-state.test.mjs`.
+- Home portfolio images are local WebPs under `public/media/work/` with a visible provenance caption per project (client material vs representative photography); no hotlinked images.

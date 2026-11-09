@@ -26,7 +26,10 @@ export function forecastReducer(s: ForecastState, a: ForecastAction): ForecastSt
   return { ...s, status: 'error' }
 }
 
-export function forecastView(s: ForecastState) {
+// `currentKey` is the place being rendered right now. On the render right after a place change the
+// effect has not yet dispatched `start`, so state still belongs to the old place: show nothing for it.
+export function forecastView(s: ForecastState, currentKey: string = s.requestKey) {
+  if (s.requestKey !== currentKey) return { data: null, refreshing: false, loadingFresh: true, error: false, loading: true }
   const own = s.data && s.data.key === s.requestKey ? s.data : null
   return {
     // Same-place refresh keeps the previous forecast, flagged; a new place shows nothing until its own data arrives.
@@ -34,5 +37,6 @@ export function forecastView(s: ForecastState) {
     refreshing: s.status === 'loading' && own !== null,
     loadingFresh: s.status === 'loading' && own === null,
     error: s.status === 'error',
+    loading: s.status === 'loading',
   }
 }
