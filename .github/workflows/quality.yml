@@ -28,7 +28,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
       - name: Use Bun
         uses: oven-sh/setup-bun@v2
@@ -36,13 +35,13 @@ jobs:
           bun-version: latest
 
       - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+        run: bun install --frozen-lockfile
 
       - name: Generate static pages and SEO
-        run: npm run gen:pages
+        run: bun run gen:pages
 
       - name: TypeScript + production build
-        run: npm run build
+        run: bun run build
 
       - name: Archic Quality Gate
-        run: npm run quality:gate
+        run: bun run quality:gate
