@@ -6,6 +6,8 @@ import SiteErrorBoundary from './components/SiteErrorBoundary'
 /* Secondary routes are split out of the main bundle: they are rarely the
    landing page, so keeping them out of the critical path helps LCP. */
 const ArchicSitePage = lazy(() => import('./pages/ArchicSitePage'))
+const LabIndex = lazy(() => import('./pages/LabIndex'))
+const LabWeather = lazy(() => import('./pages/LabWeather'))
 const LegalPage = lazy(() => import('./pages/LegalPage'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const ServicePage = lazy(() => import('./pages/ServicePage'))
@@ -204,6 +206,14 @@ function App() {
               <Routes>
                 <Route path="/" element={<ArchicHome />} />
                 <Route path="/en/" element={<ArchicHome />} />
+                <Route path="/lab/" element={<LabIndex />} />
+                <Route path="/lab" element={<LabIndex />} />
+                <Route path="/en/lab/" element={<LabIndex />} />
+                <Route path="/en/lab" element={<LabIndex />} />
+                <Route path="/lab/weather/" element={<LabWeather />} />
+                <Route path="/lab/weather" element={<LabWeather />} />
+                <Route path="/en/lab/weather/" element={<LabWeather />} />
+                <Route path="/en/lab/weather" element={<LabWeather />} />
                 {ARCHIC_ROUTES.flatMap(([slug, page]) => [
                   <Route key={`es-${slug}`} path={`/${slug}/`} element={<ArchicSitePage page={page} />} />,
                   <Route key={`es-bare-${slug}`} path={`/${slug}`} element={<ArchicSitePage page={page} />} />,
