@@ -21,6 +21,10 @@ const routes = [
   ['guides-index', '/guias/'],
   ['guide-wordpress', '/guias/web-a-medida-o-wordpress/'],
   ['legal-privacy', '/privacidad/'],
+  ['archic-lab', '/lab/'],
+  ['archic-lab-en', '/en/lab/'],
+  ['weather', '/lab/weather/'],
+  ['weather-en', '/en/lab/weather/'],
 ]
 
 const viewports = [
@@ -77,6 +81,42 @@ for (const [viewportName, viewport] of viewports) {
     page.on('response', (response) => { if (response.status() >= 400) badResponses.push({ url: response.url(), status: response.status() }) })
     page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()) })
     page.on('pageerror', (error) => pageErrors.push(error.message))
+
+    // The local Vite preview does not run Vercel Functions.
+    // Stub strictly the Weather endpoint for visual UI validation; API contract is tested separately.
+    if (name === 'weather' || name === 'weather-en') {
+      const firstHour = new Date(Math.ceil(Date.now() / 3600000) * 3600000)
+      const points = Array.from({ length: 26 }, (_, index) => ({
+        time: new Date(firstHour.getTime() + index * 3600000).toISOString(),
+        temperatureC: 18 + Math.sin(index / 5) * 3,
+        feelsLikeC: 17 + Math.sin(index / 5) * 3,
+        humidityPct: 63,
+        dewPointC: 11,
+        pressureHpa: 1014,
+        cloudPct: 47,
+        fogPct: 4,
+        uvClearSky: 3,
+        windKmh: 12,
+        gustKmh: 21,
+        windFromDegrees: 205,
+        precipitationMm: index % 4 === 0 ? 2.5 : 0,
+        precipitationProbabilityPct: 62,
+        periodHours: 1,
+        symbolCode: 'cloudy',
+      }))
+      await page.route('**/api/lab/weather?*', async (intercept) => {
+        await intercept.fulfill({
+          status: 200,
+          contentType: 'application/json; charset=utf-8',
+          body: JSON.stringify({
+            source: { name: 'MET Norway', url: 'https://api.met.no/', type: 'model_forecast' },
+            updatedAt: new Date().toISOString(),
+            points,
+            limitations: { observedStationData: false, officialAlerts: false, radar: false, timesAreUtc: true },
+          }),
+        })
+      })
+    }
 
     const url = new URL(route, baseUrl).toString()
     let navigationError = null
