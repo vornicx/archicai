@@ -26,7 +26,7 @@ for (const page of pages) {
     '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
     '<title>' + esc(page.title) + '</title>',
     '<meta name="description" content="' + esc(page.description) + '" />',
-    '<meta name="theme-color" content="#080808" />',
+    '<meta name="theme-color" content="#F8F9FB" />',
     '<meta name="robots" content="index, follow" />',
     '<link rel="canonical" href="' + canonical + '" />',
     '<link rel="alternate" hreflang="es" href="' + es + '" />',

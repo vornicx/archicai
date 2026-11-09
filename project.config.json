@@ -6,7 +6,7 @@
     "mode": "production",
     "kind": "marketing",
     "sector": "digital systems, web and custom software studio",
-    "decisionDate": "2026-08-31"
+    "decisionDate": "2026-11-09"
   },
   "direction": {
     "density": 3,
@@ -15,13 +15,15 @@
     "temperature": 3,
     "era": 4,
     "kinetics": 2,
-    "leadMedium": "Image",
+    "leadMedium": "Typography + sky photography",
     "distance": 3,
-    "primaryArchetype": "Cinematic Sequence",
-    "secondaryArchetype": "Editorial Spread",
-    "justification": "Archic needs to create desire before explaining process. Photography and large directed product scenes establish perceived quality; editorial typography carries the commercial argument; UI proof appears inside authored compositions instead of becoming the aesthetic itself. The sequence alternates cinematic dark chapters with precise editorial light chapters.",
+    "primaryArchetype": "Editorial Product",
+    "secondaryArchetype": "Native Utility",
+    "justification": "Owner-approved 2026-11 concepts: editorial light surface (#F8F9FB / white / ink #101217) with Archic blue #075BCD as a precise accent. Typography carries authority; real portfolio imagery and one licensed sky photograph give atmosphere; Weather proves product craft with real data.",
     "sectorsUnrelatedToPrevious": true,
-    "archetypeRepeatJustification": "This is Archic's own production site. Cinematic Sequence and Editorial Spread are selected because the approved visual reference relies on art-directed imagery, strong serif hierarchy, portfolio scenes and quiet editorial rhythm rather than technical dashboards."
+    "archetypeRepeatJustification": "This is Archic's own production site. Cinematic Sequence and Editorial Spread are selected because the approved visual reference relies on art-directed imagery, strong serif hierarchy, portfolio scenes and quiet editorial rhythm rather than technical dashboards.",
+    "version": "v4-light-blue",
+    "accent": "#075BCD"
   },
   "assets": {
     "policy": "verified-production-assets",
@@ -41,6 +43,11 @@
       "area": "editorial reference photography",
       "status": "approved with provenance",
       "reason": "V3 uses named Unsplash License images as non-client art-direction material and clearly avoids presenting representative yacht photography as actual fleet inventory."
+    },
+    {
+      "area": "sky photography",
+      "status": "approved with provenance",
+      "reason": "Rise DHMN, Wikimedia Commons, CC BY 4.0; cropped and re-encoded as local WebP; credited on every page that shows it."
     }
   ]
 }

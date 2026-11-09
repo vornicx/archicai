@@ -19,41 +19,50 @@ for (const file of [
   'project.config.json',
   'docs/asset-provenance.md',
   'src/pages/ArchicHomeAAA.tsx',
-  'public/archic-aaa.css',
+  'src/styles/archic-light.css',
+  'src/pages/LabWeather.tsx',
+  'src/lab/weatherMath.ts',
 ]) check(present(file), `Required production contract exists: ${file}`)
 
 const config = JSON.parse(read('project.config.json'))
 check(config.project?.mode === 'production', 'Project remains in production mode')
 check(config.foundation?.version === '1.0.0', 'Foundation remains pinned to 1.0.0')
-check(config.direction?.leadMedium === 'Image', 'V3 direction is image-led')
-check(config.direction?.primaryArchetype === 'Cinematic Sequence', 'V3 primary archetype is Cinematic Sequence')
-check(config.direction?.secondaryArchetype === 'Editorial Spread', 'V3 secondary archetype is Editorial Spread')
+check(config.direction?.version === 'v4-light-blue', 'V4 editorial light/blue direction is active')
+check(config.direction?.accent === '#075BCD', 'Official accent is Archic blue #075BCD')
 check(config.assets?.verified === true, 'Production asset graph is marked verified')
 
 const homeEntry = read('src/pages/ArchicHome.tsx')
 const home = read('src/pages/ArchicHomeAAA.tsx')
-const css = read('public/archic-aaa.css')
+const css = read('src/styles/archic-light.css')
+const weather = read('src/pages/LabWeather.tsx')
+const lab = read('src/pages/LabIndex.tsx')
 const header = read('src/components/StudioHeader.tsx')
 const provenance = read('docs/asset-provenance.md')
 const direction = read('AAA_VISUAL_DIRECTION.md')
 
 check(homeEntry.includes("export { default } from './ArchicHomeAAA'"), 'Home entry resolves to AAA implementation')
-check(home.includes('data-quality-standard="aaa-design-art-direction-v3"'), 'Home declares AAA Design Art Direction v3')
-check(home.includes('Construimos sistemas digitales que') && home.includes('transforman') && home.includes('negocios.'), 'Home carries approved transformation platform')
-check(home.includes('HeroShowcase') && home.includes('ProjectStrip') && home.includes('PillarGrid') && home.includes('ProcessRail'), 'V3 authored visual chapters are present')
-check(home.includes("@fontsource/instrument-serif/latin-400.css") && home.includes("@fontsource/instrument-serif/latin-400-italic.css"), 'Editorial serif is explicitly route-scoped')
-check(home.includes('images.unsplash.com') && provenance.includes('Unsplash License'), 'Photography has documented production provenance')
+check(home.includes('data-quality-standard="aaa-design-light-blue-v4"'), 'Home declares AAA Design light/blue v4')
+check(home.includes('Diseñamos lo que viene.') && home.includes('We design what comes next.'), 'Home carries the approved ES/EN platform line')
+for (const id of ['selected-work', 'system', 'method', 'audit']) check(home.includes(`id="${id}"`), `Home keeps #${id}`)
+check(home.includes("'lab/weather'") && home.includes('#selected-work'), 'Hero CTAs point to Weather and selected work')
+check(home.includes('Webs premium') && home.includes('Software a medida') && home.includes('Sistemas para empresas'), 'Home keeps what Archic Lab sells visible')
+check(home.includes('buildHomeGraph') && home.includes('rel="canonical"'), 'Home keeps structured data and canonical')
+check(!/<em>|instrument-serif/i.test(home + lab + weather), 'No decorative italic/serif emphasis on Home, Lab or Weather')
+check(provenance.includes('Rise DHMN') && provenance.includes('CC BY 4.0') && present('public/media/sky/sky-portrait-1200.webp'), 'Sky photography is local WebP with documented licence')
 check(home.includes('Fotografía representativa') && provenance.includes('actual fleet inventory'), 'Representative yacht imagery carries an honesty boundary')
 check(!/trusted by|real results|premios|awards|testimonials/i.test(home), 'Home contains no invented social proof or outcome claims')
 check(!home.includes("from '../assets/concept/") && !home.includes("from '../assets/work-"), 'Home imports no unverified archived photography')
-check(!home.includes('ProjectMonolith') && !home.includes('SupervisedSystemField'), 'Superseded technical hero signatures are absent')
+check(!/Integración pendiente|Not connected yet/.test(weather), 'Weather has no placeholder "pending integration" blocks')
+check(weather.includes('upcomingHourly') && weather.includes('rainTotal'), 'Weather rain totals use the tested contiguous-hour helpers')
+check(weather.includes('MET Norway') && weather.includes('creativecommons.org/licenses/by/4.0'), 'Weather keeps MET Norway CC BY 4.0 attribution')
+check(weather.includes('/functions/v1/lab-weather') && !weather.includes('api.met.no/weatherapi/locationforecast/2.0/compact'), 'Weather calls only the Cloud Edge Function')
 
-check(css.includes("'Instrument Serif'"), 'Editorial typography is implemented in CSS')
-check(css.includes('.aaa-showcase') && css.includes('.aaa-project-strip') && css.includes('.aaa-pillars') && css.includes('.aaa-work-grid') && css.includes('.aaa-process-rail'), 'All v3 visual resource families are styled')
-check(css.includes('@media(prefers-reduced-motion:reduce)'), 'Reduced-motion behaviour is defined')
+check(css.includes('#075BCD') && css.includes('#F8F9FB') && css.includes('#101217'), 'Light/blue tokens are implemented')
+check(css.includes('@media (prefers-reduced-motion:reduce)'), 'Reduced-motion behaviour is defined')
+check(css.includes('.al-site .as-desktop-nav{display:none!important}'), 'Desktop nav collapses to the menu button on small screens (Home + Lab)')
 check(!/glassmorphism|webgl|particle|magnetic/i.test(css), 'Generic effect fingerprints are absent')
 check(header.includes('className="as-desktop-nav"') && header.includes('tabIndex={open ? 0 : -1}'), 'Desktop navigation and accessible mobile menu coexist')
-check(direction.includes('Image creates desire. Typography gives it authority. Product proof makes it credible.'), 'Active direction records the v3 art-direction principle')
+check(direction.includes('Diseñamos lo que viene.'), 'Active direction records the v4 platform')
 
 check(present('public/brand/archic-symbol-2026.svg'), 'Canonical Archic symbol exists')
 check(!present('public/favicon.ico'), 'Legacy favicon is absent')
@@ -75,7 +84,7 @@ for (const entry of ['dist/index.html', 'dist/en/index.html', 'dist/control/inde
   check(/<link[^>]+rel="canonical"/i.test(html), `${entry} has canonical metadata`)
   check(html.includes('/brand/archic-symbol-2026.svg'), `${entry} exposes canonical favicon`)
 }
-check(present('dist/archic-aaa.css'), 'V3 art-direction stylesheet ships')
+check(present('dist/media/sky/sky-portrait-1200.webp'), 'Optimised sky photography ships')
 
 const assetDir = resolve(ROOT, 'dist', 'assets')
 if (existsSync(assetDir)) {
@@ -94,7 +103,7 @@ if (existsSync(assetDir)) {
   }
 }
 
-console.log(`\nArchic Quality Gate · AAA Design v3 — ${passes.length} checks passed`)
+console.log(`\nArchic Quality Gate · AAA Design v4 — ${passes.length} checks passed`)
 for (const label of passes) console.log(`  ✓ ${label}`)
 if (failures.length) {
   console.error(`\n${failures.length} blocking quality check${failures.length === 1 ? '' : 's'} failed:`)

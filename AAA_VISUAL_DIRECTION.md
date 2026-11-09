@@ -1,3 +1,34 @@
+# Archic Lab — Active Visual Direction Bible
+
+**Status:** production direction · AAA Design · v4 editorial light / blue · 2026-11-09 (owner-approved concepts)
+
+V3 (cinematic dark + gold + Instrument Serif) is superseded and kept below only as history.
+
+## Platform
+
+> **Diseñamos lo que viene.** · EN: **We design what comes next.**
+> Support: "Webs, software y herramientas digitales creadas con criterio."
+
+## Visual world
+- Ground: warm white `#F8F9FB` and pure white `#FFFFFF` chapters; ink `#101217`; warm greys.
+- Accent: Archic blue `#075BCD` (soft `#E6F1FF`) only for primary actions, links and data. Never a dominant background. No lime, green or gold.
+- One ink chapter (closing CTA) for contrast.
+- Type: Geist (OFL, `@fontsource-variable/geist`) with negative tracking on display sizes; no serif, no decorative italics.
+- Imagery: real portfolio photography + one licensed sky photograph (local WebP). No arbitrary architecture for weather, no fake devices, no invented figures.
+- Geometry: 8px rhythm, 1240–1320 shell, 16–24 radius on few surfaces, hairline borders, near-invisible shadow.
+- Motion: immediate press feedback (scale .97), discreet hover, nothing on scroll; reduced-motion disables transitions.
+
+## Signature
+Weather as an authentic product: big model temperature, 24 h rain in l/m², an honest SVG bar chart from real hourly intervals.
+
+## Rules
+- Home must keep visible what Archic Lab sells (premium websites, custom software, business systems); Lab never takes over the home page.
+- Weather never claims observations, alerts, radar, AQI or probabilities that the source does not provide.
+
+---
+
+## History (v3, superseded)
+
 # Archic — Active Visual Direction Bible
 
 **Status:** production direction · AAA Design · Art Direction v3 · 2026-08-31

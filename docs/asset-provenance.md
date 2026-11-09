@@ -9,6 +9,7 @@ Project mode: `production`
 | `/brand/archic-lockup-light.svg` | Archic | Canonical identity asset | yes | approved | no |
 | Favicons and install icons in `public/` | Archic | Raster derivatives of the canonical symbol | yes | approved | no |
 | `/og-image.png`, `/og-image-en.png` | Archic | Repository-owned social identity cards | yes | approved | no |
+| `/media/sky/sky-{portrait,wide}-*.webp` | Rise DHMN / Wikimedia Commons, [File:Cirrus-cumulus clouds in the sky.jpg](https://commons.wikimedia.org/wiki/File:Cirrus-cumulus_clouds_in_the_sky.jpg) | CC BY 4.0 — cropped, resized and re-encoded to WebP; credited on Home and Lab | no; generic sky atmosphere, not a weather observation | approved | no |
 | `/software/hospitality-preview.svg` | Archic | Repository-authored white-label derivative | no; fictional product demonstration | approved with visible demo label | no |
 | `/software/mobility-preview.svg` | Archic | Repository-authored white-label derivative | no; fictional product demonstration | approved with visible demo label | no |
 | `/software/real-estate-preview.svg` | Archic | Repository-authored white-label derivative | no; fictional product demonstration | approved with visible demo label | no |

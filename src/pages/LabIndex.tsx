@@ -1,33 +1,41 @@
 import { Helmet } from 'react-helmet-async'
-import '@fontsource/instrument-serif/latin-400.css'
+import '@fontsource-variable/geist/wght.css'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
 import { useLang } from '../i18n/LanguageContext'
+import { SkyCredit, SKY_WIDE } from '../lab/skyAsset'
+import '../styles/archic-light.css'
 import '../styles/archic-lab.css'
 
 const COPY = {
   es: {
-    title: 'Ideas que se convierten en herramientas.',
-    intro: 'Lab es el espacio de productos propios de Archic Lab: experimentos creados para resolver problemas cotidianos con diseño, datos y tecnología.',
-    project: '001 / PRIMER PRODUCTO',
-    subtitle: 'El tiempo, sin rodeos.',
-    description: 'Lluvia en litros por metro cuadrado, predicciones con fuente y una interfaz que pone los datos por delante del ruido.',
-    open: 'Explorar Weather',
+    label: 'Archic Lab',
+    title: 'El tiempo, con contexto.',
+    intro: 'Lab es donde Archic Lab desarrolla productos propios. El primero es Weather.',
     status: 'Versión experimental',
-    notes: ['Previsión meteorológica con procedencia', 'Acumulados de lluvia visibles', 'Información técnica bajo demanda'],
-    limitation: 'Por ahora, Weather muestra pronósticos de modelos. Avisos oficiales, estaciones y radar se añadirán más adelante.',
+    name: 'Weather',
+    description: 'Predicción meteorológica por horas con la lluvia en litros por metro cuadrado y la fuente siempre visible.',
+    facts: [
+      ['Fuente', 'Modelo de MET Norway (CC BY 4.0)'],
+      ['Lluvia', 'Acumulado de 6 y 24 horas en l/m²'],
+      ['Límite', 'Es una predicción de modelo: sin avisos oficiales, radar ni estaciones'],
+    ],
+    open: 'Explorar Weather',
     back: 'Volver al inicio',
   },
   en: {
-    title: 'Ideas turned into useful tools.',
-    intro: 'Lab is where Archic Lab develops original products: focused experiments designed to solve everyday problems through design, data and technology.',
-    project: '001 / FIRST PRODUCT',
-    subtitle: 'Weather without the noise.',
-    description: 'Rainfall in millimetres, forecasts with clear attribution and an interface that keeps the data in focus.',
-    open: 'Explore Weather',
+    label: 'Archic Lab',
+    title: 'Weather, in context.',
+    intro: 'Lab is where Archic Lab builds its own products. The first one is Weather.',
     status: 'Experimental release',
-    notes: ['Transparent forecast provenance', 'Visible rainfall totals', 'Technical information on demand'],
-    limitation: 'Weather currently displays model forecasts. Official alerts, stations and radar will follow in later releases.',
+    name: 'Weather',
+    description: 'Hourly weather forecasts with rainfall in millimetres and the source always in view.',
+    facts: [
+      ['Source', 'MET Norway model forecast (CC BY 4.0)'],
+      ['Rainfall', '6 and 24 hour totals in mm (l/m²)'],
+      ['Limits', 'A model forecast: no official warnings, radar or station data'],
+    ],
+    open: 'Explore Weather',
     back: 'Back to home',
   },
 } as const
@@ -37,44 +45,41 @@ export default function LabIndex() {
   const c = COPY[lang]
   const href = lang === 'en' ? '/en/lab/weather/' : '/lab/weather/'
   return (
-    <div className="as-site lab-root">
+    <div className="al-site lab-root">
       <Helmet htmlAttributes={{ lang }}>
         <title>{lang === 'es' ? 'Lab — productos y experimentos | Archic Lab' : 'Lab — products and experiments | Archic Lab'}</title>
-        <meta name="description" content={c.intro} />
+        <meta name="description" content={c.intro + ' ' + c.description} />
+        <meta name="theme-color" content="#F8F9FB" />
         <link rel="canonical" href={lang === 'en' ? 'https://archic.es/en/lab/' : 'https://archic.es/lab/'} />
         <link rel="alternate" hrefLang="es" href="https://archic.es/lab/" />
         <link rel="alternate" hrefLang="en" href="https://archic.es/en/lab/" />
         <link rel="alternate" hrefLang="x-default" href="https://archic.es/lab/" />
       </Helmet>
       <StudioHeader />
-      <main id="main-content" className="lab-main" tabIndex={-1}>
-        <div className="lab-container">
-          <p className="lab-kicker">ARCHIC / LAB</p>
-          <h1 className="lab-title">{c.title}</h1>
-          <p className="lab-intro">{c.intro}</p>
-          <section className="lab-product" aria-labelledby="lab-product-title">
-            <div className="lab-product-heading">
-              <span>{c.project}</span>
-              <span className="lab-status">{c.status}</span>
+      <main id="main-content" className="al-main" tabIndex={-1}>
+        <section className="al-shell lab-hero">
+          <p className="al-label">{c.label}</p>
+          <h1 className="al-h1">{c.title}</h1>
+          <p className="al-lead">{c.intro}</p>
+        </section>
+        <section className="al-shell lab-product" aria-labelledby="lab-product-title">
+          <a className="lab-product-media" href={href} tabIndex={-1} aria-hidden="true">
+            <img src={SKY_WIDE.src} srcSet={SKY_WIDE.srcSet} sizes="(max-width: 960px) 100vw, 55vw" width={1600} height={1000} alt="" decoding="async" />
+          </a>
+          <div className="lab-product-copy">
+            <p className="lab-status">{c.status}</p>
+            <h2 id="lab-product-title" className="al-h2">{c.name}</h2>
+            <p className="al-body">{c.description}</p>
+            <dl className="lab-facts">
+              {c.facts.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}
+            </dl>
+            <div className="al-actions">
+              <a className="al-btn al-btn-primary" href={href}>{c.open}</a>
+              <a className="al-link" href={lang === 'en' ? '/en/' : '/'}>{c.back}</a>
             </div>
-            <div className="lab-product-body">
-              <div>
-                <h2 id="lab-product-title">Weather.</h2>
-                <strong className="lab-subtitle">{c.subtitle}</strong>
-                <p>{c.description}</p>
-                <a className="lab-action" href={href}>{c.open} <span aria-hidden="true">↗</span></a>
-              </div>
-              <div className="lab-product-preview" aria-hidden="true">
-                <div className="lab-preview-disc" />
-                <span>ARCHIC LAB / 001</span>
-                <strong>mm.</strong>
-              </div>
-            </div>
-            <div className="lab-principles">{c.notes.map((note, index) => <span key={note}>0{index + 1} — {note}</span>)}</div>
-          </section>
-          <p className="lab-disclaimer">{c.limitation}</p>
-          <a href={lang === 'en' ? '/en/' : '/'} className="lab-back">← {c.back}</a>
-        </div>
+          </div>
+        </section>
+        <div className="al-shell"><SkyCredit lang={lang} /></div>
       </main>
       <StudioFooter />
     </div>

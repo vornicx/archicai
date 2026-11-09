@@ -38,9 +38,7 @@ Hard rules:
 
 Read `AAA_VISUAL_DIRECTION.md` before touching the homepage.
 
-Current platform: **Every digital layer, visibly under direction.**
-
-Current signature: **Supervised System Field** built from real concept-build previews, Presence/Control/Business layers and QA/construction marks.
+Current platform (v4, owner-approved 2026-11): **Diseñamos lo que viene.** Editorial light surface with Archic blue `#075BCD` as accent; signature is Weather as a real product. Details in `AAA_VISUAL_DIRECTION.md`.
 
 Do not silently replace this with dark-tech, editorial-cream, glass, random 3D, generic dashboard or Awwwards-style effects.
 
@@ -54,6 +52,10 @@ npm run quality:gate
 ```
 
 Also inspect rendered desktop + mobile, reduced motion, contact/critical paths, and compare against the active Visual Direction Bible. If the site feels more complex but not more authored, subtract and revise.
+
+## Light/blue page styling
+- Home, Lab and Weather use `src/styles/archic-light.css` scoped under `.al-site` (plus `archic-lab.css` for Lab/Weather); they must not use the legacy `.as-site` root, because the global legacy stylesheets target it and would leak dark styles in.
+- Weather rain totals/chart scale come only from `src/lab/weatherMath.ts` (contiguous 1 h intervals, tested in `tests/lab-weather-math.test.mjs`) so totals never mix 6 h blocks or elapsed hours.
 
 ## Archic Lab Weather backend
 - Weather data is served only by the Lovable Cloud Edge Function `lab-weather` (logic in `supabase/functions/_shared/labWeather.ts`, tested by `npm run test:weather`); never reintroduce `/api/*` hosting functions or browser calls to api.met.no — Lovable hosting does not run them and MET requires an identifying User-Agent.
