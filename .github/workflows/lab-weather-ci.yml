@@ -1,0 +1,48 @@
+name: Archic Lab — Weather checks
+
+on:
+  pull_request:
+    paths:
+      - 'src/pages/Lab*'
+      - 'src/styles/archic-lab.css'
+      - 'api/lab/**'
+      - 'scripts/generate-lab-pages.ts'
+      - 'tests/lab-weather.test.mjs'
+      - 'src/App.tsx'
+      - 'src/components/StudioHeader.tsx'
+      - 'src/components/StudioFooter.tsx'
+      - 'src/i18n/LanguageContext.tsx'
+      - 'vite.config.ts'
+      - 'package.json'
+      - '.github/workflows/lab-weather-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Weather contract tests
+        run: npm run test:weather
+      - name: Build production web
+        run: npm run build
+      - name: Existing production quality gate
+        run: npm run quality:gate
+      - name: Check Lab entrypoints
+        run: |
+          test -s dist/lab/index.html
+          test -s dist/en/lab/index.html
+          test -s dist/lab/weather/index.html
+          test -s dist/en/lab/weather/index.html
