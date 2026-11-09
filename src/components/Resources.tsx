@@ -18,7 +18,7 @@ function Resources() {
             >
               Midas
             </a>
-            . The Archic north-star vision in{' '}
+            . The Archic Lab north-star vision in{' '}
             <a
               href={DOCS_REPO}
               target="_blank"
@@ -34,7 +34,7 @@ function Resources() {
         <div className="resources-grid">
           <Reveal delay={60}>
             <div className="resource-block">
-              <h3 className="resource-heading">Midas &amp; Archic documentation</h3>
+              <h3 className="resource-heading">Midas &amp; Archic Lab documentation</h3>
               <ul className="resource-list">
                 {ARCHIC_DOCS.map((doc) => (
                   <li key={doc.id}>

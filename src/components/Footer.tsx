@@ -9,7 +9,7 @@ function Footer() {
             <div className="md:col-span-5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-[color:var(--line)]">
               <div className="flex items-center gap-3 mb-6">
                 <span className="archic-mark-box"><span className="archic-mark-inner" /></span>
-                <span className="archic-wordmark">ARCHIC</span>
+                <span className="archic-wordmark">ARCHIC LAB</span>
               </div>
               <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)] leading-loose">
                 Engineered for long-horizon agents.<br />
@@ -41,7 +41,7 @@ function Footer() {
 
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 p-6 md:px-12">
             <span className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted-deep)]">
-              © 2026 Archic Systems · All rights reserved
+              © 2026 Archic Lab Systems · All rights reserved
             </span>
             <span className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--gold)]">
               STABLE_RELEASE_V0.2.0

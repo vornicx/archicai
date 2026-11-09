@@ -2,9 +2,9 @@ import { VADIM_CONTACT } from '../config/contact'
 import { ARCHIC_SYMBOL_URL, SITE_ORIGIN, siteOgImage } from './siteSeo'
 
 /**
- * Datos verificables de Archic para marcado geográfico.
+ * Datos verificables de Archic Lab para marcado geográfico.
  *
- * Regla principal: Archic tiene una única base declarada en Écija (Sevilla) y
+ * Regla principal: Archic Lab tiene una única base declarada en Écija (Sevilla) y
  * presta servicio a empresas de toda España. Una landing de ciudad describe un
  * mercado atendido, no una oficina, sucursal o ubicación física adicional.
  *
@@ -12,7 +12,7 @@ import { ARCHIC_SYMBOL_URL, SITE_ORIGIN, siteOgImage } from './siteSeo'
  * de Google Business Profile hasta que esos datos existan y puedan verificarse.
  */
 export const LOCAL_BUSINESS = {
-  name: 'Archic',
+  name: 'Archic Lab',
   legalName: null as string | null,
   email: VADIM_CONTACT.email,
   telephone: VADIM_CONTACT.phone,
@@ -51,7 +51,7 @@ function verifiedPostalAddress() {
 
 /**
  * Nodo de servicio profesional conservado para compatibilidad con generadores
- * anteriores. Solo publica datos verificables y nunca sitúa Archic físicamente
+ * anteriores. Solo publica datos verificables y nunca sitúa Archic Lab físicamente
  * en la ciudad objetivo de una landing.
  */
 export function localBusinessNode(scope: LocalScope, lang: 'es' | 'en' = 'es') {
@@ -59,11 +59,11 @@ export function localBusinessNode(scope: LocalScope, lang: 'es' | 'en' = 'es') {
   const description =
     lang === 'es'
       ? isBaseMarket
-        ? `Archic es un estudio español de sistemas digitales con base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.province}). Diseña presencia digital premium, sistemas de gestión y software a medida para empresas de toda España.`
-        : `Archic es un estudio español de sistemas digitales con base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.province}) que atiende proyectos de ${scope.city} y del resto de España. Esta cobertura no implica una oficina física en ${scope.city}.`
+        ? `Archic Lab es un estudio español de sistemas digitales con base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.province}). Diseña presencia digital premium, sistemas de gestión y software a medida para empresas de toda España.`
+        : `Archic Lab es un estudio español de sistemas digitales con base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.province}) que atiende proyectos de ${scope.city} y del resto de España. Esta cobertura no implica una oficina física en ${scope.city}.`
       : isBaseMarket
-        ? `Archic is a Spanish digital systems studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province}. It builds premium digital presence, management systems and custom software for businesses across Spain.`
-        : `Archic is a Spanish digital systems studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province}, serving projects in ${scope.city} and across Spain. This service coverage does not imply a physical office in ${scope.city}.`
+        ? `Archic Lab is a Spanish digital systems studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province}. It builds premium digital presence, management systems and custom software for businesses across Spain.`
+        : `Archic Lab is a Spanish digital systems studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province}, serving projects in ${scope.city} and across Spain. This service coverage does not imply a physical office in ${scope.city}.`
 
   const address = verifiedPostalAddress()
 

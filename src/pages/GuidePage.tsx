@@ -57,7 +57,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
         <meta property="og:description" content={guide.description} />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="Archic" />
+        <meta property="og:site_name" content="Archic Lab" />
         <meta property="og:locale" content="es_ES" />
         <meta property="og:image" content={`${ORIGIN}/og-image.png?v=20260812`} />
         <meta property="article:published_time" content={guide.published} />
@@ -76,7 +76,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
       <article>
         <header className="as-article-head">
           <div data-reveal="hero">
-            <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><a href={GUIDES_INDEX_PATH}>Guías</a><span>/</span><span>{guide.title}</span></div>
+            <div className="as-seo-breadcrumb"><a href="/">Archic Lab</a><span>/</span><a href={GUIDES_INDEX_PATH}>Guías</a><span>/</span><span>{guide.title}</span></div>
             <div className="as-seo-layer">ARCHIC / GUÍA · {guide.readingMinutes} MIN</div>
             <h1>{guide.title}</h1>
             <p className="as-article-answer">{guide.answer}</p>
@@ -114,7 +114,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
             <aside className="as-article-cta">
               <div className="as-seo-layer">DE LA GUÍA AL SISTEMA</div>
               <h2>¿Quieres aplicarlo a tu negocio?</h2>
-              <p>Cuéntanos qué quieres mejorar. Archic trabaja sobre tres capas: Presence para lo que ve el cliente, Control para la operación privada y Business para software, automatización e integraciones.</p>
+              <p>Cuéntanos qué quieres mejorar. Archic Lab trabaja sobre tres capas: Presence para lo que ve el cliente, Control para la operación privada y Business para software, automatización e integraciones.</p>
               <a className="as-btn as-btn-metal" href="/contact/">Hablar de un proyecto<i className="as-arrow" aria-hidden="true" /></a>
             </aside>
 

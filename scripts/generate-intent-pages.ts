@@ -25,8 +25,8 @@ function html(page: (typeof INTENT_PAGES)[number]) {
     <meta name="description" content="${esc(page.meta.description)}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="author" content="Archic" />
-    <meta name="application-name" content="Archic" />
+    <meta name="author" content="Archic Lab" />
+    <meta name="application-name" content="Archic Lab" />
     <link rel="canonical" href="${canonical}" />
     <meta name="theme-color" content="#0a0a0b" />
     <link rel="icon" href="/brand/archic-symbol-2026.svg" type="image/svg+xml" sizes="any" />
@@ -35,7 +35,7 @@ function html(page: (typeof INTENT_PAGES)[number]) {
     <link rel="manifest" href="/manifest.json?v=${BRAND_VERSION}" />
     <meta name="google-site-verification" content="${GSC_TOKEN}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Archic" />
+    <meta property="og:site_name" content="Archic Lab" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:url" content="${canonical}" />
     <meta property="og:title" content="${esc(page.meta.title)}" />
@@ -45,7 +45,7 @@ function html(page: (typeof INTENT_PAGES)[number]) {
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Archic — diseño web premium y software a medida" />
+    <meta property="og:image:alt" content="Archic Lab — diseño web premium y software a medida" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@ArchicHQ" />
     <meta name="twitter:title" content="${esc(page.meta.title)}" />

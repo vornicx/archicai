@@ -10,7 +10,7 @@
  * Además son el material que mejor citan los asistentes de IA: texto largo,
  * estructurado, con una respuesta directa al principio de cada sección.
  *
- * Regla al escribir aquí: no publicar cifras que Archic no pueda sostener. Es
+ * Regla al escribir aquí: no publicar cifras que Archic Lab no pueda sostener. Es
  * preferible explicar bien qué determina un precio que inventarse un rango.
  */
 
@@ -207,7 +207,7 @@ export const GUIDES: Guide[] = [
     slug: 'precio-pagina-web-empresa',
     path: '/guias/precio-pagina-web-empresa/',
     title: 'Qué determina el precio de una página web para empresa',
-    metaTitle: 'Precio de una página web para empresa: qué lo determina | Archic',
+    metaTitle: 'Precio de una página web para empresa: qué lo determina | Archic Lab',
     description:
       'Por qué dos presupuestos de página web pueden diferir en un orden de magnitud, qué partidas debe incluir uno serio y las señales de alarma al comparar ofertas.',
     answer:
@@ -322,13 +322,13 @@ export const GUIDES: Guide[] = [
   },
 
   /* ───────────────────────────────────────────────────────────────────────
-     3 · Software interno. Es donde Archic se diferencia de una agencia web.
+     3 · Software interno. Es donde Archic Lab se diferencia de una agencia web.
      ─────────────────────────────────────────────────────────────────────── */
   {
     slug: 'digitalizar-procesos-excel',
     path: '/guias/digitalizar-procesos-excel/',
     title: 'Cómo pasar de Excel a una herramienta interna sin parar la empresa',
-    metaTitle: 'De Excel a software a medida: cómo digitalizar un proceso | Archic',
+    metaTitle: 'De Excel a software a medida: cómo digitalizar un proceso | Archic Lab',
     description:
       'Cuándo una hoja de cálculo deja de ser suficiente, cómo elegir el primer proceso a digitalizar y cómo hacer la transición sin detener la operativa diaria.',
     answer:

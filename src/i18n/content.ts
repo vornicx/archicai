@@ -35,7 +35,7 @@ export type Content = {
     imageAlt: string
   }
   /**
-   * Respuesta directa a «¿qué es Archic?», en una sola frase autocontenida.
+   * Respuesta directa a «¿qué es Archic Lab?», en una sola frase autocontenida.
    *
    * Es el párrafo que un asistente de IA puede citar sin tener que reconstruir
    * el contexto a partir de media página, y el que Google usa como fragmento
@@ -121,17 +121,17 @@ export type Content = {
 export const CONTENT: Record<Lang, Content> = {
   es: {
     meta: {
-      title: 'Páginas web y software a medida para empresas | Archic',
+      title: 'Páginas web y software a medida para empresas | Archic Lab',
       description:
         'Diseñamos páginas web profesionales, ofrecemos mantenimiento y desarrollamos software a medida para pymes y empresas en España.',
-      ogTitle: 'Páginas web y software a medida para empresas | Archic',
+      ogTitle: 'Páginas web y software a medida para empresas | Archic Lab',
       ogDescription:
         'Diseño y desarrollo web, mantenimiento continuo, software a medida y automatización de procesos para empresas.',
       /* 1200×630: la proporción que Facebook, LinkedIn, WhatsApp y X recortan
          sin comerse el titular. El banner 1500×500 que había antes se cortaba
          por los lados en casi todas las plataformas. */
       ogImage: 'og-image.png',
-      ogImageAlt: 'Archic — páginas web y software a medida para empresas',
+      ogImageAlt: 'Archic Lab — páginas web y software a medida para empresas',
     },
     a11y: {
       mainNav: 'Navegación principal',
@@ -152,7 +152,7 @@ export const CONTENT: Record<Lang, Content> = {
       software: 'Software a medida',
       maintenance: 'Mantenimiento',
       projects: 'Proyectos',
-      about: 'Sobre Archic',
+      about: 'Sobre Archic Lab',
       contact: 'Contacto',
       cta: 'Cuéntanos tu proyecto',
     },
@@ -166,8 +166,8 @@ export const CONTENT: Record<Lang, Content> = {
       imageAlt: 'Entrada de arquitectura mediterránea con un gran arco de piedra y una puerta azul',
     },
     answer: {
-      question: '¿Qué es Archic?',
-      body: 'Archic es un estudio de diseño y desarrollo web con base en Écija (Sevilla, España). Hace tres cosas: diseña y programa páginas web a medida, desarrolla software interno para empresas —inventarios, paneles de producción, automatización de informes— y mantiene esos sistemas una vez publicados. Trabaja de forma presencial en la provincia de Sevilla y en remoto con el resto de España, en castellano e inglés.',
+      question: '¿Qué es Archic Lab?',
+      body: 'Archic Lab es un estudio de diseño y desarrollo web con base en Écija (Sevilla, España). Hace tres cosas: diseña y programa páginas web a medida, desarrolla software interno para empresas —inventarios, paneles de producción, automatización de informes— y mantiene esos sistemas una vez publicados. Trabaja de forma presencial en la provincia de Sevilla y en remoto con el resto de España, en castellano e inglés.',
     },
     facts: {
       eyebrow: 'Comprobable',
@@ -308,10 +308,10 @@ export const CONTENT: Record<Lang, Content> = {
       ],
     },
     about: {
-      eyebrow: 'Sobre Archic',
+      eyebrow: 'Sobre Archic Lab',
       title: 'Una empresa tecnológica española e independiente.',
       body: [
-        'Archic nace para acercar el desarrollo de software de calidad a empresas que necesitan soluciones reales, pero no quieren depender de herramientas genéricas o proveedores que desaparecen después de entregar el proyecto.',
+        'Archic Lab nace para acercar el desarrollo de software de calidad a empresas que necesitan soluciones reales, pero no quieren depender de herramientas genéricas o proveedores que desaparecen después de entregar el proyecto.',
         'Diseñamos páginas web, desarrollamos software a medida y acompañamos a nuestros clientes durante la evolución de sus sistemas.',
       ],
     },
@@ -351,7 +351,7 @@ export const CONTENT: Record<Lang, Content> = {
       ],
     },
     labs: {
-      eyebrow: 'Archic Labs',
+      eyebrow: 'Archic Lab',
       title: 'Productos propios.',
       lead: 'Además de nuestro trabajo para empresas, desarrollamos productos propios y proyectos abiertos relacionados con software, inteligencia artificial y herramientas para desarrolladores.',
       items: [
@@ -429,7 +429,7 @@ export const CONTENT: Record<Lang, Content> = {
     privacyNotice: {
       heading: 'Información básica sobre protección de datos',
       rows: [
-        { term: 'Responsable', desc: 'Archic. Los datos identificativos completos figuran en el aviso legal.' },
+        { term: 'Responsable', desc: 'Archic Lab. Los datos identificativos completos figuran en el aviso legal.' },
         { term: 'Finalidad', desc: 'Atender tu consulta y, en su caso, preparar una propuesta de servicios.' },
         { term: 'Legitimación', desc: 'Tu consentimiento y la aplicación de medidas precontractuales a petición tuya.' },
         { term: 'Destinatarios', desc: 'No se ceden datos a terceros, salvo obligación legal.' },
@@ -443,14 +443,14 @@ export const CONTENT: Record<Lang, Content> = {
 
   en: {
     meta: {
-      title: 'Websites and custom software for businesses | Archic',
+      title: 'Websites and custom software for businesses | Archic Lab',
       description:
         'We design professional websites, provide ongoing maintenance and build custom software for companies in Spain.',
-      ogTitle: 'Websites and custom software for businesses | Archic',
+      ogTitle: 'Websites and custom software for businesses | Archic Lab',
       ogDescription:
         'Web design and development, ongoing maintenance, custom software and process automation for businesses.',
       ogImage: 'og-image-en.png',
-      ogImageAlt: 'Archic — websites and custom software for businesses',
+      ogImageAlt: 'Archic Lab — websites and custom software for businesses',
     },
     a11y: {
       mainNav: 'Main navigation',
@@ -485,8 +485,8 @@ export const CONTENT: Record<Lang, Content> = {
       imageAlt: 'Mediterranean stone entrance with a large arch and a deep blue doorway',
     },
     answer: {
-      question: 'What is Archic?',
-      body: 'Archic is a web design and development studio based in Écija (Seville, Spain). It does three things: it designs and codes custom websites, it builds internal business software — inventory systems, production dashboards, report automation — and it maintains those systems once they are live. It works on site across the province of Seville and remotely with the rest of Spain, in Spanish and English.',
+      question: 'What is Archic Lab?',
+      body: 'Archic Lab is a web design and development studio based in Écija (Seville, Spain). It does three things: it designs and codes custom websites, it builds internal business software — inventory systems, production dashboards, report automation — and it maintains those systems once they are live. It works on site across the province of Seville and remotely with the rest of Spain, in Spanish and English.',
     },
     facts: {
       eyebrow: 'Verifiable',
@@ -627,10 +627,10 @@ export const CONTENT: Record<Lang, Content> = {
       ],
     },
     about: {
-      eyebrow: 'About Archic',
+      eyebrow: 'About Archic Lab',
       title: 'An independent Spanish technology company.',
       body: [
-        'Archic exists to bring quality software development to companies that need real solutions, but do not want to depend on generic tools or on suppliers who disappear once the project is delivered.',
+        'Archic Lab exists to bring quality software development to companies that need real solutions, but do not want to depend on generic tools or on suppliers who disappear once the project is delivered.',
         'We design websites, build custom software and stay with our clients as their systems evolve.',
       ],
     },
@@ -670,7 +670,7 @@ export const CONTENT: Record<Lang, Content> = {
       ],
     },
     labs: {
-      eyebrow: 'Archic Labs',
+      eyebrow: 'Archic Lab',
       title: 'Our own products.',
       lead: 'Alongside our client work, we build our own products and open projects around software, artificial intelligence and developer tooling.',
       items: [
@@ -748,7 +748,7 @@ export const CONTENT: Record<Lang, Content> = {
     privacyNotice: {
       heading: 'Basic data protection information',
       rows: [
-        { term: 'Controller', desc: 'Archic. Full identification details are set out in the legal notice.' },
+        { term: 'Controller', desc: 'Archic Lab. Full identification details are set out in the legal notice.' },
         { term: 'Purpose', desc: 'To answer your enquiry and, where appropriate, prepare a service proposal.' },
         { term: 'Legal basis', desc: 'Your consent and pre-contractual steps taken at your request.' },
         { term: 'Recipients', desc: 'No data is disclosed to third parties, except where legally required.' },

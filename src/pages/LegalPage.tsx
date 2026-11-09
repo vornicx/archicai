@@ -121,7 +121,7 @@ export default function LegalPage({ doc: docKey }: { doc: LegalDocKey }) {
 
       <main id="main-content" className="as-legal-main" tabIndex={-1}>
         <header data-reveal="hero">
-          <div className="as-seo-breadcrumb"><a href={home}>Archic</a><span>/</span><span>{doc.title}</span></div>
+          <div className="as-seo-breadcrumb"><a href={home}>Archic Lab</a><span>/</span><span>{doc.title}</span></div>
           <div className="as-seo-layer">ARCHIC / LEGAL</div>
           <h1>{doc.title}</h1>
           <p>{doc.intro}</p>

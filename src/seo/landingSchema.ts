@@ -3,7 +3,7 @@
  * Solo se publican datos que puedan verificarse en la propia web.
  *
  * Las landings geográficas describen mercados atendidos. No crean ni sugieren
- * oficinas, sedes o sucursales de Archic en la ciudad objetivo.
+ * oficinas, sedes o sucursales de Archic Lab en la ciudad objetivo.
  */
 import type { ServicePage } from './servicePages'
 import type { LocalLandingPage } from './localPages'

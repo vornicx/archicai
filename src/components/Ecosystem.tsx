@@ -23,7 +23,7 @@ function Ecosystem() {
           <h2 className="section-title mb-4">Midas is what we&apos;re building now.</h2>
           <p className="section-lead mb-14">
             Agentic memory for long-horizon agents, proven through honest benchmarks. The wider
-            Archic platform vision is parked while Midas ships as the first focused wedge.
+            Archic Lab platform vision is parked while Midas ships as the first focused wedge.
           </p>
         </Reveal>
 

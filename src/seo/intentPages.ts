@@ -8,7 +8,7 @@ export const INTENT_PAGES: ServicePage[] = [
     breadcrumb: 'Diseño web en Marbella',
     serviceName: 'Diseño web para empresas de Marbella',
     meta: {
-      title: 'Diseño web en Marbella para negocios premium | Archic',
+      title: 'Diseño web en Marbella para negocios premium | Archic Lab',
       description: 'Diseño web a medida para restaurantes, inmobiliarias, automoción y negocios premium de Marbella y Puerto Banús. Web, reservas y software bajo una sola dirección.',
     },
     hero: {
@@ -60,7 +60,7 @@ export const INTENT_PAGES: ServicePage[] = [
     faq: {
       title: 'Preguntas frecuentes sobre diseño web en Marbella',
       items: [
-        { q: '¿Tenéis oficina en Marbella?', a: 'No presentamos Archic como una oficina local de Marbella. Trabajamos desde España con proyectos en remoto y nos desplazamos cuando el proyecto justifica trabajo presencial.' },
+        { q: '¿Tenéis oficina en Marbella?', a: 'No presentamos Archic Lab como una oficina local de Marbella. Trabajamos desde España con proyectos en remoto y nos desplazamos cuando el proyecto justifica trabajo presencial.' },
         { q: '¿Hacéis solo la web?', a: 'Podemos hacer solo la presencia pública o conectar web, reservas, clientes y software interno si el negocio necesita una solución más completa.' },
         { q: '¿Trabajáis con WordPress?', a: 'La tecnología se elige por el proyecto. Si una solución estándar encaja, se usa. Si limita la experiencia o la operación, se desarrolla a medida.' },
         { q: '¿Puede ser bilingüe?', a: 'Sí. Español e inglés pueden tener URLs, metadatos y contenido propios, no una traducción automática superpuesta.' },
@@ -76,7 +76,7 @@ export const INTENT_PAGES: ServicePage[] = [
     breadcrumb: 'Diseño web para restaurantes',
     serviceName: 'Diseño web para restaurantes',
     meta: {
-      title: 'Diseño web para restaurantes con reservas directas | Archic',
+      title: 'Diseño web para restaurantes con reservas directas | Archic Lab',
       description: 'Webs para restaurantes con carta, reservas directas, experiencia móvil, SEO local y opción de conectar sala, clientes y operaciones en un sistema privado.',
     },
     hero: {
@@ -143,7 +143,7 @@ export const INTENT_PAGES: ServicePage[] = [
     breadcrumb: 'Diseño web para inmobiliarias',
     serviceName: 'Diseño web y sistemas para inmobiliarias',
     meta: {
-      title: 'Diseño web para inmobiliarias y catálogo de propiedades | Archic',
+      title: 'Diseño web para inmobiliarias y catálogo de propiedades | Archic Lab',
       description: 'Web inmobiliaria a medida con catálogo, fichas, captación de leads, panel de gestión e integraciones cuando la agencia necesita una experiencia propia.',
     },
     hero: {
@@ -210,7 +210,7 @@ export const INTENT_PAGES: ServicePage[] = [
     breadcrumb: 'Web para alquiler de coches',
     serviceName: 'Diseño web para empresas de alquiler de coches',
     meta: {
-      title: 'Web para alquiler de coches y flotas premium | Archic',
+      title: 'Web para alquiler de coches y flotas premium | Archic Lab',
       description: 'Diseño web para rent a car y alquiler de coches premium: flota, disponibilidad, solicitudes de reserva, entrega, idiomas y panel de gestión.',
     },
     hero: {
@@ -277,7 +277,7 @@ export const INTENT_PAGES: ServicePage[] = [
     breadcrumb: 'Software de reservas a medida',
     serviceName: 'Software de reservas a medida',
     meta: {
-      title: 'Software de reservas a medida para empresas | Archic',
+      title: 'Software de reservas a medida para empresas | Archic Lab',
       description: 'Sistemas de reservas a medida para restaurantes, alquiler, hospitality y servicios: disponibilidad, clientes, recursos, estados e integraciones.',
     },
     hero: {
@@ -344,7 +344,7 @@ export const INTENT_PAGES: ServicePage[] = [
     breadcrumb: 'CRM a medida',
     serviceName: 'CRM a medida para empresas',
     meta: {
-      title: 'CRM a medida para empresas y procesos propios | Archic',
+      title: 'CRM a medida para empresas y procesos propios | Archic Lab',
       description: 'CRM y sistemas de gestión de clientes a medida cuando un CRM estándar obliga a adaptar el negocio a la herramienta. Leads, historial, tareas e integraciones.',
     },
     hero: {
@@ -411,7 +411,7 @@ export const INTENT_PAGES: ServicePage[] = [
     breadcrumb: 'Precio de software a medida',
     serviceName: 'Consultoría y desarrollo de software a medida',
     meta: {
-      title: 'Precio de software a medida: qué determina el coste | Archic',
+      title: 'Precio de software a medida: qué determina el coste | Archic Lab',
       description: 'Qué determina el precio de un software a medida: alcance, usuarios, integraciones, permisos, datos, seguridad y mantenimiento. Cómo comparar presupuestos sin engañarse.',
     },
     hero: {

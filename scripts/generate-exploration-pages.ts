@@ -11,34 +11,34 @@ const explorations = [
   {
     slug: 'hospitality',
     es: {
-      title: 'Hospitality Control white-label — Archic',
-      description: 'Entorno white-label interactivo de Archic para reservas, sala, clientes y operación de hostelería con datos ficticios.',
+      title: 'Hospitality Control white-label — Archic Lab',
+      description: 'Entorno white-label interactivo de Archic Lab para reservas, sala, clientes y operación de hostelería con datos ficticios.',
     },
     en: {
-      title: 'White-label Hospitality Control — Archic',
-      description: 'An interactive Archic white-label environment for bookings, floor operations, customers and hospitality workflows using fictional data.',
+      title: 'White-label Hospitality Control — Archic Lab',
+      description: 'An interactive Archic Lab white-label environment for bookings, floor operations, customers and hospitality workflows using fictional data.',
     },
   },
   {
     slug: 'mobility',
     es: {
-      title: 'Mobility Control white-label — Archic',
-      description: 'Entorno white-label interactivo de Archic para flota, disponibilidad, solicitudes, calendario y clientes con datos ficticios.',
+      title: 'Mobility Control white-label — Archic Lab',
+      description: 'Entorno white-label interactivo de Archic Lab para flota, disponibilidad, solicitudes, calendario y clientes con datos ficticios.',
     },
     en: {
-      title: 'White-label Mobility Control — Archic',
-      description: 'An interactive Archic white-label environment for fleet, availability, enquiries, calendar and clients using fictional data.',
+      title: 'White-label Mobility Control — Archic Lab',
+      description: 'An interactive Archic Lab white-label environment for fleet, availability, enquiries, calendar and clients using fictional data.',
     },
   },
   {
     slug: 'real-estate',
     es: {
-      title: 'Property Control white-label — Archic',
-      description: 'Entorno white-label interactivo de Archic para propiedades, CRM, leads, visitas y contenido con datos ficticios.',
+      title: 'Property Control white-label — Archic Lab',
+      description: 'Entorno white-label interactivo de Archic Lab para propiedades, CRM, leads, visitas y contenido con datos ficticios.',
     },
     en: {
-      title: 'White-label Property Control — Archic',
-      description: 'An interactive Archic white-label environment for properties, CRM, leads, viewings and content using fictional data.',
+      title: 'White-label Property Control — Archic Lab',
+      description: 'An interactive Archic Lab white-label environment for properties, CRM, leads, viewings and content using fictional data.',
     },
   },
 ] as const
@@ -70,14 +70,14 @@ function pageHtml(slug: string, lang: 'es' | 'en', title: string, description: s
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=${BRAND_VERSION}" />
     <link rel="manifest" href="/manifest.json?v=${BRAND_VERSION}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Archic" />
+    <meta property="og:site_name" content="Archic Lab" />
     <meta property="og:url" content="${canonical}" />
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:description" content="${esc(description)}" />
     <meta property="og:image" content="${siteOgImage(lang)}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Archic — ${esc(title.replace(' — Archic', ''))}" />
+    <meta property="og:image:alt" content="Archic Lab — ${esc(title.replace(' — Archic Lab', ''))}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="${siteOgImage(lang)}" />
   </head>
@@ -129,5 +129,5 @@ if (existsSync(sitemapPath)) {
   if (rootOpen) {
     writeFileSync(sitemapPath, `${rootOpen}\n${[...preserved.map((block) => block.trim()), ...entries].join('\n')}\n</urlset>\n`)
   }
-  console.log('updated public/sitemap.xml with Archic white-label routes')
+  console.log('updated public/sitemap.xml with Archic Lab white-label routes')
 }

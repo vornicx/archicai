@@ -11,7 +11,7 @@ export default class SiteErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    if (import.meta.env.DEV) console.error('Archic render error', error, info)
+    if (import.meta.env.DEV) console.error('Archic Lab render error', error, info)
   }
 
   render() {

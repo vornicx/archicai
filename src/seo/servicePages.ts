@@ -44,7 +44,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     breadcrumb: 'Diseño web para empresas',
     serviceName: 'Diseño web para empresas',
     meta: {
-      title: 'Diseño web para empresas en España | Archic',
+      title: 'Diseño web para empresas en España | Archic Lab',
       description:
         'Diseño web profesional para empresas: webs rápidas, medibles y preparadas para captar clientes. Proyecto cerrado, sin plantillas genéricas ni cuotas ocultas.',
     },
@@ -151,7 +151,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     breadcrumb: 'Diseño web para autónomos',
     serviceName: 'Diseño web para autónomos',
     meta: {
-      title: 'Diseño web para autónomos: página profesional | Archic',
+      title: 'Diseño web para autónomos: página profesional | Archic Lab',
       description:
         'Páginas web para autónomos y profesionales independientes: rápidas, claras y pensadas para que te encuentren y te contacten. Precio cerrado y sin permanencia.',
     },
@@ -257,7 +257,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     breadcrumb: 'Mantenimiento web',
     serviceName: 'Mantenimiento web',
     meta: {
-      title: 'Mantenimiento web para empresas y autónomos | Archic',
+      title: 'Mantenimiento web para empresas y autónomos | Archic Lab',
       description:
         'Mantenimiento web continuo: actualizaciones, copias de seguridad, seguridad, rendimiento y cambios de contenido. Sin permanencia y con informe de lo realizado.',
     },
@@ -363,7 +363,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     breadcrumb: 'Desarrollo web a medida',
     serviceName: 'Desarrollo web y software a medida',
     meta: {
-      title: 'Desarrollo web y software a medida para empresas | Archic',
+      title: 'Desarrollo web y software a medida para empresas | Archic Lab',
       description:
         'Desarrollo web a medida, aplicaciones internas, integraciones y automatización de procesos. Software adaptado a cómo trabaja tu empresa, no al revés.',
     },

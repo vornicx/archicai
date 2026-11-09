@@ -1,7 +1,7 @@
-/* Archic Standard 2026.1
-   Final product-refinement layer for the Archic website.
+/* Archic Lab Standard 2026.1
+   Final product-refinement layer for the Archic Lab website.
    Loaded after feature CSS and before the safety contracts.
-   Goal: make Archic itself the reference implementation for the standard it sells. */
+   Goal: make Archic Lab itself the reference implementation for the standard it sells. */
 
 .as-home-v2{
   --ahs-gold:#d7bd85;

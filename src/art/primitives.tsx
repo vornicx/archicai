@@ -1,5 +1,5 @@
 /**
- * Primitivas del sistema gráfico de Archic.
+ * Primitivas del sistema gráfico de Archic Lab.
  *
  * Todo el imaginario del sitio es vectorial y propio: no hay fotos de stock ni
  * peticiones a terceros, así que no hay licencias que respetar ni recursos que

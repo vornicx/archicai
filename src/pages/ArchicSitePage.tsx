@@ -59,7 +59,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
         ['04', 'Base técnica', 'Rendimiento, accesibilidad, SEO técnico, schema, canonicals, analítica útil y QA de entrega.'],
       ],
       proofTitle: 'La misma capa cambia según el negocio.',
-      proofBody: 'No existe un “estilo Archic” que se pega encima. La presencia de una inmobiliaria, un restaurante y una empresa de movilidad debe resolver decisiones distintas.',
+      proofBody: 'No existe un “estilo Archic Lab” que se pega encima. La presencia de una inmobiliaria, un restaurante y una empresa de movilidad debe resolver decisiones distintas.',
       fitTitle: 'Presence encaja cuando la percepción está frenando al negocio.',
       fitBody: 'Puede ser el primer proyecto o la capa pública de un sistema mayor.',
       fit: ['Tu web actual transmite menos nivel que tu negocio.', 'La oferta es buena pero cuesta entenderla o compararla.', 'Hay tráfico o interés, pero el siguiente paso está mal resuelto.', 'Necesitas una presencia propia antes de invertir en software interno.'],
@@ -132,7 +132,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
       eyebrow: '04 / ARCHIC STUDIO',
       title: 'Dirección humana.',
       accent: 'Capacidad aumentada.',
-      intro: 'Diseño, producto, desarrollo e IA supervisada trabajando como un mismo equipo. Archic existe para construir mejor y más rápido sin delegar el criterio final en una herramienta.',
+      intro: 'Diseño, producto, desarrollo e IA supervisada trabajando como un mismo equipo. Archic Lab existe para construir mejor y más rápido sin delegar el criterio final en una herramienta.',
       roleTitle: 'El estándar importa más que la herramienta con la que llegamos a él.',
       roleBody: 'Usamos IA para ampliar investigación, exploración, desarrollo, QA y capacidad operativa. La dirección, el contexto, las decisiones y la responsabilidad de entrega siguen siendo humanas.',
       outcomes: [
@@ -167,7 +167,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
       outcomes: [['PERCEPTION','Make the digital standard match the real business.'],['CLARITY','Help customers understand why to choose you and what to do next.'],['CONVERSION','Place contact, booking, enquiry or visit at the right moment.']],
       capabilitiesTitle: 'We build presence as a product, not a showcase.', capabilitiesBody: 'Every block exists to move a decision. If a section only fills space, it goes.',
       capabilities: [['01','Digital direction','Positioning, hierarchy, visual language, imagery, motion and brand judgement applied to the experience.'],['02','Bespoke web','Architecture, critical pages, mobile-specific composition and development without closed-template lock-in.'],['03','Content + conversion','Narrative, catalogue, bookings, forms, WhatsApp, search or journeys based on how the business sells.'],['04','Technical base','Performance, accessibility, technical SEO, schema, canonicals, useful analytics and delivery QA.']],
-      proofTitle: 'The same layer changes with the business.', proofBody: 'There is no “Archic style” pasted on top. Real estate, hospitality and mobility need to resolve different customer decisions.',
+      proofTitle: 'The same layer changes with the business.', proofBody: 'There is no “Archic Lab style” pasted on top. Real estate, hospitality and mobility need to resolve different customer decisions.',
       fitTitle: 'Presence fits when perception is holding the business back.', fitBody: 'It can be the first project or the public layer of a larger system.',
       fit: ['Your current website communicates less quality than the real business.','The offer is strong but difficult to understand or compare.','There is traffic or interest, but the next step is poorly resolved.','You need a strong public layer before investing in internal software.'],
       notFitTitle: 'We would not start with Presence if…', notFit: ['The main problem is operational and customers already perceive the brand well.','You only need colours, copy or a template changed.','There is no time or access to define content, offer and critical journeys.'],
@@ -201,7 +201,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
     },
     studio: {
       eyebrow: '04 / ARCHIC STUDIO', title: 'Human direction.', accent: 'Augmented capability.',
-      intro: 'Design, product, development and supervised AI working as one team. Archic exists to build better and faster without delegating final judgement to a tool.',
+      intro: 'Design, product, development and supervised AI working as one team. Archic Lab exists to build better and faster without delegating final judgement to a tool.',
       roleTitle: 'The standard matters more than the tool used to reach it.', roleBody: 'We use AI to expand research, exploration, development, QA and operational capacity. Direction, context, decisions and delivery responsibility remain human.',
       outcomes: [['DIRECTION','A clear decision before multiplying options.'],['SPEED','More useful iteration without turning speed into carelessness.'],['CONTROL','Code, assets, QA and verifiable decisions in every delivery.']],
       capabilitiesTitle: 'A process designed to reduce judgement errors.', capabilitiesBody: 'AI accelerates parts of the work. The method stops that speed becoming more noise.',
@@ -390,7 +390,7 @@ function ContactPage({ lang }: { lang: Lang }) {
 
   return (
     <div className="as-site ar-site ar-contact-route" data-quality-standard="archic-design-system-1.0.0">
-      <Helmet><title>{es ? 'Diagnóstico y contacto — Archic' : 'Diagnosis and contact — Archic'}</title><meta name="description" content={es ? 'Cuéntanos qué debe cambiar en tu presencia, operación o software. Archic diagnostica primero y define la solución después.' : 'Tell us what needs to change across presence, operations or software. Archic diagnoses first and defines the solution afterwards.'} /></Helmet>
+      <Helmet><title>{es ? 'Diagnóstico y contacto — Archic Lab' : 'Diagnosis and contact — Archic Lab'}</title><meta name="description" content={es ? 'Cuéntanos qué debe cambiar en tu presencia, operación o software. Archic Lab diagnostica primero y define la solución después.' : 'Tell us what needs to change across presence, operations or software. Archic Lab diagnoses first and defines the solution afterwards.'} /></Helmet>
       <StudioExperience />
       <StudioHeader />
       <main id="main-content" tabIndex={-1}>
@@ -439,7 +439,7 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
 
   return (
     <div className={`as-site ar-site ar-route ar-${page}`} data-quality-standard="archic-design-system-1.0.0">
-      <Helmet><title>{`${c.eyebrow.split('/').pop()?.trim()} — Archic`}</title><meta name="description" content={c.intro} /></Helmet>
+      <Helmet><title>{`${c.eyebrow.split('/').pop()?.trim()} — Archic Lab`}</title><meta name="description" content={c.intro} /></Helmet>
       <StudioExperience />
       <StudioHeader />
 

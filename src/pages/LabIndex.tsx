@@ -8,7 +8,7 @@ import '../styles/archic-lab.css'
 const COPY = {
   es: {
     title: 'Ideas que se convierten en herramientas.',
-    intro: 'Archic Lab es nuestro espacio de productos propios: experimentos creados para resolver problemas cotidianos con diseño, datos y tecnología.',
+    intro: 'Lab es el espacio de productos propios de Archic Lab: experimentos creados para resolver problemas cotidianos con diseño, datos y tecnología.',
     project: '001 / PRIMER PRODUCTO',
     subtitle: 'El tiempo, sin rodeos.',
     description: 'Lluvia en litros por metro cuadrado, predicciones con fuente y una interfaz que pone los datos por delante del ruido.',
@@ -16,11 +16,11 @@ const COPY = {
     status: 'Versión experimental',
     notes: ['Previsión meteorológica con procedencia', 'Acumulados de lluvia visibles', 'Información técnica bajo demanda'],
     limitation: 'Por ahora, Weather muestra pronósticos de modelos. Avisos oficiales, estaciones y radar se añadirán más adelante.',
-    back: 'Volver a Archic',
+    back: 'Volver al inicio',
   },
   en: {
     title: 'Ideas turned into useful tools.',
-    intro: 'Archic Lab is where we develop original products: focused experiments designed to solve everyday problems through design, data and technology.',
+    intro: 'Lab is where Archic Lab develops original products: focused experiments designed to solve everyday problems through design, data and technology.',
     project: '001 / FIRST PRODUCT',
     subtitle: 'Weather without the noise.',
     description: 'Rainfall in millimetres, forecasts with clear attribution and an interface that keeps the data in focus.',
@@ -28,7 +28,7 @@ const COPY = {
     status: 'Experimental release',
     notes: ['Transparent forecast provenance', 'Visible rainfall totals', 'Technical information on demand'],
     limitation: 'Weather currently displays model forecasts. Official alerts, stations and radar will follow in later releases.',
-    back: 'Back to Archic',
+    back: 'Back to home',
   },
 } as const
 
@@ -39,7 +39,7 @@ export default function LabIndex() {
   return (
     <div className="as-site lab-root">
       <Helmet htmlAttributes={{ lang }}>
-        <title>{lang === 'es' ? 'Archic Lab — productos y experimentos' : 'Archic Lab — products and experiments'}</title>
+        <title>{lang === 'es' ? 'Lab — productos y experimentos | Archic Lab' : 'Lab — products and experiments | Archic Lab'}</title>
         <meta name="description" content={c.intro} />
         <link rel="canonical" href={lang === 'en' ? 'https://archic.es/en/lab/' : 'https://archic.es/lab/'} />
         <link rel="alternate" hrefLang="es" href="https://archic.es/lab/" />

@@ -6,7 +6,7 @@ function EcosystemBar() {
     'hub'
 
   return (
-    <div className="ecosystem-bar" aria-label="Archic ecosystem navigation">
+    <div className="ecosystem-bar" aria-label="Archic Lab ecosystem navigation">
       <div className="container-page">
         <nav aria-label="Ecosystem" className="ecosystem-bar-inner">
           <span className="tag-mono ecosystem-bar-label" aria-hidden="true">[ ECOSYSTEM ]</span>

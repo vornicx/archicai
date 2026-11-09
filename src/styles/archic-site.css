@@ -226,3 +226,10 @@
 }
 
 @media(prefers-reduced-motion:reduce){.as-site *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Archic Lab: canonical lockup + typeset LAB suffix (SVG untouched) */
+.as-brand,.ar-logo{display:inline-flex;align-items:center;gap:.62em}
+.as-brand .as-brand-lab,.ar-logo-lab{flex:none;padding-left:.62em;border-left:1px solid currentColor;font:600 10px/1 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.24em;color:inherit;opacity:.82}
+.af4-site .as-brand,.as-site .as-brand{width:auto}
+.as-brand--footer{display:inline-flex}.as-footer-brand .as-brand--footer img{width:150px}
+@media (max-width:640px){.as-brand .as-brand-lab{font-size:8.5px;letter-spacing:.2em}}

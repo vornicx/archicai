@@ -11,7 +11,7 @@ function ClosingCTA() {
             Building in the open.
           </h2>
           <p className="text-lg text-ink-muted max-w-prose mx-auto mb-10 leading-relaxed">
-            Midas is the wedge. The eval harness is the proof. The Archic vision is the north-star.
+            Midas is the wedge. The eval harness is the proof. The Archic Lab vision is the north-star.
             Clone the repo and run the benchmark.
           </p>
         </Reveal>

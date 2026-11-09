@@ -36,7 +36,7 @@ export default function SiteRouteSeo() {
       <link rel="alternate" hrefLang="en" href={alternates.en} />
       <link rel="alternate" hrefLang="x-default" href={alternates.xDefault} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Archic" />
+      <meta property="og:site_name" content="Archic Lab" />
       <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
       <meta property="og:url" content={canonical} />
       <meta property="og:title" content={seo.title} />

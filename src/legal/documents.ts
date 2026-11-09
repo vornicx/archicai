@@ -77,7 +77,7 @@ const ES: Record<LegalDocKey, LegalDoc> = {
         blocks: [
           {
             kind: 'p',
-            text: 'Este sitio web tiene una finalidad informativa y comercial: presentar los servicios de diseño y desarrollo web, mantenimiento y software a medida que ofrece Archic, y facilitar el contacto con posibles clientes.',
+            text: 'Este sitio web tiene una finalidad informativa y comercial: presentar los servicios de diseño y desarrollo web, mantenimiento y software a medida que ofrece Archic Lab, y facilitar el contacto con posibles clientes.',
           },
           {
             kind: 'p',
@@ -484,7 +484,7 @@ const EN: Record<LegalDocKey, LegalDoc> = {
         blocks: [
           {
             kind: 'p',
-            text: 'This website is informational and commercial in nature: it presents the web design and development, maintenance and custom software services offered by Archic, and makes it possible to get in touch with us.',
+            text: 'This website is informational and commercial in nature: it presents the web design and development, maintenance and custom software services offered by Archic Lab, and makes it possible to get in touch with us.',
           },
           {
             kind: 'p',

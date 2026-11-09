@@ -1,4 +1,4 @@
-/* Archic surface contract — MUST remain the final stylesheet import.
+/* Archic Lab surface contract — MUST remain the final stylesheet import.
    This file is the visual safety net for known surfaces after all legacy and feature CSS.
    Critical text never relies on inheritance, historical utility classes, or source order alone. */
 
@@ -11,7 +11,7 @@
   --asc-on-dark-gold:#d8bd84;
 }
 
-/* Seven-moment Archic home. The final contract explicitly locks critical hierarchy
+/* Seven-moment Archic Lab home. The final contract explicitly locks critical hierarchy
    because historical home selectors must never darken the new graphite surfaces. */
 .as-site.ah-site .ah-hero{
   background:#111311!important;
@@ -202,7 +202,7 @@
 }
 
 /* Archic Design System 1.0 home contract.
-   The home moved from a generic dark-luxury treatment to the canonical Archic
+   The home moved from a generic dark-luxury treatment to the canonical Archic Lab
    black/gold identity on mineral paper. These rules intentionally supersede the
    historical seven-moment contract above while keeping dark technical chapters. */
 .as-site.ah-site[data-quality-standard='archic-design-system-1.0.0'] .ah-hero{

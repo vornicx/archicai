@@ -13,7 +13,7 @@ type LogoProps = {
 }
 
 /**
- * Marca oficial de Archic. Sólo se permiten los SVG canónicos de
+ * Marca oficial de Archic Lab. Sólo se permiten los SVG canónicos de
  * `public/brand`: monograma y lockup, en variante dark (tinta) o light (blanco).
  */
 export default function Logo({
@@ -23,7 +23,7 @@ export default function Logo({
   showWordmark = true,
   compactWordmark = false,
   light = false,
-  title = 'Archic',
+  title = 'Archic Lab',
 }: LogoProps) {
   const min = minSize ?? Math.round(size * 0.8)
   const variant = light ? 'light' : 'dark'
@@ -50,6 +50,7 @@ export default function Logo({
           aria-hidden="true"
         />
       )}
+      {showWordmark && <span className="ar-logo-lab" aria-hidden="true">LAB</span>}
       {(!showWordmark || compactWordmark) && (
         <img
           className="ar-logo-mark"

@@ -1640,7 +1640,7 @@ body::before {
   }
 }
 
-/* ── Sobre Archic + respuesta directa ────────────────────────────────────── */
+/* ── Sobre Archic Lab + respuesta directa ────────────────────────────────────── */
 .ar-about-grid {
   display: grid;
   gap: clamp(28px, 4vw, 48px);

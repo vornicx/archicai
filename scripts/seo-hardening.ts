@@ -49,7 +49,7 @@ const MODIFIED = {
 
 const pageLabels = new Map<string, string>([
   ...ALL_LANDINGS.map((page) => [page.path, page.breadcrumb] as const),
-  [GUIDES_INDEX_PATH, 'Guías de Archic'],
+  [GUIDES_INDEX_PATH, 'Guías de Archic Lab'],
   ...GUIDES.map((guide) => [guide.path, guide.title] as const),
   ...SITE_PAGES.map((page) => [`/${page}/`, SITE_PAGE_SEO.es[page].schemaName] as const),
 ])
@@ -111,7 +111,7 @@ function landingSnapshot(page: ServicePage) {
     <h2>${esc(page.cta.title)}</h2>
     <p>${esc(page.cta.lead)}</p>
     ${relatedLinks(page.related)}
-    <nav aria-label="Archic"><a href="/">Archic</a><a href="/contact/">Contacto</a><a href="/guias/">Guías</a></nav>
+    <nav aria-label="Archic Lab"><a href="/">Archic Lab</a><a href="/contact/">Contacto</a><a href="/guias/">Guías</a></nav>
   </section>`
 }
 
@@ -141,7 +141,7 @@ function siteSnapshot(lang: 'es' | 'en', page: SitePageKey) {
     .map((candidate) => `<a href="${prefix}/${candidate}/">${esc(SITE_PAGE_SEO[lang][candidate].schemaName)}</a>`)
     .join('')
 
-  return `<header><span class="eyebrow">ARCHIC / ${esc(page.toUpperCase())}</span><h1>${esc(stripBrand(seo.title))}</h1><p>${esc(seo.description)}</p></header><section><h2>${isEs ? 'Archic construye sistemas alrededor del negocio' : 'Archic builds systems around the business'}</h2><p>${isEs ? 'Diseñamos la presencia pública, las herramientas privadas y el software a medida como piezas conectadas cuando el negocio lo necesita.' : 'We design public presence, private tools and custom software as connected layers when the business needs them.'}</p><nav aria-label="Archic">${siblings}<a href="${prefix || ''}/">${isEs ? 'Inicio' : 'Home'}</a></nav></section>`
+  return `<header><span class="eyebrow">ARCHIC / ${esc(page.toUpperCase())}</span><h1>${esc(stripBrand(seo.title))}</h1><p>${esc(seo.description)}</p></header><section><h2>${isEs ? 'Archic Lab construye sistemas alrededor del negocio' : 'Archic Lab builds systems around the business'}</h2><p>${isEs ? 'Diseñamos la presencia pública, las herramientas privadas y el software a medida como piezas conectadas cuando el negocio lo necesita.' : 'We design public presence, private tools and custom software as connected layers when the business needs them.'}</p><nav aria-label="Archic Lab">${siblings}<a href="${prefix || ''}/">${isEs ? 'Inicio' : 'Home'}</a></nav></section>`
 }
 
 function renderGuideBlock(block: (typeof GUIDES)[number]['sections'][number]['blocks'][number]) {
@@ -159,7 +159,7 @@ function guideSnapshot(guide: (typeof GUIDES)[number]) {
 }
 
 function guidesIndexSnapshot() {
-  return `<header><span class="eyebrow">ARCHIC / GUÍAS</span><h1>Guías sobre diseño web, software y digitalización</h1><p>Contenido práctico de Archic para decidir mejor qué construir, cuánto debería costar y cuándo merece la pena desarrollar a medida.</p></header><section><div class="grid">${GUIDES.map((guide) => `<article><h2>${esc(guide.title)}</h2><p>${esc(guide.description)}</p><a href="${guide.path}">Leer guía</a></article>`).join('')}</div></section>`
+  return `<header><span class="eyebrow">ARCHIC / GUÍAS</span><h1>Guías sobre diseño web, software y digitalización</h1><p>Contenido práctico de Archic Lab para decidir mejor qué construir, cuánto debería costar y cuándo merece la pena desarrollar a medida.</p></header><section><div class="grid">${GUIDES.map((guide) => `<article><h2>${esc(guide.title)}</h2><p>${esc(guide.description)}</p><a href="${guide.path}">Leer guía</a></article>`).join('')}</div></section>`
 }
 
 // Give crawlers meaningful HTML before React executes. The client application

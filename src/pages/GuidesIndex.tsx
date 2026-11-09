@@ -22,7 +22,7 @@ export default function GuidesIndex() {
         <meta property="og:description" content={GUIDES_INDEX_META.description} />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Archic" />
+        <meta property="og:site_name" content="Archic Lab" />
         <meta property="og:locale" content="es_ES" />
         <meta property="og:image" content={`${ORIGIN}/og-image.png?v=20260812`} />
         <meta name="twitter:card" content="summary_large_image" />
@@ -35,7 +35,7 @@ export default function GuidesIndex() {
       <main id="main-content" tabIndex={-1}>
       <section className="as-editorial-hero">
         <div data-reveal="hero">
-          <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><span>Guías</span></div>
+          <div className="as-seo-breadcrumb"><a href="/">Archic Lab</a><span>/</span><span>Guías</span></div>
           <div className="as-seo-layer">ARCHIC / NOTAS Y GUÍAS</div>
           <h1>Decisiones digitales<br /><em>con más criterio.</em></h1>
           <p>{GUIDES_INDEX_META.description} Documentos prácticos sobre presencia, operaciones y software para decidir mejor antes de construir.</p>
@@ -69,7 +69,7 @@ export default function GuidesIndex() {
           <h2>La guía puede orientar.<br /><em>El proyecto necesita contexto.</em></h2>
           <p>Si ya sabes qué quieres mejorar en tu presencia, operación o software, cuéntanos el negocio y el resultado esperado.</p>
         </div>
-        <a className="as-btn as-btn-metal" href="/contact/">Hablar con Archic<i className="as-arrow" aria-hidden="true" /></a>
+        <a className="as-btn as-btn-metal" href="/contact/">Hablar con Archic Lab<i className="as-arrow" aria-hidden="true" /></a>
       </section>
       </main>
 

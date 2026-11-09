@@ -14,7 +14,7 @@ export default function NotFound() {
   return (
     <div className="as-site as-seo-page as-notfound-page" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang }}>
-        <title>{n.title} | Archic</title>
+        <title>{n.title} | Archic Lab</title>
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <StudioExperience />

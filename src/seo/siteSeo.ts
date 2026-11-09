@@ -6,7 +6,7 @@ export const BRAND_VERSION = '20260827'
 export const ARCHIC_SYMBOL_URL = `${SITE_ORIGIN}/brand/archic-symbol-2026.svg`
 export const ARCHIC_LOCKUP_URL = `${SITE_ORIGIN}/brand/archic-lockup-dark.svg`
 export const ARCHIC_COMMERCIAL_SUMMARY_ES =
-  'Archic diseña y desarrolla webs, web apps y software web a medida: la presencia que ve el cliente, los sistemas privados que usa el equipo y la lógica que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.'
+  'Archic Lab diseña y desarrolla webs, web apps y software web a medida: la presencia que ve el cliente, los sistemas privados que usa el equipo y la lógica que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.'
 const OG_VERSION = `v=${BRAND_VERSION}`
 
 export const ARCHIC_BASE = {
@@ -68,88 +68,88 @@ type SeoEntry = {
 
 export const HOME_SEO: Record<Lang, SeoEntry> = {
   es: {
-    title: 'Diseño web, web apps y software a medida | Archic',
-    description: 'Archic diseña y desarrolla webs premium, web apps y software web a medida para vender mejor, reducir fricción operativa y construir una ventaja propia.',
-    ogAlt: 'Archic — diseño web, web apps y software web a medida',
-    schemaName: 'Archic',
+    title: 'Diseño web, web apps y software a medida | Archic Lab',
+    description: 'Archic Lab diseña y desarrolla webs premium, web apps y software web a medida para vender mejor, reducir fricción operativa y construir una ventaja propia.',
+    ogAlt: 'Archic Lab — diseño web, web apps y software web a medida',
+    schemaName: 'Archic Lab',
   },
   en: {
-    title: 'Web design, web apps and custom software | Archic',
-    description: 'Archic designs and builds premium websites, web apps and custom web software to improve sales, reduce operational friction and create a lasting advantage.',
-    ogAlt: 'Archic — web design, web apps and custom web software',
-    schemaName: 'Archic',
+    title: 'Web design, web apps and custom software | Archic Lab',
+    description: 'Archic Lab designs and builds premium websites, web apps and custom web software to improve sales, reduce operational friction and create a lasting advantage.',
+    ogAlt: 'Archic Lab — web design, web apps and custom web software',
+    schemaName: 'Archic Lab',
   },
 }
 
 export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
   es: {
     presence: {
-      title: 'Diseño web premium y presencia digital | Archic',
+      title: 'Diseño web premium y presencia digital | Archic Lab',
       description: 'Diseño web premium, dirección digital, contenido y conversión para empresas que necesitan una presencia online al nivel real de su negocio.',
       ogAlt: 'Archic Presence — diseño web premium y presencia digital',
       schemaName: 'Archic Presence',
       serviceType: 'Diseño web premium y presencia digital',
     },
     control: {
-      title: 'Software de gestión a medida para empresas | Archic',
+      title: 'Software de gestión a medida para empresas | Archic Lab',
       description: 'Sistemas privados para gestionar clientes, reservas, recursos y operaciones, diseñados alrededor de cómo funciona realmente cada empresa.',
       ogAlt: 'Archic Control — software de gestión a medida para empresas',
       schemaName: 'Archic Control',
       serviceType: 'Software de gestión a medida',
     },
     business: {
-      title: 'Software a medida y automatización empresarial | Archic',
+      title: 'Software a medida y automatización empresarial | Archic Lab',
       description: 'Desarrollamos software a medida, automatizaciones, integraciones y sistemas de datos para empresas que necesitan una ventaja operativa propia.',
       ogAlt: 'Archic Business — software a medida y automatización empresarial',
       schemaName: 'Archic Business',
       serviceType: 'Software a medida y automatización empresarial',
     },
     studio: {
-      title: 'Estudio de diseño web y software a medida | Archic',
-      description: 'Conoce cómo trabaja Archic: diseño, desarrollo y criterio de negocio para construir webs premium, sistemas operativos y software a medida.',
-      ogAlt: 'Archic Studio — diseño, tecnología y criterio de negocio',
-      schemaName: 'Archic Studio',
+      title: 'Estudio de diseño web y software a medida | Archic Lab',
+      description: 'Conoce cómo trabaja Archic Lab: diseño, desarrollo y criterio de negocio para construir webs premium, sistemas operativos y software a medida.',
+      ogAlt: 'Archic Lab — diseño, tecnología y criterio de negocio',
+      schemaName: 'Archic Lab',
     },
     contact: {
-      title: 'Contacto y diagnóstico de proyectos digitales | Archic',
-      description: 'Cuéntanos cómo funciona tu negocio, qué no está funcionando y qué resultado buscas. Solicita un diagnóstico o habla directamente con Archic.',
-      ogAlt: 'Contacto y Digital Opportunity Audit con Archic',
-      schemaName: 'Contacto — Archic',
+      title: 'Contacto y diagnóstico de proyectos digitales | Archic Lab',
+      description: 'Cuéntanos cómo funciona tu negocio, qué no está funcionando y qué resultado buscas. Solicita un diagnóstico o habla directamente con Archic Lab.',
+      ogAlt: 'Contacto y Digital Opportunity Audit con Archic Lab',
+      schemaName: 'Contacto — Archic Lab',
     },
   },
   en: {
     presence: {
-      title: 'Premium web design and digital presence | Archic',
+      title: 'Premium web design and digital presence | Archic Lab',
       description: 'Premium web design, digital direction, content and conversion for businesses that need an online presence matching their real standard.',
       ogAlt: 'Archic Presence — premium web design and digital presence',
       schemaName: 'Archic Presence',
       serviceType: 'Premium web design and digital presence',
     },
     control: {
-      title: 'Custom business management software | Archic',
+      title: 'Custom business management software | Archic Lab',
       description: 'Private systems for customers, bookings, resources and operations, designed around the way each business actually works.',
       ogAlt: 'Archic Control — custom business management software',
       schemaName: 'Archic Control',
       serviceType: 'Custom business management software',
     },
     business: {
-      title: 'Custom software and business automation | Archic',
+      title: 'Custom software and business automation | Archic Lab',
       description: 'Custom software, automation, integrations and data systems for businesses that need their own operational advantage.',
       ogAlt: 'Archic Business — custom software and business automation',
       schemaName: 'Archic Business',
       serviceType: 'Custom software and business automation',
     },
     studio: {
-      title: 'Web design and custom software studio | Archic',
-      description: 'How Archic works: design, development and business judgement for premium websites, operating systems and custom software.',
-      ogAlt: 'Archic Studio — design, technology and business judgement',
-      schemaName: 'Archic Studio',
+      title: 'Web design and custom software studio | Archic Lab',
+      description: 'How Archic Lab works: design, development and business judgement for premium websites, operating systems and custom software.',
+      ogAlt: 'Archic Lab — design, technology and business judgement',
+      schemaName: 'Archic Lab',
     },
     contact: {
-      title: 'Contact and digital opportunity audit | Archic',
-      description: 'Tell us how the business works, what is not working and what outcome you need. Request an audit or talk directly with Archic.',
-      ogAlt: 'Contact Archic or request a Digital Opportunity Audit',
-      schemaName: 'Contact — Archic',
+      title: 'Contact and digital opportunity audit | Archic Lab',
+      description: 'Tell us how the business works, what is not working and what outcome you need. Request an audit or talk directly with Archic Lab.',
+      ogAlt: 'Contact Archic Lab or request a Digital Opportunity Audit',
+      schemaName: 'Contact — Archic Lab',
     },
   },
 }
@@ -180,8 +180,8 @@ export function organizationNode() {
   return {
     '@type': 'Organization',
     '@id': `${SITE_ORIGIN}/#organization`,
-    name: 'Archic',
-    alternateName: 'Archic Digital Systems',
+    name: 'Archic Lab',
+    alternateName: 'Archic',
     url: `${SITE_ORIGIN}/`,
     logo: {
       '@type': 'ImageObject',
@@ -190,7 +190,7 @@ export function organizationNode() {
       contentUrl: ARCHIC_SYMBOL_URL,
       width: 512,
       height: 512,
-      caption: 'Archic',
+      caption: 'Archic Lab',
     },
     image: siteOgImage('es'),
     email: VADIM_CONTACT.email,

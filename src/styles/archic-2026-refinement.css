@@ -1,4 +1,4 @@
-/* Archic 2026 refinement — site-wide precision pass. Loaded last. */
+/* Archic Lab 2026 refinement — site-wide precision pass. Loaded last. */
 
 .as-home-v2,
 .as-detail,
@@ -38,7 +38,7 @@
   outline-offset:5px;
 }
 
-/* Global navigation: one language across every Archic route. */
+/* Global navigation: one language across every Archic Lab route. */
 .as-detail .as-header,
 .as-contact-page .as-header{
   height:74px;

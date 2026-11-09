@@ -4,10 +4,10 @@ import { resolve } from 'node:path'
 // Static entrypoints for Vite's multi-page build, generated rather than hand-edited.
 const root = resolve(process.cwd())
 const pages = [
-  { lang: 'es', path: 'lab', slug: 'lab/', title: 'Archic Lab — productos y experimentos', description: 'Herramientas experimentales desarrolladas por Archic. Conoce Weather, predicción meteorológica clara y lluvia en litros por metro cuadrado.' },
-  { lang: 'en', path: 'en/lab', slug: 'lab/', title: 'Archic Lab — products and experiments', description: 'Independent products by Archic. Explore Weather, clear forecasts and rainfall totals.' },
-  { lang: 'es', path: 'lab/weather', slug: 'lab/weather/', title: 'Weather — lluvia y previsión | Archic Lab', description: 'Consulta la predicción meteorológica y los litros por metro cuadrado con fuentes transparentes. Weather es un experimento de Archic Lab.' },
-  { lang: 'en', path: 'en/lab/weather', slug: 'lab/weather/', title: 'Weather — rainfall and forecast | Archic Lab', description: 'Explore weather forecasts and rainfall in millimetres with transparent sources and timestamps. Weather is an Archic Lab experiment.' },
+  { lang: 'es', path: 'lab', slug: 'lab/', title: 'Lab — productos y experimentos | Archic Lab', description: 'Herramientas experimentales desarrolladas por Archic Lab. Conoce Weather, predicción meteorológica clara y lluvia en litros por metro cuadrado.' },
+  { lang: 'en', path: 'en/lab', slug: 'lab/', title: 'Lab — products and experiments | Archic Lab', description: 'Independent products by Archic Lab. Explore Weather, clear forecasts and rainfall totals.' },
+  { lang: 'es', path: 'lab/weather', slug: 'lab/weather/', title: 'Archic Lab Weather — lluvia y previsión', description: 'Consulta la predicción meteorológica y los litros por metro cuadrado con fuentes transparentes. Weather es un experimento de Archic Lab.' },
+  { lang: 'en', path: 'en/lab/weather', slug: 'lab/weather/', title: 'Archic Lab Weather — rainfall and forecast', description: 'Explore weather forecasts and rainfall in millimetres with transparent sources and timestamps. Weather is an Archic Lab experiment.' },
 ] as const
 
 const esc = (input: string) => input.replace(/[&<>"']/g, (char) => {

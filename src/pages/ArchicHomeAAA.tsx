@@ -150,12 +150,12 @@ const WORK: Record<Lang, WorkItem[]> = {
   es: [
     { name: 'Mafesur', sector: 'Automoción', scope: 'Concesionario + taller · Presence', image: MAFESUR_IMAGE, href: 'https://mafesur.vercel.app/', note: 'Proyecto Archic' },
     { name: 'Marbella Boat Charter', sector: 'Charter', scope: 'Presence + plataforma', image: YACHT_IMAGE, href: 'https://github.com/vornicx/marbellaboatcharter', note: 'Fotografía representativa · build en curso' },
-    { name: 'Cosmo School', sector: 'Educación', scope: 'Presence + experiencia digital', image: ARCHITECTURE_ONE, href: 'https://cosmoschool-weld.vercel.app/', note: 'Proyecto Archic · visual editorial' },
+    { name: 'Cosmo School', sector: 'Educación', scope: 'Presence + experiencia digital', image: ARCHITECTURE_ONE, href: 'https://cosmoschool-weld.vercel.app/', note: 'Proyecto Archic Lab · visual editorial' },
   ],
   en: [
     { name: 'Mafesur', sector: 'Automotive', scope: 'Dealership + workshop · Presence', image: MAFESUR_IMAGE, href: 'https://mafesur.vercel.app/', note: 'Archic project' },
     { name: 'Marbella Boat Charter', sector: 'Charter', scope: 'Presence + platform', image: YACHT_IMAGE, href: 'https://github.com/vornicx/marbellaboatcharter', note: 'Representative photography · build in progress' },
-    { name: 'Cosmo School', sector: 'Education', scope: 'Presence + digital experience', image: ARCHITECTURE_ONE, href: 'https://cosmoschool-weld.vercel.app/', note: 'Archic project · editorial visual' },
+    { name: 'Cosmo School', sector: 'Education', scope: 'Presence + digital experience', image: ARCHITECTURE_ONE, href: 'https://cosmoschool-weld.vercel.app/', note: 'Archic Lab project · editorial visual' },
   ],
 }
 
@@ -279,7 +279,7 @@ export default function ArchicHomeAAA() {
         <link rel="alternate" hrefLang="en" href="https://archic.es/en/" />
         <link rel="alternate" hrefLang="x-default" href="https://archic.es/" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Archic" />
+        <meta property="og:site_name" content="Archic Lab" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:description" content={seo.description} />

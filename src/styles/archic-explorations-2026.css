@@ -1,6 +1,6 @@
-/* Archic explorations / 2026.4
+/* Archic Lab explorations / 2026.4
    The interactive product is the proof. The page around it only provides context,
-   sector identity and a route back into the Archic system. Sans-first, no luxury-template language. */
+   sector identity and a route back into the Archic Lab system. Sans-first, no luxury-template language. */
 .axp-page{
   --ax-dark:#111311;
   --ax-dark-2:#181b18;
@@ -37,7 +37,7 @@
 .axp-page h1,.axp-page h2,.axp-page h3{font-synthesis:none;text-wrap:balance}
 .axp-page p{text-wrap:pretty}
 
-/* Keep the public shell consistent with the redesigned Archic routes. */
+/* Keep the public shell consistent with the redesigned Archic Lab routes. */
 .axp-page .as-header{
   height:74px;
   padding-inline:var(--ax-pad);

@@ -62,8 +62,8 @@ function headDocument(input: {
     <meta name="description" content="${esc(description)}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="author" content="Archic" />
-    <meta name="application-name" content="Archic" />
+    <meta name="author" content="Archic Lab" />
+    <meta name="application-name" content="Archic Lab" />
     <meta name="google-site-verification" content="${GSC_TOKEN}" />
     <link rel="canonical" href="${canonical}" />
     <link rel="alternate" hreflang="es" href="${alternates.es}" />
@@ -75,7 +75,7 @@ function headDocument(input: {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=${BRAND_VERSION}" />
     <link rel="manifest" href="/manifest.json?v=${BRAND_VERSION}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Archic" />
+    <meta property="og:site_name" content="Archic Lab" />
     <meta property="og:locale" content="${lang === 'es' ? 'es_ES' : 'en_US'}" />
     <meta property="og:locale:alternate" content="${lang === 'es' ? 'en_US' : 'es_ES'}" />
     <meta property="og:url" content="${canonical}" />
@@ -183,7 +183,7 @@ if (existsSync(sitemapPath)) {
       `${rootOpen}\n${[...preserved.map((block) => block.trim()), ...entries].join('\n')}\n</urlset>\n`,
     )
   }
-  console.log('updated public/sitemap.xml with core Archic routes')
+  console.log('updated public/sitemap.xml with core Archic Lab routes')
 }
 
 const commercialBlockEs = `## Modelo de trabajo 2026
@@ -213,7 +213,7 @@ Son mínimos orientativos, no paquetes cerrados. El presupuesto final se fija de
 
 ## Estándar de evidencia
 
-Los prototipos y concept builds se etiquetan como tales y no se presentan como clientes. Archic solo publica un resultado de negocio como caso de éxito cuando existe una línea base y una fuente de datos que permita demostrarlo. La base Search & AI Readiness incluye metadatos, Schema.org, sitemap, canonicals, crawlability, contenido semántico y llms cuando aporta; no se prometen posiciones ni visibilidad en IA sin evidencia.
+Los prototipos y concept builds se etiquetan como tales y no se presentan como clientes. Archic Lab solo publica un resultado de negocio como caso de éxito cuando existe una línea base y una fuente de datos que permita demostrarlo. La base Search & AI Readiness incluye metadatos, Schema.org, sitemap, canonicals, crawlability, contenido semántico y llms cuando aporta; no se prometen posiciones ni visibilidad en IA sin evidencia.
 `
 
 const llmsPath = resolve(ROOT, 'public', 'llms.txt')

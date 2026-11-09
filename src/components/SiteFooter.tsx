@@ -63,12 +63,12 @@ export default function SiteFooter() {
                 <a href={GUIDES_INDEX_PATH}>Todas las guías</a>
               </div>
               <div>
-                <p className="ar-footer-col-title">Archic</p>
+                <p className="ar-footer-col-title">Archic Lab</p>
                 <a href={`${home}#sobre`}>{t.nav.about}</a>
                 <a href={`${home}#proyectos`}>{t.nav.projects}</a>
                 <a href={`${home}#faq`}>Preguntas frecuentes</a>
                 <a href="https://midas.archic.es" target="_blank" rel="noreferrer">
-                  Archic Labs
+                  Archic Lab
                 </a>
                 <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
               </div>
@@ -81,7 +81,7 @@ export default function SiteFooter() {
               <a href={`${home}#faq`}>FAQ</a>
               <a href={`${home}#contacto`}>{t.nav.contact}</a>
               <a href="https://midas.archic.es" target="_blank" rel="noreferrer">
-                Archic Labs
+                Archic Lab
               </a>
               <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
             </div>

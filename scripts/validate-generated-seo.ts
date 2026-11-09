@@ -130,4 +130,4 @@ if (errors.length) {
   process.exit(1)
 }
 
-console.log(`SEO validation passed for ${core.length} core HTML documents and every sitemap URL with Archic brand ${BRAND_VERSION}`)
+console.log(`SEO validation passed for ${core.length} core HTML documents and every sitemap URL with Archic Lab brand ${BRAND_VERSION}`)

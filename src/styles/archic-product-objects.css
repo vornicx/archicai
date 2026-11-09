@@ -1,4 +1,4 @@
-/* Bespoke hero objects for Archic's four product routes. */
+/* Bespoke hero objects for Archic Lab's four product routes. */
 .as-detail .as-detail-hero{
   display:grid;
   grid-template-columns:minmax(0,1.12fr) minmax(320px,.56fr);

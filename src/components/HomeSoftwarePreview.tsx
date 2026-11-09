@@ -16,7 +16,7 @@ function Shell({ children, section, nav, lang }: { children: React.ReactNode; se
           <nav>
             {nav.map((item, index) => <span className={index === 0 ? 'is-active' : ''} key={item}><i>{String(index + 1).padStart(2, '0')}</i><b>{item}</b></span>)}
           </nav>
-          <div className="ah-software-user"><i>AV</i><span><b>{es(lang, 'Equipo Archic', 'Archic team')}</b><small>{es(lang, 'Vista demo', 'Demo view')}</small></span></div>
+          <div className="ah-software-user"><i>AV</i><span><b>{es(lang, 'Equipo Archic Lab', 'Archic Lab team')}</b><small>{es(lang, 'Vista demo', 'Demo view')}</small></span></div>
         </aside>
         <div className="ah-software-main">{children}</div>
       </div>

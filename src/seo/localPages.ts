@@ -1,7 +1,7 @@
 /**
  * Landings locales (SEO local).
  *
- * Archic opera desde Écija (Sevilla). Las búsquedas locales tienen mucha menos
+ * Archic Lab opera desde Écija (Sevilla). Las búsquedas locales tienen mucha menos
  * competencia que las nacionales — "diseño web sevilla" KD 34, "mantenimiento
  * web sevilla" KD 9, "diseño web écija" KD 0 (Semrush, base es) — y su
  * intención es más comercial. Cada landing responde a una única consulta
@@ -34,14 +34,14 @@ export const LOCAL_PAGES: LocalLandingPage[] = [
     serviceName: 'Diseño web en Sevilla',
     local: { city: 'Sevilla', province: 'Sevilla', alsoServes: SEVILLA_AREA },
     meta: {
-      title: 'Diseño web en Sevilla | Páginas web para empresas | Archic',
+      title: 'Diseño web en Sevilla | Páginas web para empresas | Archic Lab',
       description:
         'Estudio de diseño y desarrollo web en la provincia de Sevilla. Webs rápidas, medibles y hechas a medida para empresas y autónomos. Presupuesto cerrado, trato directo.',
     },
     hero: {
       eyebrow: 'Diseño web · Sevilla',
       h1: 'Diseño web en Sevilla para negocios que quieren clientes, no una web más',
-      lead: 'Archic es un estudio de diseño y desarrollo web con base en Écija, en la provincia de Sevilla. Trabajamos con empresas y autónomos de toda la provincia: web hecha a medida, sin plantillas, con la estructura y la velocidad que hacen falta para captar contactos desde Google.',
+      lead: 'Archic Lab es un estudio de diseño y desarrollo web con base en Écija, en la provincia de Sevilla. Trabajamos con empresas y autónomos de toda la provincia: web hecha a medida, sin plantillas, con la estructura y la velocidad que hacen falta para captar contactos desde Google.',
       note: 'Trato directo con quien programa tu web. Presupuesto cerrado antes de empezar.',
     },
     intro: {
@@ -147,14 +147,14 @@ export const LOCAL_PAGES: LocalLandingPage[] = [
       geo: { latitude: 37.5417, longitude: -5.0823 },
     },
     meta: {
-      title: 'Diseño web en Écija (Sevilla) | Páginas web y software | Archic',
+      title: 'Diseño web en Écija (Sevilla) | Páginas web y software | Archic Lab',
       description:
         'Diseño y desarrollo web en Écija. Estudio local para empresas, comercios y autónomos de la Campiña sevillana: webs rápidas, mantenimiento y software a medida.',
     },
     hero: {
       eyebrow: 'Diseño web · Écija',
       h1: 'Diseño web en Écija: un estudio local para negocios de la Campiña',
-      lead: 'Archic tiene su base en Écija. Diseñamos y programamos páginas web para empresas, comercios y autónomos de la ciudad y de la comarca, con la misma exigencia técnica que aplicamos a proyectos nacionales.',
+      lead: 'Archic Lab tiene su base en Écija. Diseñamos y programamos páginas web para empresas, comercios y autónomos de la ciudad y de la comarca, con la misma exigencia técnica que aplicamos a proyectos nacionales.',
       note: 'Reuniones presenciales en Écija. Presupuesto cerrado, sin permanencia.',
     },
     intro: {
@@ -251,7 +251,7 @@ export const LOCAL_PAGES: LocalLandingPage[] = [
     serviceName: 'Mantenimiento web en Sevilla',
     local: { city: 'Sevilla', province: 'Sevilla', alsoServes: SEVILLA_AREA },
     meta: {
-      title: 'Mantenimiento web en Sevilla | Soporte mensual sin permanencia | Archic',
+      title: 'Mantenimiento web en Sevilla | Soporte mensual sin permanencia | Archic Lab',
       description:
         'Mantenimiento web para empresas de Sevilla y provincia: actualizaciones, copias de seguridad, seguridad, rendimiento y cambios de contenido. Sin permanencia.',
     },
@@ -335,7 +335,7 @@ export const LOCAL_PAGES: LocalLandingPage[] = [
     serviceName: 'Desarrollo web en Sevilla',
     local: { city: 'Sevilla', province: 'Sevilla', alsoServes: SEVILLA_AREA },
     meta: {
-      title: 'Desarrollo web en Sevilla | Aplicaciones y software a medida | Archic',
+      title: 'Desarrollo web en Sevilla | Aplicaciones y software a medida | Archic Lab',
       description:
         'Desarrollo web y aplicaciones a medida para empresas de Sevilla y provincia: paneles internos, integraciones y automatización de procesos. Código propio y documentado.',
     },

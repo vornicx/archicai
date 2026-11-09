@@ -1,4 +1,4 @@
-/* Archic 2026 contrast system. Legibility wins over decorative low contrast. */
+/* Archic Lab 2026 contrast system. Legibility wins over decorative low contrast. */
 :is(.as-home-v2,.as-detail,.as-contact-page,.as-seo-page,.as-editorial-page,.as-legal-shell){
   --archic-dark:#090908;--archic-paper:#f0eee8;--archic-on-dark:#f7f5ef;
   --archic-on-dark-secondary:#d8d4cb;--archic-on-dark-muted:#aaa59b;--archic-on-dark-micro:#99948b;

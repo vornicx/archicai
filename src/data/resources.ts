@@ -45,7 +45,7 @@ export const ARCHIC_DOCS = [
   },
   {
     id: 'docs-index',
-    title: 'Archic documentation index',
+    title: 'Archic Lab documentation index',
     desc: 'Links to every spec, plan, and work package (north-star vision).',
     href: doc('docs/README.md'),
   },
@@ -57,7 +57,7 @@ export const ARCHIC_DOCS = [
   },
   {
     id: 'protocol',
-    title: 'Archic Protocol v0.1',
+    title: 'Archic Lab Protocol v0.1',
     desc: 'Inter-layer contracts — ContextBundle, PolicyDecision, Certificate, and more.',
     href: doc('docs/spec/archic-protocol-v0.1.md'),
   },

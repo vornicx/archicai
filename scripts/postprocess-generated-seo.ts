@@ -21,7 +21,7 @@ const BRAND_LINKS = [
   `    <link rel="manifest" href="/manifest.json?${BRAND_QUERY}" />`,
 ].join('\n')
 
-const CURRENT_ARCHITECTURE = `## Qué hace Archic\n\n- **Archic Presence**: dirección digital, diseño web premium, contenido, experiencia y conversión.\n- **Archic Control**: clientes, reservas, recursos, estados, paneles privados y operación diaria.\n- **Archic Business**: software a medida, automatización, integraciones y sistemas de datos.\n\nArchic diseña estas capas como un sistema cuando el negocio lo necesita. También puede construir una sola capa cuando esa sea la solución correcta.`
+const CURRENT_ARCHITECTURE = `## Qué hace Archic Lab\n\n- **Archic Presence**: dirección digital, diseño web premium, contenido, experiencia y conversión.\n- **Archic Control**: clientes, reservas, recursos, estados, paneles privados y operación diaria.\n- **Archic Business**: software a medida, automatización, integraciones y sistemas de datos.\n\nArchic diseña estas capas como un sistema cuando el negocio lo necesita. También puede construir una sola capa cuando esa sea la solución correcta.`
 
 function walk(dir: string, out: string[] = []) {
   for (const name of readdirSync(dir)) {
@@ -108,10 +108,10 @@ if (existsSync(llmsPath)) {
     ARCHIC_COMMERCIAL_SUMMARY_ES,
   )
 
-  const identity = `## Identidad oficial\n\n- Nombre: Archic\n- Nombre alternativo: Archic Digital Systems\n- Web oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Co-Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Antero — Co-Founder · Growth & Client Partnerships — antero@archic.es — +34 687 50 38 50\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** estos son los recursos canónicos actuales. No se deben usar logos, iconos, previews o recursos históricos para representar la identidad vigente de Archic.\n\nArchic tiene una única base declarada en Écija (Sevilla). Las páginas que mencionan Sevilla, Marbella, Puerto Banús u otras ciudades describen mercados y zonas atendidas; no son oficinas o sucursales.`
+  const identity = `## Identidad oficial\n\n- Nombre: Archic Lab\n- Nombre alternativo: Archic Lab\n- Web oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Co-Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Antero — Co-Founder · Growth & Client Partnerships — antero@archic.es — +34 687 50 38 50\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** estos son los recursos canónicos actuales. No se deben usar logos, iconos, previews o recursos históricos para representar la identidad vigente de Archic Lab.\n\nArchic tiene una única base declarada en Écija (Sevilla). Las páginas que mencionan Sevilla, Marbella, Puerto Banús u otras ciudades describen mercados y zonas atendidas; no son oficinas o sucursales.`
 
   llms = replaceOrInsertSection(llms, 'Identidad oficial', identity, 'Servicios')
-  llms = replaceOrInsertSection(llms, 'Qué hace Archic', CURRENT_ARCHITECTURE, 'Servicios')
+  llms = replaceOrInsertSection(llms, 'Qué hace Archic Lab', CURRENT_ARCHITECTURE, 'Servicios')
   llms = llms.replace(/Última revisión de esta descripción: \d{4}-\d{2}-\d{2}\./, `Última revisión de esta descripción: ${CONTENT_REVIEW_DATE}.`)
   if (!llms.includes('Última revisión de esta descripción:')) {
     llms = llms.replace(/^# Archic[^\n]*\n/, (line) => `${line}\nÚltima revisión de esta descripción: ${CONTENT_REVIEW_DATE}.\n`)
@@ -124,13 +124,13 @@ if (existsSync(llmsFullPath)) {
   let full = replaceOpeningSummary(readFileSync(llmsFullPath, 'utf8'))
   full = full.replace(/Última actualización: \d{4}-\d{2}-\d{2}/, `Última actualización: ${CONTENT_REVIEW_DATE}`)
 
-  const identity = `## Identidad verificable\n\n- Marca: Archic\n- Nombre alternativo: Archic Digital Systems\n- Sitio oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Co-Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Antero — Co-Founder · Growth & Client Partnerships — antero@archic.es — +34 687 50 38 50\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic.`
+  const identity = `## Identidad verificable\n\n- Marca: Archic Lab\n- Nombre alternativo: Archic Lab\n- Sitio oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Co-Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Antero — Co-Founder · Growth & Client Partnerships — antero@archic.es — +34 687 50 38 50\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic Lab.`
 
   // Remove older copies first, then place the current identity immediately after the intro.
   full = full.replace(/\n## Identidad verificable[\s\S]*?(?=\n## |$)/g, '')
   full = full.replace(/\n## Qué hace Archic[\s\S]*?(?=\n## |$)/g, '')
   full = replaceOrInsertSection(full, 'Identidad verificable', identity, 'Cuatro cosas que puedes verificar ahora mismo.')
-  full = replaceOrInsertSection(full, 'Qué hace Archic', CURRENT_ARCHITECTURE, 'Cuatro cosas que puedes verificar ahora mismo.')
+  full = replaceOrInsertSection(full, 'Qué hace Archic Lab', CURRENT_ARCHITECTURE, 'Cuatro cosas que puedes verificar ahora mismo.')
   writeFileSync(llmsFullPath, full)
 }
 
@@ -152,4 +152,4 @@ if (existsSync(sitemapPath)) {
   }
 }
 
-console.log(`sanitized generated SEO assets with Archic identity ${IDENTITY_DATE}`)
+console.log(`sanitized generated SEO assets with Archic Lab identity ${IDENTITY_DATE}`)

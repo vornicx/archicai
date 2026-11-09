@@ -1,4 +1,4 @@
-/* Archic visibility guardrails.
+/* Archic Lab visibility guardrails.
    Final safety layer: critical copy never inherits colour from legacy CSS.
    Loaded last in main.tsx. */
 

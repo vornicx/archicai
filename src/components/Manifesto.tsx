@@ -20,7 +20,7 @@ function Manifesto() {
   return (
     <section id="research" className="section-border section-padding">
       <div className="container-page">
-        <div className="section-label">Manifesto // Why Archic Exists</div>
+        <div className="section-label">Manifesto // Why Archic Lab Exists</div>
 
         <h2 className="heading-serif" style={{ fontSize: '2.5rem', maxWidth: '800px', marginBottom: '1rem' }}>
           Toward deterministic context persistence.

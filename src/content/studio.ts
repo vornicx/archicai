@@ -1,5 +1,5 @@
 /**
- * Copy de la portada de Archic.
+ * Copy de la portada de Archic Lab.
  *
  * Vive aparte de `src/i18n/content.ts` porque aquella estructura sostiene las
  * landings de SEO local, que siguen publicadas y no comparten narrativa con
@@ -70,10 +70,10 @@ export type StudioContent = {
 
 const es: StudioContent = {
   meta: {
-    title: 'Archic — Sistemas digitales para negocios excepcionales',
+    title: 'Archic Lab — Sistemas digitales para negocios excepcionales',
     description:
       'Diseñamos y construimos la parte digital de negocios excepcionales: experiencia pública, reservas, operaciones y software a medida. Marbella, Puerto Banús y Costa del Sol.',
-    ogTitle: 'Archic — Sistemas digitales para negocios excepcionales',
+    ogTitle: 'Archic Lab — Sistemas digitales para negocios excepcionales',
     ogDescription:
       'Presencia, reservas, control operativo y software a medida para hostelería, automoción, náutica e inmobiliaria de alto nivel.',
   },
@@ -93,7 +93,7 @@ const es: StudioContent = {
     ctaPrimary: 'Empezar proyecto',
     ctaSecondary: 'Ver trabajo',
     imageAlt:
-      'Sistema digital abstracto: paneles de datos y módulos conectados alrededor del símbolo de Archic',
+      'Sistema digital abstracto: paneles de datos y módulos conectados alrededor del símbolo de Archic Lab',
     metaLeft: 'Marbella · España',
     metaRight: 'Presencia · Software · Operaciones',
   },
@@ -187,7 +187,7 @@ const es: StudioContent = {
       },
     ],
     footnote:
-      'También trabajamos con inmobiliaria y servicios premium, sin convertir a Archic en el cliché de un solo sector.',
+      'También trabajamos con inmobiliaria y servicios premium, sin convertir a Archic Lab en el cliché de un solo sector.',
   },
   principles: {
     kicker: 'PRINCIPIOS',
@@ -237,10 +237,10 @@ const es: StudioContent = {
 
 const en: StudioContent = {
   meta: {
-    title: 'Archic — Digital systems for exceptional businesses',
+    title: 'Archic Lab — Digital systems for exceptional businesses',
     description:
-      'Archic designs and builds the digital side of exceptional businesses: premium experiences, bookings, operations and custom software. Marbella and the Costa del Sol.',
-    ogTitle: 'Archic — Digital systems for exceptional businesses',
+      'Archic Lab designs and builds the digital side of exceptional businesses: premium experiences, bookings, operations and custom software. Marbella and the Costa del Sol.',
+    ogTitle: 'Archic Lab — Digital systems for exceptional businesses',
     ogDescription:
       'Presence, bookings, operational control and custom software for high-end hospitality, automotive, yachting and real estate.',
   },
@@ -260,7 +260,7 @@ const en: StudioContent = {
     ctaPrimary: 'Start a project',
     ctaSecondary: 'See our work',
     imageAlt:
-      'Abstract digital system: connected data panels and modules around the Archic symbol',
+      'Abstract digital system: connected data panels and modules around the Archic Lab symbol',
     metaLeft: 'Marbella · Spain',
     metaRight: 'Presence · Software · Operations',
   },
@@ -354,7 +354,7 @@ const en: StudioContent = {
       },
     ],
     footnote:
-      'Also built for real estate and premium service businesses, without turning Archic into a single-industry cliché.',
+      'Also built for real estate and premium service businesses, without turning Archic Lab into a single-industry cliché.',
   },
   principles: {
     kicker: 'PRINCIPLES',

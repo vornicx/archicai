@@ -61,7 +61,7 @@ const COPY = {
     outlookCopy: 'La previsión de este proveedor cubre aproximadamente 9 días. Los escenarios a 30–36 días se añadirán aparte, con incertidumbre explícita.',
     details: 'Variables disponibles', attribution: 'Predicción de modelo: MET Norway (Locationforecast 2.0)', license: 'Licencia CC BY 4.0',
     notice: 'Producto experimental. No sustituyas los avisos de los servicios meteorológicos oficiales por esta herramienta.',
-    back: 'Volver a Lab', site: 'Archic',
+    back: 'Volver a Lab', site: 'Archic Lab',
   },
   en: {
     label: 'WEATHER / ARCHIC LAB', title: 'Weather, made clearer.',
@@ -86,7 +86,7 @@ const COPY = {
     outlookCopy: 'This source covers about 9 days. The 30–36 day outlook will be added separately and labelled with uncertainty.',
     details: 'Available variables', attribution: 'Model forecast: MET Norway (Locationforecast 2.0)', license: 'Licence CC BY 4.0',
     notice: 'Experimental tool. Always refer to official meteorological authorities for severe weather warnings.',
-    back: 'Back to Lab', site: 'Archic',
+    back: 'Back to Lab', site: 'Archic Lab',
   },
 } as const
 
@@ -200,7 +200,7 @@ export default function LabWeather() {
   return (
     <div className="lab-root lw-root">
       <Helmet htmlAttributes={{ lang }}>
-        <title>{lang === 'es' ? 'Weather — lluvia y previsión | Archic Lab' : 'Weather — rainfall and forecast | Archic Lab'}</title>
+        <title>{lang === 'es' ? 'Archic Lab Weather — lluvia y previsión' : 'Archic Lab Weather — rainfall and forecast'}</title>
         <meta name="description" content={c.subtitle} />
         <link rel="canonical" href={lang === 'es' ? 'https://archic.es/lab/weather/' : 'https://archic.es/en/lab/weather/'} />
         <link rel="alternate" hrefLang="es" href="https://archic.es/lab/weather/" />

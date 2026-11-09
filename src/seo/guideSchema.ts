@@ -14,7 +14,7 @@ const GUIDES_INDEX_DESCRIPTION =
   'Guías prácticas sobre diseño web, presupuestos, mantenimiento y digitalización de procesos, escritas para quien tiene que tomar la decisión, no para quien programa.'
 
 export const GUIDES_INDEX_META = {
-  title: `${GUIDES_INDEX_TITLE} | Archic`,
+  title: `${GUIDES_INDEX_TITLE} | Archic Lab`,
   description: GUIDES_INDEX_DESCRIPTION,
   heading: GUIDES_INDEX_TITLE,
 }

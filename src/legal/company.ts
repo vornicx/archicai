@@ -28,7 +28,7 @@ export type CompanyData = {
   /**
    * Full legal name. For a sole trader (autónomo) this is the person's full
    * name; for a company, the registered company name including its legal form
-   * (e.g. "Archic Software, S.L.").
+   * (e.g. "Archic Lab Software, S.L.").
    */
   legalName: string | Pending
   /** NIF (sole trader) or CIF/NIF (company). LSSI art. 10.1.a. */
@@ -54,7 +54,7 @@ export type CompanyData = {
 }
 
 export const COMPANY: CompanyData = {
-  brand: 'Archic',
+  brand: 'Archic Lab',
 
   // TODO(legal): replace with the registered legal name.
   legalName: null,

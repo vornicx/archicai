@@ -65,7 +65,7 @@ export default function StudioContact() {
   const [startedAt] = useState(() => Date.now())
 
   const [consentBefore, consentAfter] = n.consent.split('{link}')
-  const formLabel = lang === 'es' ? 'Consulta de proyecto Archic' : 'Archic project enquiry'
+  const formLabel = lang === 'es' ? 'Consulta de proyecto Archic Lab' : 'Archic Lab project enquiry'
   const isAudit = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('intent') === 'audit'
   const typeOptions = isAudit ? [q.auditType, ...c.types] : c.types
 

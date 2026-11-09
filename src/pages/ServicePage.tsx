@@ -192,7 +192,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
         <meta property="og:description" content={page.meta.description} />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Archic" />
+        <meta property="og:site_name" content="Archic Lab" />
         <meta property="og:locale" content="es_ES" />
         <meta property="og:image" content={`${ORIGIN}/og-image.png?v=20260812`} />
         <meta name="twitter:card" content="summary_large_image" />
@@ -208,7 +208,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
       <main id="main-content" tabIndex={-1}>
       <section className="as-seo-hero">
         <div className="as-seo-hero-main" data-reveal="hero">
-          <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><span>{page.breadcrumb}</span></div>
+          <div className="as-seo-breadcrumb"><a href="/">Archic Lab</a><span>/</span><span>{page.breadcrumb}</span></div>
           <div className="as-seo-layer">{p.layer}</div>
           <h1>{p.title}<br /><em>{p.accent}</em></h1>
           <p className="as-seo-hero-lead">{p.lead}</p>

@@ -42,7 +42,7 @@ function RouteFallback() {
       className="as-route-fallback"
       role="status"
       aria-live="polite"
-      aria-label={lang === 'es' ? 'Cargando Archic' : 'Loading Archic'}
+      aria-label={lang === 'es' ? 'Cargando Archic Lab' : 'Loading Archic Lab'}
       tabIndex={-1}
     >
       <div><span>ARCHIC</span><i /></div>

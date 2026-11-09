@@ -1,9 +1,9 @@
-# Archic — contenido completo
+# Archic Lab — contenido completo
 
 Última actualización: 2026-08-29
 Origen: https://archic.es/
 
-> Archic diseña y desarrolla webs, web apps y software web a medida: la presencia que ve el cliente, los sistemas privados que usa el equipo y la lógica que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.
+> Archic Lab diseña y desarrolla webs, web apps y software web a medida: la presencia que ve el cliente, los sistemas privados que usa el equipo y la lógica que conecta o mejora la operación. El trabajo empieza por diagnosticar el negocio y termina en una entrega validada, medible y preparada para evolucionar.
 
 
 ## Modelo de trabajo 2026
@@ -33,13 +33,13 @@ Son mínimos orientativos, no paquetes cerrados. El presupuesto final se fija de
 
 ## Estándar de evidencia
 
-Los prototipos y concept builds se etiquetan como tales y no se presentan como clientes. Archic solo publica un resultado de negocio como caso de éxito cuando existe una línea base y una fuente de datos que permita demostrarlo. La base Search & AI Readiness incluye metadatos, Schema.org, sitemap, canonicals, crawlability, contenido semántico y llms cuando aporta; no se prometen posiciones ni visibilidad en IA sin evidencia.
+Los prototipos y concept builds se etiquetan como tales y no se presentan como clientes. Archic Lab solo publica un resultado de negocio como caso de éxito cuando existe una línea base y una fuente de datos que permita demostrarlo. La base Search & AI Readiness incluye metadatos, Schema.org, sitemap, canonicals, crawlability, contenido semántico y llms cuando aporta; no se prometen posiciones ni visibilidad en IA sin evidencia.
 
 
 ## Identidad verificable
 
-- Marca: Archic
-- Nombre alternativo: Archic Digital Systems
+- Marca: Archic Lab
+- Nombre alternativo: Archic Lab
 - Sitio oficial: https://archic.es/
 - Símbolo oficial vigente: https://archic.es/brand/archic-symbol-2026.svg
 - Lockup oficial vigente: https://archic.es/brand/archic-lockup-dark.svg
@@ -50,9 +50,9 @@ Los prototipos y concept builds se etiquetan como tales y no se presentan como c
 - Área de servicio: España
 - Idiomas de trabajo: español e inglés
 
-**Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic.
+**Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic Lab.
 
-## Qué hace Archic
+## Qué hace Archic Lab
 
 - **Archic Presence**: dirección digital, diseño web premium, contenido, experiencia y conversión.
 - **Archic Control**: clientes, reservas, recursos, estados, paneles privados y operación diaria.
@@ -151,7 +151,7 @@ Todavía no publicamos casos de clientes. Estos son ejemplos conceptuales del ti
 
 ## Una empresa tecnológica española e independiente.
 
-Archic nace para acercar el desarrollo de software de calidad a empresas que necesitan soluciones reales, pero no quieren depender de herramientas genéricas o proveedores que desaparecen después de entregar el proyecto.
+Archic Lab nace para acercar el desarrollo de software de calidad a empresas que necesitan soluciones reales, pero no quieren depender de herramientas genéricas o proveedores que desaparecen después de entregar el proyecto.
 
 Diseñamos páginas web, desarrollamos software a medida y acompañamos a nuestros clientes durante la evolución de sus sistemas.
 
@@ -455,7 +455,7 @@ El tratamiento se diseña conforme al RGPD: minimización, control de accesos, r
 URL: https://archic.es/diseno-web-sevilla/
 Keyword principal: diseño web sevilla
 
-Archic es un estudio de diseño y desarrollo web con base en Écija, en la provincia de Sevilla. Trabajamos con empresas y autónomos de toda la provincia: web hecha a medida, sin plantillas, con la estructura y la velocidad que hacen falta para captar contactos desde Google.
+Archic Lab es un estudio de diseño y desarrollo web con base en Écija, en la provincia de Sevilla. Trabajamos con empresas y autónomos de toda la provincia: web hecha a medida, sin plantillas, con la estructura y la velocidad que hacen falta para captar contactos desde Google.
 
 ### Un estudio de la provincia, no una agencia deslocalizada
 
@@ -519,7 +519,7 @@ No. El código y los accesos son tuyos. El mantenimiento es opcional y sin perma
 URL: https://archic.es/diseno-web-ecija/
 Keyword principal: diseño web écija
 
-Archic tiene su base en Écija. Diseñamos y programamos páginas web para empresas, comercios y autónomos de la ciudad y de la comarca, con la misma exigencia técnica que aplicamos a proyectos nacionales.
+Archic Lab tiene su base en Écija. Diseñamos y programamos páginas web para empresas, comercios y autónomos de la ciudad y de la comarca, con la misma exigencia técnica que aplicamos a proyectos nacionales.
 
 ### Por qué una web local bien hecha rinde tanto en Écija
 
@@ -936,7 +936,7 @@ El trabajo empieza por la marca y por el recorrido real del cliente: descubrir, 
 
 **¿Tenéis oficina en Marbella?**
 
-No presentamos Archic como una oficina local de Marbella. Trabajamos desde España con proyectos en remoto y nos desplazamos cuando el proyecto justifica trabajo presencial.
+No presentamos Archic Lab como una oficina local de Marbella. Trabajamos desde España con proyectos en remoto y nos desplazamos cuando el proyecto justifica trabajo presencial.
 
 **¿Hacéis solo la web?**
 

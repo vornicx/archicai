@@ -29,7 +29,7 @@ export const CYCLE_STEPS = [
   { id: 'analyze', step: 'ANALYZE', layer: 'Eval', sub: 'find where retrieval fails', accent: 'violet' as const },
   { id: 'build', step: 'BUILD', layer: 'Midas', sub: 'improve the memory system', accent: 'cyan' as const },
   { id: 'measure', step: 'MEASURE', layer: 'Eval', sub: 're-run, compare', accent: 'violet' as const },
-  { id: 'publish', step: 'PUBLISH', layer: 'Archic', sub: 'share results transparently', accent: 'neutral' as const },
+  { id: 'publish', step: 'PUBLISH', layer: 'Archic Lab', sub: 'share results transparently', accent: 'neutral' as const },
 ]
 
 export const LAYERS: ArchicLayer[] = [
@@ -63,7 +63,7 @@ export const LAYERS: ArchicLayer[] = [
     role: 'Ecosystem vision',
     zone: 'north-star',
     status: 'parked',
-    desc: 'The full Archic ecosystem — Origin, Atlas, Apollo, Nexus, Forge — as a layered stack for personal agentic intelligence.',
+    desc: 'The full Archic Lab ecosystem — Origin, Atlas, Apollo, Nexus, Forge — as a layered stack for personal agentic intelligence.',
     tags: ['control', 'execution', 'extensions'],
     detail: 'Our north-star. A complete layered stack where memory (Midas/Atlas), control (Origin), and execution (Apollo) are separate, auditable systems. Not actively building the full ecosystem right now — Midas comes first.',
     accent: 'neutral',
