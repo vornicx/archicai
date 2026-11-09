@@ -41,3 +41,38 @@ Do not call Open-Meteo's non-commercial API from Archic's public promotional pro
 - Additional official warning feeds (MeteoAlarm/NOAA) with geographic coverage
 - Radar and lightning source selection
 - Multimodel rainfall bands and extended outlook with uncertainty
+
+## V5 — City search and coming days (2026-11-09)
+
+### City search (local, GeoNames)
+- Source: GeoNames `cities5000.zip` (all populated places with population > 5,000), `admin1CodesASCII.txt` and
+  `alternateNamesV2.zip` (Spanish/English, non-colloquial, non-historic rows only), downloaded 2026-11-09 from
+  https://download.geonames.org/export/dump/ . License: **CC BY 4.0** (https://www.geonames.org/export/ — commercial use allowed with attribution).
+  Attribution is shown in the Weather footer and in `docs/asset-provenance.md`.
+- Build: `node scripts/build-weather-cities.mjs cities5000.txt admin1CodesASCII.txt alt-es-en.txt` writes
+  `public/lab/weather/cities.json`. Source dumps are never committed.
+- Asset: 69,530 cities (489 same-name/region/country collisions dropped, most populated kept); ~3.6 MB raw, **~1.27 MB gzip**.
+  Columnar, lossless: lat/lon stored as exact integers x 1e5 (GeoNames publishes 5 decimals; the build fails otherwise), IANA time zone per city,
+  region (admin1) names, population for ranking, ES/EN display names (2,422 / few hundred) and up to 4 ES/EN aliases.
+- Loading: fetched only on first focus of the search field, once per page session (in-memory promise cache, retry after failure).
+  Not part of the initial navigation (verified with Playwright: 0 requests before focus, 1 after). Same URL for `/lab/weather/` and `/en/lab/weather/`.
+  HTTP compression on Lovable hosting is not verified yet; check `content-encoding` on the published URL.
+- Ranking: exact > prefix > word prefix > substring (>= 3 chars), aliases one step lower, then population. Accent-insensitive (NFD fold); names keep accents.
+  Country names come from `Intl.DisplayNames`. Ties go to population, so "Valencia" lists Venezuela (larger) before Spain; region + country disambiguate.
+- Limits: no towns under 5,000 people (use coordinates); no postcodes; ES/EN exonyms only where GeoNames has them.
+- Recents: up to 3 picked GeoNames cities in `localStorage` (`archic-lab-weather-recent`), validated on read. Device geolocation is never stored.
+
+### Coming days (`src/lab/weatherDays.ts`)
+- Days are civil dates in the city's IANA zone (`formatToParts`), DST-aware midnights; up to 7 days, first day is "rest of today".
+- Temperature: min/max of the instant samples available that day — labelled "sampled min/max", not true daily extremes.
+- Icon: `symbol_code` of the sample closest to local noon (caption says so).
+- Daily rain: only when non-overlapping periods (1 h preferred over overlapping 6 h; duplicates dropped) tile the local day exactly with known amounts.
+  A 6 h block crossing local midnight, a gap or a null hides the total (`—`, "Not enough coverage"). In practice the 6 h range
+  (aligned to UTC) only tiles local days in UTC-aligned zones, so most long-range days show `—`. This is intended.
+- `limitations.longRange` from the backend is not used as a "no forecast" signal.
+
+### Tests
+`npm run test:weather`: 54 tests (32 previous + 14 days + 8 search), including DST (Madrid 23 h, New York 25 h), Tokyo partial day,
+1 h→6 h transition, overlap, duplicates, cross-midnight, missing rain vs explicit 0, invalid zone, no data, blocked fetch/retry, recents validation.
+`npm run audit:a11y`: 40 axe scans (adds search-open with results and day-expanded), 0 violations in the automated subset (not full WCAG conformance).
+Browser QA used a local proxy to the real Edge Function with an `Origin: https://archic.es` header (localhost is rejected by CORS); Lovable Preview itself was not driven.

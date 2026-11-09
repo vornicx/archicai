@@ -251,7 +251,7 @@
 .lw-search input{flex:1;min-width:0;min-height:46px;padding:0 8px;border:0;border-radius:0;background:transparent;color:var(--al-ink);font:400 16px/1 var(--al-font);-webkit-appearance:none;appearance:none}
 .lw-search input::-webkit-search-cancel-button{display:none}
 .lw-search input::placeholder{color:var(--al-muted)}
-.lw-search input:focus-visible{outline:none}
+.al-site.al-site .lw-search input:focus-visible{outline:none}
 .lw-search-clear{flex:none;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;background:none;color:var(--al-muted);font-size:22px;line-height:1;cursor:pointer;border-radius:12px}
 .lw-search-pop{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 6px);padding:6px;border:1px solid var(--al-line);border-radius:16px;background:var(--al-white);box-shadow:var(--al-shadow)}
 .lw-search-pop[hidden]{display:none}
@@ -267,11 +267,11 @@
 /* Coming days: editorial rows, shared temperature scale. */
 .lw-days-list{margin:0;padding:0;list-style:none;border-top:1px solid var(--al-line)}
 .lw-days-list>li{border-bottom:1px solid var(--al-line)}
-.lw-day{display:grid;grid-template-columns:minmax(120px,1.3fr) 40px minmax(64px,.6fr) minmax(160px,2fr);align-items:center;gap:16px;width:100%;min-height:60px;padding:8px 4px;border:0;background:none;color:var(--al-ink);font:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .15s ease}
+.lw-day{display:grid;grid-template-columns:minmax(150px,1fr) 40px 88px minmax(180px,1.6fr);align-items:center;gap:16px;width:100%;min-height:60px;padding:8px 4px;border:0;background:none;color:var(--al-ink);font:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .15s ease}
 @media (hover:hover){.lw-day:hover{background:rgba(16,18,23,.025)}}
 .lw-day[aria-expanded='true']{background:var(--al-white)}
 .lw-day-name{display:flex;align-items:baseline;gap:10px;min-width:0}
-.lw-day-name strong{font-weight:500;font-size:16px;text-transform:capitalize;white-space:nowrap}
+.lw-day-name strong{font-weight:500;font-size:16px;white-space:nowrap}
 .lw-day-name span{color:var(--al-muted);font-size:13px;white-space:nowrap}
 .lw-day-glyph{display:inline-flex;color:var(--al-ink-2)}
 .lw-day-rain{color:var(--al-muted);font-size:14px;font-variant-numeric:tabular-nums}

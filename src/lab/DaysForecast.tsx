@@ -31,13 +31,17 @@ export function DaysForecast({ days, lang, locale, timeZone }: { days: DaySummar
   const [open, setOpen] = useState<string | null>(null)
   if (!days.length) return null
   const scale = rangeScale(days)
-  const n = (v: number | null, d = 0) => (v === null ? '—' : new Intl.NumberFormat(locale, { maximumFractionDigits: d, minimumFractionDigits: d }).format(v))
+  // Round first and drop the sign of zero so -0.3 never prints as "-0".
+  const n = (v: number | null, d = 0) => (v === null ? '—' : new Intl.NumberFormat(locale, { maximumFractionDigits: d, minimumFractionDigits: d }).format(Math.round(v * 10 ** d) / 10 ** d + 0))
+  // Labels come from the civil date itself (noon UTC of that date), never from interval instants.
+  const civil = (d: DaySummary) => { const [y, m, dd] = d.date.split('-').map(Number); return new Date(Date.UTC(y, m - 1, dd, 12)) }
+  const cap = (s: string) => s.charAt(0).toLocaleUpperCase(locale) + s.slice(1)
   const dayName = (d: DaySummary, i: number) => {
     if (i === 0) return t.today
     if (i === 1) return t.tomorrow
-    return new Intl.DateTimeFormat(locale, { weekday: 'long', timeZone }).format(new Date(d.start + 12 * 3600e3))
+    return cap(new Intl.DateTimeFormat(locale, { weekday: 'long', timeZone: 'UTC' }).format(civil(d)))
   }
-  const dateText = (d: DaySummary) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', timeZone }).format(new Date(d.start + 12 * 3600e3))
+  const dateText = (d: DaySummary) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(civil(d))
   const hour = (iso: string) => new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', timeZone }).format(new Date(iso))
 
   return (

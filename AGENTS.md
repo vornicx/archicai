@@ -65,5 +65,8 @@ Also inspect rendered desktop + mobile, reduced motion, contact/critical paths, 
 - Weather's `forecastView(state, currentKey)` must receive the key of the place being rendered, so the render after a place change (before the fetch effect runs) never shows the previous place's data; tested in `tests/lab-forecast-state.test.mjs`.
 - Home portfolio images are local WebPs under `public/media/work/` with a visible provenance caption per project (client material vs representative photography); no hotlinked images.
 
+- Weather city search reads only the static GeoNames index `public/lab/weather/cities.json` (rebuilt by `scripts/build-weather-cities.mjs`), loaded on first search focus via `src/lab/citySearch.ts`; no third-party geocoding APIs at runtime (licensing/rate limits).
+- Day-level forecast values come only from `src/lab/weatherDays.ts` (tested in `tests/lab-weather-days.test.mjs`): local civil days, sampled min/max, rain only when non-overlapping periods tile the whole local day.
+
 ## Quality audits
 - `npm run audit:a11y` (axe + menu keyboard checks, Weather via `scripts/audit-fixture.mjs`) and `npm run audit:perf` (Lighthouse lab) are dev-only gates documented in `docs/lab-quality-audit.md`; fix violations in components, never by excluding rules or selectors.
