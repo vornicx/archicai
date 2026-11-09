@@ -1,12 +1,14 @@
-import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useReducer, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { Helmet } from 'react-helmet-async'
 import '@fontsource-variable/geist/wght.css'
 import { useLang } from '../i18n/LanguageContext'
 import { upcomingHourly, rainTotal } from '../lab/weatherMath'
-import { fetchForecast, type Point, type WeatherPayload } from '../lab/weatherClient'
+import { fetchForecast, type Point } from '../lab/weatherClient'
 import { parseSymbol, conditionLabel, skyTone } from '../lab/weatherSymbol'
 import { WeatherGlyph } from '../lab/WeatherGlyph'
 import { RainBars } from '../lab/RainBars'
+import { forecastReducer, forecastView, initialForecast, placeKey } from '../lab/forecastState'
+import { nextHourIndex, hourSummary } from '../lab/hourSelection'
 import '../styles/archic-light.css'
 import '../styles/archic-lab.css'
 
@@ -41,7 +43,7 @@ const COPY = {
     aemet: 'https://www.aemet.es/es/eltiempo/prediccion/avisos',
     source: 'Datos: MET Norway, Locationforecast 2.0', license: 'CC BY 4.0', processed: 'Procesados por Archic Lab (unidades, acumulados y horario).',
     lab: 'Lab', home: 'Inicio', nav: 'Navegación de Weather', langLabel: 'Idioma',
-    myLocation: 'Mi ubicación', selectedCoords: 'Coordenadas',
+    myLocation: 'Mi ubicación', selectedCoords: 'Coordenadas', nowWord: 'Ahora', selectedHour: 'Hora seleccionada', refreshing: 'Actualizando esta predicción…', stripHint: 'Elige una hora para verla en la gráfica.',
   },
   en: {
     title: 'Archic Lab Weather — rainfall and forecast',
@@ -63,7 +65,7 @@ const COPY = {
     aemet: 'https://www.aemet.es/en/eltiempo/prediccion/avisos',
     source: 'Data: MET Norway, Locationforecast 2.0', license: 'CC BY 4.0', processed: 'Processed by Archic Lab (units, totals and time zone).',
     lab: 'Lab', home: 'Home', nav: 'Weather navigation', langLabel: 'Language',
-    myLocation: 'My location', selectedCoords: 'Coordinates',
+    myLocation: 'My location', selectedCoords: 'Coordinates', nowWord: 'Now', selectedHour: 'Selected hour', refreshing: 'Refreshing this forecast…', stripHint: 'Pick an hour to see it on the chart.',
   },
 } as const
 
@@ -91,31 +93,35 @@ export default function LabWeather() {
   const [lonText, setLonText] = useState(String(PLACES[0].lon))
   const [mode, setMode] = useState<'simple' | 'detail'>('simple')
   const [revision, setRevision] = useState(0)
-  const [payload, setPayload] = useState<WeatherPayload | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const key = placeKey(place.lat, place.lon)
+  const [state, dispatch] = useReducer(forecastReducer, key, initialForecast)
+  const requestSeq = useRef(0)
   const [formError, setFormError] = useState('')
-  const [now, setNow] = useState(() => Date.now())
+  const [selected, setSelected] = useState(0)
+  const stripRef = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
     const controller = new AbortController()
-    setLoading(true)
-    setError(false)
+    const id = ++requestSeq.current
+    dispatch({ type: 'start', key, id })
     fetchForecast(place.lat, place.lon, controller.signal)
-      .then((body) => {
-        setPayload(body)
-        setNow(Date.now())
-      })
+      .then((body) => dispatch({ type: 'resolve', key, id, payload: body, at: Date.now() }))
       .catch((cause: unknown) => {
         if (cause instanceof Error && cause.name === 'AbortError') return
-        setPayload(null)
-        setError(true)
+        dispatch({ type: 'fail', key, id })
       })
-      .finally(() => { if (!controller.signal.aborted) setLoading(false) })
     return () => controller.abort()
-  }, [place, revision])
+  }, [key, place.lat, place.lon, revision])
 
-  const hourly = useMemo(() => (payload ? upcomingHourly(payload.points, now, 24) : []), [payload, now])
+  const view = forecastView(state)
+  const payload = view.data?.payload ?? null
+  const now = view.data?.receivedAt ?? 0
+  const loading = state.status === 'loading'
+  const error = view.error
+  // A new forecast (new place or refresh) resets the hour selection to the interval in progress.
+  useEffect(() => { setSelected(0) }, [view.data])
+
+  const hourly = useMemo(() => (payload ? upcomingHourly(payload.points, now || Date.now(), 24) : []), [payload, now])
   const current = hourly[0] ?? null
   const rain24 = rainTotal(hourly, 24)
   const rain6 = rainTotal(hourly, 6)
@@ -183,6 +189,21 @@ export default function LabWeather() {
   const conditionText = conditionLabel(condition, lang)
   const tone = skyTone(condition)
   const hourSlot = hourly.slice(0, 24)
+  const sel = Math.min(selected, Math.max(0, hourSlot.length - 1))
+  const selPoint = hourSlot[sel] ?? null
+  const selText = selPoint ? hourSummary(selPoint, sel === 0 ? c.nowWord + ' ' + hour(selPoint.time) : hour(selPoint.time), locale, lang) : ''
+  const pick = (i: number) => {
+    setSelected(i)
+    const el = stripRef.current?.querySelectorAll('button')[i] as HTMLButtonElement | undefined
+    el?.focus({ preventScroll: true })
+    el?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  }
+  const onStripKey = (e: KeyboardEvent<HTMLUListElement>) => {
+    const next = nextHourIndex(sel, e.key, hourSlot.length)
+    if (next === null) return
+    e.preventDefault()
+    pick(next)
+  }
 
   return (
     <div className="al-site lw-root">
@@ -246,16 +267,17 @@ export default function LabWeather() {
         </div>
 
         <div aria-live="polite" aria-busy={loading}>
-          {loading && !payload && <><p className="lw-sr" role="status">{c.loading}</p><div className="lw-skeleton" aria-hidden="true" /></>}
+          {view.loadingFresh && <><p className="lw-sr" role="status">{c.loading}</p><div className="lw-skeleton" aria-hidden="true"><span>{placeName}</span><span>{c.loading}</span></div></>}
+          {view.refreshing && <p className="lw-refreshing" role="status">{c.refreshing}</p>}
           {error && !loading && (
             <div className="lw-state" role="alert">
               <p>{c.failure}</p>
               <button className="lw-pill" type="button" onClick={() => setRevision((n) => n + 1)}>{c.retry}</button>
             </div>
           )}
-          {payload && !error && !current && !loading && <div className="lw-state"><p>{c.empty}</p></div>}
+          {payload && !error && !current && !view.refreshing && <div className="lw-state"><p>{c.empty}</p></div>}
           {payload && !error && current && (
-            <div className="lw-data" data-stale={loading || undefined}>
+            <div className="lw-data" data-stale={view.refreshing || undefined} data-key={view.data?.key}>
               <section className="lw-hero" data-tone={tone} aria-labelledby="lw-now-title">
                 <div className="lw-now">
                   <p className="lw-now-kicker"><span id="lw-now-title">{placeName}</span> · {c.model}</p>
@@ -285,7 +307,8 @@ export default function LabWeather() {
                   </div>
                   <figure className="lw-chart">
                     <figcaption className="lw-chart-head"><span>{c.chartTitle}</span><span>{c.chartRange(hourly.length)}</span></figcaption>
-                    <RainBars hourly={hourly} locale={locale} timeZone={tz} label={chartLabel} />
+                    <RainBars hourly={hourly} locale={locale} timeZone={tz} label={chartLabel} selectedIndex={sel} />
+                    {selPoint && <p className="lw-chart-sel" aria-live="polite"><span className="lw-sr">{c.selectedHour}: </span><time dateTime={selPoint.time}>{selText}</time></p>}
                     <p className="lw-sr">{chartLabel}</p>
                   </figure>
                 </div>
@@ -299,16 +322,19 @@ export default function LabWeather() {
                     <button type="button" aria-pressed={mode === 'detail'} onClick={() => setMode('detail')}>{c.detail}</button>
                   </div>
                 </div>
-                <ul className="lw-strip">
+                <p className="lw-sr" id="lw-strip-hint">{c.stripHint}</p>
+                <ul className="lw-strip" ref={stripRef} onKeyDown={onStripKey} aria-describedby="lw-strip-hint">
                   {hourSlot.map((p, i) => {
                     const cond = parseSymbol(p.symbolCode)
                     const label = conditionLabel(cond, lang)
                     return (
-                      <li key={p.time} aria-current={i === 0 ? 'time' : undefined}>
-                        <time dateTime={p.time}>{i === 0 ? (lang === 'es' ? 'Ahora' : 'Now') : hour(p.time)}</time>
-                        <span className="lw-strip-glyph" title={label ?? undefined}><WeatherGlyph condition={cond} size={26} />{label && <span className="lw-sr">{label}</span>}</span>
-                        <strong>{p.temperatureC === null ? '—' : `${Math.round(p.temperatureC)}°`}</strong>
-                        <span className="lw-strip-rain" data-wet={(p.precipitationMm ?? 0) > 0 || undefined}>{fmt(p.precipitationMm, ' mm', locale, 1)}</span>
+                      <li key={p.time}>
+                        <button type="button" aria-pressed={i === sel} aria-current={i === 0 ? 'time' : undefined} tabIndex={i === sel ? 0 : -1} onClick={() => pick(i)}>
+                          <time dateTime={p.time}>{i === 0 ? c.nowWord : hour(p.time)}</time>
+                          <span className="lw-strip-glyph" title={label ?? undefined}><WeatherGlyph condition={cond} size={26} />{label && <span className="lw-sr">{label}</span>}</span>
+                          <strong>{p.temperatureC === null ? '—' : `${Math.round(p.temperatureC)}°`}</strong>
+                          <span className="lw-strip-rain" data-wet={(p.precipitationMm ?? 0) > 0 || undefined}>{fmt(p.precipitationMm, ' mm', locale, 1)}</span>
+                        </button>
                       </li>
                     )
                   })}

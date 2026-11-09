@@ -5,7 +5,7 @@ import { parseSymbol, conditionLabel, skyTone } from './weatherSymbol'
 import { WeatherGlyph } from './WeatherGlyph'
 import { RainBars } from './RainBars'
 
-// Live, read-only excerpt of Weather for Écija, rendered from the same Edge Function.
+// Read-only excerpt (model forecast, not a measurement) of Weather for Écija, rendered from the same Edge Function.
 // If the forecast cannot load, it says so — no placeholder numbers.
 const ECIJA = { lat: 37.541, lon: -5.083, timeZone: 'Europe/Madrid' }
 
@@ -26,8 +26,8 @@ export function WeatherSpecimen({ lang }: { lang: 'es' | 'en' }) {
   const rain = rainTotal(hourly, 24)
   const n1 = (v: number) => new Intl.NumberFormat(locale, { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(v)
   const t = lang === 'es'
-    ? { live: 'En vivo · predicción de modelo', rain: 'Lluvia 24 h', unit: 'l/m²', off: 'La vista en vivo no está disponible ahora mismo. Weather sigue accesible.', loading: 'Cargando predicción…', bars: 'Lluvia prevista por hora en las próximas 24 horas, Écija' }
-    : { live: 'Live · model forecast', rain: 'Rain 24 h', unit: 'mm', off: 'The live view is unavailable right now. Weather remains available.', loading: 'Loading forecast…', bars: 'Forecast hourly rainfall over the next 24 hours, Écija' }
+    ? { live: 'Predicción de modelo', src: 'MET Norway · actualizado', srcNone: 'MET Norway', rain: 'Lluvia 24 h', unit: 'l/m²', off: 'La predicción no está disponible ahora mismo. Weather sigue accesible.', loading: 'Cargando predicción…', bars: 'Lluvia prevista por hora en las próximas 24 horas, Écija' }
+    : { live: 'Model forecast', src: 'MET Norway · updated', srcNone: 'MET Norway', rain: 'Rain 24 h', unit: 'mm', off: 'The forecast is unavailable right now. Weather remains available.', loading: 'Loading forecast…', bars: 'Forecast hourly rainfall over the next 24 hours, Écija' }
   return (
     <div className="lab-specimen" data-tone={skyTone(cond)} aria-live="polite">
       <p className="lab-specimen-kicker"><span>Écija</span><span>{t.live}</span></p>
@@ -42,6 +42,9 @@ export function WeatherSpecimen({ lang }: { lang: 'es' | 'en' }) {
             <span>{t.rain}</span><strong>{rain === null ? '—' : `${n1(rain)} ${t.unit}`}</strong>
           </div>
           <RainBars hourly={hourly} locale={locale} timeZone={ECIJA.timeZone} label={t.bars} compact />
+          <p className="lab-specimen-src">{payload?.updatedAt
+            ? <>{t.src} <time dateTime={payload.updatedAt}>{new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', timeZone: ECIJA.timeZone }).format(new Date(payload.updatedAt))}</time></>
+            : t.srcNone}</p>
         </>
       ) : (
         <p className="lab-specimen-off">{failed ? t.off : t.loading}</p>

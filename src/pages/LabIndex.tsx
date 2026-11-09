@@ -33,7 +33,7 @@ const COPY = {
     title: 'What we build for ourselves.',
     intro: 'Lab is where the studio designs, ships and maintains its own products. Weather is the first.',
     index: '01',
-    status: 'Experimental · live',
+    status: 'Experimental · published',
     name: 'Weather',
     description: 'Hourly forecasts with rainfall in millimetres, the sky condition and the source always in view.',
     facts: [
