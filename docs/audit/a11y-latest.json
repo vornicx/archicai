@@ -8,11 +8,19 @@
     "violations": []
   },
   {
+    "label": "/ @390 menu-keyboard",
+    "violations": []
+  },
+  {
     "label": "/en/ @390",
     "violations": []
   },
   {
     "label": "/en/ @390 menu-open",
+    "violations": []
+  },
+  {
+    "label": "/en/ @390 menu-keyboard",
     "violations": []
   },
   {
@@ -24,11 +32,19 @@
     "violations": []
   },
   {
+    "label": "/lab/ @390 menu-keyboard",
+    "violations": []
+  },
+  {
     "label": "/en/lab/ @390",
     "violations": []
   },
   {
     "label": "/en/lab/ @390 menu-open",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/ @390 menu-keyboard",
     "violations": []
   },
   {

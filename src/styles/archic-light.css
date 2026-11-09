@@ -113,7 +113,7 @@
 .al-site.al-site .as-footer a:focus-visible{outline:2px solid var(--al-blue);outline-offset:3px}
 .al-site.al-site .as-footer-contact-people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
 .al-site.al-site .as-footer-contact-person{display:grid;align-content:start;gap:4px;padding:0;border:0;background:none}
-.al-site.al-site .as-footer-contact-identity{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding-top:12px;margin-bottom:4px}
+.al-site.al-site .as-footer-contact-identity{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px}
 .al-site.al-site .as-footer-contact-name{color:var(--al-ink);font-size:15px;font-weight:600}
 .al-site.al-site .as-footer-contact-identity span{color:var(--al-muted);font-size:13px}
 .al-site .as-footer-phone,.al-site .as-footer-mail{display:flex!important;flex-direction:column;justify-content:center;gap:1px;min-height:48px;margin:0!important;color:var(--al-ink)!important;font-size:15px!important;font-weight:500;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
@@ -279,10 +279,15 @@ ol.al-steps,ul.al-plain{list-style:none;margin:0;padding:0}
 /* Legacy scroll-progress depends on an .as-site root; not part of the light direction. */
 .al-site.al-site .as-scroll-progress{display:none}
 
-/* Perf: header/menu/skip-link inherit legacy DM Sans / Space Grotesk; pin them to Geist so light pages don't download legacy webfonts (fewer requests, no font-swap shift). */
+/* Perf: header/menu inherit legacy DM Sans / Space Grotesk; pin them to Geist so light pages don't download legacy webfonts (fewer requests, no font-swap shift). */
 .al-site.al-site :is(.as-header,.as-menu-panel),.al-site.al-site :is(.as-header,.as-menu-panel) *{font-family:var(--al-font)}
-body .skip-link{font-family:'Geist Variable',system-ui,-apple-system,'Segoe UI',sans-serif}
 /* Legacy `.site-shell button` (archic-readability.css) and body DM Sans out-rank single-class al rules for family; pin Geist across light pages. */
 .al-site.al-site :is(button,input,select,textarea,small,a,label,summary){font-family:var(--al-font)}
 /* Counter legacy `font: … !important` on these two (archic-readability.css); family only. */
 .al-site.al-site :is(.as-project-link,.as-menu-inner nav a small){font-family:var(--al-font)!important}
+/* Footer: legacy archic-site/refinement hide legal ≤960px and add underline pseudo + stacked margins; light footer keeps all three link groups. */
+.al-site.al-site .as-footer :is(.as-footer-nav,.as-footer-legal,.as-footer-contact){display:block;gap:0}
+.al-site.al-site .as-footer-legal a::after{content:none}
+.al-site.al-site .as-footer-contact-people{margin-top:0}
+.al-site.al-site .as-footer-contact-identity{padding-top:0}
+.al-site.al-site .as-footer-brand>a{display:inline-flex;align-items:center;min-height:44px}

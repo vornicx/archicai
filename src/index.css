@@ -81,6 +81,7 @@ img {
   color: #fff;
   padding: 10px 16px;
   z-index: 200;
+  font: 500 14px/1.2 system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 .skip-link:focus {
   left: 12px;

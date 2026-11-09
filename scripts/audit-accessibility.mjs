@@ -5,23 +5,10 @@
 import { chromium } from 'playwright'
 import AxeBuilder from '@axe-core/playwright'
 import { writeFileSync, mkdirSync } from 'node:fs'
+import { fixture } from './audit-fixture.mjs'
 
 const BASE = process.env.BASE_URL || 'http://localhost:8080'
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
-
-export function fixture({ night = false } = {}) {
-  const start = new Date(); start.setUTCMinutes(0, 0, 0)
-  const codes = night ? ['clearsky_night', 'rain', 'heavyrainandthunder', 'cloudy'] : ['clearsky_day', 'partlycloudy_day', 'lightrain', 'heavyrainandthunder']
-  const points = Array.from({ length: 48 }, (_, i) => ({
-    time: new Date(start.getTime() + i * 3600e3).toISOString(),
-    temperatureC: 14 + Math.round(Math.sin(i / 4) * 5), feelsLikeC: 13, humidityPct: 70, dewPointC: 8,
-    pressureHpa: 1014, cloudPct: 60, fogPct: 0, uvClearSky: 1, windKmh: 12, gustKmh: 20, windFromDegrees: 220,
-    precipitationMm: i % 5 === 0 ? 1.2 : i % 7 === 0 ? 0.3 : 0, precipitationProbabilityPct: null, periodHours: 1,
-    symbolCode: codes[Math.floor(i / 3) % codes.length],
-  }))
-  return { source: { name: 'MET Norway', url: 'https://api.met.no/', type: 'model_forecast' }, updatedAt: start.toISOString(), points,
-    limitations: { observedStationData: false, officialAlerts: false, radar: false, timesAreUtc: true } }
-}
 
 const PAGES = ['/', '/en/', '/lab/', '/en/lab/', '/lab/weather/', '/en/lab/weather/']
 const WIDTHS = [390, 1440]
@@ -42,6 +29,7 @@ for (const width of WIDTHS) {
       await page.route('**/functions/v1/lab-weather**', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(fixture({ night })) }))
       await page.goto(BASE + p, { waitUntil: 'networkidle' })
       const tag = `${p} @${width}${night ? ' night' : ''}`
+      if (p.includes('weather') && !(await page.locator('.lw-temp').count())) results.push({ label: tag + ' fixture', violations: [{ id: 'fixture-not-rendered', impact: 'critical', help: 'Weather fixture did not render', targets: ['.lw-temp'], count: 1 }] })
       await scan(page, tag, results)
       if (!night && p.includes('weather')) {
         const detail = page.getByRole('button', { name: /^(Detalle|Detail)$/ })
@@ -49,7 +37,16 @@ for (const width of WIDTHS) {
       }
       if (!night && width === 390) {
         const menu = page.locator('.as-menu-button')
-        if (await menu.count()) { await menu.click(); await page.waitForTimeout(300); await scan(page, tag + ' menu-open', results) }
+        if (await menu.count()) { await menu.click(); await page.waitForTimeout(300); await scan(page, tag + ' menu-open', results)
+          // Keyboard/modal checks: background inert, Tab stays inside header+menu, Escape restores focus.
+          const bgInert = await page.evaluate(() => !!document.querySelector('main')?.closest('[inert]'))
+          let escaped = false
+          for (let i = 0; i < 12; i++) { await page.keyboard.press('Tab'); escaped ||= await page.evaluate(() => !document.activeElement?.closest('#archic-menu, .as-menu-button')) }
+          await page.keyboard.press('Escape'); await page.waitForTimeout(100)
+          const restored = await page.evaluate(() => document.activeElement?.classList.contains('as-menu-button'))
+          const ok = bgInert && !escaped && restored
+          results.push({ label: tag + ' menu-keyboard', violations: ok ? [] : [{ id: 'menu-modal-keyboard', impact: 'serious', help: `bgInert=${bgInert} focusEscaped=${escaped} focusRestored=${restored}`, targets: ['#archic-menu'], count: 1 }] })
+        }
       }
       await ctx.close()
     }
