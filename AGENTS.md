@@ -54,3 +54,7 @@ npm run quality:gate
 ```
 
 Also inspect rendered desktop + mobile, reduced motion, contact/critical paths, and compare against the active Visual Direction Bible. If the site feels more complex but not more authored, subtract and revise.
+
+## Archic Lab Weather backend
+- Weather data is served only by the Lovable Cloud Edge Function `lab-weather` (logic in `supabase/functions/_shared/labWeather.ts`, tested by `npm run test:weather`); never reintroduce `/api/*` hosting functions or browser calls to api.met.no — Lovable hosting does not run them and MET requires an identifying User-Agent.
+- Its cache and rate limit are per-isolate memory, not shared across Edge instances; treat them as abuse mitigation, not a guaranteed provider cache.

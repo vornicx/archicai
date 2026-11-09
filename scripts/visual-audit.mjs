@@ -104,7 +104,7 @@ for (const [viewportName, viewport] of viewports) {
         periodHours: 1,
         symbolCode: 'cloudy',
       }))
-      await page.route('**/api/lab/weather?*', async (intercept) => {
+      await page.route('**/functions/v1/lab-weather?*', async (intercept) => {
         await intercept.fulfill({
           status: 200,
           contentType: 'application/json; charset=utf-8',

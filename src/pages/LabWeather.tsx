@@ -59,7 +59,7 @@ const COPY = {
     notReady: 'Integración pendiente', alertsCopy: 'Todavía no se muestran avisos oficiales. No interpretes esta ausencia como que no existe riesgo meteorológico.',
     mapsCopy: 'Estamos preparando mapas de radar y rayos con proveedores y licencias verificadas.',
     outlookCopy: 'La previsión de este proveedor cubre aproximadamente 9 días. Los escenarios a 30–36 días se añadirán aparte, con incertidumbre explícita.',
-    details: 'Variables disponibles', attribution: 'Predicción: MET Norway · datos sujetos a condiciones de atribución',
+    details: 'Variables disponibles', attribution: 'Predicción de modelo: MET Norway (Locationforecast 2.0)', license: 'Licencia CC BY 4.0',
     notice: 'Producto experimental. No sustituyas los avisos de los servicios meteorológicos oficiales por esta herramienta.',
     back: 'Volver a Lab', site: 'Archic',
   },
@@ -84,11 +84,15 @@ const COPY = {
     notReady: 'Not connected yet', alertsCopy: 'Official warnings are not connected yet. This does not mean your location is free from weather risks.',
     mapsCopy: 'Radar and lightning layers will be added after provider coverage and licensing are verified.',
     outlookCopy: 'This source covers about 9 days. The 30–36 day outlook will be added separately and labelled with uncertainty.',
-    details: 'Available variables', attribution: 'Forecast: MET Norway · attribution conditions apply',
+    details: 'Available variables', attribution: 'Model forecast: MET Norway (Locationforecast 2.0)', license: 'Licence CC BY 4.0',
     notice: 'Experimental tool. Always refer to official meteorological authorities for severe weather warnings.',
     back: 'Back to Lab', site: 'Archic',
   },
 } as const
+
+// Lovable Cloud Edge Function "lab-weather" (public GET). Only the public URL + publishable key are used here.
+const WEATHER_FN_URL = import.meta.env.VITE_SUPABASE_URL + '/functions/v1/lab-weather'
+const PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string
 
 const fmt = (value: number | null | undefined, unit: string, locale: string, digits = 0) =>
   value === null || value === undefined || !Number.isFinite(value)
@@ -115,7 +119,11 @@ export default function LabWeather() {
     setError('')
     setPayload(null)
     const params = new URLSearchParams({ lat: String(place.lat), lon: String(place.lon) })
-    fetch('/api/lab/weather?' + params.toString(), { signal: controller.signal })
+    fetch(WEATHER_FN_URL + '?' + params.toString(), {
+      method: 'GET',
+      headers: { apikey: PUBLISHABLE_KEY },
+      signal: controller.signal,
+    })
       .then(async (res) => {
         if (!res.ok) throw new Error('weather_unavailable')
         return res.json() as Promise<WeatherPayload>
@@ -309,7 +317,8 @@ export default function LabWeather() {
           </section>
           <footer className="lw-footer">
             <p>{c.notice}</p>
-            <a href="https://api.met.no/" target="_blank" rel="noopener noreferrer">{c.attribution} ↗</a>
+            <a href="https://api.met.no/" target="_blank" rel="noopener noreferrer">{c.attribution} ↗</a>{' · '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">{c.license} ↗</a>
           </footer>
         </div>
       </main>
