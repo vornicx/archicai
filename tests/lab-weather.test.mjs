@@ -13,7 +13,7 @@ test('invalid coordinates never reach upstream', async () => {
       'https://archic.es/api/lab/weather?lat=91&lon=2',
       'https://archic.es/api/lab/weather?lat=40&lon=-181',
     ]) {
-      const result = await handler.fetch(new Request(url))
+      const result = await handler(new Request(url))
       assert.equal(result.status, 400)
       assert.equal(result.headers.get('cache-control'), 'no-store')
     }
@@ -49,7 +49,7 @@ test('normalizes MET forecast, preserving zero rain and unknown probability', as
     }), { status: 200, headers: { Expires: new Date(Date.now() + 900000).toUTCString() } })
   }
   try {
-    const result = await handler.fetch(new Request('https://archic.es/api/lab/weather?lat=37.54&lon=-5.08'))
+    const result = await handler(new Request('https://archic.es/api/lab/weather?lat=37.54&lon=-5.08'))
     assert.equal(result.status, 200)
     assert.match(endpoint, /api\.met\.no\/weatherapi\/locationforecast\/2\.0\/compact/)
     assert.match(agent, /ArchicWeather/)
@@ -70,7 +70,7 @@ test('upstream errors are not cached', async () => {
   const original = globalThis.fetch
   globalThis.fetch = async () => new Response('{}', { status: 503 })
   try {
-    const result = await handler.fetch(new Request('https://archic.es/api/lab/weather?lat=0&lon=0'))
+    const result = await handler(new Request('https://archic.es/api/lab/weather?lat=0&lon=0'))
     assert.equal(result.status, 502)
     assert.equal(result.headers.get('cache-control'), 'no-store')
   } finally { globalThis.fetch = original }
