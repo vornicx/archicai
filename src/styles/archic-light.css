@@ -58,6 +58,12 @@
 .al-site.al-site .as-lang button{min-width:36px;min-height:40px;padding:0 6px;border:0;border-radius:8px;background:transparent;color:var(--al-muted);font:inherit;cursor:pointer}
 .al-site.al-site .as-lang button[aria-pressed='true']{color:var(--al-ink)}
 .al-site.al-site .as-lang span{opacity:.4}
+/* archic-readability.css forces .site-shell .as-lang colours/sizes with !important; countered explicitly. */
+.al-site .as-lang{color:var(--al-muted)!important;font-size:13px!important}
+.al-site .as-lang button{padding:0 6px!important;font-size:13px!important}
+.al-site .as-lang button[aria-pressed='true']{color:var(--al-ink)!important}
+.al-site.al-site .as-menu-button>span{font:500 15px/1 var(--al-font)!important;letter-spacing:0!important;color:var(--al-ink)!important}
+.al-site.al-site .as-project-link{font:500 14px/1 var(--al-font)!important;letter-spacing:0!important;color:#fff!important}
 .al-site.al-site .as-project-link{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:999px;border:0;background:var(--al-ink);color:#fff;font:500 14px/1 var(--al-font);letter-spacing:0;text-transform:none;transition:background-color .15s ease}
 .al-site.al-site .as-project-link:hover{background:#252832}
 .al-site.al-site .as-project-link .as-arrow{display:none}
@@ -114,11 +120,13 @@
 @media (max-width:640px){.al-main{padding-top:56px}}
 
 /* Hero: copy in the upper third, statement + CTAs on the right rail, wide sky band below the fold line. */
-.al-hero{padding:clamp(40px,7.5vh,96px) 0 0}
+.al-hero{padding:clamp(48px,11vh,128px) 0 0}
+.al-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:32px}
 .al-hero-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);row-gap:28px;align-items:end}
 .al-hero-copy{grid-column:1/span 8}
 .al-hero-rail{grid-column:9/span 4;padding-bottom:8px}
 .al-hero .al-h1{font-size:clamp(46px,6.4vw,100px);line-height:.96;letter-spacing:-.05em}
+.al-hero-statement{margin-top:16px}
 .al-hero .al-lead{max-width:30ch;font-size:clamp(19px,1.45vw,22px);color:var(--al-ink)}
 .al-hero-statement{margin-top:14px;max-width:36ch;color:var(--al-muted);font-size:15px;line-height:1.5}
 .al-hero .al-actions{margin-top:28px}
@@ -225,5 +233,5 @@ ol.al-steps,ul.al-plain{list-style:none;margin:0;padding:0}
 @media (prefers-reduced-motion:reduce){
   .al-site *,.al-site *::before,.al-site *::after{transition-duration:.01ms!important;animation:none!important;scroll-behavior:auto!important}
 }
-.al-site.al-site .as-scroll-progress{background:transparent;height:2px}
-.al-site.al-site .as-scroll-progress i{background:var(--al-blue)}
+/* Legacy scroll-progress depends on an .as-site root; not part of the light direction. */
+.al-site.al-site .as-scroll-progress{display:none}

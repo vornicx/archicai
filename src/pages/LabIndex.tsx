@@ -88,8 +88,8 @@ export default function LabIndex() {
           <figure className="lab-stage">
             <img src={SKY_WIDE.src} srcSet={SKY_WIDE.srcSet} sizes="(max-width: 960px) 100vw, 60vw" width={1600} height={1000} alt="" decoding="async" />
             <a className="lab-stage-link" href={href} aria-label={c.open}><WeatherSpecimen lang={lang} /></a>
-            <figcaption><SkyCredit lang={lang} /></figcaption>
           </figure>
+          <div className="lab-credit"><SkyCredit lang={lang} /></div>
         </section>
 
         <section className="al-shell lab-studio" aria-labelledby="lab-studio-title">

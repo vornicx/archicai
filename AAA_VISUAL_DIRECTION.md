@@ -7,6 +7,9 @@ V3 (cinematic dark + gold + Instrument Serif) is superseded and kept below only 
 ## Platform
 
 > **Diseñamos lo que viene.** · EN: **We design what comes next.**
+
+> v4.1 (2026-11-09): Home hero puts the H1 in the upper third with lead/CTAs on a right rail, three service pillars, then a wide sky band carrying Weather as a real product. Lab is a products chapter with one live Weather excerpt over the sky photo. Weather hero is one atmospheric surface whose tone comes only from MET symbol_code, with rain total and hourly bars beside the temperature.
+
 > Support: "Webs, software y herramientas digitales creadas con criterio."
 
 ## Visual world

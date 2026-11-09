@@ -55,6 +55,8 @@ Also inspect rendered desktop + mobile, reduced motion, contact/critical paths, 
 
 ## Light/blue page styling
 - Home, Lab and Weather use `src/styles/archic-light.css` scoped under `.al-site` (plus `archic-lab.css` for Lab/Weather); they must not use the legacy `.as-site` root, because the global legacy stylesheets target it and would leak dark styles in.
+- Shared header/footer overrides in `archic-light.css` use the doubled `.al-site.al-site` root instead of `!important`, which is kept only to counter legacy declarations that are themselves `!important`; this keeps the cascade explicit.
+- Weather condition text/glyph/sky tone derive only from MET `symbol_code` via `src/lab/weatherSymbol.ts` (tested in `tests/lab-weather-symbol.test.mjs`); browser calls go through `src/lab/weatherClient.ts` only.
 - Weather rain totals/chart scale come only from `src/lab/weatherMath.ts` (contiguous 1 h intervals, tested in `tests/lab-weather-math.test.mjs`) so totals never mix 6 h blocks or elapsed hours.
 
 ## Archic Lab Weather backend
