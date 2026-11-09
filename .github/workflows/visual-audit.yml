@@ -14,6 +14,7 @@ on:
       - 'vite.config.ts'
       - 'package.json'
       - 'package-lock.json'
+      - 'bun.lock'
 
 permissions:
   contents: read
@@ -36,7 +37,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
       - name: Use Bun
         uses: oven-sh/setup-bun@v2
@@ -44,17 +44,15 @@ jobs:
           bun-version: latest
 
       - name: Install project dependencies
-        run: npm ci --no-audit --no-fund
+        run: bun install --frozen-lockfile
 
       - name: Generate SEO and build production bundle
         run: |
-          npm run gen:pages
-          npm run build
+          bun run gen:pages
+          bun run build
 
-      - name: Install Playwright for the audit only
-        run: |
-          npm install --no-save --package-lock=false playwright@1.57.0
-          npx playwright install --with-deps chromium
+      - name: Install Chromium for the audit
+        run: bunx playwright install --with-deps chromium
 
       - name: Start production preview
         run: |
