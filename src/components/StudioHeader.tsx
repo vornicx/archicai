@@ -9,6 +9,7 @@ const COPY = {
       ['Proceso', '#method'],
       ['Servicios', '#system'],
       ['Recursos', 'guides'],
+      ['Lab', 'lab'],
       ['Contacto', '#audit'],
     ],
     pages: [
@@ -16,6 +17,7 @@ const COPY = {
       ['Servicios', 'Presence · Control · Business', '#system'],
       ['Proceso', 'Cómo dirigimos y construimos', '#method'],
       ['Recursos', 'Guías y criterio digital', 'guides'],
+      ['Lab', 'Productos propios y experimentos', 'lab'],
       ['Contacto', 'Cuéntanos qué quieres construir', '#audit'],
     ],
   },
@@ -26,6 +28,7 @@ const COPY = {
       ['Process', '#method'],
       ['Services', '#system'],
       ['Resources', 'guides'],
+      ['Lab', 'lab'],
       ['Contact', '#audit'],
     ],
     pages: [
@@ -33,6 +36,7 @@ const COPY = {
       ['Services', 'Presence · Control · Business', '#system'],
       ['Process', 'How we direct and build', '#method'],
       ['Resources', 'Guides and digital thinking', 'guides'],
+      ['Lab', 'Independent products and experiments', 'lab'],
       ['Contact', 'Tell us what you want to build', '#audit'],
     ],
   },
