@@ -45,8 +45,7 @@ function parsePoint(value: unknown) {
     symbolCode: typeof summary.symbol_code === 'string' ? summary.symbol_code : null,
   }
 }
-export default {
-  async fetch(request: Request): Promise<Response> {
+export default async function handler(request: Request): Promise<Response> {
     if (request.method !== 'GET') return response({ error: 'method_not_allowed' }, 405)
     const url = new URL(request.url)
     const latitude = url.searchParams.get('lat')
@@ -81,5 +80,4 @@ export default {
     } catch {
       return response({ error: 'weather_temporarily_unavailable' }, 502)
     }
-  },
 }
