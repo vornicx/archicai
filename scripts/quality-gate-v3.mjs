@@ -34,7 +34,7 @@ check(config.assets?.verified === true, 'Production asset graph is marked verifi
 const homeEntry = read('src/pages/ArchicHome.tsx')
 const home = read('src/pages/ArchicHomeAAA.tsx')
 const css = read('src/styles/archic-light.css')
-const weather = read('src/pages/LabWeather.tsx')
+const weather = read('src/pages/LabWeather.tsx') + read('src/lab/weatherClient.ts')
 const lab = read('src/pages/LabIndex.tsx')
 const header = read('src/components/StudioHeader.tsx')
 const provenance = read('docs/asset-provenance.md')

@@ -2,36 +2,15 @@ import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { Helmet } from 'react-helmet-async'
 import '@fontsource-variable/geist/wght.css'
 import { useLang } from '../i18n/LanguageContext'
-import { upcomingHourly, rainTotal, chartMax } from '../lab/weatherMath'
+import { upcomingHourly, rainTotal } from '../lab/weatherMath'
+import { fetchForecast, type Point, type WeatherPayload } from '../lab/weatherClient'
+import { parseSymbol, conditionLabel, skyTone } from '../lab/weatherSymbol'
+import { WeatherGlyph } from '../lab/WeatherGlyph'
+import { RainBars } from '../lab/RainBars'
 import '../styles/archic-light.css'
 import '../styles/archic-lab.css'
 
 type Place = { id: string; name: { es: string; en: string }; lat: number; lon: number; timeZone: string }
-type Point = {
-  time: string
-  temperatureC: number | null
-  feelsLikeC: number | null
-  humidityPct: number | null
-  dewPointC: number | null
-  pressureHpa: number | null
-  cloudPct: number | null
-  fogPct: number | null
-  uvClearSky: number | null
-  windKmh: number | null
-  gustKmh: number | null
-  windFromDegrees: number | null
-  precipitationMm: number | null
-  precipitationProbabilityPct: number | null
-  periodHours: number | null
-  symbolCode: string | null
-}
-type WeatherPayload = {
-  source: { name: string; url: string; type: 'model_forecast' }
-  updatedAt: string | null
-  points: Point[]
-  limitations: { observedStationData: false; officialAlerts: false; radar: false; timesAreUtc: true }
-}
-
 const PLACES: Place[] = [
   { id: 'ecija', name: { es: 'Écija', en: 'Écija' }, lat: 37.541, lon: -5.083, timeZone: 'Europe/Madrid' },
   { id: 'sevilla', name: { es: 'Sevilla', en: 'Seville' }, lat: 37.389, lon: -5.984, timeZone: 'Europe/Madrid' },
@@ -88,10 +67,6 @@ const COPY = {
   },
 } as const
 
-// Lovable Cloud Edge Function "lab-weather" (public GET). Only the public URL + publishable key are used here.
-const WEATHER_FN_URL = import.meta.env.VITE_SUPABASE_URL + '/functions/v1/lab-weather'
-const PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string
-
 const fmt = (value: number | null | undefined, unit: string, locale: string, digits = 0) =>
   value === null || value === undefined || !Number.isFinite(value)
     ? '—'
@@ -104,37 +79,8 @@ const compass = (deg: number | null, lang: 'es' | 'en') => {
   return (lang === 'es' ? es : en)[Math.round(((deg % 360) + 360) % 360 / 45) % 8]
 }
 
-function RainChart({ hourly, locale, timeZone, label }: { hourly: Point[]; locale: string; timeZone: string; label: string }) {
-  const W = 720, H = 200, top = 12, bottom = 28, left = 32, right = 8
-  const max = chartMax(hourly)
-  const plotH = H - top - bottom
-  const step = (W - left - right) / Math.max(hourly.length, 1)
-  const barW = Math.max(4, step * 0.62)
-  const hour = (t: string) => new Intl.DateTimeFormat(locale, { hour: '2-digit', timeZone }).format(new Date(t))
-  const n = (v: number) => new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(v)
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label}>
-      <line className="grid" x1={left} x2={W - right} y1={top} y2={top} />
-      <line className="grid" x1={left} x2={W - right} y1={top + plotH / 2} y2={top + plotH / 2} />
-      <line className="axis" x1={left} x2={W - right} y1={top + plotH} y2={top + plotH} />
-      <text x={left - 6} y={top + 4} textAnchor="end">{n(max)}</text>
-      <text x={left - 6} y={top + plotH / 2 + 4} textAnchor="end">{n(max / 2)}</text>
-      <text x={left - 6} y={top + plotH + 4} textAnchor="end">0</text>
-      {hourly.map((p, i) => {
-        const v = p.precipitationMm
-        const x = left + i * step + (step - barW) / 2
-        if (v === null) return null
-        const h = (Math.max(0, v) / max) * plotH
-        return v > 0
-          ? <rect key={p.time} className="bar" x={x} y={top + plotH - h} width={barW} height={Math.max(h, 1.5)} rx={2} />
-          : <rect key={p.time} className="bar-zero" x={x} y={top + plotH - 1.5} width={barW} height={1.5} rx={0.75} />
-      })}
-      {hourly.map((p, i) => (i % 3 === 0 ? (
-        <text key={'t' + p.time} x={left + i * step + step / 2} y={H - 8} textAnchor="middle">{hour(p.time)}</text>
-      ) : null))}
-    </svg>
-  )
-}
+const LocateIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><path d="M20 4 4 10.5l7 2.5 2.5 7L20 4Z" strokeLinejoin="round" /></svg>
+const RefreshIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4v4h-4" strokeLinejoin="round" /></svg>
 
 export default function LabWeather() {
   const { lang, setLang, canSwitchLang } = useLang()
@@ -155,14 +101,8 @@ export default function LabWeather() {
     const controller = new AbortController()
     setLoading(true)
     setError(false)
-    const params = new URLSearchParams({ lat: String(place.lat), lon: String(place.lon) })
-    fetch(WEATHER_FN_URL + '?' + params.toString(), { method: 'GET', headers: { apikey: PUBLISHABLE_KEY }, signal: controller.signal })
-      .then(async (res) => {
-        if (!res.ok) throw new Error('weather_unavailable')
-        return res.json() as Promise<WeatherPayload>
-      })
+    fetchForecast(place.lat, place.lon, controller.signal)
       .then((body) => {
-        if (!Array.isArray(body.points) || body.source?.type !== 'model_forecast') throw new Error('invalid_weather')
         setPayload(body)
         setNow(Date.now())
       })
@@ -239,6 +179,11 @@ export default function LabWeather() {
   ] : []
   const nextHour = current ? new Date(Date.parse(current.time) + 3600000).toISOString() : ''
 
+  const condition = current ? parseSymbol(current.symbolCode) : null
+  const conditionText = conditionLabel(condition, lang)
+  const tone = skyTone(condition)
+  const hourSlot = hourly.slice(0, 24)
+
   return (
     <div className="al-site lw-root">
       <Helmet htmlAttributes={{ lang }}>
@@ -255,13 +200,12 @@ export default function LabWeather() {
         <a className="lw-identity" href={lang === 'es' ? '/' : '/en/'} aria-label={lang === 'es' ? 'Archic Lab · inicio' : 'Archic Lab · home'}>
           <img src="/brand/archic-lockup-dark.svg" alt="" width={981} height={174} />
           <span className="as-brand-lab" aria-hidden="true">LAB</span>
-          <b aria-hidden="true">Weather</b>
         </a>
         <nav aria-label={c.nav}>
           <a href={lang === 'es' ? '/lab/' : '/en/lab/'}>{c.lab}</a>
           <a className="lw-hide-sm" href={lang === 'es' ? '/' : '/en/'}>{c.home}</a>
           {canSwitchLang && (
-            <span role="group" aria-label={c.langLabel} style={{ display: 'inline-flex' }}>
+            <span className="lw-lang" role="group" aria-label={c.langLabel}>
               <button type="button" aria-pressed={lang === 'es'} onClick={() => setLang('es')}>ES</button>
               <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
             </span>
@@ -271,9 +215,11 @@ export default function LabWeather() {
 
       <main id="main-content" className="lw-main" tabIndex={-1}>
         <h1 className="lw-sr">{c.title}</h1>
-        <div className="lw-toolbar">
+
+        <div className="lw-bar">
+          <p className="lw-product" aria-hidden="true">Weather</p>
           <div className="lw-place">
-            <label htmlFor="lw-place">{c.location}</label>
+            <label htmlFor="lw-place" className="lw-sr">{c.location}</label>
             <span className="lw-select-wrap">
               <select id="lw-place" value={place.id} onChange={(e) => {
                 const item = PLACES.find((p) => p.id === e.target.value)
@@ -283,93 +229,103 @@ export default function LabWeather() {
                 {PLACES.map((item) => <option key={item.id} value={item.id}>{item.name[lang]}</option>)}
               </select>
             </span>
-          </div>
-          <div className="lw-controls">
-            <div className="lw-seg" role="group" aria-label={c.mode}>
-              <button type="button" aria-pressed={mode === 'simple'} onClick={() => setMode('simple')}>{c.simple}</button>
-              <button type="button" aria-pressed={mode === 'detail'} onClick={() => setMode('detail')}>{c.detail}</button>
+            <div className="lw-tools">
+              <button className="lw-tool" type="button" onClick={useDevice} aria-label={c.device} title={c.device}><LocateIcon /><span>{c.device}</span></button>
+              <button className="lw-tool" type="button" onClick={() => setRevision((n) => n + 1)} disabled={loading} aria-label={c.refresh} title={c.refresh}><RefreshIcon /><span>{c.refresh}</span></button>
             </div>
-            <button className="lw-iconbtn" type="button" onClick={useDevice}>{c.device}</button>
-            <button className="lw-iconbtn" type="button" onClick={() => setRevision((n) => n + 1)} disabled={loading}>{c.refresh}</button>
           </div>
+          <details className="lw-coords">
+            <summary>{c.coords}</summary>
+            <form onSubmit={submitCoordinates} noValidate>
+              <label>{c.latitude}<input inputMode="decimal" autoComplete="off" value={latText} onChange={(e) => setLatText(e.target.value)} /></label>
+              <label>{c.longitude}<input inputMode="decimal" autoComplete="off" value={lonText} onChange={(e) => setLonText(e.target.value)} /></label>
+              <button className="al-btn al-btn-primary" type="submit">{c.go}</button>
+            </form>
+          </details>
+          {formError && <p className="lw-error" role="alert">{formError}</p>}
         </div>
-
-        <details className="lw-coords">
-          <summary>{c.coords}</summary>
-          <form onSubmit={submitCoordinates} noValidate>
-            <label>{c.latitude}<input inputMode="decimal" autoComplete="off" value={latText} onChange={(e) => setLatText(e.target.value)} /></label>
-            <label>{c.longitude}<input inputMode="decimal" autoComplete="off" value={lonText} onChange={(e) => setLonText(e.target.value)} /></label>
-            <button className="al-btn al-btn-primary" type="submit">{c.go}</button>
-          </form>
-        </details>
-        {formError && <p className="lw-error" role="alert">{formError}</p>}
 
         <div aria-live="polite" aria-busy={loading}>
           {loading && !payload && <><p className="lw-sr" role="status">{c.loading}</p><div className="lw-skeleton" aria-hidden="true" /></>}
           {error && !loading && (
             <div className="lw-state" role="alert">
               <p>{c.failure}</p>
-              <button className="lw-iconbtn" type="button" onClick={() => setRevision((n) => n + 1)}>{c.retry}</button>
+              <button className="lw-pill" type="button" onClick={() => setRevision((n) => n + 1)}>{c.retry}</button>
             </div>
           )}
           {payload && !error && !current && !loading && <div className="lw-state"><p>{c.empty}</p></div>}
           {payload && !error && current && (
-            <div style={{ opacity: loading ? 0.6 : 1, transition: 'opacity .15s ease' }}>
-              <section className="lw-hero" aria-labelledby="lw-now-title">
+            <div className="lw-data" data-stale={loading || undefined}>
+              <section className="lw-hero" data-tone={tone} aria-labelledby="lw-now-title">
                 <div className="lw-now">
-                  <div className="lw-now-top"><span id="lw-now-title">{placeName}</span><span>{c.model}</span></div>
-                  <div>
-                    <p className="lw-temp">{current.temperatureC === null ? '—' : Math.round(current.temperatureC)}<sup>°C</sup></p>
-                    <small>{c.forHour} {hour(current.time)}–{hour(nextHour)} · {tzLabel}</small>
+                  <p className="lw-now-kicker"><span id="lw-now-title">{placeName}</span> · {c.model}</p>
+                  <div className="lw-now-main">
+                    <p className="lw-temp">{current.temperatureC === null ? '—' : Math.round(current.temperatureC)}<span>°C</span></p>
+                    {condition && <span className="lw-now-glyph"><WeatherGlyph condition={condition} size={72} /></span>}
                   </div>
-                </div>
-                <div className="lw-rain">
-                  <div>
-                    <h2>{c.rain24}</h2>
-                    <p className="lw-rain-num"><strong>{rain24 === null ? '—' : fmt(rain24, '', locale, 1)}</strong>{rain24 !== null && <span>{c.unit}</span>}</p>
-                    {rain24 === null && <p className="al-small">{c.incomplete}</p>}
-                    <p className="al-small" style={{ marginTop: 8 }}>{c.rain6}: <b style={{ color: 'var(--al-ink)' }}>{rain6 === null ? c.incomplete6 : fmt(rain6, ' ' + c.unit, locale, 1)}</b></p>
-                  </div>
+                  <p className="lw-condition">{conditionText ?? '—'}</p>
+                  <p className="lw-now-meta">{c.forHour} {hour(current.time)}–{hour(nextHour)} · {tzLabel}</p>
                   <dl className="lw-facts">
+                    <div><dt>{c.feels}</dt><dd>{fmt(current.feelsLikeC, ' °C', locale, 1)}</dd></div>
                     <div><dt>{c.wind}</dt><dd>{fmt(current.windKmh, ' km/h', locale)} {compass(current.windFromDegrees, lang)}</dd></div>
                     <div><dt>{c.humidity}</dt><dd>{fmt(current.humidityPct, ' %', locale)}</dd></div>
-                    <div><dt>{c.feels}</dt><dd>{fmt(current.feelsLikeC, ' °C', locale, 1)}</dd></div>
-                    <div><dt>{c.updated}</dt><dd>{updated}</dd></div>
                   </dl>
+                </div>
+                <div className="lw-rain" aria-labelledby="lw-rain-title">
+                  <div className="lw-rain-top">
+                    <div>
+                      <h2 id="lw-rain-title">{c.rain24}</h2>
+                      <p className="lw-rain-num"><strong>{rain24 === null ? '—' : fmt(rain24, '', locale, 1)}</strong>{rain24 !== null && <span>{c.unit}</span>}</p>
+                      {rain24 === null && <p className="lw-rain-note">{c.incomplete}</p>}
+                    </div>
+                    <dl className="lw-rain-side">
+                      <div><dt>{c.rain6}</dt><dd>{rain6 === null ? c.incomplete6 : fmt(rain6, ' ' + c.unit, locale, 1)}</dd></div>
+                      <div><dt>{c.updated}</dt><dd>{updated}</dd></div>
+                    </dl>
+                  </div>
+                  <figure className="lw-chart">
+                    <figcaption className="lw-chart-head"><span>{c.chartTitle}</span><span>{c.chartRange(hourly.length)}</span></figcaption>
+                    <RainBars hourly={hourly} locale={locale} timeZone={tz} label={chartLabel} />
+                    <p className="lw-sr">{chartLabel}</p>
+                  </figure>
                 </div>
               </section>
 
-              <section className="lw-card" aria-labelledby="lw-chart-title">
-                <div className="lw-card-head"><h2 id="lw-chart-title">{c.chartTitle}</h2><span>{c.chartRange(hourly.length)} · {tzLabel}</span></div>
-                <figure className="lw-chart">
-                  <RainChart hourly={hourly} locale={locale} timeZone={tz} label={chartLabel} />
-                  <figcaption>{chartLabel}</figcaption>
-                </figure>
-              </section>
-
-              <section className="lw-card" aria-labelledby="lw-hours-title">
-                <div className="lw-card-head"><h2 id="lw-hours-title">{c.hours}</h2><span>{tzLabel}</span></div>
+              <section className="lw-section" aria-labelledby="lw-hours-title">
+                <div className="lw-section-head">
+                  <h2 id="lw-hours-title">{c.hours}</h2>
+                  <div className="lw-seg" role="group" aria-label={c.mode}>
+                    <button type="button" aria-pressed={mode === 'simple'} onClick={() => setMode('simple')}>{c.simple}</button>
+                    <button type="button" aria-pressed={mode === 'detail'} onClick={() => setMode('detail')}>{c.detail}</button>
+                  </div>
+                </div>
                 <ul className="lw-strip">
-                  {hourly.map((p) => (
-                    <li key={p.time}>
-                      <time dateTime={p.time}>{hour(p.time)}</time>
-                      <strong>{p.temperatureC === null ? '—' : `${Math.round(p.temperatureC)}°`}</strong>
-                      <span>{fmt(p.precipitationMm, ' mm', locale, 1)}</span>
-                    </li>
-                  ))}
+                  {hourSlot.map((p, i) => {
+                    const cond = parseSymbol(p.symbolCode)
+                    const label = conditionLabel(cond, lang)
+                    return (
+                      <li key={p.time} aria-current={i === 0 ? 'time' : undefined}>
+                        <time dateTime={p.time}>{i === 0 ? (lang === 'es' ? 'Ahora' : 'Now') : hour(p.time)}</time>
+                        <span className="lw-strip-glyph" title={label ?? undefined}><WeatherGlyph condition={cond} size={26} />{label && <span className="lw-sr">{label}</span>}</span>
+                        <strong>{p.temperatureC === null ? '—' : `${Math.round(p.temperatureC)}°`}</strong>
+                        <span className="lw-strip-rain" data-wet={(p.precipitationMm ?? 0) > 0 || undefined}>{fmt(p.precipitationMm, ' mm', locale, 1)}</span>
+                      </li>
+                    )
+                  })}
                 </ul>
               </section>
 
               {mode === 'detail' && (
                 <>
-                  <section className="lw-card" aria-labelledby="lw-table-title">
-                    <div className="lw-card-head"><h2 id="lw-table-title">{c.table}</h2><span>{tzLabel}</span></div>
+                  <section className="lw-section" aria-labelledby="lw-table-title">
+                    <div className="lw-section-head"><h2 id="lw-table-title">{c.table}</h2><span>{tzLabel}</span></div>
                     <div className="lw-table-wrap" tabIndex={0} role="region" aria-labelledby="lw-table-title">
                       <table className="lw-table">
-                        <thead><tr><th scope="col">{c.time}</th><th scope="col">{c.temp}</th><th scope="col">{c.rain}</th><th scope="col">{c.chance}</th><th scope="col">{c.wind}</th><th scope="col">{c.humidity}</th></tr></thead>
+                        <thead><tr><th scope="col">{c.time}</th><th scope="col">{lang === 'es' ? 'Condición' : 'Condition'}</th><th scope="col">{c.temp}</th><th scope="col">{c.rain}</th><th scope="col">{c.chance}</th><th scope="col">{c.wind}</th><th scope="col">{c.humidity}</th></tr></thead>
                         <tbody>{hourly.map((p) => (
                           <tr key={p.time}>
-                            <th scope="row" style={{ fontWeight: 500 }}>{hour(p.time)}</th>
+                            <th scope="row">{hour(p.time)}</th>
+                            <td>{conditionLabel(parseSymbol(p.symbolCode), lang) ?? '—'}</td>
                             <td>{fmt(p.temperatureC, ' °C', locale, 1)}</td>
                             <td>{fmt(p.precipitationMm, ' mm', locale, 1)}</td>
                             <td>{fmt(p.precipitationProbabilityPct, ' %', locale)}</td>
@@ -380,8 +336,8 @@ export default function LabWeather() {
                       </table>
                     </div>
                   </section>
-                  <section className="lw-card" aria-labelledby="lw-metrics-title">
-                    <div className="lw-card-head"><h2 id="lw-metrics-title">{c.metrics}</h2><span>{hour(current.time)} · {c.model}</span></div>
+                  <section className="lw-section" aria-labelledby="lw-metrics-title">
+                    <div className="lw-section-head"><h2 id="lw-metrics-title">{c.metrics}</h2><span>{hour(current.time)} · {c.model}</span></div>
                     <dl className="lw-metrics">{metrics.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
                   </section>
                 </>
@@ -390,11 +346,10 @@ export default function LabWeather() {
           )}
         </div>
 
-        <p className="lw-note">
-          {c.note} <a href={c.aemet} target="_blank" rel="noopener noreferrer">AEMET ↗</a>. {c.noteEnd}
-        </p>
-
         <footer className="lw-foot">
+          <p className="lw-note">
+            {c.note} <a href={c.aemet} target="_blank" rel="noopener noreferrer">AEMET ↗</a>. {c.noteEnd}
+          </p>
           <p>
             <a href="https://api.met.no/weatherapi/locationforecast/2.0/documentation" target="_blank" rel="noopener noreferrer">{c.source}</a>
             {' · '}

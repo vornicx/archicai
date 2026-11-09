@@ -7,7 +7,7 @@ import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 import { HOME_SEO, siteOgImage } from '../seo/siteSeo'
 import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
-import { SkyCredit, SKY_PORTRAIT, SKY_WIDE } from '../lab/skyAsset'
+import { SkyCredit, SKY_WIDE } from '../lab/skyAsset'
 import '../styles/archic-light.css'
 
 type Lang = 'es' | 'en'
@@ -26,13 +26,16 @@ const COPY = {
       lead: 'Webs, software y herramientas digitales creadas con criterio.',
       primary: 'Explorar Weather',
       secondary: 'Ver proyectos',
-      cardTitle: 'Archic Lab Weather',
-      cardMeta: 'Predicción horaria y lluvia en l/m²',
+      statement: 'Estudio en Écija para negocios que necesitan una web seria y software que ordene su trabajo.',
+      productKicker: 'Producto propio · Archic Lab',
+      productTitle: 'Weather',
+      productBody: 'Predicción horaria y lluvia en l/m², con la fuente siempre visible.',
+      productCta: 'Abrir Weather',
     },
     offer: [
-      ['Webs premium', 'Presence', 'presence'],
-      ['Software a medida', 'Control', 'control'],
-      ['Sistemas para empresas', 'Business', 'business'],
+      ['Webs premium', 'Presence', 'presence', 'Presencia y captación'],
+      ['Software a medida', 'Control', 'control', 'Reservas, clientes y operación'],
+      ['Sistemas para empresas', 'Business', 'business', 'Integraciones y automatización'],
     ],
     work: { label: 'Trabajo seleccionado', title: 'Proyectos reales.', body: 'Diseño y desarrollo para negocios distintos, sin convertirlos en la misma plantilla.', open: 'Abrir proyecto' },
     system: {
@@ -46,7 +49,9 @@ const COPY = {
         ['Business', 'Sistemas para empresas', 'Software web y automatización cuando lo genérico deja de servir.', 'Integraciones, flujos y herramientas a medida.'],
       ],
     },
-    lab: { label: 'Archic Lab', title: 'El tiempo, con contexto.', body: 'Weather es nuestro primer producto propio: predicción de modelo por horas, lluvia en litros por metro cuadrado y fuente siempre visible.', cta: 'Explorar Weather', more: 'Qué es Lab' },
+    statementLabel: 'Estudio',
+    statementText: ['Diseñamos y construimos la web que te presenta y el software que ordena cómo trabajas.', 'Dirección humana, ejecución rápida y control de calidad antes de publicar.'],
+    lab: { label: 'Archic Lab', title: 'El tiempo, con contexto.', body: 'Weather es nuestro primer producto propio. Lo construimos con el mismo método que el software de clientes.', cta: 'Explorar Weather', more: 'Qué es Lab', facts: [['Fuente', 'MET Norway, CC BY 4.0'], ['Lluvia', '6 y 24 h en l/m²'], ['Límite', 'Predicción de modelo, sin avisos oficiales']] },
     method: {
       label: 'Proceso',
       title: 'De la idea a producción.',
@@ -69,13 +74,16 @@ const COPY = {
       lead: 'Websites, software and digital tools built with judgement.',
       primary: 'Explore Weather',
       secondary: 'View projects',
-      cardTitle: 'Archic Lab Weather',
-      cardMeta: 'Hourly forecast and rainfall in mm',
+      statement: 'A studio in Écija for businesses that need a serious website and software that organises their work.',
+      productKicker: 'In-house product · Archic Lab',
+      productTitle: 'Weather',
+      productBody: 'Hourly forecasts and rainfall in mm, with the source always in view.',
+      productCta: 'Open Weather',
     },
     offer: [
-      ['Premium websites', 'Presence', 'presence'],
-      ['Custom software', 'Control', 'control'],
-      ['Business systems', 'Business', 'business'],
+      ['Premium websites', 'Presence', 'presence', 'Presence and acquisition'],
+      ['Custom software', 'Control', 'control', 'Bookings, customers and operations'],
+      ['Business systems', 'Business', 'business', 'Integrations and automation'],
     ],
     work: { label: 'Selected work', title: 'Real projects.', body: 'Design and development for different businesses, without turning them into the same template.', open: 'Open project' },
     system: {
@@ -89,7 +97,9 @@ const COPY = {
         ['Business', 'Business systems', 'Web software and automation when generic tools stop fitting.', 'Integrations, workflows and custom tools.'],
       ],
     },
-    lab: { label: 'Archic Lab', title: 'Weather, in context.', body: 'Weather is our first in-house product: hourly model forecasts, rainfall in millimetres and the source always in view.', cta: 'Explore Weather', more: 'About Lab' },
+    statementLabel: 'Studio',
+    statementText: ['We design and build the website that presents you and the software that organises how you work.', 'Human direction, fast execution and quality control before anything ships.'],
+    lab: { label: 'Archic Lab', title: 'Weather, in context.', body: 'Weather is our first in-house product, built with the same method as our client software.', cta: 'Explore Weather', more: 'About Lab', facts: [['Source', 'MET Norway, CC BY 4.0'], ['Rainfall', '6 and 24 h totals in mm'], ['Limits', 'Model forecast, no official warnings']] },
     method: {
       label: 'Process',
       title: 'From idea to production.',
@@ -144,7 +154,7 @@ export default function ArchicHomeAAA() {
         <link rel="alternate" hrefLang="es" href="https://archic.es/" />
         <link rel="alternate" hrefLang="en" href="https://archic.es/en/" />
         <link rel="alternate" hrefLang="x-default" href="https://archic.es/" />
-        <link rel="preload" as="image" href={SKY_PORTRAIT.src} imageSrcSet={SKY_PORTRAIT.srcSet} imageSizes={SKY_PORTRAIT.sizes} />
+        <link rel="preload" as="image" href={SKY_WIDE.src} imageSrcSet={SKY_WIDE.srcSet} imageSizes="(max-width: 1320px) 100vw, 1280px" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic Lab" />
         <meta property="og:url" content={canonicalUrl} />
@@ -172,28 +182,40 @@ export default function ArchicHomeAAA() {
               <div className="al-hero-copy">
                 <p className="al-label">{c.hero.label}</p>
                 <h1 className="al-h1">{c.hero.title}</h1>
+              </div>
+              <div className="al-hero-rail">
                 <p className="al-lead">{c.hero.lead}</p>
+                <p className="al-hero-statement">{c.hero.statement}</p>
                 <div className="al-actions">
                   <a className="al-btn al-btn-primary" href={weatherHref} data-archic-intent="hero:weather">{c.hero.primary}</a>
                   <a className="al-link" href="#selected-work" data-archic-intent="hero:work">{c.hero.secondary} <span aria-hidden="true">→</span></a>
                 </div>
               </div>
-              <div>
-                <figure className="al-sky-card" style={{ margin: 0 }}>
-                  <img src={SKY_PORTRAIT.src} srcSet={SKY_PORTRAIT.srcSet} sizes={SKY_PORTRAIT.sizes} width={1200} height={1500} alt="" fetchPriority="high" decoding="async" />
-                  <figcaption>
-                    <div><strong>{c.hero.cardTitle}</strong><span>{c.hero.cardMeta}</span></div>
-                    <a className="al-link" href={weatherHref} aria-label={c.hero.primary}><span aria-hidden="true">→</span></a>
-                  </figcaption>
-                </figure>
-                <SkyCredit lang={L} />
-              </div>
+              <nav className="al-pillars" aria-label={c.system.label}>
+                {c.offer.map(([label, name, slug, scope], i) => (
+                  <a key={slug} href={p(L, slug)}><span>0{i + 1}</span><strong>{label}</strong><small>Archic {name} · {scope}</small></a>
+                ))}
+              </nav>
             </div>
-            <nav className="al-offer" aria-label={c.system.label}>
-              {c.offer.map(([label, name, slug]) => (
-                <a key={slug} href={p(L, slug)}><strong>{label}</strong><span>Archic {name}</span></a>
-              ))}
-            </nav>
+            <figure className="al-sky" style={{ margin: 0 }}>
+              <img src={SKY_WIDE.src} srcSet={SKY_WIDE.srcSet} sizes="(max-width: 1320px) 100vw, 1280px" width={1600} height={1000} alt="" fetchPriority="high" decoding="async" />
+              <figcaption className="al-sky-product">
+                <div>
+                  <p>{c.hero.productKicker}</p>
+                  <h2>{c.hero.productTitle}</h2>
+                  <span>{c.hero.productBody}</span>
+                </div>
+                <a href={weatherHref} data-archic-intent="hero:weather-product">{c.hero.productCta} <span aria-hidden="true">→</span></a>
+              </figcaption>
+            </figure>
+            <SkyCredit lang={L} />
+          </div>
+        </section>
+
+        <section className="al-statement" aria-labelledby="al-statement-label">
+          <div className="al-shell al-statement-grid">
+            <p className="al-label" id="al-statement-label">{c.statementLabel}</p>
+            <p className="al-statement-text">{c.statementText[0]} <b>{c.statementText[1]}</b></p>
           </div>
         </section>
 
@@ -226,8 +248,9 @@ export default function ArchicHomeAAA() {
               <p className="al-body">{c.system.body}</p>
             </header>
             <div className="al-services">
-              {c.system.items.map(([name, label, headline, scope]) => (
+              {c.system.items.map(([name, label, headline, scope], i) => (
                 <article className="al-service" key={name}>
+                  <span>0{i + 1}</span>
                   <h3>{label}<small>Archic {name}</small></h3>
                   <div><p>{headline}</p><p>{scope}</p></div>
                   <a className="al-link" href={p(L, name.toLowerCase())}>{c.system.more} <span aria-hidden="true">→</span></a>
@@ -248,9 +271,7 @@ export default function ArchicHomeAAA() {
                 <a className="al-link" href={p(L, 'lab')}>{c.lab.more} <span aria-hidden="true">→</span></a>
               </div>
             </div>
-            <div className="al-lab-media">
-              <img src={SKY_WIDE.src} srcSet={SKY_WIDE.srcSet} sizes={SKY_WIDE.sizes} width={1600} height={1000} alt="" loading="lazy" decoding="async" />
-            </div>
+            <dl>{c.lab.facts.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
           </div>
         </section>
 
