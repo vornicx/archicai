@@ -16,6 +16,17 @@ on:
       - 'package.json'
       - '.github/workflows/lab-weather-ci.yml'
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/lab/**'
+      - 'src/pages/Lab*'
+      - 'src/styles/archic-lab.css'
+      - 'tests/lab-*.test.mjs'
+      - 'scripts/audit-accessibility.mjs'
+      - 'package.json'
+      - 'bun.lock'
+      - '.github/workflows/lab-weather-ci.yml'
 
 permissions:
   contents: read
@@ -31,15 +42,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: npm
+      - name: Use Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Install locked dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
       - name: Weather contract tests
-        run: npm run test:weather
+        run: bun run test:weather
       - name: Build production web
-        run: npm run build
+        run: bun run build
       - name: Existing production quality gate
-        run: npm run quality:gate
+        run: bun run quality:gate
       - name: Check Lab entrypoints
         run: |
           test -s dist/lab/index.html
