@@ -1,0 +1,98 @@
+[
+  {
+    "label": "/ @390",
+    "violations": []
+  },
+  {
+    "label": "/ @390 menu-open",
+    "violations": []
+  },
+  {
+    "label": "/en/ @390",
+    "violations": []
+  },
+  {
+    "label": "/en/ @390 menu-open",
+    "violations": []
+  },
+  {
+    "label": "/lab/ @390",
+    "violations": []
+  },
+  {
+    "label": "/lab/ @390 menu-open",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/ @390",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/ @390 menu-open",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @390",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @390 detail",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @390",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @390 detail",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @390 night",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @390 night",
+    "violations": []
+  },
+  {
+    "label": "/ @1440",
+    "violations": []
+  },
+  {
+    "label": "/en/ @1440",
+    "violations": []
+  },
+  {
+    "label": "/lab/ @1440",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/ @1440",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @1440",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @1440 detail",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @1440",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @1440 detail",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @1440 night",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @1440 night",
+    "violations": []
+  }
+]

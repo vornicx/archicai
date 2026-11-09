@@ -68,6 +68,24 @@ export default function StudioHeader() {
     document.body.style.overflow = open ? 'hidden' : ''
     if (!open) return () => { document.body.style.overflow = '' }
 
+    // Modal: make everything outside the header + menu panel inert so focus and the
+    // accessibility tree cannot reach background content while the menu is open.
+    const keep = [menuPanelRef.current, menuButtonRef.current?.closest('header')].filter(Boolean) as HTMLElement[]
+    const inerted: HTMLElement[] = []
+    let node: HTMLElement | null = menuPanelRef.current
+    while (node && node.parentElement && node !== document.body) {
+      for (const sibling of Array.from(node.parentElement.children) as HTMLElement[]) {
+        if (sibling === node || keep.some((k) => sibling === k || sibling.contains(k)) || sibling.hasAttribute('inert')) continue
+        if (sibling.tagName === 'SCRIPT' || sibling.tagName === 'STYLE') continue
+        sibling.setAttribute('inert', '')
+        inerted.push(sibling)
+      }
+      node = node.parentElement
+    }
+    // Inside the header, only the menu button stays reachable.
+    const header = menuButtonRef.current?.closest('header')
+    header?.querySelectorAll<HTMLElement>(':scope > a, :scope > nav, .as-lang, .as-project-link').forEach((el) => { el.setAttribute('inert', ''); inerted.push(el) })
+
     const focusFirstRoute = window.requestAnimationFrame(() => {
       menuPanelRef.current?.querySelector<HTMLAnchorElement>('nav a')?.focus()
     })
@@ -103,6 +121,7 @@ export default function StudioHeader() {
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = ''
+      inerted.forEach((el) => el.removeAttribute('inert'))
       window.cancelAnimationFrame(focusFirstRoute)
       window.removeEventListener('keydown', onKey)
     }
@@ -152,10 +171,7 @@ export default function StudioHeader() {
         id="archic-menu"
         className="as-menu-panel"
         data-open={open}
-        aria-hidden={!open}
-        role="dialog"
-        aria-modal={open}
-        aria-label={c.menu}
+        {...(open ? { role: 'dialog', 'aria-modal': true, 'aria-label': c.menu } : { 'aria-hidden': true, inert: '' })}
       >
         <div className="as-menu-inner">
           <div className="as-menu-meta">

@@ -161,7 +161,6 @@ export default function ArchicHomeAAA() {
         <link rel="alternate" hrefLang="es" href="https://archic.es/" />
         <link rel="alternate" hrefLang="en" href="https://archic.es/en/" />
         <link rel="alternate" hrefLang="x-default" href="https://archic.es/" />
-        <link rel="preload" as="image" href={SKY_WIDE.src} imageSrcSet={SKY_WIDE.srcSet} imageSizes="(max-width: 1320px) 100vw, 1280px" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Archic Lab" />
         <meta property="og:url" content={canonicalUrl} />

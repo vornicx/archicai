@@ -1,0 +1,68 @@
+[
+  {
+    "formFactor": "mobile",
+    "path": "/",
+    "runs": 3,
+    "score": 91,
+    "fcpMs": 1059,
+    "lcpMs": 3458,
+    "tbtMs": 40,
+    "cls": 0,
+    "kb": 531
+  },
+  {
+    "formFactor": "mobile",
+    "path": "/lab/",
+    "runs": 3,
+    "score": 91,
+    "fcpMs": 1062,
+    "lcpMs": 2876,
+    "tbtMs": 184,
+    "cls": 0.033,
+    "kb": 300
+  },
+  {
+    "formFactor": "mobile",
+    "path": "/lab/weather/",
+    "runs": 3,
+    "score": 88,
+    "fcpMs": 1058,
+    "lcpMs": 3523,
+    "tbtMs": 103,
+    "cls": 0.095,
+    "kb": 255
+  },
+  {
+    "formFactor": "desktop",
+    "path": "/",
+    "runs": 3,
+    "score": 100,
+    "fcpMs": 288,
+    "lcpMs": 684,
+    "tbtMs": 2,
+    "cls": 0.006,
+    "kb": 417
+  },
+  {
+    "formFactor": "desktop",
+    "path": "/lab/",
+    "runs": 3,
+    "score": 100,
+    "fcpMs": 288,
+    "lcpMs": 626,
+    "tbtMs": 0,
+    "cls": 0,
+    "kb": 269
+  },
+  {
+    "formFactor": "desktop",
+    "path": "/lab/weather/",
+    "runs": 3,
+    "score": 100,
+    "fcpMs": 287,
+    "lcpMs": 613,
+    "tbtMs": 0,
+    "cls": 0.038,
+    "kb": 255
+  }
+]

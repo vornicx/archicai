@@ -277,12 +277,16 @@ export default function LabWeather() {
           {formError && <p className="lw-error" role="alert">{formError}</p>}
         </div>
 
-        <div aria-live="polite" aria-busy={loading}>
-          {view.loadingFresh && <><p className="lw-sr" role="status">{c.loadingAt(placeName)}</p><div className="lw-skeleton" aria-hidden="true">
+        {/* One short announcement per state change; the data region itself is not live (avoids reading the whole forecast). */}
+        <p className="lw-sr" role="status" aria-live="polite">
+          {view.loadingFresh ? c.loadingAt(placeName) : view.refreshing ? c.refreshing : payload && !error && current ? `${placeName}: ${current.temperatureC === null ? '—' : Math.round(current.temperatureC)} °C · ${c.model}` : ''}
+        </p>
+        <div aria-busy={loading}>
+          {view.loadingFresh && <><div className="lw-skeleton" aria-hidden="true">
             <div className="lw-skel-now"><span>{placeName}</span><i className="lw-skel-temp" /><i className="lw-skel-line" /><i className="lw-skel-line is-short" /></div>
             <div className="lw-skel-rain"><span>{c.loading}</span><i className="lw-skel-line is-short" /><i className="lw-skel-chart" /></div>
           </div></>}
-          {view.refreshing && <p className="lw-refreshing" role="status">{c.refreshing}</p>}
+          {view.refreshing && <p className="lw-refreshing" aria-hidden="true">{c.refreshing}</p>}
           {error && !loading && (
             <div className="lw-state" role="alert">
               <p>{c.failureAt(placeName)}</p>

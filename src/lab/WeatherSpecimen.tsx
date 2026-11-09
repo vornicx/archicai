@@ -29,7 +29,7 @@ export function WeatherSpecimen({ lang }: { lang: 'es' | 'en' }) {
     ? { live: 'Predicción de modelo', src: 'Actualizado', srcNone: 'MET Norway', rain: 'Lluvia 24 h', unit: 'l/m²', off: 'La predicción no está disponible ahora mismo. Weather sigue accesible.', loading: 'Cargando predicción…', bars: 'Lluvia prevista por hora en las próximas 24 horas, Écija' }
     : { live: 'Model forecast', src: 'Updated', srcNone: 'MET Norway', rain: 'Rain 24 h', unit: 'mm', off: 'The forecast is unavailable right now. Weather remains available.', loading: 'Loading forecast…', bars: 'Forecast hourly rainfall over the next 24 hours, Écija' }
   return (
-    <div className="lab-specimen" data-tone={skyTone(cond)} aria-live="polite">
+    <div className="lab-specimen" data-tone={skyTone(cond)}>
       <p className="lab-specimen-kicker"><span>Écija</span><span>{t.live}</span></p>
       {now ? (
         <>

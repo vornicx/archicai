@@ -45,7 +45,7 @@ function RouteFallback() {
       aria-label={lang === 'es' ? 'Cargando Archic Lab' : 'Loading Archic Lab'}
       tabIndex={-1}
     >
-      <div><span>ARCHIC</span><i /></div>
+      <div><span>ARCHIC LAB</span><i /></div>
     </main>
   )
 }
