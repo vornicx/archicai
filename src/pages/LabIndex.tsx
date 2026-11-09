@@ -12,7 +12,7 @@ const COPY = {
   es: {
     label: 'Lab · productos propios',
     title: 'Lo que construimos para nosotros.',
-    intro: 'Lab es la parte del estudio que diseña, publica y mantiene productos propios. Weather es el primero.',
+    intro: 'Lab es la parte del estudio que diseña, publica y mantiene su propio producto: Weather.',
     index: '01',
     status: 'Experimental · publicado',
     name: 'Weather',
@@ -31,7 +31,7 @@ const COPY = {
   en: {
     label: 'Lab · our own products',
     title: 'What we build for ourselves.',
-    intro: 'Lab is where the studio designs, ships and maintains its own products. Weather is the first.',
+    intro: 'Lab is where the studio designs, ships and maintains its own product: Weather.',
     index: '01',
     status: 'Experimental · published',
     name: 'Weather',

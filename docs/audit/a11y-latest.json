@@ -56,11 +56,35 @@
     "violations": []
   },
   {
+    "label": "/lab/weather/ @390 search-results",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @390 search-open",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @390 day-open",
+    "violations": []
+  },
+  {
     "label": "/en/lab/weather/ @390",
     "violations": []
   },
   {
     "label": "/en/lab/weather/ @390 detail",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @390 search-results",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @390 search-open",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @390 day-open",
     "violations": []
   },
   {
@@ -96,11 +120,35 @@
     "violations": []
   },
   {
+    "label": "/lab/weather/ @1440 search-results",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @1440 search-open",
+    "violations": []
+  },
+  {
+    "label": "/lab/weather/ @1440 day-open",
+    "violations": []
+  },
+  {
     "label": "/en/lab/weather/ @1440",
     "violations": []
   },
   {
     "label": "/en/lab/weather/ @1440 detail",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @1440 search-results",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @1440 search-open",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @1440 day-open",
     "violations": []
   },
   {

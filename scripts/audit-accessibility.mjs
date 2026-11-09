@@ -34,6 +34,15 @@ for (const width of WIDTHS) {
       if (!night && p.includes('weather')) {
         const detail = page.getByRole('button', { name: /^(Detalle|Detail)$/ })
         if (await detail.count()) { await detail.first().click(); await page.waitForTimeout(150); await scan(page, tag + ' detail', results) }
+        // City search open with results (local index), then a coming-day row expanded.
+        const box = page.getByRole('combobox', { name: /^(Buscar ciudad|Search city)$/ })
+        await box.fill('Berlin'); await page.waitForSelector('[role=option]', { timeout: 15000 }).catch(() => {})
+        const opts = await page.locator('[role=option]').count()
+        results.push({ label: tag + ' search-results', violations: opts ? [] : [{ id: 'city-search-empty', impact: 'serious', help: 'City search returned no options for Berlin', targets: ['[role=combobox]'], count: 1 }] })
+        await scan(page, tag + ' search-open', results)
+        await page.keyboard.press('Escape')
+        const day = page.locator('.lw-day').nth(1)
+        if (await day.count()) { await day.click(); await scan(page, tag + ' day-open', results) }
       }
       if (!night && width === 390) {
         const menu = page.locator('.as-menu-button')

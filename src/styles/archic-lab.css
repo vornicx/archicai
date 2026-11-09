@@ -167,7 +167,7 @@
 .lw-section-head h2{font-size:20px;font-weight:600;letter-spacing:-.015em}
 .lw-section-head>span{color:var(--al-muted);font-size:14px}
 .lw-seg{display:inline-flex;padding:3px;border-radius:999px;background:rgba(16,18,23,.06)}
-.lw-seg button{min-height:38px;min-width:44px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--al-ink-2);font:500 14px/1 var(--al-font);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .15s ease,color .15s ease,transform .1s ease}
+.lw-seg button{min-height:44px;min-width:44px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--al-ink-2);font:500 14px/1 var(--al-font);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .15s ease,color .15s ease,transform .1s ease}
 .lw-seg button[aria-pressed='true']{background:var(--al-white);color:var(--al-ink);box-shadow:0 1px 2px rgba(16,18,23,.12)}
 .lw-strip-wrap{position:relative;border-top:1px solid var(--al-line);border-bottom:1px solid var(--al-line)}
 .lw-strip-wrap::before,.lw-strip-wrap::after{content:"";position:absolute;top:0;bottom:0;width:48px;z-index:1;pointer-events:none;opacity:0;transition:opacity .15s ease}
@@ -242,3 +242,55 @@
 @media (prefers-reduced-motion:reduce){.lw-skeleton i{animation:none}}
 
 @media (prefers-reduced-motion:reduce){.lw-strip button,.lw-bars li b{transition:none}.lw-strip button:active{transform:none}}
+
+/* City search (local GeoNames index). Single field, hairline, blue only on focus/active. */
+.lw-search{position:relative;max-width:520px;margin-top:10px}
+.lw-search-field{display:flex;align-items:center;gap:2px;min-height:48px;padding:0 2px 0 14px;border:1px solid var(--al-line-2);border-radius:14px;background:var(--al-white);transition:border-color .15s ease,box-shadow .15s ease}
+.lw-search-field>svg{flex:none;color:var(--al-muted)}
+.lw-search-field:focus-within{border-color:var(--al-blue);box-shadow:0 0 0 3px rgba(7,91,205,.18)}
+.lw-search input{flex:1;min-width:0;min-height:46px;padding:0 8px;border:0;border-radius:0;background:transparent;color:var(--al-ink);font:400 16px/1 var(--al-font);-webkit-appearance:none;appearance:none}
+.lw-search input::-webkit-search-cancel-button{display:none}
+.lw-search input::placeholder{color:var(--al-muted)}
+.lw-search input:focus-visible{outline:none}
+.lw-search-clear{flex:none;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;background:none;color:var(--al-muted);font-size:22px;line-height:1;cursor:pointer;border-radius:12px}
+.lw-search-pop{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 6px);padding:6px;border:1px solid var(--al-line);border-radius:16px;background:var(--al-white);box-shadow:var(--al-shadow)}
+.lw-search-pop[hidden]{display:none}
+.lw-search-pop ul{margin:0;padding:0;list-style:none;max-height:min(60vh,420px);overflow-y:auto}
+.lw-search-pop li{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:52px;padding:6px 12px;border-radius:10px;cursor:pointer}
+.lw-search-pop li[data-active]{background:var(--al-bg);box-shadow:inset 2px 0 0 var(--al-blue)}
+.lw-search-name{color:var(--al-ink);font-size:16px;font-weight:500}
+.lw-search-sub{color:var(--al-muted);font-size:13px}
+.lw-search-group{padding:6px 12px 2px;color:var(--al-muted);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.lw-search-msg{padding:12px;color:var(--al-ink-2);font-size:14px;line-height:1.45}
+.lw-link{min-height:44px;padding:0 4px;border:0;background:none;color:var(--al-blue);font:500 14px/1 var(--al-font);text-decoration:underline;cursor:pointer}
+
+/* Coming days: editorial rows, shared temperature scale. */
+.lw-days-list{margin:0;padding:0;list-style:none;border-top:1px solid var(--al-line)}
+.lw-days-list>li{border-bottom:1px solid var(--al-line)}
+.lw-day{display:grid;grid-template-columns:minmax(120px,1.3fr) 40px minmax(64px,.6fr) minmax(160px,2fr);align-items:center;gap:16px;width:100%;min-height:60px;padding:8px 4px;border:0;background:none;color:var(--al-ink);font:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .15s ease}
+@media (hover:hover){.lw-day:hover{background:rgba(16,18,23,.025)}}
+.lw-day[aria-expanded='true']{background:var(--al-white)}
+.lw-day-name{display:flex;align-items:baseline;gap:10px;min-width:0}
+.lw-day-name strong{font-weight:500;font-size:16px;text-transform:capitalize;white-space:nowrap}
+.lw-day-name span{color:var(--al-muted);font-size:13px;white-space:nowrap}
+.lw-day-glyph{display:inline-flex;color:var(--al-ink-2)}
+.lw-day-rain{color:var(--al-muted);font-size:14px;font-variant-numeric:tabular-nums}
+.lw-day-rain[data-wet]{color:var(--al-blue-ink)}
+.lw-day-temp{display:grid;grid-template-columns:32px 1fr 32px;align-items:center;gap:10px;font-variant-numeric:tabular-nums}
+.lw-day-lo{color:var(--al-muted);text-align:right}
+.lw-day-hi{font-weight:500}
+.lw-day-track{position:relative;height:4px;border-radius:2px;background:var(--al-line)}
+.lw-day-track i{position:absolute;top:0;bottom:0;border-radius:2px;background:var(--al-blue)}
+.lw-day-detail{padding:2px 4px 16px;color:var(--al-ink-2);font-size:14px;line-height:1.5;background:var(--al-white)}
+.lw-day-detail p+p{margin-top:2px}
+.lw-days-note{max-width:68ch;margin-top:14px;color:var(--al-muted);font-size:13px;line-height:1.55}
+@media (max-width:560px){
+  .lw-day{grid-template-columns:minmax(0,1fr) 30px 56px;grid-template-areas:'name glyph rain' 'temp temp temp';row-gap:6px;column-gap:10px;padding:10px 2px}
+  .lw-day-name{grid-area:name;flex-direction:column;gap:0}
+  .lw-day-glyph{grid-area:glyph}
+  .lw-day-rain{grid-area:rain;text-align:right}
+  .lw-day-temp{grid-area:temp}
+  .lw-search{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){.lw-day,.lw-search-field{transition:none}}
+:root:has(.lw-root){scroll-padding-top:72px}

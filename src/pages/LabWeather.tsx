@@ -10,6 +10,10 @@ import { RainBars } from '../lab/RainBars'
 import { hourParts, scrollEdges } from '../lab/hourSelection'
 import { forecastReducer, forecastView, initialForecast, placeKey } from '../lab/forecastState'
 import { nextHourIndex, hourSummary } from '../lab/hourSelection'
+import { CitySearch, type PickedCity } from '../lab/CitySearch'
+import { DaysForecast } from '../lab/DaysForecast'
+import { dailySummaries, safeTimeZone } from '../lab/weatherDays'
+import { readRecents, writeRecents, pushRecent } from '../lab/citySearch'
 import '../styles/archic-light.css'
 import '../styles/archic-lab.css'
 
@@ -26,7 +30,7 @@ const PLACES: Place[] = [
 const COPY = {
   es: {
     title: 'Archic Lab Weather — lluvia y previsión',
-    description: 'Predicción meteorológica por horas y lluvia en litros por metro cuadrado, con fuente y hora de actualización visibles.',
+    description: 'Predicción meteorológica por ciudad: horas, próximos días y lluvia en litros por metro cuadrado, con fuente y hora de actualización visibles.',
     location: 'Ubicación', device: 'Usar mi ubicación', coords: 'Introducir coordenadas', latitude: 'Latitud', longitude: 'Longitud', go: 'Consultar',
     simple: 'Resumen', detail: 'Detalle', refresh: 'Actualizar', mode: 'Nivel de detalle',
     loading: 'Consultando la predicción…', failure: 'No hemos podido obtener la predicción.', failureAt: (p: string) => `No hemos podido obtener la predicción para ${p}.`, loadingAt: (p: string) => `Consultando la predicción para ${p}…`, prevHours: 'Horas anteriores', nextHours: 'Horas siguientes', retry: 'Reintentar', empty: 'La fuente no ha devuelto intervalos horarios para esta ubicación.',
@@ -48,7 +52,7 @@ const COPY = {
   },
   en: {
     title: 'Archic Lab Weather — rainfall and forecast',
-    description: 'Hourly weather forecasts and rainfall in millimetres, with the source and update time in view.',
+    description: 'City weather forecasts: hourly, coming days and rainfall in millimetres, with the source and update time in view.',
     location: 'Location', device: 'Use my location', coords: 'Enter coordinates', latitude: 'Latitude', longitude: 'Longitude', go: 'Go',
     simple: 'Overview', detail: 'Detail', refresh: 'Refresh', mode: 'Detail level',
     loading: 'Loading the forecast…', failure: 'We could not load the forecast.', failureAt: (p: string) => `We could not load the forecast for ${p}.`, loadingAt: (p: string) => `Loading the forecast for ${p}…`, prevHours: 'Earlier hours', nextHours: 'Later hours', retry: 'Try again', empty: 'The source returned no hourly intervals for this location.',
@@ -146,6 +150,11 @@ export default function LabWeather() {
     peak && (peak.precipitationMm ?? 0) > 0 ? hour(peak.time) : '',
   )
 
+  const days = useMemo(() => (payload ? dailySummaries(payload.points, now || Date.now(), place.timeZone, 7) : []), [payload, now, place.timeZone])
+  const pickCity = (city: PickedCity) => {
+    writeRecents(pushRecent(readRecents(), city))
+    choose({ id: `geonames:${city.id}`, name: { es: city.nameEs, en: city.nameEn }, lat: city.lat, lon: city.lon, timeZone: safeTimeZone(city.timeZone) })
+  }
   const choose = (next: Place) => {
     setPlace(next)
     setLatText(String(Number(next.lat.toFixed(4))))
@@ -266,6 +275,7 @@ export default function LabWeather() {
               <button className="lw-tool" type="button" onClick={() => setRevision((n) => n + 1)} disabled={loading} aria-label={c.refresh} title={c.refresh}><RefreshIcon /><span>{c.refresh}</span></button>
             </div>
           </div>
+          <CitySearch lang={lang} locale={locale} onPick={pickCity} />
           <details className="lw-coords">
             <summary>{c.coords}</summary>
             <form onSubmit={submitCoordinates} noValidate>
@@ -370,6 +380,8 @@ export default function LabWeather() {
                 </div>
               </section>
 
+              <DaysForecast days={days} lang={lang} locale={locale} timeZone={tz} />
+
               {mode === 'detail' && (
                 <>
                   <section className="lw-section" aria-labelledby="lw-table-title">
@@ -410,6 +422,11 @@ export default function LabWeather() {
             {' · '}
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">{c.license}</a>
             {'. '}{c.processed}
+          </p>
+          <p>
+            {lang === 'es' ? 'Ciudades: ' : 'Cities: '}<a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a>
+            {' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">CC BY 4.0</a>
+            {lang === 'es' ? ' (ciudades de más de 5.000 habitantes).' : ' (cities above 5,000 people).'}
           </p>
         </footer>
       </main>
