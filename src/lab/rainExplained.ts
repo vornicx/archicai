@@ -87,7 +87,7 @@ export function rainInterval(start: string, end: string, locale: string, timeZon
 
 // Values for the three human-readable insights. These are hourly MODEL intervals,
 // never exact start/stop times of rain or an official intensity classification.
-export function rainFacts(m: RainMetrics, lang: 'es' | 'en', locale: string, timeZone: string):
+export function rainFacts(m: RainMetrics, _lang: 'es' | 'en', locale: string, timeZone: string):
   { first: string; peak: string; window: string } {
   const empty = '—'
   const first = m.firstWet ? rainInterval(m.firstWet.time, m.firstWet.end, locale, timeZone) : empty
