@@ -24,6 +24,15 @@ export type ForecastWindow = {
   meetsCriteria: boolean
   score: number
 }
+export type WindowFitIssue = 'rain' | 'wind' | 'temperature'
+/** Explain precisely which configured limits this already-ranked interval exceeds. */
+export function windowFitIssues(w: ForecastWindow, criteria: WindowCriteria): WindowFitIssue[] {
+  const issues: WindowFitIssue[] = []
+  if (w.peakRainMm > criteria.rainMax + 1e-9) issues.push('rain')
+  if (w.windMaxKmh > criteria.windMax + 1e-9) issues.push('wind')
+  if (w.tempMinC < criteria.tempMin - 1e-9 || w.tempMaxC > criteria.tempMax + 1e-9) issues.push('temperature')
+  return issues
+}
 export type WindowSearchResult = { windows: ForecastWindow[]; matchesFound: boolean; candidates: number }
 const HOUR = 3_600_000
 

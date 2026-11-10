@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { WeatherPayload } from './weatherClient'
+import { ShiftRainComparison } from './ShiftRainComparison'
 import {
   SHIFT_STORAGE_KEY, SHIFT_OPT_IN_KEY, hasShiftOptIn, eligibleShiftCity,
   parseShiftStore, snapshotForecast, updateShiftStore, type ShiftComparison,
@@ -10,7 +11,9 @@ const COPY = {
     heading: 'Weather Shift', kicker: 'Lo que ha cambiado', lead: 'Compara dos versiones del pronóstico para las mismas horas futuras.',
     optIn: 'Activa el historial para guardar una primera previsión solo en este navegador. Podrás comparar versiones después de una actualización del modelo.', enable: 'Activar historial local',
     baseline: 'Primera previsión guardada en este navegador. Cuando vuelvas después de una actualización del modelo, podremos comparar los mismos intervalos.',
-    same: 'No hay cambios apreciables en la cantidad de lluvia prevista para el periodo comparable.',
+    same: 'La lluvia prevista no ha cambiado apreciablemente ni en su total ni en su distribución por horas.',
+    retimed: 'La cantidad total se mantiene, pero las horas de lluvia han cambiado.',
+    biggestHour: 'Mayor cambio horario',
     changedUp: 'La última previsión contiene más lluvia.',
     changedDown: 'La última previsión contiene menos lluvia.',
     insufficient: 'Hay dos versiones guardadas, pero no comparten seis horas futuras completas con datos de lluvia. No podemos compararlas con rigor.',
@@ -27,7 +30,9 @@ const COPY = {
     heading: 'Weather Shift', kicker: 'What changed', lead: 'Compare two model forecasts for exactly the same future hours.',
     optIn: 'Enable history to save a first forecast in this browser only. You can compare versions after the model updates.', enable: 'Enable local history',
     baseline: 'First forecast saved in this browser. When you return after a model update, the same future intervals can be compared.',
-    same: 'No appreciable change in forecast rainfall for the comparable period.',
+    same: 'Forecast rain is essentially unchanged, both in total and in hourly distribution.',
+    retimed: 'The total rainfall is similar, but its timing has changed.',
+    biggestHour: 'Largest hourly change',
     changedUp: 'The latest forecast shows more rainfall.',
     changedDown: 'The latest forecast shows less rainfall.',
     insufficient: 'Two versions are saved, but they do not share six complete future hours with rain values. A reliable comparison is unavailable.',
@@ -41,7 +46,7 @@ const COPY = {
     note: 'If enabled, only forecasts for selected named cities are stored in this browser. No GPS storage, no cross-device sync, and no background model checks. Differences are changes in a forecast, not measured rainfall.',
   },
 }
-type State = 'checking' | 'optIn' | 'baseline' | 'same' | 'changed' | 'insufficient' | 'stale' | 'disabled' | 'unavailable' | 'storageError' | 'cleared'
+type State = 'checking' | 'optIn' | 'baseline' | 'same' | 'changed' | 'retimed' | 'insufficient' | 'stale' | 'disabled' | 'unavailable' | 'storageError' | 'cleared'
 type ShiftView = { state: State; comparison: ShiftComparison | null }
 
 export function WeatherShift({ payload, placeId, lang, locale, timeZone, now }: {
@@ -99,6 +104,7 @@ export function WeatherShift({ payload, placeId, lang, locale, timeZone, now }: 
   const message = view.state === 'optIn' ? (clearNotice ? `${t.cleared} ${t.optIn}` : t.optIn)
     : view.state === 'changed' && cmp
     ? (cmp.deltaMm > 0 ? t.changedUp : t.changedDown)
+    : view.state === 'retimed' ? t.retimed
     : view.state === 'same' ? t.same
     : view.state === 'baseline' ? t.baseline
     : view.state === 'insufficient' ? t.insufficient
@@ -117,7 +123,7 @@ export function WeatherShift({ payload, placeId, lang, locale, timeZone, now }: 
     {message && <p className="ws-message" role="status">{message}</p>}
     {consentLoaded && !enabled && eligibleShiftCity(placeId) && view.state !== 'storageError' &&
       <button className="ws-enable" type="button" onClick={onEnable}>{t.enable}</button>}
-    {cmp && (view.state === 'changed' || view.state === 'same') && <div className="ws-comparison">
+    {cmp && (view.state === 'changed' || view.state === 'same' || view.state === 'retimed') && <div className="ws-comparison">
       <div className="ws-change" data-direction={cmp.deltaMm > 0.05 ? 'up' : cmp.deltaMm < -0.05 ? 'down' : 'same'}>
         <p>{t.delta} · {cmp.hours} h</p>
         <strong>{Math.abs(cmp.deltaMm) < 0.05 ? '≈ 0' : (cmp.deltaMm > 0 ? '+' : '−') + display(Math.abs(cmp.deltaMm))} <span>mm</span></strong>
@@ -128,6 +134,13 @@ export function WeatherShift({ payload, placeId, lang, locale, timeZone, now }: 
       </dl>
       <p className="ws-range">{t.interval}: <time dateTime={cmp.from}>{date(cmp.from)}</time> – <time dateTime={cmp.until}>{date(cmp.until)}</time></p>
       <p className="ws-model">{t.model}: <time dateTime={cmp.previousModel}>{date(cmp.previousModel)}</time> / <time dateTime={cmp.currentModel}>{date(cmp.currentModel)}</time></p>
+      {cmp.largestHourlyChange && <p className="ws-biggest">
+        <span>{t.biggestHour}</span>
+        <strong>{cmp.largestHourlyChange.deltaMm > 0 ? '+' : '−'}{display(Math.abs(cmp.largestHourlyChange.deltaMm))} mm</strong>
+        {' · '}<time dateTime={cmp.largestHourlyChange.time}>{date(cmp.largestHourlyChange.time)}</time>
+      </p>}
+      {(view.state === 'changed' || view.state === 'retimed') &&
+        <ShiftRainComparison comparison={cmp} lang={lang} locale={locale} timeZone={timeZone} />}
     </div>}
     <p className="ws-note">{t.note}</p>
   </section>

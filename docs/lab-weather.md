@@ -25,6 +25,14 @@
 - No new database or API cost: both calculations use the current Lovable Cloud prediction response. Local snapshot history is deleted by the user; no background checks or notifications. Keep transparent privacy copy and source attribution.
 - Regression tests `tests/lab-weather-shift.test.mjs` and `tests/lab-weather-window.test.mjs` are included in `test:weather`; test cross-midnight, missing values, timezone-independent UTC comparison, no GPS history, first visit, model revision and rate safety.
 
+## Weather Shift hourly comparison and Weather Window rationale (v7)
+
+- **Hourly model changes:** when two versions have at least 6, 12, or 24 complete overlapping FUTURE hourly rain periods, show paired rainfall bars (old neutral gray, new blue) and an accessible expand-to-read comparison table with timestamps in the selected city's time zone. This is not weather radar, an observed rain trend, or a verified warning.
+- **Same amount, different hours:** a comparable model total can remain essentially unchanged even when the rainfall timing changes significantly. Shift distinguishes that case as a *timing shift* (an individual hour differs by at least 0.2 mm while the period total differs by less than 0.05 mm). Display the hour with the largest model revision. Do not claim a new storm or imply an exact onset time.
+- Shift comparisons remain opt-in, browser-local and limited to the latest two distinct model versions for each named city. The comparison is possible only while the versions still share enough future hourly data; otherwise show an honest insufficient-data state.
+- **Window explanations:** each recommended window explicitly says whether the user-adjustable rain PER HOUR, wind, and temperature limits are satisfied. For closest alternatives it names each exceeded limit, rather than implying a match. The maximum hourly rain is shown separately from total rain. Still no claim of safe weather, official warnings or observed conditions.
+- Regression tests check retimed hours with equal totals, unchanged hourly patterns, largest-change selection, fallback-reason correctness, and exact-limit matches. The chart is SVG plus a native accessible table with no charting dependency.
+
 ## Not implemented — must never be simulated
 Official alert polygons/AEMET warning integration, rain radar, measured station data, lightning, pollen, AQI, historical extremes and multimodel uncertainty bands. For urgent weather decisions, users must consult official warning sources. Do not connect Open-Meteo's free **non-commercial** API to the public Archic Lab product without an appropriate commercial licence.
 

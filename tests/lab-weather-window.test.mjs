@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { findWeatherWindows as find, WINDOW_PRESETS } from '../src/lab/weatherWindow.ts'
+import { findWeatherWindows as find, WINDOW_PRESETS, windowFitIssues } from '../src/lab/weatherWindow.ts'
 
 const T = Date.parse('2026-11-10T10:00:00Z')
 const sample = (i, rain = 0, wind = 8, temp = 20) => ({
@@ -68,4 +68,20 @@ test('separate UTC hours crossing a destination midnight remain continuous', () 
   const r = find([sample(11), sample(12), sample(13)], T + 10 * 3600000, WINDOW_PRESETS.walk)
   assert.equal(r.windows.length, 1)
   assert.equal(r.windows[0].end, sample(13).time)
+})
+
+
+test('explanation names only the configured limits that fail in closest alternatives', () => {
+  const w = find([sample(0, 2, 35, 32), sample(1, 1, 40, 31)], T - 1000, WINDOW_PRESETS.walk).windows[0]
+  assert.deepEqual(windowFitIssues(w, WINDOW_PRESETS.walk), ['rain', 'wind', 'temperature'])
+  const onlyWind = find([sample(0, 0, 15, 20), sample(1, 0, 15, 20)], T - 1000,
+    { ...WINDOW_PRESETS.walk, windMax: 0 }).windows[0]
+  assert.deepEqual(windowFitIssues(onlyWind, { ...WINDOW_PRESETS.walk, windMax: 0 }), ['wind'])
+})
+test('fitting forecast windows have no reason to warn about exceeded criteria', () => {
+  const match = find([sample(0, 0.2, 12, 18), sample(1, 0.3, 20, 24)],
+    T - 1000, WINDOW_PRESETS.walk).windows[0]
+  assert.equal(match.meetsCriteria, true)
+  assert.deepEqual(windowFitIssues(match, WINDOW_PRESETS.walk), [])
+  assert.equal(match.peakRainMm, 0.3)
 })
