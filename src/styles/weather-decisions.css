@@ -30,6 +30,9 @@
 .ww-measures dd{margin:3px 0 0;color:var(--al-ink);font-size:14px;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
 .ww-empty{padding:18px 0;color:var(--al-ink-2);font-size:14px;line-height:1.6}
 .ww-note,.ws-note{margin:16px 0 0;max-width:90ch;color:var(--al-muted);font-size:12px;line-height:1.65}
+.ws-enable{min-height:44px;padding:10px 18px;border:1px solid var(--al-blue);border-radius:10px;background:var(--al-blue);color:#fff;font:500 14px/1.4 var(--al-font);cursor:pointer;transition:filter .14s ease}
+.ws-enable:hover{filter:brightness(.91)}
+.ws-enable:focus-visible{outline:2px solid var(--al-blue);outline-offset:3px}
 .ws-clear{border:0;min-height:44px;padding:6px 4px;background:none;color:var(--al-muted);font:500 13px var(--al-font);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .ws-message{margin:8px 0 14px;color:var(--al-ink-2);font-size:15px;line-height:1.55;max-width:70ch}
 .ws-comparison{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:8px 32px;border-top:1px solid var(--al-line);padding-top:18px}
