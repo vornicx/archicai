@@ -16,6 +16,7 @@ import { RainExplained } from '../lab/RainExplained'
 import { WeatherWindow } from '../lab/WeatherWindow'
 import { WeatherShift } from '../lab/WeatherShift'
 import { OfficialAlerts } from '../lab/OfficialAlerts'
+import { WeatherTrend } from '../lab/WeatherTrend'
 import { dailySummaries, safeTimeZone } from '../lab/weatherDays'
 import { readRecents, writeRecents, pushRecent } from '../lab/citySearch'
 import '../styles/archic-light.css'
@@ -393,6 +394,7 @@ export default function LabWeather() {
               </section>
 
               <DaysForecast days={days} lang={lang} locale={locale} timeZone={tz} />
+              <WeatherTrend hourly={windowHourly} now={now || Date.now()} lang={lang} locale={locale} timeZone={tz} />
               <RainExplained key={key} hourly={hourly} lang={lang} locale={locale} timeZone={tz} selectedTime={selPoint?.time} />
               <WeatherWindow hourly={windowHourly} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
               <WeatherShift key={place.id} payload={payload} placeId={place.id} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />

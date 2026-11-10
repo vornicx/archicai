@@ -232,3 +232,15 @@
 .lw-root .lw-alert-content small,.lw-root .lw-alert-foot{color:var(--al-muted);font-size:11px;line-height:1.4}
 .lw-root .lw-alert-foot{display:block;margin-top:6px}
 @media(max-width:390px){.lw-root .lw-official-head{align-items:flex-start}.lw-root .lw-official-head small{display:block;margin-top:3px}}
+
+/* Weather Trend: a restrained two-period rainfall comparison, no false bar minimum. */
+.lw-root .wt-section{border-top:1px solid var(--lw-quiet-line);padding-top:24px}
+.lw-root .wt-periods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,5vw,68px)}
+.lw-root .wt-top{display:flex;gap:10px;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--al-ink-2)}
+.lw-root .wt-top strong{font-size:clamp(23px,3vw,33px);font-weight:550;letter-spacing:-.04em;color:var(--al-ink);font-variant-numeric:tabular-nums}
+.lw-root .wt-top small{font-size:14px;font-weight:450;letter-spacing:0;color:var(--al-muted)}
+.lw-root .wt-track{height:8px;overflow:hidden;border-radius:10px;background:rgba(31,51,82,.09);margin-top:12px}
+.lw-root .wt-track>span{display:block;height:100%;border-radius:inherit;background:var(--al-blue)}
+.lw-root .wt-period:nth-child(2) .wt-track>span{background:#79A6E8}
+.lw-root .wt-meta{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:10px;color:var(--al-muted);font-size:11px;line-height:1.5}
+@media(max-width:600px){.lw-root .wt-periods{gap:16px}.lw-root .wt-top{align-items:flex-start;flex-direction:column;gap:3px}.lw-root .wt-meta{font-size:10px}}

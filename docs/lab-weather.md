@@ -120,3 +120,8 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 - It reads only fixed official AEMET RSS URL, follows a bounded set of validated fixed-host CAP XML URLs for the chosen zone, validates CAP scope, type, expiry, level, and **polygon includes exact selected coordinate**, filters cancellations, caches for 5 min and rate-limits through the existing Edge controls.
 - The RSS is a stream of published **updates** and may be incomplete; UI never claims “no warnings” or “all clear” from missing matches/errors. Always provide a direct AEMET warning-zone link, and when matching notices are found render only official warning severity, event and times. No alerts for unverified arbitrary cities/GPS, never inferred from model rainfall.
 - This feature must be independently tested after backend deployment. Direct-only fallback is intentional if Edge version is not yet deployed.
+
+## Weather Trend 48 h (v13)
+- One compact pair of zero-origin rain bars compares two consecutive, *complete* 24-hour model periods, starting with the next unstarted hour. A difference is not model uncertainty or historical observation.
+- Only 48 strictly contiguous future 1-hour MET intervals with complete, finite nonnegative precipitation produce a comparison; no 6h/12h mixing, gaps, guessed zeros or misleading partial data. Per-period max hourly wind appears only when all 24 hourly samples have usable values; otherwise omitted.
+- No extra API costs, maps, storage or external model. Tested incl. daylight saving, missing data, partial current hour.
