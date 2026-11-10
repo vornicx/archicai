@@ -105,3 +105,55 @@ test('forecast-history permission requires explicit affirmative activation', () 
   assert.equal(hasShiftOptIn('false'), false)
   assert.equal(hasShiftOptIn('1'), true)
 })
+
+
+test('equal daily total but rainfall moves to another hour: Weather Shift reports retiming', () => {
+  const previous = snap(OLDER, 0)
+  const current = snap(NEWER, 0)
+  previous.hours[2].rainMm = 2
+  current.hours[5].rainMm = 2
+  const initial = updateShiftStore(emptyShiftStore(), 'ecija', previous, NOW)
+  const next = updateShiftStore(initial.store, 'ecija', current, NOW)
+  assert.equal(next.state, 'retimed')
+  assert.ok(next.comparison)
+  assert.equal(next.comparison.hours, 24)
+  assert.equal(next.comparison.deltaMm, 0)
+  assert.equal(next.comparison.hourly.length, 24)
+  assert.equal(next.comparison.timingChanged, true)
+  assert.equal(next.comparison.largestHourlyChange.deltaMm, -2)
+  assert.equal(next.comparison.hourly[1].beforeMm, 2)
+  assert.equal(next.comparison.hourly[1].afterMm, 0)
+  assert.equal(next.comparison.hourly[4].beforeMm, 0)
+  assert.equal(next.comparison.hourly[4].afterMm, 2)
+})
+test('unchanged hourly amounts are truly unchanged, without a false retiming label', () => {
+  const old = snap(OLDER, 0.4)
+  const later = snap(NEWER, 0.4)
+  const comparison = compareShift(old, later, NOW)
+  assert.equal(comparison.timingChanged, false)
+  assert.equal(comparison.largestHourlyChange, null)
+  assert.equal(comparison.hourly.length, 24)
+  assert.ok(comparison.hourly.every(h => h.beforeMm === h.afterMm && h.deltaMm === 0))
+})
+test('largest per-hour delta uses the same future intervals as the compared total', () => {
+  const old = snap(OLDER, 0)
+  const later = snap(NEWER, 0)
+  later.hours[3].rainMm = 0.8
+  later.hours[4].rainMm = 0.25
+  const cmp = compareShift(old, later, NOW)
+  assert.ok(cmp)
+  assert.ok(Math.abs(cmp.afterMm - 1.05) < 1e-10)
+  assert.ok(Math.abs(cmp.deltaMm - 1.05) < 1e-10)
+  assert.equal(cmp.largestHourlyChange.time, later.hours[3].time)
+  assert.equal(cmp.largestHourlyChange.deltaMm, 0.8)
+})
+test('hourly changes smaller than display threshold do not imply significant retiming', () => {
+  const old = snap(OLDER, 0)
+  const later = snap(NEWER, 0)
+  old.hours[2].rainMm = 0.08
+  later.hours[3].rainMm = 0.08
+  const result = updateShiftStore(updateShiftStore(emptyShiftStore(), 'ecija', old, NOW).store,
+    'ecija', later, NOW)
+  assert.equal(result.state, 'same')
+  assert.equal(result.comparison.timingChanged, false)
+})
