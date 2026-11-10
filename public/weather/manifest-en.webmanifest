@@ -7,8 +7,8 @@
   "start_url": "/en/lab/weather/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#F8F9FB",
-  "theme_color": "#F8F9FB",
+  "background_color": "#14233C",
+  "theme_color": "#14233C",
   "icons": [
     {
       "src": "/weather/icons/weather-192.png",

@@ -24,6 +24,9 @@ V3 (cinematic dark + gold + Instrument Serif) is superseded and kept below only 
 ## Owner rule (2026-11-10)
 Minimalism wins across all interfaces. No overexplaining: essential data first; concise labels; one-line guidance only when needed; optional details for methodology, provenance and secondary figures. Remove copy that competes with the product.
 
+## Weather app · owner reference (10 November 2026)
+Owner-provided iPhone screenshots of Apple Weather establish the interaction benchmark **for Weather only**: atmospheric condition-responsive canvas, centered location, oversized temperature, quiet translucent forecast panels, hourly rhythm and clear daily temperature ranges. Make an original Archic composition, not a pixel-for-pixel imitation. Keep real values, concise labels, mobile safe areas and accessibility. The Weather app can use night blue/slate, but commercial Home/Lab remain light with Archic blue. No invented radar, air quality, sunrise, alerts or observations.
+
 ## Signature
 Weather as an authentic product: big model temperature, 24 h rain in l/m², an honest SVG bar chart from real hourly intervals.
 

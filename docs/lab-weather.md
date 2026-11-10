@@ -140,3 +140,8 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 - Online/offline status never presents cached forecasts as live. Install instructions on iOS are optional; compatible browsers can show an install prompt. The Weather PWA does not request push permissions.
 
 - PWA production build emits a Vite asset manifest, extracts Weather's app/dynamic-entry dependency graph, and injects only critical JS, CSS and font assets into the installed service worker. The first launch after installation can render the shell without network; MET/AEMET forecasts are **never precached**. This avoids a blank offline app and avoids preloading the whole Archic marketing site. Offline diagnostics should exercise both fresh install and subsequent offline visits.
+
+
+## Immersive Weather UI (owner reference: Apple Weather iPhone, 2026-11-10)
+- Weather-only condition-responsive navy atmospheric surface, very large centered temperature, compact translucent forecast panels, spare labels and a tactile 4-screen navigation. Includes a lightweight Today preview of the existing 12 hourly points and five days; the full views remain in Hours and Days.
+- Model/source facts and official warning links remain discoverable. Decorative sky is an archived site asset, not a live sky camera or radar. Home/Lab commercial pages remain unchanged.

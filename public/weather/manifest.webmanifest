@@ -10,8 +10,8 @@
   "display_override": [
     "standalone"
   ],
-  "background_color": "#F8F9FB",
-  "theme_color": "#F8F9FB",
+  "background_color": "#14233C",
+  "theme_color": "#14233C",
   "icons": [
     {
       "src": "/weather/icons/weather-192.png",

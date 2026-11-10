@@ -26,11 +26,11 @@ for (const page of pages) {
     '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
     '<title>' + esc(page.title) + '</title>',
     '<meta name="description" content="' + esc(page.description) + '" />',
-    '<meta name="theme-color" content="#F8F9FB" />',
+    '<meta name="theme-color" content="' + (page.path.endsWith('weather') ? '#14233C' : '#F8F9FB') + '" />',
     ...(page.path.endsWith('weather') ? [
       '<meta name="apple-mobile-web-app-capable" content="yes" />',
       '<meta name="mobile-web-app-capable" content="yes" />',
-      '<meta name="apple-mobile-web-app-status-bar-style" content="default" />',
+      '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />',
       '<meta name="apple-mobile-web-app-title" content="Weather" />',
       '<meta name="application-name" content="Weather" />',
       '<link rel="manifest" href="/weather/manifest' + (page.lang === 'en' ? '-en' : '') + '.webmanifest" />',

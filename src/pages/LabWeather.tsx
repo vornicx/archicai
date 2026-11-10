@@ -26,6 +26,7 @@ import '../styles/archic-light.css'
 import '../styles/archic-lab.css'
 import '../styles/weather-decisions.css'
 import '../styles/weather-polish.css'
+import '../styles/weather-immersive.css'
 
 type Place = { id: string; name: { es: string; en: string }; lat: number; lon: number; timeZone: string }
 const PLACES: Place[] = [
@@ -53,7 +54,7 @@ const COPY = {
     chartSummary: (n: number, total: string, max: string, at: string) => `Lluvia prevista por hora durante ${n} horas. Total ${total}. Máximo horario ${max}${at ? ' a las ' + at : ''}.`,
     hours: 'Próximas horas', table: 'Predicción hora a hora', time: 'Hora', temp: 'Temperatura', rain: 'Lluvia', metrics: 'Variables del intervalo actual',
     tzLocal: (tz: string) => `Hora local (${tz})`, tzUtc: 'Hora UTC',
-    note: 'Weather muestra predicciones de modelo y no incluye avisos oficiales. En España, consulta los avisos de',
+    note: 'Weather utiliza predicciones de modelo. Los avisos externos pueden estar incompletos. En España, consulta',
     noteEnd: 'Fuera de España, tu servicio meteorológico nacional.',
     aemet: 'https://www.aemet.es/es/eltiempo/prediccion/avisos',
     source: 'Datos: MET Norway, Locationforecast 2.0', license: 'CC BY 4.0', processed: 'Procesados por Archic Lab (unidades, acumulados y horario).',
@@ -75,7 +76,7 @@ const COPY = {
     chartSummary: (n: number, total: string, max: string, at: string) => `Forecast rainfall per hour over ${n} hours. Total ${total}. Hourly peak ${max}${at ? ' at ' + at : ''}.`,
     hours: 'Next hours', table: 'Hour-by-hour forecast', time: 'Time', temp: 'Temperature', rain: 'Rain', metrics: 'Current interval variables',
     tzLocal: (tz: string) => `Local time (${tz})`, tzUtc: 'UTC time',
-    note: 'Weather shows model forecasts and does not include official warnings. In Spain, check the warnings from',
+    note: 'Weather uses model forecasts. External warning checks may be incomplete. In Spain, consult',
     noteEnd: 'Elsewhere, refer to your national weather service.',
     aemet: 'https://www.aemet.es/en/eltiempo/prediccion/avisos',
     source: 'Data: MET Norway, Locationforecast 2.0', license: 'CC BY 4.0', processed: 'Processed by Archic Lab (units, totals and time zone).',
@@ -282,13 +283,13 @@ export default function LabWeather() {
   }
 
   return (
-    <div className="al-site lw-root">
+    <div className="al-site lw-root lw-immersive" data-scene={tone} data-period={condition?.period ?? 'unknown'} data-tab={tab}>
       <Helmet htmlAttributes={{ lang }}>
         <title>{c.title}</title>
         <meta name="description" content={c.description} />
-        <meta name="theme-color" content="#F8F9FB" />
+        <meta name="theme-color" content="#14233C" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Weather" />
         <link rel="manifest" href={lang==='es'?'/weather/manifest.webmanifest':'/weather/manifest-en.webmanifest'} />
         <link rel="apple-touch-icon" href="/weather/icons/weather-192.png" />
@@ -299,9 +300,8 @@ export default function LabWeather() {
       </Helmet>
 
       <header className="lw-header">
-        <a className="lw-identity" href={lang === 'es' ? '/' : '/en/'} aria-label={lang === 'es' ? 'Archic Lab · inicio' : 'Archic Lab · home'}>
-          <img src="/brand/archic-lockup-dark.svg" alt="" width={981} height={174} />
-          <span className="as-brand-lab" aria-hidden="true">LAB</span>
+        <a className="lw-identity" href={lang === 'es' ? '/lab/' : '/en/lab/'} aria-label="Archic Lab">
+          <span className="lw-app-name">Weather</span><span className="lw-app-brand">Archic Lab</span>
         </a>
         <nav aria-label={c.nav}>
           <a href={lang === 'es' ? '/lab/' : '/en/lab/'}>{c.lab}</a>
@@ -339,7 +339,9 @@ export default function LabWeather() {
               <button className="lw-tool" type="button" onClick={() => setRevision((n) => n + 1)} disabled={loading} aria-label={c.refresh} title={c.refresh}><RefreshIcon /><span>{c.refresh}</span></button>
             </div>
           </div>
-          <div className="lw-find-row">
+          <details className="lw-location-drawer">
+            <summary>{lang === 'es' ? 'Buscar otra ciudad' : 'Find another city'}</summary>
+            <div className="lw-find-row">
             <CitySearch lang={lang} locale={locale} onPick={pickCity} />
             <details className="lw-coords">
             <summary>{c.coords}</summary>
@@ -349,12 +351,13 @@ export default function LabWeather() {
               <button className="al-btn al-btn-primary" type="submit">{c.go}</button>
             </form>
             </details>
-          </div>
-          {formError && <p className="lw-error" role="alert">{formError}</p>}
+            </div>
           {(savedPlaces.length>0)&&<div className="lw-saved" aria-label={lang==='es'?'Ciudades favoritas':'Favorite cities'}>
             {savedPlaces.map(p=><button type="button" key={p.id} aria-pressed={p.id===place.id} onClick={()=>choose(p)}>{p.name[lang]}</button>)}
           </div>}
           <WeatherInstall lang={lang}/>
+          </details>
+          {formError && <p className="lw-error" role="alert">{formError}</p>}
         </div>
         <nav className="lw-app-tabs" aria-label={lang==='es'?'Secciones de Weather':'Weather sections'}>
           {APP_TABS.map(t=><button key={t} type="button" onClick={()=>selectTab(t)}
@@ -384,13 +387,13 @@ export default function LabWeather() {
               {tab==='today'&&<>
               <section className="lw-hero" data-tone={tone} aria-labelledby="lw-now-title">
                 <div className="lw-now">
-                  <p className="lw-now-kicker"><span id="lw-now-title">{placeName}</span> · {c.model}</p>
+                  <h2 id="lw-now-title" className="lw-sr">{c.nowWord} · {c.model}</h2>
                   <div className="lw-now-main">
-                    <p className="lw-temp">{current.temperatureC === null ? '—' : Math.round(current.temperatureC)}<span>°C</span></p>
+                    <p className="lw-temp" aria-label={fmt(current.temperatureC === null ? null : Math.round(current.temperatureC), ' °C', locale)}>{current.temperatureC === null ? '—' : Math.round(current.temperatureC)}<span aria-hidden="true">°</span></p>
                     {condition && <span className="lw-now-glyph"><WeatherGlyph condition={condition} size={72} /></span>}
                   </div>
                   <p className="lw-condition">{conditionText ?? '—'}</p>
-                  <p className="lw-now-meta">{c.forHour} {hour(current.time)}–{hour(nextHour)} · {tzLabel}</p>
+                  <p className="lw-now-meta">{hour(current.time)}–{hour(nextHour)} · {c.model}</p>
                   <dl className="lw-facts">
                     <div><dt>{c.feels}</dt><dd>{fmt(current.feelsLikeC, ' °C', locale, 1)}</dd></div>
                     <div><dt>{c.wind}</dt><dd>{fmt(current.windKmh, ' km/h', locale)} {compass(current.windFromDegrees, lang)}</dd></div>
@@ -426,6 +429,25 @@ export default function LabWeather() {
               </section>
 
               <OfficialAlerts placeId={place.id} lat={place.lat} lon={place.lon} lang={lang} locale={locale} timeZone={tz} />
+               <section className="lw-peek" aria-label={c.hours}>
+                 <div className="lw-peek-head"><h2>{c.hours}</h2>
+                   <button type="button" onClick={() => selectTab('hours')}>{lang === 'es' ? 'Ver horas' : 'All hours'} <span aria-hidden="true">›</span></button>
+                 </div>
+                 <div className="lw-peek-strip">
+                   {hourly.slice(0,12).map((v,i)=>{
+                     const label=conditionLabel(parseSymbol(v.symbolCode),lang)
+                     return <button type="button" key={v.time}
+                       aria-label={(i===0?c.nowWord:hour(v.time))+' · '+fmt(v.temperatureC,' °C',locale)+' · '+(label??'')+' · '+fmt(v.precipitationMm,' mm',locale,1)}
+                       onClick={()=>{setSelected(i);selectTab('hours')}}>
+                       <time dateTime={v.time}>{i===0?c.nowWord:hour(v.time)}</time>
+                       <WeatherGlyph condition={parseSymbol(v.symbolCode)} size={30}/>
+                       <strong>{fmt(v.temperatureC,'°',locale)}</strong>
+                       {(v.precipitationMm??0)>0&&<small>{fmt(v.precipitationMm,' mm',locale,1)}</small>}
+                     </button>
+                   })}
+                 </div>
+               </section>
+               <DaysForecast days={days.slice(0,5)} lang={lang} locale={locale} timeZone={tz} />
               </>}
               {tab==='hours'&&<section className="lw-section" aria-labelledby="lw-hours-title">
                 <div className="lw-section-head">
@@ -500,7 +522,7 @@ export default function LabWeather() {
         </div>
 
         <footer className="lw-foot">
-          <p className="lw-note">{lang === 'es' ? 'Previsión de modelo · sin avisos oficiales' : 'Model forecast · no official alerts'} · <a href={c.aemet} target="_blank" rel="noopener noreferrer">AEMET</a></p>
+          <p className="lw-note">{lang === 'es' ? 'Previsión, no observación' : 'Forecast, not observation'} · <a href={c.aemet} target="_blank" rel="noopener noreferrer">AEMET</a></p>
           <details className="lw-disclosure"><summary>{lang === 'es' ? 'Fuentes y límites' : 'Sources and limits'}</summary>
             <p>{c.note} {c.noteEnd}</p>
             <p><a href="https://api.met.no/weatherapi/locationforecast/2.0/documentation" target="_blank" rel="noopener noreferrer">{c.source}</a>{' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">{c.license}</a>{'. '}{c.processed}</p>
