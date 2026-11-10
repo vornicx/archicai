@@ -68,8 +68,8 @@ export function RainExplained({ hourly, lang, locale, timeZone, selectedTime }: 
     <div className="re-editorial"><div>
       {m && <p className="re-pattern">{RAIN_PATTERN_LABELS[lang][m.pattern]}</p>}
       <p className="re-lead">{narrative.lead}</p>
-      {narrative.detail && <p className="re-detail">{narrative.detail}</p>}
-      <p className="re-availability" id={`${id}-availability`}>
+      {narrative.detail && <details className="lw-disclosure"><summary>{lang === 'es' ? 'Ver explicación' : 'See explanation'}</summary><p className="re-detail">{narrative.detail}</p></details>}
+      <p className="lw-sr" id={`${id}-availability`}>
         {!results[6].available && `6 h: ${t.unavailable}. `}
         {!results[24].available && `24 h: ${t.unavailable}. `}
         {!results.episode.available && `${t.episode}: ${results.episode.reason === 'coverage' ? t.unavailable : t.noEpisode}.`}
@@ -78,11 +78,11 @@ export function RainExplained({ hourly, lang, locale, timeZone, selectedTime }: 
     {m && <RainStoryline m={m} lang={lang} locale={locale} timeZone={timeZone} selectedTime={selectedTime} id={id} />}
     </div>
     {m && facts && m.wetHours > 0 && (
-      <dl className="re-signals" aria-label={lang === 'es' ? 'Resumen de la lluvia prevista' : 'Forecast rainfall summary'}>
+      <details className="lw-disclosure re-signals-disclosure"><summary>{lang === 'es' ? 'Datos clave' : 'Key figures'}</summary><dl className="re-signals" aria-label={lang === 'es' ? 'Resumen de la lluvia prevista' : 'Forecast rainfall summary'}>
         <div><dt>{t.first}</dt><dd>{facts.first}</dd></div>
         <div><dt>{t.peakInsight}</dt><dd>{facts.peak}</dd></div>
         <div><dt>{t.concentration}</dt><dd>{facts.window}</dd></div>
-      </dl>
+      </dl></details>
     )}
     {m && <details className="re-reading"><summary>{t.table}</summary>
       <dl className="re-facts">
@@ -97,6 +97,6 @@ export function RainExplained({ hourly, lang, locale, timeZone, selectedTime }: 
         </table>
       </div>
     </details>}
-    <p className="re-note">{t.note} · {timeZone}</p>
+    <details className="lw-disclosure"><summary>{lang === 'es' ? 'Método y límites' : 'Method and limits'}</summary><p className="re-note">{t.note} · {timeZone}</p></details>
   </section>
 }

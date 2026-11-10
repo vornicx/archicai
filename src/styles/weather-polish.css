@@ -201,3 +201,17 @@
  .lw-root .lw-tool,.lw-root .lw-strip button,.lw-root .lw-day,.lw-root .lw-search-field{transition:none}
  .lw-root .lw-tool:active,.lw-root .lw-strip button:active{transform:none}
 }
+
+/* Minimal-copy disclosure system: information on demand, truthful by default. */
+.lw-root .lw-disclosure{margin-top:12px;max-width:100%;font-size:13px;color:var(--al-muted);line-height:1.5}
+.lw-root .lw-disclosure>summary{display:flex;align-items:center;gap:7px;width:fit-content;min-height:44px;list-style:none;cursor:pointer;color:var(--al-blue-ink);font:500 13px/1.4 var(--al-font)}
+.lw-root .lw-disclosure>summary::-webkit-details-marker{display:none}
+.lw-root .lw-disclosure>summary::after{content:'+';font-size:17px;font-weight:400}
+.lw-root .lw-disclosure[open]>summary::after{content:'−'}
+.lw-root .lw-disclosure>summary:focus-visible{outline:2px solid var(--al-blue);outline-offset:3px}
+.lw-root .lw-disclosure p{margin:8px 0 0;max-width:74ch}
+.lw-root .re-signals-disclosure .re-signals{margin-top:8px}
+.lw-root .ww-section .lw-section-head,.lw-root .ws-section .lw-section-head{margin-bottom:15px}
+.lw-root .lw-foot{gap:4px}
+.lw-root .lw-foot .lw-disclosure{margin-top:0}
+.lw-root .lw-foot .lw-note{max-width:none;font-size:12px}

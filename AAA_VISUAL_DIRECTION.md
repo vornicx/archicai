@@ -21,6 +21,9 @@ V3 (cinematic dark + gold + Instrument Serif) is superseded and kept below only 
 - Geometry: 8px rhythm, 1240–1320 shell, 16–24 radius on few surfaces, hairline borders, near-invisible shadow.
 - Motion: immediate press feedback (scale .97), discreet hover, nothing on scroll; reduced-motion disables transitions.
 
+## Owner rule (2026-11-10)
+Minimalism wins across all interfaces. No overexplaining: essential data first; concise labels; one-line guidance only when needed; optional details for methodology, provenance and secondary figures. Remove copy that competes with the product.
+
 ## Signature
 Weather as an authentic product: big model temperature, 24 h rain in l/m², an honest SVG bar chart from real hourly intervals.
 

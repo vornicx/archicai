@@ -9,14 +9,14 @@ import {
 const COPY = {
   es: {
     heading: 'Weather Shift', kicker: 'Lo que ha cambiado', lead: 'Compara dos versiones del pronóstico para las mismas horas futuras.',
-    optIn: 'Activa el historial para guardar una primera previsión solo en este navegador. Podrás comparar versiones después de una actualización del modelo.', enable: 'Activar historial local',
-    baseline: 'Primera previsión guardada en este navegador. Cuando vuelvas después de una actualización del modelo, podremos comparar los mismos intervalos.',
+    optIn: 'Guarda previsiones de ciudades en este navegador (sin GPS).', enable: 'Activar historial local',
+    baseline: 'Primera versión guardada. Vuelve tras una actualización.',
     same: 'La lluvia prevista no ha cambiado apreciablemente ni en su total ni en su distribución por horas.',
     retimed: 'La cantidad total se mantiene, pero las horas de lluvia han cambiado.',
     biggestHour: 'Mayor cambio horario',
     changedUp: 'La última previsión contiene más lluvia.',
     changedDown: 'La última previsión contiene menos lluvia.',
-    insufficient: 'Hay dos versiones guardadas, pero no comparten seis horas futuras completas con datos de lluvia. No podemos compararlas con rigor.',
+    insufficient: 'No hay horas futuras comunes suficientes.',
     stale: 'Esta respuesta pertenece a una versión anterior del modelo. No se ha sobrescrito la guardada.',
     disabled: 'El historial no se guarda para coordenadas manuales ni para la ubicación del dispositivo.',
     unavailable: 'El proveedor no ha indicado una versión del modelo o no hay datos horarios suficientes para guardar una comparación.',
@@ -28,14 +28,14 @@ const COPY = {
   },
   en: {
     heading: 'Weather Shift', kicker: 'What changed', lead: 'Compare two model forecasts for exactly the same future hours.',
-    optIn: 'Enable history to save a first forecast in this browser only. You can compare versions after the model updates.', enable: 'Enable local history',
-    baseline: 'First forecast saved in this browser. When you return after a model update, the same future intervals can be compared.',
+    optIn: 'Save city forecasts in this browser (no GPS).', enable: 'Enable local history',
+    baseline: 'First version saved. Return after a model update.',
     same: 'Forecast rain is essentially unchanged, both in total and in hourly distribution.',
     retimed: 'The total rainfall is similar, but its timing has changed.',
     biggestHour: 'Largest hourly change',
     changedUp: 'The latest forecast shows more rainfall.',
     changedDown: 'The latest forecast shows less rainfall.',
-    insufficient: 'Two versions are saved, but they do not share six complete future hours with rain values. A reliable comparison is unavailable.',
+    insufficient: 'Not enough shared future hours.',
     stale: 'This response comes from an older model version. The stored version was not overwritten.',
     disabled: 'Forecast history is not stored for manually entered coordinates or device location.',
     unavailable: 'The provider has not supplied a model version or enough hourly data for a comparison.',
@@ -115,11 +115,10 @@ export function WeatherShift({ payload, placeId, lang, locale, timeZone, now }: 
     : view.state === 'cleared' ? t.cleared : ''
   return <section className="lw-section ws-section" aria-labelledby="ws-title">
     <div className="lw-section-head">
-      <div><p className="ws-kicker">{t.kicker}</p><h2 id="ws-title">{t.heading}</h2></div>
+      <h2 id="ws-title">{t.heading}</h2>
       {enabled && eligibleShiftCity(placeId) && view.state !== 'cleared' && view.state !== 'storageError' &&
         <button className="ws-clear" type="button" onClick={onClear}>{t.clear}</button>}
     </div>
-    <p className="ws-lead">{t.lead}</p>
     {message && <p className="ws-message" role="status">{message}</p>}
     {consentLoaded && !enabled && eligibleShiftCity(placeId) && view.state !== 'storageError' &&
       <button className="ws-enable" type="button" onClick={onEnable}>{t.enable}</button>}
@@ -142,6 +141,6 @@ export function WeatherShift({ payload, placeId, lang, locale, timeZone, now }: 
       {(view.state === 'changed' || view.state === 'retimed') &&
         <ShiftRainComparison comparison={cmp} lang={lang} locale={locale} timeZone={timeZone} />}
     </div>}
-    <p className="ws-note">{t.note}</p>
+    <details className="lw-disclosure"><summary>{lang === 'es' ? 'Privacidad y límites' : 'Privacy and limits'}</summary><p className="ws-note">{t.note}</p></details>
   </section>
 }

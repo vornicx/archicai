@@ -2,6 +2,14 @@
 
 AAA Design is mandatory for every visual/UI change in this repository, including small changes.
 
+## Universal UI rule — minimalism wins
+- Show the result, not an explanation of the interface. Less visible copy is the default for EVERY design and product.
+- Remove redundant section kickers, paragraphs, repeated labels, explanations and ornamental prose before adding new components.
+- Lead with key numbers, simple charts, legible type and one clear action. Prefer short labels and meaningful whitespace.
+- Put secondary methodology, advanced data and help in optional expandable details. Keep mobile 320px uncluttered.
+- NEVER sacrifice accuracy, accessibility, unit meaning, opt-in consent, provenance, safety notices or mandatory legal disclosures to achieve minimalism; make them concise and discoverable.
+
+
 ## Authority
 
 1. Verified business truth, legal/SEO/i18n/accessibility and production behavior.

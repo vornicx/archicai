@@ -79,7 +79,7 @@ export function DaysForecast({ days, lang, locale, timeZone }: { days: DaySummar
           )
         })}
       </ol>
-      <p className="lw-days-note">{t.note}</p>
+      <details className="lw-disclosure"><summary>{lang === 'es' ? 'Sobre la previsión' : 'About this forecast'}</summary><p className="lw-days-note">{t.note}</p></details>
     </section>
   )
 }

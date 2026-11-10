@@ -9,13 +9,13 @@ const COPY = {
     walk: 'Pasear', sport: 'Deporte', outdoors: 'Exterior',
     days: 'Elegir día', allDays: 'Todos',
     schedule: 'Horario a considerar', usual: '08:00–22:00 (hora local)', anyHour: 'Cualquier hora',
-    coverage: (n: number, usual: boolean) => `${n} horas futuras con datos completos. ${usual ? 'Buscando franjas entre las 08:00 y las 22:00, hora local.' : 'Incluye también los horarios nocturnos.'}`,
-    closest: 'No hay una franja que cumpla todos los criterios. Estas son las más cercanas.',
-    match: 'Franjas que cumplen tus criterios', top: 'Mejor franja', next: 'Otras franjas',
-    noData: 'No hay suficientes horas futuras con lluvia, temperatura y viento disponibles para comparar. Los periodos de 6 o 12 horas no se tratan como datos horarios.',
-    rain: 'Lluvia total', temp: 'Temperatura', wind: 'Viento máximo',
-    criteria: 'Personalizar criterios', duration: 'Duración', rainLimit: 'Lluvia máxima por hora',
-    windLimit: 'Viento máximo', minTemp: 'Temperatura mínima', maxTemp: 'Temperatura máxima',
+    coverage: (n: number, usual: boolean) => `${n} h con datos · ${usual ? '08–22 h' : 'todas las horas'}`,
+    closest: 'Alternativas (fuera de límites)',
+    match: 'Mejores franjas', top: 'Mejor opción', next: 'Otras franjas',
+    noData: 'Sin datos horarios suficientes.',
+    rain: 'Lluvia', temp: 'Temperatura', wind: 'Viento',
+    criteria: 'Ajustar filtros', duration: 'Duración', rainLimit: 'Lluvia máx./h',
+    windLimit: 'Viento máx.', minTemp: 'Temp. mín.', maxTemp: 'Temp. máx.',
     hour: 'hora', hours: 'horas', note: 'Comparación de predicciones, no garantía de buen tiempo ni evaluación de seguridad. Se descartan las horas sin datos y la hora que ya ha empezado. No incluye avisos oficiales ni ráfagas en los criterios.',
     noMatch: 'No se ha encontrado una franja utilizable en el horizonte horario.',
     fits: 'Cumple los límites de lluvia, viento y temperatura.', exceeds: 'No cumple:', rainIssue: 'lluvia por hora', windIssue: 'viento', tempIssue: 'temperatura', peak: 'Máximo de lluvia en una hora',
@@ -25,13 +25,13 @@ const COPY = {
     walk: 'Walking', sport: 'Exercise', outdoors: 'Outdoors',
     days: 'Choose day', allDays: 'All',
     schedule: 'Times to consider', usual: '08:00–22:00 (local time)', anyHour: 'Any time',
-    coverage: (n: number, usual: boolean) => `${n} future hours have complete data. ${usual ? 'Considering 08:00–22:00 in local time.' : 'Includes overnight hours.'}`,
-    closest: 'No time window meets every criterion. These are the closest alternatives.',
-    match: 'Windows matching your criteria', top: 'Best window', next: 'Other windows',
-    noData: 'Not enough future hours with complete rain, temperature and wind data to compare. Six- and twelve-hour blocks are not treated as hourly values.',
-    rain: 'Total rain', temp: 'Temperature', wind: 'Maximum wind',
-    criteria: 'Customize criteria', duration: 'Duration', rainLimit: 'Maximum rain per hour',
-    windLimit: 'Maximum wind', minTemp: 'Minimum temperature', maxTemp: 'Maximum temperature',
+    coverage: (n: number, usual: boolean) => `${n} h of data · ${usual ? '08–22 h' : 'all hours'}`,
+    closest: 'Closest alternatives (outside limits)',
+    match: 'Best windows', top: 'Top pick', next: 'Other windows',
+    noData: 'Not enough hourly data.',
+    rain: 'Rain', temp: 'Temperature', wind: 'Wind',
+    criteria: 'Adjust filters', duration: 'Duration', rainLimit: 'Max rain/hour',
+    windLimit: 'Max wind', minTemp: 'Min temp.', maxTemp: 'Max temp.',
     hour: 'hour', hours: 'hours', note: 'Comparison of model forecasts, not a promise of good weather or a safety assessment. Missing hours and the hour already in progress are excluded. Official warnings and gusts are not included in these criteria.',
     noMatch: 'No usable window found within the hourly forecast.',
     fits: 'Meets the rain, wind and temperature limits.', exceeds: 'Outside limits:', rainIssue: 'hourly rain', windIssue: 'wind', tempIssue: 'temperature', peak: 'Peak hourly rain',
@@ -87,13 +87,12 @@ export function WeatherWindow({ hourly, lang, locale, timeZone, now }: {
   }
   return <section className="lw-section ww-section" aria-labelledby={id + '-heading'}>
     <div className="lw-section-head">
-      <div><p className="ww-kicker">{t.kicker}</p><h2 id={id + '-heading'}>{t.heading}</h2></div>
+      <h2 id={id + '-heading'}>{t.heading}</h2>
       <div className="ww-presets" role="group" aria-label={lang === 'es' ? 'Actividad' : 'Activity'}>
         {(['walk', 'sport', 'outdoors'] as const).map(p =>
           <button key={p} type="button" aria-pressed={preset === p} onClick={() => selectPreset(p)}>{t[p]}</button>)}
       </div>
     </div>
-    <p className="ww-lead">{t.lead}</p>
     <div className="ww-day-select" role="group" aria-label={t.days}>
       <button type="button" aria-pressed={activeDay === 'all'} onClick={() => setDay('all')}>{t.allDays}</button>
       {days.map(d => <button type="button" key={d.key} aria-pressed={activeDay === d.key}
@@ -144,14 +143,13 @@ export function WeatherWindow({ hourly, lang, locale, timeZone, now }: {
             <div><dt>{t.temp}</dt><dd>{formatter(w.tempMinC, locale, 0)}–{formatter(w.tempMaxC, locale, 0)} °C</dd></div>
             <div><dt>{t.wind}</dt><dd>{formatter(w.windMaxKmh, locale, 0)} km/h</dd></div>
           </dl>
-          <p className="ww-explanation">
-            {w.meetsCriteria ? t.fits : `${t.exceeds} ${windowFitIssues(w, criteria).map(issue =>
-              issue === 'rain' ? t.rainIssue : issue === 'wind' ? t.windIssue : t.tempIssue).join(' · ')}.`}
-            <span>{t.peak}: {formatter(w.peakRainMm, locale, 2)} mm/h</span>
-          </p>
+          {!w.meetsCriteria && <p className="ww-explanation">
+            {t.exceeds} {windowFitIssues(w, criteria).map(issue =>
+              issue === 'rain' ? t.rainIssue : issue === 'wind' ? t.windIssue : t.tempIssue).join(' · ')}
+          </p>}
         </li>)}</ol>
       </>}
     </div>
-    <p className="ww-note">{t.note}</p>
+    <details className="lw-disclosure"><summary>{lang === 'es' ? 'Sobre las franjas' : 'About the windows'}</summary><p className="ww-note">{t.note}</p></details>
   </section>
 }

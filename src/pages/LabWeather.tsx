@@ -41,10 +41,10 @@ const COPY = {
     loading: 'Consultando la predicción…', failure: 'No hemos podido obtener la predicción.', failureAt: (p: string) => `No hemos podido obtener la predicción para ${p}.`, loadingAt: (p: string) => `Consultando la predicción para ${p}…`, prevHours: 'Horas anteriores', nextHours: 'Horas siguientes', retry: 'Reintentar', empty: 'La fuente no ha devuelto intervalos horarios para esta ubicación.',
     invalid: 'Introduce una latitud entre −90 y 90 y una longitud entre −180 y 180.',
     geoError: 'No se pudo acceder a tu ubicación. Revisa los permisos del navegador.',
-    model: 'Predicción de modelo, no observación', forHour: 'Para', rain24: 'Lluvia prevista · 24 h', rain6: 'Próximas 6 h', unit: 'l/m²',
+    model: 'Predicción del modelo', forHour: 'Para', rain24: 'Lluvia prevista · 24 h', rain6: 'Próximas 6 h', unit: 'l/m²',
     incomplete: 'No disponible: la fuente no cubre 24 horas seguidas.', incomplete6: 'No disponible',
     wind: 'Viento', humidity: 'Humedad', updated: 'Actualizado', feels: 'Sensación', gust: 'Ráfagas', direction: 'Dirección', dew: 'Punto de rocío', pressure: 'Presión', clouds: 'Nubosidad', fog: 'Niebla', uv: 'UV cielo despejado', chance: 'Probabilidad',
-    chartTitle: 'Lluvia por hora', chartRange: (n: number) => `Próximas ${n} h · mm (l/m²)`,
+    chartTitle: 'Lluvia por hora', chartRange: (n: number) => `${n} h · mm`, 
     chartSummary: (n: number, total: string, max: string, at: string) => `Lluvia prevista por hora durante ${n} horas. Total ${total}. Máximo horario ${max}${at ? ' a las ' + at : ''}.`,
     hours: 'Próximas horas', table: 'Predicción hora a hora', time: 'Hora', temp: 'Temperatura', rain: 'Lluvia', metrics: 'Variables del intervalo actual',
     tzLocal: (tz: string) => `Hora local (${tz})`, tzUtc: 'Hora UTC',
@@ -63,10 +63,10 @@ const COPY = {
     loading: 'Loading the forecast…', failure: 'We could not load the forecast.', failureAt: (p: string) => `We could not load the forecast for ${p}.`, loadingAt: (p: string) => `Loading the forecast for ${p}…`, prevHours: 'Earlier hours', nextHours: 'Later hours', retry: 'Try again', empty: 'The source returned no hourly intervals for this location.',
     invalid: 'Enter a latitude between −90 and 90 and a longitude between −180 and 180.',
     geoError: 'We could not access your location. Check your browser permissions.',
-    model: 'Model forecast, not an observation', forHour: 'For', rain24: 'Forecast rainfall · 24 h', rain6: 'Next 6 h', unit: 'mm',
+    model: 'Model forecast', forHour: 'For', rain24: 'Forecast rainfall · 24 h', rain6: 'Next 6 h', unit: 'mm',
     incomplete: 'Unavailable: the source does not cover 24 consecutive hours.', incomplete6: 'Unavailable',
     wind: 'Wind', humidity: 'Humidity', updated: 'Updated', feels: 'Feels like', gust: 'Gusts', direction: 'Direction', dew: 'Dew point', pressure: 'Pressure', clouds: 'Cloud cover', fog: 'Fog', uv: 'Clear-sky UV', chance: 'Probability',
-    chartTitle: 'Hourly rainfall', chartRange: (n: number) => `Next ${n} h · mm`,
+    chartTitle: 'Hourly rainfall', chartRange: (n: number) => `${n} h · mm`, 
     chartSummary: (n: number, total: string, max: string, at: string) => `Forecast rainfall per hour over ${n} hours. Total ${total}. Hourly peak ${max}${at ? ' at ' + at : ''}.`,
     hours: 'Next hours', table: 'Hour-by-hour forecast', time: 'Time', temp: 'Temperature', rain: 'Rain', metrics: 'Current interval variables',
     tzLocal: (tz: string) => `Local time (${tz})`, tzUtc: 'UTC time',
@@ -427,20 +427,12 @@ export default function LabWeather() {
         </div>
 
         <footer className="lw-foot">
-          <p className="lw-note">
-            {c.note} <a href={c.aemet} target="_blank" rel="noopener noreferrer">AEMET ↗</a>. {c.noteEnd}
-          </p>
-          <p>
-            <a href="https://api.met.no/weatherapi/locationforecast/2.0/documentation" target="_blank" rel="noopener noreferrer">{c.source}</a>
-            {' · '}
-            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">{c.license}</a>
-            {'. '}{c.processed}
-          </p>
-          <p>
-            {lang === 'es' ? 'Ciudades: ' : 'Cities: '}<a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a>
-            {' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">CC BY 4.0</a>
-            {lang === 'es' ? ' (ciudades de más de 5.000 habitantes).' : ' (cities above 5,000 people).'}
-          </p>
+          <p className="lw-note">{lang === 'es' ? 'Previsión de modelo · sin avisos oficiales' : 'Model forecast · no official alerts'} · <a href={c.aemet} target="_blank" rel="noopener noreferrer">AEMET</a></p>
+          <details className="lw-disclosure"><summary>{lang === 'es' ? 'Fuentes y límites' : 'Sources and limits'}</summary>
+            <p>{c.note} {c.noteEnd}</p>
+            <p><a href="https://api.met.no/weatherapi/locationforecast/2.0/documentation" target="_blank" rel="noopener noreferrer">{c.source}</a>{' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">{c.license}</a>{'. '}{c.processed}</p>
+            <p>{lang === 'es' ? 'Ciudades: ' : 'Cities: '}<a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a>{' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">CC BY 4.0</a>{lang === 'es' ? ' (más de 5.000 habitantes).' : ' (over 5,000 inhabitants).'}</p>
+          </details>
         </footer>
       </main>
     </div>
