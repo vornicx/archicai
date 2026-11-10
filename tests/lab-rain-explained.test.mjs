@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { buildRainExplanation as build, buildRainNarrative as narrative, formatRainAmount, rainInterval, WET_HOUR_MM } from '../src/lab/rainExplained.ts'
+import { buildRainExplanation as build, buildRainNarrative as narrative, formatRainAmount, rainInterval, WET_HOUR_MM, rainFacts } from '../src/lab/rainExplained.ts'
 const start = Date.parse('2026-11-10T22:00:00Z')
 const points = (values) => values.map((v, i) => ({ time: new Date(start + i * 3600000).toISOString(), periodHours: 1, precipitationMm: v }))
 const metrics = (v, mode = 6) => { const r = build(points(v), mode); assert.equal(r.available, true); return r.metrics }
@@ -43,4 +43,40 @@ test('a concentrated episode never claims rain is evenly spread', () => {
   assert.doesNotMatch(es.detail, /repartida entre varias horas/)
   assert.match(en.detail, /concentrated in that stretch/)
   assert.doesNotMatch(en.detail, /spread across several hours/)
+})
+
+
+test('tiny amounts across hours remain below the appreciable-hour threshold', () => {
+  const r = build(points(Array(6).fill(0.04)), 6)
+  assert.equal(r.available, true)
+  assert.equal(r.metrics.wetHours, 0)
+  assert.equal(r.metrics.firstWet, null)
+  assert.equal(r.metrics.pattern, 'trace')
+  const es = narrative(r, 'es', 'es-ES', 'Europe/Madrid')
+  assert.match(es.detail, /ninguna hora alcanza/)
+  assert.doesNotMatch(es.detail, /Lluvia repartida|se concentra|intermitente/)
+})
+test('rain facts identify the first appreciable interval without claiming an exact start', () => {
+  const m = metrics([0, 0.2, 0.5, 1.5, 0, 0])
+  const es = rainFacts(m, 'es', 'es-ES', 'Europe/Madrid')
+  const en = rainFacts(m, 'en', 'en-GB', 'Europe/Madrid')
+  assert.match(es.first, /11 nov/)
+  assert.match(es.first, /00:00/)
+  assert.match(es.peak, /1,5 mm\/h/)
+  assert.match(en.peak, /1.5 mm\/h/)
+  assert.match(es.window, /100 %|100%/)
+  assert.equal(m.main3hWindow.length, 3)
+})
+test('dry window facts do not present a zero-amount hour as a rainfall peak', () => {
+  const es = rainFacts(metrics(Array(6).fill(0)), 'es', 'es-ES', 'UTC')
+  assert.equal(es.first, '—')
+  assert.equal(es.peak, '—')
+  assert.equal(es.window, '—')
+})
+test('an isolated trace does not get a misleading concentration percentage', () => {
+  const m = metrics([0, 0.04, 0.02, 0, 0, 0])
+  const f = rainFacts(m, 'en', 'en-GB', 'UTC')
+  assert.equal(f.first, '—')
+  assert.equal(f.window, '—')
+  assert.match(f.peak, /0.04 mm\/h/)
 })
