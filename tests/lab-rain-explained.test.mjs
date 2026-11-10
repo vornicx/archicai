@@ -64,7 +64,7 @@ test('rain facts identify the first appreciable interval without claiming an exa
   assert.match(es.first, /00:00/)
   assert.match(es.peak, /1,5 mm\/h/)
   assert.match(en.peak, /1.5 mm\/h/)
-  assert.match(es.window, /100 %|100%/)
+  assert.match(es.window, /100\s*%/)
   assert.equal(m.main3hWindow.length, 3)
 })
 test('dry window facts do not present a zero-amount hour as a rainfall peak', () => {
