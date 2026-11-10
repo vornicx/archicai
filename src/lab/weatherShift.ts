@@ -27,6 +27,8 @@ export type ShiftOutcome = {
 const HOUR = 3_600_000
 const DAY = 24 * HOUR
 export const SHIFT_STORAGE_KEY = 'archic-weather-shift-v1'
+export const SHIFT_OPT_IN_KEY = 'archic-weather-shift-enabled-v1'
+export const hasShiftOptIn = (value: string | null): boolean => value === '1'
 export const emptyShiftStore = (): ShiftStore => ({ version: 1, entries: [] })
 
 export function eligibleShiftCity(id: string): boolean {

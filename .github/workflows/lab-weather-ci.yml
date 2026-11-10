@@ -3,6 +3,9 @@ name: Archic Lab — Weather checks
 on:
   pull_request:
     paths:
+      - 'src/lab/**'
+      - 'src/styles/weather-decisions.css'
+      - 'tests/lab-*.test.mjs'
       - 'src/pages/Lab*'
       - 'src/styles/archic-lab.css'
       - 'api/lab/**'
