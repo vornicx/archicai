@@ -1,0 +1,389 @@
+{
+  "scope": "Synthetic local fixtures; not live provider or production hosting",
+  "results": [
+    {
+      "lang": "es",
+      "width": 1440,
+      "fixture": "dry",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 1440,
+      "fixture": "shower",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 1440,
+      "fixture": "intermittent",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 1440,
+      "fixture": "partial",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 1440,
+      "fixture": "night",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 1440,
+      "fixture": "storm",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "fixture": "dry",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "fixture": "shower",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "fixture": "intermittent",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "fixture": "partial",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "fixture": "night",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "fixture": "storm",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 375,
+      "fixture": "dry",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 375,
+      "fixture": "shower",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 375,
+      "fixture": "intermittent",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 375,
+      "fixture": "partial",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 375,
+      "fixture": "night",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 375,
+      "fixture": "storm",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 320,
+      "fixture": "dry",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 320,
+      "fixture": "shower",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 320,
+      "fixture": "intermittent",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 320,
+      "fixture": "partial",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 320,
+      "fixture": "night",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "es",
+      "width": 320,
+      "fixture": "storm",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "fixture": "dry",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "fixture": "shower",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "fixture": "intermittent",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "fixture": "partial",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "fixture": "night",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "fixture": "storm",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "fixture": "dry",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "fixture": "shower",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "fixture": "intermittent",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "fixture": "partial",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "fixture": "night",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "fixture": "storm",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "fixture": "dry",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "fixture": "shower",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "fixture": "intermittent",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "fixture": "partial",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "fixture": "night",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "fixture": "storm",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 320,
+      "fixture": "dry",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 320,
+      "fixture": "shower",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 320,
+      "fixture": "intermittent",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 320,
+      "fixture": "partial",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 320,
+      "fixture": "night",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 320,
+      "fixture": "storm",
+      "axeViolations": 0,
+      "overflow": false,
+      "runtimeErrors": 0
+    }
+  ]
+}

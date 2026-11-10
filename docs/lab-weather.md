@@ -27,6 +27,16 @@ Official alert polygons/AEMET warning integration, rain radar, measured station 
 6. Attribute GeoNames and MET Norway, honor upstream caching, and avoid claiming current conditions or official alerts when only model data exists.
 
 ## Future work
+### Rain Explained
+- `src/lab/rainExplained.ts` is pure; no new provider, dependency, storage or backend change. Input is Weather's current-location hourly series after `forecastView(state,currentKey)`.
+- 6/24 modes require all selected amounts finite, nonnegative, periodHours=1 and strictly contiguous valid timestamps; no sorting, duplicate removal, extrapolation or missing-as-zero. Episode additionally requires 24 valid hours, then trims to first/last >=0.1 mm/h. It can include internal dry gaps and is limited to the forecast horizon, not exact rain onset/end.
+- **0.1 mm/h is a presentation threshold, not official intensity.** Wet hours/streaks/gaps use it. Total and accumulation retain all nonnegative amounts unrounded. Percentages use raw amounts; display rounds percentages to integers and totals to one decimal (three decimals below 0.1).
+- Pattern rules: zero=dry; total below 0.1=trace; total >=1 with contiguous main-window share >=70%=concentrated; otherwise internal dry gaps=intermittent; peak below 0.5=small distributed amounts; otherwise mostly distributed. These describe distribution, not formal intensity or safety.
+- `main3hWindow` is the largest **contiguous** sum, with earliest tie and actual 1/2h length for short episodes. `top3Share` is the three highest individual hours, **not necessarily consecutive**, labelled only in the expanded reading. No ratios for zero totals.
+- UI follows the hour strip and precedes coming days. Current city changes remount the module; refresh recomputes without accumulating twice. Disabled modes expose their reason. Storyline is deliberately noninteractive, synchronized with selected hourly time, with two independent zero-origin plots (hourly mm/h, cumulative mm), linear segments, no minimum bar heights, accessible title/description and expandable table.
+- Forecast starts with the full ongoing hourly interval, not an exact rolling window from the present minute. One educational note explains this, units and episode limits. Canonical, MET/AEMET provenance and legal routing unchanged.
+- Regressions: `tests/lab-rain-explained.test.mjs` is part of `bun run test:weather`.
+
 Shared Edge caching/abuse controls if traffic grows, server-side observability, independent performance measurement of the real Weather state, and correctly licensed official observations/warnings/radar only once their coverage and geographic precision can be verified.
 
 ## V5 — City search and coming days (2026-11-09)

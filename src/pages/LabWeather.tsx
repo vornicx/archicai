@@ -12,6 +12,7 @@ import { forecastReducer, forecastView, initialForecast, placeKey } from '../lab
 import { nextHourIndex, hourSummary } from '../lab/hourSelection'
 import { CitySearch, type PickedCity } from '../lab/CitySearch'
 import { DaysForecast } from '../lab/DaysForecast'
+import { RainExplained } from '../lab/RainExplained'
 import { dailySummaries, safeTimeZone } from '../lab/weatherDays'
 import { readRecents, writeRecents, pushRecent } from '../lab/citySearch'
 import '../styles/archic-light.css'
@@ -380,6 +381,7 @@ export default function LabWeather() {
                 </div>
               </section>
 
+              <RainExplained key={key} hourly={hourly} lang={lang} locale={locale} timeZone={tz} selectedTime={selPoint?.time} />
               <DaysForecast days={days} lang={lang} locale={locale} timeZone={tz} />
 
               {mode === 'detail' && (

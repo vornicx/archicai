@@ -33,6 +33,8 @@ for (const width of WIDTHS) {
       await scan(page, tag, results)
       if (!night && p.includes('weather')) {
         const detail = page.getByRole('button', { name: /^(Detalle|Detail)$/ })
+        const rain = page.locator('.re-reading summary')
+        if (await rain.count()) { await rain.click(); await scan(page, tag + ' rain-reading', results) }
         if (await detail.count()) { await detail.first().click(); await page.waitForTimeout(150); await scan(page, tag + ' detail', results) }
         // City search open with results (local index), then a coming-day row expanded.
         const box = page.getByRole('combobox', { name: /^(Buscar ciudad|Search city)$/ })

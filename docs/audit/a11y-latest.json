@@ -52,6 +52,10 @@
     "violations": []
   },
   {
+    "label": "/lab/weather/ @390 rain-reading",
+    "violations": []
+  },
+  {
     "label": "/lab/weather/ @390 detail",
     "violations": []
   },
@@ -69,6 +73,10 @@
   },
   {
     "label": "/en/lab/weather/ @390",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @390 rain-reading",
     "violations": []
   },
   {
@@ -116,6 +124,10 @@
     "violations": []
   },
   {
+    "label": "/lab/weather/ @1440 rain-reading",
+    "violations": []
+  },
+  {
     "label": "/lab/weather/ @1440 detail",
     "violations": []
   },
@@ -133,6 +145,10 @@
   },
   {
     "label": "/en/lab/weather/ @1440",
+    "violations": []
+  },
+  {
+    "label": "/en/lab/weather/ @1440 rain-reading",
     "violations": []
   },
   {

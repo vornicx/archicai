@@ -69,4 +69,5 @@ Also inspect rendered desktop + mobile, reduced motion, contact/critical paths, 
 - Day-level forecast values come only from `src/lab/weatherDays.ts` (tested in `tests/lab-weather-days.test.mjs`): local civil days, sampled min/max, rain only when non-overlapping periods tile the whole local day.
 
 ## Quality audits
+- Rain Explained calculations live only in `src/lab/rainExplained.ts`, consuming validated consecutive hourly data; preserve raw sums and separate hourly/cumulative plot scales to avoid misleading rainfall claims.
 - `npm run audit:a11y` (axe + menu keyboard checks, Weather via `scripts/audit-fixture.mjs`) and `npm run audit:perf` (Lighthouse lab) are dev-only gates documented in `docs/lab-quality-audit.md`; fix violations in components, never by excluding rules or selectors.
