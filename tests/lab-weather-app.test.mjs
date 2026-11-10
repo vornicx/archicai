@@ -40,3 +40,11 @@ test('worker never caches API forecast requests or app-wide navigations',()=>{
  assert.match(sw,/url\.origin!==self\.location\.origin/)
  assert.doesNotMatch(sw,/functions\/v1\/lab-weather/)
 })
+
+test('PWA builder has an explicit bounded Weather import graph and excludes API',()=>{
+ const s=readFileSync('scripts/finalize-weather-pwa.mjs','utf8')
+ assert.match(s,/src\/pages\/LabWeather\.tsx/)
+ assert.match(s,/dist/)
+ assert.match(s,/7_500_000/)
+ assert.doesNotMatch(s,/functions\/v1\/lab-weather/)
+})

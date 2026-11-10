@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node scripts/generate-weather-icons.mjs && vite",
     "start": "node server/contact-api.mjs",
-    "build": "node scripts/generate-weather-icons.mjs && node --import tsx scripts/generate-lab-pages.ts && tsc -b && vite build",
+    "build": "node scripts/generate-weather-icons.mjs && node --import tsx scripts/generate-lab-pages.ts && tsc -b && vite build && node scripts/finalize-weather-pwa.mjs",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "gen:pages": "node --import tsx scripts/generate-static-pages.ts && node --import tsx scripts/generate-archic-site-pages.ts && node --import tsx scripts/generate-exploration-pages.ts && node --import tsx scripts/generate-intent-pages.ts && node --import tsx scripts/postprocess-generated-seo.ts && node --import tsx scripts/seo-hardening.ts && node --import tsx scripts/validate-generated-seo.ts && node --import tsx scripts/generate-lab-pages.ts",

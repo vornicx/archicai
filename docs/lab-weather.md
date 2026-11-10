@@ -138,3 +138,5 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 - Hash deep links `#today/#hours/#days/#plan` power back/forward and PWA shortcuts without new backend routes. The location header is shared by all screens.
 - Star saves at most 6 explicit named places (preset city or GeoNames), local-only. GPS/typed coordinates cannot be saved, no sync or background updates. Favorites are validated and deduped on read.
 - Online/offline status never presents cached forecasts as live. Install instructions on iOS are optional; compatible browsers can show an install prompt. The Weather PWA does not request push permissions.
+
+- PWA production build emits a Vite asset manifest, extracts Weather's app/dynamic-entry dependency graph, and injects only critical JS, CSS and font assets into the installed service worker. The first launch after installation can render the shell without network; MET/AEMET forecasts are **never precached**. This avoids a blank offline app and avoids preloading the whole Archic marketing site. Offline diagnostics should exercise both fresh install and subsequent offline visits.

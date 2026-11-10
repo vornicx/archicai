@@ -282,3 +282,19 @@
  .lw-root .lw-tool{min-width:40px;width:40px;height:44px}
 }
 @media(prefers-reduced-motion:reduce){.lw-root .lw-app-tabs button{transition:none}}
+
+/* Responsive app polish and standalone-specific chrome. */
+.lw-root .lw-day-rain{white-space:nowrap}
+.lw-root .ww-day-select{scrollbar-width:none}
+.lw-root .ww-day-select::-webkit-scrollbar{display:none}
+@media(max-width:560px){
+ .lw-root .lw-day{grid-template-columns:minmax(0,1fr) 30px 78px;column-gap:10px}
+ .lw-root .lw-day-rain{font-size:13px}
+}
+@media(display-mode:standalone){
+ .lw-root .lw-header .lw-identity img,.lw-root .lw-header .lw-identity .as-brand-lab{display:none}
+ .lw-root .lw-header .lw-identity::after{content:'Weather';color:var(--al-ink);font:600 20px/1 var(--al-font);letter-spacing:-.045em}
+ .lw-root .lw-header nav>a{display:none}
+ .lw-root .lw-product{display:none}
+ .lw-root .lw-main{padding-top:18px}
+}

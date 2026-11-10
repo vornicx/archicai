@@ -1,5 +1,6 @@
 /* Weather PWA only. No weather forecasts, API responses, coordinates or user data cached. */
-const VERSION='weather-shell-v1'
+const VERSION='weather-shell-v2'
+const PRECACHE_ASSETS=[] // replaced only in dist/ by scripts/finalize-weather-pwa.mjs
 const SHELL=VERSION+'-navigation'
 const ASSETS=VERSION+'-assets'
 const OFFLINE='/weather/offline.html'
@@ -10,7 +11,10 @@ self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(SHELL)
     await cache.addAll([OFFLINE,'/weather/icons/weather-192.png'])
-    // Cache entry points on best effort. Offline fallback remains available.
+    // Bundles must be cached on first install: they loaded before the worker
+    // controlled the first page. Only the Weather critical import graph is listed.
+    const staticCache=await caches.open(ASSETS)
+    await Promise.all(PRECACHE_ASSETS.map(path=>staticCache.add(path).catch(()=>{})))
     await Promise.all(['/lab/weather/','/en/lab/weather/'].map(path=>cache.add(path).catch(()=>{})))
     await self.skipWaiting()
   })())
