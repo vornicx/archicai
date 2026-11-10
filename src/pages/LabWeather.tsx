@@ -13,10 +13,13 @@ import { nextHourIndex, hourSummary } from '../lab/hourSelection'
 import { CitySearch, type PickedCity } from '../lab/CitySearch'
 import { DaysForecast } from '../lab/DaysForecast'
 import { RainExplained } from '../lab/RainExplained'
+import { WeatherWindow } from '../lab/WeatherWindow'
+import { WeatherShift } from '../lab/WeatherShift'
 import { dailySummaries, safeTimeZone } from '../lab/weatherDays'
 import { readRecents, writeRecents, pushRecent } from '../lab/citySearch'
 import '../styles/archic-light.css'
 import '../styles/archic-lab.css'
+import '../styles/weather-decisions.css'
 
 type Place = { id: string; name: { es: string; en: string }; lat: number; lon: number; timeZone: string }
 const PLACES: Place[] = [
@@ -381,7 +384,9 @@ export default function LabWeather() {
                 </div>
               </section>
 
+              <WeatherWindow hourly={hourly} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
               <RainExplained key={key} hourly={hourly} lang={lang} locale={locale} timeZone={tz} selectedTime={selPoint?.time} />
+              <WeatherShift key={place.id} payload={payload} placeId={place.id} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
               <DaysForecast days={days} lang={lang} locale={locale} timeZone={tz} />
 
               {mode === 'detail' && (
