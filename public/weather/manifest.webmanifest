@@ -1,0 +1,49 @@
+{
+  "id": "/lab/weather/",
+  "name": "Weather · Archic Lab",
+  "short_name": "Weather",
+  "description": "Previsión meteorológica, lluvia y decisiones por hora.",
+  "lang": "es",
+  "start_url": "/lab/weather/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": [
+    "standalone"
+  ],
+  "background_color": "#F8F9FB",
+  "theme_color": "#F8F9FB",
+  "icons": [
+    {
+      "src": "/weather/icons/weather-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/weather/icons/weather-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/weather/icons/weather-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Horas",
+      "url": "/lab/weather/#hours"
+    },
+    {
+      "name": "Próximos días",
+      "url": "/lab/weather/#days"
+    },
+    {
+      "name": "Planificar",
+      "url": "/lab/weather/#plan"
+    }
+  ]
+}

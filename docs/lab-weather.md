@@ -125,3 +125,9 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 - One compact pair of zero-origin rain bars compares two consecutive, *complete* 24-hour model periods, starting with the next unstarted hour. A difference is not model uncertainty or historical observation.
 - Only 48 strictly contiguous future 1-hour MET intervals with complete, finite nonnegative precipitation produce a comparison; no 6h/12h mixing, gaps, guessed zeros or misleading partial data. Per-period max hourly wind appears only when all 24 hourly samples have usable values; otherwise omitted.
 - No extra API costs, maps, storage or external model. Tested incl. daylight saving, missing data, partial current hour.
+
+
+## Weather standalone PWA — installable app shell
+- Installable from the Weather-specific ES/EN manifests with standalone display, Archic-blue custom PNG icons and iOS home screen metadata. Start URL points to Weather, not the agency homepage. App navigation and saved places are local-only; installation is never falsely claimed to be App Store distribution.
+- The root-scoped worker at `/weather-sw.js` responds only to Weather navigations and immutable hashed static assets. All MET/AEMET function requests stay network-only; an offline page is displayed when a shell cannot be loaded. It must **never serve a cached forecast as current**.
+- Worker's static/offline cache can be cleared by normal browser site-data removal; no background weather requests, push subscriptions or GPS history.
