@@ -331,6 +331,10 @@ export default function LabWeather() {
                 {PLACES.map((item) => <option key={item.id} value={item.id}>{item.name[lang]}</option>)}
               </select>
             </span>
+
+          </div>
+          <details className="lw-location-drawer">
+            <summary>{lang === 'es' ? 'Ciudades y opciones' : 'Cities & settings'}</summary>
             <div className="lw-tools">
               {canSave&&<button className="lw-tool lw-favorite" type="button" aria-pressed={isSaved}
                 onClick={toggleSaved} aria-label={isSaved?(lang==='es'?'Quitar de favoritos':'Remove favorite'):(lang==='es'?'Guardar ciudad':'Save city')}
@@ -338,9 +342,6 @@ export default function LabWeather() {
               <button className="lw-tool" type="button" onClick={useDevice} aria-label={c.device} title={c.device}><LocateIcon /><span>{c.device}</span></button>
               <button className="lw-tool" type="button" onClick={() => setRevision((n) => n + 1)} disabled={loading} aria-label={c.refresh} title={c.refresh}><RefreshIcon /><span>{c.refresh}</span></button>
             </div>
-          </div>
-          <details className="lw-location-drawer">
-            <summary>{lang === 'es' ? 'Buscar otra ciudad' : 'Find another city'}</summary>
             <div className="lw-find-row">
             <CitySearch lang={lang} locale={locale} onPick={pickCity} />
             <details className="lw-coords">

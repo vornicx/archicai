@@ -160,3 +160,11 @@
  .lw-root.lw-immersive .lw-day-temp{grid-column:1/-1;margin-bottom:5px;grid-template-columns:30px 1fr 30px}
 }
 @media(prefers-reduced-motion:reduce){.lw-root.lw-immersive *, .lw-root.lw-immersive *::before,.lw-root.lw-immersive *::after{transition-duration:0s;animation-duration:0s}}
+
+/* More sky, fewer controls: tools live inside the city drawer, not above the temperature. */
+.lw-root.lw-immersive .lw-location-drawer .lw-tools{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px auto 12px}
+.lw-root.lw-immersive .lw-location-drawer .lw-tool{width:44px;min-width:44px;min-height:44px}
+@media(max-width:720px){
+  .lw-root.lw-immersive .lw-now{padding-top:51px}
+  .lw-root.lw-immersive .lw-location-drawer{margin-top:1px}
+}
