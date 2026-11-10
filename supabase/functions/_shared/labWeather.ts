@@ -1,4 +1,5 @@
 // ARCHIC LAB WEATHER — platform-neutral handler (no Deno/Node globals) so it can be unit-tested.
+import { readAemetAlerts } from './aemetAlerts.ts'
 // Source: MET Norway Locationforecast 2.0 (CC BY 4.0). Values are MODEL FORECASTS, never station observations.
 type Dict = Record<string, unknown>
 const rec = (v: unknown): Dict => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Dict) : {})
@@ -97,6 +98,7 @@ export function createLabWeatherHandler(deps: Deps = { fetch: (...a) => fetch(..
   const cache = new Map<string, Entry>()
   const inflight = new Map<string, Promise<Entry | null>>()
   const hits = new Map<string, { start: number; count: number }>()
+  const warningCache = new Map<string, { expires: number; result: unknown }>()
   const RATE = 30, WINDOW = 60_000, MAX_KEYS = 500
 
   const limited = (ip: string) => {
@@ -155,6 +157,22 @@ export function createLabWeatherHandler(deps: Deps = { fetch: (...a) => fetch(..
     const ip = (request.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() || 'unknown'
     if (limited(ip)) return json({ error: 'rate_limited' }, 429, origin, 'no-store', { 'Retry-After': '60' })
 
+    // Explicit opt-in to the official AEMET CAP feed for the two confirmed
+    // Meteoalerta zones. Do not infer warning zones for arbitrary coordinates.
+    const requested = new URL(request.url)
+    if (requested.searchParams.get('alerts') === '1') {
+      const zone = requested.searchParams.get('zone')
+      if (zone !== '614102' && zone !== '722802') return json({error:'unsupported_zone'},400,origin)
+      const key = 'alerts:' + zone + ':' + coords.lat + ',' + coords.lon
+      const old = warningCache.get(key)
+      if (old && old.expires > deps.now()) return json(old.result,200,origin,'public, max-age=120')
+      try {
+        const result = await readAemetAlerts(deps,zone,coords.lat,coords.lon)
+        if (warningCache.size > 60) warningCache.clear()
+        warningCache.set(key,{result,expires:deps.now()+5*60_000})
+        return json(result,200,origin,'public, max-age=120')
+      } catch { return json({error:'aemet_unavailable'},502,origin) }
+    }
     const key = coords.lat + ',' + coords.lon
     const cached = cache.get(key)
     const ttl = (e: Entry) => Math.max(0, Math.min(300, Math.floor((e.expiresAt - deps.now()) / 1000)))

@@ -215,3 +215,20 @@
 .lw-root .lw-foot{gap:4px}
 .lw-root .lw-foot .lw-disclosure{margin-top:0}
 .lw-root .lw-foot .lw-note{max-width:none;font-size:12px}
+
+/* AEMET is an official external warning source, not a status inferred from MET. */
+.lw-root .lw-official{margin-top:16px;padding:14px 0;border-bottom:1px solid var(--lw-quiet-line);color:var(--al-ink)}
+.lw-root .lw-official-head{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;font-weight:600}
+.lw-root .lw-official-head small{font-size:12px;font-weight:400;color:var(--al-muted)}
+.lw-root .lw-official a{min-height:44px;display:inline-flex;align-items:center;gap:6px;color:var(--al-blue-ink);font-size:12px;font-weight:550;text-decoration:none}
+.lw-root .lw-official a:focus-visible{outline:2px solid var(--al-blue);outline-offset:3px}
+.lw-root .lw-official ul{list-style:none;padding:0;margin:3px 0}
+.lw-root .lw-official li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--lw-quiet-line)}
+.lw-root .lw-alert-level{display:inline-block;min-width:62px;padding:5px 7px;border-radius:4px;background:#FFF3CD;color:#765600;font-size:11px;text-transform:capitalize;text-align:center}
+.lw-root .lw-alert-level[data-level=naranja]{background:#FFF0DF;color:#A34B00}
+.lw-root .lw-alert-level[data-level=rojo]{background:#FCE9E8;color:#AA2828}
+.lw-root .lw-alert-content{display:flex;flex-direction:column;gap:3px;min-width:0}
+.lw-root .lw-alert-content strong{font-size:13px;font-weight:550;line-height:1.35}
+.lw-root .lw-alert-content small,.lw-root .lw-alert-foot{color:var(--al-muted);font-size:11px;line-height:1.4}
+.lw-root .lw-alert-foot{display:block;margin-top:6px}
+@media(max-width:390px){.lw-root .lw-official-head{align-items:flex-start}.lw-root .lw-official-head small{display:block;margin-top:3px}}

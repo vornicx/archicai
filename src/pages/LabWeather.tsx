@@ -15,6 +15,7 @@ import { DaysForecast } from '../lab/DaysForecast'
 import { RainExplained } from '../lab/RainExplained'
 import { WeatherWindow } from '../lab/WeatherWindow'
 import { WeatherShift } from '../lab/WeatherShift'
+import { OfficialAlerts } from '../lab/OfficialAlerts'
 import { dailySummaries, safeTimeZone } from '../lab/weatherDays'
 import { readRecents, writeRecents, pushRecent } from '../lab/citySearch'
 import '../styles/archic-light.css'
@@ -359,6 +360,7 @@ export default function LabWeather() {
                 </div>
               </section>
 
+              <OfficialAlerts placeId={place.id} lat={place.lat} lon={place.lon} lang={lang} locale={locale} timeZone={tz} />
               <section className="lw-section" aria-labelledby="lw-hours-title">
                 <div className="lw-section-head">
                   <h2 id="lw-hours-title">{c.hours}</h2>

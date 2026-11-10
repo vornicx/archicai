@@ -113,3 +113,10 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 - Search and manual-coordinate entry share one compact responsive row. The coordinates form remains accessible on expansion; no search/GeoNames/network behavior changed.
 - Reading flow: model-now + rainfall, hourly strip, future days, Rain Explained, Weather Window, Weather Shift. No source or calculation altered.
 - Window dates and times are separately typeset; any end on another civil date is explicitly labelled. Visual tokens remain warm-white, ink and Archic blue. Touch controls remain at least 44px; keyboard focus, dark weather tones and reduced-motion are preserved.
+
+## Official warnings — AEMET scoped CAP feed (v12)
+- AEMET publishes RSS updates and CAP 1.2 notices with warning-area polygons: https://www.aemet.es/es/rss_info/avisos/esp (AEMET credited in UI).
+- The existing Lovable Cloud `lab-weather` Edge function supports `?alerts=1&zone=614102|722802&lat=...&lon=...` for **verified preset city/zone pairs only**: Écija and Sevilla (Campiña sevillana, AEMET `l=614102`), Madrid (Metropolitana y Henares, `l=722802`).
+- It reads only fixed official AEMET RSS URL, follows a bounded set of validated fixed-host CAP XML URLs for the chosen zone, validates CAP scope, type, expiry, level, and **polygon includes exact selected coordinate**, filters cancellations, caches for 5 min and rate-limits through the existing Edge controls.
+- The RSS is a stream of published **updates** and may be incomplete; UI never claims “no warnings” or “all clear” from missing matches/errors. Always provide a direct AEMET warning-zone link, and when matching notices are found render only official warning severity, event and times. No alerts for unverified arbitrary cities/GPS, never inferred from model rainfall.
+- This feature must be independently tested after backend deployment. Direct-only fallback is intentional if Edge version is not yet deployed.
