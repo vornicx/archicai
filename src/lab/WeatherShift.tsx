@@ -54,7 +54,13 @@ export function WeatherShift({ payload, placeId, lang, locale, timeZone, now }: 
   const [consentLoaded, setConsentLoaded] = useState(false)
   const [clearNotice, setClearNotice] = useState(false)
   useEffect(() => {
-    try { setEnabled(hasShiftOptIn(window.localStorage.getItem(SHIFT_OPT_IN_KEY))) } catch { setEnabled(false) }
+    try {
+      const optedIn = hasShiftOptIn(window.localStorage.getItem(SHIFT_OPT_IN_KEY))
+      // The previous release saved model forecasts automatically. Drop that legacy
+      // baseline unless this browser has explicitly opted into history storage.
+      if (!optedIn) window.localStorage.removeItem(SHIFT_STORAGE_KEY)
+      setEnabled(optedIn)
+    } catch { setEnabled(false) }
     setConsentLoaded(true)
   }, [])
   const snapshot = useMemo(() => snapshotForecast(payload.updatedAt, payload.points, now), [payload, now])
