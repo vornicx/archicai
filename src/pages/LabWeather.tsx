@@ -20,6 +20,7 @@ import { readRecents, writeRecents, pushRecent } from '../lab/citySearch'
 import '../styles/archic-light.css'
 import '../styles/archic-lab.css'
 import '../styles/weather-decisions.css'
+import '../styles/weather-polish.css'
 
 type Place = { id: string; name: { es: string; en: string }; lat: number; lon: number; timeZone: string }
 const PLACES: Place[] = [
@@ -35,7 +36,7 @@ const COPY = {
   es: {
     title: 'Archic Lab Weather — lluvia y previsión',
     description: 'Predicción meteorológica por ciudad: horas, próximos días y lluvia en litros por metro cuadrado, con fuente y hora de actualización visibles.',
-    location: 'Ubicación', device: 'Usar mi ubicación', coords: 'Introducir coordenadas', latitude: 'Latitud', longitude: 'Longitud', go: 'Consultar',
+    location: 'Ubicación', device: 'Usar mi ubicación', coords: 'Coordenadas', latitude: 'Latitud', longitude: 'Longitud', go: 'Consultar',
     simple: 'Resumen', detail: 'Detalle', refresh: 'Actualizar', mode: 'Nivel de detalle',
     loading: 'Consultando la predicción…', failure: 'No hemos podido obtener la predicción.', failureAt: (p: string) => `No hemos podido obtener la predicción para ${p}.`, loadingAt: (p: string) => `Consultando la predicción para ${p}…`, prevHours: 'Horas anteriores', nextHours: 'Horas siguientes', retry: 'Reintentar', empty: 'La fuente no ha devuelto intervalos horarios para esta ubicación.',
     invalid: 'Introduce una latitud entre −90 y 90 y una longitud entre −180 y 180.',
@@ -282,15 +283,17 @@ export default function LabWeather() {
               <button className="lw-tool" type="button" onClick={() => setRevision((n) => n + 1)} disabled={loading} aria-label={c.refresh} title={c.refresh}><RefreshIcon /><span>{c.refresh}</span></button>
             </div>
           </div>
-          <CitySearch lang={lang} locale={locale} onPick={pickCity} />
-          <details className="lw-coords">
+          <div className="lw-find-row">
+            <CitySearch lang={lang} locale={locale} onPick={pickCity} />
+            <details className="lw-coords">
             <summary>{c.coords}</summary>
             <form onSubmit={submitCoordinates} noValidate>
               <label>{c.latitude}<input inputMode="decimal" autoComplete="off" value={latText} onChange={(e) => setLatText(e.target.value)} /></label>
               <label>{c.longitude}<input inputMode="decimal" autoComplete="off" value={lonText} onChange={(e) => setLonText(e.target.value)} /></label>
               <button className="al-btn al-btn-primary" type="submit">{c.go}</button>
             </form>
-          </details>
+            </details>
+          </div>
           {formError && <p className="lw-error" role="alert">{formError}</p>}
         </div>
 
@@ -387,10 +390,10 @@ export default function LabWeather() {
                 </div>
               </section>
 
-              <WeatherWindow hourly={windowHourly} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
-              <RainExplained key={key} hourly={hourly} lang={lang} locale={locale} timeZone={tz} selectedTime={selPoint?.time} />
-              <WeatherShift key={place.id} payload={payload} placeId={place.id} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
               <DaysForecast days={days} lang={lang} locale={locale} timeZone={tz} />
+              <RainExplained key={key} hourly={hourly} lang={lang} locale={locale} timeZone={tz} selectedTime={selPoint?.time} />
+              <WeatherWindow hourly={windowHourly} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
+              <WeatherShift key={place.id} payload={payload} placeId={place.id} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
 
               {mode === 'detail' && (
                 <>

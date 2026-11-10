@@ -106,3 +106,10 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 - The default Window scope is **08:00–22:00 local clock time**, labelled explicitly as a pragmatic scheduling preference, NOT astronomical daylight or a safety threshold. Users can switch to **any hour**, including overnight, inside Customize criteria.
 - Both candidate ranking and the list of available local dates respect this scope, before selecting the top three windows. A window must start and end inside the selected local clock range and the same destination-local civil day; times crossing midnight remain accessible in Any time.
 - Existing raw model data, the 24-hour chart, Rain Explained, Weather Shift, unit rules and opt-in storage are unchanged. Tests cover a favorable 04:00 window being excluded by default and returned when selecting any hour.
+
+
+## Weather visual refinement · v10
+- A dedicated, Weather-only CSS layer `src/styles/weather-polish.css` refines typography, section hierarchy, controls, weather-tone responsive hero, daylight-independent rain chart legibility, and Window recommendations. No global website restyling.
+- Search and manual-coordinate entry share one compact responsive row. The coordinates form remains accessible on expansion; no search/GeoNames/network behavior changed.
+- Reading flow: model-now + rainfall, hourly strip, future days, Rain Explained, Weather Window, Weather Shift. No source or calculation altered.
+- Window dates and times are separately typeset; any end on another civil date is explicitly labelled. Visual tokens remain warm-white, ink and Archic blue. Touch controls remain at least 44px; keyboard focus, dark weather tones and reduced-motion are preserved.

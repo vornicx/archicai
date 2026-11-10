@@ -1,6 +1,6 @@
 import { useEffect, useId, useMemo, useState } from 'react'
 import type { Point } from './weatherClient'
-import { availableWindowDays, findWeatherWindows, windowFitIssues, WINDOW_PRESETS, type WindowCriteria } from './weatherWindow'
+import { availableWindowDays, findWeatherWindows, localWindowDay, windowFitIssues, WINDOW_PRESETS, type WindowCriteria } from './weatherWindow'
 
 type Preset = 'walk' | 'sport' | 'outdoors' | 'custom'
 const COPY = {
@@ -73,8 +73,13 @@ export function WeatherWindow({ hourly, lang, locale, timeZone, now }: {
   const dayLabel = (s: string) => new Intl.DateTimeFormat(locale, {
     weekday: 'short', day: 'numeric', month: 'short', timeZone,
   }).format(new Date(s))
-  const formatted = (s: string) => new Intl.DateTimeFormat(locale,
-    { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone }).format(new Date(s))
+  const dateLabel = (s: string) => new Intl.DateTimeFormat(locale,
+    { day: 'numeric', month: 'short', timeZone }).format(new Date(s))
+  const clockLabel = (s: string) => new Intl.DateTimeFormat(locale,
+    { hour: '2-digit', minute: '2-digit', timeZone }).format(new Date(s))
+  const timeLabel = (start: string, end: string) =>
+    `${clockLabel(start)}–${localWindowDay(start, timeZone) === localWindowDay(end, timeZone)
+      ? clockLabel(end) : `${dateLabel(end)} ${clockLabel(end)}`}`
   const selectPreset = (p: Exclude<Preset, 'custom'>) => { setPreset(p); setCriteria({ ...WINDOW_PRESETS[p] }) }
   const change = (field: keyof WindowCriteria, value: number, lo: number, hi: number) => {
     setPreset('custom')
@@ -132,7 +137,7 @@ export function WeatherWindow({ hourly, lang, locale, timeZone, now }: {
         <p className="ww-subtitle">{result.matchesFound ? t.match : t.closest}</p>
         <ol className="ww-list">{result.windows.map((w, i) => <li className="ww-item" key={w.start} data-primary={i === 0 || undefined}>
           <div className="ww-number">{String(i + 1).padStart(2, '0')}</div>
-          <div className="ww-time"><strong>{formatted(w.start)} – {formatted(w.end)}</strong>
+          <div className="ww-time"><strong><span className="ww-date">{dateLabel(w.start)}</span><span className="ww-hours">{timeLabel(w.start, w.end)}</span></strong>
             {i === 0 && <span>{result.matchesFound ? t.top : t.closest}</span>}</div>
           <dl className="ww-measures">
             <div><dt>{t.rain}</dt><dd>{formatter(w.rainMm, locale, 2)} mm</dd></div>
