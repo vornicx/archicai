@@ -1,6 +1,6 @@
 import { useId, useMemo, useState } from 'react'
 import type { Point } from './weatherClient'
-import { findWeatherWindows, WINDOW_PRESETS, type WindowCriteria } from './weatherWindow'
+import { findWeatherWindows, windowFitIssues, WINDOW_PRESETS, type WindowCriteria } from './weatherWindow'
 
 type Preset = 'walk' | 'sport' | 'outdoors' | 'custom'
 const COPY = {
@@ -15,6 +15,7 @@ const COPY = {
     windLimit: 'Viento máximo', minTemp: 'Temperatura mínima', maxTemp: 'Temperatura máxima',
     hour: 'hora', hours: 'horas', note: 'Comparación de predicciones, no garantía de buen tiempo ni evaluación de seguridad. Se descartan las horas sin datos y la hora que ya ha empezado. No incluye avisos oficiales ni ráfagas en los criterios.',
     noMatch: 'No se ha encontrado una franja utilizable en el horizonte horario.',
+    fits: 'Cumple los límites de lluvia, viento y temperatura.', exceeds: 'No cumple:', rainIssue: 'lluvia por hora', windIssue: 'viento', tempIssue: 'temperatura', peak: 'Máximo de lluvia en una hora',
   },
   en: {
     heading: 'Weather Window', kicker: 'Find your moment', lead: 'Upcoming hours ranked by your preferences.',
@@ -27,6 +28,7 @@ const COPY = {
     windLimit: 'Maximum wind', minTemp: 'Minimum temperature', maxTemp: 'Maximum temperature',
     hour: 'hour', hours: 'hours', note: 'Comparison of model forecasts, not a promise of good weather or a safety assessment. Missing hours and the hour already in progress are excluded. Official warnings and gusts are not included in these criteria.',
     noMatch: 'No usable window found within the hourly forecast.',
+    fits: 'Meets the rain, wind and temperature limits.', exceeds: 'Outside limits:', rainIssue: 'hourly rain', windIssue: 'wind', tempIssue: 'temperature', peak: 'Peak hourly rain',
   },
 }
 const formatter = (n: number, locale: string, digits: number) =>
@@ -95,6 +97,11 @@ export function WeatherWindow({ hourly, lang, locale, timeZone, now }: {
             <div><dt>{t.temp}</dt><dd>{formatter(w.tempMinC, locale, 0)}–{formatter(w.tempMaxC, locale, 0)} °C</dd></div>
             <div><dt>{t.wind}</dt><dd>{formatter(w.windMaxKmh, locale, 0)} km/h</dd></div>
           </dl>
+          <p className="ww-explanation">
+            {w.meetsCriteria ? t.fits : `${t.exceeds} ${windowFitIssues(w, criteria).map(issue =>
+              issue === 'rain' ? t.rainIssue : issue === 'wind' ? t.windIssue : t.tempIssue).join(' · ')}.`}
+            <span>{t.peak}: {formatter(w.peakRainMm, locale, 2)} mm/h</span>
+          </p>
         </li>)}</ol>
       </>}
     </div>
