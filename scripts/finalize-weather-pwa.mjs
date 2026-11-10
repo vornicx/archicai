@@ -4,8 +4,11 @@ import { readFileSync, writeFileSync, statSync } from 'node:fs'
 import { resolve, posix } from 'node:path'
 const root=resolve(process.cwd(),'dist')
 const manifest=JSON.parse(readFileSync(resolve(root,'.vite/manifest.json'),'utf8'))
-const keys=['src/main.tsx','src/pages/LabWeather.tsx']
-for(const key of keys)if(!manifest[key])throw new Error('Weather PWA entry missing from build manifest: '+key)
+const allKeys=Object.keys(manifest)
+const weatherEntry=allKeys.find(k=>k==='lab/weather/index.html'||k.endsWith('/lab/weather/index.html')) 
+const weatherChunk=allKeys.find(k=>k==='src/pages/LabWeather.tsx'||k.endsWith('/LabWeather.tsx'))
+if(!weatherEntry||!weatherChunk)throw new Error('Weather PWA entry missing: '+JSON.stringify({weatherEntry,weatherChunk,keys:allKeys}))
+const keys=[weatherEntry,weatherChunk]
 const collected=new Set()
 const visited=new Set()
 function include(key){
