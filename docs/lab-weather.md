@@ -91,3 +91,12 @@ Shared Edge caching/abuse controls if traffic grows, server-side observability, 
 1 h→6 h transition, overlap, duplicates, cross-midnight, missing rain vs explicit 0, invalid zone, no data, blocked fetch/retry, recents validation.
 `npm run audit:a11y`: 40 axe scans (adds search-open with results and day-expanded), 0 violations in the automated subset (not full WCAG conformance).
 Browser QA used a local proxy to the real Edge Function with an `Origin: https://archic.es` header (localhost is rejected by CORS); Lovable Preview itself was not driven.
+
+
+## Weather Window · local-day planning (v8, 2026-11-10)
+
+- Window can now inspect **up to 72 consecutive 1-hour forecast intervals** provided by the same MET response, independent of the 24-hour plot/Rain Explained. This is a *maximum inspection cap*, not a promise of 72 hours of data: the real horizon ends at the first gap/non-hourly block.
+- Results can be scoped to **All** or a destination-local calendar date. Day tabs are shown only when at least one complete future candidate of the configured duration exists. The local day uses `Intl.DateTimeFormat(...).formatToParts` with the selected city's IANA time zone. Distinct UTC timestamps remain distinct across daylight-saving fall-back.
+- Date filtering is applied to ALL valid candidates **before** ranking and selection, so a tomorrow result cannot be obscured by the global top three. The day refers to the **start** of a window, which can end after midnight.
+- The interface reports how many future individual hours have complete rain/temperature/wind values. Incomplete, stale/in-progress, 6h/12h and gapped intervals are excluded. No added provider calls, persistence, alerts, or invented extended forecast.
+- Tests cover a distant-day winner, local-midnight DST in Madrid/New York, preset durations, missing/aggregate hours, invalid time zone and future-only selection.

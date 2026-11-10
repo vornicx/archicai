@@ -36,6 +36,27 @@ export function windowFitIssues(w: ForecastWindow, criteria: WindowCriteria): Wi
 export type WindowSearchResult = { windows: ForecastWindow[]; matchesFound: boolean; candidates: number }
 const HOUR = 3_600_000
 
+export type WindowDay = { key: string; startsAt: string }
+export type WindowDayFilter = { dayKey: string; timeZone: string }
+
+/** A civil calendar date in the forecast destination's zone, not in the visitor's zone.
+ * Absolute hourly instants remain distinct through DST clock changes. */
+export function localWindowDay(time: string, timeZone: string): string | null {
+  const ms = Date.parse(time)
+  if (!Number.isFinite(ms)) return null
+  try {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone, year: 'numeric', month: '2-digit', day: '2-digit',
+    })
+    const parts = formatter.formatToParts(new Date(ms))
+    const get = (type: string) => parts.find(part => part.type === type)?.value
+    const year = get('year'), month = get('month'), day = get('day')
+    return year && month && day ? `${year}-${month}-${day}` : null
+  } catch {
+    return null
+  }
+}
+
 export const WINDOW_PRESETS: Record<'walk' | 'sport' | 'outdoors', WindowCriteria> = {
   walk: { duration: 2, rainMax: 0.3, windMax: 25, tempMin: 8, tempMax: 30 },
   sport: { duration: 1, rainMax: 0.1, windMax: 20, tempMin: 5, tempMax: 28 },
@@ -60,7 +81,7 @@ function validHour(p: WindowHour): boolean {
 /** Only complete, future (not in-progress), strictly contiguous hourly intervals can be ranked.
  * Incomplete or non-hourly forecasts are skipped, never treated as calm or dry.
  * A fallback is explicitly marked when none satisfies every user-defined criterion. */
-export function findWeatherWindows(hours: WindowHour[], now: number, criteria: WindowCriteria): WindowSearchResult {
+export function findWeatherWindows(hours: WindowHour[], now: number, criteria: WindowCriteria, dayFilter?: WindowDayFilter): WindowSearchResult {
   const empty: WindowSearchResult = { windows: [], matchesFound: false, candidates: 0 }
   if (!Number.isFinite(now) || !validCriteria(criteria)) return empty
   const sorted = [...hours].sort((a, b) => Date.parse(a.time) - Date.parse(b.time))
@@ -88,14 +109,39 @@ export function findWeatherWindows(hours: WindowHour[], now: number, criteria: W
     candidates.push({ start: slice[0].time, end: new Date(startMs + criteria.duration * HOUR).toISOString(),
       rainMm, peakRainMm, windMaxKmh, tempMinC, tempMaxC, meetsCriteria, score })
   }
-  const matchesFound = candidates.some(w => w.meetsCriteria)
+  // Filter before ranking, so the best window of tomorrow cannot disappear behind
+  // the top three from today. The day refers to the START in the destination's zone.
+  const filtered = dayFilter
+    ? candidates.filter(w => localWindowDay(w.start, dayFilter.timeZone) === dayFilter.dayKey)
+    : candidates
+  const matchesFound = filtered.some(w => w.meetsCriteria)
   // Strict matches always beat closest alternatives. Return distinct, non-overlapping windows.
-  const ranked = candidates.filter(w => !matchesFound || w.meetsCriteria)
+  const ranked = filtered.filter(w => !matchesFound || w.meetsCriteria)
     .sort((a, b) => a.score - b.score || Date.parse(a.start) - Date.parse(b.start))
   const chosen: ForecastWindow[] = []
   for (const w of ranked) {
     if (chosen.every(c => Date.parse(w.end) <= Date.parse(c.start) || Date.parse(w.start) >= Date.parse(c.end))) chosen.push(w)
     if (chosen.length === 3) break
   }
-  return { windows: chosen, matchesFound, candidates: candidates.length }
+  return { windows: chosen, matchesFound, candidates: filtered.length }
+}
+
+/** Days with at least one evaluable, fully known future candidate of the selected duration.
+ * Uses the same candidate checks as the recommendations; never labels a day available
+ * based merely on an isolated point, missing values or a 6h/12h aggregate. */
+export function availableWindowDays(hours: WindowHour[], now: number, criteria: WindowCriteria, timeZone: string): WindowDay[] {
+  if (!Number.isFinite(now)) return []
+  const possibleDays = new Map<string, string>()
+  for (const hour of hours) {
+    const ms = Date.parse(hour.time)
+    if (!Number.isFinite(ms) || ms < now || hour.periodHours !== 1) continue
+    const key = localWindowDay(hour.time, timeZone)
+    if (key && (!possibleDays.has(key) || ms < Date.parse(possibleDays.get(key)!))) {
+      possibleDays.set(key, hour.time)
+    }
+  }
+  return [...possibleDays.entries()]
+    .filter(([dayKey]) => findWeatherWindows(hours, now, criteria, { dayKey, timeZone }).candidates > 0)
+    .map(([key, startsAt]) => ({ key, startsAt }))
+    .sort((a, b) => Date.parse(a.startsAt) - Date.parse(b.startsAt))
 }

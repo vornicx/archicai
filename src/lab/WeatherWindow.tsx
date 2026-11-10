@@ -1,15 +1,16 @@
-import { useId, useMemo, useState } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
 import type { Point } from './weatherClient'
-import { findWeatherWindows, windowFitIssues, WINDOW_PRESETS, type WindowCriteria } from './weatherWindow'
+import { availableWindowDays, findWeatherWindows, windowFitIssues, WINDOW_PRESETS, type WindowCriteria } from './weatherWindow'
 
 type Preset = 'walk' | 'sport' | 'outdoors' | 'custom'
 const COPY = {
   es: {
     heading: 'Weather Window', kicker: 'Encuentra tu momento', lead: 'Las próximas horas, ordenadas según tus preferencias.',
     walk: 'Pasear', sport: 'Deporte', outdoors: 'Exterior',
+    days: 'Elegir día', allDays: 'Todos', coverage: (n: number) => `${n} horas futuras con datos completos para evaluar posibles franjas.`,
     closest: 'No hay una franja que cumpla todos los criterios. Estas son las más cercanas.',
     match: 'Franjas que cumplen tus criterios', top: 'Mejor franja', next: 'Otras franjas',
-    noData: 'No hay suficientes horas futuras con lluvia, temperatura y viento disponibles para comparar.',
+    noData: 'No hay suficientes horas futuras con lluvia, temperatura y viento disponibles para comparar. Los periodos de 6 o 12 horas no se tratan como datos horarios.',
     rain: 'Lluvia total', temp: 'Temperatura', wind: 'Viento máximo',
     criteria: 'Personalizar criterios', duration: 'Duración', rainLimit: 'Lluvia máxima por hora',
     windLimit: 'Viento máximo', minTemp: 'Temperatura mínima', maxTemp: 'Temperatura máxima',
@@ -20,9 +21,10 @@ const COPY = {
   en: {
     heading: 'Weather Window', kicker: 'Find your moment', lead: 'Upcoming hours ranked by your preferences.',
     walk: 'Walking', sport: 'Exercise', outdoors: 'Outdoors',
+    days: 'Choose day', allDays: 'All', coverage: (n: number) => `${n} future hours have complete data for evaluating possible windows.`,
     closest: 'No time window meets every criterion. These are the closest alternatives.',
     match: 'Windows matching your criteria', top: 'Best window', next: 'Other windows',
-    noData: 'Not enough future hours with complete rain, temperature and wind data to compare.',
+    noData: 'Not enough future hours with complete rain, temperature and wind data to compare. Six- and twelve-hour blocks are not treated as hourly values.',
     rain: 'Total rain', temp: 'Temperature', wind: 'Maximum wind',
     criteria: 'Customize criteria', duration: 'Duration', rainLimit: 'Maximum rain per hour',
     windLimit: 'Maximum wind', minTemp: 'Minimum temperature', maxTemp: 'Maximum temperature',
@@ -42,7 +44,23 @@ export function WeatherWindow({ hourly, lang, locale, timeZone, now }: {
   const t = COPY[lang], id = useId()
   const [preset, setPreset] = useState<Preset>('walk')
   const [criteria, setCriteria] = useState<WindowCriteria>({ ...WINDOW_PRESETS.walk })
-  const result = useMemo(() => findWeatherWindows(hourly, now, criteria), [hourly, now, criteria])
+  const [day, setDay] = useState('all')
+  const days = useMemo(() => availableWindowDays(hourly, now, criteria, timeZone), [hourly, now, criteria, timeZone])
+  const activeDay = day === 'all' || days.some(d => d.key === day) ? day : 'all'
+  useEffect(() => {
+    if (day !== 'all' && !days.some(d => d.key === day)) setDay('all')
+  }, [day, days])
+  const result = useMemo(
+    () => findWeatherWindows(hourly, now, criteria, activeDay === 'all' ? undefined : { dayKey: activeDay, timeZone }),
+    [hourly, now, criteria, activeDay, timeZone],
+  )
+  const completeHours = hourly.filter(p => Date.parse(p.time) >= now && p.periodHours === 1
+    && p.precipitationMm !== null && Number.isFinite(p.precipitationMm) && p.precipitationMm >= 0
+    && p.temperatureC !== null && Number.isFinite(p.temperatureC)
+    && p.windKmh !== null && Number.isFinite(p.windKmh) && p.windKmh >= 0).length
+  const dayLabel = (s: string) => new Intl.DateTimeFormat(locale, {
+    weekday: 'short', day: 'numeric', month: 'short', timeZone,
+  }).format(new Date(s))
   const formatted = (s: string) => new Intl.DateTimeFormat(locale,
     { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone }).format(new Date(s))
   const selectPreset = (p: Exclude<Preset, 'custom'>) => { setPreset(p); setCriteria({ ...WINDOW_PRESETS[p] }) }
@@ -59,6 +77,12 @@ export function WeatherWindow({ hourly, lang, locale, timeZone, now }: {
       </div>
     </div>
     <p className="ww-lead">{t.lead}</p>
+    <div className="ww-day-select" role="group" aria-label={t.days}>
+      <button type="button" aria-pressed={activeDay === 'all'} onClick={() => setDay('all')}>{t.allDays}</button>
+      {days.map(d => <button type="button" key={d.key} aria-pressed={activeDay === d.key}
+        onClick={() => setDay(d.key)}>{dayLabel(d.startsAt)}</button>)}
+    </div>
+    <p className="ww-coverage">{t.coverage(completeHours)}</p>
     <details className="ww-settings">
       <summary>{t.criteria}</summary>
       <div className="ww-fields">

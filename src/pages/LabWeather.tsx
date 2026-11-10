@@ -135,6 +135,9 @@ export default function LabWeather() {
   useEffect(() => { setSelected(0) }, [view.data])
 
   const hourly = useMemo(() => (payload ? upcomingHourly(payload.points, now || Date.now(), 24) : []), [payload, now])
+  // Decision windows can look further ahead than the intentionally compact 24h chart.
+  // Still only contiguous 1h model intervals: no fabricated resolution from 6h blocks.
+  const windowHourly = useMemo(() => (payload ? upcomingHourly(payload.points, now || Date.now(), 72) : []), [payload, now])
   const current = hourly[0] ?? null
   const rain24 = rainTotal(hourly, 24)
   const rain6 = rainTotal(hourly, 6)
@@ -384,7 +387,7 @@ export default function LabWeather() {
                 </div>
               </section>
 
-              <WeatherWindow hourly={hourly} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
+              <WeatherWindow hourly={windowHourly} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
               <RainExplained key={key} hourly={hourly} lang={lang} locale={locale} timeZone={tz} selectedTime={selPoint?.time} />
               <WeatherShift key={place.id} payload={payload} placeId={place.id} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
               <DaysForecast days={days} lang={lang} locale={locale} timeZone={tz} />

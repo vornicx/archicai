@@ -105,3 +105,12 @@
   .ws-chart-head{align-items:flex-start}
   .ws-chart-head h3{font-size:14px}
 }
+
+
+/* Window day picker: an unobtrusive, scrollable mobile tab line, no new card system. */
+.ww-day-select{display:flex;gap:4px;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;border-bottom:1px solid var(--al-line-2);padding:0 0 2px}
+.ww-day-select button{flex:0 0 auto;min-height:44px;padding:10px 13px;white-space:nowrap;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--al-ink-2);font:500 14px/1.3 var(--al-font);cursor:pointer;touch-action:manipulation}
+.ww-day-select button[aria-pressed=true]{border-bottom-color:var(--al-blue);color:var(--al-blue-ink)}
+.ww-day-select button:focus-visible{outline:2px solid var(--al-blue);outline-offset:-3px}
+.ww-coverage{margin:10px 0 0;color:var(--al-muted);font-size:12px;line-height:1.5}
+@media(max-width:560px){.ww-day-select{margin-right:0}.ww-day-select button{padding-inline:12px}}

@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { findWeatherWindows as find, WINDOW_PRESETS, windowFitIssues } from '../src/lab/weatherWindow.ts'
+import { availableWindowDays, findWeatherWindows as find, localWindowDay, WINDOW_PRESETS, windowFitIssues } from '../src/lab/weatherWindow.ts'
 
 const T = Date.parse('2026-11-10T10:00:00Z')
 const sample = (i, rain = 0, wind = 8, temp = 20) => ({
@@ -84,4 +84,59 @@ test('fitting forecast windows have no reason to warn about exceeded criteria', 
   assert.equal(match.meetsCriteria, true)
   assert.deepEqual(windowFitIssues(match, WINDOW_PRESETS.walk), [])
   assert.equal(match.peakRainMm, 0.3)
+})
+
+test('day filtering ranks all candidates for tomorrow, not just the three global winners', () => {
+  const hours = Array.from({ length: 48 }, (_, i) => sample(i))
+  const all = find(hours, T - 1000, WINDOW_PRESETS.walk)
+  assert.ok(all.windows.every(w => localWindowDay(w.start, 'Europe/Madrid') === '2026-11-10'))
+  const tomorrow = find(hours, T - 1000, WINDOW_PRESETS.walk, { dayKey: '2026-11-11', timeZone: 'Europe/Madrid' })
+  assert.equal(tomorrow.matchesFound, true)
+  assert.ok(tomorrow.candidates > 0)
+  assert.ok(tomorrow.windows.every(w => localWindowDay(w.start, 'Europe/Madrid') === '2026-11-11'))
+  const days = availableWindowDays(hours, T - 1000, WINDOW_PRESETS.walk, 'Europe/Madrid')
+  assert.ok(days.some(d => d.key === '2026-11-11'))
+  assert.ok(days.some(d => d.key === '2026-11-12'))
+})
+
+test('DST in Madrid keeps consecutive absolute hours across spring-forward', () => {
+  const start = Date.parse('2026-03-29T00:00:00Z')
+  const hours = Array.from({length: 4}, (_, i) => ({...sample(0), time:new Date(start+i*3600000).toISOString()}))
+  const day = '2026-03-29'
+  assert.equal(localWindowDay(hours[0].time, 'Europe/Madrid'), day)
+  assert.equal(localWindowDay(hours[1].time, 'Europe/Madrid'), day)
+  const result = find(hours, start-1000, WINDOW_PRESETS.walk, {dayKey:day, timeZone:'Europe/Madrid'})
+  assert.ok(result.windows.length > 0)
+  assert.equal(result.windows[0].end, new Date(Date.parse(result.windows[0].start)+2*3600000).toISOString())
+})
+
+test('DST in New York keeps both repeated 01:00 local hours distinct', () => {
+  const first = Date.parse('2026-11-01T05:00:00Z')
+  const h = [0,1,2].map(i => ({...sample(0), time:new Date(first+i*3600000).toISOString()}))
+  assert.equal(localWindowDay(h[0].time, 'America/New_York'), '2026-11-01')
+  assert.equal(localWindowDay(h[1].time, 'America/New_York'), '2026-11-01')
+  const r = find(h, first-1000, WINDOW_PRESETS.walk, {dayKey:'2026-11-01',timeZone:'America/New_York'})
+  assert.equal(r.candidates, 2)
+  assert.ok(r.windows.length > 0)
+  assert.equal(Date.parse(h[1].time)-Date.parse(h[0].time), 3600000)
+})
+
+test('day without complete candidate does not appear available or claim matches', () => {
+  const short = [sample(0),sample(1)]
+  assert.equal(find(short,T-1000,WINDOW_PRESETS.walk,{dayKey:'2026-11-30',timeZone:'UTC'}).candidates,0)
+  assert.deepEqual(availableWindowDays([sample(0), {...sample(1), windKmh:null}], T-1000, WINDOW_PRESETS.walk,'UTC'),[])
+  assert.deepEqual(availableWindowDays([sample(0), {...sample(1), periodHours:6}], T-1000, WINDOW_PRESETS.walk,'UTC'),[])
+  assert.equal(localWindowDay(sample(0).time,'Definitely/Invalid'),null)
+})
+
+test('day choices adapt to one-, two- and three-hour presets and future-only rule', () => {
+  const h = [sample(0),sample(1),sample(2)]
+  const afterFirstStarted = T + 10 * 60000
+  assert.equal(availableWindowDays(h,afterFirstStarted,WINDOW_PRESETS.sport,'UTC').length,1)
+  assert.equal(availableWindowDays(h,afterFirstStarted,WINDOW_PRESETS.walk,'UTC').length,1)
+  assert.equal(availableWindowDays(h,afterFirstStarted,WINDOW_PRESETS.outdoors,'UTC').length,0)
+  for (const preset of Object.values(WINDOW_PRESETS)) {
+    const r = find(h, afterFirstStarted, preset)
+    assert.ok(r.windows.every(w => Date.parse(w.start)>=afterFirstStarted))
+  }
 })
