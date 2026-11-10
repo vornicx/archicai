@@ -9,6 +9,12 @@ export type ForecastSnapshot = {
 }
 export type ShiftEntry = { cityId: string; latest: ForecastSnapshot; previous?: ForecastSnapshot }
 export type ShiftStore = { version: 1; entries: ShiftEntry[] }
+export type ShiftHourComparison = {
+  time: string
+  beforeMm: number
+  afterMm: number
+  deltaMm: number
+}
 export type ShiftComparison = {
   hours: 6 | 12 | 24
   from: string
@@ -18,10 +24,14 @@ export type ShiftComparison = {
   deltaMm: number
   previousModel: string
   currentModel: string
+  hourly: ShiftHourComparison[]
+  /** Total amount unchanged but distribution across hours is materially different. */
+  timingChanged: boolean
+  largestHourlyChange: ShiftHourComparison | null
 }
 export type ShiftOutcome = {
   store: ShiftStore
-  state: 'baseline' | 'same' | 'changed' | 'insufficient' | 'stale'
+  state: 'baseline' | 'same' | 'changed' | 'retimed' | 'insufficient' | 'stale'
   comparison: ShiftComparison | null
 }
 const HOUR = 3_600_000
@@ -94,12 +104,25 @@ export function compareShift(previous: ForecastSnapshot, current: ForecastSnapsh
       const start = Date.parse(available[i].time)
       const rows = available.slice(i, i + span)
       if (!rows.every((h, n) => Date.parse(h.time) === start + n * HOUR)) continue
-      const after = rows.reduce((sum, h) => sum + (h.rainMm as number), 0)
-      const before = rows.reduce((sum, h) => sum + (prev.get(h.time) as number), 0)
+      const hourly = rows.map((h): ShiftHourComparison => {
+        const beforeMm = prev.get(h.time) as number
+        const afterMm = h.rainMm as number
+        return { time: h.time, beforeMm, afterMm, deltaMm: afterMm - beforeMm }
+      })
+      const after = hourly.reduce((sum, h) => sum + h.afterMm, 0)
+      const before = hourly.reduce((sum, h) => sum + h.beforeMm, 0)
+      const largestHourlyChange = hourly.reduce<ShiftHourComparison | null>((winner, h) =>
+        Math.abs(h.deltaMm) > Math.abs(winner?.deltaMm ?? 0) ? h : winner, null)
+      // A change of the timing is only inferred when totals are essentially equal,
+      // but at least one individual hourly amount changed materially (>= 0.2 mm).
+      const timingChanged = Math.abs(after - before) < 0.05 &&
+        (largestHourlyChange ? Math.abs(largestHourlyChange.deltaMm) >= 0.2 : false)
       return {
         hours: span, from: rows[0].time, until: new Date(start + span * HOUR).toISOString(),
         beforeMm: before, afterMm: after, deltaMm: after - before,
         previousModel: previous.issuedAt, currentModel: current.issuedAt,
+        hourly, timingChanged, largestHourlyChange: largestHourlyChange && Math.abs(largestHourlyChange.deltaMm) >= 0.05
+          ? largestHourlyChange : null,
       }
     }
   }
@@ -125,7 +148,9 @@ export function updateShiftStore(store: ShiftStore, cityId: string, current: For
   const comparison = latest.previous ? compareShift(latest.previous, latest.latest, now) : null
   return {
     store: nextStore,
-    state: !latest.previous ? 'baseline' : !comparison ? 'insufficient' : Math.abs(comparison.deltaMm) < 0.05 ? 'same' : 'changed',
+    state: !latest.previous ? 'baseline' : !comparison ? 'insufficient'
+      : Math.abs(comparison.deltaMm) >= 0.05 ? 'changed'
+      : comparison.timingChanged ? 'retimed' : 'same',
     comparison,
   }
 }
