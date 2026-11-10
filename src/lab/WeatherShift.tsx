@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { WeatherPayload } from './weatherClient'
 import {
-  SHIFT_STORAGE_KEY, eligibleShiftCity, emptyShiftStore,
+  SHIFT_STORAGE_KEY, eligibleShiftCity,
   parseShiftStore, snapshotForecast, updateShiftStore, type ShiftComparison,
 } from './weatherShift'
 
