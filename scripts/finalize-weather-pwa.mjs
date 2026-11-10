@@ -5,10 +5,12 @@ import { resolve, posix } from 'node:path'
 const root=resolve(process.cwd(),'dist')
 const manifest=JSON.parse(readFileSync(resolve(root,'.vite/manifest.json'),'utf8'))
 const allKeys=Object.keys(manifest)
-const weatherEntry=allKeys.find(k=>k==='lab/weather/index.html'||k.endsWith('/lab/weather/index.html')) 
+// Multiple HTML inputs share one Vite JavaScript entry, emitted as _main-[hash].js
+// instead of a per-page manifest entry.
+const mainChunk=allKeys.find(k=>/^_main-.*\.js$/.test(k))
 const weatherChunk=allKeys.find(k=>k==='src/pages/LabWeather.tsx'||k.endsWith('/LabWeather.tsx'))
-if(!weatherEntry||!weatherChunk)throw new Error('Weather PWA entry missing: '+JSON.stringify({weatherEntry,weatherChunk,keys:allKeys}))
-const keys=[weatherEntry,weatherChunk]
+if(!mainChunk||!weatherChunk)throw new Error('Weather PWA entry missing: '+JSON.stringify({mainChunk,weatherChunk,keys:allKeys}))
+const keys=[mainChunk,weatherChunk]
 const collected=new Set()
 const visited=new Set()
 function include(key){
@@ -21,6 +23,8 @@ function include(key){
  for(const imp of item.imports||[])include(imp)
 }
 for(const key of keys)include(key)
+// Vite may extract shared CSS as separate anonymous manifest chunks.
+for(const key of allKeys.filter(k=>/^_(?:main|archic-lab)-.*\.css$/.test(k)))if(manifest[key].file)collected.add('/'+manifest[key].file)
 // Collect fonts referenced by essential compiled CSS, not remote/third-party URLs.
 for(const css of [...collected].filter(p=>p.endsWith('.css'))){
  const data=readFileSync(resolve(root,css.slice(1)),'utf8')
