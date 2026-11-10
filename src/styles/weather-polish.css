@@ -192,6 +192,8 @@
  .lw-root .lw-place select{font-size:31px}
  .lw-root .lw-temp{font-size:88px}
  .lw-root .lw-now,.lw-root .lw-rain{padding-inline:18px}
+ .lw-root .lw-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .lw-root .lw-facts dd{font-size:11px;overflow-wrap:normal}
  .lw-root .lw-coords summary{font-size:11px}
  .lw-root .ww-section{padding-inline:14px}
 }
