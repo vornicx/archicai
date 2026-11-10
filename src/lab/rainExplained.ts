@@ -29,9 +29,9 @@ export function findMainRainWindow(hours: RainHour[]): RainWindow | null {
 
 /** Pattern, NOT official intensity: concentration >=70% only with total >=1 mm;
  * otherwise internal dry gaps, then low hourly amounts (<0.5 mm), then distributed. */
-export function classifyRainPattern(m: Pick<RainMetrics, 'rainTotal' | 'dryGaps' | 'peak' | 'main3hWindow'>): RainPattern {
+export function classifyRainPattern(m: Pick<RainMetrics, 'rainTotal' | 'wetHours' | 'dryGaps' | 'peak' | 'main3hWindow'>): RainPattern {
   if (m.rainTotal === 0) return 'dry'
-  if (m.rainTotal < WET_HOUR_MM) return 'trace'
+  if (m.wetHours === 0) return 'trace'
   if (m.rainTotal >= 1 && (m.main3hWindow.share ?? 0) >= 0.7) return 'concentrated'
   if (m.dryGaps > 0) return 'intermittent'
   if (m.peak.mm < 0.5) return 'light'
@@ -84,6 +84,24 @@ export function rainInterval(start: string, end: string, locale: string, timeZon
   const f = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone })
   return `${f.format(new Date(start))} – ${f.format(new Date(end))}`
 }
+
+// Values for the three human-readable insights. These are hourly MODEL intervals,
+// never exact start/stop times of rain or an official intensity classification.
+export function rainFacts(m: RainMetrics, _lang: 'es' | 'en', locale: string, timeZone: string):
+  { first: string; peak: string; window: string } {
+  const empty = '—'
+  const first = m.firstWet ? rainInterval(m.firstWet.time, m.firstWet.end, locale, timeZone) : empty
+  const peak = m.rainTotal > 0
+    ? `${formatRainAmount(m.peak.mm, locale)} mm/h · ${rainInterval(m.peak.time, m.peak.end, locale, timeZone)}`
+    : empty
+  const w = m.main3hWindow
+  const share = w.share
+  const window = m.wetHours > 0 && share !== null
+    ? `${new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 0 }).format(share)} · ${rainInterval(w.start, w.end, locale, timeZone)}`
+    : empty
+  return { first, peak, window }
+}
+
 export const RAIN_PATTERN_LABELS = {
   es: { dry: 'Sin lluvia prevista', trace: 'Sin lluvia apreciable', distributed: 'Principalmente repartida', intermittent: 'Lluvia intermitente', concentrated: 'Lluvia concentrada', light: 'Cantidades pequeñas, repartidas' },
   en: { dry: 'No rainfall forecast', trace: 'No appreciable rainfall', distributed: 'Mostly distributed', intermittent: 'Intermittent rainfall', concentrated: 'Concentrated rainfall', light: 'Small, distributed amounts' },
@@ -94,6 +112,7 @@ export function buildRainNarrative(explanation: RainExplanation, lang: 'es' | 'e
   const amount = formatRainAmount(m.rainTotal, locale), unit = lang === 'es' ? 'l/m²' : 'mm'
   const lead = lang === 'es' ? `El modelo prevé ${amount} ${unit} entre ${rainInterval(a.time, b.end, locale, timeZone)}.` : `The model forecasts ${amount} ${unit} between ${rainInterval(a.time, b.end, locale, timeZone)}.`
   if (m.rainTotal === 0) return { lead, detail: lang === 'es' ? 'Todos los intervalos de esta ventana tienen 0 mm previstos.' : 'Every interval in this window has 0 mm forecast.' }
+  if (m.pattern === 'trace') return { lead, detail: lang === 'es' ? 'Hay cantidades pequeñas, pero ninguna hora alcanza el criterio de 0,1 mm de lluvia apreciable.' : 'Small amounts are forecast, but no hour meets the 0.1 mm threshold for appreciable rain.' }
   const w = m.main3hWindow
   const pct = new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 0 }).format(w.share ?? 0)
   const distribution = m.pattern === 'concentrated'

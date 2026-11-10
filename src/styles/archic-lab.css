@@ -336,3 +336,15 @@
 .re-note{margin-top:10px;max-width:100ch;color:var(--al-muted);font-size:12px;line-height:1.55}
 @media(max-width:900px){.re-editorial{grid-template-columns:1fr;gap:18px}.re-lead{max-width:60ch}.re-detail{max-width:72ch}}
 @media(max-width:560px){.re-section .lw-section-head{align-items:flex-start;gap:8px}.re-section .lw-section-head h2{flex-basis:100%}.re-lead{font-size:18px}.re-facts{grid-template-columns:1fr}.re-storyline{min-height:190px}.re-table th,.re-table td{padding:10px 4px}.re-note{font-size:12px}}
+
+/* Rain Explained: three factual signals, no decorative KPI cards. */
+.re-signals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:24px;row-gap:12px;border-top:1px solid var(--al-line);margin:24px 0 6px;padding:18px 0 0;font-variant-numeric:tabular-nums}
+.re-signals>div{min-width:0}
+.re-signals dt{margin:0 0 5px;color:var(--al-muted);font-size:12px;line-height:1.45}
+.re-signals dd{margin:0;color:var(--al-ink);font-size:14px;font-weight:500;line-height:1.5;overflow-wrap:break-word}
+@media(max-width:640px){
+  .re-signals{grid-template-columns:1fr;row-gap:0;margin-top:16px;padding-top:6px}
+  .re-signals>div{display:grid;grid-template-columns:minmax(0,112px) minmax(0,1fr);gap:10px;padding:9px 0;border-bottom:1px solid var(--al-line)}
+  .re-signals dt{margin:0}
+  .re-signals dd{font-size:13px}
+}
