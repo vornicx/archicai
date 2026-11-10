@@ -17,6 +17,9 @@ import { WeatherWindow } from '../lab/WeatherWindow'
 import { WeatherShift } from '../lab/WeatherShift'
 import { OfficialAlerts } from '../lab/OfficialAlerts'
 import { WeatherTrend } from '../lab/WeatherTrend'
+import { WeatherInstall } from '../lab/WeatherInstall'
+import { registerWeatherPwa } from '../lab/weatherPwa'
+import { isSavablePlace, readSavedPlaces, toggleSavedPlace, writeSavedPlaces, type SavedPlace } from '../lab/weatherSavedPlaces'
 import { dailySummaries, safeTimeZone } from '../lab/weatherDays'
 import { readRecents, writeRecents, pushRecent } from '../lab/citySearch'
 import '../styles/archic-light.css'
@@ -95,6 +98,24 @@ const compass = (deg: number | null, lang: 'es' | 'en') => {
 
 const LocateIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><path d="M20 4 4 10.5l7 2.5 2.5 7L20 4Z" strokeLinejoin="round" /></svg>
 const RefreshIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4v4h-4" strokeLinejoin="round" /></svg>
+const StarIcon = ({filled}:{filled:boolean}) => <svg width="20" height="20" viewBox="0 0 24 24" fill={filled?'currentColor':'none'} stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m12 2.5 2.9 6.1 6.7.9-4.85 4.75 1.15 6.7L12 17.8l-5.9 3.15 1.15-6.7L2.4 9.5l6.7-.9z"/></svg>
+type WeatherTab='today'|'hours'|'days'|'plan'
+const APP_TABS:WeatherTab[]=['today','hours','days','plan']
+const tabFromHash=():WeatherTab=>{
+  if(typeof window==='undefined')return 'today'
+  const value=window.location.hash.slice(1)
+  return APP_TABS.includes(value as WeatherTab)?value as WeatherTab:'today'
+}
+const TAB_LABELS={
+  es:{today:'Hoy',hours:'Horas',days:'Días',plan:'Planificar'},
+  en:{today:'Today',hours:'Hours',days:'Days',plan:'Plan'},
+} as const
+const TabIcon=({tab}:{tab:WeatherTab})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  {tab==='today'?<><circle cx="12" cy="12" r="3.6"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.55 1.55M17.55 17.55l1.55 1.55M2 12h2.2M19.8 12H22M4.9 19.1l1.55-1.55M17.55 6.45l1.55-1.55"/></>
+  :tab==='hours'?<><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></>
+  :tab==='days'?<><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h3m-3 3h7"/></>
+  :<><path d="M3 20V5m0 15h18M7 16l4-5 3 2 6-8"/><circle cx="20" cy="5" r="1"/></>}
+</svg>
 
 export default function LabWeather() {
   const { lang, setLang, canSwitchLang } = useLang()
@@ -104,7 +125,25 @@ export default function LabWeather() {
   const [latText, setLatText] = useState(String(PLACES[0].lat))
   const [lonText, setLonText] = useState(String(PLACES[0].lon))
   const [mode, setMode] = useState<'simple' | 'detail'>('simple')
+  const [tab,setTab] = useState<WeatherTab>(tabFromHash)
+  const [savedPlaces,setSavedPlaces] = useState<SavedPlace[]>(readSavedPlaces)
+  const [online,setOnline] = useState(()=>typeof navigator==='undefined'?true:navigator.onLine)
   const [revision, setRevision] = useState(0)
+  useEffect(()=>{
+    registerWeatherPwa()
+    const changed=()=>setTab(tabFromHash())
+    const online=()=>setOnline(true)
+    const offline=()=>setOnline(false)
+    window.addEventListener('hashchange',changed)
+    window.addEventListener('online',online)
+    window.addEventListener('offline',offline)
+    return ()=>{window.removeEventListener('hashchange',changed);window.removeEventListener('online',online);window.removeEventListener('offline',offline)}
+  },[])
+  const selectTab=(next:WeatherTab)=>{
+    setTab(next)
+    if(window.location.hash!=='#'+next)window.location.hash=next
+    window.scrollTo({top:0,behavior:'instant'})
+  }
   const key = placeKey(place.lat, place.lon)
   const [state, dispatch] = useReducer(forecastReducer, key, initialForecast)
   const requestSeq = useRef(0)
@@ -151,6 +190,13 @@ export default function LabWeather() {
     ? new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: tz }).format(new Date(payload.updatedAt))
     : '—'
   const placeName = place.name[lang]
+  const canSave=isSavablePlace(place)
+  const isSaved=savedPlaces.some(p=>p.id===place.id)
+  const toggleSaved=()=>{
+    const next=toggleSavedPlace(savedPlaces,place)
+    setSavedPlaces(next)
+    writeSavedPlaces(next)
+  }
   const peak = hourly.reduce<Point | null>((best, p) => (p.precipitationMm !== null && (best === null || (p.precipitationMm ?? 0) > (best.precipitationMm ?? 0)) ? p : best), null)
   const chartTotal = rainTotal(hourly, hourly.length)
   const chartLabel = c.chartSummary(
@@ -241,6 +287,11 @@ export default function LabWeather() {
         <title>{c.title}</title>
         <meta name="description" content={c.description} />
         <meta name="theme-color" content="#F8F9FB" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Weather" />
+        <link rel="manifest" href={lang==='es'?'/weather/manifest.webmanifest':'/weather/manifest-en.webmanifest'} />
+        <link rel="apple-touch-icon" href="/weather/icons/weather-192.png" />
         <link rel="canonical" href={lang === 'es' ? 'https://archic.es/lab/weather/' : 'https://archic.es/en/lab/weather/'} />
         <link rel="alternate" hrefLang="es" href="https://archic.es/lab/weather/" />
         <link rel="alternate" hrefLang="en" href="https://archic.es/en/lab/weather/" />
@@ -281,6 +332,9 @@ export default function LabWeather() {
               </select>
             </span>
             <div className="lw-tools">
+              {canSave&&<button className="lw-tool lw-favorite" type="button" aria-pressed={isSaved}
+                onClick={toggleSaved} aria-label={isSaved?(lang==='es'?'Quitar de favoritos':'Remove favorite'):(lang==='es'?'Guardar ciudad':'Save city')}
+                title={isSaved?(lang==='es'?'Quitar favorito':'Remove favorite'):(lang==='es'?'Guardar ciudad':'Save city')}><StarIcon filled={isSaved}/></button>}
               <button className="lw-tool" type="button" onClick={useDevice} aria-label={c.device} title={c.device}><LocateIcon /><span>{c.device}</span></button>
               <button className="lw-tool" type="button" onClick={() => setRevision((n) => n + 1)} disabled={loading} aria-label={c.refresh} title={c.refresh}><RefreshIcon /><span>{c.refresh}</span></button>
             </div>
@@ -297,7 +351,16 @@ export default function LabWeather() {
             </details>
           </div>
           {formError && <p className="lw-error" role="alert">{formError}</p>}
+          {(savedPlaces.length>0)&&<div className="lw-saved" aria-label={lang==='es'?'Ciudades favoritas':'Favorite cities'}>
+            {savedPlaces.map(p=><button type="button" key={p.id} aria-pressed={p.id===place.id} onClick={()=>choose(p)}>{p.name[lang]}</button>)}
+          </div>}
+          <WeatherInstall lang={lang}/>
         </div>
+        <nav className="lw-app-tabs" aria-label={lang==='es'?'Secciones de Weather':'Weather sections'}>
+          {APP_TABS.map(t=><button key={t} type="button" onClick={()=>selectTab(t)}
+            aria-current={tab===t?'page':undefined}><TabIcon tab={t}/><span>{TAB_LABELS[lang][t]}</span></button>)}
+        </nav>
+        {!online&&<p className="lw-offline" role="status">{lang==='es'?'Sin conexión · no se puede actualizar':'Offline · forecast unavailable'}</p>}
 
         {/* One short announcement per state change; the data region itself is not live (avoids reading the whole forecast). */}
         <p className="lw-sr" role="status" aria-live="polite">
@@ -318,6 +381,7 @@ export default function LabWeather() {
           {payload && !error && !current && !view.refreshing && <div className="lw-state"><p>{c.empty}</p></div>}
           {payload && !error && current && (
             <div className="lw-data" data-stale={view.refreshing || undefined} data-key={view.data?.key}>
+              {tab==='today'&&<>
               <section className="lw-hero" data-tone={tone} aria-labelledby="lw-now-title">
                 <div className="lw-now">
                   <p className="lw-now-kicker"><span id="lw-now-title">{placeName}</span> · {c.model}</p>
@@ -362,7 +426,8 @@ export default function LabWeather() {
               </section>
 
               <OfficialAlerts placeId={place.id} lat={place.lat} lon={place.lon} lang={lang} locale={locale} timeZone={tz} />
-              <section className="lw-section" aria-labelledby="lw-hours-title">
+              </>}
+              {tab==='hours'&&<section className="lw-section" aria-labelledby="lw-hours-title">
                 <div className="lw-section-head">
                   <h2 id="lw-hours-title">{c.hours}</h2>
                   <div className="lw-seg" role="group" aria-label={c.mode}>
@@ -393,13 +458,17 @@ export default function LabWeather() {
                 </div>
               </section>
 
-              <DaysForecast days={days} lang={lang} locale={locale} timeZone={tz} />
-              <WeatherTrend hourly={windowHourly} now={now || Date.now()} lang={lang} locale={locale} timeZone={tz} />
-              <RainExplained key={key} hourly={hourly} lang={lang} locale={locale} timeZone={tz} selectedTime={selPoint?.time} />
-              <WeatherWindow hourly={windowHourly} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
-              <WeatherShift key={place.id} payload={payload} placeId={place.id} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
+              {tab==='days'&&<>
+                <DaysForecast days={days} lang={lang} locale={locale} timeZone={tz} />
+                <WeatherTrend hourly={windowHourly} now={now || Date.now()} lang={lang} locale={locale} timeZone={tz} />
+              </>}
+              {tab==='hours'&&<RainExplained key={key} hourly={hourly} lang={lang} locale={locale} timeZone={tz} selectedTime={selPoint?.time} />}
+              {tab==='plan'&&<>
+                <WeatherWindow hourly={windowHourly} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
+                <WeatherShift key={place.id} payload={payload} placeId={place.id} lang={lang} locale={locale} timeZone={tz} now={now || Date.now()} />
+              </>}
 
-              {mode === 'detail' && (
+              {tab==='hours' && mode === 'detail' && (
                 <>
                   <section className="lw-section" aria-labelledby="lw-table-title">
                     <div className="lw-section-head"><h2 id="lw-table-title">{c.table}</h2><span>{tzLabel}</span></div>

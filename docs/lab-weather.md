@@ -131,3 +131,10 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 - Installable from the Weather-specific ES/EN manifests with standalone display, Archic-blue custom PNG icons and iOS home screen metadata. Start URL points to Weather, not the agency homepage. App navigation and saved places are local-only; installation is never falsely claimed to be App Store distribution.
 - The root-scoped worker at `/weather-sw.js` responds only to Weather navigations and immutable hashed static assets. All MET/AEMET function requests stay network-only; an offline page is displayed when a shell cannot be loaded. It must **never serve a cached forecast as current**.
 - Worker's static/offline cache can be cleared by normal browser site-data removal; no background weather requests, push subscriptions or GPS history.
+
+
+## Weather app screens / favorites
+- Mobile navigation is a fixed, safe-area-aware 4-screen bar: Today (model + AEMET links), Hours (hour strip, Rain Explained and full table in Detail), Days (7-day summaries and 48h trend), Plan (Window and opt-in Shift). Desktop uses the same four actual screens in a compact segmented control.
+- Hash deep links `#today/#hours/#days/#plan` power back/forward and PWA shortcuts without new backend routes. The location header is shared by all screens.
+- Star saves at most 6 explicit named places (preset city or GeoNames), local-only. GPS/typed coordinates cannot be saved, no sync or background updates. Favorites are validated and deduped on read.
+- Online/offline status never presents cached forecasts as live. Install instructions on iOS are optional; compatible browsers can show an install prompt. The Weather PWA does not request push permissions.

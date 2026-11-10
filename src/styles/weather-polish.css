@@ -244,3 +244,41 @@
 .lw-root .wt-period:nth-child(2) .wt-track>span{background:#79A6E8}
 .lw-root .wt-meta{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:10px;color:var(--al-muted);font-size:11px;line-height:1.5}
 @media(max-width:600px){.lw-root .wt-periods{gap:16px}.lw-root .wt-top{align-items:flex-start;flex-direction:column;gap:3px}.lw-root .wt-meta{font-size:10px}}
+
+
+/* Weather App navigation: one true screen at a time, not a scrolling microsite. */
+.lw-root .lw-app-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:min(560px,100%);gap:4px;margin:8px auto 28px;padding:4px;border:1px solid rgba(32,52,80,.10);border-radius:14px;background:#EDF1F6}
+.lw-root .lw-app-tabs button{display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;min-height:45px;padding:9px 12px;border:0;border-radius:10px;background:transparent;color:var(--al-muted);font:550 13px/1.2 var(--al-font);cursor:pointer;touch-action:manipulation}
+.lw-root .lw-app-tabs button svg{height:19px;width:19px}
+.lw-root .lw-app-tabs button[aria-current=page]{color:var(--al-blue-ink);background:#fff;box-shadow:0 1px 5px rgba(24,52,82,.09)}
+.lw-root .lw-app-tabs button:focus-visible{outline:2px solid var(--al-blue);outline-offset:2px}
+.lw-root .lw-favorite[aria-pressed=true]{color:var(--al-blue)}
+.lw-root .lw-favorite[aria-pressed=true] svg{color:var(--al-blue)}
+.lw-root .lw-saved{display:flex;gap:8px;grid-column:1/-1;max-width:100%;overflow-x:auto;scrollbar-width:none;margin:10px 0 0}
+.lw-root .lw-saved button{flex:0 0 auto;min-height:38px;padding:0 13px;border:1px solid var(--lw-quiet-line);background:transparent;border-radius:999px;color:var(--al-ink-2);font:500 12px/1 var(--al-font);cursor:pointer}
+.lw-root .lw-saved button[aria-pressed=true]{color:var(--al-blue-ink);border-color:rgba(7,91,205,.32);background:#E6F1FF}
+.lw-root .lw-saved button:focus-visible{outline:2px solid var(--al-blue);outline-offset:2px}
+.lw-root .lw-install-action,.lw-root .lw-install-hint summary{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;color:var(--al-blue-ink);background:transparent;border:0;font:500 13px/1.3 var(--al-font);cursor:pointer}
+.lw-root .lw-install-hint{grid-column:1/-1;font-size:13px;color:var(--al-muted)}
+.lw-root .lw-install-hint p{margin:4px 0 0;max-width:46ch}
+.lw-root .lw-install-hint summary:focus-visible,.lw-root .lw-install-action:focus-visible{outline:2px solid var(--al-blue);outline-offset:2px}
+.lw-root .lw-install-action{grid-column:1/-1}
+.lw-root .lw-offline{margin:0 0 16px;padding:9px 13px;border:1px solid rgba(7,91,205,.22);border-radius:10px;font-size:13px;color:var(--al-blue-ink)}
+.lw-root .lw-data>.lw-section:first-child{margin-top:0}
+.lw-root .lw-data>.ww-section:first-child{margin-top:0}
+@media(max-width:720px){
+ .lw-root .lw-root{min-width:0}
+ .lw-root .lw-main{padding-bottom:calc(115px + env(safe-area-inset-bottom))}
+ .lw-root .lw-app-tabs{position:fixed;inset:auto 0 0;width:100%;max-width:none;margin:0;padding:8px max(10px,env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));gap:2px;border:0;border-top:1px solid rgba(32,52,80,.12);border-radius:0;background:rgba(248,249,251,.97);z-index:45;box-shadow:0 -10px 30px rgba(18,45,75,.04)}
+ .lw-root .lw-app-tabs button{flex-direction:column;gap:4px;min-height:53px;padding:6px 2px;border-radius:10px;font-size:11px}
+ .lw-root .lw-app-tabs button svg{width:21px;height:21px}
+ .lw-root .lw-app-tabs button[aria-current=page]{background:rgba(7,91,205,.07);box-shadow:none}
+ .lw-root .lw-bar{margin-bottom:16px}
+}
+@media(max-width:390px){
+ .lw-root .lw-place{flex-wrap:wrap;gap:4px}
+ .lw-root .lw-place select{font-size:33px;max-width:100%}
+ .lw-root .lw-tools{gap:4px}
+ .lw-root .lw-tool{min-width:40px;width:40px;height:44px}
+}
+@media(prefers-reduced-motion:reduce){.lw-root .lw-app-tabs button{transition:none}}
