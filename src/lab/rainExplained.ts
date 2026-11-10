@@ -96,7 +96,11 @@ export function buildRainNarrative(explanation: RainExplanation, lang: 'es' | 'e
   if (m.rainTotal === 0) return { lead, detail: lang === 'es' ? 'Todos los intervalos de esta ventana tienen 0 mm previstos.' : 'Every interval in this window has 0 mm forecast.' }
   const w = m.main3hWindow
   const pct = new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 0 }).format(w.share ?? 0)
-  const distribution = lang === 'es' ? (m.dryGaps ? 'Se alternan intervalos con lluvia apreciable y sin ella.' : 'Lluvia repartida entre varias horas.') : (m.dryGaps ? 'Intervals with and without appreciable rain alternate.' : 'Rainfall is spread across several hours.')
+  const distribution = m.pattern === 'concentrated'
+    ? (lang === 'es' ? 'La mayor parte de la lluvia se concentra en ese tramo.' : 'Most of the rainfall is concentrated in that stretch.')
+    : m.dryGaps
+      ? (lang === 'es' ? 'Se alternan intervalos con lluvia apreciable y sin ella.' : 'Intervals with and without appreciable rain alternate.')
+      : (lang === 'es' ? 'Lluvia repartida entre varias horas.' : 'Rainfall is spread across several hours.')
   const detail = lang === 'es' ? `El tramo más lluvioso dentro de esta ventana es ${rainInterval(w.start, w.end, locale, timeZone)}: ${pct} del total en ${w.length} h.` : `The rainiest stretch within this window is ${rainInterval(w.start, w.end, locale, timeZone)}: ${pct} of the total in ${w.length} h.`
   return { lead, detail: `${detail} ${m.wetHours > 1 ? distribution : ''}`.trim() }
 }
