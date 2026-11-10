@@ -456,7 +456,7 @@ export default function LabWeather() {
                 </ul>
                 <button type="button" className="lw-strip-nav is-next" onClick={() => pageStrip(1)} disabled={!edges.end} aria-label={c.nextHours} tabIndex={-1}><span aria-hidden="true">›</span></button>
                 </div>
-              </section>
+              </section>}
 
               {tab==='days'&&<>
                 <DaysForecast days={days} lang={lang} locale={locale} timeZone={tz} />
