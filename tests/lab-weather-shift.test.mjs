@@ -2,7 +2,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import {
   snapshotForecast, compareShift, updateShiftStore, emptyShiftStore,
-  parseShiftStore, eligibleShiftCity,
+  parseShiftStore, eligibleShiftCity, hasShiftOptIn,
 } from '../src/lab/weatherShift.ts'
 
 const HOUR = 3600000
@@ -96,4 +96,12 @@ test('corrupted localStorage is discarded; entries expire; no hidden PII', () =>
 test('null source timestamp or six hours not available yield no baseline', () => {
   assert.equal(snapshotForecast(null, rows(2), NOW), null)
   assert.equal(snapshotForecast(OLDER, rows(2, 5), NOW), null)
+})
+
+test('forecast-history permission requires explicit affirmative activation', () => {
+  assert.equal(hasShiftOptIn(null), false)
+  assert.equal(hasShiftOptIn(''), false)
+  assert.equal(hasShiftOptIn('0'), false)
+  assert.equal(hasShiftOptIn('false'), false)
+  assert.equal(hasShiftOptIn('1'), true)
 })
