@@ -12,7 +12,7 @@
 .ww-settings summary::-webkit-details-marker{display:none}
 .ww-settings summary::after{content:'+';font-size:18px;font-weight:400}
 .ww-settings[open] summary::after{content:'−'}
-.ww-fields{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:8px 0 18px}
+.ww-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:8px 0 18px}
 .ww-fields label{display:flex;flex-direction:column;gap:6px;color:var(--al-ink-2);font-size:12px;line-height:1.35;min-width:0}
 .ww-fields label span{color:var(--al-muted)}
 .ww-fields select,.ww-fields input{width:100%;min-width:0;min-height:44px;padding:8px 10px;border:1px solid var(--al-line-2);border-radius:8px;background:var(--al-white);color:var(--al-ink);font:500 16px var(--al-font)}

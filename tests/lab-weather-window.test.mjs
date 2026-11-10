@@ -140,3 +140,32 @@ test('day choices adapt to one-, two- and three-hour presets and future-only rul
     assert.ok(r.windows.every(w => Date.parse(w.start)>=afterFirstStarted))
   }
 })
+
+test('usual local hours avoid recommending a 04:00 walk even when overnight weather scores best', () => {
+  const start = Date.parse('2026-11-11T00:00:00Z')
+  const hours = Array.from({ length: 24 }, (_, i) => ({
+    ...sample(0), time: new Date(start + i * 3600000).toISOString(),
+    precipitationMm: i < 7 ? 0 : 0.2,
+  }))
+  const all = find(hours, start - 1000, WINDOW_PRESETS.walk)
+  assert.ok(Date.parse(all.windows[0].start) < start + 7*3600000)
+  const usual = find(hours, start - 1000, WINDOW_PRESETS.walk, {timeZone:'Europe/Madrid',startHour:8,endHour:22})
+  assert.ok(usual.windows.length > 0)
+  assert.ok(usual.windows.every(w => {
+    const localHour = Number(new Intl.DateTimeFormat('en-US',{timeZone:'Europe/Madrid',hour:'2-digit',hourCycle:'h23'}).format(new Date(w.start)))
+    return localHour >= 8 && localHour < 22
+  }))
+  assert.deepEqual(availableWindowDays(hours, start - 1000, WINDOW_PRESETS.walk, 'Europe/Madrid', {startHour:8,endHour:22}).map(d=>d.key), ['2026-11-11'])
+})
+
+test('hours filter does not label nighttime-only forecast usable and can be disabled', () => {
+  const h = [sample(0),sample(1),sample(2)]
+  const usual = { timeZone:'Europe/Madrid', startHour:8, endHour:22 }
+  // 10:00 UTC in November is 11:00 locally: use a separate midnight fixture.
+  const nightStart = Date.parse('2026-11-11T00:00:00Z')
+  const night = h.map((p,i)=>({...p,time:new Date(nightStart+i*3600000).toISOString()}))
+  assert.equal(find(night,nightStart-1000,WINDOW_PRESETS.walk,usual).candidates,0)
+  assert.deepEqual(availableWindowDays(night,nightStart-1000,WINDOW_PRESETS.walk,'Europe/Madrid',{startHour:8,endHour:22}),[])
+  assert.ok(find(night,nightStart-1000,WINDOW_PRESETS.walk).candidates>0)
+  assert.equal(find(night,nightStart-1000,WINDOW_PRESETS.walk,{...usual,endHour:40}).candidates,0)
+})

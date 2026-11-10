@@ -7,7 +7,9 @@ const COPY = {
   es: {
     heading: 'Weather Window', kicker: 'Encuentra tu momento', lead: 'Las próximas horas, ordenadas según tus preferencias.',
     walk: 'Pasear', sport: 'Deporte', outdoors: 'Exterior',
-    days: 'Elegir día', allDays: 'Todos', coverage: (n: number) => `${n} horas futuras con datos completos para evaluar posibles franjas.`,
+    days: 'Elegir día', allDays: 'Todos',
+    schedule: 'Horario a considerar', usual: '08:00–22:00 (hora local)', anyHour: 'Cualquier hora',
+    coverage: (n: number, usual: boolean) => `${n} horas futuras con datos completos. ${usual ? 'Buscando franjas entre las 08:00 y las 22:00, hora local.' : 'Incluye también los horarios nocturnos.'}`,
     closest: 'No hay una franja que cumpla todos los criterios. Estas son las más cercanas.',
     match: 'Franjas que cumplen tus criterios', top: 'Mejor franja', next: 'Otras franjas',
     noData: 'No hay suficientes horas futuras con lluvia, temperatura y viento disponibles para comparar. Los periodos de 6 o 12 horas no se tratan como datos horarios.',
@@ -21,7 +23,9 @@ const COPY = {
   en: {
     heading: 'Weather Window', kicker: 'Find your moment', lead: 'Upcoming hours ranked by your preferences.',
     walk: 'Walking', sport: 'Exercise', outdoors: 'Outdoors',
-    days: 'Choose day', allDays: 'All', coverage: (n: number) => `${n} future hours have complete data for evaluating possible windows.`,
+    days: 'Choose day', allDays: 'All',
+    schedule: 'Times to consider', usual: '08:00–22:00 (local time)', anyHour: 'Any time',
+    coverage: (n: number, usual: boolean) => `${n} future hours have complete data. ${usual ? 'Considering 08:00–22:00 in local time.' : 'Includes overnight hours.'}`,
     closest: 'No time window meets every criterion. These are the closest alternatives.',
     match: 'Windows matching your criteria', top: 'Best window', next: 'Other windows',
     noData: 'Not enough future hours with complete rain, temperature and wind data to compare. Six- and twelve-hour blocks are not treated as hourly values.',
@@ -45,14 +49,22 @@ export function WeatherWindow({ hourly, lang, locale, timeZone, now }: {
   const [preset, setPreset] = useState<Preset>('walk')
   const [criteria, setCriteria] = useState<WindowCriteria>({ ...WINDOW_PRESETS.walk })
   const [day, setDay] = useState('all')
-  const days = useMemo(() => availableWindowDays(hourly, now, criteria, timeZone), [hourly, now, criteria, timeZone])
+  const [schedule, setSchedule] = useState<'usual' | 'any'>('usual')
+  const hoursRange = schedule === 'usual' ? { startHour: 8, endHour: 22 } : undefined
+  const days = useMemo(
+    () => availableWindowDays(hourly, now, criteria, timeZone, hoursRange),
+    // 'schedule' is the stable primitive; hoursRange is a new lightweight object on render.
+    [hourly, now, criteria, timeZone, schedule],
+  )
   const activeDay = day === 'all' || days.some(d => d.key === day) ? day : 'all'
   useEffect(() => {
     if (day !== 'all' && !days.some(d => d.key === day)) setDay('all')
   }, [day, days])
   const result = useMemo(
-    () => findWeatherWindows(hourly, now, criteria, activeDay === 'all' ? undefined : { dayKey: activeDay, timeZone }),
-    [hourly, now, criteria, activeDay, timeZone],
+    () => findWeatherWindows(hourly, now, criteria,
+      schedule === 'any' && activeDay === 'all' ? undefined :
+      { timeZone, ...(activeDay === 'all' ? {} : { dayKey: activeDay }), ...(schedule === 'usual' ? { startHour: 8, endHour: 22 } : {}) }),
+    [hourly, now, criteria, activeDay, timeZone, schedule],
   )
   const completeHours = hourly.filter(p => Date.parse(p.time) >= now && p.periodHours === 1
     && p.precipitationMm !== null && Number.isFinite(p.precipitationMm) && p.precipitationMm >= 0
@@ -82,10 +94,16 @@ export function WeatherWindow({ hourly, lang, locale, timeZone, now }: {
       {days.map(d => <button type="button" key={d.key} aria-pressed={activeDay === d.key}
         onClick={() => setDay(d.key)}>{dayLabel(d.startsAt)}</button>)}
     </div>
-    <p className="ww-coverage">{t.coverage(completeHours)}</p>
+    <p className="ww-coverage">{t.coverage(completeHours, schedule === 'usual')}</p>
     <details className="ww-settings">
       <summary>{t.criteria}</summary>
       <div className="ww-fields">
+        <label>{t.schedule}
+          <select value={schedule} onChange={e => setSchedule(e.target.value === 'any' ? 'any' : 'usual')}>
+            <option value="usual">{t.usual}</option>
+            <option value="any">{t.anyHour}</option>
+          </select>
+        </label>
         <label>{t.duration}
           <select value={criteria.duration} onChange={e => change('duration', Number(e.target.value), 1, 3)}>
             {[1, 2, 3].map(h => <option key={h} value={h}>{h} {h === 1 ? t.hour : t.hours}</option>)}
