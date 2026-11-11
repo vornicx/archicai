@@ -9,6 +9,7 @@ on:
     paths:
       - '.github/workflows/visual-audit.yml'
       - 'scripts/visual-audit.mjs'
+      - 'scripts/smoke-weather.mjs'
       - 'src/**'
       - 'public/**'
       - 'vite.config.ts'
