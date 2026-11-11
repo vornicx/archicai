@@ -39,10 +39,10 @@ try{
   const option=page.locator('.lw-search-pop [role=option]').filter({hasText:/Berlin/i}).first()
   await option.waitFor({state:'visible',timeout:15000})
   await option.click()
-  assert.match(await page.locator('.lw-city-trigger').innerText(),/Berlin/i)
+  assert.match(await page.locator('.lw-city-trigger').innerText(),/Berl[ií]n/i)
   await page.reload({waitUntil:'domcontentloaded'})
   await page.locator('.lw-temp').waitFor({state:'visible'})
-  assert.match(await page.locator('.lw-city-trigger').innerText(),/Berlin/i)
+  assert.match(await page.locator('.lw-city-trigger').innerText(),/Berl[ií]n/i)
 
   // Tabs show the correct functional screen, not a long single page.
   const tabs=page.locator('.lw-app-tabs')
