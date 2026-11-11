@@ -66,6 +66,9 @@ jobs:
           cat /tmp/archic-preview.log
           exit 1
 
+      - name: Weather functional smoke test
+        run: node scripts/smoke-weather.mjs
+
       - name: Capture full visual audit
         id: visual_audit
         continue-on-error: true
