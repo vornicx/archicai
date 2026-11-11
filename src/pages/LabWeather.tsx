@@ -420,8 +420,8 @@ export default function LabWeather() {
                         {rainOutlook.kind === 'episode' && <p className="lw-next-rain" aria-label={lang==='es'?'Episodio previsto por el modelo horario':'Hourly model rain episode'}>
                           <span>{lang==='es'?(rainOutlook.inCurrentHour?'Lluvia prevista esta hora':'Próxima lluvia'):(rainOutlook.inCurrentHour?'Rain forecast this hour':'Next rain')}</span>
                           {(rainOutlook.end || !rainOutlook.inCurrentHour) && <strong>
-                            {rainOutlook.inCurrentHour?'':eventTime(rainOutlook.start)}
-                            {rainOutlook.end?(rainOutlook.inCurrentHour?'→ ':' – ')+eventTime(rainOutlook.end):''}
+                            {rainOutlook.inCurrentHour?'':'≈'+eventTime(rainOutlook.start)}
+                            {rainOutlook.end?(rainOutlook.inCurrentHour?'→ ≈':' – ≈')+eventTime(rainOutlook.end):''}
                           </strong>}
                         </p>}
                         {rainOutlook.kind === 'dry'&&rainOutlook.knownHours>=3&&<p className="lw-next-rain lw-next-dry">

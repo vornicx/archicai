@@ -173,7 +173,7 @@
 .lw-root.lw-immersive .lw-next-rain{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 9px;margin-top:14px;color:#C3D7ED;font:450 13px/1.4 var(--al-font);letter-spacing:-.01em}
 .lw-root.lw-immersive .lw-next-rain strong{color:#F3FAFF;font-size:14px;font-weight:560}
 .lw-root.lw-immersive .lw-hour-metric{display:inline-flex;align-items:center;gap:3px;padding:3px;margin:0 0 12px;border-radius:10px;background:rgba(11,26,46,.55);border:1px solid rgba(255,255,255,.12)}
-.lw-root.lw-immersive .lw-hour-metric button{min-height:40px;min-width:88px;padding:0 12px;border:0;border-radius:8px;background:transparent;color:#C9D9EA;font:500 13px/1 var(--al-font);cursor:pointer}
+.lw-root.lw-immersive .lw-hour-metric button{min-height:44px;min-width:88px;padding:0 12px;border:0;border-radius:8px;background:transparent;color:#C9D9EA;font:500 13px/1 var(--al-font);cursor:pointer}
 .lw-root.lw-immersive .lw-hour-metric button[aria-pressed=true]{background:rgba(160,197,255,.23);color:#FFF}
 .lw-root.lw-immersive .lw-hour-metric button:focus-visible{outline:2px solid #C6E1FF;outline-offset:2px}
 .lw-root.lw-immersive .lw-strip-rain{display:flex;flex-direction:column;align-items:center;gap:2px;white-space:nowrap;font-variant-numeric:tabular-nums}
