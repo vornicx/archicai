@@ -250,3 +250,6 @@
 @media(prefers-reduced-motion:reduce){
   .lw-root.lw-immersive .lw-city-chevron{transition:none}
 }
+
+/* Suppress the old drawer's generated arrow: the city trigger owns its only chevron. */
+.lw-root.lw-immersive .lw-location-drawer>.lw-city-trigger::after{display:none;content:none}
