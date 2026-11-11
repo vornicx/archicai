@@ -9,6 +9,7 @@ import { fetchForecast, type Point } from '../lab/weatherClient'
 import { parseSymbol, conditionLabel, skyTone } from '../lab/weatherSymbol'
 import { WeatherGlyph } from '../lab/WeatherGlyph'
 import { RainBars } from '../lab/RainBars'
+import { selectRainSource, applyRainSource, SOURCE_LABEL, type RainBlock } from '../lab/rainSources'
 import { hourParts, scrollEdges } from '../lab/hourSelection'
 import { forecastReducer, forecastView, initialForecast, placeKey } from '../lab/forecastState'
 import { nextHourIndex, hourSummary } from '../lab/hourSelection'
@@ -203,8 +204,11 @@ export default function LabWeather() {
   },[])
 
   const view = forecastView(state, key)
-  const payload = view.data?.payload ?? null
+  const rawPayload = view.data?.payload ?? null
   const now = view.data?.receivedAt ?? 0
+  // Precipitation everywhere on the page comes from ONE selected source (see src/lab/rainSources.ts).
+  const rainSel = useMemo(() => (rawPayload ? selectRainSource((rawPayload as { rain?: RainBlock }).rain, rawPayload.points, now || Date.now(), 24) : null), [rawPayload, now])
+  const payload = useMemo(() => (rawPayload && rainSel ? { ...rawPayload, points: applyRainSource(rawPayload.points, rainSel) } : rawPayload), [rawPayload, rainSel])
   const loading = view.loading
   const error = view.error
   // Re-measure the strip edges when its content or the viewport changes.
@@ -218,8 +222,10 @@ export default function LabWeather() {
   const windowHourly = useMemo(() => (payload ? upcomingHourly(payload.points, now || Date.now(), 72) : []), [payload, now])
   const current = hourly[0] ?? null
   const currentHourIsNow=!!current&&isCurrentForecastHour(current.time,now)
-  const rain24 = rainTotal(hourly, 24)
-  const rain6 = rainTotal(hourly, 6)
+  // Totals = complete future hours from the next full hour; the in-progress hour is never counted as future.
+  const rainHourly = useMemo(() => (payload ? upcomingHourly(payload.points, rainSel?.windowStart ?? (now || Date.now()), 24) : []), [payload, rainSel, now])
+  const rain24 = rainTotal(rainHourly, 24)
+  const rain6 = rainTotal(rainHourly, 6)
   const tz = place.timeZone
   const tzLabel = tz === 'UTC' ? c.tzUtc : c.tzLocal(tz)
   const hour = (t: string) => new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', timeZone: tz }).format(new Date(t))
@@ -227,6 +233,7 @@ export default function LabWeather() {
     ? new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: tz }).format(new Date(payload.updatedAt))
     : '—'
   const placeName = place.name[lang]
+  const updatedFmt = (t: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: tz }).format(new Date(t))
   const canSave=isSavablePlace(place)
   const isSaved=savedPlaces.some(p=>p.id===place.id)
   const toggleSaved=()=>{
@@ -451,6 +458,12 @@ export default function LabWeather() {
                       <h2 id="lw-rain-title">{c.rain24}</h2>
                       <p className="lw-rain-num"><strong>{rain24 === null ? '—' : fmt(rain24, '', locale, 1)}</strong>{rain24 !== null && <span>{c.unit}</span>}</p>
                       {rain24 === null && <p className="lw-rain-note">{c.incomplete}</p>}
+                      {rainSel && <p className="lw-rain-note lw-rain-source">{SOURCE_LABEL[rainSel.primary][lang]}{rain24 !== null && rainSel.windowStart ? (lang==='es'?' · desde las ':' · from ')+hour(new Date(rainSel.windowStart).toISOString()) : ''}</p>}
+                      {rainSel && <details className="lw-rain-models">
+                        <summary>{rainSel.single ? (lang==='es'?'Una fuente; contraste no disponible':'One source; comparison unavailable') : rainSel.disagree ? (lang==='es'?'Modelos discrepan':'Models disagree') : (lang==='es'?'Otros modelos':'Other models')}</summary>
+                        {!rainSel.single && <ul>{rainSel.others.map((o)=><li key={o.id}>{SOURCE_LABEL[o.id][lang]}: {fmt(o.total,' '+c.unit,locale,1)}</li>)}</ul>}
+                        <p>{lang==='es'?'Estimación, no lluvia medida. Misma ventana de 24 h para cada fuente.':'Estimate, not measured rain. Same 24 h window for every source.'}{rainSel.primarySeries.issuedAt ? (lang==='es'?' AEMET elaborada: ':' AEMET issued: ')+updatedFmt(rainSel.primarySeries.issuedAt) : ''}</p>
+                      </details>}
                         {rainOutlook.kind === 'episode' && <p className="lw-next-rain" aria-label={lang==='es'?'Episodio previsto por el modelo horario':'Hourly model rain episode'}>
                           <span>{lang==='es'?(rainOutlook.inCurrentHour?'Lluvia prevista esta hora':'Próxima lluvia'):(rainOutlook.inCurrentHour?'Rain forecast this hour':'Next rain')}</span>
                           {(rainOutlook.end || !rainOutlook.inCurrentHour) && <strong>
@@ -597,6 +610,7 @@ export default function LabWeather() {
           <details className="lw-disclosure"><summary>{lang === 'es' ? 'Fuentes y límites' : 'Sources and limits'}</summary>
             <p>{c.note} {c.noteEnd}</p>
             <p><a href="https://api.met.no/weatherapi/locationforecast/2.0/documentation" target="_blank" rel="noopener noreferrer">{c.source}</a>{' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">{c.license}</a>{'. '}{c.processed}</p>
+            <p>{lang === 'es' ? 'Lluvia: AEMET (municipios cubiertos), Open-Meteo (CC BY 4.0) o MET Norway, por ese orden de prioridad editorial; no implica mayor acierto.' : 'Rain: AEMET (covered municipalities), Open-Meteo (CC BY 4.0) or MET Norway, in that editorial priority; it does not imply higher accuracy.'}</p>
             <p>{lang === 'es' ? 'Ciudades: ' : 'Cities: '}<a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a>{' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">CC BY 4.0</a>{lang === 'es' ? ' (más de 5.000 habitantes).' : ' (over 5,000 inhabitants).'}</p>
           </details>
         </footer>

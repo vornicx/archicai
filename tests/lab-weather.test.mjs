@@ -54,7 +54,7 @@ test('upstream failure returns 502 no-store', async () => {
 
 test('repeat requests within MET expiry are served from isolate cache', async () => {
   let calls = 0
-  const h = createLabWeatherHandler({ fetch: async () => { calls++; return met() }, now: Date.now })
+  const h = createLabWeatherHandler({ fetch: async (u) => { if (String(u).startsWith('https://api.met.no/')) calls++; return met() }, now: Date.now })
   await h(req('?lat=37.5&lon=-5.08'))
   const r = await h(req('?lat=37.5001&lon=-5.0801'))
   assert.equal(r.headers.get('x-archic-cache'), 'HIT')

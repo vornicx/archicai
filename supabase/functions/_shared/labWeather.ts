@@ -1,5 +1,6 @@
 // ARCHIC LAB WEATHER — platform-neutral handler (no Deno/Node globals) so it can be unit-tested.
 import { readAemetAlerts } from './aemetAlerts.ts'
+import { loadRainSources, type RainSeries } from './rainSources.ts'
 // Source: MET Norway Locationforecast 2.0 (CC BY 4.0). Values are MODEL FORECASTS, never station observations.
 type Dict = Record<string, unknown>
 const rec = (v: unknown): Dict => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Dict) : {})
@@ -99,6 +100,29 @@ export function createLabWeatherHandler(deps: Deps = { fetch: (...a) => fetch(..
   const inflight = new Map<string, Promise<Entry | null>>()
   const hits = new Map<string, { start: number; count: number }>()
   const warningCache = new Map<string, { expires: number; result: unknown }>()
+  const rainCache = new Map<string, { expires: number; series: RainSeries[]; fetchedAt: string }>()
+  const rainInflight = new Map<string, Promise<{ series: RainSeries[]; fetchedAt: string }>>()
+  const RAIN_TTL = 10 * 60_000
+  // Precipitation candidates (AEMET municipal where mapped, Open-Meteo models). Failures never block MET.
+  const rainFor = (key: string, lat: number, lon: number) => {
+    const hit = rainCache.get(key)
+    if (hit && hit.expires > deps.now()) return Promise.resolve(hit)
+    let p = rainInflight.get(key)
+    if (!p) {
+      p = loadRainSources(deps, lat, lon, USER_AGENT)
+        .catch(() => [] as RainSeries[])
+        .then((series) => {
+          const v = { series, fetchedAt: new Date(deps.now()).toISOString() }
+          if (rainCache.size >= 200) rainCache.clear()
+          // Cache failures briefly so a slow provider is not hammered, successes for RAIN_TTL.
+          rainCache.set(key, { ...v, expires: deps.now() + (series.some((x) => x.status === 'ok') ? RAIN_TTL : 120_000) })
+          return v
+        })
+        .finally(() => rainInflight.delete(key))
+      rainInflight.set(key, p)
+    }
+    return p
+  }
   const RATE = 30, WINDOW = 60_000, MAX_KEYS = 500
 
   const limited = (ip: string) => {
@@ -176,8 +200,10 @@ export function createLabWeatherHandler(deps: Deps = { fetch: (...a) => fetch(..
     const key = coords.lat + ',' + coords.lon
     const cached = cache.get(key)
     const ttl = (e: Entry) => Math.max(0, Math.min(300, Math.floor((e.expiresAt - deps.now()) / 1000)))
+    const rainP = rainFor(key, coords.lat, coords.lon)
+    const withRain = async (body: unknown) => ({ ...(body as Dict), rain: await rainP })
     if (cached && cached.expiresAt > deps.now()) {
-      return json(cached.body, 200, origin, 'public, max-age=' + ttl(cached), { 'X-Archic-Cache': 'HIT' })
+      return json(await withRain(cached.body), 200, origin, 'public, max-age=' + ttl(cached), { 'X-Archic-Cache': 'HIT' })
     }
     try {
       let p = inflight.get(key)
@@ -187,7 +213,7 @@ export function createLabWeatherHandler(deps: Deps = { fetch: (...a) => fetch(..
       }
       const entry = await p
       if (!entry) return json({ error: 'provider_unavailable' }, 502, origin)
-      return json(entry.body, 200, origin, 'public, max-age=' + ttl(entry), { 'X-Archic-Cache': 'MISS' })
+      return json(await withRain(entry.body), 200, origin, 'public, max-age=' + ttl(entry), { 'X-Archic-Cache': 'MISS' })
     } catch {
       return json({ error: 'weather_temporarily_unavailable' }, 502, origin)
     }
