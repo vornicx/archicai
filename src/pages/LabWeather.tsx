@@ -2,8 +2,9 @@ import { useEffect, useMemo, useReducer, useRef, useState, type FormEvent, type 
 import { Helmet } from 'react-helmet-async'
 import '@fontsource-variable/geist/wght.css'
 import { useLang } from '../i18n/LanguageContext'
-import { upcomingHourly, rainTotal } from '../lab/weatherMath'
+import { upcomingHourly, rainTotal, isCurrentForecastHour } from '../lab/weatherMath'
 import { nextRainOutlook } from '../lab/nextRain'
+import { forecastRefreshDue } from '../lab/weatherRefresh'
 import { fetchForecast, type Point } from '../lab/weatherClient'
 import { parseSymbol, conditionLabel, skyTone } from '../lab/weatherSymbol'
 import { WeatherGlyph } from '../lab/WeatherGlyph'
@@ -151,6 +152,7 @@ export default function LabWeather() {
   const key = placeKey(place.lat, place.lon)
   const [state, dispatch] = useReducer(forecastReducer, key, initialForecast)
   const requestSeq = useRef(0)
+  const lastForecastAttempt=useRef(0)
   const [formError, setFormError] = useState('')
   const [selected, setSelected] = useState(0)
   const stripRef = useRef<HTMLUListElement>(null)
@@ -161,6 +163,7 @@ export default function LabWeather() {
   useEffect(() => {
     const controller = new AbortController()
     const id = ++requestSeq.current
+    lastForecastAttempt.current=Date.now()
     dispatch({ type: 'start', key, id })
     fetchForecast(place.lat, place.lon, controller.signal)
       .then((body) => dispatch({ type: 'resolve', key, id, payload: body, at: Date.now() }))
@@ -170,6 +173,34 @@ export default function LabWeather() {
       })
     return () => controller.abort()
   }, [key, place.lat, place.lon, revision])
+
+  // Refresh only when Weather is visible and online. One request at a time:
+  // foreground return, reconnect, or an open app older than 15 minutes.
+  useEffect(()=>{
+    const check=(force=false)=>{
+      const at=Date.now()
+      const visible=document.visibilityState==='visible'
+      if((force&&visible&&navigator.onLine)||
+        forecastRefreshDue(lastForecastAttempt.current,at,visible,navigator.onLine)){
+        lastForecastAttempt.current=at
+        setRevision(n=>n+1)
+      }
+    }
+    const onVisible=()=>check()
+    const onReconnect=()=>check(true)
+    window.addEventListener('focus',onVisible)
+    window.addEventListener('pageshow',onVisible)
+    document.addEventListener('visibilitychange',onVisible)
+    window.addEventListener('online',onReconnect)
+    const interval=window.setInterval(onVisible,60_000)
+    return ()=>{
+      window.removeEventListener('focus',onVisible)
+      window.removeEventListener('pageshow',onVisible)
+      document.removeEventListener('visibilitychange',onVisible)
+      window.removeEventListener('online',onReconnect)
+      window.clearInterval(interval)
+    }
+  },[])
 
   const view = forecastView(state, key)
   const payload = view.data?.payload ?? null
@@ -186,6 +217,7 @@ export default function LabWeather() {
   // Still only contiguous 1h model intervals: no fabricated resolution from 6h blocks.
   const windowHourly = useMemo(() => (payload ? upcomingHourly(payload.points, now || Date.now(), 72) : []), [payload, now])
   const current = hourly[0] ?? null
+  const currentHourIsNow=!!current&&isCurrentForecastHour(current.time,now)
   const rain24 = rainTotal(hourly, 24)
   const rain6 = rainTotal(hourly, 6)
   const tz = place.timeZone
@@ -280,7 +312,7 @@ export default function LabWeather() {
   const sel = Math.min(selected, Math.max(0, hourSlot.length - 1))
   const selPoint = hourSlot[sel] ?? null
   const selParts = selPoint ? hourParts(selPoint, locale, lang) : null
-  const selText = selPoint ? hourSummary(selPoint, sel === 0 ? c.nowWord + ' ' + hour(selPoint.time) : hour(selPoint.time), locale, lang) : ''
+  const selText = selPoint ? hourSummary(selPoint, sel === 0 && currentHourIsNow ? c.nowWord + ' ' + hour(selPoint.time) : hour(selPoint.time), locale, lang) : ''
   const pick = (i: number) => {
     setSelected(i)
     const el = stripRef.current?.querySelectorAll('button')[i] as HTMLButtonElement | undefined
@@ -445,7 +477,7 @@ export default function LabWeather() {
                     <RainBars hourly={hourly} locale={locale} timeZone={tz} label={chartLabel} selectedIndex={sel} />
                     {selPoint && selParts && (
                       <p className="lw-chart-sel" aria-live="polite" aria-label={`${c.selectedHour}: ${selText}`}>
-                        <time dateTime={selPoint.time}>{sel === 0 ? `${c.nowWord} · ${hour(selPoint.time)}` : hour(selPoint.time)}</time>
+                        <time dateTime={selPoint.time}>{sel === 0 && currentHourIsNow ? `${c.nowWord} · ${hour(selPoint.time)}` : hour(selPoint.time)}</time>
                         <span data-wet={(selPoint.precipitationMm ?? 0) > 0 || undefined}>{selParts.rain}</span>
                         <span>{selParts.temp}</span>
                         <span>{selParts.condition}</span>
@@ -465,9 +497,9 @@ export default function LabWeather() {
                    {hourly.slice(0,12).map((v,i)=>{
                      const label=conditionLabel(parseSymbol(v.symbolCode),lang)
                      return <button type="button" key={v.time}
-                       aria-label={(i===0?c.nowWord:hour(v.time))+' · '+fmt(v.temperatureC,' °C',locale)+' · '+(label??'')+' · '+fmt(v.precipitationMm,' mm',locale,1)}
+                       aria-label={(i===0&&currentHourIsNow?c.nowWord:hour(v.time))+' · '+fmt(v.temperatureC,' °C',locale)+' · '+(label??'')+' · '+fmt(v.precipitationMm,' mm',locale,1)}
                        onClick={()=>{setSelected(i);selectTab('hours')}}>
-                       <time dateTime={v.time}>{i===0?c.nowWord:hour(v.time)}</time>
+                       <time dateTime={v.time}>{i===0&&currentHourIsNow?c.nowWord:hour(v.time)}</time>
                        <WeatherGlyph condition={parseSymbol(v.symbolCode)} size={30}/>
                        <strong>{fmt(v.temperatureC,'°',locale)}</strong>
                        {(v.precipitationMm??0)>0&&<small>{fmt(v.precipitationMm,' mm',locale,1)}</small>}
@@ -498,8 +530,8 @@ export default function LabWeather() {
                     const label = conditionLabel(cond, lang)
                     return (
                       <li key={p.time}>
-                        <button type="button" aria-pressed={i === sel} aria-current={i === 0 ? 'time' : undefined} tabIndex={i === sel ? 0 : -1} onClick={() => pick(i)}>
-                          <time dateTime={p.time}>{i === 0 ? c.nowWord : hour(p.time)}</time>
+                        <button type="button" aria-pressed={i === sel} aria-current={i === 0 && currentHourIsNow ? 'time' : undefined} tabIndex={i === sel ? 0 : -1} onClick={() => pick(i)}>
+                          <time dateTime={p.time}>{i === 0 && currentHourIsNow ? c.nowWord : hour(p.time)}</time>
                           <span className="lw-strip-glyph" title={label ?? undefined}><WeatherGlyph condition={cond} size={26} />{label && <span className="lw-sr">{label}</span>}</span>
                           <strong>{p.temperatureC === null ? '—' : `${Math.round(p.temperatureC)}°`}</strong>
                           {hourMetric==='rain'

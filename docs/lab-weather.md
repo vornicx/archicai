@@ -159,3 +159,8 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 - Today's 24h rain total and next rain timing remain visible. The detailed hourly rainfall chart is optional disclosure so Hourly and Days previews are available sooner. Hourly chart remains in Rain Explained. No weather math or upstream data changed.
 
 - Official AEMET warning panels take precedence over rain details only when actual matching CAP notices are available. Empty, incomplete or unreachable RSS never renders an unfounded all-clear card; direct AEMET source remains available in the footer.
+
+
+## Reliability pass — foreground refresh / current-time accuracy
+- Forecast is revalidated when the app resumes after 15 minutes, reconnects, or stays open and visible for 15 minutes. No background requests while hidden/offline and no new screen or settings. Existing AbortController/reducer prevents late responses from overwriting another city.
+- Only call an hourly value "Ahora/Now" when that 1-hour interval actually contains the request time; future source timestamps retain their honest local clock label. Timestamp formatting is destination-timezone based, even through DST.

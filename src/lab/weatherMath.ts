@@ -46,3 +46,9 @@ export function chartMax(hourly: HourPoint[]): number {
   if (max <= 5) return 5
   return Math.ceil(max / 5) * 5
 }
+
+/** A future model sample cannot be labelled "Now". All instants are absolute, DST-safe. */
+export function isCurrentForecastHour(start:string,now:number):boolean{
+  const ms=Date.parse(start)
+  return Number.isFinite(ms)&&Number.isFinite(now)&&ms<=now&&now<ms+3_600_000
+}
