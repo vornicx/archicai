@@ -8,7 +8,7 @@ const base=process.env.AUDIT_BASE_URL||'http://127.0.0.1:4173'
 const browser=await chromium.launch({headless:true})
 let context
 try{
-  context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1,reducedMotion:'reduce'})
+  context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1,reducedMotion:'reduce',serviceWorkers:'block'})
   const page=await context.newPage()
   let requests=0
   await page.route('**/functions/v1/lab-weather?*',async route=>{
