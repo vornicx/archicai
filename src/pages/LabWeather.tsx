@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import '@fontsource-variable/geist/wght.css'
 import { useLang } from '../i18n/LanguageContext'
 import { upcomingHourly, rainTotal } from '../lab/weatherMath'
+import { nextRainOutlook } from '../lab/nextRain'
 import { fetchForecast, type Point } from '../lab/weatherClient'
 import { parseSymbol, conditionLabel, skyTone } from '../lab/weatherSymbol'
 import { WeatherGlyph } from '../lab/WeatherGlyph'
@@ -20,7 +21,7 @@ import { WeatherTrend } from '../lab/WeatherTrend'
 import { WeatherInstall } from '../lab/WeatherInstall'
 import { registerWeatherPwa } from '../lab/weatherPwa'
 import { isSavablePlace, readSavedPlaces, toggleSavedPlace, writeSavedPlaces, type SavedPlace } from '../lab/weatherSavedPlaces'
-import { dailySummaries, safeTimeZone } from '../lab/weatherDays'
+import { dailySummaries, safeTimeZone, localDate } from '../lab/weatherDays'
 import { readRecents, writeRecents, pushRecent } from '../lab/citySearch'
 import '../styles/archic-light.css'
 import '../styles/archic-lab.css'
@@ -126,6 +127,7 @@ export default function LabWeather() {
   const [latText, setLatText] = useState(String(PLACES[0].lat))
   const [lonText, setLonText] = useState(String(PLACES[0].lon))
   const [mode, setMode] = useState<'simple' | 'detail'>('simple')
+  const [hourMetric,setHourMetric] = useState<'rain'|'wind'>('rain')
   const [tab,setTab] = useState<WeatherTab>(tabFromHash)
   const [savedPlaces,setSavedPlaces] = useState<SavedPlace[]>(readSavedPlaces)
   const [online,setOnline] = useState(()=>typeof navigator==='undefined'?true:navigator.onLine)
@@ -256,6 +258,14 @@ export default function LabWeather() {
   ] : []
   const nextHour = current ? new Date(Date.parse(current.time) + 3600000).toISOString() : ''
 
+  const rainOutlook=useMemo(()=>nextRainOutlook(hourly,now||Date.now()),[hourly,now])
+  const eventTime=(iso:string)=>{
+    const time=new Date(iso)
+    return new Intl.DateTimeFormat(locale,{
+      ...(localDate(time.getTime(),tz)===localDate(now||Date.now(),tz)?{}:{weekday:'short' as const}),
+      hour:'2-digit',minute:'2-digit',timeZone:tz,
+    }).format(time)
+  }
   const condition = current ? parseSymbol(current.symbolCode) : null
   const conditionText = conditionLabel(condition, lang)
   const tone = skyTone(condition)
@@ -407,6 +417,16 @@ export default function LabWeather() {
                       <h2 id="lw-rain-title">{c.rain24}</h2>
                       <p className="lw-rain-num"><strong>{rain24 === null ? '—' : fmt(rain24, '', locale, 1)}</strong>{rain24 !== null && <span>{c.unit}</span>}</p>
                       {rain24 === null && <p className="lw-rain-note">{c.incomplete}</p>}
+                        {rainOutlook.kind === 'episode' && <p className="lw-next-rain" aria-label={lang==='es'?'Episodio previsto por el modelo horario':'Hourly model rain episode'}>
+                          <span>{lang==='es'?(rainOutlook.inCurrentHour?'Lluvia prevista esta hora':'Próxima lluvia'):(rainOutlook.inCurrentHour?'Rain forecast this hour':'Next rain')}</span>
+                          {(rainOutlook.end || !rainOutlook.inCurrentHour) && <strong>
+                            {rainOutlook.inCurrentHour?'':eventTime(rainOutlook.start)}
+                            {rainOutlook.end?(rainOutlook.inCurrentHour?'→ ':' – ')+eventTime(rainOutlook.end):''}
+                          </strong>}
+                        </p>}
+                        {rainOutlook.kind === 'dry'&&rainOutlook.knownHours>=3&&<p className="lw-next-rain lw-next-dry">
+                          {lang==='es'?`Sin lluvia prevista · ${rainOutlook.knownHours} h`:`No rain forecast · ${rainOutlook.knownHours} h`}
+                        </p>}
                     </div>
                     <dl className="lw-rain-side">
                       <div><dt>{c.rain6}</dt><dd>{rain6 === null ? c.incomplete6 : fmt(rain6, ' ' + c.unit, locale, 1)}</dd></div>
@@ -458,6 +478,10 @@ export default function LabWeather() {
                     <button type="button" aria-pressed={mode === 'detail'} onClick={() => setMode('detail')}>{c.detail}</button>
                   </div>
                 </div>
+                <div className="lw-hour-metric" role="group" aria-label={lang==='es'?'Variable horaria':'Hourly variable'}>
+                  <button type="button" aria-pressed={hourMetric==='rain'} onClick={()=>setHourMetric('rain')}>{lang==='es'?'Lluvia':'Rain'}</button>
+                  <button type="button" aria-pressed={hourMetric==='wind'} onClick={()=>setHourMetric('wind')}>{lang==='es'?'Viento':'Wind'}</button>
+                </div>
                 <p className="lw-sr" id="lw-strip-hint">{c.stripHint}</p>
                 <div className="lw-strip-wrap" data-more-start={edges.start || undefined} data-more-end={edges.end || undefined}>
                 <button type="button" className="lw-strip-nav is-prev" onClick={() => pageStrip(-1)} disabled={!edges.start} aria-label={c.prevHours} tabIndex={-1}><span aria-hidden="true">‹</span></button>
@@ -471,7 +495,17 @@ export default function LabWeather() {
                           <time dateTime={p.time}>{i === 0 ? c.nowWord : hour(p.time)}</time>
                           <span className="lw-strip-glyph" title={label ?? undefined}><WeatherGlyph condition={cond} size={26} />{label && <span className="lw-sr">{label}</span>}</span>
                           <strong>{p.temperatureC === null ? '—' : `${Math.round(p.temperatureC)}°`}</strong>
-                          <span className="lw-strip-rain" data-wet={(p.precipitationMm ?? 0) > 0 || undefined}>{fmt(p.precipitationMm, ' mm', locale, 1)}</span>
+                          {hourMetric==='rain'
+                           ? <span className="lw-strip-rain" data-wet={(p.precipitationMm ?? 0)>0 || undefined}>
+                               {fmt(p.precipitationMm,' mm',locale,1)}
+                               {p.precipitationProbabilityPct!==null&&Number.isFinite(p.precipitationProbabilityPct)&&
+                                <small className="lw-hour-prob">{Math.round(p.precipitationProbabilityPct)}%</small>}
+                             </span>
+                           : <span className="lw-strip-rain lw-hour-wind">
+                               {fmt(p.windKmh,' km/h',locale,0)}
+                               {p.gustKmh!==null&&Number.isFinite(p.gustKmh)&&
+                                 <small className="lw-hour-prob">{lang==='es'?'Ráf.':'Gust'} {fmt(p.gustKmh,' km/h',locale,0)}</small>}
+                             </span>}
                         </button>
                       </li>
                     )

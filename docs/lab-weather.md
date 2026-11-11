@@ -145,3 +145,9 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 ## Immersive Weather UI (owner reference: Apple Weather iPhone, 2026-11-10)
 - Weather-only condition-responsive navy atmospheric surface, very large centered temperature, compact translucent forecast panels, spare labels and a tactile 4-screen navigation. Includes a lightweight Today preview of the existing 12 hourly points and five days; the full views remain in Hours and Days.
 - Model/source facts and official warning links remain discoverable. Decorative sky is an archived site asset, not a live sky camera or radar. Home/Lab commercial pages remain unchanged.
+
+
+## Forum-driven: next rain + hourly wind (2026-11-11)
+- Community basis: https://www.reddit.com/r/androidapps/comments/1qxmbx6/ ; https://www.reddit.com/r/iphone/comments/1tq5wfn/ ; https://www.reddit.com/r/weather/comments/1vjnh53/ .
+- Today rain panel shows first known model-based hourly rain episode, indicating start and stop only if later 0 mm hour exists; for an episode in the current partial hour, explicitly labels it as a forecast, not an observation. All-dry label limited to verified hours, not a universal all-clear. Unknown/missing or non-hourly segments cannot make an unsupported claim.
+- Hours screen toggles between rain (mm and available probability) and wind (km/h with gust only if available). Both use original MET fields. No new source/API, no push permissions, no minute-level nowcast claim.
