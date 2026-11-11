@@ -180,3 +180,73 @@
 .lw-root.lw-immersive .lw-hour-prob{font-size:10px;line-height:1.15;color:#C8D8EC}
 .lw-root.lw-immersive .lw-hour-wind{color:#E1F0FF}
 @media(max-width:390px){.lw-root.lw-immersive .lw-next-rain{font-size:12px}.lw-root.lw-immersive .lw-next-rain strong{font-size:13px}}
+
+/* A single city affordance; location choices expand as an overlay instead of
+   pushing the forecast offscreen. Search input focuses only with fine pointers. */
+.lw-root.lw-immersive .lw-bar{z-index:32;margin-bottom:10px}
+.lw-root.lw-immersive .lw-location-drawer{position:relative;width:min(480px,100%);margin:0 auto;text-align:center}
+.lw-root.lw-immersive .lw-location-drawer>.lw-city-trigger{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  max-width:100%;min-height:55px;margin:0 auto;padding:3px 12px;
+  color:#FFF;font:480 clamp(32px,8.3vw,45px)/1.1 var(--al-font);
+  letter-spacing:-.052em;cursor:pointer;border-radius:13px;list-style:none;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.lw-root.lw-immersive .lw-city-trigger>span:first-child{min-width:0;max-width:calc(100vw - 82px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lw-root.lw-immersive .lw-city-trigger>.lw-city-chevron{font-size:24px;color:#BDD5F2;font-weight:350;transition:transform .17s ease}
+.lw-root.lw-immersive .lw-location-drawer[open] .lw-city-chevron{transform:rotate(180deg)}
+.lw-root.lw-immersive .lw-city-trigger:focus-visible{outline:2px solid #C3E0FF;outline-offset:1px}
+.lw-root.lw-immersive .lw-city-panel{
+  position:absolute;z-index:60;top:calc(100% + 4px);left:50%;transform:translateX(-50%);
+  width:min(430px,calc(100vw - 34px));max-height:min(65dvh,590px);
+  overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;
+  padding:14px 15px 16px;text-align:left;border-radius:21px;
+  border:1px solid rgba(255,255,255,.2);background:#1A2C47;
+  box-shadow:0 26px 64px rgba(2,10,24,.52);
+}
+.lw-root.lw-immersive .lw-city-panel .lw-search{width:100%;max-width:none;margin:0 0 12px}
+.lw-root.lw-immersive .lw-city-panel .lw-search-field{min-height:48px;height:48px}
+.lw-root.lw-immersive .lw-city-panel .lw-search-pop{
+  position:relative;top:auto;margin-top:5px;max-height:250px;overflow-y:auto;
+  box-shadow:none;border-radius:12px;background:#233A5A;
+}
+.lw-root.lw-immersive .lw-city-panel .lw-search-name{color:#FFF}
+.lw-root.lw-immersive .lw-city-panel .lw-search-sub{color:#BFCDE0}
+.lw-root.lw-immersive .lw-city-panel .lw-search-pop li[data-active]{background:#304E75}
+.lw-root.lw-immersive .lw-city-presets{display:flex;flex-wrap:wrap;gap:6px}
+.lw-root.lw-immersive .lw-city-presets button{
+  padding:0 13px;min-height:44px;max-width:100%;border-radius:11px;
+  border:1px solid rgba(255,255,255,.14);color:#DCE9FA;background:rgba(255,255,255,.05);
+  font:500 13px/1.1 var(--al-font);cursor:pointer;
+}
+.lw-root.lw-immersive .lw-city-presets button[aria-pressed=true]{border-color:rgba(174,216,255,.7);background:rgba(130,185,255,.22);color:#FFF}
+.lw-root.lw-immersive .lw-city-presets button:focus-visible,.lw-root.lw-immersive .lw-city-panel button:focus-visible{
+  outline:2px solid #C7E3FF;outline-offset:2px;
+}
+.lw-root.lw-immersive .lw-city-panel .lw-saved{justify-content:flex-start;margin:11px 0}
+.lw-root.lw-immersive .lw-city-panel .lw-tools{display:flex;justify-content:center;gap:12px;margin:13px auto 2px}
+.lw-root.lw-immersive .lw-city-panel .lw-coords{width:100%;margin:0}
+.lw-root.lw-immersive .lw-city-panel .lw-coords summary{min-height:44px;display:flex;align-items:center;justify-content:center;color:#C5D9EF}
+.lw-root.lw-immersive .lw-city-panel .lw-coords[open]{grid-column:auto;grid-row:auto}
+.lw-root.lw-immersive .lw-city-panel .lw-coords form{margin-top:5px;max-width:100%}
+.lw-root.lw-immersive .lw-city-panel .lw-install-hint,
+.lw-root.lw-immersive .lw-city-panel .lw-install-action{display:block;text-align:center;margin:4px auto 0}
+.lw-root.lw-immersive .lw-rain-expand{margin:3px 0 0}
+.lw-root.lw-immersive .lw-rain-expand>summary{
+  display:flex;align-items:center;justify-content:space-between;
+  min-height:44px;padding:2px 0;list-style:none;cursor:pointer;
+  font:500 13px/1.3 var(--al-font);color:#CDE2FC;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.lw-root.lw-immersive .lw-rain-expand>summary::after{content:'+';font-size:19px;font-weight:400;color:#BFD9FF}
+.lw-root.lw-immersive .lw-rain-expand[open]>summary::after{content:'−'}
+.lw-root.lw-immersive .lw-rain-expand>summary::-webkit-details-marker{display:none}
+.lw-root.lw-immersive .lw-rain-expand>summary:focus-visible{outline:2px solid #C4DFFF;outline-offset:2px}
+.lw-root.lw-immersive .lw-rain-expand .lw-chart{margin-top:12px}
+@media(max-width:390px){
+  .lw-root.lw-immersive .lw-city-panel{padding:13px 12px;max-height:70dvh}
+  .lw-root.lw-immersive .lw-city-trigger{font-size:33px}
+}
+@media(prefers-reduced-motion:reduce){
+  .lw-root.lw-immersive .lw-city-chevron{transition:none}
+}

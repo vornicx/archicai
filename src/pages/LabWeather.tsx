@@ -21,6 +21,7 @@ import { WeatherTrend } from '../lab/WeatherTrend'
 import { WeatherInstall } from '../lab/WeatherInstall'
 import { registerWeatherPwa } from '../lab/weatherPwa'
 import { isSavablePlace, readSavedPlaces, toggleSavedPlace, writeSavedPlaces, type SavedPlace } from '../lab/weatherSavedPlaces'
+import { readLastPlace, rememberNamedPlace } from '../lab/weatherLastPlace'
 import { dailySummaries, safeTimeZone, localDate } from '../lab/weatherDays'
 import { readRecents, writeRecents, pushRecent } from '../lab/citySearch'
 import '../styles/archic-light.css'
@@ -123,7 +124,7 @@ export default function LabWeather() {
   const { lang, setLang, canSwitchLang } = useLang()
   const c = COPY[lang]
   const locale = lang === 'es' ? 'es-ES' : 'en-GB'
-  const [place, setPlace] = useState<Place>(PLACES[0])
+  const [place, setPlace] = useState<Place>(()=>readLastPlace(PLACES[0]))
   const [latText, setLatText] = useState(String(PLACES[0].lat))
   const [lonText, setLonText] = useState(String(PLACES[0].lon))
   const [mode, setMode] = useState<'simple' | 'detail'>('simple')
@@ -153,6 +154,7 @@ export default function LabWeather() {
   const [formError, setFormError] = useState('')
   const [selected, setSelected] = useState(0)
   const stripRef = useRef<HTMLUListElement>(null)
+  const cityDrawerRef = useRef<HTMLDetailsElement>(null)
   const [edges, setEdges] = useState({ start: false, end: false })
   const readEdges = () => { const el = stripRef.current; if (el) setEdges(scrollEdges(el.scrollLeft, el.clientWidth, el.scrollWidth)) }
 
@@ -216,9 +218,14 @@ export default function LabWeather() {
   }
   const choose = (next: Place) => {
     setPlace(next)
+    rememberNamedPlace(next)
     setLatText(String(Number(next.lat.toFixed(4))))
     setLonText(String(Number(next.lon.toFixed(4))))
     setFormError('')
+    if(cityDrawerRef.current?.open){
+      cityDrawerRef.current.open=false
+      cityDrawerRef.current.querySelector<HTMLElement>('summary')?.focus({preventScroll:true})
+    }
   }
   const submitCoordinates = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -329,46 +336,43 @@ export default function LabWeather() {
         <h1 className="lw-sr">{c.title}</h1>
 
         <div className="lw-bar">
-          <p className="lw-product" aria-hidden="true">Weather</p>
-          <div className="lw-place">
-            <label htmlFor="lw-place" className="lw-sr">{c.location}</label>
-            <span className="lw-select-wrap">
-              <select id="lw-place" value={place.id} onChange={(e) => {
-                const item = PLACES.find((p) => p.id === e.target.value)
-                if (item) choose(item)
-              }}>
-                {!PLACES.some((p) => p.id === place.id) && <option value={place.id}>{placeName}</option>}
-                {PLACES.map((item) => <option key={item.id} value={item.id}>{item.name[lang]}</option>)}
-              </select>
-            </span>
-
-          </div>
-          <details className="lw-location-drawer">
-            <summary>{lang === 'es' ? 'Ciudades y opciones' : 'Cities & settings'}</summary>
-            <div className="lw-tools">
-              {canSave&&<button className="lw-tool lw-favorite" type="button" aria-pressed={isSaved}
-                onClick={toggleSaved} aria-label={isSaved?(lang==='es'?'Quitar de favoritos':'Remove favorite'):(lang==='es'?'Guardar ciudad':'Save city')}
-                title={isSaved?(lang==='es'?'Quitar favorito':'Remove favorite'):(lang==='es'?'Guardar ciudad':'Save city')}><StarIcon filled={isSaved}/></button>}
-              <button className="lw-tool" type="button" onClick={useDevice} aria-label={c.device} title={c.device}><LocateIcon /><span>{c.device}</span></button>
-              <button className="lw-tool" type="button" onClick={() => setRevision((n) => n + 1)} disabled={loading} aria-label={c.refresh} title={c.refresh}><RefreshIcon /><span>{c.refresh}</span></button>
+          <details className="lw-location-drawer" ref={cityDrawerRef} onToggle={e=>{
+            if(e.currentTarget.open && window.matchMedia('(hover:hover) and (pointer:fine)').matches)
+              e.currentTarget.querySelector<HTMLInputElement>('.lw-search input')?.focus({preventScroll:true})
+          }}>
+            <summary className="lw-city-trigger" aria-label={lang==='es'? `Cambiar ciudad. Actual: ${placeName}`:`Change city. Current: ${placeName}`}>
+              <span>{placeName}</span><span className="lw-city-chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <div className="lw-city-panel">
+              <CitySearch lang={lang} locale={locale} onPick={pickCity} />
+              <div className="lw-city-presets" role="group" aria-label={lang==='es'?'Ciudades':'Cities'}>
+                {PLACES.map(p=><button type="button" key={p.id} aria-pressed={p.id===place.id}
+                  onClick={()=>choose(p)}>{p.name[lang]}</button>)}
+              </div>
+              {savedPlaces.length>0&&<div className="lw-saved" role="group" aria-label={lang==='es'?'Favoritos':'Favorites'}>
+                {savedPlaces.filter(p=>!PLACES.some(q=>q.id===p.id)).map(p=><button key={p.id} type="button"
+                  aria-pressed={p.id===place.id} onClick={()=>choose(p)}>{p.name[lang]}</button>)}
+              </div>}
+              <div className="lw-tools" role="group" aria-label={lang==='es'?'Opciones':'Options'}>
+                {canSave&&<button className="lw-tool lw-favorite" type="button" aria-pressed={isSaved}
+                  onClick={toggleSaved} aria-label={isSaved?(lang==='es'?'Quitar favorito':'Remove favorite'):(lang==='es'?'Guardar favorito':'Save favorite')}
+                  title={isSaved?(lang==='es'?'Quitar favorito':'Remove favorite'):(lang==='es'?'Guardar favorito':'Save favorite')}><StarIcon filled={isSaved}/></button>}
+                <button className="lw-tool" type="button" onClick={useDevice} aria-label={c.device} title={c.device}><LocateIcon /><span>{c.device}</span></button>
+                <button className="lw-tool" type="button" onClick={()=>setRevision(n=>n+1)} disabled={loading}
+                  aria-label={c.refresh} title={c.refresh}><RefreshIcon /><span>{c.refresh}</span></button>
+              </div>
+              <details className="lw-coords">
+                <summary>{c.coords}</summary>
+                <form onSubmit={submitCoordinates} noValidate>
+                  <label>{c.latitude}<input inputMode="decimal" autoComplete="off" value={latText} onChange={e=>setLatText(e.target.value)} /></label>
+                  <label>{c.longitude}<input inputMode="decimal" autoComplete="off" value={lonText} onChange={e=>setLonText(e.target.value)} /></label>
+                  <button className="al-btn al-btn-primary" type="submit">{c.go}</button>
+                </form>
+              </details>
+              <WeatherInstall lang={lang}/>
             </div>
-            <div className="lw-find-row">
-            <CitySearch lang={lang} locale={locale} onPick={pickCity} />
-            <details className="lw-coords">
-            <summary>{c.coords}</summary>
-            <form onSubmit={submitCoordinates} noValidate>
-              <label>{c.latitude}<input inputMode="decimal" autoComplete="off" value={latText} onChange={(e) => setLatText(e.target.value)} /></label>
-              <label>{c.longitude}<input inputMode="decimal" autoComplete="off" value={lonText} onChange={(e) => setLonText(e.target.value)} /></label>
-              <button className="al-btn al-btn-primary" type="submit">{c.go}</button>
-            </form>
-            </details>
-            </div>
-          {(savedPlaces.length>0)&&<div className="lw-saved" aria-label={lang==='es'?'Ciudades favoritas':'Favorite cities'}>
-            {savedPlaces.map(p=><button type="button" key={p.id} aria-pressed={p.id===place.id} onClick={()=>choose(p)}>{p.name[lang]}</button>)}
-          </div>}
-          <WeatherInstall lang={lang}/>
           </details>
-          {formError && <p className="lw-error" role="alert">{formError}</p>}
+          {formError&&<p className="lw-error" role="alert">{formError}</p>}
         </div>
         <nav className="lw-app-tabs" aria-label={lang==='es'?'Secciones de Weather':'Weather sections'}>
           {APP_TABS.map(t=><button key={t} type="button" onClick={()=>selectTab(t)}
@@ -433,8 +437,10 @@ export default function LabWeather() {
                       <div><dt>{c.updated}</dt><dd>{updated}</dd></div>
                     </dl>
                   </div>
-                  <figure className="lw-chart">
-                    <figcaption className="lw-chart-head"><span>{c.chartTitle}</span><span>{c.chartRange(hourly.length)}</span></figcaption>
+                  <details className="lw-rain-expand">
+                    <summary>{lang==='es'?'Ver lluvia por horas':'Hourly rain details'}</summary>
+                    <figure className="lw-chart">
+                      <figcaption className="lw-chart-head"><span>{c.chartTitle}</span><span>{c.chartRange(hourly.length)}</span></figcaption>
                     <RainBars hourly={hourly} locale={locale} timeZone={tz} label={chartLabel} selectedIndex={sel} />
                     {selPoint && selParts && (
                       <p className="lw-chart-sel" aria-live="polite" aria-label={`${c.selectedHour}: ${selText}`}>
@@ -445,7 +451,8 @@ export default function LabWeather() {
                       </p>
                     )}
                     <p className="lw-sr">{chartLabel}</p>
-                  </figure>
+                    </figure>
+                  </details>
                 </div>
               </section>
 

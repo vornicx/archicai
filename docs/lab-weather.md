@@ -151,3 +151,9 @@ Browser QA used a local proxy to the real Edge Function with an `Origin: https:/
 - Community basis: https://www.reddit.com/r/androidapps/comments/1qxmbx6/ ; https://www.reddit.com/r/iphone/comments/1tq5wfn/ ; https://www.reddit.com/r/weather/comments/1vjnh53/ .
 - Today rain panel shows first known model-based hourly rain episode, indicating start and stop only if later 0 mm hour exists; for an episode in the current partial hour, explicitly labels it as a forecast, not an observation. All-dry label limited to verified hours, not a universal all-clear. Unknown/missing or non-hourly segments cannot make an unsupported claim.
 - Hours screen toggles between rain (mm and available probability) and wind (km/h with gust only if available). Both use original MET fields. No new source/API, no push permissions, no minute-level nowcast claim.
+
+
+## Single-tap city UX and glance-first Today (2026-11-11)
+- Tapping the visible city opens one overlay with local city search, preset cities, favorites, GPS, refresh and advanced coordinates. No redundant preset selector + separate settings control. Keyboard-focus search only for pointer-fine devices; mobile does not automatically open the software keyboard. Choosing a city closes the panel and returns focus to the city button.
+- Named, explicitly selected cities resume on next visit from device-local storage; NEVER persist GPS, current coordinates, permission results or location history. Invalid stored data silently falls back to Écija. No sync or account.
+- Today's 24h rain total and next rain timing remain visible. The detailed hourly rainfall chart is optional disclosure so Hourly and Days previews are available sooner. Hourly chart remains in Rain Explained. No weather math or upstream data changed.
