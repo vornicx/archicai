@@ -125,8 +125,8 @@ export default function LabWeather() {
   const c = COPY[lang]
   const locale = lang === 'es' ? 'es-ES' : 'en-GB'
   const [place, setPlace] = useState<Place>(()=>readLastPlace(PLACES[0]))
-  const [latText, setLatText] = useState(String(PLACES[0].lat))
-  const [lonText, setLonText] = useState(String(PLACES[0].lon))
+  const [latText, setLatText] = useState(() => String(place.lat))
+  const [lonText, setLonText] = useState(() => String(place.lon))
   const [mode, setMode] = useState<'simple' | 'detail'>('simple')
   const [hourMetric,setHourMetric] = useState<'rain'|'wind'>('rain')
   const [tab,setTab] = useState<WeatherTab>(tabFromHash)
