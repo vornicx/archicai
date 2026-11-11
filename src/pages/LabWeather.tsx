@@ -368,10 +368,7 @@ export default function LabWeather() {
         <h1 className="lw-sr">{c.title}</h1>
 
         <div className="lw-bar">
-          <details className="lw-location-drawer" ref={cityDrawerRef} onToggle={e=>{
-            if(e.currentTarget.open && window.matchMedia('(hover:hover) and (pointer:fine)').matches)
-              e.currentTarget.querySelector<HTMLInputElement>('.lw-search input')?.focus({preventScroll:true})
-          }}>
+          <details className="lw-location-drawer" ref={cityDrawerRef}>
             <summary className="lw-city-trigger" aria-label={lang==='es'? `Cambiar ciudad. Actual: ${placeName}`:`Change city. Current: ${placeName}`}>
               <span>{placeName}</span><span className="lw-city-chevron" aria-hidden="true">⌄</span>
             </summary>
