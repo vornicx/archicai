@@ -69,12 +69,24 @@ try{
   const network=[]
   const capture=req=>{if(req.url().includes('/functions/v1/lab-weather'))network.push(req.url())}
   page.on('request',capture)
+  await page.evaluate(()=>{
+    window.__weatherDebug={clicks:0,fetchCalls:[]}
+    const btn=document.querySelector('button[aria-label="Actualizar"]')
+    btn?.addEventListener('click',()=>{window.__weatherDebug.clicks++})
+    const oldFetch=window.fetch.bind(window)
+    window.fetch=(...args)=>{
+      window.__weatherDebug.fetchCalls.push(String(args[0]))
+      return oldFetch(...args)
+    }
+  })
   await refresh.click()
   for(let i=0;i<50&&requests<=count;i++)await page.waitForTimeout(100)
   page.off('request',capture)
+  const details=await page.evaluate(()=>window.__weatherDebug)
   assert.ok(requests>count,
     'manual refresh did not call forecast; requests='+requests+' before='+count+
-    ' network='+JSON.stringify(network)+' status='+await page.locator('.lw-refreshing').count())
+    ' network='+JSON.stringify(network)+' debug='+JSON.stringify(details)+
+    ' status='+await page.locator('.lw-refreshing').count())
   assert.ok(await noScrollOverflow(),'Weather should fit mobile width with city panel opened')
 
   // Responsive: no clipped primary controls on narrow iPhones.
