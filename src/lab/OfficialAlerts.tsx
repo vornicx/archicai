@@ -21,6 +21,9 @@ export function OfficialAlerts({placeId,lat,lon,lang,locale,timeZone}:{
  },[placeId,lat,lon,zone?.code])
  if(!zone)return null
  const alerts=(data?.alerts||[]).slice().sort((a,b)=>ORDER[a.level]-ORDER[b.level]).slice(0,3)
+ // A blank feed is not an all-clear; the always-available AEMET source link lives in the footer.
+ // Only show the prominent warning surface for a matching published notice.
+ if(!alerts.length)return null
  const date=(v:string)=>new Intl.DateTimeFormat(locale,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone}).format(new Date(v))
  return <section className="lw-official" aria-label={lang==='es'?'Avisos oficiales de AEMET':'Official AEMET warnings'}>
    <div className="lw-official-head">

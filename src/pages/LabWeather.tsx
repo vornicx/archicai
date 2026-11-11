@@ -415,6 +415,7 @@ export default function LabWeather() {
                     <div><dt>{c.humidity}</dt><dd>{fmt(current.humidityPct, ' %', locale)}</dd></div>
                   </dl>
                 </div>
+                <OfficialAlerts placeId={place.id} lat={place.lat} lon={place.lon} lang={lang} locale={locale} timeZone={tz} />
                 <div className="lw-rain" aria-labelledby="lw-rain-title">
                   <div className="lw-rain-top">
                     <div>
@@ -456,7 +457,6 @@ export default function LabWeather() {
                 </div>
               </section>
 
-              <OfficialAlerts placeId={place.id} lat={place.lat} lon={place.lon} lang={lang} locale={locale} timeZone={tz} />
                <section className="lw-peek" aria-label={c.hours}>
                  <div className="lw-peek-head"><h2>{c.hours}</h2>
                    <button type="button" onClick={() => selectTab('hours')}>{lang === 'es' ? 'Ver horas' : 'All hours'} <span aria-hidden="true">›</span></button>
