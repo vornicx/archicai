@@ -61,13 +61,20 @@ try{
   await page.locator('.lw-rain-expand summary').click()
   await page.locator('.lw-rain-expand .lw-chart').waitFor({state:'visible'})
 
-  // Refresh actually issues a new forecast request for the selected city.
+  // Refresh must actually issue a new forecast request for the selected city.
   await page.locator('.lw-city-trigger').click()
   const count=requests
-  await page.getByRole('button',{name:'Actualizar'}).click()
-  await page.waitForFunction(()=>!!document.querySelector('.lw-temp'))
-  for(let i=0;i<20&&requests<=count;i++)await page.waitForTimeout(100)
-  assert.ok(requests>count,'manual refresh did not call forecast')
+  const refresh=page.getByRole('button',{name:'Actualizar'})
+  assert.equal(await refresh.isEnabled(),true,'refresh unexpectedly disabled')
+  const network=[]
+  const capture=req=>{if(req.url().includes('/functions/v1/lab-weather'))network.push(req.url())}
+  page.on('request',capture)
+  await refresh.click()
+  for(let i=0;i<50&&requests<=count;i++)await page.waitForTimeout(100)
+  page.off('request',capture)
+  assert.ok(requests>count,
+    'manual refresh did not call forecast; requests='+requests+' before='+count+
+    ' network='+JSON.stringify(network)+' status='+await page.locator('.lw-refreshing').count())
   assert.ok(await noScrollOverflow(),'Weather should fit mobile width with city panel opened')
 
   // Responsive: no clipped primary controls on narrow iPhones.
