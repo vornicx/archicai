@@ -123,7 +123,7 @@ export const CONTENT: Record<Lang, Content> = {
     meta: {
       title: 'Páginas web y software a medida para empresas | Archic Lab',
       description:
-        'Diseñamos páginas web profesionales, ofrecemos mantenimiento y desarrollamos software a medida para pymes y empresas en España.',
+        'Diseñamos páginas web profesionales, ofrecemos mantenimiento y desarrollamos software a medida para pymes y empresas de España y todo el mundo.',
       ogTitle: 'Páginas web y software a medida para empresas | Archic Lab',
       ogDescription:
         'Diseño y desarrollo web, mantenimiento continuo, software a medida y automatización de procesos para empresas.',
@@ -167,7 +167,7 @@ export const CONTENT: Record<Lang, Content> = {
     },
     answer: {
       question: '¿Qué es Archic Lab?',
-      body: 'Archic Lab es un estudio de diseño y desarrollo web con base en Écija (Sevilla, España). Hace tres cosas: diseña y programa páginas web a medida, desarrolla software interno para empresas —inventarios, paneles de producción, automatización de informes— y mantiene esos sistemas una vez publicados. Trabaja de forma presencial en la provincia de Sevilla y en remoto con el resto de España, en castellano e inglés.',
+      body: 'Archic Studio es un estudio de diseño y desarrollo web con base en Écija (Sevilla, España). Hace tres cosas: diseña y programa páginas web a medida, desarrolla software interno para empresas —inventarios, paneles de producción, automatización de informes— y mantiene esos sistemas una vez publicados. Trabaja de forma presencial en la provincia de Sevilla y en remoto con clientes de España y de todo el mundo, en castellano e inglés.',
     },
     facts: {
       eyebrow: 'Comprobable',
@@ -192,7 +192,7 @@ export const CONTENT: Record<Lang, Content> = {
         {
           value: 'Écija',
           label: 'base en la provincia de Sevilla',
-          desc: 'Reuniones presenciales en Écija, Sevilla capital y la Campiña. Con el resto de España trabajamos en remoto, con la misma forma de trabajar.',
+          desc: 'Reuniones presenciales en Écija, Sevilla capital y la Campiña. Con clientes de cualquier país trabajamos en remoto, con la misma forma de trabajar.',
         },
       ],
     },
@@ -341,7 +341,7 @@ export const CONTENT: Record<Lang, Content> = {
           a: 'Es una herramienta programada para la forma concreta en la que trabaja una empresa: control de inventario, seguimiento de producción, generación automática de informes, paneles internos. Compensa cuando el programa comercial obliga a cambiar el proceso para encajar en él, cuando se paga por decenas de funciones que nadie usa, o cuando el trabajo real vive en hojas de Excel que solo entiende una persona. Si un software estándar cubre lo que necesitáis, lo decimos: sale más barato para todos.',
         },
         {
-          q: '¿Trabajáis solo en Écija y Sevilla?',
+          q: '¿Trabajáis con clientes internacionales?',
           a: 'La base está en Écija, así que en la provincia de Sevilla —Écija, Sevilla capital, Carmona, Osuna, Marchena, Utrera, Dos Hermanas, Palma del Río— podemos vernos en persona. Con el resto de España trabajamos en remoto: videollamada, avances visibles y la misma forma de trabajar. Atendemos en castellano e inglés.',
         },
         {
@@ -445,7 +445,7 @@ export const CONTENT: Record<Lang, Content> = {
     meta: {
       title: 'Websites and custom software for businesses | Archic Lab',
       description:
-        'We design professional websites, provide ongoing maintenance and build custom software for companies in Spain.',
+        'We design professional websites, provide ongoing maintenance and build custom software for companies worldwide.',
       ogTitle: 'Websites and custom software for businesses | Archic Lab',
       ogDescription:
         'Web design and development, ongoing maintenance, custom software and process automation for businesses.',
@@ -486,7 +486,7 @@ export const CONTENT: Record<Lang, Content> = {
     },
     answer: {
       question: 'What is Archic Lab?',
-      body: 'Archic Lab is a web design and development studio based in Écija (Seville, Spain). It does three things: it designs and codes custom websites, it builds internal business software — inventory systems, production dashboards, report automation — and it maintains those systems once they are live. It works on site across the province of Seville and remotely with the rest of Spain, in Spanish and English.',
+      body: 'Archic Studio is a web design and development studio based in Écija (Seville, Spain). It does three things: it designs and codes custom websites, it builds internal business software — inventory systems, production dashboards, report automation — and it maintains those systems once they are live. It works on site across the province of Seville and remotely with clients worldwide, in Spanish and English.',
     },
     facts: {
       eyebrow: 'Verifiable',
@@ -511,7 +511,7 @@ export const CONTENT: Record<Lang, Content> = {
         {
           value: 'Écija',
           label: 'based in the province of Seville',
-          desc: 'In-person meetings across Écija, Seville and the Campiña area. Everywhere else in Spain we work remotely, with the same way of working.',
+          desc: 'In-person meetings across Écija, Seville and the Campiña area. For clients anywhere in the world we work remotely, with the same way of working.',
         },
       ],
     },
@@ -660,7 +660,7 @@ export const CONTENT: Record<Lang, Content> = {
           a: 'It is a tool coded for the specific way a company works: stock control, production tracking, automated reporting, internal dashboards. It pays off when the commercial product forces you to change your process to fit it, when you are paying for dozens of features nobody uses, or when the real work lives in spreadsheets only one person understands. If a standard product covers what you need, we will say so — it is cheaper for everyone.',
         },
         {
-          q: 'Do you only work in Écija and Seville?',
+          q: 'Do you work with international clients?',
           a: 'The studio is based in Écija, so across the province of Seville — Écija, Seville, Carmona, Osuna, Marchena, Utrera, Dos Hermanas, Palma del Río — we can meet in person. Everywhere else in Spain we work remotely: video calls, visible progress, same way of working. We work in Spanish and English.',
         },
         {

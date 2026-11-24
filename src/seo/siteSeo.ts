@@ -6,7 +6,7 @@ export const BRAND_VERSION = '20260827'
 export const ARCHIC_SYMBOL_URL = `${SITE_ORIGIN}/brand/archic-symbol-2026.svg`
 export const ARCHIC_LOCKUP_URL = `${SITE_ORIGIN}/brand/archic-lockup-dark.svg`
 export const ARCHIC_COMMERCIAL_SUMMARY_ES =
-  'Archic es una marca de diseño y tecnología con dos divisiones: Archic Studio, que diseña webs y desarrolla software a medida para empresas, y Archic Lab, que investiga, desarrolla y publica productos digitales propios. Weather es un producto de Lab.'
+  'Archic reúne Archic Studio, diseño web y software a medida para empresas de España y todo el mundo, y Archic Lab, investigación y productos digitales propios.'
 const OG_VERSION = `v=${BRAND_VERSION}`
 
 export const ARCHIC_BASE = {
@@ -19,15 +19,15 @@ export const ARCHIC_BASE = {
 } as const
 
 export const ARCHIC_SERVICE_AREAS = [
-  { '@type': 'City', name: 'Écija' },
-  { '@type': 'City', name: 'Sevilla' },
-  { '@type': 'City', name: 'Marbella' },
-  { '@type': 'AdministrativeArea', name: 'Costa del Sol' },
   { '@type': 'Country', name: 'Spain' },
+  'Worldwide',
 ] as const
 
 export const ARCHIC_KNOWS_ABOUT = [
-  'Premium web design',
+  'Affordable business web design',
+  'Remote website development',
+  'International web design',
+  'Small business websites',
   'Web application development',
   'Custom web software',
   'Digital presence',
@@ -68,14 +68,14 @@ type SeoEntry = {
 
 export const HOME_SEO: Record<Lang, SeoEntry> = {
   es: {
-    title: 'Archic — Studio y Lab | Diseño y tecnología',
-    description: 'Archic es una marca de diseño y tecnología con dos divisiones: Archic Studio, que diseña webs y desarrolla software a medida para empresas, y Archic Lab, que investiga, desarrolla y publica productos digitales propios. Weather es un producto de Lab.',
+    title: 'Archic | Diseño web, software y productos digitales',
+    description: 'Archic reúne Archic Studio, diseño web y software a medida para empresas de España y todo el mundo, y Archic Lab, investigación y productos digitales propios.',
     ogAlt: 'Archic — Studio y Lab',
     schemaName: 'Archic',
   },
   en: {
-    title: 'Archic — Studio and Lab | Design and technology',
-    description: 'Archic is a design and technology brand with two divisions: Archic Studio builds websites and custom software for businesses, while Archic Lab researches, develops and publishes its own digital products. Weather is a Lab product.',
+    title: 'Archic | Web design, software and digital products',
+    description: 'Archic brings together Archic Studio, web design and custom software for businesses worldwide, and Archic Lab, research and independent digital products.',
     ogAlt: 'Archic — Studio and Lab',
     schemaName: 'Archic',
   },
@@ -84,8 +84,8 @@ export const HOME_SEO: Record<Lang, SeoEntry> = {
 export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
   es: {
     presence: {
-      title: 'Webs por 349 € + IVA | Archic Studio',
-      description: 'Webs sencillas para empresas por 349 € + IVA: entrega en ZIP y guía de publicación. Publicación opcional en Cloudflare por 49 € + IVA adicionales.',
+      title: 'Diseño web para empresas desde España | 349 € + IVA | Archic Studio',
+      description: 'Diseño web para empresas y autónomos de España y cualquier país: 349 € + IVA, ZIP y guía. Publicación remota opcional por 49 € + IVA.',
       ogAlt: 'Archic Presence — diseño web premium y presencia digital',
       schemaName: 'Archic Presence',
       serviceType: 'Diseño web premium y presencia digital',
@@ -105,8 +105,8 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
       serviceType: 'Software a medida y automatización empresarial',
     },
     studio: {
-      title: 'Estudio de diseño web y software a medida | Archic Studio',
-      description: 'Webs sencillas por 349 € + IVA con ZIP y guía de publicación; despliegue opcional por 49 € + IVA. Software, automatización y otros servicios bajo presupuesto.',
+      title: 'Diseño web y software a medida internacional | Archic Studio',
+      description: 'Webs sencillas por 349 € + IVA con ZIP y guía de publicación; despliegue opcional por 49 € + IVA. Software a medida bajo presupuesto. Servicio en España y todo el mundo.',
       ogAlt: 'Archic Studio — diseño, tecnología y criterio de negocio',
       schemaName: 'Archic Studio',
     },
@@ -119,8 +119,8 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
   },
   en: {
     presence: {
-      title: 'Websites for €349 + VAT | Archic Studio',
-      description: 'Simple business websites for €349 + VAT: ZIP delivery and publishing guide. Optional Cloudflare publishing for an additional €49 + VAT.',
+      title: 'Affordable business web design | €349 + VAT | Archic Studio',
+      description: 'Remote web design for businesses worldwide. Fixed €349 price before applicable taxes, ZIP delivery and guide. Optional publishing for €49.',
       ogAlt: 'Archic Presence — premium web design and digital presence',
       schemaName: 'Archic Presence',
       serviceType: 'Premium web design and digital presence',
@@ -140,8 +140,8 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
       serviceType: 'Custom software and business automation',
     },
     studio: {
-      title: 'Web design and custom software studio | Archic Studio',
-      description: 'Simple websites for €349 + VAT with ZIP and publishing guide; optional deployment for €49 + VAT. Custom software, automation and other services on request.',
+      title: 'Remote web design and custom software studio | Archic Studio',
+      description: 'Simple websites for €349 + VAT with ZIP and publishing guide; optional deployment for €49 + VAT. Custom software on request. Serving businesses worldwide in English and Spanish.',
       ogAlt: 'Archic Studio — design, technology and business judgement',
       schemaName: 'Archic Studio',
     },
@@ -173,7 +173,7 @@ export function siteOgImage(lang: Lang) {
 export function organizationNode() {
   const contactBase = {
     '@type': 'ContactPoint',
-    areaServed: { '@type': 'Country', name: 'Spain' },
+    areaServed: ARCHIC_SERVICE_AREAS,
     availableLanguage: ['Spanish', 'English'],
   }
 
@@ -272,7 +272,7 @@ export function buildSitePageGraph(page: SitePageKey, lang: Lang) {
         description: seo.description,
         url: canonical,
         provider: { '@id': `${SITE_ORIGIN}/#organization` },
-        areaServed: { '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' },
+        areaServed: ARCHIC_SERVICE_AREAS,
         availableLanguage: ['es', 'en'],
       }
     : null

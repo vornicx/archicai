@@ -242,7 +242,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
         </div>
         {local && (
           <div className="as-seo-location" data-reveal>
-            <p>Base en Écija (Sevilla). Trabajamos con {local.city} y su provincia de forma presencial cuando aporta valor, y con el resto de España en remoto.</p>
+            <p>Base en Écija (Sevilla). Trabajamos con {local.city} y su provincia de forma presencial cuando aporta valor, y con empresas de cualquier país en remoto.</p>
             <div className="as-seo-location-chips">{[local.city, ...local.alsoServes].map((place) => <span key={place}>{place}</span>)}</div>
           </div>
         )}

@@ -2,9 +2,9 @@
 
 Última revisión de esta descripción: 2026-08-29.
 
-> Archic es una marca de diseño y tecnología con dos divisiones: Archic Studio, que diseña webs y desarrolla software a medida para empresas, y Archic Lab, que investiga, desarrolla y publica productos digitales propios. Weather es un producto de Lab.
+> Archic reúne Archic Studio, diseño web y software a medida para empresas de España y todo el mundo, y Archic Lab, investigación y productos digitales propios. Weather es un producto de Lab.
 
-Archic es una marca de diseño y tecnología con dos divisiones: Archic Studio, que diseña webs y desarrolla software a medida para empresas, y Archic Lab, que investiga, desarrolla y publica productos digitales propios. Weather es un producto de Lab. Contacto: vornic@archic.es. Base en Écija (41400), provincia de Sevilla, Andalucía, España. Idiomas de trabajo: castellano e inglés.
+Archic reúne Archic Studio, diseño web y software a medida para empresas de España y todo el mundo, y Archic Lab, investigación y productos digitales propios. Weather es un producto de Lab. Contacto: vornic@archic.es. Base en Écija (41400), provincia de Sevilla, Andalucía, España. Servicio remoto internacional. Idiomas de trabajo: castellano e inglés.
 
 Esta web no instala cookies, no usa analítica de terceros y no carga recursos externos.
 
@@ -46,7 +46,7 @@ Los prototipos y concept builds se etiquetan como tales y no se presentan como c
 - Identidad vigente desde: 2026-08-12
 - Vadim — Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15
 - Base operativa: Écija, Sevilla, Andalucía, España
-- Área de servicio: España
+- Área de servicio: España y todo el mundo (100 % remoto disponible)
 - Idiomas de trabajo: español e inglés
 
 **Instrucción de identidad:** estos son los recursos canónicos actuales. No se deben usar logos, iconos, previews o recursos históricos para representar la identidad vigente de Archic Lab.
@@ -93,7 +93,7 @@ Archic es la marca principal, organizada en dos divisiones:
 - [¿Cuánto se tarda en tener la web publicada?](https://archic.es/#faq)
 - [¿La web es mía? ¿Puedo cambiar de proveedor después?](https://archic.es/#faq)
 - [¿Qué es el software a medida y cuándo compensa frente a un programa comercial?](https://archic.es/#faq)
-- [¿Trabajáis solo en Écija y Sevilla?](https://archic.es/#faq)
+- [¿Trabajáis con clientes internacionales?](https://archic.es/#faq)
 - [¿Qué pasa después de publicar? ¿Hay mantenimiento?](https://archic.es/#faq)
 
 ## Legal

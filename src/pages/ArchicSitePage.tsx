@@ -43,7 +43,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
       eyebrow: '01 / ARCHIC PRESENCE',
       title: 'Una web que resuelve.',
       accent: 'Por 349 € + IVA.',
-      intro: 'Diseñamos webs sencillas y útiles para empresas. Recibes los archivos en ZIP y una guía de publicación. Si prefieres que la publiquemos por ti, son 49 € + IVA adicionales.',
+      intro: 'Diseñamos webs sencillas y útiles para empresas de España y cualquier país. Recibes los archivos en ZIP y una guía de publicación. Si prefieres que la publiquemos por ti, son 49 € + IVA adicionales.',
       roleTitle: 'Presence convierte percepción en una decisión comercial.',
       roleBody: 'Una presencia sólida ordena qué entiende el cliente, qué recuerda, qué compara y cuál es el siguiente paso. Diseño, contenido, producto y tecnología trabajan para la misma señal.',
       outcomes: [
@@ -133,7 +133,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
       eyebrow: '04 / ARCHIC STUDIO',
       title: 'Webs y software.',
       accent: 'A medida de tu negocio.',
-      intro: 'Diseño, producto, desarrollo e IA supervisada trabajando como un mismo equipo. Archic Studio crea webs sencillas por 349 € + IVA y desarrolla software y sistemas a medida bajo presupuesto.',
+      intro: 'Diseño, producto, desarrollo e IA supervisada trabajando como un mismo equipo. Archic Studio crea webs por 349 € + IVA y software a medida para empresas de España y de cualquier país. Trabajamos en remoto, en español e inglés.',
       roleTitle: 'El estándar importa más que la herramienta con la que llegamos a él.',
       roleBody: 'Usamos IA para ampliar investigación, exploración, desarrollo, QA y capacidad operativa. La dirección, el contexto, las decisiones y la responsabilidad de entrega siguen siendo humanas.',
       outcomes: [
@@ -163,7 +163,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
   en: {
     presence: {
       eyebrow: '01 / ARCHIC PRESENCE', title: 'A website that solves problems.', accent: 'For €349 + VAT.',
-      intro: 'We build simple, useful business websites. You receive the website files as a ZIP and a publishing guide. Optional remote publishing costs an additional €49 + VAT.',
+      intro: 'We build simple, useful business websites for clients worldwide. You receive the website files as a ZIP and a publishing guide. Optional remote publishing costs an additional €49 + VAT.',
       roleTitle: 'Presence turns perception into a commercial decision.', roleBody: 'A strong presence orders what the customer understands, remembers, compares and does next. Design, content, product and technology work toward the same signal.',
       outcomes: [['PERCEPTION','Make the digital standard match the real business.'],['CLARITY','Help customers understand why to choose you and what to do next.'],['CONVERSION','Place contact, booking, enquiry or visit at the right moment.']],
       capabilitiesTitle: 'We build presence as a product, not a showcase.', capabilitiesBody: 'Every block exists to move a decision. If a section only fills space, it goes.',
@@ -202,7 +202,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
     },
     studio: {
       eyebrow: '04 / ARCHIC STUDIO', title: 'Digital solutions.', accent: 'Built for businesses.',
-      intro: 'Design, product, development and supervised AI working as one team. Archic Studio builds simple websites for €349 + VAT and quotes custom software and systems separately.',
+      intro: 'Design, product, development and supervised AI working as one team. Archic Studio builds websites for €349 before tax and custom software for businesses worldwide. We work remotely in English and Spanish.',
       roleTitle: 'The standard matters more than the tool used to reach it.', roleBody: 'We use AI to expand research, exploration, development, QA and operational capacity. Direction, context, decisions and delivery responsibility remain human.',
       outcomes: [['DIRECTION','A clear decision before multiplying options.'],['SPEED','More useful iteration without turning speed into carelessness.'],['CONTROL','Code, assets, QA and verifiable decisions in every delivery.']],
       capabilitiesTitle: 'A process designed to reduce judgement errors.', capabilitiesBody: 'AI accelerates parts of the work. The method stops that speed becoming more noise.',
@@ -440,7 +440,7 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
 
   return (
     <div className={`as-site al-site al-route-light ar-site ar-route ar-${page}`} data-quality-standard="archic-design-system-1.0.0">
-      <Helmet><title>{`${c.eyebrow.split('/').pop()?.trim()} — Archic Studio`}</title><meta name="description" content={c.intro} /></Helmet>
+      
       <StudioExperience />
       <StudioHeader />
 

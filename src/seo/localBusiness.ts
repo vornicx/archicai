@@ -1,11 +1,11 @@
 import { VADIM_CONTACT } from '../config/contact'
-import { ARCHIC_SYMBOL_URL, SITE_ORIGIN, siteOgImage } from './siteSeo'
+import { ARCHIC_SERVICE_AREAS, ARCHIC_SYMBOL_URL, SITE_ORIGIN, siteOgImage } from './siteSeo'
 
 /**
  * Datos verificables de Archic Studio para marcado geográfico.
  *
  * Regla principal: Archic Studio tiene una única base declarada en Écija (Sevilla) y
- * presta servicio a empresas de toda España. Una landing de ciudad describe un
+ * presta servicio a empresas de toda España y del mundo. Una landing de ciudad describe un
  * mercado atendido, no una oficina, sucursal o ubicación física adicional.
  *
  * No emitimos calle, horarios, radio de servicio, rango de precios ni una ficha
@@ -60,10 +60,10 @@ export function localBusinessNode(scope: LocalScope, lang: 'es' | 'en' = 'es') {
     lang === 'es'
       ? isBaseMarket
         ? `Archic Studio es un estudio español de sistemas digitales con base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.province}). Diseña presencia digital premium, sistemas de gestión y software a medida para empresas de toda España.`
-        : `Archic Studio es un estudio español de sistemas digitales con base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.province}) que atiende proyectos de ${scope.city} y del resto de España. Esta cobertura no implica una oficina física en ${scope.city}.`
+        : `Archic Studio es un estudio español de sistemas digitales con base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.province}) que atiende proyectos de ${scope.city} y del resto de España y del mundo. Esta cobertura no implica una oficina física en ${scope.city}.`
       : isBaseMarket
-        ? `Archic Studio is a Spanish digital systems studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province}. It builds premium digital presence, management systems and custom software for businesses across Spain.`
-        : `Archic Studio is a Spanish digital systems studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province}, serving projects in ${scope.city} and across Spain. This service coverage does not imply a physical office in ${scope.city}.`
+        ? `Archic Studio is a Spanish digital systems studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province}. It builds premium digital presence, management systems and custom software for businesses across Spain and worldwide.`
+        : `Archic Studio is a Spanish digital systems studio based in ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.province}, serving projects in ${scope.city} and across Spain and worldwide. This service coverage does not imply a physical office in ${scope.city}.`
 
   const address = verifiedPostalAddress()
 
@@ -82,7 +82,7 @@ export function localBusinessNode(scope: LocalScope, lang: 'es' | 'en' = 'es') {
     description,
     inLanguage: lang,
     areaServed: [
-      { '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' },
+      ...ARCHIC_SERVICE_AREAS,
       { '@type': 'City', name: scope.city },
       ...scope.alsoServes.map((name) => ({ '@type': 'City', name })),
       { '@type': 'AdministrativeArea', name: scope.province },

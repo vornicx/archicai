@@ -3,11 +3,11 @@
  * Solo se publican datos que puedan verificarse en la propia web.
  *
  * Las landings geográficas describen mercados atendidos. No crean ni sugieren
- * oficinas, sedes o sucursales de Archic Lab en la ciudad objetivo.
+ * oficinas, sedes o sucursales de Archic Studio en la ciudad objetivo.
  */
 import type { ServicePage } from './servicePages'
 import type { LocalLandingPage } from './localPages'
-import { organizationNode, SITE_ORIGIN } from './siteSeo'
+import { ARCHIC_SERVICE_AREAS, organizationNode, SITE_ORIGIN } from './siteSeo'
 
 export function isLocalLanding(page: ServicePage): page is LocalLandingPage {
   return 'local' in page && Boolean((page as LocalLandingPage).local)
@@ -19,12 +19,12 @@ export function buildLandingGraph(page: ServicePage, lang: 'es' | 'en' = 'es') {
 
   const areaServed = local
     ? [
-        { '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' },
+        ...ARCHIC_SERVICE_AREAS,
         { '@type': 'City', name: local.city },
         ...local.alsoServes.map((name) => ({ '@type': 'City', name })),
         { '@type': 'AdministrativeArea', name: local.province },
       ]
-    : [{ '@type': 'Country', name: lang === 'es' ? 'España' : 'Spain' }]
+    : ARCHIC_SERVICE_AREAS
 
   return {
     '@context': 'https://schema.org',

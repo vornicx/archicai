@@ -127,10 +127,10 @@ function homeSnapshot(lang: 'es' | 'en') {
     .join('')
 
   const searchLinks = isEs
-    ? `<section><span class="eyebrow">Búsqueda / Servicios</span><h2>Servicios de diseño web y software</h2><nav aria-label="Servicios principales"><a href="/diseno-web-sevilla/">Diseño web en Sevilla</a><a href="/diseno-web-ecija/">Diseño web en Écija</a><a href="/desarrollo-web-a-medida/">Desarrollo web a medida</a><a href="/desarrollo-web-sevilla/">Desarrollo web en Sevilla</a><a href="/diseno-web-para-empresas/">Diseño web para empresas</a><a href="/diseno-web-marbella/">Diseño web en Marbella</a><a href="/diseno-web-inmobiliarias/">Web para inmobiliarias</a><a href="/diseno-web-restaurantes/">Web para restaurantes</a><a href="/guias/">Guías</a></nav></section>`
-    : ''
+    ? `<section><span class="eyebrow">Búsqueda / Servicios</span><h2>Servicios de diseño web y software</h2><nav aria-label="Servicios principales"><a href="/diseno-web-para-empresas/">Diseño web para empresas</a><a href="/desarrollo-web-a-medida/">Desarrollo web a medida</a><a href="/diseno-web-sevilla/">Diseño web en Sevilla</a><a href="/diseno-web-ecija/">Diseño web en Écija</a><a href="/desarrollo-web-sevilla/">Desarrollo web en Sevilla</a><a href="/diseno-web-marbella/">Diseño web en Marbella</a><a href="/diseno-web-inmobiliarias/">Web para inmobiliarias</a><a href="/diseno-web-restaurantes/">Web para restaurantes</a><a href="/guias/">Guías</a></nav></section>`
+    : `<section><h2>Remote services for international businesses</h2><nav aria-label="Services"><a href="/en/presence/">Affordable web design</a><a href="/en/control/">Custom business software</a><a href="/en/business/">Automation and integrations</a><a href="/en/studio/">About Archic Studio</a><a href="/en/contact/">Request a website</a></nav></section>`
 
-  return `<header><span class="eyebrow">ARCHIC / DIGITAL SYSTEMS</span><h1>${isEs ? 'Sistemas digitales, diseño web premium y software a medida' : 'Digital systems, premium web design and custom software'}</h1><p>${esc(seo.description)}</p></header><section><div class="grid">${core}</div></section>${searchLinks}`
+  return `<header><span class="eyebrow">ARCHIC / DIGITAL SYSTEMS</span><h1>${isEs ? 'Diseño web y software a medida para empresas de todo el mundo' : 'Remote web design and custom software for businesses worldwide'}</h1><p>${esc(seo.description)}</p></header><section><div class="grid">${core}</div></section>${searchLinks}`
 }
 
 function siteSnapshot(lang: 'es' | 'en', page: SitePageKey) {
@@ -141,7 +141,7 @@ function siteSnapshot(lang: 'es' | 'en', page: SitePageKey) {
     .map((candidate) => `<a href="${prefix}/${candidate}/">${esc(SITE_PAGE_SEO[lang][candidate].schemaName)}</a>`)
     .join('')
 
-  return `<header><span class="eyebrow">ARCHIC / ${esc(page.toUpperCase())}</span><h1>${esc(stripBrand(seo.title))}</h1><p>${esc(seo.description)}</p></header><section><h2>${isEs ? 'Archic Lab construye sistemas alrededor del negocio' : 'Archic Lab builds systems around the business'}</h2><p>${isEs ? 'Diseñamos la presencia pública, las herramientas privadas y el software a medida como piezas conectadas cuando el negocio lo necesita.' : 'We design public presence, private tools and custom software as connected layers when the business needs them.'}</p><nav aria-label="Archic Lab">${siblings}<a href="${prefix || ''}/">${isEs ? 'Inicio' : 'Home'}</a></nav></section>`
+  return `<header><span class="eyebrow">ARCHIC / ${esc(page.toUpperCase())}</span><h1>${esc(stripBrand(seo.title))}</h1><p>${esc(seo.description)}</p></header><section><h2>${isEs ? 'Archic Studio diseña webs y software para empresas de cualquier país' : 'Archic Studio builds websites and software for businesses worldwide'}</h2><p>${isEs ? 'Diseñamos la presencia pública, las herramientas privadas y el software a medida como piezas conectadas cuando el negocio lo necesita.' : 'We design public presence, private tools and custom software as connected layers when the business needs them.'}</p><nav aria-label="Archic Lab">${siblings}<a href="${prefix || ''}/">${isEs ? 'Inicio' : 'Home'}</a></nav></section>`
 }
 
 function renderGuideBlock(block: (typeof GUIDES)[number]['sections'][number]['blocks'][number]) {

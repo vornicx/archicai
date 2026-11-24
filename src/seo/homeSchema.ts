@@ -1,5 +1,5 @@
 import type { Lang } from '../i18n/content'
-import { HOME_SEO, SITE_ORIGIN, organizationNode, siteOgImage } from './siteSeo'
+import { ARCHIC_SERVICE_AREAS, HOME_SEO, SITE_ORIGIN, organizationNode, siteOgImage } from './siteSeo'
 
 export function homeCanonical(lang: Lang) {
   return lang === 'es' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}/en/`
@@ -8,7 +8,6 @@ export function homeCanonical(lang: Lang) {
 export function buildHomeGraph(lang: Lang) {
   const canonical = homeCanonical(lang)
   const seo = HOME_SEO[lang]
-  const country = lang === 'es' ? 'España' : 'Spain'
 
   const services = lang === 'es'
     ? [
@@ -46,7 +45,7 @@ export function buildHomeGraph(lang: Lang) {
           description,
           url,
           provider: { '@id': `${SITE_ORIGIN}/#organization` },
-          areaServed: { '@type': 'Country', name: country },
+          areaServed: ARCHIC_SERVICE_AREAS,
         },
       })),
     },

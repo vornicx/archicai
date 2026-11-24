@@ -3,7 +3,7 @@
 Última actualización: 2026-08-29
 Origen: https://archic.es/
 
-> Archic es una marca de diseño y tecnología con dos divisiones: Archic Studio, que diseña webs y desarrolla software a medida para empresas, y Archic Lab, que investiga, desarrolla y publica productos digitales propios. Weather es un producto de Lab.
+> Archic reúne Archic Studio, diseño web y software a medida para empresas de España y todo el mundo, y Archic Lab, investigación y productos digitales propios. Weather es un producto de Lab.
 
 
 ## Modelo de trabajo 2026
@@ -44,7 +44,7 @@ Los prototipos y concept builds se etiquetan como tales y no se presentan como c
 - Identidad vigente desde: 2026-08-12
 - Vadim — Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15
 - Base operativa: Écija, Sevilla, Andalucía, España
-- Área de servicio: España
+- Área de servicio: España y todo el mundo (100 % remoto disponible)
 - Idiomas de trabajo: español e inglés
 
 **Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic Lab.
@@ -61,7 +61,7 @@ Archic es la marca principal, organizada en dos divisiones:
 - **0 cookies y peticiones a terceros**: Esta web no instala cookies ni carga nada de servidores ajenos: ni analítica, ni tipografías externas, ni píxeles de redes sociales. Por eso no hay banner de consentimiento que aceptar. Ábrela con las herramientas de desarrollo y compruébalo.
 - **100 % código propio y portable**: Sin constructores cerrados ni plantillas con licencia mensual. Lo que construimos se entrega completo y puede llevarse a otro proveedor sin permiso de nadie.
 - **ES · EN bilingüe de serie**: Cada idioma con su propia URL, su canónica y sus metadatos, no un traductor automático encima. Preparado para clientes fuera de España.
-- **Écija base en la provincia de Sevilla**: Reuniones presenciales en Écija, Sevilla capital y la Campiña. Con el resto de España trabajamos en remoto, con la misma forma de trabajar.
+- **Écija base en la provincia de Sevilla**: Reuniones presenciales en Écija, Sevilla capital y la Campiña. Con clientes de cualquier país trabajamos en remoto, con la misma forma de trabajar.
 
 ## Tres formas de trabajar con nosotros.
 
@@ -174,9 +174,9 @@ Sí. Entregamos el código y la configuración, y el dominio se registra siempre
 
 Es una herramienta programada para la forma concreta en la que trabaja una empresa: control de inventario, seguimiento de producción, generación automática de informes, paneles internos. Compensa cuando el programa comercial obliga a cambiar el proceso para encajar en él, cuando se paga por decenas de funciones que nadie usa, o cuando el trabajo real vive en hojas de Excel que solo entiende una persona. Si un software estándar cubre lo que necesitáis, lo decimos: sale más barato para todos.
 
-### ¿Trabajáis solo en Écija y Sevilla?
+### ¿Trabajáis con clientes internacionales?
 
-La base está en Écija, así que en la provincia de Sevilla —Écija, Sevilla capital, Carmona, Osuna, Marchena, Utrera, Dos Hermanas, Palma del Río— podemos vernos en persona. Con el resto de España trabajamos en remoto: videollamada, avances visibles y la misma forma de trabajar. Atendemos en castellano e inglés.
+La base está en Écija, así que en la provincia de Sevilla —Écija, Sevilla capital, Carmona, Osuna, Marchena, Utrera, Dos Hermanas, Palma del Río— podemos vernos en persona. Con clientes de cualquier país trabajamos en remoto: videollamada, avances visibles y la misma forma de trabajar. Atendemos en castellano e inglés.
 
 ### ¿Qué pasa después de publicar? ¿Hay mantenimiento?
 
@@ -192,7 +192,7 @@ Además de nuestro trabajo para empresas, desarrollamos productos propios y proy
 
 ## Zona de actuación
 
-Base en Écija, 41400, provincia de Sevilla (Andalucía, España). Trabajo presencial en la provincia de Sevilla y en remoto con el resto de España.
+Base en Écija, 41400, provincia de Sevilla (Andalucía, España). Trabajo presencial en la provincia de Sevilla y en remoto con clientes de España y todo el mundo.
 
 ## Contacto
 
@@ -207,7 +207,7 @@ Cuéntanos qué necesitas. Aunque todavía no tengas una idea técnica clara, po
 URL: https://archic.es/diseno-web-para-empresas/
 Keyword principal: diseño web para empresas
 
-Diseñamos y desarrollamos páginas web profesionales para empresas y pymes en España: estructura pensada para convertir, carga rápida y una base técnica que se puede mantener y ampliar durante años.
+Diseñamos y desarrollamos páginas web profesionales para empresas y pymes de España y todo el mundo: estructura pensada para convertir, carga rápida y una base técnica que se puede mantener y ampliar durante años.
 
 ### Qué diferencia a una web de empresa de una plantilla
 

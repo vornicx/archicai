@@ -19,7 +19,7 @@ const COPY = {
     otherBody: 'Software a medida, automatización, integraciones, mantenimiento y otros proyectos.',
     quote: 'Bajo presupuesto',
     consult: 'Consultar proyecto',
-    note: 'Precios con IVA general del 21 %. El dominio y los posibles costes de alojamiento o servicios externos se contratan aparte. Las funciones avanzadas se presupuestan por separado.',
+    note: 'Totales ilustrados con IVA español del 21 %; se aplicarán los impuestos que correspondan según el cliente y su país. El dominio y los posibles costes de alojamiento o servicios externos se contratan aparte. Las funciones avanzadas se presupuestan por separado.',
   },
   en: {
     label: 'Archic Studio · Pricing',
@@ -39,7 +39,7 @@ const COPY = {
     otherBody: 'Custom software, automation, integrations, maintenance and other projects.',
     quote: 'On request',
     consult: 'Discuss a project',
-    note: 'Prices calculated with 21% Spanish VAT. Domain and any hosting or external service costs are separate. Advanced features are quoted separately.',
+    note: 'Illustrated totals use 21% Spanish VAT; applicable taxes depend on the customer and country. Domain and any hosting or external service costs are separate. Advanced features are quoted separately.',
   },
 } as const
 

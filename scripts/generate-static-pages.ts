@@ -423,7 +423,7 @@ const llms = `# Archic
 
 > ${ARCHIC_COMMERCIAL_SUMMARY_ES}
 
-${ARCHIC_COMMERCIAL_SUMMARY_ES} Contacto: ${CONTACT_MAIL}. Base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.postalCode}), provincia de ${LOCAL_BUSINESS.province}, ${LOCAL_BUSINESS.region}, España. Idiomas de trabajo: castellano e inglés.
+${ARCHIC_COMMERCIAL_SUMMARY_ES} Contacto: ${CONTACT_MAIL}. Base en ${LOCAL_BUSINESS.city} (${LOCAL_BUSINESS.postalCode}), provincia de ${LOCAL_BUSINESS.province}, ${LOCAL_BUSINESS.region}, España. Servicio remoto internacional. Idiomas de trabajo: castellano e inglés.
 
 Esta web no instala cookies, no usa analítica de terceros y no carga recursos externos.
 
@@ -590,7 +590,7 @@ ${es.labs.items.map((item) => `- **${item.name}** (${item.status}): ${item.desc}
 
 ## Zona de actuación
 
-Base en ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.postalCode}, provincia de ${LOCAL_BUSINESS.province} (${LOCAL_BUSINESS.region}, España). Trabajo presencial en la provincia de Sevilla y en remoto con el resto de España.
+Base en ${LOCAL_BUSINESS.city}, ${LOCAL_BUSINESS.postalCode}, provincia de ${LOCAL_BUSINESS.province} (${LOCAL_BUSINESS.region}, España). Trabajo presencial en la provincia de Sevilla y en remoto con clientes de España y todo el mundo.
 
 ## Contacto
 

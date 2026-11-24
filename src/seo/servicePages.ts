@@ -44,14 +44,14 @@ export const SERVICE_PAGES: ServicePage[] = [
     breadcrumb: 'Diseño web para empresas',
     serviceName: 'Diseño web para empresas',
     meta: {
-      title: 'Diseño web para empresas en España | Archic Lab',
+      title: 'Diseño web para empresas y autónomos | Archic Studio',
       description:
         'Diseño web profesional para empresas: webs rápidas, medibles y preparadas para captar clientes. Proyecto cerrado, sin plantillas genéricas ni cuotas ocultas.',
     },
     hero: {
       eyebrow: 'Diseño web para empresas',
       h1: 'Diseño web para empresas que necesitan resultados, no una web bonita',
-      lead: 'Diseñamos y desarrollamos páginas web profesionales para empresas y pymes en España: estructura pensada para convertir, carga rápida y una base técnica que se puede mantener y ampliar durante años.',
+      lead: 'Diseñamos y desarrollamos páginas web profesionales para empresas y pymes de España y cualquier país: estructura pensada para convertir, carga rápida y una base técnica que se puede mantener y ampliar durante años.',
       note: 'Presupuesto cerrado antes de empezar. Sin permanencia.',
     },
     intro: {
@@ -151,7 +151,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     breadcrumb: 'Diseño web para autónomos',
     serviceName: 'Diseño web para autónomos',
     meta: {
-      title: 'Diseño web para autónomos: página profesional | Archic Lab',
+      title: 'Diseño web para autónomos: página profesional | Archic Studio',
       description:
         'Páginas web para autónomos y profesionales independientes: rápidas, claras y pensadas para que te encuentren y te contacten. Precio cerrado y sin permanencia.',
     },
@@ -257,7 +257,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     breadcrumb: 'Mantenimiento web',
     serviceName: 'Mantenimiento web',
     meta: {
-      title: 'Mantenimiento web para empresas y autónomos | Archic Lab',
+      title: 'Mantenimiento web para empresas y autónomos | Archic Studio',
       description:
         'Mantenimiento web continuo: actualizaciones, copias de seguridad, seguridad, rendimiento y cambios de contenido. Sin permanencia y con informe de lo realizado.',
     },
@@ -363,7 +363,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     breadcrumb: 'Desarrollo web a medida',
     serviceName: 'Desarrollo web y software a medida',
     meta: {
-      title: 'Desarrollo web y software a medida para empresas | Archic Lab',
+      title: 'Desarrollo web y software a medida para empresas | Archic Studio',
       description:
         'Desarrollo web a medida, aplicaciones internas, integraciones y automatización de procesos. Software adaptado a cómo trabaja tu empresa, no al revés.',
     },

@@ -5,7 +5,7 @@ import { ARCHIC_FOUNDERS } from '../config/contact'
 const COPY = {
   es: {
     tagline: 'Diseño y tecnología. Studio para empresas, Lab para productos propios.',
-    location: 'España · Remoto y presencial',
+    location: 'Desde España · Clientes en todo el mundo',
     legal: 'Legal',
     rights: 'Todos los derechos reservados.',
     explore: 'Explorar',
@@ -26,7 +26,7 @@ const COPY = {
   },
   en: {
     tagline: 'Design and technology. Studio for businesses, Lab for our own products.',
-    location: 'Spain · Remote & on-site',
+    location: 'Based in Spain · Worldwide clients',
     legal: 'Legal',
     rights: 'All rights reserved.',
     explore: 'Explore',
