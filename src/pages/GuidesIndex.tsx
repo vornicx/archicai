@@ -12,7 +12,7 @@ export default function GuidesIndex() {
   const canonical = `${ORIGIN}${GUIDES_INDEX_PATH}`
 
   return (
-    <div className="as-site as-editorial-page" data-quality-standard="archic-design-system-1.0.0">
+    <div className="as-site al-site al-route-light as-editorial-page" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang: 'es' }}>
         <title>{GUIDES_INDEX_META.title}</title>
         <meta name="description" content={GUIDES_INDEX_META.description} />

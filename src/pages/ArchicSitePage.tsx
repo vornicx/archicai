@@ -389,7 +389,7 @@ function ContactPage({ lang }: { lang: Lang }) {
     : [['01', 'Business', 'What you sell, to whom and how a sale, booking or decision happens.'], ['02', 'Friction', 'What is failing, costing time or limiting growth.'], ['03', 'Outcome', 'What should be different if the project works.'], ['04', 'Range', 'Priority, dependencies and a reasonable investment before design.']]
 
   return (
-    <div className="as-site ar-site ar-contact-route" data-quality-standard="archic-design-system-1.0.0">
+    <div className="as-site al-site al-route-light ar-site ar-contact-route" data-quality-standard="archic-design-system-1.0.0">
       <Helmet><title>{es ? 'Diagnóstico y contacto — Archic Lab' : 'Diagnosis and contact — Archic Lab'}</title><meta name="description" content={es ? 'Cuéntanos qué debe cambiar en tu presencia, operación o software. Archic Lab diagnostica primero y define la solución después.' : 'Tell us what needs to change across presence, operations or software. Archic Lab diagnoses first and defines the solution afterwards.'} /></Helmet>
       <StudioExperience />
       <StudioHeader />
@@ -438,7 +438,7 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
   const es = currentLang === 'es'
 
   return (
-    <div className={`as-site ar-site ar-route ar-${page}`} data-quality-standard="archic-design-system-1.0.0">
+    <div className={`as-site al-site al-route-light ar-site ar-route ar-${page}`} data-quality-standard="archic-design-system-1.0.0">
       <Helmet><title>{`${c.eyebrow.split('/').pop()?.trim()} — Archic Lab`}</title><meta name="description" content={c.intro} /></Helmet>
       <StudioExperience />
       <StudioHeader />

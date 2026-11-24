@@ -182,7 +182,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
   const p = POSITIONING[page.path] ?? DEFAULT_POSITIONING
 
   return (
-    <div className="as-site as-seo-page" data-quality-standard="archic-design-system-1.0.0">
+    <div className="as-site al-site al-route-light as-seo-page" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang: 'es' }}>
         <title>{page.meta.title}</title>
         <meta name="description" content={page.meta.description} />

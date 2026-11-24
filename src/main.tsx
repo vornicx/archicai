@@ -33,6 +33,10 @@ import './styles/archic-contrast.css'
 import './styles/archic-readability.css'
 import './styles/archic-visibility-guard.css'
 import './styles/archic-surface-contract.css'
+/* The current editorial theme owns the migrated public routes. */
+import '@fontsource-variable/geist/wght.css'
+import './styles/archic-light.css'
+import './styles/archic-light-routes.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(

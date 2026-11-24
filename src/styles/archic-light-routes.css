@@ -1,0 +1,131 @@
+/* Archic Lab editorial light: public route contract (2026-11).
+   Extends the Home/Lab tokens. The interactive product specimens keep their own
+   visual identity; this stylesheet owns only the surrounding marketing UI. */
+.al-route-light.al-site{
+  --ar-paper:var(--al-white);--ar-soft:var(--al-bg);--ar-text:var(--al-ink);
+  --ar-ink:var(--al-ink);--ar-ink-2:#252832;--ar-muted:var(--al-muted);
+  --ar-gold:var(--al-blue);--ar-gold-light:#8fc0ff;
+  --ar-line:var(--al-line-2);--ar-line-dark:rgba(255,255,255,.16);
+  --seo-display:var(--al-font);--seo-mono:var(--al-font);--seo-text:var(--al-ink);
+  --seo-muted:var(--al-ink-2);--seo-ink:var(--al-ink);--seo-gold:var(--al-blue);--seo-gold-light:#8fc0ff;
+  --seo-line:var(--al-line-2);--seo-pad:var(--al-gutter);
+  --ed-display:var(--al-font);--ed-mono:var(--al-font);--ed-text:var(--al-ink);
+  --ed-muted:var(--al-ink-2);--ed-paper:var(--al-white);--ed-soft:var(--al-bg);--ed-gold:var(--al-blue);--ed-gold-light:#8fc0ff;--ed-pad:var(--al-gutter);
+  --ax-display:var(--al-font);--ax-dark:var(--al-ink);--ax-gold:var(--al-blue);--ax-gold-light:#8fc0ff;--ax-pad:var(--al-gutter);
+  background:var(--al-bg);color:var(--al-ink);font-family:var(--al-font)
+}
+.al-route-light.al-site .ar-shell{width:var(--al-shell)}
+.al-route-light.al-site ::selection{background:var(--al-blue);color:white}
+/* The header is identical to Home, regardless of old route-specific colours. */
+.al-route-light.al-site .as-header{--as-header-fg:var(--al-ink);background:rgba(248,249,251,.88)!important;color:var(--al-ink)!important}
+.al-route-light.al-site .as-header .as-menu-button,.al-route-light.al-site .as-menu-button>span{color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important}
+.al-route-light.al-site .as-header .as-project-link{background:var(--al-ink)!important;color:white!important;-webkit-text-fill-color:white!important;border:0!important}
+.al-route-light.al-site .as-menu-inner nav a strong{color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important}
+.al-route-light.al-site .as-menu-inner nav a small{color:var(--al-muted)!important;-webkit-text-fill-color:var(--al-muted)!important}
+.al-site.al-site .as-footer-contact-people{grid-template-columns:minmax(0,1fr)}
+.al-route-light.al-site .as-footer-founders{width:var(--al-shell);margin:0 auto 48px;padding:0 0 32px;border-bottom:1px solid var(--al-line);color:var(--al-ink);background:none}
+.al-route-light.al-site .as-footer-founders :is(h2,strong,p,span,a){color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important}
+.al-route-light.al-site .as-footer-founders-list{grid-template-columns:minmax(0,1fr)}
+/* Page introductions share the new home's quiet paper, generous type and blue accents. */
+.al-route-light.al-site :is(.ar-hero,.ar-contact-intro,.as-seo-hero,.as-editorial-hero,.as-article-head,.axp-hero){
+  background:var(--al-bg)!important;color:var(--al-ink)!important;min-height:0;
+}
+.al-route-light.al-site :is(.ar-hero,.as-seo-hero,.as-editorial-hero,.as-article-head,.axp-hero)::before,
+.al-route-light.al-site :is(.as-seo-hero,.as-editorial-hero,.axp-hero)::after{display:none!important}
+.al-route-light.al-site .ar-hero-grid{padding-block:clamp(112px,16vh,176px) clamp(48px,7vw,88px);gap:clamp(28px,5vw,72px)}
+.al-route-light.al-site :is(.as-seo-hero,.as-editorial-hero,.as-article-head,.axp-hero,.ar-contact-intro){padding-top:clamp(112px,16vh,176px);padding-bottom:clamp(48px,7vw,88px)}
+.al-route-light.al-site :is(.ar-hero-copy,.ar-contact-title,.as-seo-hero,.as-editorial-hero,.as-article-head,.axp-hero) h1{
+  color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important;
+  font-family:var(--al-font)!important;font-weight:600!important;font-size:clamp(42px,6.1vw,88px)!important;line-height:1.02!important;letter-spacing:-.045em!important;
+  text-shadow:none!important;mix-blend-mode:normal!important;overflow-wrap:break-word;
+}
+.al-route-light.al-site :is(.ar-hero-copy,.ar-contact-title,.as-seo-hero,.as-editorial-hero,.as-article-head,.axp-hero) h1 :is(span,em){
+  color:var(--al-blue)!important;-webkit-text-fill-color:var(--al-blue)!important;font:inherit!important;font-style:normal!important
+}
+.al-route-light.al-site .axp-hero h1 span{color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important}
+.al-route-light.al-site :is(.ar-hero-copy>p:last-of-type,.ar-contact-title>p,.as-seo-hero-lead,.as-editorial-hero>div>p:last-child,.as-article-answer,.axp-hero-copy>p:last-child,.as-seo-hero-side p,.axp-hero-proof small){
+  color:var(--al-ink-2)!important;-webkit-text-fill-color:var(--al-ink-2)!important;font-family:var(--al-font)!important;line-height:1.55!important
+}
+.al-route-light.al-site :is(.ar-hero .ar-kicker,.ar-contact-intro .ar-kicker,.as-seo-hero .as-seo-layer,.as-editorial-hero .as-seo-layer,.as-article-head .as-seo-layer,.as-legal-main .as-seo-layer,.axp-hero .axp-kicker,.as-seo-breadcrumb,.as-seo-breadcrumb a,.as-seo-breadcrumb span,.as-article-meta,.axp-hero-proof span,.as-seo-hero-side span){
+  color:var(--al-muted)!important;-webkit-text-fill-color:var(--al-muted)!important;font:500 14px/1.4 var(--al-font)!important;letter-spacing:0!important;text-transform:none!important
+}
+.al-route-light.al-site :is(.as-seo-hero-side,.axp-hero-proof,.ar-layer-index,.ar-layer-index i){border-color:var(--al-line-2)!important}
+.al-route-light.al-site :is(.as-seo-hero-side,.axp-hero-proof)::before{background:var(--al-line-2)!important}
+.al-route-light.al-site :is(.axp-hero-proof strong,.as-seo-call strong,.ar-layer-index strong,.ar-layer-index small,.ar-layer-index span){color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important}
+.al-route-light.al-site :is(.as-seo-call span,.ar-layer-index small){color:var(--al-muted)!important;-webkit-text-fill-color:var(--al-muted)!important}
+.al-route-light.al-site .ar-layer-index i{background:var(--al-line-2)!important}
+.al-route-light.al-site .ar-hero-object .a26-object{border-radius:var(--al-radius);box-shadow:var(--al-shadow);overflow:hidden}
+.al-route-light.al-site .as-seo-hero-side,.al-route-light.al-site .axp-hero-proof{background:none!important}
+/* Shared editorial typography, applied only outside the product demos. */
+.al-route-light.al-site :is(.ar-head,.ar-next,.ar-intents-grid,.ar-contact-workspace aside,.as-seo-section,.as-seo-close,.as-editorial-hero,.as-article-content,.as-legal-main,.axp-demo-intro,.axp-proof-head,.axp-next) h2{
+ font-family:var(--al-font)!important;font-weight:600!important;font-size:clamp(32px,4.5vw,64px)!important;line-height:1.08!important;letter-spacing:-.035em!important
+}
+.al-route-light.al-site :is(.ar-capability-list,.ar-fit-grid,.as-seo-feature,.as-seo-faq,.as-article-content,.axp-proof-grid) h3,
+.al-route-light.al-site :is(.ar-outcomes article>p,.ar-system-map-grid strong,.ar-intents-grid a strong,.ar-contact-diagnosis article>strong,.as-guide-card h2,.as-seo-step p){
+ font-family:var(--al-font)!important;font-weight:600!important;line-height:1.2!important;letter-spacing:-.02em!important
+}
+.al-route-light.al-site .as-legal-main h1{font:600 clamp(42px,6vw,84px)/1.04 var(--al-font)!important;letter-spacing:-.045em!important}
+.al-route-light.al-site :is(.ar-section,.ar-intents,.ar-system-map,.ar-next,.ar-contact-workspace,.as-seo-section,.as-seo-close,.axp-demo-section,.axp-proof-section,.axp-next){padding-block:clamp(64px,9vw,128px)}
+.al-route-light.al-site :is(.ar-kicker,.ar-head>span,.ar-system-map-head>span,.ar-intents-grid>div:first-child>span,.ar-outcomes article>strong,.ar-capability-list article>span,.ar-fit-grid>div>span,.as-seo-index,.as-seo-layer,.axp-kicker,.as-guide-card>span){
+ font:500 14px/1.4 var(--al-font)!important;letter-spacing:0!important;text-transform:none!important
+}
+.al-route-light.al-site :is(.ar-role,.ar-fit,.as-seo-light,.as-article-wrap,.as-legal-main,.axp-proof-section){background:var(--al-white)!important;color:var(--al-ink)!important}
+.al-route-light.al-site :is(.ar-capabilities,.ar-intents,.ar-system-map){background:var(--al-bg)!important}
+.al-route-light.al-site :is(.ar-role,.ar-fit,.ar-capabilities,.ar-intents,.ar-system-map,.as-seo-light,.as-article-wrap,.as-legal-main,.axp-proof-section) :is(.ar-kicker,.ar-head>span,.ar-system-map-head>span,.ar-intents-grid>div:first-child>span,.ar-outcomes article>strong,.ar-fit-grid>div>span,.as-seo-index,.as-seo-layer,.axp-kicker,.axp-proof-grid article>span){color:var(--al-blue)!important;-webkit-text-fill-color:var(--al-blue)!important}
+.al-route-light.al-site :is(.as-seo-light,.as-article-wrap,.as-legal-main,.axp-proof-section) :is(h2 em,a:not(.as-btn):not(.as-seo-chip)){color:var(--al-blue);-webkit-text-fill-color:currentColor}
+.al-route-light.al-site :is(.ar-presence-proof>a>div,.ar-control-preview,.ar-standard,.ar-business-proof,.as-guide-card,.as-editorial-callout){border-radius:var(--al-radius)}
+.al-route-light.al-site .as-guide-card h2 a{font:inherit!important}
+.al-route-light.al-site :is(.as-article-content,.as-legal-main) :is(p,li){font-family:var(--al-font);font-size:16px;line-height:1.75}
+.al-route-light.al-site :is(.as-article-content,.as-legal-main) a:not(.as-btn){color:var(--al-blue)!important;-webkit-text-fill-color:var(--al-blue)!important;text-decoration:underline;text-underline-offset:3px}
+/* Dark product showcases and final CTA use the same ink surface as Home's closing section. */
+.al-route-light.al-site :is(.ar-next,.as-seo-dark,.as-seo-close,.as-article-cta,.axp-demo-section,.axp-next),.al-route-light.al-site.ar-route:not(.ar-presence) .ar-proof{background:var(--al-ink)!important;color:#f5f6f8!important}
+.al-route-light.al-site :is(.ar-next,.as-seo-dark,.as-seo-close,.as-article-cta,.axp-demo-intro,.axp-next) :is(h2,h3){color:#f5f6f8!important;-webkit-text-fill-color:#f5f6f8!important}
+.al-route-light.al-site :is(.ar-next,.as-seo-dark,.as-seo-close,.as-article-cta,.axp-demo-intro,.axp-next) :is(.ar-kicker,.as-seo-layer,.as-seo-index,.axp-kicker,h2 em){color:#8fc0ff!important;-webkit-text-fill-color:#8fc0ff!important}
+.al-route-light.al-site :is(.as-seo-close,.axp-next)::before{display:none!important}
+.al-route-light.al-site .ar-system-map-grid a[data-current='true']{background:var(--al-blue-soft)!important;color:var(--al-blue-ink)!important}
+.al-route-light.al-site .ar-system-map-grid a[data-current='true'] :is(strong,span,small){color:var(--al-blue-ink)!important;-webkit-text-fill-color:var(--al-blue-ink)!important}
+/* Consistent actions and clear secondary links. */
+.al-route-light.al-site :is(.ar-hero-actions>a:first-child,.ar-next-primary,.as-btn.as-btn-metal,.axp-next>a,.sx-btn-solid){
+ min-height:48px!important;display:inline-flex;align-items:center;justify-content:center;gap:12px;border:0!important;border-radius:999px!important;padding:0 22px!important;background:var(--al-blue)!important;color:white!important;-webkit-text-fill-color:white!important;font:500 16px/1.2 var(--al-font)!important;letter-spacing:-.01em!important;text-transform:none!important;transition:background .15s ease,transform .1s ease
+}
+.al-route-light.al-site :is(.ar-hero-actions>a:first-child,.ar-next-primary,.as-btn.as-btn-metal,.axp-next>a,.sx-btn-solid):hover{background:var(--al-blue-hover)!important;transform:none}
+.al-route-light.al-site :is(.ar-hero-actions>a:first-child,.ar-next-primary,.as-btn.as-btn-metal,.axp-next>a,.sx-btn-solid):active{transform:scale(.97)}
+.al-route-light.al-site :is(.ar-hero-actions>a:last-child,.as-seo-chip){color:var(--al-blue)!important;-webkit-text-fill-color:var(--al-blue)!important;font:500 16px/1.3 var(--al-font)!important;min-height:44px;border-color:var(--al-line-2)!important}
+.al-route-light.al-site .as-arrow{border-color:currentColor}
+.al-route-light.al-site .as-arrow::before,.al-route-light.al-site .as-arrow::after{border-color:currentColor}
+/* Contact: clean white form, large touch targets, native validation retained. */
+.al-route-light.al-site .ar-contact-workspace{background:var(--al-bg)!important;color:var(--al-ink)!important}
+.al-route-light.al-site .ar-contact-workspace aside :is(h2,strong){color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important}
+.al-route-light.al-site .ar-contact-workspace aside :is(p,small){color:var(--al-ink-2)!important;-webkit-text-fill-color:var(--al-ink-2)!important}
+.al-route-light.al-site .ar-contact-workspace aside>span{color:var(--al-blue)!important;-webkit-text-fill-color:var(--al-blue)!important}
+.al-route-light.al-site .ar-contact-workspace aside>a{border-color:var(--al-line-2)!important;color:var(--al-blue)!important}
+.al-route-light.al-site .ar-contact-form{background:var(--al-white)!important;color:var(--al-ink)!important;border:1px solid var(--al-line-2)!important;border-radius:var(--al-radius-lg);box-shadow:var(--al-shadow);overflow:hidden}
+.al-route-light.al-site .ar-contact-form :is(.ar-form-head,.sx-direct-team,.sx-form-divider){border-color:var(--al-line-2)!important}
+.al-route-light.al-site .ar-contact-form .sx-form{background:transparent!important;color:var(--al-ink)!important}
+.al-route-light.al-site .ar-contact-form :is(.ar-form-head span,.ar-form-head b,.sx-direct-team-head>span,.sx-form-divider>span,.sx-field>label,.sx-type-options>legend){color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important;font:500 14px/1.4 var(--al-font)!important;letter-spacing:0!important;text-transform:none!important}
+.al-route-light.al-site .ar-contact-form :is(.sx-direct-team-head p,.sx-direct-founder-identity small,.sx-direct-founder>span,.sx-consent){color:var(--al-muted)!important;-webkit-text-fill-color:var(--al-muted)!important;font:400 14px/1.5 var(--al-font)!important}
+.al-route-light.al-site .ar-contact-form .sx-direct-team-grid{grid-template-columns:minmax(0,1fr)}
+.al-route-light.al-site .ar-contact-form .sx-direct-founder{background:var(--al-bg)!important;border:1px solid var(--al-line-2)!important;border-radius:14px}
+.al-route-light.al-site .ar-contact-form .sx-direct-founder-identity strong{color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important;font:600 22px/1.2 var(--al-font)!important}
+.al-route-light.al-site .ar-contact-form :is(.sx-direct-founder-links a,.sx-consent a){color:var(--al-blue)!important;-webkit-text-fill-color:var(--al-blue)!important}
+.al-route-light.al-site .ar-contact-form .sx-form-divider::after{background:var(--al-line-2)}
+.al-route-light.al-site .ar-contact-form .sx-field :is(input,textarea){background:var(--al-bg)!important;color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important;border:1px solid var(--al-line-2)!important;border-radius:12px!important;font:400 16px/1.5 var(--al-font)!important}
+.al-route-light.al-site .ar-contact-form .sx-field :is(input,textarea)::placeholder{color:var(--al-muted)!important;-webkit-text-fill-color:var(--al-muted)!important}
+.al-route-light.al-site .ar-contact-form .sx-field :is(input,textarea):focus{border-color:var(--al-blue)!important;background:white!important}
+.al-route-light.al-site .ar-contact-form .sx-type-options>div{gap:8px;border:0}
+.al-route-light.al-site .ar-contact-form .sx-type-options label{border:1px solid var(--al-line-2)!important;border-radius:12px;background:var(--al-white)!important}
+.al-route-light.al-site .ar-contact-form .sx-type-options label span{color:var(--al-ink-2)!important;-webkit-text-fill-color:var(--al-ink-2)!important;font:500 14px/1.4 var(--al-font)!important}
+.al-route-light.al-site .ar-contact-form .sx-type-options label:has(input:checked){background:var(--al-blue-soft)!important;border-color:var(--al-blue)!important}
+.al-route-light.al-site .ar-contact-form .sx-type-options label:has(input:checked) span{color:var(--al-blue-ink)!important;-webkit-text-fill-color:var(--al-blue-ink)!important}
+.al-route-light.al-site .ar-contact-form .sx-type-options label:has(input:checked) i{background:var(--al-blue);border-color:var(--al-blue);box-shadow:none}
+.al-route-light.al-site .ar-contact-form .sx-type-options label:has(input:focus-visible){outline:2px solid var(--al-blue);outline-offset:3px}
+.al-route-light.al-site .ar-contact-form .sx-consent input{accent-color:var(--al-blue)}
+.al-route-light.al-site .ar-contact-form .sx-form-msg{color:var(--al-ink)!important;-webkit-text-fill-color:var(--al-ink)!important}
+@media(max-width:760px){
+ .al-route-light.al-site :is(.ar-hero-copy,.ar-contact-title,.as-seo-hero,.as-editorial-hero,.as-article-head,.axp-hero) h1{font-size:clamp(38px,9.5vw,62px)!important}
+ .al-route-light.al-site .ar-hero-grid{padding-top:104px}
+ .al-route-light.al-site :is(.as-seo-hero,.as-editorial-hero,.as-article-head,.axp-hero,.ar-contact-intro){padding-top:104px}
+ .al-route-light.al-site .ar-contact-form .sx-direct-founder-links{grid-template-columns:1fr}
+ .al-route-light.al-site .ar-contact-form .sx-field :is(input,textarea){font-size:16px!important}
+}
+@media(prefers-reduced-motion:reduce){.al-route-light.al-site :is(a,button){transition:none!important}}

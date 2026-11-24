@@ -47,7 +47,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
   const canonical = `${ORIGIN}${guide.path}`
 
   return (
-    <div className="as-site as-editorial-page" data-quality-standard="archic-design-system-1.0.0">
+    <div className="as-site al-site al-route-light as-editorial-page" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang: 'es' }}>
         <title>{guide.metaTitle}</title>
         <meta name="description" content={guide.description} />

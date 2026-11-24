@@ -99,7 +99,7 @@ export default function LegalPage({ doc: docKey }: { doc: LegalDocKey }) {
   const otherLang = lang === 'es' ? 'en' : 'es'
 
   return (
-    <div className="as-site as-legal-shell" data-quality-standard="archic-design-system-1.0.0">
+    <div className="as-site al-site al-route-light as-legal-shell" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang }}>
         <title>{`${doc.title} | ${COMPANY.brand}`}</title>
         <meta name="description" content={doc.intro} />

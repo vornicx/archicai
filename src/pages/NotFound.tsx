@@ -12,7 +12,7 @@ export default function NotFound() {
   const contact = lang === 'en' ? '/en/contact/' : '/contact/'
 
   return (
-    <div className="as-site as-seo-page as-notfound-page" data-quality-standard="archic-design-system-1.0.0">
+    <div className="as-site al-site al-route-light as-seo-page as-notfound-page" data-quality-standard="archic-design-system-1.0.0">
       <Helmet htmlAttributes={{ lang }}>
         <title>{n.title} | Archic Lab</title>
         <meta name="robots" content="noindex, follow" />

@@ -183,7 +183,7 @@ export default function ExplorationPage({ kind }: { kind: ExplorationKind }) {
   const title = `${c.title} ${c.accent} — Archic Control`
   const canonicalPath = lang === 'en' ? `/en/explorations/${kind}/` : `/explorations/${kind}/`
 
-  return <div className={`as-site axp-page axp-${kind} axv-page`} data-quality-standard="archic-design-system-1.0.0">
+  return <div className={`as-site al-site al-route-light axp-page axp-${kind} axv-page`} data-quality-standard="archic-design-system-1.0.0">
     <Helmet htmlAttributes={{ lang }}><title>{title}</title><meta name="description" content={c.intro} /><meta name="robots" content="index, follow" /><link rel="canonical" href={`https://archic.es${canonicalPath}`} /><link rel="alternate" hrefLang="es" href={`https://archic.es/explorations/${kind}/`} /><link rel="alternate" hrefLang="en" href={`https://archic.es/en/explorations/${kind}/`} /></Helmet>
     <StudioExperience /><StudioHeader />
     <main id="main-content" tabIndex={-1}>
