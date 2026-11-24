@@ -323,3 +323,12 @@ ol.al-steps,ul.al-plain{list-style:none;margin:0;padding:0}
 .al-site .al-price-card .al-btn{margin-top:auto;width:100%;text-align:center;white-space:normal;padding-block:12px}
 .al-site .al-price-note,.al-site .al-price-other{margin-top:18px}
 .al-site .al-custom-note{padding-block:24px;font-weight:600;color:var(--al-blue)}
+
+/* Compact direct contact channels */
+.al-site .al-message-links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;grid-column:1/-1;font-size:14px;line-height:1.4}
+.al-site .al-message-links a{display:inline-flex;align-items:center;min-height:44px;color:var(--al-blue);font-weight:500;text-decoration:none}
+.al-site .al-message-links a:hover{text-decoration:underline}
+.al-site .al-message-links--close{margin-top:8px;color:inherit}
+.al-site .al-message-links--close a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.al-site .al-message-links--close span{font-weight:500}
+.al-route-light.al-site .ar-contact-workspace aside .al-message-links a{display:inline-flex;min-height:44px;padding:0;border:0;background:none;gap:0;color:var(--al-blue);font-size:14px;font-weight:500}

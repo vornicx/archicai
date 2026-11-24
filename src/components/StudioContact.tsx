@@ -10,7 +10,7 @@ const CONTACT_API_URL = 'https://contact-api-production-c100.up.railway.app/api/
 const QUALIFY = {
   es: {
     directTitle: 'CONTACTO DIRECTO',
-    directBody: 'Habla directamente con el responsable de Archic Studio.',
+    directBody: 'Habla directamente con Vadim Vornic, fundador de Archic.',
     divider: 'O cuéntanos cómo funciona el negocio',
     website: 'Web actual',
     websitePlaceholder: 'https://tuempresa.es (opcional)',
@@ -32,7 +32,7 @@ const QUALIFY = {
   },
   en: {
     directTitle: 'DIRECT CONTACT',
-    directBody: 'Talk directly with the founder of Archic Studio.',
+    directBody: 'Talk directly with Vadim Vornic, founder of Archic.',
     divider: 'Or tell us how the business works',
     website: 'Current website',
     websitePlaceholder: 'https://yourcompany.com (optional)',
@@ -199,7 +199,9 @@ export default function StudioContact() {
               </div>
               <div className="sx-direct-founder-links">
                 <a href={`mailto:${founder.email}`}>{founder.email}</a>
-                <a href={`tel:${founder.phone}`}>{founder.phoneDisplay}</a>
+                <a href={`tel:${founder.phone}`} data-archic-intent="contact:call">{lang === 'es' ? 'Llamar' : 'Call'} · {founder.phoneDisplay}</a>
+                <a href={founder.whatsappUrl} data-archic-intent="contact:whatsapp">WhatsApp</a>
+                <a href={founder.messageUrl} data-archic-intent="contact:message">iMessage / SMS</a>
               </div>
             </article>
           ))}

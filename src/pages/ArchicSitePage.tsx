@@ -6,7 +6,7 @@ import StudioContact from '../components/StudioContact'
 import StudioExperience from '../components/StudioExperience'
 import ArchicProductObject from '../components/ArchicProductObject'
 import { useLang } from '../i18n/LanguageContext'
-import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
+import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL, CONTACT_MESSAGE_URL } from '../config/contact'
 import '../styles/archic-routes-2026.css'
 import '../styles/archic-product-objects.css'
 import '../styles/archic-contact-route-form.css'
@@ -414,7 +414,8 @@ function ContactPage({ lang }: { lang: Lang }) {
               <span>{es ? 'ANTES DE ENVIAR' : 'BEFORE SENDING'}</span>
               <h2>{es ? 'Cuanto más concreto sea el problema, mejor será la primera respuesta.' : 'The clearer the problem, the better the first response.'}</h2>
               <p>{es ? 'Puedes escribir poco. Prioriza hechos: cómo funciona hoy, dónde se atasca y qué resultado justificaría hacer el proyecto.' : 'You can write very little. Prioritise facts: how it works today, where it gets stuck and what outcome would justify the project.'}</p>
-              <a href={`tel:${CONTACT_PHONE}`} data-archic-intent="contact-route:call"><small>{es ? 'LLAMAR DIRECTAMENTE' : 'CALL DIRECTLY'}</small><strong>{CONTACT_PHONE_DISPLAY}</strong><Arrow /></a>
+              <a href={`tel:${CONTACT_PHONE}`} data-archic-intent="contact-route:call"><small>Vadim Vornic · {es ? 'LLAMAR' : 'CALL'}</small><strong>{CONTACT_PHONE_DISPLAY}</strong><Arrow /></a>
+              <div className="al-message-links"><a href={CONTACT_WHATSAPP_URL}>WhatsApp</a><a href={CONTACT_MESSAGE_URL}>iMessage / SMS</a></div>
             </aside>
             <div className="ar-contact-form" data-reveal>
               <div className="ar-form-head"><span>ARCHIC / PROJECT INPUT</span><b>{es ? 'RESPUESTA 24–48 H LABORABLES' : 'REPLY WITHIN 24–48 BUSINESS HOURS'}</b></div>

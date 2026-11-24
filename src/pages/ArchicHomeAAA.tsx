@@ -8,7 +8,7 @@ import StudioExperience from '../components/StudioExperience'
 import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 import { HOME_SEO, siteOgImage } from '../seo/siteSeo'
-import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
+import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL, CONTACT_MESSAGE_URL } from '../config/contact'
 import '../styles/archic-light.css'
 
 type Lang = 'es' | 'en'
@@ -300,6 +300,8 @@ export default function ArchicHomeAAA() {
               <div className="al-actions">
                 <a className="al-btn al-btn-primary" href={auditHref} data-archic-intent="audit:request">{c.close.primary}</a>
                 <a className="al-link" href={`tel:${CONTACT_PHONE}`} data-archic-intent="audit:call">{c.close.phone} · {CONTACT_PHONE_DISPLAY}</a>
+              </div>
+              <div className="al-message-links al-message-links--close"><span>Vadim Vornic</span><a href={CONTACT_WHATSAPP_URL} data-archic-intent="audit:whatsapp">WhatsApp</a><a href={CONTACT_MESSAGE_URL} data-archic-intent="audit:message">iMessage / SMS</a>
               </div>
             </div>
           </div>

@@ -78,6 +78,7 @@ export default function StudioFooter() {
                 <div className="as-footer-founder-links">
                   <a href={`mailto:${founder.email}`}>{founder.email}</a>
                   <a href={`tel:${founder.phone}`}>{founder.phoneDisplay}</a>
+                  <div className="al-message-links"><a href={founder.whatsappUrl}>WhatsApp</a><a href={founder.messageUrl}>iMessage / SMS</a></div>
                 </div>
               </article>
             ))}
@@ -115,6 +116,7 @@ export default function StudioFooter() {
                   <small>{c.email}</small>
                   {founder.email}
                 </a>
+                <div className="al-message-links"><a href={founder.whatsappUrl} data-archic-intent="footer:whatsapp">WhatsApp</a><a href={founder.messageUrl} data-archic-intent="footer:message">iMessage / SMS</a></div>
               </div>
             ))}
           </div>

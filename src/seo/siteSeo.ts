@@ -226,6 +226,12 @@ export function organizationNode() {
         email: VADIM_CONTACT.email,
         contactType: 'project enquiries',
       },
+      {
+        ...contactBase,
+        telephone: VADIM_CONTACT.phone,
+        url: VADIM_CONTACT.whatsappUrl,
+        contactType: 'WhatsApp project enquiries',
+      },
     ],
   }
 }
