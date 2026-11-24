@@ -45,19 +45,18 @@ export default function Logo({
           className="ar-logo-full"
           src={`/brand/archic-lockup-${variant}.svg`}
           alt=""
-          width={981}
-          height={174}
+          width={1744}
+          height={280}
           aria-hidden="true"
         />
       )}
-      {showWordmark && <span className="ar-logo-lab" aria-hidden="true">LAB</span>}
       {(!showWordmark || compactWordmark) && (
         <img
           className="ar-logo-mark"
           src={`/brand/archic-mark-${variant}.svg`}
           alt=""
-          width={459}
-          height={412}
+          width={374}
+          height={280}
           aria-hidden="true"
         />
       )}

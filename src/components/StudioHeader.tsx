@@ -132,8 +132,8 @@ export default function StudioHeader() {
     <>
       <header className="as-header" data-solid={solid || open}>
         <a href={path(lang)} className="as-brand" aria-label={lang === 'es' ? 'Archic · inicio' : 'Archic · home'}>
-          <img className="as-brand-light" src="/brand/archic-lockup-light.svg" alt="" width={981} height={174} />
-          <img className="as-brand-dark" src="/brand/archic-lockup-dark.svg" alt="" width={981} height={174} />
+          <img className="as-brand-light" src="/brand/archic-lockup-light.svg" alt="" width={1744} height={280} />
+          <img className="as-brand-dark" src="/brand/archic-lockup-dark.svg" alt="" width={1744} height={280} />
         </a>
 
         <nav className="as-desktop-nav" aria-label={t.a11y.mainNav}>

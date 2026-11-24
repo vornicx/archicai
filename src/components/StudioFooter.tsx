@@ -89,7 +89,7 @@ export default function StudioFooter() {
       <div className="as-footer-top">
         <div className="as-footer-brand">
           <a href={path(lang)} aria-label={lang === 'es' ? 'Archic · inicio' : 'Archic · home'}>
-            <span className="as-brand as-brand--footer"><img className="as-brand-light" src="/brand/archic-lockup-light.svg" alt="" width={981} height={174} /><img className="as-brand-dark" src="/brand/archic-lockup-dark.svg" alt="" width={981} height={174} /></span>
+            <span className="as-brand as-brand--footer"><img className="as-brand-light" src="/brand/archic-lockup-light.svg" alt="" width={1744} height={280} /><img className="as-brand-dark" src="/brand/archic-lockup-dark.svg" alt="" width={1744} height={280} /></span>
           </a>
           <p>{c.tagline}</p>
         </div>

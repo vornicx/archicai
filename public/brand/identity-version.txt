@@ -1,4 +1,5 @@
-Archic identity version: 2026-08-12
+Archic identity version: 2026-11-24
 Canonical symbol: https://archic.es/brand/archic-symbol-2026.svg
 Canonical lockup: https://archic.es/brand/archic-lockup-dark.svg
-Legacy brand assets must not be used to represent the current Archic identity.
+Canonical wordmark: https://archic.es/brand/archic-wordmark-dark.svg
+Monochrome brand based on the owner-approved references. White variant for dark surfaces. Do not use the former gold triangle.

@@ -1,3 +1,4 @@
+import Logo from './Logo'
 import { CONTACT_EMAIL, GITHUB_URL, DOCS_REPO } from '../constants'
 
 function Footer() {
@@ -8,8 +9,7 @@ function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-12 border-b border-[color:var(--line)]">
             <div className="md:col-span-5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-[color:var(--line)]">
               <div className="flex items-center gap-3 mb-6">
-                <span className="archic-mark-box"><span className="archic-mark-inner" /></span>
-                <span className="archic-wordmark">ARCHIC LAB</span>
+                <Logo size={28} light />
               </div>
               <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)] leading-loose">
                 Engineered for long-horizon agents.<br />
