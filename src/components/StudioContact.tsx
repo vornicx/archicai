@@ -10,7 +10,7 @@ const CONTACT_API_URL = 'https://contact-api-production-c100.up.railway.app/api/
 const QUALIFY = {
   es: {
     directTitle: 'CONTACTO DIRECTO',
-    directBody: 'Habla directamente con cualquiera de los dos fundadores según lo que necesites.',
+    directBody: 'Habla directamente con el responsable de Archic Lab.',
     divider: 'O cuéntanos cómo funciona el negocio',
     website: 'Web actual',
     websitePlaceholder: 'https://tuempresa.es (opcional)',
@@ -32,7 +32,7 @@ const QUALIFY = {
   },
   en: {
     directTitle: 'DIRECT CONTACT',
-    directBody: 'Talk directly with either founder depending on what you need.',
+    directBody: 'Talk directly with the founder of Archic Lab.',
     divider: 'Or tell us how the business works',
     website: 'Current website',
     websitePlaceholder: 'https://yourcompany.com (optional)',

@@ -1,4 +1,4 @@
-import { ANTERO_CONTACT, VADIM_CONTACT } from '../config/contact'
+import { VADIM_CONTACT } from '../config/contact'
 import { type Lang } from '../i18n/content'
 
 export const SITE_ORIGIN = 'https://archic.es'
@@ -201,11 +201,6 @@ export function organizationNode() {
         name: VADIM_CONTACT.name,
         jobTitle: `${VADIM_CONTACT.role} · ${VADIM_CONTACT.focus}`,
       },
-      {
-        '@type': 'Person',
-        name: ANTERO_CONTACT.name,
-        jobTitle: `${ANTERO_CONTACT.role} · ${ANTERO_CONTACT.focus}`,
-      },
     ],
     location: {
       '@type': 'Place',
@@ -227,12 +222,6 @@ export function organizationNode() {
         telephone: VADIM_CONTACT.phone,
         email: VADIM_CONTACT.email,
         contactType: 'project enquiries',
-      },
-      {
-        ...contactBase,
-        telephone: ANTERO_CONTACT.phone,
-        email: ANTERO_CONTACT.email,
-        contactType: 'sales and client partnerships',
       },
     ],
   }

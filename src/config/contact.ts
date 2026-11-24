@@ -6,17 +6,8 @@ export const VADIM_CONTACT = {
   email: 'vornic@archic.es',
   phone: CONTACT_PHONE,
   phoneDisplay: CONTACT_PHONE_DISPLAY,
-  role: 'Co-Founder',
+  role: 'Founder',
   focus: 'Product & Technology',
 } as const
 
-export const ANTERO_CONTACT = {
-  name: 'Antero',
-  email: 'antero@archic.es',
-  phone: '+34687503850',
-  phoneDisplay: '+34 687 50 38 50',
-  role: 'Co-Founder',
-  focus: 'Growth & Client Partnerships',
-} as const
-
-export const ARCHIC_FOUNDERS = [VADIM_CONTACT, ANTERO_CONTACT] as const
+export const ARCHIC_FOUNDERS = [VADIM_CONTACT] as const

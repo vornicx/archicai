@@ -1,7 +1,7 @@
 import http from 'node:http'
 
 const PORT = Number(process.env.PORT || 3000)
-const RECIPIENTS = ['vornic@archic.es', 'antero@archic.es']
+const RECIPIENTS = ['vornic@archic.es']
 const ALLOWED_ORIGINS = new Set(['https://archic.es', 'https://www.archic.es'])
 const MAX_BODY_BYTES = 24_000
 const WINDOW_MS = 15 * 60 * 1000
