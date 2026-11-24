@@ -307,3 +307,19 @@ ol.al-steps,ul.al-plain{list-style:none;margin:0;padding:0}
 .al-site .al-lab-product:hover{border-color:var(--al-blue)}
 @media(max-width:960px){.al-site .al-lab-product{grid-column:1/-1}}
 @media(max-width:640px){.al-divisions{grid-template-columns:1fr;gap:12px}.al-site .al-division{min-height:208px}}
+
+/* Studio fixed-price offer */
+.al-pricing{background:var(--al-white);scroll-margin-top:88px}
+.al-pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px}
+.al-site .al-price-card{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:clamp(22px,3vw,36px);border:1px solid var(--al-line-2);border-radius:var(--al-radius-lg);background:var(--al-white);color:var(--al-ink);min-width:0}
+.al-site .al-price-card h3{font-size:19px;font-weight:600;letter-spacing:-.02em}
+.al-site .al-price-card .al-price-value{font-size:clamp(44px,5vw,64px);line-height:1.05;font-weight:600;letter-spacing:-.055em;color:var(--al-ink);font-variant-numeric:tabular-nums}
+.al-site .al-price-card .al-price-meta,.al-site .al-price-note{font-size:13px;color:var(--al-muted);line-height:1.5}
+.al-site .al-price-card .al-price-quote{font-size:30px;font-weight:600;letter-spacing:-.035em}
+.al-site .al-price-card ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:15px;color:var(--al-ink-2)}
+.al-price-card li{display:flex;gap:8px}.al-price-card li::before{content:'✓';color:var(--al-blue);font-weight:600}
+.al-site .al-price-card p:not(.al-price-value):not(.al-price-quote):not(.al-price-meta){font-size:15px;line-height:1.55;color:var(--al-ink-2)}
+.al-site .al-price-card .al-price-total{font-weight:600}
+.al-site .al-price-card .al-btn{margin-top:auto;width:100%;text-align:center;white-space:normal;padding-block:12px}
+.al-site .al-price-note,.al-site .al-price-other{margin-top:18px}
+.al-site .al-custom-note{padding-block:24px;font-weight:600;color:var(--al-blue)}

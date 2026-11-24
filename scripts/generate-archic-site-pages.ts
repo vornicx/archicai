@@ -188,7 +188,7 @@ if (existsSync(sitemapPath)) {
 
 const commercialBlockEs = `## Modelo de trabajo 2026
 
-- **Archic Presence**: dirección digital, web premium, contenido, conversión y base técnica de búsqueda.
+- **Archic Presence**: webs sencillas orientadas a solucionar problemas por 349 €, con ZIP y guía; publicación opcional por 49 €.
 - **Archic Control**: sistemas privados para clientes, reservas, recursos, disponibilidad y operación.
 - **Archic Business**: software a medida, automatización, integraciones y datos.
 - **Digital Opportunity Audit**: diagnóstico de presencia, conversión, búsqueda y operación para priorizar qué merece construirse primero.
@@ -202,14 +202,12 @@ const commercialBlockEs = `## Modelo de trabajo 2026
 4. Validation — QA funcional, mobile, visual, rendimiento, accesibilidad, búsqueda y recorridos críticos.
 5. Evolution — medir, aprender y priorizar mejoras con datos reales.
 
-## Inversión orientativa
+## Precios de Archic Studio
 
-- Presence: desde 1.200 €.
-- Control: desde 2.500 €.
-- Business: desde 4.000 €.
-- Evolution: desde 150 €/mes.
-
-Son mínimos orientativos, no paquetes cerrados. El presupuesto final se fija después del diagnóstico y depende del alcance.
+- Web sencilla orientada a resolver una necesidad del negocio: 349 €, pago único. Entrega en ZIP con los archivos de la web y guía para publicarla en el proveedor elegido por el cliente (IONOS u otro compatible).
+- Publicación opcional: +49 €, pago único. Despliegue remoto en Cloudflare en una cuenta exclusiva del cliente, bajo su control. Total con web: 398 €.
+- Dominio, servicios externos y posibles costes del proveedor se contratan aparte.
+- Software a medida, automatización, integraciones, mantenimiento y otros servicios: consultar presupuesto según alcance.
 
 ## Estándar de evidencia
 
@@ -220,6 +218,7 @@ const llmsPath = resolve(ROOT, 'public', 'llms.txt')
 if (existsSync(llmsPath)) {
   let llms = readFileSync(llmsPath, 'utf8')
   llms = llms.replace(/^> .*$/m, `> ${ARCHIC_COMMERCIAL_SUMMARY_ES}`)
+  llms = llms.replace(/## (?:Inversión orientativa|Precios de Archic Studio)\n[\s\S]*?(?=\n## |$)/, commercialBlockEs.slice(commercialBlockEs.indexOf('## Precios de Archic Studio'), commercialBlockEs.indexOf('## Estándar de evidencia')))
   if (!llms.includes('## Modelo de trabajo 2026')) {
     llms = llms.replace('\n## Servicios\n', `\n${commercialBlockEs}\n## Servicios\n`)
   }
@@ -231,6 +230,7 @@ const llmsFullPath = resolve(ROOT, 'public', 'llms-full.txt')
 if (existsSync(llmsFullPath)) {
   let llmsFull = readFileSync(llmsFullPath, 'utf8')
   llmsFull = llmsFull.replace(/^> .*$/m, `> ${ARCHIC_COMMERCIAL_SUMMARY_ES}`)
+  llmsFull = llmsFull.replace(/## (?:Inversión orientativa|Precios de Archic Studio)\n[\s\S]*?(?=\n## |$)/, commercialBlockEs.slice(commercialBlockEs.indexOf('## Precios de Archic Studio'), commercialBlockEs.indexOf('## Estándar de evidencia')))
   if (!llmsFull.includes('## Modelo de trabajo 2026')) {
     const firstSection = llmsFull.indexOf('\n## ')
     if (firstSection !== -1) {

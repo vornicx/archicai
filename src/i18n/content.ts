@@ -326,7 +326,7 @@ export const CONTENT: Record<Lang, Content> = {
         },
         {
           q: '¿Cuánto cuesta una página web para una empresa?',
-          a: 'Depende del alcance real: número de páginas, si hay catálogo o zona privada, si hace falta versión en otro idioma y si hay que integrar sistemas que ya usáis. No trabajamos con tarifa por horas abierta: analizamos el caso, damos un presupuesto cerrado antes de empezar y ahí queda claro qué incluye y qué mantenimiento necesitará después. Escríbenos con dos líneas sobre el proyecto y te decimos un rango en la primera respuesta.',
+          a: 'La web sencilla de Archic Studio cuesta 349 € e incluye entrega en ZIP y guía para publicar con el proveedor que elijas. Si quieres que la publiquemos en Cloudflare, son 49 € adicionales. Las funciones avanzadas y otros servicios se presupuestan aparte.',
         },
         {
           q: '¿Cuánto se tarda en tener la web publicada?',
@@ -645,7 +645,7 @@ export const CONTENT: Record<Lang, Content> = {
         },
         {
           q: 'How much does a business website cost?',
-          a: 'It depends on the real scope: how many pages, whether there is a catalogue or a private area, whether a second language is needed, and whether we have to integrate systems you already use. We do not work on an open hourly rate: we look at the case, give a fixed quote before starting, and set out what it includes and what maintenance it will need afterwards. Send us two lines about the project and you will get a range in the first reply.',
+          a: 'A simple Archic Studio website costs €349 including ZIP delivery and a publishing guide for your chosen provider. Optional Cloudflare publishing costs €49 extra. Advanced features and other services are quoted separately.',
         },
         {
           q: 'How long does it take to go live?',

@@ -67,7 +67,13 @@ export default function StudioContact() {
   const [consentBefore, consentAfter] = n.consent.split('{link}')
   const formLabel = lang === 'es' ? 'Consulta de proyecto Archic Studio' : 'Archic Studio project enquiry'
   const isAudit = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('intent') === 'audit'
-  const typeOptions = isAudit ? [q.auditType, ...c.types] : c.types
+  const intent = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('intent') : null
+  const websiteOptions = lang === 'es' ? ['Web · 349 € (ZIP y guía)', 'Web + publicación Cloudflare · 398 €'] : ['Website · €349 (ZIP and guide)', 'Website + Cloudflare publishing · €398']
+  const customOption = lang === 'es' ? 'Otro servicio · Consultar presupuesto' : 'Other service · Request a quote'
+  const typeOptions = [...websiteOptions, customOption, ...(isAudit ? [q.auditType] : []), ...c.types.slice(1)]
+  const initialType = intent === 'website-publish' ? websiteOptions[1] : intent === 'custom' ? customOption : isAudit ? q.auditType : websiteOptions[0]
+  const [selectedType, setSelectedType] = useState(initialType)
+  const isWebsite = websiteOptions.includes(selectedType)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -81,10 +87,10 @@ export default function StudioContact() {
     const website = String(data.get('website') ?? '').trim()
     const companyWebsite = String(data.get('companyWebsite') ?? '').trim()
     const type = String(data.get('type') ?? typeOptions[0])
-    const revenue = String(data.get('revenue') ?? '').trim()
+    const revenue = String(data.get('revenue') ?? '').trim() || (isWebsite ? (lang === 'es' ? 'No especificado; solicitud de web de precio fijo' : 'Not specified; fixed-price website request') : '')
     const challenge = String(data.get('challenge') ?? '').trim()
-    const outcome = String(data.get('outcome') ?? '').trim()
-    const investment = String(data.get('investment') ?? q.investmentOptions[0])
+    const outcome = String(data.get('outcome') ?? '').trim() || (isWebsite ? (lang === 'es' ? 'Web funcional según necesidad descrita' : 'Functional website based on the stated need') : '')
+    const investment = isWebsite ? (selectedType === websiteOptions[1] ? '398 EUR' : '349 EUR') : String(data.get('investment') ?? q.investmentOptions[0])
     const details = String(data.get('details') ?? '').trim()
 
     if (!form.checkValidity()) {
@@ -163,6 +169,7 @@ export default function StudioContact() {
 
       recordIntent('contact:delivered')
       form.reset()
+      setSelectedType(initialType)
       setConsent(false)
       setStatus({ tone: 'ok', text: q.sent })
     } catch {
@@ -231,9 +238,9 @@ export default function StudioContact() {
       <fieldset className="sx-type-options">
         <legend>{c.fields.type}</legend>
         <div>
-          {typeOptions.map((option, index) => (
+          {typeOptions.map((option => (
             <label key={option}>
-              <input type="radio" name="type" value={option} defaultChecked={index === 0} />
+              <input type="radio" name="type" value={option} checked={selectedType === option} onChange={() => setSelectedType(option)} />
               <span>{option}</span>
               <i aria-hidden="true" />
             </label>
@@ -243,7 +250,7 @@ export default function StudioContact() {
 
       <div className="sx-field">
         <label htmlFor="sx-revenue">{q.revenue}</label>
-        <textarea id="sx-revenue" name="revenue" required placeholder={q.revenuePlaceholder} />
+        <textarea id="sx-revenue" name="revenue" required={!isWebsite} placeholder={q.revenuePlaceholder} />
       </div>
 
       <div className="sx-field">
@@ -253,10 +260,10 @@ export default function StudioContact() {
 
       <div className="sx-field">
         <label htmlFor="sx-outcome">{q.outcome}</label>
-        <textarea id="sx-outcome" name="outcome" required placeholder={q.outcomePlaceholder} />
+        <textarea id="sx-outcome" name="outcome" required={!isWebsite} placeholder={q.outcomePlaceholder} />
       </div>
 
-      <fieldset className="sx-type-options sx-investment-options">
+      {!isWebsite && <fieldset className="sx-type-options sx-investment-options">
         <legend>{q.investment}</legend>
         <div>
           {q.investmentOptions.map((option, index) => (
@@ -267,7 +274,7 @@ export default function StudioContact() {
             </label>
           ))}
         </div>
-      </fieldset>
+      </fieldset>}
 
       <div className="sx-field">
         <label htmlFor="sx-details">{q.details}</label>

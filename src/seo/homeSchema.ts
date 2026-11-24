@@ -12,7 +12,7 @@ export function buildHomeGraph(lang: Lang) {
 
   const services = lang === 'es'
     ? [
-        ['Archic Presence', 'Diseño y desarrollo de webs premium orientadas a claridad, confianza y conversión', `${SITE_ORIGIN}/presence/`],
+        ['Archic Presence', 'Webs sencillas por 349 €, ZIP y guía incluidos; publicación opcional por 49 €', `${SITE_ORIGIN}/presence/`],
         ['Archic Control', 'Web apps y software de gestión a medida para clientes, reservas, recursos y operaciones', `${SITE_ORIGIN}/control/`],
         ['Archic Business', 'Software web a medida, automatización, integraciones y datos', `${SITE_ORIGIN}/business/`],
         ['Digital Opportunity Audit', 'Diagnóstico de presencia, conversión, búsqueda y operación para priorizar qué merece construirse primero', `${SITE_ORIGIN}/#audit`],
@@ -22,7 +22,7 @@ export function buildHomeGraph(lang: Lang) {
         ['Real estate premium', 'Web, portfolio, captación, leads y CRM para inmobiliarias y real estate premium', `${SITE_ORIGIN}/diseno-web-inmobiliarias/`],
       ]
     : [
-        ['Archic Presence', 'Premium website design and development focused on clarity, trust and conversion', `${SITE_ORIGIN}/en/presence/`],
+        ['Archic Presence', 'Simple business websites for €349 with ZIP and guide; optional publishing for €49', `${SITE_ORIGIN}/en/presence/`],
         ['Archic Control', 'Custom web apps and management software for customers, bookings, resources and operations', `${SITE_ORIGIN}/en/control/`],
         ['Archic Business', 'Custom web software, automation, integrations and data', `${SITE_ORIGIN}/en/business/`],
         ['Digital Opportunity Audit', 'A review of presence, conversion, search and operations to prioritise what should be built first', `${SITE_ORIGIN}/en/#audit`],

@@ -1,3 +1,4 @@
+import StudioPricing from '../components/StudioPricing'
 import { Helmet } from 'react-helmet-async'
 import StudioHeader from '../components/StudioHeader'
 import StudioFooter from '../components/StudioFooter'
@@ -40,9 +41,9 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
   es: {
     presence: {
       eyebrow: '01 / ARCHIC PRESENCE',
-      title: 'Lo que ve tu cliente',
-      accent: 'antes de hablar contigo.',
-      intro: 'Dirección digital, web, contenido y conversión construidos como una sola experiencia. El objetivo no es “tener una web mejor”: es elevar percepción, claridad y capacidad de convertir.',
+      title: 'Una web que resuelve.',
+      accent: 'Por 349 €.',
+      intro: 'Diseñamos webs sencillas y útiles para empresas. Recibes los archivos en ZIP y una guía de publicación. Si prefieres que la publiquemos por ti, son 49 € adicionales.',
       roleTitle: 'Presence convierte percepción en una decisión comercial.',
       roleBody: 'Una presencia sólida ordena qué entiende el cliente, qué recuerda, qué compara y cuál es el siguiente paso. Diseño, contenido, producto y tecnología trabajan para la misma señal.',
       outcomes: [
@@ -55,7 +56,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
       capabilities: [
         ['01', 'Dirección digital', 'Posicionamiento, jerarquía, lenguaje visual, fotografía, motion y criterio de marca aplicados a la experiencia.'],
         ['02', 'Web a medida', 'Arquitectura, páginas críticas, mobile específico y desarrollo sin depender de una plantilla cerrada.'],
-        ['03', 'Contenido + conversión', 'Narrativa, catálogo, reservas, formularios, WhatsApp, búsquedas o recorridos según cómo vende el negocio.'],
+        ['03', 'Contenido + contacto', 'Información clara y vías de contacto. Catálogos, reservas e integraciones avanzadas se presupuestan aparte.'],
         ['04', 'Base técnica', 'Rendimiento, accesibilidad, SEO técnico, schema, canonicals, analítica útil y QA de entrega.'],
       ],
       proofTitle: 'La misma capa cambia según el negocio.',
@@ -132,7 +133,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
       eyebrow: '04 / ARCHIC STUDIO',
       title: 'Webs y software.',
       accent: 'A medida de tu negocio.',
-      intro: 'Diseño, producto, desarrollo e IA supervisada trabajando como un mismo equipo. Archic Studio es la división de Archic que diseña y desarrolla webs, software y sistemas a medida para empresas.',
+      intro: 'Diseño, producto, desarrollo e IA supervisada trabajando como un mismo equipo. Archic Studio crea webs sencillas por 349 € y desarrolla software y sistemas a medida bajo presupuesto.',
       roleTitle: 'El estándar importa más que la herramienta con la que llegamos a él.',
       roleBody: 'Usamos IA para ampliar investigación, exploración, desarrollo, QA y capacidad operativa. La dirección, el contexto, las decisiones y la responsabilidad de entrega siguen siendo humanas.',
       outcomes: [
@@ -161,12 +162,12 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
   },
   en: {
     presence: {
-      eyebrow: '01 / ARCHIC PRESENCE', title: 'What your customer sees', accent: 'before talking to you.',
-      intro: 'Digital direction, web, content and conversion built as one experience. The goal is not to “have a better website”; it is to raise perception, clarity and conversion capacity.',
+      eyebrow: '01 / ARCHIC PRESENCE', title: 'A website that solves problems.', accent: 'For €349.',
+      intro: 'We build simple, useful business websites. You receive the website files as a ZIP and a publishing guide. Optional remote publishing costs an additional €49.',
       roleTitle: 'Presence turns perception into a commercial decision.', roleBody: 'A strong presence orders what the customer understands, remembers, compares and does next. Design, content, product and technology work toward the same signal.',
       outcomes: [['PERCEPTION','Make the digital standard match the real business.'],['CLARITY','Help customers understand why to choose you and what to do next.'],['CONVERSION','Place contact, booking, enquiry or visit at the right moment.']],
       capabilitiesTitle: 'We build presence as a product, not a showcase.', capabilitiesBody: 'Every block exists to move a decision. If a section only fills space, it goes.',
-      capabilities: [['01','Digital direction','Positioning, hierarchy, visual language, imagery, motion and brand judgement applied to the experience.'],['02','Bespoke web','Architecture, critical pages, mobile-specific composition and development without closed-template lock-in.'],['03','Content + conversion','Narrative, catalogue, bookings, forms, WhatsApp, search or journeys based on how the business sells.'],['04','Technical base','Performance, accessibility, technical SEO, schema, canonicals, useful analytics and delivery QA.']],
+      capabilities: [['01','Digital direction','Positioning, hierarchy, visual language, imagery, motion and brand judgement applied to the experience.'],['02','Bespoke web','Architecture, critical pages, mobile-specific composition and development without closed-template lock-in.'],['03','Content + contact','Clear information and contact options. Catalogues, bookings and advanced integrations are quoted separately.'],['04','Technical base','Performance, accessibility, technical SEO, schema, canonicals, useful analytics and delivery QA.']],
       proofTitle: 'The same layer changes with the business.', proofBody: 'There is no “Archic Studio style” pasted on top. Real estate, hospitality and mobility need to resolve different customer decisions.',
       fitTitle: 'Presence fits when perception is holding the business back.', fitBody: 'It can be the first project or the public layer of a larger system.',
       fit: ['Your current website communicates less quality than the real business.','The offer is strong but difficult to understand or compare.','There is traffic or interest, but the next step is poorly resolved.','You need a strong public layer before investing in internal software.'],
@@ -201,7 +202,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
     },
     studio: {
       eyebrow: '04 / ARCHIC STUDIO', title: 'Digital solutions.', accent: 'Built for businesses.',
-      intro: 'Design, product, development and supervised AI working as one team. Archic Studio is the Archic division that designs and builds websites, software and custom systems for businesses.',
+      intro: 'Design, product, development and supervised AI working as one team. Archic Studio builds simple websites for €349 and quotes custom software and systems separately.',
       roleTitle: 'The standard matters more than the tool used to reach it.', roleBody: 'We use AI to expand research, exploration, development, QA and operational capacity. Direction, context, decisions and delivery responsibility remain human.',
       outcomes: [['DIRECTION','A clear decision before multiplying options.'],['SPEED','More useful iteration without turning speed into carelessness.'],['CONTROL','Code, assets, QA and verifiable decisions in every delivery.']],
       capabilitiesTitle: 'A process designed to reduce judgement errors.', capabilitiesBody: 'AI accelerates parts of the work. The method stops that speed becoming more noise.',
@@ -385,8 +386,8 @@ function SystemMap({ current, lang }: { current: ProductKey; lang: Lang }) {
 function ContactPage({ lang }: { lang: Lang }) {
   const es = lang === 'es'
   const outcomes = es
-    ? [['01', 'Negocio', 'Qué vendes, a quién y cómo ocurre una venta, reserva o decisión.'], ['02', 'Fricción', 'Qué está fallando, costando tiempo o limitando crecimiento.'], ['03', 'Resultado', 'Qué debería ser distinto si el proyecto funciona.'], ['04', 'Rango', 'Prioridad, dependencias e inversión razonable antes de diseñar.']]
-    : [['01', 'Business', 'What you sell, to whom and how a sale, booking or decision happens.'], ['02', 'Friction', 'What is failing, costing time or limiting growth.'], ['03', 'Outcome', 'What should be different if the project works.'], ['04', 'Range', 'Priority, dependencies and a reasonable investment before design.']]
+    ? [['01', 'Negocio', 'Qué vendes, a quién y cómo ocurre una venta, reserva o decisión.'], ['02', 'Fricción', 'Qué está fallando, costando tiempo o limitando crecimiento.'], ['03', 'Resultado', 'Qué debería ser distinto si el proyecto funciona.'], ['04', 'Precio', 'Web por 349 €, publicación opcional por 49 € y otros servicios bajo presupuesto.']]
+    : [['01', 'Business', 'What you sell, to whom and how a sale, booking or decision happens.'], ['02', 'Friction', 'What is failing, costing time or limiting growth.'], ['03', 'Outcome', 'What should be different if the project works.'], ['04', 'Pricing', '€349 website, optional €49 publishing, other services quoted separately.']]
 
   return (
     <div className="as-site al-site al-route-light ar-site ar-contact-route" data-quality-standard="archic-design-system-1.0.0">
@@ -451,7 +452,7 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
               <h1>{c.title}<span>{c.accent}</span></h1>
               <p>{c.intro}</p>
               <div className="ar-hero-actions">
-                <a href={path(currentLang, 'contact')} data-archic-intent={`${page}:diagnosis`}>{es ? 'Cuéntanos qué debe cambiar' : 'Tell us what needs to change'}</a>
+                <a href={page === 'presence' || page === 'studio' ? '#pricing' : path(currentLang, 'contact') + '?intent=custom'} data-archic-intent={`${page}:diagnosis`}>{page === 'presence' || page === 'studio' ? (es ? 'Ver precios' : 'View pricing') : (es ? 'Consultar presupuesto' : 'Request a quote')}</a>
                 <a href="#capabilities" data-archic-intent={`${page}:capabilities`}>{es ? 'Ver qué construimos' : 'See what we build'}<Arrow /></a>
               </div>
             </div>
@@ -460,6 +461,9 @@ export default function ArchicSitePage({ page }: { page: ArchicPageKey }) {
           <div className="ar-layer-index"><div className="ar-shell"><span>{pageIndex}</span><strong>{page.toUpperCase()}</strong><i /><small>ARCHIC / DIGITAL SYSTEM</small></div></div>
         </section>
 
+        {(page === 'presence' || page === 'studio') && <StudioPricing compact={page === 'presence'} />}
+
+        {(page === 'control' || page === 'business') && <div className="al-shell al-custom-note"><p>{es ? 'Servicio a medida · Presupuesto bajo consulta' : 'Custom service · Quote on request'}</p></div>}
         <section className="ar-role ar-section" data-archic-view={`${page}-role`}>
           <div className="ar-shell">
             <SectionHead index={`01 / ${es ? 'FUNCIÓN' : 'ROLE'}`} title={c.roleTitle} body={c.roleBody} />

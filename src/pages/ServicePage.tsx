@@ -1,3 +1,4 @@
+import StudioPricing from '../components/StudioPricing'
 import { Helmet } from 'react-helmet-async'
 import '@fontsource/instrument-serif/latin-400.css'
 import StudioHeader from '../components/StudioHeader'
@@ -208,7 +209,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
       <main id="main-content" tabIndex={-1}>
       <section className="as-seo-hero">
         <div className="as-seo-hero-main" data-reveal="hero">
-          <div className="as-seo-breadcrumb"><a href="/">Archic Lab</a><span>/</span><span>{page.breadcrumb}</span></div>
+          <div className="as-seo-breadcrumb"><a href="/">Archic</a><span>/</span><span>{page.breadcrumb}</span></div>
           <div className="as-seo-layer">{p.layer}</div>
           <h1>{p.title}<br /><em>{p.accent}</em></h1>
           <p className="as-seo-hero-lead">{p.lead}</p>
@@ -223,6 +224,7 @@ export default function ServicePage({ page }: { page: ServicePageData }) {
         </aside>
       </section>
 
+      {page.path.startsWith('/diseno-web') && <StudioPricing compact />}
       <section className="as-seo-section as-seo-light">
         <div className="as-seo-section-head" data-reveal>
           <div className="as-seo-index">01 / DIRECCIÓN</div>
