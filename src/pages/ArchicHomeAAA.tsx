@@ -206,10 +206,9 @@ export default function ArchicHomeAAA() {
               {WORK[L].map((item, i) => (
                 <li className="al-work" key={item.name}>
                   <a href={item.href} target="_blank" rel="noreferrer" data-archic-intent={`work:${item.name}`}>
-                    <div className="al-work-media al-work-brand" aria-hidden="true">
-                      <span>{item.name}</span>
-                      <small>{item.domain}</small>
-                    </div>
+                    <figure className="al-work-media al-work-pupit">
+                      <img src="/media/work/pupit-paseo.jpg" width={1536} height={1024} alt={L === 'es' ? 'Fotografía de portada de Pupit & Co' : 'Pupit & Co homepage photograph'} loading="lazy" decoding="async" />
+                    </figure>
                     <div className="al-work-meta">
                       <span className="al-work-no">0{i + 1}</span>
                       <h3>{item.name} <b aria-hidden="true">↗</b><span className="al-sr"> ({c.work.open})</span></h3>

@@ -49,6 +49,7 @@ check(home.includes('Webs · 349 € + IVA') && home.includes('Software a medida
 check(home.includes('buildHomeGraph') && home.includes('rel="canonical"'), 'Home keeps structured data and canonical')
 check(!/<em>|instrument-serif/i.test(home + lab + weather), 'No decorative italic/serif emphasis on Home, Lab or Weather')
 check(provenance.includes('Rise DHMN') && provenance.includes('CC BY 4.0') && present('public/media/sky/sky-portrait-1200.webp'), 'Sky photography is local WebP with documented licence')
+check(home.includes('/media/work/pupit-paseo.jpg') && present('public/media/work/pupit-paseo.jpg'), 'Pupit portfolio uses its original locally stored homepage image')
 const portfolio = home.slice(home.indexOf('const WORK:'), home.indexOf('const p ='))
 check((portfolio.match(/name: /g) || []).length === 2 && (portfolio.match(/name: 'Pupit & Co'/g) || []).length === 2 && (portfolio.match(/https:\/\/pupitandcompany\.com\//g) || []).length === 2 && !/Mafesur|Marbella Boat Charter|Cosmo School/.test(portfolio), 'Only Pupit & Co is presented as published work in ES and EN')
 check(!/trusted by|real results|premios|awards|testimonials/i.test(home), 'Home contains no invented social proof or outcome claims')
