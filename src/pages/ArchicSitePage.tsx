@@ -418,7 +418,7 @@ function ContactPage({ lang }: { lang: Lang }) {
             </aside>
             <div className="ar-contact-form" data-reveal>
               <div className="ar-form-head"><span>ARCHIC / PROJECT INPUT</span><b>{es ? 'RESPUESTA 24–48 H LABORABLES' : 'REPLY WITHIN 24–48 BUSINESS HOURS'}</b></div>
-              <StudioContact />
+              <StudioContact key={lang} />
             </div>
           </div>
         </section>

@@ -238,7 +238,7 @@ export default function StudioContact() {
       <fieldset className="sx-type-options">
         <legend>{c.fields.type}</legend>
         <div>
-          {typeOptions.map((option => (
+          {typeOptions.map((option) => (
             <label key={option}>
               <input type="radio" name="type" value={option} checked={selectedType === option} onChange={() => setSelectedType(option)} />
               <span>{option}</span>
