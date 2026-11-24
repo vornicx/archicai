@@ -10,7 +10,7 @@ const CONTACT_API_URL = 'https://contact-api-production-c100.up.railway.app/api/
 const QUALIFY = {
   es: {
     directTitle: 'CONTACTO DIRECTO',
-    directBody: 'Habla directamente con el responsable de Archic Lab.',
+    directBody: 'Habla directamente con el responsable de Archic Studio.',
     divider: 'O cuéntanos cómo funciona el negocio',
     website: 'Web actual',
     websitePlaceholder: 'https://tuempresa.es (opcional)',
@@ -32,7 +32,7 @@ const QUALIFY = {
   },
   en: {
     directTitle: 'DIRECT CONTACT',
-    directBody: 'Talk directly with the founder of Archic Lab.',
+    directBody: 'Talk directly with the founder of Archic Studio.',
     divider: 'Or tell us how the business works',
     website: 'Current website',
     websitePlaceholder: 'https://yourcompany.com (optional)',
@@ -65,7 +65,7 @@ export default function StudioContact() {
   const [startedAt] = useState(() => Date.now())
 
   const [consentBefore, consentAfter] = n.consent.split('{link}')
-  const formLabel = lang === 'es' ? 'Consulta de proyecto Archic Lab' : 'Archic Lab project enquiry'
+  const formLabel = lang === 'es' ? 'Consulta de proyecto Archic Studio' : 'Archic Studio project enquiry'
   const isAudit = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('intent') === 'audit'
   const typeOptions = isAudit ? [q.auditType, ...c.types] : c.types
 

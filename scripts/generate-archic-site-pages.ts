@@ -62,8 +62,8 @@ function headDocument(input: {
     <meta name="description" content="${esc(description)}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="author" content="Archic Lab" />
-    <meta name="application-name" content="Archic Lab" />
+    <meta name="author" content="Archic" />
+    <meta name="application-name" content="Archic" />
     <meta name="google-site-verification" content="${GSC_TOKEN}" />
     <link rel="canonical" href="${canonical}" />
     <link rel="alternate" hreflang="es" href="${alternates.es}" />
@@ -75,7 +75,7 @@ function headDocument(input: {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=${BRAND_VERSION}" />
     <link rel="manifest" href="/manifest.json?v=${BRAND_VERSION}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Archic Lab" />
+    <meta property="og:site_name" content="Archic" />
     <meta property="og:locale" content="${lang === 'es' ? 'es_ES' : 'en_US'}" />
     <meta property="og:locale:alternate" content="${lang === 'es' ? 'en_US' : 'es_ES'}" />
     <meta property="og:url" content="${canonical}" />

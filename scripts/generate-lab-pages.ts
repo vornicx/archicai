@@ -4,10 +4,10 @@ import { resolve } from 'node:path'
 // Static entrypoints for Vite's multi-page build, generated rather than hand-edited.
 const root = resolve(process.cwd())
 const pages = [
-  { lang: 'es', path: 'lab', slug: 'lab/', title: 'Lab — Weather | Archic Lab', description: 'Archic Lab diseña y mantiene Weather: predicción meteorológica por ciudad, lluvia en litros por metro cuadrado y próximos días.' },
-  { lang: 'en', path: 'en/lab', slug: 'lab/', title: 'Lab — Weather | Archic Lab', description: 'Archic Lab designs and maintains Weather: city forecasts, rainfall in millimetres and the coming days.' },
-  { lang: 'es', path: 'lab/weather', slug: 'lab/weather/', title: 'Archic Lab Weather — lluvia y previsión', description: 'Predicción meteorológica por ciudad, próximos días y litros por metro cuadrado, con fuentes transparentes. Weather es el producto de Archic Lab.' },
-  { lang: 'en', path: 'en/lab/weather', slug: 'lab/weather/', title: 'Archic Lab Weather — rainfall and forecast', description: 'City forecasts, coming days and rainfall in millimetres, with transparent sources and timestamps. Weather is the Archic Lab product.' },
+  { lang: 'es', path: 'lab', slug: 'lab/', title: 'Archic Lab — productos e investigación', description: 'Archic Lab es la división de Archic dedicada a investigación y productos digitales propios. Weather es su primer producto publicado.' },
+  { lang: 'en', path: 'en/lab', slug: 'lab/', title: 'Archic Lab — products and research', description: 'Archic Lab is the Archic division dedicated to research and independent digital products. Weather is its first published product.' },
+  { lang: 'es', path: 'lab/weather', slug: 'lab/weather/', title: 'Archic Lab Weather — lluvia y previsión', description: 'Predicción meteorológica por ciudad, próximos días y litros por metro cuadrado, con fuentes transparentes. Weather es un producto de Archic Lab.' },
+  { lang: 'en', path: 'en/lab/weather', slug: 'lab/weather/', title: 'Archic Lab Weather — rainfall and forecast', description: 'City forecasts, coming days and rainfall in millimetres, with transparent sources and timestamps. Weather is an Archic Lab product.' },
 ] as const
 
 const esc = (input: string) => input.replace(/[&<>"']/g, (char) => {

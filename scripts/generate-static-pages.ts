@@ -128,8 +128,8 @@ function document_({
     <meta data-rh="true" name="description" content="${esc(description)}">
     <meta data-rh="true" name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta data-rh="true" name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="author" content="Archic Lab">
-    <meta name="application-name" content="Archic Lab">
+    <meta name="author" content="Archic">
+    <meta name="application-name" content="Archic">
     <link data-rh="true" rel="canonical" href="${canonical}">
 ${alternateTags}
     <meta name="theme-color" content="#0a0a0b" />
@@ -141,7 +141,7 @@ ${alternateTags}
     <!-- Webfonts are self-hosted (see src/main.tsx): no third-party requests. -->
     <meta data-rh="true" property="og:url" content="${canonical}" />
     <meta data-rh="true" property="og:type" content="${ogType}" />
-    <meta data-rh="true" property="og:site_name" content="Archic Lab" />
+    <meta data-rh="true" property="og:site_name" content="Archic" />
     <meta data-rh="true" property="og:locale" content="${lang === 'es' ? 'es_ES' : 'en_US'}" />
     <meta data-rh="true" property="og:locale:alternate" content="${lang === 'es' ? 'en_US' : 'es_ES'}" />
     <meta data-rh="true" property="og:title" content="${esc(title)}">
@@ -419,7 +419,7 @@ console.log(`sitemap.xml updated (${sitemapEntries.length} urls)`)
 
 const es = CONTENT.es
 
-const llms = `# Archic Lab
+const llms = `# Archic
 
 > ${ARCHIC_COMMERCIAL_SUMMARY_ES}
 
@@ -535,7 +535,7 @@ ${guide.faq.map((item) => `**${item.q}**\n\n${item.a}`).join('\n\n')}
 `
 }
 
-const llmsFull = `# Archic Lab — contenido completo
+const llmsFull = `# Archic — contenido completo
 
 Última actualización: ${MODIFIED.home}
 Origen: ${ORIGIN}/

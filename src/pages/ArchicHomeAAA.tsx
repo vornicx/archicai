@@ -8,7 +8,6 @@ import { useLang } from '../i18n/LanguageContext'
 import { buildHomeGraph, homeCanonical } from '../seo/homeSchema'
 import { HOME_SEO, siteOgImage } from '../seo/siteSeo'
 import { CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '../config/contact'
-import { SkyCredit, SKY_WIDE } from '../lab/skyAsset'
 import '../styles/archic-light.css'
 
 type Lang = 'es' | 'en'
@@ -28,25 +27,20 @@ const IMG = {
 const COPY = {
   es: {
     hero: {
-      label: 'Estudio digital · Écija, Sevilla',
+      label: 'Archic · Diseño y tecnología',
       title: 'Diseñamos lo que viene.',
-      lead: 'Webs, software y herramientas digitales creadas con criterio.',
-      primary: 'Explorar Weather',
-      secondary: 'Ver proyectos',
-      statement: 'Estudio en Écija para negocios que necesitan una web seria y software que ordene su trabajo.',
-      productKicker: 'Producto propio · Archic Lab',
-      productTitle: 'Weather',
-      productBody: 'Predicción horaria y lluvia en l/m², con la fuente siempre visible.',
-      productCta: 'Abrir Weather',
+      lead: 'Creamos tecnología para empresas y productos digitales propios.',
+      statement: 'Dos divisiones. Una misma forma de construir.',
+      primary: 'Empezar proyecto',
+      secondary: 'Ver nuestras divisiones',
     },
-    offer: [
-      ['Webs premium', 'Presence', 'presence', 'Presencia y captación'],
-      ['Software a medida', 'Control', 'control', 'Reservas, clientes y operación'],
-      ['Sistemas para empresas', 'Business', 'business', 'Integraciones y automatización'],
+    divisions: [
+      ['01', 'Archic Studio', 'Webs, software y sistemas a medida para empresas.', 'Explorar Studio', 'studio'],
+      ['02', 'Archic Lab', 'Investigación, experimentación y productos digitales propios.', 'Explorar Lab', 'lab'],
     ],
-    work: { label: 'Trabajo seleccionado', title: 'Proyectos reales.', body: 'Diseño y desarrollo para negocios distintos, sin convertirlos en la misma plantilla.', open: 'Abrir proyecto' },
+    work: { label: 'Archic Studio · Trabajo seleccionado', title: 'Proyectos reales.', body: 'Diseño y desarrollo para negocios distintos, sin convertirlos en la misma plantilla.', open: 'Abrir proyecto' },
     system: {
-      label: 'Servicios',
+      label: 'Archic Studio · Servicios',
       title: 'Lo que construimos.',
       body: 'La web que te presenta y el software que ordena cómo trabajas, diseñados para evolucionar juntos.',
       more: 'Ver servicio',
@@ -56,9 +50,9 @@ const COPY = {
         ['Business', 'Sistemas para empresas', 'Software web y automatización cuando lo genérico deja de servir.', 'Integraciones, flujos y herramientas a medida.'],
       ],
     },
-    statementLabel: 'Estudio',
+    statementLabel: 'Archic Studio',
     statementText: ['Diseñamos y construimos la web que te presenta y el software que ordena cómo trabajas.', 'Dirección humana, ejecución rápida y control de calidad antes de publicar.'],
-    lab: { label: 'Archic Lab', title: 'El tiempo, con contexto.', body: 'Weather es nuestro primer producto propio. Lo construimos con el mismo método que el software de clientes.', cta: 'Explorar Weather', more: 'Qué es Lab', facts: [['Fuente', 'MET Norway, CC BY 4.0'], ['Lluvia', '6 y 24 h en l/m²'], ['Límite', 'Predicción de modelo, sin avisos oficiales']] },
+    lab: { label: 'Archic Lab', title: 'Productos propios.', body: 'Investigamos y construimos herramientas digitales para resolver problemas reales. Weather es nuestro primer producto publicado.', cta: 'Explorar Archic Lab', product: 'Abrir Weather', productBody: 'Predicción meteorológica con fuentes transparentes.', productStatus: 'Producto publicado' },
     method: {
       label: 'Proceso',
       title: 'De la idea a producción.',
@@ -76,25 +70,20 @@ const COPY = {
   },
   en: {
     hero: {
-      label: 'Digital studio · Écija, Seville',
+      label: 'Archic · Design and technology',
       title: 'We design what comes next.',
-      lead: 'Websites, software and digital tools built with judgement.',
-      primary: 'Explore Weather',
-      secondary: 'View projects',
-      statement: 'A studio in Écija for businesses that need a serious website and software that organises their work.',
-      productKicker: 'In-house product · Archic Lab',
-      productTitle: 'Weather',
-      productBody: 'Hourly forecasts and rainfall in mm, with the source always in view.',
-      productCta: 'Open Weather',
+      lead: 'We build technology for businesses and our own digital products.',
+      statement: 'Two divisions. One way of building.',
+      primary: 'Start a project',
+      secondary: 'Explore our divisions',
     },
-    offer: [
-      ['Premium websites', 'Presence', 'presence', 'Presence and acquisition'],
-      ['Custom software', 'Control', 'control', 'Bookings, customers and operations'],
-      ['Business systems', 'Business', 'business', 'Integrations and automation'],
+    divisions: [
+      ['01', 'Archic Studio', 'Websites, software and custom systems for businesses.', 'Explore Studio', 'studio'],
+      ['02', 'Archic Lab', 'Research, experimentation and independent digital products.', 'Explore Lab', 'lab'],
     ],
-    work: { label: 'Selected work', title: 'Real projects.', body: 'Design and development for different businesses, without turning them into the same template.', open: 'Open project' },
+    work: { label: 'Archic Studio · Selected work', title: 'Real projects.', body: 'Design and development for different businesses, without turning them into the same template.', open: 'Open project' },
     system: {
-      label: 'Services',
+      label: 'Archic Studio · Services',
       title: 'What we build.',
       body: 'The website that presents you and the software that organises how you work, designed to evolve together.',
       more: 'View service',
@@ -104,9 +93,9 @@ const COPY = {
         ['Business', 'Business systems', 'Web software and automation when generic tools stop fitting.', 'Integrations, workflows and custom tools.'],
       ],
     },
-    statementLabel: 'Studio',
+    statementLabel: 'Archic Studio',
     statementText: ['We design and build the website that presents you and the software that organises how you work.', 'Human direction, fast execution and quality control before anything ships.'],
-    lab: { label: 'Archic Lab', title: 'Weather, in context.', body: 'Weather is our first in-house product, built with the same method as our client software.', cta: 'Explore Weather', more: 'About Lab', facts: [['Source', 'MET Norway, CC BY 4.0'], ['Rainfall', '6 and 24 h totals in mm'], ['Limits', 'Model forecast, no official warnings']] },
+    lab: { label: 'Archic Lab', title: 'Our own products.', body: 'We research and build digital tools to solve real problems. Weather is our first published product.', cta: 'Explore Archic Lab', product: 'Open Weather', productBody: 'Weather forecasts with transparent sources.', productStatus: 'Published product' },
     method: {
       label: 'Process',
       title: 'From idea to production.',
@@ -162,7 +151,7 @@ export default function ArchicHomeAAA() {
         <link rel="alternate" hrefLang="en" href="https://archic.es/en/" />
         <link rel="alternate" hrefLang="x-default" href="https://archic.es/" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Archic Lab" />
+        <meta property="og:site_name" content="Archic" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:description" content={seo.description} />
@@ -193,28 +182,21 @@ export default function ArchicHomeAAA() {
                 <p className="al-lead">{c.hero.lead}</p>
                 <p className="al-hero-statement">{c.hero.statement}</p>
                 <div className="al-actions">
-                  <a className="al-btn al-btn-primary" href={weatherHref} data-archic-intent="hero:weather">{c.hero.primary}</a>
-                  <a className="al-link" href="#selected-work" data-archic-intent="hero:work">{c.hero.secondary} <span aria-hidden="true">→</span></a>
+                  <a className="al-btn al-btn-primary" href={auditHref} data-archic-intent="hero:project">{c.hero.primary}</a>
+                  <a className="al-link" href="#divisions" data-archic-intent="hero:divisions">{c.hero.secondary} <span aria-hidden="true">→</span></a>
                 </div>
               </div>
-              <nav className="al-pillars" aria-label={c.system.label}>
-                {c.offer.map(([label, name, slug, scope], i) => (
-                  <a key={slug} href={p(L, slug)}><span>0{i + 1}</span><strong>{label}</strong><small>Archic {name} · {scope}</small></a>
-                ))}
-              </nav>
             </div>
-            <figure className="al-sky" style={{ margin: 0 }}>
-              <img src={SKY_WIDE.src} srcSet={SKY_WIDE.srcSet} sizes="(max-width: 1320px) 100vw, 1280px" width={1600} height={1000} alt="" fetchPriority="high" decoding="async" />
-              <figcaption className="al-sky-product">
-                <div>
-                  <p>{c.hero.productKicker}</p>
-                  <h2>{c.hero.productTitle}</h2>
-                  <span>{c.hero.productBody}</span>
-                </div>
-                <a href={weatherHref} data-archic-intent="hero:weather-product">{c.hero.productCta} <span aria-hidden="true">→</span></a>
-              </figcaption>
-            </figure>
-            <SkyCredit lang={L} />
+            <nav className="al-divisions" id="divisions" aria-label={L === 'es' ? 'Divisiones de Archic' : 'Archic divisions'}>
+              {c.divisions.map(([no, name, description, action, slug]) => (
+                <a className="al-division" key={slug} href={p(L, slug)} data-archic-intent={`division:${slug}`}>
+                  <span className="al-division-no">{no} / {slug === 'studio' ? 'STUDIO' : 'LAB'}</span>
+                  <h2>{name}</h2>
+                  <p>{description}</p>
+                  <span className="al-division-action">{action} <span aria-hidden="true">→</span></span>
+                </a>
+              ))}
+            </nav>
           </div>
         </section>
 
@@ -283,11 +265,13 @@ export default function ArchicHomeAAA() {
               <h2 className="al-h2">{c.lab.title}</h2>
               <p className="al-body">{c.lab.body}</p>
               <div className="al-actions">
-                <a className="al-btn al-btn-primary" href={weatherHref} data-archic-intent="lab:weather">{c.lab.cta}</a>
-                <a className="al-link" href={p(L, 'lab')}>{c.lab.more} <span aria-hidden="true">→</span></a>
+                <a className="al-btn al-btn-primary" href={p(L, 'lab')} data-archic-intent="lab:division">{c.lab.cta}</a>
               </div>
             </div>
-            <dl>{c.lab.facts.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+            <a className="al-lab-product" href={weatherHref} data-archic-intent="lab:weather">
+              <span>{c.lab.productStatus}</span><h3>Weather</h3><p>{c.lab.productBody}</p>
+              <span className="al-link">{c.lab.product} <span aria-hidden="true">→</span></span>
+            </a>
           </div>
         </section>
 

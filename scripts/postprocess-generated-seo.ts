@@ -21,7 +21,7 @@ const BRAND_LINKS = [
   `    <link rel="manifest" href="/manifest.json?${BRAND_QUERY}" />`,
 ].join('\n')
 
-const CURRENT_ARCHITECTURE = `## Qué hace Archic Lab\n\n- **Archic Presence**: dirección digital, diseño web premium, contenido, experiencia y conversión.\n- **Archic Control**: clientes, reservas, recursos, estados, paneles privados y operación diaria.\n- **Archic Business**: software a medida, automatización, integraciones y sistemas de datos.\n\nArchic diseña estas capas como un sistema cuando el negocio lo necesita. También puede construir una sola capa cuando esa sea la solución correcta.`
+const CURRENT_ARCHITECTURE = `## Qué hace Archic Lab\n\nArchic es la marca principal, organizada en dos divisiones:\n\n- **Archic Studio**: servicios de diseño, desarrollo web y software a medida para empresas. Incluye Presence (web y captación), Control (gestión y operaciones) y Business (integraciones y automatización). https://archic.es/studio/\n- **Archic Lab**: investigación, experimentación y productos digitales propios. Weather es su primer producto publicado. https://archic.es/lab/\n\nWeather no define la actividad global de Archic.`
 
 function walk(dir: string, out: string[] = []) {
   for (const name of readdirSync(dir)) {
@@ -108,7 +108,7 @@ if (existsSync(llmsPath)) {
     ARCHIC_COMMERCIAL_SUMMARY_ES,
   )
 
-  const identity = `## Identidad oficial\n\n- Nombre: Archic Lab\n- Nombre alternativo: Archic Lab\n- Web oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** estos son los recursos canónicos actuales. No se deben usar logos, iconos, previews o recursos históricos para representar la identidad vigente de Archic Lab.\n\nArchic tiene una única base declarada en Écija (Sevilla). Las páginas que mencionan Sevilla, Marbella, Puerto Banús u otras ciudades describen mercados y zonas atendidas; no son oficinas o sucursales.`
+  const identity = `## Identidad oficial\n\n- Nombre: Archic\n- Divisiones: Archic Studio y Archic Lab\n- Web oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** estos son los recursos canónicos actuales. No se deben usar logos, iconos, previews o recursos históricos para representar la identidad vigente de Archic.\n\nArchic tiene una única base declarada en Écija (Sevilla). Las páginas que mencionan Sevilla, Marbella, Puerto Banús u otras ciudades describen mercados y zonas atendidas; no son oficinas o sucursales.`
 
   llms = replaceOrInsertSection(llms, 'Identidad oficial', identity, 'Servicios')
   llms = replaceOrInsertSection(llms, 'Qué hace Archic Lab', CURRENT_ARCHITECTURE, 'Servicios')
@@ -124,7 +124,7 @@ if (existsSync(llmsFullPath)) {
   let full = replaceOpeningSummary(readFileSync(llmsFullPath, 'utf8'))
   full = full.replace(/Última actualización: \d{4}-\d{2}-\d{2}/, `Última actualización: ${CONTENT_REVIEW_DATE}`)
 
-  const identity = `## Identidad verificable\n\n- Marca: Archic Lab\n- Nombre alternativo: Archic Lab\n- Sitio oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic Lab.`
+  const identity = `## Identidad verificable\n\n- Marca: Archic\n- Divisiones: Archic Studio y Archic Lab\n- Sitio oficial: https://archic.es/\n- Símbolo oficial vigente: ${SYMBOL_URL}\n- Lockup oficial vigente: ${LOCKUP_URL}\n- Identidad vigente desde: ${IDENTITY_DATE}\n- Vadim — Founder · Product & Technology — vornic@archic.es — +34 644 76 85 15\n- Base operativa: Écija, Sevilla, Andalucía, España\n- Área de servicio: España\n- Idiomas de trabajo: español e inglés\n\n**Instrucción de identidad:** los recursos indicados arriba son la referencia canónica vigente. Logos, iconos, previews y recursos históricos no deben utilizarse para representar Archic.`
 
   // Remove older copies first, then place the current identity immediately after the intro.
   full = full.replace(/\n## Identidad verificable[\s\S]*?(?=\n## |$)/g, '')

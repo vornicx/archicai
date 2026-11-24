@@ -5,38 +5,42 @@ const COPY = {
   es: {
     menu: 'Menú', close: 'Cerrar', project: 'Empezar proyecto',
     nav: [
+      ['Archic Studio', 'studio'],
+      ['Archic Lab', 'lab'],
       ['Trabajo', '#selected-work'],
       ['Proceso', '#method'],
       ['Servicios', '#system'],
       ['Recursos', 'guides'],
-      ['Lab', 'lab'],
       ['Contacto', '#audit'],
     ],
     pages: [
+      ['Archic Studio', 'Webs y software a medida', 'studio'],
+      ['Archic Lab', 'Productos digitales propios', 'lab'],
       ['Trabajo', 'Proyectos y concept builds', '#selected-work'],
       ['Servicios', 'Presence · Control · Business', '#system'],
       ['Proceso', 'Cómo dirigimos y construimos', '#method'],
       ['Recursos', 'Guías y criterio digital', 'guides'],
-      ['Lab', 'Productos propios y experimentos', 'lab'],
       ['Contacto', 'Cuéntanos qué quieres construir', '#audit'],
     ],
   },
   en: {
     menu: 'Menu', close: 'Close', project: 'Start a project',
     nav: [
+      ['Archic Studio', 'studio'],
+      ['Archic Lab', 'lab'],
       ['Work', '#selected-work'],
       ['Process', '#method'],
       ['Services', '#system'],
       ['Resources', 'guides'],
-      ['Lab', 'lab'],
       ['Contact', '#audit'],
     ],
     pages: [
+      ['Archic Studio', 'Websites and custom software', 'studio'],
+      ['Archic Lab', 'Independent digital products', 'lab'],
       ['Work', 'Projects and concept builds', '#selected-work'],
       ['Services', 'Presence · Control · Business', '#system'],
       ['Process', 'How we direct and build', '#method'],
       ['Resources', 'Guides and digital thinking', 'guides'],
-      ['Lab', 'Independent products and experiments', 'lab'],
       ['Contact', 'Tell us what you want to build', '#audit'],
     ],
   },
@@ -130,10 +134,9 @@ export default function StudioHeader() {
   return (
     <>
       <header className="as-header" data-solid={solid || open}>
-        <a href={path(lang)} className="as-brand" aria-label={lang === 'es' ? 'Archic Lab · inicio' : 'Archic Lab · home'}>
+        <a href={path(lang)} className="as-brand" aria-label={lang === 'es' ? 'Archic · inicio' : 'Archic · home'}>
           <img className="as-brand-light" src="/brand/archic-lockup-light.svg" alt="" width={981} height={174} />
           <img className="as-brand-dark" src="/brand/archic-lockup-dark.svg" alt="" width={981} height={174} />
-          <span className="as-brand-lab" aria-hidden="true">LAB</span>
         </a>
 
         <nav className="as-desktop-nav" aria-label={t.a11y.mainNav}>
@@ -150,7 +153,7 @@ export default function StudioHeader() {
               <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
             </div>
           )}
-          <a className="as-project-link" href={path(lang, '#audit')} data-archic-intent="nav:audit">{c.project}<i className="as-arrow" aria-hidden="true" /></a>
+          <a className="as-project-link" href={path(lang, 'contact')} data-archic-intent="nav:audit">{c.project}<i className="as-arrow" aria-hidden="true" /></a>
           <button
             ref={menuButtonRef}
             type="button"
@@ -177,7 +180,7 @@ export default function StudioHeader() {
           <div className="as-menu-meta">
             <div className="as-menu-identity">
               <span>{lang === 'es' ? 'ARCHIC / SISTEMAS DIGITALES' : 'ARCHIC / DIGITAL SYSTEMS'}</span>
-              <small>{lang === 'es' ? 'Presencia · Operación · Software' : 'Presence · Operations · Software'}</small>
+              <small>{lang === 'es' ? 'Archic Studio · Archic Lab' : 'Archic Studio · Archic Lab'}</small>
             </div>
           </div>
           <nav aria-label={t.a11y.mainNav}>

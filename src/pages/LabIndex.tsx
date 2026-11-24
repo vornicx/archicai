@@ -10,9 +10,9 @@ import '../styles/archic-lab.css'
 
 const COPY = {
   es: {
-    label: 'Lab · productos propios',
+    label: 'Archic Lab · Productos propios',
     title: 'Lo que construimos para nosotros.',
-    intro: 'Lab es la parte del estudio que diseña, publica y mantiene su propio producto: Weather.',
+    intro: 'Archic Lab es la división de investigación, experimentación y desarrollo de productos digitales propios de Archic. Weather es su primer producto publicado.',
     index: '01',
     status: 'Experimental · publicado',
     name: 'Weather',
@@ -25,13 +25,13 @@ const COPY = {
     open: 'Explorar Weather',
     studioTitle: 'El mismo método, para tu negocio.',
     studioBody: 'Weather se ha hecho como hacemos el software de clientes: datos reales, límites claros y diseño que se entiende.',
-    studioLink: 'Software a medida',
+    studioLink: 'Explorar Archic Studio',
     contact: 'Hablar de un proyecto',
   },
   en: {
-    label: 'Lab · our own products',
+    label: 'Archic Lab · Our own products',
     title: 'What we build for ourselves.',
-    intro: 'Lab is where the studio designs, ships and maintains its own product: Weather.',
+    intro: 'Archic Lab is Archic’s division for research, experimentation and independent digital products. Weather is its first published product.',
     index: '01',
     status: 'Experimental · published',
     name: 'Weather',
@@ -44,7 +44,7 @@ const COPY = {
     open: 'Explore Weather',
     studioTitle: 'The same method, for your business.',
     studioBody: 'Weather is built the way we build client software: real data, clear limits and design that reads at a glance.',
-    studioLink: 'Custom software',
+    studioLink: 'Explore Archic Studio',
     contact: 'Discuss a project',
   },
 } as const
@@ -57,8 +57,8 @@ export default function LabIndex() {
   return (
     <div className="al-site lab-root">
       <Helmet htmlAttributes={{ lang }}>
-        <title>{en ? 'Lab — products and experiments | Archic Lab' : 'Lab — productos y experimentos | Archic Lab'}</title>
-        <meta name="description" content={c.intro + ' ' + c.description} />
+        <title>{en ? 'Archic Lab — products and experiments' : 'Archic Lab — productos y experimentos'}</title>
+        <meta name="description" content={c.intro} />
         <meta name="theme-color" content="#F8F9FB" />
         <link rel="canonical" href={en ? 'https://archic.es/en/lab/' : 'https://archic.es/lab/'} />
         <link rel="alternate" hrefLang="es" href="https://archic.es/lab/" />
@@ -96,7 +96,7 @@ export default function LabIndex() {
           <h2 id="lab-studio-title" className="al-h3">{c.studioTitle}</h2>
           <p className="al-body">{c.studioBody}</p>
           <div className="lab-studio-links">
-            <a className="al-link" href={en ? '/en/control/' : '/control/'}>{c.studioLink} <span aria-hidden="true">→</span></a>
+            <a className="al-link" href={en ? '/en/studio/' : '/studio/'}>{c.studioLink} <span aria-hidden="true">→</span></a>
             <a className="al-link" href={en ? '/en/contact/' : '/contact/'}>{c.contact} <span aria-hidden="true">→</span></a>
           </div>
         </section>

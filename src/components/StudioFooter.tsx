@@ -4,7 +4,7 @@ import { ARCHIC_FOUNDERS } from '../config/contact'
 
 const COPY = {
   es: {
-    tagline: 'Sistemas digitales para negocios excepcionales.',
+    tagline: 'Diseño y tecnología. Studio para empresas, Lab para productos propios.',
     location: 'España · Remoto y presencial',
     legal: 'Legal',
     rights: 'Todos los derechos reservados.',
@@ -16,16 +16,16 @@ const COPY = {
     foundersTitle: 'Una dirección clara.',
     foundersLead: 'Producto, tecnología y relación con clientes desde el inicio de cada proyecto.',
     pages: [
+      ['Archic Studio', 'studio'],
+      ['Archic Lab', 'lab'],
       ['Presence', 'presence'],
       ['Control', 'control'],
       ['Business', 'business'],
-      ['Studio', 'studio'],
-      ['Lab', 'lab'],
       ['Contacto', 'contact'],
     ],
   },
   en: {
-    tagline: 'Digital systems for exceptional businesses.',
+    tagline: 'Design and technology. Studio for businesses, Lab for our own products.',
     location: 'Spain · Remote & on-site',
     legal: 'Legal',
     rights: 'All rights reserved.',
@@ -37,11 +37,11 @@ const COPY = {
     foundersTitle: 'One clear direction.',
     foundersLead: 'Product, technology and client relationships from the beginning of every project.',
     pages: [
+      ['Archic Studio', 'studio'],
+      ['Archic Lab', 'lab'],
       ['Presence', 'presence'],
       ['Control', 'control'],
       ['Business', 'business'],
-      ['Studio', 'studio'],
-      ['Lab', 'lab'],
       ['Contact', 'contact'],
     ],
   },
@@ -87,8 +87,8 @@ export default function StudioFooter() {
 
       <div className="as-footer-top">
         <div className="as-footer-brand">
-          <a href={path(lang)} aria-label={lang === 'es' ? 'Archic Lab · inicio' : 'Archic Lab · home'}>
-            <span className="as-brand as-brand--footer"><img className="as-brand-light" src="/brand/archic-lockup-light.svg" alt="" width={981} height={174} /><img className="as-brand-dark" src="/brand/archic-lockup-dark.svg" alt="" width={981} height={174} /><span className="as-brand-lab" aria-hidden="true">LAB</span></span>
+          <a href={path(lang)} aria-label={lang === 'es' ? 'Archic · inicio' : 'Archic · home'}>
+            <span className="as-brand as-brand--footer"><img className="as-brand-light" src="/brand/archic-lockup-light.svg" alt="" width={981} height={174} /><img className="as-brand-dark" src="/brand/archic-lockup-dark.svg" alt="" width={981} height={174} /></span>
           </a>
           <p>{c.tagline}</p>
         </div>
@@ -129,7 +129,7 @@ export default function StudioFooter() {
       </div>
 
       <div className="as-footer-bottom">
-        <span>© {year} Archic Lab — {c.rights}</span>
+        <span>© {year} Archic — {c.rights}</span>
         <span>{c.location}</span>
       </div>
     </footer>
