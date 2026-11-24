@@ -14,7 +14,7 @@ const COPY = {
     pages: [
       ['Archic Studio', 'Webs y software a medida', 'studio'],
       ['Archic Lab', 'Productos digitales propios', 'lab'],
-      ['Trabajo', 'Proyectos y concept builds', '#selected-work'],
+      ['Trabajo', 'Trabajo publicado', '#selected-work'],
       ['Servicios', 'Presence · Control · Business', '#system'],
       ['Proceso', 'Cómo dirigimos y construimos', '#method'],
       ['Recursos', 'Guías y criterio digital', 'guides'],
@@ -33,7 +33,7 @@ const COPY = {
     pages: [
       ['Archic Studio', 'Websites and custom software', 'studio'],
       ['Archic Lab', 'Independent digital products', 'lab'],
-      ['Work', 'Projects and concept builds', '#selected-work'],
+      ['Work', 'Published work', '#selected-work'],
       ['Services', 'Presence · Control · Business', '#system'],
       ['Process', 'How we direct and build', '#method'],
       ['Resources', 'Guides and digital thinking', 'guides'],

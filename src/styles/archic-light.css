@@ -200,7 +200,7 @@ ol.al-steps,ul.al-plain{list-style:none;margin:0;padding:0}
 .al-close-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);row-gap:24px;align-items:end}
 .al-close-grid>div:first-child{grid-column:1/span 7}.al-close-grid>div:last-child{grid-column:9/span 4}
 
-/* Selected work: the one wide client image leads (its native 2:1 crop), two portrait plates follow. */
+/* Selected work: a single published project with a typographic cover. */
 .al-work-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);row-gap:clamp(48px,6vw,88px)}
 .al-work:nth-child(1){grid-column:1/-1;display:grid;grid-template-columns:subgrid}
 .al-work:nth-child(1) a{display:grid;grid-template-columns:subgrid;grid-column:1/-1;align-items:end}
@@ -212,6 +212,10 @@ ol.al-steps,ul.al-plain{list-style:none;margin:0;padding:0}
 .al-work a{display:block;border-radius:var(--al-radius)}
 .al-work-media{margin:0;aspect-ratio:var(--al-ratio,4/5);overflow:hidden;border-radius:var(--al-radius);background:#E9ECF1}
 .al-work-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--al-ease)}
+.al-site .al-work-brand{aspect-ratio:2/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;background:#F4EEE5;color:#302820;text-align:center}
+.al-work-brand span{font-size:clamp(30px,6vw,76px);font-weight:600;letter-spacing:-.055em;line-height:1.05}
+.al-work-brand small{font-size:clamp(12px,1.4vw,16px);letter-spacing:.015em;color:#594C40}
+@media(max-width:640px){.al-site .al-work-brand{aspect-ratio:4/3}}
 .al-work-meta{display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:4px;margin-top:20px}
 .al-work-no{grid-row:1/span 3;padding-top:5px;color:var(--al-blue);font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
 .al-work-meta h3{font-size:clamp(22px,2vw,28px);font-weight:600;letter-spacing:-.025em;line-height:1.15}

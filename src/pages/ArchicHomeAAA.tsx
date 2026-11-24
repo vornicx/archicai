@@ -1,5 +1,4 @@
 import StudioPricing from '../components/StudioPricing'
-import type { CSSProperties } from 'react'
 import { Helmet } from 'react-helmet-async'
 import '@fontsource-variable/geist/wght.css'
 import StudioHeader from '../components/StudioHeader'
@@ -14,15 +13,6 @@ import '../styles/archic-light.css'
 type Lang = 'es' | 'en'
 type WorkItem = {
   name: string; sector: string; scope: string; href: string; domain: string; status: string
-  // Image provenance is always shown: client material vs representative photography.
-  image: { base: string; widths: [number, number]; ratio: string; credit: string }
-}
-
-// Portfolio photography, archived locally (no hotlinks). Provenance in docs/asset-provenance.md.
-const IMG = {
-  mafesur: { base: '/media/work/mafesur', widths: [720, 1024] as [number, number], ratio: '1024 / 498' },
-  yacht: { base: '/media/work/yacht', widths: [720, 1200] as [number, number], ratio: '4 / 5' },
-  cosmo: { base: '/media/work/cosmo', widths: [720, 1200] as [number, number], ratio: '4 / 5' },
 }
 
 const COPY = {
@@ -39,7 +29,7 @@ const COPY = {
       ['01', 'Archic Studio', 'Webs por 349 € + IVA y software a medida. Para empresas de cualquier país.', 'Explorar Studio', 'studio'],
       ['02', 'Archic Lab', 'Investigación, experimentación y productos digitales propios.', 'Explorar Lab', 'lab'],
     ],
-    work: { label: 'Archic Studio · Trabajo seleccionado', title: 'Proyectos reales.', body: 'Diseño y desarrollo para negocios distintos, sin convertirlos en la misma plantilla.', open: 'Abrir proyecto' },
+    work: { label: 'Archic Studio · Trabajo seleccionado', title: 'Trabajo realizado.', body: 'Nuestro primer proyecto publicado: una tienda online de accesorios para perros.', open: 'Abrir proyecto' },
     system: {
       label: 'Archic Studio · Servicios',
       title: 'Lo que construimos.',
@@ -82,7 +72,7 @@ const COPY = {
       ['01', 'Archic Studio', 'Fixed-price websites (€349 before tax) and custom software. For businesses worldwide.', 'Explore Studio', 'studio'],
       ['02', 'Archic Lab', 'Research, experimentation and independent digital products.', 'Explore Lab', 'lab'],
     ],
-    work: { label: 'Archic Studio · Selected work', title: 'Real projects.', body: 'Design and development for different businesses, without turning them into the same template.', open: 'Open project' },
+    work: { label: 'Archic Studio · Selected work', title: 'Published work.', body: 'Our first published project: an online shop for dog accessories.', open: 'Open project' },
     system: {
       label: 'Archic Studio · Services',
       title: 'What we build.',
@@ -116,14 +106,10 @@ const COPY = {
 
 const WORK: Record<Lang, WorkItem[]> = {
   es: [
-    { name: 'Mafesur', sector: 'Automoción', scope: 'Concesionario y taller · web Presence', href: 'https://mafesur.vercel.app/', domain: 'mafesur.vercel.app', status: 'Publicado', image: { ...IMG.mafesur, credit: 'Imagen: instalaciones del cliente, de su web pública' } },
-    { name: 'Marbella Boat Charter', sector: 'Charter náutico', scope: 'Web y plataforma de reservas', href: 'https://github.com/vornicx/marbellaboatcharter', domain: 'github.com/vornicx', status: 'En construcción', image: { ...IMG.yacht, credit: 'Fotografía representativa · ionut dobre / Unsplash' } },
-    { name: 'Cosmo School', sector: 'Educación', scope: 'Web y experiencia digital', href: 'https://cosmoschool-weld.vercel.app/', domain: 'cosmoschool-weld.vercel.app', status: 'Publicado', image: { ...IMG.cosmo, credit: 'Fotografía representativa · Jonas Gerlach / Unsplash' } },
+    { name: 'Pupit & Co', sector: 'Comercio electrónico', scope: 'Tienda online de accesorios para perros · Shopify', href: 'https://pupitandcompany.com/', domain: 'pupitandcompany.com', status: 'Publicado' },
   ],
   en: [
-    { name: 'Mafesur', sector: 'Automotive', scope: 'Dealership and workshop · Presence website', href: 'https://mafesur.vercel.app/', domain: 'mafesur.vercel.app', status: 'Live', image: { ...IMG.mafesur, credit: 'Image: client premises, from their public website' } },
-    { name: 'Marbella Boat Charter', sector: 'Yacht charter', scope: 'Website and booking platform', href: 'https://github.com/vornicx/marbellaboatcharter', domain: 'github.com/vornicx', status: 'In progress', image: { ...IMG.yacht, credit: 'Representative photography · ionut dobre / Unsplash' } },
-    { name: 'Cosmo School', sector: 'Education', scope: 'Website and digital experience', href: 'https://cosmoschool-weld.vercel.app/', domain: 'cosmoschool-weld.vercel.app', status: 'Live', image: { ...IMG.cosmo, credit: 'Representative photography · Jonas Gerlach / Unsplash' } },
+    { name: 'Pupit & Co', sector: 'E-commerce', scope: 'Online dog accessories shop · Shopify', href: 'https://pupitandcompany.com/', domain: 'pupitandcompany.com', status: 'Live' },
   ],
 }
 
@@ -220,14 +206,10 @@ export default function ArchicHomeAAA() {
               {WORK[L].map((item, i) => (
                 <li className="al-work" key={item.name}>
                   <a href={item.href} target="_blank" rel="noreferrer" data-archic-intent={`work:${item.name}`}>
-                    <figure className="al-work-media" style={{ '--al-ratio': item.image.ratio } as CSSProperties}>
-                      <img
-                        src={`${item.image.base}-${item.image.widths[0]}.webp`}
-                        srcSet={`${item.image.base}-${item.image.widths[0]}.webp ${item.image.widths[0]}w, ${item.image.base}-${item.image.widths[1]}.webp ${item.image.widths[1]}w`}
-                        sizes={i === 0 ? '(max-width: 960px) 100vw, 66vw' : '(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw'}
-                        alt={`${item.name} · ${item.sector}`} loading="lazy" decoding="async"
-                      />
-                    </figure>
+                    <div className="al-work-media al-work-brand" aria-hidden="true">
+                      <span>{item.name}</span>
+                      <small>{item.domain}</small>
+                    </div>
                     <div className="al-work-meta">
                       <span className="al-work-no">0{i + 1}</span>
                       <h3>{item.name} <b aria-hidden="true">↗</b><span className="al-sr"> ({c.work.open})</span></h3>
@@ -235,7 +217,6 @@ export default function ArchicHomeAAA() {
                       <p className="al-work-status"><span data-state={item.status === 'Publicado' || item.status === 'Live' ? 'live' : 'wip'}>{item.status}</span>{item.domain}</p>
                     </div>
                   </a>
-                  <p className="al-work-credit">{item.image.credit}</p>
                 </li>
               ))}
             </ol>
