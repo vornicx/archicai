@@ -7,13 +7,14 @@ import { SkyCredit, SKY_WIDE } from '../lab/skyAsset'
 import { WeatherSpecimen } from '../lab/WeatherSpecimen'
 import '../styles/archic-light.css'
 import '../styles/archic-lab.css'
+import '../styles/midas.css'
 
 const COPY = {
   es: {
     label: 'Archic Lab · Productos propios',
     title: 'Lo que construimos para nosotros.',
-    intro: 'Archic Lab es la división de investigación, experimentación y desarrollo de productos digitales propios de Archic. Weather es su primer producto publicado.',
-    index: '01',
+    intro: 'Archic Lab es la división de investigación, experimentación y desarrollo de productos digitales propios de Archic. Aquí desarrollamos Midas y Weather.',
+    index: '02',
     status: 'Experimental · publicado',
     name: 'Weather',
     description: 'Predicción por horas con la lluvia en litros por metro cuadrado, la condición del cielo y la fuente siempre visible.',
@@ -31,8 +32,8 @@ const COPY = {
   en: {
     label: 'Archic Lab · Our own products',
     title: 'What we build for ourselves.',
-    intro: 'Archic Lab is Archic’s division for research, experimentation and independent digital products. Weather is its first published product.',
-    index: '01',
+    intro: 'Archic Lab is Archic’s division for research, experimentation and independent digital products. Here we build Midas and Weather.',
+    index: '02',
     status: 'Experimental · published',
     name: 'Weather',
     description: 'Hourly forecasts with rainfall in millimetres, the sky condition and the source always in view.',
@@ -72,6 +73,16 @@ export default function LabIndex() {
           <h1 className="lab-h1">{c.title}</h1>
           <p className="al-lead">{c.intro}</p>
         </header>
+
+        <section className="al-shell lab-product midas-index" aria-labelledby="midas-index-title">
+          <div className="lab-product-copy">
+            <p className="lab-index"><span>01</span>{en ? 'Open source · MIT' : 'Código abierto · MIT'}</p>
+            <h2 id="midas-index-title" className="al-h2">Midas</h2>
+            <p className="al-body">{en ? 'Persistent local memory for AI agents. Remember decisions across sessions, trace every recall and keep memory current.' : 'Memoria local y persistente para agentes de IA. Recupera decisiones entre sesiones, conserva su origen y mantén la memoria actualizada.'}</p>
+            <div className="al-actions"><a className="al-btn al-btn-primary" href={en ? '/en/lab/midas/' : '/lab/midas/'} data-archic-intent="lab:midas">{en ? 'Explore Midas' : 'Explorar Midas'}</a></div>
+          </div>
+          <a className="midas-index-stage" href={en ? '/en/lab/midas/' : '/lab/midas/'}><span className="md-wordmark">Midas<span>.</span></span><span>{en ? 'Memory that stays with you.' : 'Memoria que se queda contigo.'}</span><code>uv tool install "midas-memory[mcp,local]"</code></a>
+        </section>
 
         <section className="al-shell lab-product" aria-labelledby="lab-product-title">
           <div className="lab-product-copy">

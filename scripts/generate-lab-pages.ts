@@ -4,10 +4,12 @@ import { resolve } from 'node:path'
 // Static entrypoints for Vite's multi-page build, generated rather than hand-edited.
 const root = resolve(process.cwd())
 const pages = [
-  { lang: 'es', path: 'lab', slug: 'lab/', title: 'Archic Lab — productos e investigación', description: 'Archic Lab es la división de Archic dedicada a investigación y productos digitales propios. Weather es su primer producto publicado.' },
-  { lang: 'en', path: 'en/lab', slug: 'lab/', title: 'Archic Lab — products and research', description: 'Archic Lab is the Archic division dedicated to research and independent digital products. Weather is its first published product.' },
+  { lang: 'es', path: 'lab', slug: 'lab/', title: 'Archic Lab — productos e investigación', description: 'Archic Lab es la división de Archic dedicada a investigación y productos digitales propios. Sus productos incluyen Midas y Weather.' },
+  { lang: 'en', path: 'en/lab', slug: 'lab/', title: 'Archic Lab — products and research', description: 'Archic Lab is the Archic division dedicated to research and independent digital products. Its products include Midas and Weather.' },
   { lang: 'es', path: 'lab/weather', slug: 'lab/weather/', title: 'Archic Lab Weather — lluvia y previsión', description: 'Predicción meteorológica por ciudad, próximos días y litros por metro cuadrado, con fuentes transparentes. Weather es un producto de Archic Lab.' },
   { lang: 'en', path: 'en/lab/weather', slug: 'lab/weather/', title: 'Archic Lab Weather — rainfall and forecast', description: 'City forecasts, coming days and rainfall in millimetres, with transparent sources and timestamps. Weather is an Archic Lab product.' },
+  { lang: 'es', path: 'lab/midas', slug: 'lab/midas/', title: 'Midas — memoria local para agentes de IA | Archic Lab', description: 'Memoria persistente de código abierto para agentes de IA. Local, trazable y sin llamadas a LLM durante la ingestión. Compatible con MCP.' },
+  { lang: 'en', path: 'en/lab/midas', slug: 'lab/midas/', title: 'Midas — local memory for AI agents | Archic Lab', description: 'Open-source persistent memory for AI agents. Local, source-traceable and no LLM calls at ingest. Compatible with MCP.' },
 ] as const
 
 const esc = (input: string) => input.replace(/[&<>"']/g, (char) => {
@@ -60,7 +62,7 @@ for (const page of pages) {
 const sitemapPath = resolve(root, 'public/sitemap.xml')
 if (existsSync(sitemapPath)) {
   let sitemap = readFileSync(sitemapPath, 'utf8')
-  sitemap = sitemap.replace(/\s*<url>\s*<loc>https:\/\/archic\.es\/(?:en\/)?lab(?:\/weather)?\/<\/loc>[\s\S]*?<\/url>/g, '')
+  sitemap = sitemap.replace(/\s*<url>\s*<loc>https:\/\/archic\.es\/(?:en\/)?lab(?:\/(?:weather|midas))?\/<\/loc>[\s\S]*?<\/url>/g, '')
   const entries = pages.map((page) => '  <url><loc>https://archic.es/' + page.path + '/</loc></url>').join('\n')
   sitemap = sitemap.replace('</urlset>', entries + '\n</urlset>')
   writeFileSync(sitemapPath, sitemap)

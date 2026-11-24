@@ -14,6 +14,7 @@ const CORE_TRANSLATED = new Set([
   'contact',
   'lab',
   'lab/weather',
+  'lab/midas',
   'explorations/hospitality',
   'explorations/mobility',
   'explorations/real-estate',

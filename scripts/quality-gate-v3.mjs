@@ -21,6 +21,7 @@ for (const file of [
   'src/pages/ArchicHomeAAA.tsx',
   'src/styles/archic-light.css',
   'src/pages/LabWeather.tsx',
+  'src/pages/LabMidas.tsx',
   'src/lab/weatherMath.ts',
 ]) check(present(file), `Required production contract exists: ${file}`)
 
@@ -77,8 +78,10 @@ const robots = read('public/robots.txt')
 check(/User-agent: OAI-SearchBot\s+Allow: \//m.test(robots), 'OAI-SearchBot remains allowed')
 check(/User-agent: GPTBot\s+Disallow: \//m.test(robots), 'GPTBot training crawl remains separated')
 
+check(home.includes("'lab/midas'") && lab.includes('/lab/midas/') && header.includes('lab/midas'), 'Midas is discoverable in Home, Lab and menu')
+check(read('src/pages/LabMidas.tsx').includes('midas-memory[mcp,local]') && read('src/pages/LabMidas.tsx').includes('BENCHMARKS.md'), 'Midas links documented installation and benchmarks')
 check(present('dist/index.html'), 'Production build exists')
-for (const entry of ['dist/index.html', 'dist/en/index.html', 'dist/control/index.html', 'dist/en/control/index.html']) {
+for (const entry of ['dist/index.html', 'dist/en/index.html', 'dist/control/index.html', 'dist/en/control/index.html', 'dist/lab/midas/index.html', 'dist/en/lab/midas/index.html']) {
   check(present(entry), `Generated route ships: ${entry.replace('dist/', '/')}`)
   if (!present(entry)) continue
   const html = read(entry)

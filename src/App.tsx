@@ -8,6 +8,7 @@ import SiteErrorBoundary from './components/SiteErrorBoundary'
 const ArchicSitePage = lazy(() => import('./pages/ArchicSitePage'))
 const LabIndex = lazy(() => import('./pages/LabIndex'))
 const LabWeather = lazy(() => import('./pages/LabWeather'))
+const LabMidas = lazy(() => import('./pages/LabMidas'))
 const LegalPage = lazy(() => import('./pages/LegalPage'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const ServicePage = lazy(() => import('./pages/ServicePage'))
@@ -214,6 +215,7 @@ function App() {
                 <Route path="/lab/weather" element={<LabWeather />} />
                 <Route path="/en/lab/weather/" element={<LabWeather />} />
                 <Route path="/en/lab/weather" element={<LabWeather />} />
+                {["/lab/midas/", "/lab/midas", "/en/lab/midas/", "/en/lab/midas"].map(path => <Route key={path} path={path} element={<LabMidas />} />)}
                 {ARCHIC_ROUTES.flatMap(([slug, page]) => [
                   <Route key={`es-${slug}`} path={`/${slug}/`} element={<ArchicSitePage page={page} />} />,
                   <Route key={`es-bare-${slug}`} path={`/${slug}`} element={<ArchicSitePage page={page} />} />,

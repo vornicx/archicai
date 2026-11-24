@@ -14,6 +14,7 @@ const COPY = {
     pages: [
       ['Archic Studio', 'Webs y software a medida', 'studio'],
       ['Archic Lab', 'Productos digitales propios', 'lab'],
+      ['Midas', 'Memoria local para agentes de IA', 'lab/midas'],
       ['Trabajo', 'Trabajo publicado', '#selected-work'],
       ['Servicios', 'Presence · Control · Business', '#system'],
       ['Proceso', 'Cómo dirigimos y construimos', '#method'],
@@ -33,6 +34,7 @@ const COPY = {
     pages: [
       ['Archic Studio', 'Websites and custom software', 'studio'],
       ['Archic Lab', 'Independent digital products', 'lab'],
+      ['Midas', 'Local memory for AI agents', 'lab/midas'],
       ['Work', 'Published work', '#selected-work'],
       ['Services', 'Presence · Control · Business', '#system'],
       ['Process', 'How we direct and build', '#method'],

@@ -18,6 +18,7 @@ const COPY = {
     pages: [
       ['Archic Studio', 'studio'],
       ['Archic Lab', 'lab'],
+      ['Midas', 'lab/midas'],
       ['Presence', 'presence'],
       ['Control', 'control'],
       ['Business', 'business'],
@@ -39,6 +40,7 @@ const COPY = {
     pages: [
       ['Archic Studio', 'studio'],
       ['Archic Lab', 'lab'],
+      ['Midas', 'lab/midas'],
       ['Presence', 'presence'],
       ['Control', 'control'],
       ['Business', 'business'],

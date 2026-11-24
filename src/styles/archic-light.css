@@ -334,3 +334,11 @@ ol.al-steps,ul.al-plain{list-style:none;margin:0;padding:0}
 .al-site .al-message-links--close a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .al-site .al-message-links--close span{font-weight:500}
 .al-route-light.al-site .ar-contact-workspace aside .al-message-links a{display:inline-flex;min-height:44px;padding:0;border:0;background:none;gap:0;color:var(--al-blue);font-size:14px;font-weight:500}
+
+/* Independent Lab products share one rail. */
+.al-lab-products{grid-column:8/span 5;display:grid;gap:12px;min-width:0}
+.al-site .al-lab-products .al-lab-product{grid-column:auto}
+.al-site .al-lab-midas{background:#1a1a2e;color:#fff;border-color:#1a1a2e}
+.al-site .al-lab-midas p,.al-site .al-lab-midas>span:first-child{color:#d2d2df}
+.al-site .al-lab-midas .al-link{color:#e9bf63}
+@media(max-width:960px){.al-lab-products{grid-column:1/-1}}

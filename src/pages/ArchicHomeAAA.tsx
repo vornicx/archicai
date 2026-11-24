@@ -43,7 +43,7 @@ const COPY = {
     },
     statementLabel: 'Archic Studio',
     statementText: ['Diseñamos y construimos la web que te presenta y el software que ordena cómo trabajas.', 'Dirección humana, ejecución rápida y control de calidad antes de publicar.'],
-    lab: { label: 'Archic Lab', title: 'Productos propios.', body: 'Investigamos y construimos herramientas digitales para resolver problemas reales. Weather es nuestro primer producto publicado.', cta: 'Explorar Archic Lab', product: 'Abrir Weather', productBody: 'Predicción meteorológica con fuentes transparentes.', productStatus: 'Producto publicado' },
+    lab: { label: 'Archic Lab', title: 'Productos propios.', body: 'Investigamos y construimos herramientas digitales para resolver problemas reales. Midas y Weather son nuestros productos propios.', cta: 'Explorar Archic Lab', product: 'Abrir Weather', productBody: 'Predicción meteorológica con fuentes transparentes.', productStatus: 'Producto publicado' },
     method: {
       label: 'Proceso',
       title: 'De la idea a producción.',
@@ -86,7 +86,7 @@ const COPY = {
     },
     statementLabel: 'Archic Studio',
     statementText: ['We design and build the website that presents you and the software that organises how you work.', 'Human direction, fast execution and quality control before anything ships.'],
-    lab: { label: 'Archic Lab', title: 'Our own products.', body: 'We research and build digital tools to solve real problems. Weather is our first published product.', cta: 'Explore Archic Lab', product: 'Open Weather', productBody: 'Weather forecasts with transparent sources.', productStatus: 'Published product' },
+    lab: { label: 'Archic Lab', title: 'Our own products.', body: 'We research and build digital tools to solve real problems. Midas and Weather are our own products.', cta: 'Explore Archic Lab', product: 'Open Weather', productBody: 'Weather forecasts with transparent sources.', productStatus: 'Published product' },
     method: {
       label: 'Process',
       title: 'From idea to production.',
@@ -251,10 +251,17 @@ export default function ArchicHomeAAA() {
                 <a className="al-btn al-btn-primary" href={p(L, 'lab')} data-archic-intent="lab:division">{c.lab.cta}</a>
               </div>
             </div>
+            <div className="al-lab-products">
+            <a className="al-lab-product al-lab-midas" href={p(L, 'lab/midas')} data-archic-intent="lab:midas">
+              <span>{L === 'es' ? 'Código abierto · MIT' : 'Open source · MIT'}</span><h3>Midas</h3>
+              <p>{L === 'es' ? 'Memoria local y persistente para agentes de IA.' : 'Local, persistent memory for AI agents.'}</p>
+              <span className="al-link">{L === 'es' ? 'Explorar Midas' : 'Explore Midas'} <span aria-hidden="true">→</span></span>
+            </a>
             <a className="al-lab-product" href={weatherHref} data-archic-intent="lab:weather">
               <span>{c.lab.productStatus}</span><h3>Weather</h3><p>{c.lab.productBody}</p>
               <span className="al-link">{c.lab.product} <span aria-hidden="true">→</span></span>
             </a>
+            </div>
           </div>
         </section>
 

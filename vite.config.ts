@@ -28,7 +28,7 @@ const EXPLORATION_DIRS = [
   ...EXPLORATION_SLUGS.map((slug) => `en/explorations/${slug}`),
 ]
 
-const LAB_DIRS = ['lab', 'lab/weather', 'en/lab', 'en/lab/weather']
+const LAB_DIRS = ['lab', 'lab/weather', 'en/lab', 'en/lab/weather', 'lab/midas', 'en/lab/midas']
 
 const pageInputs = Object.fromEntries(
   [...LANDING_DIRS, ...GUIDE_DIRS, 'guias', ...ARCHIC_DIRS, ...EXPLORATION_DIRS, ...LAB_DIRS]
