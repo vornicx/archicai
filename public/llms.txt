@@ -10,7 +10,7 @@ Esta web no instala cookies, no usa analítica de terceros y no carga recursos e
 
 ## Modelo de trabajo 2026
 
-- **Archic Presence**: webs sencillas orientadas a solucionar problemas por 349 €, con ZIP y guía; publicación opcional por 49 €.
+- **Archic Presence**: webs sencillas orientadas a solucionar problemas por 349 € + IVA, con ZIP y guía; publicación opcional por 49 € + IVA.
 - **Archic Control**: sistemas privados para clientes, reservas, recursos, disponibilidad y operación.
 - **Archic Business**: software a medida, automatización, integraciones y datos.
 - **Digital Opportunity Audit**: diagnóstico de presencia, conversión, búsqueda y operación para priorizar qué merece construirse primero.
@@ -26,8 +26,8 @@ Esta web no instala cookies, no usa analítica de terceros y no carga recursos e
 
 ## Precios de Archic Studio
 
-- Web sencilla orientada a resolver una necesidad del negocio: 349 €, pago único. Entrega en ZIP con los archivos de la web y guía para publicarla en el proveedor elegido por el cliente (IONOS u otro compatible).
-- Publicación opcional: +49 €, pago único. Despliegue remoto en Cloudflare en una cuenta exclusiva del cliente, bajo su control. Total con web: 398 €.
+- Web sencilla orientada a resolver una necesidad del negocio: 349 € + IVA (422,29 € IVA incluido), pago único. Entrega en ZIP con los archivos de la web y guía para publicarla en el proveedor elegido por el cliente (IONOS u otro compatible).
+- Publicación opcional: +49 € + IVA (59,29 € IVA incluido), pago único. Despliegue remoto en Cloudflare en una cuenta exclusiva del cliente, bajo su control. Total con web: 398 € + IVA (481,58 € IVA incluido).
 - Dominio, servicios externos y posibles costes del proveedor se contratan aparte.
 - Software a medida, automatización, integraciones, mantenimiento y otros servicios: consultar presupuesto según alcance.
 

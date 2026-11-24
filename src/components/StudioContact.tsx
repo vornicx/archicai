@@ -68,7 +68,7 @@ export default function StudioContact() {
   const formLabel = lang === 'es' ? 'Consulta de proyecto Archic Studio' : 'Archic Studio project enquiry'
   const isAudit = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('intent') === 'audit'
   const intent = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('intent') : null
-  const websiteOptions = lang === 'es' ? ['Web · 349 € (ZIP y guía)', 'Web + publicación Cloudflare · 398 €'] : ['Website · €349 (ZIP and guide)', 'Website + Cloudflare publishing · €398']
+  const websiteOptions = lang === 'es' ? ['Web · 349 € + IVA (422,29 € total)', 'Web + publicación Cloudflare · 398 € + IVA (481,58 € total)'] : ['Website · €349 + VAT (€422.29 total)', 'Website + Cloudflare publishing · €398 + VAT (€481.58 total)']
   const customOption = lang === 'es' ? 'Otro servicio · Consultar presupuesto' : 'Other service · Request a quote'
   const typeOptions = [...websiteOptions, customOption, ...(isAudit ? [q.auditType] : []), ...c.types.slice(1)]
   const initialType = intent === 'website-publish' ? websiteOptions[1] : intent === 'custom' ? customOption : isAudit ? q.auditType : websiteOptions[0]
@@ -90,7 +90,7 @@ export default function StudioContact() {
     const revenue = String(data.get('revenue') ?? '').trim() || (isWebsite ? (lang === 'es' ? 'No especificado; solicitud de web de precio fijo' : 'Not specified; fixed-price website request') : '')
     const challenge = String(data.get('challenge') ?? '').trim()
     const outcome = String(data.get('outcome') ?? '').trim() || (isWebsite ? (lang === 'es' ? 'Web funcional según necesidad descrita' : 'Functional website based on the stated need') : '')
-    const investment = isWebsite ? (selectedType === websiteOptions[1] ? '398 EUR' : '349 EUR') : String(data.get('investment') ?? q.investmentOptions[0])
+    const investment = isWebsite ? (selectedType === websiteOptions[1] ? '398 EUR + VAT (481.58 EUR incl. 21% VAT)' : '349 EUR + VAT (422.29 EUR incl. 21% VAT)') : String(data.get('investment') ?? q.investmentOptions[0])
     const details = String(data.get('details') ?? '').trim()
 
     if (!form.checkValidity()) {

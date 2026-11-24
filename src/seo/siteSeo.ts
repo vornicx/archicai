@@ -84,8 +84,8 @@ export const HOME_SEO: Record<Lang, SeoEntry> = {
 export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
   es: {
     presence: {
-      title: 'Webs por 349 € | Archic Studio',
-      description: 'Webs sencillas para empresas por 349 €: entrega en ZIP y guía de publicación. Publicación opcional en Cloudflare por 49 € adicionales.',
+      title: 'Webs por 349 € + IVA | Archic Studio',
+      description: 'Webs sencillas para empresas por 349 € + IVA: entrega en ZIP y guía de publicación. Publicación opcional en Cloudflare por 49 € + IVA adicionales.',
       ogAlt: 'Archic Presence — diseño web premium y presencia digital',
       schemaName: 'Archic Presence',
       serviceType: 'Diseño web premium y presencia digital',
@@ -106,7 +106,7 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
     },
     studio: {
       title: 'Estudio de diseño web y software a medida | Archic Studio',
-      description: 'Webs sencillas por 349 € con ZIP y guía de publicación; despliegue opcional por 49 €. Software, automatización y otros servicios bajo presupuesto.',
+      description: 'Webs sencillas por 349 € + IVA con ZIP y guía de publicación; despliegue opcional por 49 € + IVA. Software, automatización y otros servicios bajo presupuesto.',
       ogAlt: 'Archic Studio — diseño, tecnología y criterio de negocio',
       schemaName: 'Archic Studio',
     },
@@ -119,8 +119,8 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
   },
   en: {
     presence: {
-      title: 'Websites for €349 | Archic Studio',
-      description: 'Simple business websites for €349: ZIP delivery and publishing guide. Optional Cloudflare publishing for an additional €49.',
+      title: 'Websites for €349 + VAT | Archic Studio',
+      description: 'Simple business websites for €349 + VAT: ZIP delivery and publishing guide. Optional Cloudflare publishing for an additional €49 + VAT.',
       ogAlt: 'Archic Presence — premium web design and digital presence',
       schemaName: 'Archic Presence',
       serviceType: 'Premium web design and digital presence',
@@ -141,7 +141,7 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
     },
     studio: {
       title: 'Web design and custom software studio | Archic Studio',
-      description: 'Simple websites for €349 with ZIP and publishing guide; optional deployment for €49. Custom software, automation and other services on request.',
+      description: 'Simple websites for €349 + VAT with ZIP and publishing guide; optional deployment for €49 + VAT. Custom software, automation and other services on request.',
       ogAlt: 'Archic Studio — design, technology and business judgement',
       schemaName: 'Archic Studio',
     },

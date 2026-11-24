@@ -36,7 +36,7 @@ const COPY = {
       secondary: 'Ver nuestras divisiones',
     },
     divisions: [
-      ['01', 'Archic Studio', 'Webs por 349 € y software a medida para empresas.', 'Explorar Studio', 'studio'],
+      ['01', 'Archic Studio', 'Webs por 349 € + IVA y software a medida para empresas.', 'Explorar Studio', 'studio'],
       ['02', 'Archic Lab', 'Investigación, experimentación y productos digitales propios.', 'Explorar Lab', 'lab'],
     ],
     work: { label: 'Archic Studio · Trabajo seleccionado', title: 'Proyectos reales.', body: 'Diseño y desarrollo para negocios distintos, sin convertirlos en la misma plantilla.', open: 'Abrir proyecto' },
@@ -46,7 +46,7 @@ const COPY = {
       body: 'La web que te presenta y el software que ordena cómo trabajas, diseñados para evolucionar juntos.',
       more: 'Ver servicio',
       items: [
-        ['Presence', 'Webs · 349 €', 'Webs sencillas que solucionan problemas reales del negocio.', 'ZIP y guía de publicación incluidos.'],
+        ['Presence', 'Webs · 349 € + IVA', 'Webs sencillas que solucionan problemas reales del negocio.', 'ZIP y guía de publicación incluidos.'],
         ['Control', 'Software a medida', 'Web apps y paneles que ordenan cómo trabaja tu negocio.', 'Reservas, clientes y operación · Bajo presupuesto.'],
         ['Business', 'Sistemas para empresas', 'Software web y automatización cuando lo genérico deja de servir.', 'Integraciones y automatización · Bajo presupuesto.'],
       ],
@@ -79,7 +79,7 @@ const COPY = {
       secondary: 'Explore our divisions',
     },
     divisions: [
-      ['01', 'Archic Studio', 'Fixed-price €349 websites and custom software for businesses.', 'Explore Studio', 'studio'],
+      ['01', 'Archic Studio', 'Fixed-price €349 + VAT websites and custom software for businesses.', 'Explore Studio', 'studio'],
       ['02', 'Archic Lab', 'Research, experimentation and independent digital products.', 'Explore Lab', 'lab'],
     ],
     work: { label: 'Archic Studio · Selected work', title: 'Real projects.', body: 'Design and development for different businesses, without turning them into the same template.', open: 'Open project' },
@@ -89,7 +89,7 @@ const COPY = {
       body: 'The website that presents you and the software that organises how you work, designed to evolve together.',
       more: 'View service',
       items: [
-        ['Presence', 'Websites · €349', 'Simple websites that solve real business problems.', 'ZIP and publishing guide included.'],
+        ['Presence', 'Websites · €349 + VAT', 'Simple websites that solve real business problems.', 'ZIP and publishing guide included.'],
         ['Control', 'Custom software', 'Web apps and dashboards that organise how the business works.', 'Bookings, customers and operations · On request.'],
         ['Business', 'Business systems', 'Web software and automation when generic tools stop fitting.', 'Integrations and automation · On request.'],
       ],

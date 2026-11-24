@@ -42,8 +42,8 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
     presence: {
       eyebrow: '01 / ARCHIC PRESENCE',
       title: 'Una web que resuelve.',
-      accent: 'Por 349 €.',
-      intro: 'Diseñamos webs sencillas y útiles para empresas. Recibes los archivos en ZIP y una guía de publicación. Si prefieres que la publiquemos por ti, son 49 € adicionales.',
+      accent: 'Por 349 € + IVA.',
+      intro: 'Diseñamos webs sencillas y útiles para empresas. Recibes los archivos en ZIP y una guía de publicación. Si prefieres que la publiquemos por ti, son 49 € + IVA adicionales.',
       roleTitle: 'Presence convierte percepción en una decisión comercial.',
       roleBody: 'Una presencia sólida ordena qué entiende el cliente, qué recuerda, qué compara y cuál es el siguiente paso. Diseño, contenido, producto y tecnología trabajan para la misma señal.',
       outcomes: [
@@ -133,7 +133,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
       eyebrow: '04 / ARCHIC STUDIO',
       title: 'Webs y software.',
       accent: 'A medida de tu negocio.',
-      intro: 'Diseño, producto, desarrollo e IA supervisada trabajando como un mismo equipo. Archic Studio crea webs sencillas por 349 € y desarrolla software y sistemas a medida bajo presupuesto.',
+      intro: 'Diseño, producto, desarrollo e IA supervisada trabajando como un mismo equipo. Archic Studio crea webs sencillas por 349 € + IVA y desarrolla software y sistemas a medida bajo presupuesto.',
       roleTitle: 'El estándar importa más que la herramienta con la que llegamos a él.',
       roleBody: 'Usamos IA para ampliar investigación, exploración, desarrollo, QA y capacidad operativa. La dirección, el contexto, las decisiones y la responsabilidad de entrega siguen siendo humanas.',
       outcomes: [
@@ -162,8 +162,8 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
   },
   en: {
     presence: {
-      eyebrow: '01 / ARCHIC PRESENCE', title: 'A website that solves problems.', accent: 'For €349.',
-      intro: 'We build simple, useful business websites. You receive the website files as a ZIP and a publishing guide. Optional remote publishing costs an additional €49.',
+      eyebrow: '01 / ARCHIC PRESENCE', title: 'A website that solves problems.', accent: 'For €349 + VAT.',
+      intro: 'We build simple, useful business websites. You receive the website files as a ZIP and a publishing guide. Optional remote publishing costs an additional €49 + VAT.',
       roleTitle: 'Presence turns perception into a commercial decision.', roleBody: 'A strong presence orders what the customer understands, remembers, compares and does next. Design, content, product and technology work toward the same signal.',
       outcomes: [['PERCEPTION','Make the digital standard match the real business.'],['CLARITY','Help customers understand why to choose you and what to do next.'],['CONVERSION','Place contact, booking, enquiry or visit at the right moment.']],
       capabilitiesTitle: 'We build presence as a product, not a showcase.', capabilitiesBody: 'Every block exists to move a decision. If a section only fills space, it goes.',
@@ -202,7 +202,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
     },
     studio: {
       eyebrow: '04 / ARCHIC STUDIO', title: 'Digital solutions.', accent: 'Built for businesses.',
-      intro: 'Design, product, development and supervised AI working as one team. Archic Studio builds simple websites for €349 and quotes custom software and systems separately.',
+      intro: 'Design, product, development and supervised AI working as one team. Archic Studio builds simple websites for €349 + VAT and quotes custom software and systems separately.',
       roleTitle: 'The standard matters more than the tool used to reach it.', roleBody: 'We use AI to expand research, exploration, development, QA and operational capacity. Direction, context, decisions and delivery responsibility remain human.',
       outcomes: [['DIRECTION','A clear decision before multiplying options.'],['SPEED','More useful iteration without turning speed into carelessness.'],['CONTROL','Code, assets, QA and verifiable decisions in every delivery.']],
       capabilitiesTitle: 'A process designed to reduce judgement errors.', capabilitiesBody: 'AI accelerates parts of the work. The method stops that speed becoming more noise.',
@@ -386,8 +386,8 @@ function SystemMap({ current, lang }: { current: ProductKey; lang: Lang }) {
 function ContactPage({ lang }: { lang: Lang }) {
   const es = lang === 'es'
   const outcomes = es
-    ? [['01', 'Negocio', 'Qué vendes, a quién y cómo ocurre una venta, reserva o decisión.'], ['02', 'Fricción', 'Qué está fallando, costando tiempo o limitando crecimiento.'], ['03', 'Resultado', 'Qué debería ser distinto si el proyecto funciona.'], ['04', 'Precio', 'Web por 349 €, publicación opcional por 49 € y otros servicios bajo presupuesto.']]
-    : [['01', 'Business', 'What you sell, to whom and how a sale, booking or decision happens.'], ['02', 'Friction', 'What is failing, costing time or limiting growth.'], ['03', 'Outcome', 'What should be different if the project works.'], ['04', 'Pricing', '€349 website, optional €49 publishing, other services quoted separately.']]
+    ? [['01', 'Negocio', 'Qué vendes, a quién y cómo ocurre una venta, reserva o decisión.'], ['02', 'Fricción', 'Qué está fallando, costando tiempo o limitando crecimiento.'], ['03', 'Resultado', 'Qué debería ser distinto si el proyecto funciona.'], ['04', 'Precio', 'Web por 349 € + IVA, publicación opcional por 49 € + IVA y otros servicios bajo presupuesto.']]
+    : [['01', 'Business', 'What you sell, to whom and how a sale, booking or decision happens.'], ['02', 'Friction', 'What is failing, costing time or limiting growth.'], ['03', 'Outcome', 'What should be different if the project works.'], ['04', 'Pricing', '€349 + VAT website, optional €49 + VAT publishing, other services quoted separately.']]
 
   return (
     <div className="as-site al-site al-route-light ar-site ar-contact-route" data-quality-standard="archic-design-system-1.0.0">
