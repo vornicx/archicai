@@ -111,7 +111,7 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
       schemaName: 'Archic Studio',
     },
     contact: {
-      title: 'Contacto y diagnóstico de proyectos digitales | Archic Studio',
+      title: 'Contacto y diagnóstico de proyectos digitales | Archic',
       description: 'Cuéntanos cómo funciona tu negocio, qué no está funcionando y qué resultado buscas. Solicita un diagnóstico o habla directamente con Archic Studio.',
       ogAlt: 'Contacto y Digital Opportunity Audit con Archic Studio',
       schemaName: 'Contacto — Archic Studio',
@@ -146,7 +146,7 @@ export const SITE_PAGE_SEO: Record<Lang, Record<SitePageKey, SeoEntry>> = {
       schemaName: 'Archic Studio',
     },
     contact: {
-      title: 'Contact and digital opportunity audit | Archic Studio',
+      title: 'Contact and digital opportunity audit | Archic',
       description: 'Tell us how the business works, what is not working and what outcome you need. Request an audit or talk directly with Archic Studio.',
       ogAlt: 'Contact Archic Studio or request a Digital Opportunity Audit',
       schemaName: 'Contact — Archic Studio',

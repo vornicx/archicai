@@ -130,8 +130,8 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
     },
     studio: {
       eyebrow: '04 / ARCHIC STUDIO',
-      title: 'Dirección humana.',
-      accent: 'Capacidad aumentada.',
+      title: 'Webs y software.',
+      accent: 'A medida de tu negocio.',
       intro: 'Diseño, producto, desarrollo e IA supervisada trabajando como un mismo equipo. Archic Studio es la división de Archic que diseña y desarrolla webs, software y sistemas a medida para empresas.',
       roleTitle: 'El estándar importa más que la herramienta con la que llegamos a él.',
       roleBody: 'Usamos IA para ampliar investigación, exploración, desarrollo, QA y capacidad operativa. La dirección, el contexto, las decisiones y la responsabilidad de entrega siguen siendo humanas.',
@@ -200,7 +200,7 @@ const COPY: Record<Lang, Record<ProductKey, ProductCopy>> = {
       ctaTitle: 'What should your business be able to do that technology does not let it do today?', ctaBody: 'Start with the constraint, not the solution. We map the technical answer afterwards.',
     },
     studio: {
-      eyebrow: '04 / ARCHIC STUDIO', title: 'Human direction.', accent: 'Augmented capability.',
+      eyebrow: '04 / ARCHIC STUDIO', title: 'Digital solutions.', accent: 'Built for businesses.',
       intro: 'Design, product, development and supervised AI working as one team. Archic Studio is the Archic division that designs and builds websites, software and custom systems for businesses.',
       roleTitle: 'The standard matters more than the tool used to reach it.', roleBody: 'We use AI to expand research, exploration, development, QA and operational capacity. Direction, context, decisions and delivery responsibility remain human.',
       outcomes: [['DIRECTION','A clear decision before multiplying options.'],['SPEED','More useful iteration without turning speed into carelessness.'],['CONTROL','Code, assets, QA and verifiable decisions in every delivery.']],

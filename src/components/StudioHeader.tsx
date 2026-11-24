@@ -8,10 +8,8 @@ const COPY = {
       ['Archic Studio', 'studio'],
       ['Archic Lab', 'lab'],
       ['Trabajo', '#selected-work'],
-      ['Proceso', '#method'],
-      ['Servicios', '#system'],
       ['Recursos', 'guides'],
-      ['Contacto', '#audit'],
+      ['Contacto', 'contact'],
     ],
     pages: [
       ['Archic Studio', 'Webs y software a medida', 'studio'],
@@ -20,7 +18,7 @@ const COPY = {
       ['Servicios', 'Presence · Control · Business', '#system'],
       ['Proceso', 'Cómo dirigimos y construimos', '#method'],
       ['Recursos', 'Guías y criterio digital', 'guides'],
-      ['Contacto', 'Cuéntanos qué quieres construir', '#audit'],
+      ['Contacto', 'Cuéntanos qué quieres construir', 'contact'],
     ],
   },
   en: {
@@ -29,10 +27,8 @@ const COPY = {
       ['Archic Studio', 'studio'],
       ['Archic Lab', 'lab'],
       ['Work', '#selected-work'],
-      ['Process', '#method'],
-      ['Services', '#system'],
       ['Resources', 'guides'],
-      ['Contact', '#audit'],
+      ['Contact', 'contact'],
     ],
     pages: [
       ['Archic Studio', 'Websites and custom software', 'studio'],
@@ -41,7 +37,7 @@ const COPY = {
       ['Services', 'Presence · Control · Business', '#system'],
       ['Process', 'How we direct and build', '#method'],
       ['Resources', 'Guides and digital thinking', 'guides'],
-      ['Contact', 'Tell us what you want to build', '#audit'],
+      ['Contact', 'Tell us what you want to build', 'contact'],
     ],
   },
 }
@@ -49,6 +45,7 @@ const COPY = {
 function path(lang: 'es' | 'en', slug = '') {
   const root = lang === 'en' ? '/en/' : '/'
   if (!slug) return root
+  if (slug === 'guides') return '/guias/'
   if (slug.startsWith('#')) return `${root}${slug}`
   return lang === 'en' ? `/en/${slug}/` : `/${slug}/`
 }
